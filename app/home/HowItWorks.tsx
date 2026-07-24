@@ -1,0 +1,171 @@
+"use client";
+
+import { KeyboardEvent, useRef, useState } from "react";
+import { currencies, howSteps, type CurrencyCode } from "./data";
+import { Phone } from "./Phone";
+
+export function HowItWorks({
+  amount,
+  currency,
+  converted,
+  onAmount,
+  onCurrency,
+}: {
+  amount: string;
+  currency: CurrencyCode;
+  converted: number;
+  onAmount: (value: string) => void;
+  onCurrency: (value: CurrencyCode) => void;
+}) {
+  const [activeStep, setActiveStep] = useState(0);
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+
+  function moveStep(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    let next = index;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % howSteps.length;
+    else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + howSteps.length) % howSteps.length;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = howSteps.length - 1;
+    else return;
+    event.preventDefault();
+    setActiveStep(next);
+    tabRefs.current[next]?.focus();
+  }
+
+  const step = howSteps[activeStep];
+  const rateLabel = currencies[currency].rate.toLocaleString(undefined, {
+    minimumFractionDigits: Number.isInteger(currencies[currency].rate) ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
+
+  return (
+    <section className="how section" id="how">
+      <header className="chapter-heading">
+        <h2>Send in three clear steps.</h2>
+        <p>Choose a step to see the screen and information you use at that point.</p>
+      </header>
+
+      <div className="how-experience">
+        <div className="step-tabs" role="tablist" aria-label="Jazari transfer steps">
+          {howSteps.map((item, index) => (
+            <button
+              key={item.id}
+              ref={(node) => { tabRefs.current[index] = node; }}
+              id={`step-tab-${item.id}`}
+              type="button"
+              role="tab"
+              aria-selected={activeStep === index}
+              aria-controls="step-screen"
+              tabIndex={activeStep === index ? 0 : -1}
+              className={activeStep === index ? "is-active" : ""}
+              onClick={() => setActiveStep(index)}
+              onKeyDown={(event) => moveStep(event, index)}
+            >
+              <span>{item.title}</span>
+              <small>{item.copy}</small>
+              <em>{activeStep === index ? "Showing screen" : "View screen"}</em>
+            </button>
+          ))}
+        </div>
+
+        <div
+          className="step-screen"
+          id="step-screen"
+          role="tabpanel"
+          aria-labelledby={`step-tab-${step.id}`}
+        >
+          <Phone
+            key={step.id}
+            src={step.screen}
+            alt={step.alt}
+            className="active-step-phone"
+          />
+        </div>
+      </div>
+
+      <div className="review-block" id="rates">
+        <div className="review-copy">
+          <h3>Know what arrives before you send.</h3>
+          <p>
+            See the exchange rate, transaction fee, recipient amount, and
+            expected delivery before you confirm.
+          </p>
+          <div
+            className="review-fee"
+            aria-label="Transaction fee: zero percent for this illustrative route"
+          >
+            <strong className="numeric">0%</strong>
+            <span>
+              <b>Transaction fee</b>
+              <small>For this illustrative route</small>
+            </span>
+          </div>
+        </div>
+
+        <div className="rate-card">
+          <div className="rate-card-top">
+            <strong>FX preview</strong>
+          </div>
+
+          <label htmlFor="send-amount">You send</label>
+          <div className="money-input">
+            <input
+              className="numeric"
+              id="send-amount"
+              inputMode="decimal"
+              value={amount}
+              onChange={(event) => onAmount(event.target.value)}
+              aria-label="Amount in US dollars"
+            />
+            <span>USD</span>
+          </div>
+
+          <output
+            className="prominent-rate"
+            htmlFor="send-amount receive-currency"
+            aria-live="polite"
+          >
+            <span className="rate-side">
+              <b className="numeric">1</b>
+              <small>USD</small>
+            </span>
+            <span className="rate-equals" aria-hidden="true">=</span>
+            <span className="rate-side is-result">
+              <b className="numeric">{rateLabel}</b>
+              <small>{currency}</small>
+            </span>
+          </output>
+
+          <label htmlFor="receive-currency">Recipient receives</label>
+          <div className="money-input result">
+            <strong className="numeric" aria-live="polite">
+              {currencies[currency].symbol}
+              {converted.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+            </strong>
+            <select
+              id="receive-currency"
+              value={currency}
+              onChange={(event) => onCurrency(event.target.value as CurrencyCode)}
+              aria-label="Recipient currency"
+            >
+              {Object.entries(currencies).map(([code, item]) => (
+                <option value={code} key={code}>{code} · {item.name}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="rate-details">
+            <span>Transaction fee</span>
+            <strong className="numeric">0%</strong>
+            <span>Expected delivery</span>
+            <strong>Shown before confirmation</strong>
+          </div>
+          <p className="rate-disclaimer">
+            Indicative rate, for illustration only. Final rates, fees, delivery
+            times, eligibility, and route availability are shown before confirmation.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path = "/") {
@@ -57,11 +57,22 @@ test("server-renders the Jazari One landing page", async () => {
 });
 
 test("keeps the restrained interactions and clear content hierarchy in source", async () => {
-  const [page, css, packageJson] = await Promise.all([
+  const homeDirectory = new URL("../app/home/", import.meta.url);
+  const homeFiles = (await readdir(homeDirectory))
+    .filter((file) => /\.(?:ts|tsx)$/.test(file))
+    .sort();
+  const homeSource = (
+    await Promise.all(
+      homeFiles.map((file) => readFile(new URL(file, homeDirectory), "utf8")),
+    )
+  ).join("\n");
+
+  const [pageEntry, css, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
+  const page = `${pageEntry}\n${homeSource}`;
 
   assert.match(page, /import \{ MeshGradient \}/);
   assert.match(page, /className="hero-shader"/);
