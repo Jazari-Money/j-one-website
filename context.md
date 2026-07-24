@@ -292,13 +292,31 @@ Default local URL: `http://localhost:3000`
 
 - Respect `prefers-reduced-motion`.
 - Avoid more than two visually dominant shader canvases in one viewport.
-- Keep the hero shader confined to roughly the first 430px and fade it before
-  product content.
+- Keep the hero shader confined to the top of the hero and render it as a
+  structured, abstract field rather than a smoky wash.
 - Do not reintroduce Glimm or liquid-metal effects.
-- Do not drive pointer tilt through React state on every move; the card writes
-  CSS variables through `requestAnimationFrame`.
+- Do not drive pointer tilt through React state on every move; write the small
+  normalized pointer values directly to CSS custom properties.
+- Presentational cards may use only a very subtle pointer tilt and quiet
+  cursor-position radial light; functional controls should stay visually still.
 - Keep images in their visual column; never position them over copy.
 - Test desktop, tablet, and narrow mobile layouts after structural changes.
+
+## Current visual language
+
+- Use a neutral, concrete page foundation. Theme choices change the accent and
+  shader palette, not the entire page background.
+- CTA buttons are pill-shaped, use Title Case, contain no decorative glyphs,
+  and may carry a restrained cursor-position highlight.
+- Header controls and content cards do not use decorative strokes.
+- Benefit rows place the description directly below the title and use spacing,
+  not separator rules, to establish rhythm.
+- The three transfer steps behave as one borderless segmented control. Do not
+  add helper labels such as “View screen” or “Showing screen.”
+- The FX preview is deliberately sparse: no outer plate border, no internal
+  separators, and one consistent tabular style for currencies and values.
+- The roadmap reads as one compact vertical sequence connected by a continuous
+  line; its nested stages should not feel like full-size standalone sections.
 
 ## Reference direction
 

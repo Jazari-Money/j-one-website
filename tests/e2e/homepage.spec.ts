@@ -45,10 +45,10 @@ test("keeps the core interactions working", async ({ page }) => {
     .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
     .toBe("toxic");
 
-  const accountTab = page.getByRole("tab", { name: /Set up your account/ });
+  const accountTab = page.getByRole("tab", { name: /Set Up Your Account/ });
   await accountTab.focus();
   await accountTab.press("ArrowRight");
-  await expect(page.getByRole("tab", { name: /Build the transfer/ })).toHaveAttribute(
+  await expect(page.getByRole("tab", { name: /Build The Transfer/ })).toHaveAttribute(
     "aria-selected",
     "true",
   );

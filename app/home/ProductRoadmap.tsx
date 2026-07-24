@@ -18,37 +18,37 @@ export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
         <p>Jazari is growing one useful layer at a time, starting with the dollar account.</p>
       </header>
 
-      <article className="live-product" ref={liveRef}>
-        <div className="live-shader" aria-hidden="true">
-          {liveShaderVisible && (
-            <MeshGradient
-              width="100%"
-              height="100%"
-              colors={[theme.mesh[0], theme.mesh[1], theme.mesh[3], theme.mesh[0]]}
-              distortion={0.5}
-              swirl={0.14}
-              grainMixer={0}
-              grainOverlay={0}
-              speed={reduced ? 0 : 0.16}
-            />
-          )}
-        </div>
-        <div className="roadmap-copy">
-          <span className="live-mark">LIVE</span>
-          <h3>Your dollar account</h3>
-          <p>Hold and receive supported digital dollars, then send through the bank routes available to you.</p>
-          <ul>
-            <li>One account for holding, receiving, and sending</li>
-            <li>Transfer information visible before confirmation</li>
-            <li>Available routes collected in one experience</li>
-          </ul>
-        </div>
-        <div className="roadmap-visual live-phone">
-          <Phone src={withBasePath("/images/screens/home.webp")} alt="Jazari One dollar account home screen" />
-        </div>
-      </article>
+      <div className="roadmap-flow">
+        <article className="live-product" ref={liveRef}>
+          <div className="live-shader" aria-hidden="true">
+            {liveShaderVisible && (
+              <MeshGradient
+                width="100%"
+                height="100%"
+                colors={[theme.mesh[0], theme.mesh[1], theme.mesh[3], theme.mesh[0]]}
+                distortion={0.5}
+                swirl={0.14}
+                grainMixer={0}
+                grainOverlay={0}
+                speed={reduced ? 0 : 0.16}
+              />
+            )}
+          </div>
+          <div className="roadmap-copy">
+            <span className="live-mark">LIVE</span>
+            <h3>Your dollar account</h3>
+            <p>Hold and receive supported digital dollars, then send through the bank routes available to you.</p>
+            <ul>
+              <li>One account for holding, receiving, and sending</li>
+              <li>Transfer information visible before confirmation</li>
+              <li>Available routes collected in one experience</li>
+            </ul>
+          </div>
+          <div className="roadmap-visual live-phone">
+            <Phone src={withBasePath("/images/screens/home.webp")} alt="Jazari One dollar account home screen" />
+          </div>
+        </article>
 
-      <div className="next-stack">
         <article className="roadmap-row routes-row">
           <div className="roadmap-copy">
             <span className="roadmap-state">Next</span>

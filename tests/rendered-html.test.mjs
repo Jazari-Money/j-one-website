@@ -28,12 +28,12 @@ test("server-renders the Jazari One landing page", async () => {
     /Hold your money in dollars that keep their value — and send it to any bank account/,
   );
   assert.match(html, /jazari-app\.mp4/);
-  assert.match(html, /Get early access/);
+  assert.match(html, /Get Early Access/);
   assert.match(html, /One account for money that crosses borders/);
   assert.match(html, /Send in three clear steps/);
   assert.match(html, /Know what arrives before you send/);
-  assert.match(html, /1<\/b><small>USD/);
-  assert.match(html, /18\.72<\/b><small>MXN/);
+  assert.match(html, /class="numeric">1<\/b><small class="numeric">USD/);
+  assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
   assert.match(html, /Transaction fee/);
   assert.match(html, /Live now\. Built next\./);
   assert.match(html, /One balance\. Multiple rails\./);
@@ -81,7 +81,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /accessOpen/);
   assert.match(page, /activeStep/);
   assert.match(page, /role="tablist"/);
-  assert.match(page, /View screen/);
+  assert.doesNotMatch(page, /View screen|Showing screen/);
   assert.match(page, /className="review-fee"/);
   assert.match(page, /className="numeric"/);
   assert.match(page, /Know what arrives before you send/);

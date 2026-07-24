@@ -5,6 +5,7 @@
 import { CSSProperties, useEffect, useState } from "react";
 import { withBasePath } from "../site-paths";
 import { themeOptions, type ThemeKey } from "./data";
+import { resetPointer, trackPointer } from "./hooks";
 
 export function SiteHeader({
   theme,
@@ -62,6 +63,8 @@ export function SiteHeader({
               className="theme-trigger"
               type="button"
               onClick={() => setThemeOpen((open) => !open)}
+              onPointerMove={trackPointer}
+              onPointerLeave={resetPointer}
               aria-expanded={themeOpen}
               aria-controls="theme-menu"
             >
@@ -90,13 +93,21 @@ export function SiteHeader({
               ))}
             </div>
           </div>
-          <button className="nav-cta" type="button" onClick={onAccess}>
-            Get early access
+          <button
+            className="nav-cta"
+            type="button"
+            onClick={onAccess}
+            onPointerMove={trackPointer}
+            onPointerLeave={resetPointer}
+          >
+            Get Early Access
           </button>
           <button
             className="mobile-toggle"
             type="button"
             onClick={() => setMobileOpen((open) => !open)}
+            onPointerMove={trackPointer}
+            onPointerLeave={resetPointer}
             aria-expanded={mobileOpen}
           >
             {mobileOpen ? "Close" : "Menu"}

@@ -13,13 +13,14 @@
 .network-list {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .network-list button {
   min-height: 88px;
   padding: 15px 18px;
   border: 0;
-  border-bottom: 1px solid var(--line);
+  border-radius: 14px;
   background: transparent;
   text-align: left;
   cursor: pointer;
@@ -30,15 +31,11 @@
   transition: background 220ms ease, padding 220ms ease;
 }
 
-.network-list button:first-child {
-  border-top: 1px solid var(--line);
-}
-
 .network-list button:hover,
 .network-list button:focus-visible,
 .network-list button.is-active {
-  padding-left: 27px;
-  background: linear-gradient(90deg, var(--accent-soft), transparent);
+  padding-left: 22px;
+  background: linear-gradient(90deg, var(--accent-soft), transparent 72%);
   outline: 0;
 }
 

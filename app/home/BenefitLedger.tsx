@@ -9,8 +9,10 @@ function BenefitRow({ feature }: { feature: (typeof features)[number] }) {
     <li className="benefit-row">
       <div className="benefit-row-inner">
         <img src={feature.image} alt="" aria-hidden="true" />
-        <h3>{feature.title}</h3>
-        <p>{feature.copy}</p>
+        <div className="benefit-copy">
+          <h3>{feature.title}</h3>
+          <p>{feature.copy}</p>
+        </div>
       </div>
     </li>
   );

@@ -11,12 +11,50 @@
 }
 
 .audience-panel {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
   position: relative;
   min-width: 0;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 34px;
   overflow: hidden;
   background: var(--surface);
+  transform:
+    perspective(1200px)
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.audience-panel::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(
+    circle 280px at var(--pointer-x) var(--pointer-y),
+    color-mix(in srgb, var(--accent) 12%, transparent),
+    transparent 74%
+  );
+  opacity: 0.2;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+}
+
+.audience-panel:hover {
+  transform:
+    perspective(1200px)
+    rotateX(var(--tilt-x))
+    rotateY(var(--tilt-y))
+    translateY(-2px);
+}
+
+.audience-panel:hover::after {
+  opacity: 0.66;
 }
 
 .audience-panel > img {
@@ -30,6 +68,7 @@
 
 .audience-scrim {
   position: absolute;
+  z-index: 1;
   inset: 0;
   background: linear-gradient(to top, rgba(2, 4, 3, 0.94), transparent 72%);
 }

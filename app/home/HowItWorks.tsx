@@ -63,7 +63,6 @@ export function HowItWorks({
             >
               <span>{item.title}</span>
               <small>{item.copy}</small>
-              <em>{activeStep === index ? "Showing screen" : "View screen"}</em>
             </button>
           ))}
         </div>
@@ -127,12 +126,12 @@ export function HowItWorks({
           >
             <span className="rate-side">
               <b className="numeric">1</b>
-              <small>USD</small>
+              <small className="numeric">USD</small>
             </span>
             <span className="rate-equals" aria-hidden="true">=</span>
             <span className="rate-side is-result">
               <b className="numeric">{rateLabel}</b>
-              <small>{currency}</small>
+              <small className="numeric">{currency}</small>
             </span>
           </output>
 
@@ -143,13 +142,16 @@ export function HowItWorks({
               {converted.toLocaleString(undefined, { maximumFractionDigits: 2 })}
             </strong>
             <select
+              className="currency-select"
               id="receive-currency"
               value={currency}
               onChange={(event) => onCurrency(event.target.value as CurrencyCode)}
               aria-label="Recipient currency"
             >
               {Object.entries(currencies).map(([code, item]) => (
-                <option value={code} key={code}>{code} · {item.name}</option>
+                <option value={code} key={code} aria-label={`${code}, ${item.name}`}>
+                  {code}
+                </option>
               ))}
             </select>
           </div>

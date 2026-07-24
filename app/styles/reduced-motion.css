@@ -20,4 +20,11 @@
   .card-object {
     transform: rotateX(-7deg) rotateY(16deg);
   }
+
+  .blog-card,
+  .blog-card:hover,
+  .audience-panel,
+  .audience-panel:hover {
+    transform: none !important;
+  }
 }

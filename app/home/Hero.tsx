@@ -6,7 +6,12 @@ import { FormEvent } from "react";
 import { MeshGradient } from "@paper-design/shaders-react";
 import { withBasePath } from "../site-paths";
 import type { ThemeOption } from "./data";
-import { useInViewport, useReducedMotion } from "./hooks";
+import {
+  resetPointer,
+  trackPointer,
+  useInViewport,
+  useReducedMotion,
+} from "./hooks";
 
 function MagicAccess({
   theme,
@@ -37,6 +42,8 @@ function MagicAccess({
         className="magic-access-button"
         type="button"
         onClick={onOpen}
+        onPointerMove={trackPointer}
+        onPointerLeave={resetPointer}
         aria-expanded={open}
         aria-controls="access-form"
         aria-hidden={open}
@@ -48,15 +55,15 @@ function MagicAccess({
               width="100%"
               height="100%"
               colors={[theme.mesh[1], theme.mesh[3], "#eaffdf", theme.mesh[2]]}
-              distortion={0.56}
-              swirl={0.18}
+              distortion={0.24}
+              swirl={0.05}
               grainMixer={0}
               grainOverlay={0}
-              speed={reduced ? 0 : 0.45}
+              speed={reduced ? 0 : 0.16}
             />
           )}
         </span>
-        <span className="button-label">Get early access</span>
+        <span className="button-label">Get Early Access</span>
       </button>
       <form
         className="access-form"
@@ -82,7 +89,14 @@ function MagicAccess({
               tabIndex={open ? 0 : -1}
               required
             />
-            <button type="submit" tabIndex={open ? 0 : -1}>Join waitlist</button>
+            <button
+              type="submit"
+              tabIndex={open ? 0 : -1}
+              onPointerMove={trackPointer}
+              onPointerLeave={resetPointer}
+            >
+              Join Waitlist
+            </button>
           </>
         )}
       </form>
@@ -119,13 +133,13 @@ export function Hero({
           <MeshGradient
             width="100%"
             height="100%"
-            colors={[...theme.mesh]}
-            distortion={0.42}
-            swirl={0.08}
+            colors={[theme.mesh[0], theme.mesh[1], theme.mesh[2], theme.mesh[3]]}
+            distortion={0.26}
+            swirl={0.06}
             grainMixer={0}
             grainOverlay={0}
-            speed={reduced ? 0 : 0.18}
-            scale={1.15}
+            speed={reduced ? 0 : 0.08}
+            scale={0.82}
           />
         )}
       </div>

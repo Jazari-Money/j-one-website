@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local, art-directed assets use exact source files */
 
 import { audiences } from "./data";
+import { resetPointer, trackPointer } from "./hooks";
 
 export function AudienceExplorer() {
   return (
@@ -14,7 +15,12 @@ export function AudienceExplorer() {
 
       <div className="audience-explorer">
         {audiences.map((item) => (
-          <article className="audience-panel" key={item.title}>
+          <article
+            className="audience-panel"
+            key={item.title}
+            onPointerMove={trackPointer}
+            onPointerLeave={resetPointer}
+          >
             <img src={item.image} alt={item.alt} />
             <div className="audience-scrim" />
             <div className="audience-caption">

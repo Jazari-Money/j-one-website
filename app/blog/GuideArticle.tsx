@@ -218,7 +218,7 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
 
       <footer className="article-footer">
         <p>Ready to hold and move dollars across borders?</p>
-        <Link href="/#access">Get early access</Link>
+        <Link href="/#access">Get Early Access</Link>
       </footer>
     </main>
   );

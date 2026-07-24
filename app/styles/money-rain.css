@@ -65,17 +65,35 @@
 }
 
 .money-rain-content button {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  position: relative;
   min-width: 176px;
   min-height: 52px;
   margin-top: 32px;
   border: 0;
-  border-radius: 13px;
+  border-radius: 999px;
   background: var(--cream-ink);
   color: var(--cream);
   font-size: 12px;
   font-weight: 760;
   cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
   transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.money-rain-content button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 100px at var(--pointer-x) var(--pointer-y),
+    color-mix(in srgb, var(--accent) 32%, transparent),
+    transparent 72%
+  );
+  opacity: 0.52;
+  pointer-events: none;
 }
 
 .money-rain-content button:hover,

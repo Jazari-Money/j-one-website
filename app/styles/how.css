@@ -16,39 +16,42 @@
 }
 
 .step-tabs {
+  align-self: center;
+  padding: 6px;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 4px;
 }
 
 .step-tabs button {
   position: relative;
   width: 100%;
-  min-height: 150px;
-  padding: 30px 28px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  min-height: 112px;
+  padding: 24px 28px;
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
   text-align: left;
   cursor: pointer;
-  transition: background-color 180ms ease, border-color 180ms ease;
+  transition: background-color 180ms ease, transform 180ms ease;
 }
 
 .step-tabs button:hover {
-  border-color: var(--line-strong);
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface-2) 72%, transparent);
 }
 
 .step-tabs button:focus-visible {
-  border-color: var(--accent);
   outline: 2px solid var(--accent);
-  outline-offset: 3px;
+  outline-offset: -2px;
 }
 
 .step-tabs button.is-active {
-  border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
-  background: var(--accent-soft);
+  background:
+    radial-gradient(circle at 10% 50%, var(--accent-soft), transparent 72%),
+    color-mix(in srgb, var(--surface-2) 88%, transparent);
 }
 
 .step-tabs span {
@@ -65,22 +68,6 @@
   color: var(--muted);
   font-size: 13px;
   line-height: 1.58;
-}
-
-.step-tabs em {
-  position: absolute;
-  right: 28px;
-  bottom: 26px;
-  color: var(--muted);
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.step-tabs button.is-active em {
-  color: var(--accent);
 }
 
 .step-screen {
@@ -145,17 +132,19 @@
 .review-block {
   margin-top: 128px;
   display: grid;
-  grid-template-columns: minmax(270px, 0.58fr) minmax(620px, 1.42fr);
+  grid-template-columns: minmax(390px, 0.9fr) minmax(500px, 1.1fr);
   gap: clamp(48px, 6vw, 84px);
   align-items: start;
 }
 
 .review-copy {
+  min-width: 0;
   padding-top: 18px;
 }
 
 .review-copy h3 {
-  max-width: 430px;
+  width: 100%;
+  max-width: 520px;
   margin: 0;
   font-size: clamp(54px, 4.8vw, 74px);
   line-height: 0.94;
@@ -163,7 +152,7 @@
 }
 
 .review-copy > p {
-  max-width: 430px;
+  max-width: 500px;
   margin: 22px 0 0;
   color: var(--muted-strong);
   font-size: 15px;
@@ -180,8 +169,8 @@
 
 .review-fee {
   margin-top: 40px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
+  padding-top: 0;
+  border-top: 0;
   display: flex;
   align-items: baseline;
   gap: 18px;
@@ -200,21 +189,22 @@
 
 .review-fee b {
   color: var(--text);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 500;
 }
 
 .review-fee small {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .rate-card {
+  min-width: 0;
   min-height: 0;
-  padding: 38px;
-  border: 1px solid var(--line-strong);
-  border-radius: 26px;
-  background: var(--surface);
+  padding: 34px;
+  border: 0;
+  border-radius: 24px;
+  background: color-mix(in srgb, var(--surface) 68%, transparent);
   box-shadow: none;
   display: flex;
   flex-direction: column;
@@ -240,9 +230,9 @@
 .money-input {
   min-height: 72px;
   padding: 0 18px 0 22px;
-  border: 1px solid var(--line);
+  border: 0;
   border-radius: 14px;
-  background: transparent;
+  background: color-mix(in srgb, var(--surface-2) 72%, transparent);
   display: flex;
   align-items: center;
   gap: 18px;
@@ -259,16 +249,14 @@
 }
 
 .money-input > span {
-  color: var(--muted-strong);
-  font-size: 11px;
-  font-weight: 600;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .prominent-rate {
   margin: 22px 0 28px;
-  padding: 21px 0;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: baseline;
@@ -285,15 +273,15 @@
   justify-content: flex-end;
 }
 
-.rate-side b {
+.rate-side b,
+.rate-side small {
   color: var(--text);
   font-size: 28px;
+  font-weight: 500;
 }
 
 .rate-side small {
-  color: var(--muted-strong);
-  font-size: 11px;
-  font-weight: 600;
+  line-height: 1;
 }
 
 .rate-equals {
@@ -315,39 +303,43 @@
   border: 0;
   background: transparent;
   color: var(--muted-strong);
-  font-size: 11px;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums lining-nums;
   outline: 0;
 }
 
 .rate-details {
   padding: 20px 0;
-  border-top: 1px solid var(--line);
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 13px 24px;
   color: var(--muted);
-  font-size: 11px;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums lining-nums;
 }
 
 .rate-details strong {
+  min-width: 0;
   color: var(--text);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 500;
+  text-align: right;
 }
 
 .rate-disclaimer {
   margin: 0;
   padding-top: 18px;
-  border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
 @media (max-width: 1120px) {
   .how-experience,
   .review-block {
-    grid-template-columns: minmax(300px, 0.8fr) minmax(450px, 1.2fr);
+    grid-template-columns: minmax(340px, 0.9fr) minmax(430px, 1.1fr);
   }
 }
 
@@ -369,8 +361,7 @@
 
   .step-tabs button {
     min-width: 250px;
-    min-height: 142px;
-    border-top: 1px solid var(--line);
+    min-height: 112px;
   }
 
   .step-screen {
@@ -383,23 +374,25 @@
   }
 
   .rate-card {
-    min-height: 640px;
+    min-height: 0;
   }
 }
 
 @media (max-width: 620px) {
+  .step-tabs {
+    width: 100%;
+    flex-direction: column;
+    overflow: visible;
+  }
+
   .step-tabs button {
-    min-width: 225px;
-    padding: 24px 20px;
+    min-width: 0;
+    min-height: 102px;
+    padding: 20px;
   }
 
   .step-tabs span {
     font-size: 18px;
-  }
-
-  .step-tabs em {
-    right: 20px;
-    bottom: 20px;
   }
 
   .step-screen {
@@ -411,6 +404,7 @@
   }
 
   .review-copy h3 {
+    max-width: 100%;
     font-size: clamp(50px, 14vw, 68px);
   }
 
@@ -420,7 +414,7 @@
 
   .rate-card {
     padding: 26px 20px;
-    border-radius: 28px;
+    border-radius: 22px;
   }
 
   .rate-card-top {
@@ -438,20 +432,31 @@
   }
 
   .prominent-rate {
-    padding: 18px 15px;
-    gap: 10px;
+    padding: 18px 0;
+    gap: 8px;
   }
 
-  .rate-side b {
-    font-size: 20px;
-  }
-
+  .rate-side b,
   .rate-side small {
-    font-size: 10px;
+    font-size: 18px;
   }
 
   .money-input select {
-    max-width: 125px;
+    width: 76px;
+    min-width: 0;
+    max-width: 76px;
+    font-size: 13px;
+  }
+
+  .rate-details {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 13px 16px;
+    font-size: 13px;
+  }
+
+  .rate-details strong {
+    font-size: 13px;
+    line-height: 1.35;
   }
 }
 
@@ -462,8 +467,8 @@
   }
 
   .step-tabs button {
-    min-height: 132px;
-    padding: 26px 25px;
+    min-height: 112px;
+    padding: 23px 25px;
   }
 
   .step-tabs span {

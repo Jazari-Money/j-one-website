@@ -5,7 +5,7 @@
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { withBasePath } from "../site-paths";
 import { coinSeeds } from "./data";
-import { useReducedMotion } from "./hooks";
+import { resetPointer, trackPointer, useReducedMotion } from "./hooks";
 
 export function MoneyRain({ onAccess }: { onAccess: () => void }) {
   const [raining, setRaining] = useState(false);
@@ -65,7 +65,14 @@ export function MoneyRain({ onAccess }: { onAccess: () => void }) {
       <div className="money-rain-content">
         <h2>Your dollars should move with you.</h2>
         <p>Join the waitlist and we&apos;ll tell you when Jazari becomes available in your country.</p>
-        <button type="button" onClick={onAccess}>Get early access</button>
+        <button
+          type="button"
+          onClick={onAccess}
+          onPointerMove={trackPointer}
+          onPointerLeave={resetPointer}
+        >
+          Get Early Access
+        </button>
       </div>
     </section>
   );
