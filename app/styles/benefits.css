@@ -69,3 +69,87 @@
   line-height: 1.62;
 }
 
+@media (max-width: 1120px) {
+  .benefit-ledger {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+
+  .ledger-heading {
+    position: static;
+  }
+
+  .benefit-row-inner {
+    grid-template-columns: 72px minmax(190px, 0.7fr) 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .ledger-heading h2 {
+    font-size: clamp(54px, 10vw, 82px);
+  }
+
+  .benefit-row-inner {
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
+  }
+
+  .benefit-row p {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 620px) {
+  .ledger-heading h2 {
+    font-size: clamp(48px, 14vw, 66px);
+  }
+
+  .benefit-ledger {
+    gap: 48px;
+  }
+
+  .benefit-row-inner {
+    min-height: 172px;
+    padding: 24px 10px;
+    grid-template-columns: 54px 1fr;
+    gap: 14px;
+  }
+
+  .benefit-row img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .benefit-row h3 {
+    font-size: 17px;
+  }
+
+  .benefit-row p {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 901px) {
+  .ledger-heading h2 {
+    font-size: clamp(51px, 4.85vw, 76px);
+  }
+
+  .benefit-ledger {
+    gap: clamp(62px, 7.9vw, 132px);
+  }
+
+  .benefit-row {
+    min-height: 137px;
+  }
+
+  .benefit-row-inner {
+    min-height: 135px;
+    padding: 25px 18px;
+    gap: 25px;
+  }
+
+  .benefit-row img {
+    width: 51px;
+    height: 51px;
+  }
+}

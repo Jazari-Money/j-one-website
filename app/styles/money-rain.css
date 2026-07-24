@@ -142,3 +142,43 @@
   }
 }
 
+@media (max-width: 900px) {
+  .money-rain {
+    min-height: 530px;
+    border-radius: 36px;
+  }
+}
+
+@media (max-width: 620px) {
+  .money-rain {
+    width: calc(100% - 20px);
+    min-height: 500px;
+    margin-top: 74px;
+    margin-bottom: 74px;
+    border-radius: 30px;
+  }
+
+  .money-rain h2 {
+    font-size: clamp(54px, 16vw, 72px);
+  }
+
+  .coin-fall:nth-child(n + 15) {
+    display: none;
+  }
+}
+
+@media (min-width: 901px) {
+  .money-rain {
+    min-height: 502px;
+    margin-block: 106px;
+    border-radius: 42px;
+  }
+
+  .money-rain-content {
+    width: min(704px, calc(100% - 42px));
+  }
+
+  .money-rain h2 {
+    font-size: clamp(56px, 6.6vw, 99px);
+  }
+}

@@ -302,3 +302,149 @@
   margin-bottom: -96px;
 }
 
+@media (max-width: 1120px) {
+  .live-product,
+  .roadmap-row {
+    grid-template-columns: minmax(300px, 0.86fr) minmax(400px, 1.14fr);
+  }
+
+  .roadmap-copy {
+    padding: 52px;
+  }
+}
+
+@media (max-width: 900px) {
+  .live-product,
+  .roadmap-row {
+    min-height: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .roadmap-visual {
+    min-height: 560px;
+  }
+
+  .live-phone .phone,
+  .rnpl-phone .phone {
+    width: min(330px, 66%);
+  }
+
+  .route-roster {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .live-product,
+  .roadmap-row {
+    border-radius: 28px;
+  }
+
+  .live-product {
+    margin-top: 58px;
+  }
+
+  .roadmap-copy {
+    padding: 36px 26px;
+  }
+
+  .roadmap h3 {
+    font-size: clamp(52px, 14vw, 70px);
+  }
+
+  .roadmap-visual {
+    min-height: 470px;
+  }
+
+  .route-roster {
+    min-height: 0;
+    padding: 30px 25px;
+  }
+
+  .route-group {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 26px 0;
+  }
+
+  .route-group h4 {
+    font-size: 38px;
+  }
+
+  .card-interaction {
+    min-height: 420px;
+  }
+
+  .card-object {
+    width: 88%;
+  }
+
+  .card-face {
+    border-radius: 20px;
+  }
+
+  .card-brand {
+    top: 22px;
+    left: 24px;
+    width: 108px;
+  }
+
+  .card-visa {
+    top: 22px;
+    right: 24px;
+    width: 45px;
+  }
+
+  .rnpl-example {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 901px) {
+  .live-product,
+  .roadmap-row {
+    min-height: 607px;
+    border-radius: 37px;
+  }
+
+  .live-product {
+    margin-top: 77px;
+  }
+
+  .roadmap-copy {
+    padding: clamp(40px, 5.3vw, 72px);
+  }
+
+  .roadmap h3 {
+    font-size: clamp(51px, 5.3vw, 81px);
+  }
+
+  .roadmap-visual {
+    min-height: 458px;
+  }
+
+  .live-phone .phone {
+    width: min(308px, 70%);
+  }
+
+  .next-stack {
+    margin-top: 30px;
+    gap: 30px;
+  }
+
+  .route-roster {
+    padding: 62px;
+  }
+
+  .card-interaction {
+    min-height: 475px;
+  }
+
+  .card-object {
+    width: min(466px, 82%);
+  }
+
+  .rnpl-phone .phone {
+    width: min(299px, 66%);
+  }
+}

@@ -161,3 +161,26 @@
   --cream-ink: #031817;
 }
 
+@media (max-width: 1120px) {
+  :root {
+    --page: min(calc(100% - 48px), 1040px);
+  }
+}
+
+@media (max-width: 900px) {
+  :root {
+    --page: min(calc(100% - 36px), 760px);
+  }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --page: calc(100% - 28px);
+  }
+}
+
+@media (min-width: 901px) {
+  :root {
+    --page: min(1160px, calc(100vw - 48px));
+  }
+}

@@ -344,3 +344,156 @@
   line-height: 1.55;
 }
 
+@media (max-width: 1120px) {
+  .how-experience,
+  .review-block {
+    grid-template-columns: minmax(300px, 0.8fr) minmax(450px, 1.2fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .how-experience,
+  .review-block {
+    grid-template-columns: 1fr;
+  }
+
+  .how-experience {
+    margin-top: 64px;
+  }
+
+  .step-tabs {
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .step-tabs button {
+    min-width: 250px;
+    min-height: 142px;
+    border-top: 1px solid var(--line);
+  }
+
+  .step-screen {
+    min-height: 650px;
+  }
+
+  .review-block {
+    margin-top: 110px;
+    gap: 56px;
+  }
+
+  .rate-card {
+    min-height: 640px;
+  }
+}
+
+@media (max-width: 620px) {
+  .step-tabs button {
+    min-width: 225px;
+    padding: 24px 20px;
+  }
+
+  .step-tabs span {
+    font-size: 18px;
+  }
+
+  .step-tabs em {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .step-screen {
+    min-height: 540px;
+  }
+
+  .active-step-phone {
+    width: min(285px, 77%);
+  }
+
+  .review-copy h3 {
+    font-size: clamp(50px, 14vw, 68px);
+  }
+
+  .review-fee > strong {
+    font-size: 52px;
+  }
+
+  .rate-card {
+    padding: 26px 20px;
+    border-radius: 28px;
+  }
+
+  .rate-card-top {
+    margin-bottom: 36px;
+  }
+
+  .money-input {
+    min-height: 68px;
+    padding: 0 14px;
+  }
+
+  .money-input input,
+  .money-input.result > strong {
+    font-size: 24px;
+  }
+
+  .prominent-rate {
+    padding: 18px 15px;
+    gap: 10px;
+  }
+
+  .rate-side b {
+    font-size: 20px;
+  }
+
+  .rate-side small {
+    font-size: 10px;
+  }
+
+  .money-input select {
+    max-width: 125px;
+  }
+}
+
+@media (min-width: 901px) {
+  .how-experience {
+    margin-top: 77px;
+    gap: 23px;
+  }
+
+  .step-tabs button {
+    min-height: 132px;
+    padding: 26px 25px;
+  }
+
+  .step-tabs span {
+    font-size: 20px;
+  }
+
+  .step-screen {
+    min-height: 600px;
+  }
+
+  .active-step-phone {
+    width: min(300px, 70%);
+    margin-bottom: -64px;
+  }
+
+  .review-block {
+    margin-top: 132px;
+    gap: clamp(56px, 7.9vw, 127px);
+  }
+
+  .review-copy h3 {
+    font-size: clamp(51px, 5.1vw, 78px);
+  }
+
+  .rate-card {
+    padding: 37px;
+    border-radius: 33px;
+  }
+
+  .rate-card-top {
+    margin-bottom: 44px;
+  }
+}

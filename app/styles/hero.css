@@ -277,3 +277,134 @@
   pointer-events: none;
 }
 
+@media (max-width: 900px) {
+  .hero {
+    min-height: 1160px;
+    padding: 146px 20px 48px;
+  }
+
+  .hero h1 {
+    font-size: clamp(66px, 13vw, 104px);
+  }
+
+  .hero-product {
+    height: 640px;
+    margin-top: 86px;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    min-height: 1040px;
+    padding-top: 126px;
+  }
+
+  .hero-shader {
+    height: 350px;
+    opacity: 0.58;
+  }
+
+  .hero h1 {
+    font-size: clamp(58px, 17vw, 82px);
+    line-height: 0.87;
+  }
+
+  .hero-copy > p {
+    margin-top: 30px;
+    font-size: 15px;
+  }
+
+  .access-control {
+    height: 62px;
+  }
+
+  .magic-access-button {
+    width: 188px;
+  }
+
+  .access-form {
+    position: relative;
+    height: auto;
+    min-height: 62px;
+  }
+
+  .access-control.is-open {
+    height: 118px;
+  }
+
+  .access-control.is-open .access-form {
+    flex-direction: column;
+  }
+
+  .access-form input,
+  .access-form button {
+    min-height: 48px;
+  }
+
+  .hero-product {
+    height: 520px;
+    margin-top: 74px;
+  }
+
+  .hero-device {
+    width: min(330px, 84vw);
+  }
+}
+
+@media (min-width: 901px) {
+  .hero {
+    min-height: 1118px;
+    padding: 157px 42px 53px;
+  }
+
+  .hero::before {
+    top: 185px;
+    width: min(986px, 100vw);
+    height: 458px;
+  }
+
+  .hero-shader {
+    height: 378px;
+  }
+
+  .hero-copy {
+    width: min(950px, 100%);
+  }
+
+  .hero h1 {
+    max-width: 900px;
+    font-size: clamp(68px, 7.7vw, 116px);
+    line-height: 0.86;
+  }
+
+  .hero-copy > p {
+    width: min(580px, 100%);
+    margin-top: 37px;
+    font-size: clamp(16px, 1.35vw, 18px);
+  }
+
+  .access-control {
+    width: min(493px, 100%);
+    height: 60px;
+    margin-top: 32px;
+  }
+
+  .magic-access-button {
+    width: 185px;
+  }
+
+  .hero-product {
+    width: min(669px, 100%);
+    height: 607px;
+    margin-top: 92px;
+  }
+
+  .hero-device-glow {
+    width: 458px;
+    height: 317px;
+  }
+
+  .hero-device {
+    width: min(361px, 72vw);
+  }
+}

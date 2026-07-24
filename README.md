@@ -26,6 +26,8 @@ npm run test:e2e
 ```
 
 - `npm run build` checks the standard Next.js application.
+- Every build is a static export; only the GitHub Pages base path differs in
+  deployment.
 - `npm test` creates the GitHub Pages export and verifies its content and routes.
 - `npm run test:e2e` checks interactions and the existing visual baselines.
 - `npm run test:all` runs the complete local verification sequence.

@@ -189,3 +189,54 @@
   font-weight: 740;
 }
 
+@media (max-width: 900px) {
+  .article-layout {
+    grid-template-columns: 1fr;
+    gap: 70px;
+  }
+
+  .article-checklist {
+    position: static;
+  }
+}
+
+@media (max-width: 620px) {
+  .article-nav,
+  .guide-article,
+  .article-footer {
+    width: calc(100% - 36px);
+  }
+
+  .article-nav > a:last-child {
+    font-size: 10px;
+  }
+
+  .guide-article {
+    padding: 72px 0 100px;
+  }
+
+  .article-header h1 {
+    font-size: clamp(58px, 16vw, 82px);
+  }
+
+  .article-header > p {
+    font-size: 16px;
+  }
+
+  .article-layout {
+    margin-top: 70px;
+  }
+
+  .article-copy h2 {
+    font-size: 48px;
+  }
+
+  .article-copy section > p {
+    font-size: 15px;
+  }
+
+  .article-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

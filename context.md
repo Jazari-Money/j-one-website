@@ -203,12 +203,10 @@ every Jazari route.
   - `public/images/screens/send-success.webp`
 - Jazari icons: `public/images/features/*.webp`
 - Audience photography: `public/images/audience/*.webp`
-- Existing company logos: `public/images/partners/*`
 - Monochrome technology/network SVGs: `public/images/rails/*`
 - Official white Visa mark: `public/images/brand/visa-white.svg`
 
-The current card is generated in code. Do not replace it with
-`public/images/card-yellow.webp` unless explicitly requested.
+The current card is generated in code.
 
 ## Technical stack
 
@@ -223,7 +221,8 @@ The current card is generated in code. Do not replace it with
 GitHub Pages is the canonical and only deployment target. Local development
 uses `next dev`, so the development and deployment paths use the same framework.
 There is no Cloudflare Worker, Vinext/Vite runtime, Tailwind layer, D1 database,
-or Drizzle ORM. The early-access form remains front-end demo state.
+or Drizzle ORM. Every production build uses Next.js static export; there is no
+server-start path. The early-access form remains front-end demo state.
 
 Key files:
 
@@ -262,6 +261,8 @@ Default local URL: `http://localhost:3000`
 
 - One homepage section owns one component in `app/home/` and one matching
   stylesheet in `app/styles/`.
+- Responsive rules live at the bottom of the section stylesheet they affect;
+  there are no shared breakpoint files.
 - Shared colors, spacing, and theme values belong in `app/styles/tokens.css`.
 - Section styles must not reach into unrelated sections.
 - Keep content and repeated records in `app/home/data.ts`, not duplicated

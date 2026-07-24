@@ -191,3 +191,89 @@
   max-height: 78px;
 }
 
+@media (max-width: 1120px) {
+  .network-explorer {
+    grid-template-columns: minmax(360px, 0.82fr) minmax(440px, 1.18fr);
+  }
+
+  .network-orbit {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 900px) {
+  .network-explorer {
+    grid-template-columns: 1fr;
+  }
+
+  .network-story {
+    position: relative;
+    top: auto;
+    min-height: 650px;
+  }
+}
+
+@media (max-width: 620px) {
+  .network-explorer {
+    margin-top: 58px;
+  }
+
+  .network-list button {
+    grid-template-columns: 112px 1fr;
+    gap: 12px;
+  }
+
+  .network-story {
+    min-height: 570px;
+    padding: 30px 24px;
+    border-radius: 28px;
+  }
+
+  .network-orbit {
+    top: 35px;
+    right: 50%;
+    width: 190px;
+    height: 190px;
+    transform: translateX(50%);
+  }
+
+  .network-story h3 {
+    font-size: 70px;
+  }
+}
+
+@media (min-width: 901px) {
+  .network-explorer {
+    margin-top: 76px;
+    gap: 23px;
+  }
+
+  .network-list button {
+    min-height: 69px;
+    padding: 13px 16px;
+  }
+
+  .network-list button:hover,
+  .network-list button:focus-visible,
+  .network-list button.is-active {
+    padding-left: 24px;
+  }
+
+  .network-story {
+    min-height: 616px;
+    padding: clamp(37px, 5.3vw, 70px);
+    border-radius: 33px;
+  }
+
+  .network-story h3 {
+    font-size: clamp(62px, 7vw, 106px);
+  }
+
+  .network-orbit {
+    top: 48px;
+    right: 46px;
+    width: 238px;
+    height: 238px;
+  }
+}

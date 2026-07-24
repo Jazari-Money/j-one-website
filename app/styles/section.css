@@ -27,3 +27,50 @@
   letter-spacing: -0.022em;
 }
 
+@media (max-width: 900px) {
+  .section {
+    padding: 104px 0;
+  }
+
+  .chapter-heading h2 {
+    font-size: clamp(54px, 10vw, 82px);
+  }
+}
+
+@media (max-width: 620px) {
+  .section {
+    padding: 82px 0;
+  }
+
+  .chapter-heading h2 {
+    font-size: clamp(48px, 14vw, 66px);
+  }
+
+  .chapter-heading p,
+  .ledger-heading p {
+    margin-top: 22px;
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 901px) {
+  .section {
+    padding-block: 125px;
+  }
+
+  .chapter-heading,
+  .ledger-heading {
+    max-width: 748px;
+  }
+
+  .chapter-heading h2 {
+    font-size: clamp(51px, 5.9vw, 88px);
+  }
+
+  .chapter-heading p,
+  .ledger-heading p {
+    max-width: 546px;
+    margin-top: 25px;
+    font-size: 16px;
+  }
+}

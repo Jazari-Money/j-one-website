@@ -202,3 +202,137 @@
   display: none;
 }
 
+@media (max-width: 1120px) {
+  .site-nav {
+    padding: 0 24px;
+  }
+
+  .nav-menu {
+    gap: 24px;
+  }
+
+  .theme-trigger {
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    height: 70px;
+  }
+
+  .site-nav {
+    grid-template-columns: 1fr auto;
+    padding: 0 20px;
+  }
+
+  .brand img {
+    width: 112px;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    left: 0;
+    padding: 38px 24px 42px;
+    border-bottom: 1px solid var(--line);
+    background: color-mix(in srgb, var(--bg) 96%, transparent);
+    backdrop-filter: blur(22px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 200ms ease, transform 200ms ease, visibility 200ms ease;
+  }
+
+  .nav-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-menu a {
+    width: 100%;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--serif);
+    font-size: 32px;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 620px) {
+  .site-nav {
+    gap: 10px;
+    padding: 0 14px;
+  }
+
+  .brand img {
+    width: 102px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .theme-trigger,
+  .mobile-toggle {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .theme-trigger {
+    width: 58px;
+    font-size: 0;
+  }
+
+  .theme-trigger::after {
+    content: "Palette";
+    font-size: 10px;
+  }
+
+  .theme-menu {
+    position: fixed;
+    top: 66px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-height: calc(100vh - 82px);
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 901px) {
+  .site-header {
+    height: 72px;
+  }
+
+  .site-nav {
+    width: min(1232px, 100%);
+    padding-inline: 35px;
+    gap: 28px;
+  }
+
+  .brand img {
+    width: 112px;
+  }
+
+  .nav-menu {
+    gap: 33px;
+  }
+}
