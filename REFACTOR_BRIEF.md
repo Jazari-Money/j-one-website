@@ -3,6 +3,11 @@
 Last updated: 2026-07-24
 Status: complete
 
+> Historical brief: the component and stylesheet split below is complete. Its
+> original Vinext/Cloudflare and Tailwind constraints were superseded when
+> GitHub Pages became the canonical deployment target. See `context.md` and
+> `README.md` for the current architecture.
+
 ## Goal
 
 Restructure the two monolith files — `app/page.tsx` (~1,505 lines) and

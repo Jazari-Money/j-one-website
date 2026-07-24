@@ -3,24 +3,15 @@ import { readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
 async function render(path = "/") {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${path}`);
-  const { default: worker } = await import(workerUrl.href);
-
-  return worker.fetch(
-    new Request(`http://localhost${path}`, {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
+  const route = path === "/" ? "" : `${path.replace(/\/$/, "")}/`;
+  const html = await readFile(
+    new URL(`../out/${route}index.html`, import.meta.url),
+    "utf8",
   );
+
+  return new Response(html, {
+    headers: { "content-type": "text/html; charset=utf-8" },
+  });
 }
 
 test("server-renders the Jazari One landing page", async () => {

@@ -212,12 +212,18 @@ The current card is generated in code. Do not replace it with
 
 ## Technical stack
 
-- Next.js-compatible app running through vinext
+- Next.js 16 with static export for GitHub Pages
 - React 19
 - TypeScript
+- Locally bundled Geist Sans and Geist Mono
 - `@paper-design/shaders-react`
-- Plain CSS for layout, 3D card, transitions, and money rain
-- Cloudflare/vinext build target
+- Plain modular CSS for layout, 3D card, transitions, and money rain
+- Playwright for interaction and visual regression checks
+
+GitHub Pages is the canonical and only deployment target. Local development
+uses `next dev`, so the development and deployment paths use the same framework.
+There is no Cloudflare Worker, Vinext/Vite runtime, Tailwind layer, D1 database,
+or Drizzle ORM. The early-access form remains front-end demo state.
 
 Key files:
 
@@ -232,7 +238,7 @@ Key files:
 - `tests/rendered-html.test.mjs`
 - `tests/e2e/homepage.spec.ts`
 - `playwright.config.ts`
-- `.openai/hosting.json`
+- `.github/workflows/pages.yml`
 
 ## Local commands
 
@@ -251,6 +257,26 @@ change has been reviewed; it replaces the desktop, tablet, and mobile
 Playwright baselines.
 
 Default local URL: `http://localhost:3000`
+
+## Architecture rules for fast iterations
+
+- One homepage section owns one component in `app/home/` and one matching
+  stylesheet in `app/styles/`.
+- Shared colors, spacing, and theme values belong in `app/styles/tokens.css`.
+- Section styles must not reach into unrelated sections.
+- Keep content and repeated records in `app/home/data.ts`, not duplicated
+  through components.
+- Keep interaction state inside the component that uses it unless multiple
+  sections genuinely share it.
+- Create a shared abstraction only after the same pattern appears at least
+  three times.
+- Do not add a package for a small effect that can be implemented clearly with
+  existing React or CSS.
+- A focused visual change should normally touch one component, one stylesheet,
+  and its relevant test.
+- Update visual baselines only after reviewing the intended change.
+- Every push to `main` must pass the static export, content checks, and lint
+  before GitHub Pages publishes it.
 
 ## Quality and performance rules
 

@@ -34,6 +34,12 @@ jobs:
       - name: Build static site
         run: npm run build:pages
 
+      - name: Check content and routes
+        run: npm run test:content
+
+      - name: Check code quality
+        run: npm run lint
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 

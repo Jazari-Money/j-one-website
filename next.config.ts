@@ -13,9 +13,6 @@ const nextConfig: NextConfig = {
         images: {
           unoptimized: true,
         },
-        typescript: {
-          tsconfigPath: "tsconfig.pages.json",
-        },
       }
     : {}),
 };

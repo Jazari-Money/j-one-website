@@ -1,98 +1,55 @@
-# vinext-starter
+# Jazari One website
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+The public Jazari One marketing site. It is built with Next.js and exported as
+static files for GitHub Pages.
 
 ## Prerequisites
 
 - Node.js `>=22.13.0`
 
-## Quick Start
+## Local development
 
 ```bash
 npm install
 npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Verification
+
+```bash
 npm run build
+npm run lint
+npm test
+npm run test:e2e
 ```
 
-This starter does not use `wrangler.jsonc`.
+- `npm run build` checks the standard Next.js application.
+- `npm test` creates the GitHub Pages export and verifies its content and routes.
+- `npm run test:e2e` checks interactions and the existing visual baselines.
+- `npm run test:all` runs the complete local verification sequence.
 
-## Included Shape
+Only use `npm run test:e2e:update` after intentionally reviewing a visual
+change.
 
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
+## Deployment
 
-## Workspace Auth Headers
+GitHub Pages is the canonical deployment target. A push to `main` runs
+`.github/workflows/pages.yml`, verifies the code, exports the static site, and
+publishes the `out/` directory.
 
-OpenAI workspace sites can read the current user's email from
-`oai-authenticated-user-email`.
+## Project structure
 
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+- `app/page.tsx` — homepage entry
+- `app/home/` — one focused component per homepage section
+- `app/home/data.ts` — section content, themes, and currency data
+- `app/styles/` — tokens, section styles, and responsive styles
+- `app/blog/` — shared article renderer and regional guide routes
+- `public/` — local images, video, logos, and fonts
+- `tests/` — static-output and browser tests
 
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
-```
-
-## Optional Dispatch-Owned ChatGPT Sign-In
-
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
-
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
-
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
-
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
-
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
-
-## Useful Commands
-
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
-
-## Learn More
-
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+The site intentionally uses plain modular CSS rather than Tailwind. It has no
+server runtime or database; early-access submission is currently a front-end
+demo. Geist is bundled locally through the `geist` package, so builds do not
+depend on Google Fonts being available.
