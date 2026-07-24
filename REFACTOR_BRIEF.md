@@ -1,7 +1,7 @@
 # Refactoring brief: split the homepage monoliths
 
 Last updated: 2026-07-24
-Status: proposed — not started
+Status: complete
 
 ## Goal
 
@@ -52,7 +52,8 @@ app/
   globals.css               # @import chain only (see CSS plan below)
   styles/
     tokens.css              # :root + all 10 [data-theme] variable blocks
-    base.css                # reset, typography, .section, shared primitives
+    base.css                # reset and global element primitives
+    section.css             # .section and shared chapter-heading primitives
     header.css
     hero.css                # hero + MagicAccess/access form
     benefits.css            # capability ledger + LiquidMetal wrapper
@@ -65,6 +66,11 @@ app/
     money-rain.css          # closing panel + coins
     footer.css
     article.css             # current "Article pages" block
+    responsive-1120.css     # original <=1120px cascade block
+    responsive-900.css      # original <=900px cascade block
+    responsive-620.css      # original <=620px cascade block
+    desktop.css             # original >=901px density pass
+    reduced-motion.css      # original reduced-motion overrides
   home/
     data.ts                 # currencies, themeOptions, features, audiences,
                             # networks, roadmap items, blog card list + types
@@ -137,6 +143,22 @@ Work top-to-bottom in small, independently verifiable steps. Run
   in How It Works; card drag/keyboard rotation; money rain on hover.
 - No source file except `styles/tokens.css` exceeds ~450 lines.
 - `git log` shows the small stepwise commits, not one big-bang commit.
+
+## Completion record
+
+- Baseline visible HTML captured before extraction:
+  `/private/tmp/jazari-refactor-baseline.html`
+- Baseline SHA-256:
+  `55fb4399b69b84cd63c0bfcc564c38530afc09643f4171d93a2dc9446318a72f`
+- Visible server-rendered HTML remained byte-identical after component and CSS
+  extraction. Vinext-only RSC metadata is intentionally excluded from this
+  comparison because its build identifiers change between builds.
+- `app/page.tsx` is now a thin composition entry.
+- Homepage data, hooks, and sections live in `app/home/`.
+- `app/globals.css` is now an ordered import chain.
+- No extracted source file exceeds 450 lines.
+- Playwright covers the key interactions and full-page desktop, tablet, and
+  mobile visual baselines.
 
 ## Why this shape (for future sessions)
 

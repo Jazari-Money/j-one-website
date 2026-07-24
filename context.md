@@ -107,8 +107,8 @@ The ten schemes are:
 9. Infrared (experimental)
 10. Aurora Glass (experimental)
 
-Theme variables live in `app/globals.css`; mesh colors live in
-`themeOptions` in `app/page.tsx`.
+Theme variables live in `app/styles/tokens.css`; mesh colors live in
+`themeOptions` in `app/home/data.ts`.
 
 ### Early access
 
@@ -221,11 +221,17 @@ The current card is generated in code. Do not replace it with
 
 Key files:
 
-- `app/page.tsx`
-- `app/globals.css`
+- `app/page.tsx` — thin homepage entry
+- `app/home/HomeContent.tsx` — shared homepage state and composition
+- `app/home/data.ts` — themes, currencies, and section content
+- `app/home/*.tsx` — one focused component per homepage section
+- `app/globals.css` — ordered stylesheet import chain
+- `app/styles/*.css` — section, breakpoint, and token styles
 - `app/layout.tsx`
 - `app/blog/GuideArticle.tsx`
 - `tests/rendered-html.test.mjs`
+- `tests/e2e/homepage.spec.ts`
+- `playwright.config.ts`
 - `.openai/hosting.json`
 
 ## Local commands
@@ -235,7 +241,14 @@ npm run dev
 npm run build
 npm run lint
 npm test
+npm run test:e2e
+npm run test:e2e:update
+npm run test:all
 ```
+
+`npm run test:e2e:update` should be used only after an intentional visual
+change has been reviewed; it replaces the desktop, tablet, and mobile
+Playwright baselines.
 
 Default local URL: `http://localhost:3000`
 
