@@ -167,10 +167,10 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
   return (
     <main className="article-shell">
       <nav className="article-nav" aria-label="Article navigation">
-        <Link href={withBasePath("/#top")} aria-label="Jazari One home">
+        <Link href="/#top" aria-label="Jazari One home">
           <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
         </Link>
-        <Link href={withBasePath("/#blog")}>Back to Blog</Link>
+        <Link href="/#blog">Back to Blog</Link>
       </nav>
 
       <article className="guide-article">
@@ -218,7 +218,7 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
 
       <footer className="article-footer">
         <p>Ready to hold and move dollars across borders?</p>
-        <Link href={withBasePath("/#access")}>Get early access</Link>
+        <Link href="/#access">Get early access</Link>
       </footer>
     </main>
   );

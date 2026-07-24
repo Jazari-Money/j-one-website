@@ -185,5 +185,9 @@ test("renders all four regional Blog guides", async () => {
     assert.match(html, title);
     assert.match(html, /Before confirming/);
     assert.match(html, /Availability, fees, exchange rates/);
+    assert.match(html, /href="\/j-one-website\/#top"/);
+    assert.match(html, /href="\/j-one-website\/#blog"/);
+    assert.match(html, /href="\/j-one-website\/#access"/);
+    assert.doesNotMatch(html, /\/j-one-website\/j-one-website\//);
   }
 });

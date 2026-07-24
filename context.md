@@ -267,6 +267,10 @@ Default local URL: `http://localhost:3000`
 - Section styles must not reach into unrelated sections.
 - Keep content and repeated records in `app/home/data.ts`, not duplicated
   through components.
+- Pass normal internal paths such as `/#blog` directly to Next.js `Link`.
+  Next applies the GitHub Pages base path automatically. Use `withBasePath`
+  only for raw public asset URLs such as `<img>`, `<video>`, and `<source>`;
+  combining it with `Link` duplicates `/j-one-website`.
 - Keep interaction state inside the component that uses it unless multiple
   sections genuinely share it.
 - Create a shared abstraction only after the same pattern appears at least
