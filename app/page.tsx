@@ -13,6 +13,7 @@ import {
   useState,
 } from "react";
 import { MeshGradient } from "@paper-design/shaders-react";
+import { withBasePath } from "./site-paths";
 
 const currencies = {
   MXN: { name: "Mexican peso", rate: 18.72, symbol: "$" },
@@ -93,32 +94,32 @@ const features = [
   {
     title: "Keep a dollar balance",
     copy: "Hold supported digital dollars instead of converting every payment immediately.",
-    image: "/images/features/card-plate.webp",
+    image: withBasePath("/images/features/card-plate.webp"),
   },
   {
     title: "Get paid in one place",
     copy: "Receive eligible client and platform payments into the same clear balance.",
-    image: "/images/features/globe.webp",
+    image: withBasePath("/images/features/globe.webp"),
   },
   {
     title: "Send to supported banks",
     copy: "Choose a recipient, enter an amount, and use the routes available for their country.",
-    image: "/images/features/paper-plane.webp",
+    image: withBasePath("/images/features/paper-plane.webp"),
   },
   {
     title: "Know before you send",
     copy: "Review the rate, cost, recipient amount, and expected timing together.",
-    image: "/images/features/hand-coin.webp",
+    image: withBasePath("/images/features/hand-coin.webp"),
   },
   {
     title: "An account in your name",
     copy: "A personal dollar account designed for people whose money crosses borders.",
-    image: "/images/features/head.webp",
+    image: withBasePath("/images/features/head.webp"),
   },
   {
     title: "Specialist infrastructure",
     copy: "Identity, wallets, stablecoins, and payment rails work behind one experience.",
-    image: "/images/features/shield.webp",
+    image: withBasePath("/images/features/shield.webp"),
   },
 ] as const;
 
@@ -127,21 +128,21 @@ const howSteps = [
     id: "account",
     title: "Set up your account",
     copy: "Open your account and complete the checks required for your country.",
-    screen: "/images/screens/home.webp",
+    screen: withBasePath("/images/screens/home.webp"),
     alt: "Jazari One dollar account home screen",
   },
   {
     id: "amount",
     title: "Build the transfer",
     copy: "Choose a recipient and amount, then review the rate and expected result.",
-    screen: "/images/screens/amount-entry.webp",
+    screen: withBasePath("/images/screens/amount-entry.webp"),
     alt: "Jazari One transfer amount screen",
   },
   {
     id: "arrival",
     title: "Follow the payment",
     copy: "See when money arrives and keep one reference if you need to follow up.",
-    screen: "/images/screens/send-success.webp",
+    screen: withBasePath("/images/screens/send-success.webp"),
     alt: "Jazari One successful transfer screen",
   },
 ] as const;
@@ -150,19 +151,19 @@ const audiences = [
   {
     title: "Freelancers",
     line: "Get paid. Hold dollars. Move money when you choose.",
-    image: "/images/audience/freelancer.webp",
+    image: withBasePath("/images/audience/freelancer.webp"),
     alt: "Freelancer working on her laptop in a café",
   },
   {
     title: "Global movers",
     line: "Take one familiar balance across changing countries.",
-    image: "/images/audience/global-mover.webp",
+    image: withBasePath("/images/audience/global-mover.webp"),
     alt: "Remote professional working abroad",
   },
   {
     title: "Families across borders",
     line: "Make regular support easier to plan and understand.",
-    image: "/images/audience/family-support.webp",
+    image: withBasePath("/images/audience/family-support.webp"),
     alt: "Family looking at a phone together",
   },
 ] as const;
@@ -201,7 +202,7 @@ const guides = [
 const networkStories = [
   {
     name: "Bridge",
-    logo: "/images/rails/bridge.svg",
+    logo: withBasePath("/images/rails/bridge.svg"),
     logoFormat: "wide",
     logoScale: 1.2,
     featureScale: 0.86,
@@ -212,7 +213,7 @@ const networkStories = [
   },
   {
     name: "Privy",
-    logo: "/images/rails/privy.svg",
+    logo: withBasePath("/images/rails/privy.svg"),
     logoFormat: "wide",
     logoScale: 0.88,
     featureScale: 0.82,
@@ -223,7 +224,7 @@ const networkStories = [
   },
   {
     name: "Gauntlet",
-    logo: "/images/rails/gauntlet.svg",
+    logo: withBasePath("/images/rails/gauntlet.svg"),
     logoFormat: "wide",
     logoScale: 0.86,
     featureScale: 0.9,
@@ -234,7 +235,7 @@ const networkStories = [
   },
   {
     name: "USD₮",
-    logo: "/images/rails/usdt.svg",
+    logo: withBasePath("/images/rails/usdt.svg"),
     logoFormat: "mark",
     logoScale: 0.75,
     featureScale: 0.74,
@@ -245,7 +246,7 @@ const networkStories = [
   },
   {
     name: "USDC",
-    logo: "/images/rails/usdc.svg",
+    logo: withBasePath("/images/rails/usdc.svg"),
     logoFormat: "mark",
     logoScale: 0.96,
     featureScale: 0.84,
@@ -256,7 +257,7 @@ const networkStories = [
   },
   {
     name: "Ethereum",
-    logo: "/images/rails/ethereum.svg",
+    logo: withBasePath("/images/rails/ethereum.svg"),
     logoFormat: "mark",
     logoScale: 0.92,
     featureScale: 0.92,
@@ -267,7 +268,7 @@ const networkStories = [
   },
   {
     name: "TRON",
-    logo: "/images/rails/tron.svg",
+    logo: withBasePath("/images/rails/tron.svg"),
     logoFormat: "mark",
     logoScale: 0.82,
     featureScale: 0.76,
@@ -278,7 +279,7 @@ const networkStories = [
   },
   {
     name: "Solana",
-    logo: "/images/rails/solana.svg",
+    logo: withBasePath("/images/rails/solana.svg"),
     logoFormat: "mark",
     logoScale: 0.92,
     featureScale: 0.93,
@@ -289,7 +290,7 @@ const networkStories = [
   },
   {
     name: "Polygon",
-    logo: "/images/rails/polygon-symbol.svg",
+    logo: withBasePath("/images/rails/polygon-symbol.svg"),
     logoFormat: "mark",
     logoScale: 0.94,
     featureScale: 0.93,
@@ -300,7 +301,7 @@ const networkStories = [
   },
   {
     name: "Base",
-    logo: "/images/rails/base.svg",
+    logo: withBasePath("/images/rails/base.svg"),
     logoFormat: "wide",
     logoScale: 0.84,
     featureScale: 0.84,
@@ -341,9 +342,9 @@ function useInViewport<T extends Element>(rootMargin = "240px") {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (!("IntersectionObserver" in window)) {
-      const timer = window.setTimeout(() => setVisible(true), 0);
-      return () => window.clearTimeout(timer);
+    if (typeof IntersectionObserver === "undefined") {
+      const timer = globalThis.setTimeout(() => setVisible(true), 0);
+      return () => globalThis.clearTimeout(timer);
     }
 
     const observer = new IntersectionObserver(
@@ -413,7 +414,7 @@ function SiteHeader({
     <header className={`site-header ${scrolled || mobileOpen ? "is-scrolled" : ""}`}>
       <nav className="site-nav" aria-label="Main navigation">
         <a className="brand" href="#top" aria-label="Jazari One home" onClick={closeMobile}>
-          <img src="/images/brand/jazari-one-logo.svg" alt="Jazari One" />
+          <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
@@ -585,7 +586,7 @@ function Hero({
           <MeshGradient
             width="100%"
             height="100%"
-            colors={theme.mesh}
+            colors={[...theme.mesh]}
             distortion={0.42}
             swirl={0.08}
             grainMixer={0}
@@ -619,7 +620,7 @@ function Hero({
         <div className="hero-device">
           <img
             className="hero-device-frame"
-            src="/images/iphone-12-pro-graphite.webp"
+            src={withBasePath("/images/iphone-12-pro-graphite.webp")}
             alt=""
             aria-hidden="true"
           />
@@ -632,7 +633,7 @@ function Hero({
             preload="metadata"
             aria-label="Jazari One app experience"
           >
-            <source src="/videos/jazari-app.mp4" type="video/mp4" />
+            <source src={withBasePath("/videos/jazari-app.mp4")} type="video/mp4" />
           </video>
         </div>
       </div>
@@ -922,13 +923,13 @@ function InteractiveCard() {
         <div className="card-face card-front">
           <img
             className="card-brand"
-            src="/images/brand/jazari-one-logo.svg"
+            src={withBasePath("/images/brand/jazari-one-logo.svg")}
             alt=""
             draggable={false}
           />
           <img
             className="card-visa"
-            src="/images/brand/visa-white.svg"
+            src={withBasePath("/images/brand/visa-white.svg")}
             alt=""
             draggable={false}
           />
@@ -936,13 +937,13 @@ function InteractiveCard() {
         <div className="card-face card-back" aria-hidden="true">
           <img
             className="card-brand"
-            src="/images/brand/jazari-one-logo.svg"
+            src={withBasePath("/images/brand/jazari-one-logo.svg")}
             alt=""
             draggable={false}
           />
           <img
             className="card-visa"
-            src="/images/brand/visa-white.svg"
+            src={withBasePath("/images/brand/visa-white.svg")}
             alt=""
             draggable={false}
           />
@@ -989,7 +990,7 @@ function ProductRoadmap({ theme }: { theme: ThemeOption }) {
           </ul>
         </div>
         <div className="roadmap-visual live-phone">
-          <Phone src="/images/screens/home.webp" alt="Jazari One dollar account home screen" />
+          <Phone src={withBasePath("/images/screens/home.webp")} alt="Jazari One dollar account home screen" />
         </div>
       </article>
 
@@ -1055,7 +1056,7 @@ function ProductRoadmap({ theme }: { theme: ThemeOption }) {
             </dl>
           </div>
           <div className="roadmap-visual rnpl-phone">
-            <Phone src="/images/screens/amount-entry.webp" alt="Remit Now Pay Later amount screen" />
+            <Phone src={withBasePath("/images/screens/amount-entry.webp")} alt="Remit Now Pay Later amount screen" />
           </div>
         </article>
       </div>
@@ -1166,7 +1167,7 @@ function Blog() {
         {guides.map((guide, index) => (
           <a
             className={`blog-card ${index === 0 ? "blog-card-featured" : ""}`}
-            href={`/blog/${guide.slug}`}
+            href={withBasePath(`/blog/${guide.slug}`)}
             key={guide.slug}
           >
             <div className="blog-card-meta">
@@ -1229,7 +1230,7 @@ function MoneyRain({ onAccess }: { onAccess: () => void }) {
               } as CSSProperties}
             >
               <img
-                src="/images/coins/jazari-dollar-3d.webp"
+                src={withBasePath("/images/coins/jazari-dollar-3d.webp")}
                 alt=""
                 draggable="false"
               />
@@ -1324,7 +1325,7 @@ function HomeContent() {
 
       <footer>
         <div className="footer-top">
-          <img src="/images/brand/jazari-one-logo.svg" alt="Jazari One" />
+          <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
           <div>
             <a href="#how">How it works</a>
             <a href="#roadmap">What&apos;s next</a>
