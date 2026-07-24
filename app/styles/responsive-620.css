@@ -1,0 +1,400 @@
+@media (max-width: 620px) {
+  :root {
+    --page: calc(100% - 28px);
+  }
+
+  .site-nav {
+    gap: 10px;
+    padding: 0 14px;
+  }
+
+  .brand img {
+    width: 102px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .theme-trigger,
+  .mobile-toggle {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .theme-trigger {
+    width: 58px;
+    font-size: 0;
+  }
+
+  .theme-trigger::after {
+    content: "Palette";
+    font-size: 10px;
+  }
+
+  .theme-menu {
+    position: fixed;
+    top: 66px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-height: calc(100vh - 82px);
+    overflow-y: auto;
+  }
+
+  .hero {
+    min-height: 1040px;
+    padding-top: 126px;
+  }
+
+  .hero-shader {
+    height: 350px;
+    opacity: 0.58;
+  }
+
+  .hero h1 {
+    font-size: clamp(58px, 17vw, 82px);
+    line-height: 0.87;
+  }
+
+  .hero-copy > p {
+    margin-top: 30px;
+    font-size: 15px;
+  }
+
+  .access-control {
+    height: 62px;
+  }
+
+  .magic-access-button {
+    width: 188px;
+  }
+
+  .access-form {
+    position: relative;
+    height: auto;
+    min-height: 62px;
+  }
+
+  .access-control.is-open {
+    height: 118px;
+  }
+
+  .access-control.is-open .access-form {
+    flex-direction: column;
+  }
+
+  .access-form input,
+  .access-form button {
+    min-height: 48px;
+  }
+
+  .hero-product {
+    height: 520px;
+    margin-top: 74px;
+  }
+
+  .hero-device {
+    width: min(330px, 84vw);
+  }
+
+  .section {
+    padding: 82px 0;
+  }
+
+  .chapter-heading h2,
+  .ledger-heading h2 {
+    font-size: clamp(48px, 14vw, 66px);
+  }
+
+  .chapter-heading p,
+  .ledger-heading p {
+    margin-top: 22px;
+    font-size: 15px;
+  }
+
+  .benefit-ledger {
+    gap: 48px;
+  }
+
+  .benefit-row-inner {
+    min-height: 172px;
+    padding: 24px 10px;
+    grid-template-columns: 54px 1fr;
+    gap: 14px;
+  }
+
+  .benefit-row img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .benefit-row h3 {
+    font-size: 17px;
+  }
+
+  .benefit-row p {
+    font-size: 12px;
+  }
+
+  .step-tabs button {
+    min-width: 225px;
+    padding: 24px 20px;
+  }
+
+  .step-tabs span {
+    font-size: 18px;
+  }
+
+  .step-tabs em {
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .step-screen {
+    min-height: 540px;
+  }
+
+  .active-step-phone {
+    width: min(285px, 77%);
+  }
+
+  .review-copy h3 {
+    font-size: clamp(50px, 14vw, 68px);
+  }
+
+  .review-fee > strong {
+    font-size: 52px;
+  }
+
+  .rate-card {
+    padding: 26px 20px;
+    border-radius: 28px;
+  }
+
+  .rate-card-top {
+    margin-bottom: 36px;
+  }
+
+  .money-input {
+    min-height: 68px;
+    padding: 0 14px;
+  }
+
+  .money-input input,
+  .money-input.result > strong {
+    font-size: 24px;
+  }
+
+  .prominent-rate {
+    padding: 18px 15px;
+    gap: 10px;
+  }
+
+  .rate-side b {
+    font-size: 20px;
+  }
+
+  .rate-side small {
+    font-size: 10px;
+  }
+
+  .money-input select {
+    max-width: 125px;
+  }
+
+  .live-product,
+  .roadmap-row {
+    border-radius: 28px;
+  }
+
+  .live-product {
+    margin-top: 58px;
+  }
+
+  .roadmap-copy {
+    padding: 36px 26px;
+  }
+
+  .roadmap h3 {
+    font-size: clamp(52px, 14vw, 70px);
+  }
+
+  .roadmap-visual {
+    min-height: 470px;
+  }
+
+  .route-roster {
+    min-height: 0;
+    padding: 30px 25px;
+  }
+
+  .route-group {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 26px 0;
+  }
+
+  .route-group h4 {
+    font-size: 38px;
+  }
+
+  .card-interaction {
+    min-height: 420px;
+  }
+
+  .card-object {
+    width: 88%;
+  }
+
+  .card-face {
+    border-radius: 20px;
+  }
+
+  .card-brand {
+    top: 22px;
+    left: 24px;
+    width: 108px;
+  }
+
+  .card-visa {
+    top: 22px;
+    right: 24px;
+    width: 45px;
+  }
+
+  .rnpl-example {
+    grid-template-columns: 1fr;
+  }
+
+  .audience-explorer {
+    margin-top: 58px;
+  }
+
+  .audience-panel {
+    min-height: 480px;
+  }
+
+  .audience-caption {
+    padding: 26px;
+  }
+
+  .network-explorer,
+  .blog-grid {
+    margin-top: 58px;
+  }
+
+  .network-list button {
+    grid-template-columns: 112px 1fr;
+    gap: 12px;
+  }
+
+  .network-story {
+    min-height: 570px;
+    padding: 30px 24px;
+    border-radius: 28px;
+  }
+
+  .network-orbit {
+    top: 35px;
+    right: 50%;
+    width: 190px;
+    height: 190px;
+    transform: translateX(50%);
+  }
+
+  .network-story h3 {
+    font-size: 70px;
+  }
+
+  .blog .chapter-heading h2 {
+    font-size: 78px;
+  }
+
+  .blog-card,
+  .blog-card-featured {
+    min-height: 380px;
+    padding: 28px 24px;
+    border-radius: 24px;
+  }
+
+  .blog-card-featured {
+    min-height: 500px;
+  }
+
+  .blog-card h3,
+  .blog-card:not(.blog-card-featured) h3 {
+    font-size: 38px;
+  }
+
+  .money-rain {
+    width: calc(100% - 20px);
+    min-height: 500px;
+    margin-top: 74px;
+    margin-bottom: 74px;
+    border-radius: 30px;
+  }
+
+  .money-rain h2 {
+    font-size: clamp(54px, 16vw, 72px);
+  }
+
+  .coin-fall:nth-child(n + 15) {
+    display: none;
+  }
+
+  footer {
+    padding-top: 50px;
+  }
+
+  .footer-top,
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-top > div {
+    gap: 18px;
+  }
+
+  .article-nav,
+  .guide-article,
+  .article-footer {
+    width: calc(100% - 36px);
+  }
+
+  .article-nav > a:last-child {
+    font-size: 10px;
+  }
+
+  .guide-article {
+    padding: 72px 0 100px;
+  }
+
+  .article-header h1 {
+    font-size: clamp(58px, 16vw, 82px);
+  }
+
+  .article-header > p {
+    font-size: 16px;
+  }
+
+  .article-layout {
+    margin-top: 70px;
+  }
+
+  .article-copy h2 {
+    font-size: 48px;
+  }
+
+  .article-copy section > p {
+    font-size: 15px;
+  }
+
+  .article-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+

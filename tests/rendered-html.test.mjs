@@ -67,12 +67,23 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
     )
   ).join("\n");
 
-  const [pageEntry, css, packageJson] = await Promise.all([
+  const stylesDirectory = new URL("../app/styles/", import.meta.url);
+  const styleFiles = (await readdir(stylesDirectory))
+    .filter((file) => file.endsWith(".css"))
+    .sort();
+  const stylesSource = (
+    await Promise.all(
+      styleFiles.map((file) => readFile(new URL(file, stylesDirectory), "utf8")),
+    )
+  ).join("\n");
+
+  const [pageEntry, globals, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
   const page = `${pageEntry}\n${homeSource}`;
+  const css = `${globals}\n${stylesSource}`;
 
   assert.match(page, /import \{ MeshGradient \}/);
   assert.match(page, /className="hero-shader"/);

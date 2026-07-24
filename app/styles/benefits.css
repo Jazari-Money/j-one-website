@@ -1,0 +1,71 @@
+.benefit-ledger {
+  display: grid;
+  grid-template-columns: minmax(310px, 0.82fr) minmax(590px, 1.18fr);
+  gap: clamp(70px, 9vw, 150px);
+  align-items: start;
+}
+
+.ledger-heading {
+  position: sticky;
+  top: 132px;
+}
+
+.ledger-heading h2 {
+  font-size: clamp(58px, 5.5vw, 86px);
+}
+
+.benefit-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.benefit-row {
+  position: relative;
+  min-height: 156px;
+  padding: 1.5px;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.benefit-row:first-child {
+  border-top: 1px solid var(--line);
+}
+
+.benefit-row-inner {
+  min-height: 153px;
+  padding: 28px 20px;
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  display: grid;
+  grid-template-columns: 72px minmax(180px, 0.78fr) minmax(220px, 1.22fr);
+  align-items: center;
+  gap: 28px;
+  transition: background-color 180ms ease;
+}
+
+.benefit-row:hover .benefit-row-inner {
+  background: color-mix(in srgb, var(--surface) 58%, transparent);
+}
+
+.benefit-row img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  filter: grayscale(1) contrast(1.08);
+}
+
+.benefit-row h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 520;
+  letter-spacing: -0.025em;
+}
+
+.benefit-row p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.62;
+}
+

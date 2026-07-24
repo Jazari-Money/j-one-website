@@ -1,0 +1,318 @@
+/*
+ * Desktop density pass: macro geometry and display type are reduced by
+ * approximately 12%. Body copy and control hit areas remain comfortably legible.
+ */
+@media (min-width: 901px) {
+  :root {
+    --page: min(1160px, calc(100vw - 48px));
+  }
+
+  .site-header {
+    height: 72px;
+  }
+
+  .site-nav {
+    width: min(1232px, 100%);
+    padding-inline: 35px;
+    gap: 28px;
+  }
+
+  .brand img {
+    width: 112px;
+  }
+
+  .nav-menu {
+    gap: 33px;
+  }
+
+  .hero {
+    min-height: 1118px;
+    padding: 157px 42px 53px;
+  }
+
+  .hero::before {
+    top: 185px;
+    width: min(986px, 100vw);
+    height: 458px;
+  }
+
+  .hero-shader {
+    height: 378px;
+  }
+
+  .hero-copy {
+    width: min(950px, 100%);
+  }
+
+  .hero h1 {
+    max-width: 900px;
+    font-size: clamp(68px, 7.7vw, 116px);
+    line-height: 0.86;
+  }
+
+  .hero-copy > p {
+    width: min(580px, 100%);
+    margin-top: 37px;
+    font-size: clamp(16px, 1.35vw, 18px);
+  }
+
+  .access-control {
+    width: min(493px, 100%);
+    height: 60px;
+    margin-top: 32px;
+  }
+
+  .magic-access-button {
+    width: 185px;
+  }
+
+  .hero-product {
+    width: min(669px, 100%);
+    height: 607px;
+    margin-top: 92px;
+  }
+
+  .hero-device-glow {
+    width: 458px;
+    height: 317px;
+  }
+
+  .hero-device {
+    width: min(361px, 72vw);
+  }
+
+  .section {
+    padding-block: 125px;
+  }
+
+  .chapter-heading,
+  .ledger-heading {
+    max-width: 748px;
+  }
+
+  .chapter-heading h2,
+  .ledger-heading h2 {
+    font-size: clamp(51px, 5.9vw, 88px);
+  }
+
+  .ledger-heading h2 {
+    font-size: clamp(51px, 4.85vw, 76px);
+  }
+
+  .chapter-heading p,
+  .ledger-heading p {
+    max-width: 546px;
+    margin-top: 25px;
+    font-size: 16px;
+  }
+
+  .benefit-ledger {
+    gap: clamp(62px, 7.9vw, 132px);
+  }
+
+  .benefit-row {
+    min-height: 137px;
+  }
+
+  .benefit-row-inner {
+    min-height: 135px;
+    padding: 25px 18px;
+    gap: 25px;
+  }
+
+  .benefit-row img {
+    width: 51px;
+    height: 51px;
+  }
+
+  .how-experience {
+    margin-top: 77px;
+    gap: 23px;
+  }
+
+  .step-tabs button {
+    min-height: 132px;
+    padding: 26px 25px;
+  }
+
+  .step-tabs span {
+    font-size: 20px;
+  }
+
+  .step-screen {
+    min-height: 600px;
+  }
+
+  .active-step-phone {
+    width: min(300px, 70%);
+    margin-bottom: -64px;
+  }
+
+  .review-block {
+    margin-top: 132px;
+    gap: clamp(56px, 7.9vw, 127px);
+  }
+
+  .review-copy h3 {
+    font-size: clamp(51px, 5.1vw, 78px);
+  }
+
+  .rate-card {
+    padding: 37px;
+    border-radius: 33px;
+  }
+
+  .rate-card-top {
+    margin-bottom: 44px;
+  }
+
+  .live-product,
+  .roadmap-row {
+    min-height: 607px;
+    border-radius: 37px;
+  }
+
+  .live-product {
+    margin-top: 77px;
+  }
+
+  .roadmap-copy {
+    padding: clamp(40px, 5.3vw, 72px);
+  }
+
+  .roadmap h3 {
+    font-size: clamp(51px, 5.3vw, 81px);
+  }
+
+  .roadmap-visual {
+    min-height: 458px;
+  }
+
+  .live-phone .phone {
+    width: min(308px, 70%);
+  }
+
+  .next-stack {
+    margin-top: 30px;
+    gap: 30px;
+  }
+
+  .route-roster {
+    padding: 62px;
+  }
+
+  .card-interaction {
+    min-height: 475px;
+  }
+
+  .card-object {
+    width: min(466px, 82%);
+  }
+
+  .rnpl-phone .phone {
+    width: min(299px, 66%);
+  }
+
+  .audience-explorer {
+    min-height: 634px;
+    height: auto;
+    margin-top: 76px;
+    gap: 14px;
+  }
+
+  .audience-panel {
+    min-height: 634px;
+  }
+
+  .network-explorer {
+    margin-top: 76px;
+    gap: 23px;
+  }
+
+  .network-list button {
+    min-height: 69px;
+    padding: 13px 16px;
+  }
+
+  .network-list button:hover,
+  .network-list button:focus-visible,
+  .network-list button.is-active {
+    padding-left: 24px;
+  }
+
+  .network-story {
+    min-height: 616px;
+    padding: clamp(37px, 5.3vw, 70px);
+    border-radius: 33px;
+  }
+
+  .network-story h3 {
+    font-size: clamp(62px, 7vw, 106px);
+  }
+
+  .network-orbit {
+    top: 48px;
+    right: 46px;
+    width: 238px;
+    height: 238px;
+  }
+
+  .blog .chapter-heading h2 {
+    font-size: clamp(67px, 7.9vw, 120px);
+  }
+
+  .blog-grid {
+    margin-top: 67px;
+    grid-auto-rows: minmax(185px, auto);
+    gap: 14px;
+  }
+
+  .blog-card {
+    min-height: 211px;
+    padding: clamp(25px, 3.5vw, 42px);
+    border-radius: 26px;
+  }
+
+  .blog-card-featured {
+    min-height: 662px;
+  }
+
+  .blog-card h3 {
+    max-width: 580px;
+    margin-top: 39px;
+    font-size: clamp(34px, 3.9vw, 58px);
+  }
+
+  .blog-card:not(.blog-card-featured) h3 {
+    margin-top: 25px;
+    font-size: clamp(25px, 2.65vw, 37px);
+  }
+
+  .money-rain {
+    min-height: 502px;
+    margin-block: 106px;
+    border-radius: 42px;
+  }
+
+  .money-rain-content {
+    width: min(704px, calc(100% - 42px));
+  }
+
+  .money-rain h2 {
+    font-size: clamp(56px, 6.6vw, 99px);
+  }
+
+  footer {
+    padding: 62px 0 37px;
+  }
+
+  .footer-top img {
+    width: 116px;
+  }
+
+  footer > p {
+    max-width: 669px;
+    margin-top: 63px;
+  }
+}
+

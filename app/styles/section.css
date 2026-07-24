@@ -1,0 +1,29 @@
+.section {
+  width: var(--page);
+  margin: 0 auto;
+  padding: 142px 0;
+}
+
+.chapter-heading,
+.ledger-heading {
+  max-width: 850px;
+}
+
+.chapter-heading h2,
+.ledger-heading h2 {
+  margin: 0;
+  font-size: clamp(58px, 6.7vw, 100px);
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+.chapter-heading p,
+.ledger-heading p {
+  max-width: 620px;
+  margin: 28px 0 0;
+  color: var(--muted-strong);
+  font-size: 17px;
+  line-height: 1.65;
+  letter-spacing: -0.022em;
+}
+
