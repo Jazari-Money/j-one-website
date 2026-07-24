@@ -6,9 +6,8 @@
 .roadmap-row {
   position: relative;
   min-height: 690px;
-  border: 1px solid var(--line);
-  border-radius: 42px;
-  overflow: hidden;
+  border: 0;
+  overflow: visible;
   display: grid;
   grid-template-columns: minmax(320px, 0.84fr) minmax(480px, 1.16fr);
   align-items: stretch;
@@ -16,24 +15,22 @@
 }
 
 .live-product {
-  margin-top: 88px;
+  margin-top: 104px;
 }
 
 .live-product::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: linear-gradient(90deg, color-mix(in srgb, var(--bg) 94%, transparent) 0 44%, transparent 82%);
+  content: none;
 }
 
 .live-shader {
   position: absolute;
-  z-index: -2;
-  inset: -12%;
-  opacity: 0.68;
-  filter: saturate(88%);
-  background: radial-gradient(circle at 70% 44%, var(--accent-soft), transparent 52%);
+  z-index: -1;
+  inset: 2% -8% 0 38%;
+  opacity: 0.52;
+  filter: saturate(88%) blur(10px);
+  background: radial-gradient(circle at 56% 48%, var(--accent-soft), transparent 66%);
+  mask-image: radial-gradient(ellipse at center, #000 0 34%, transparent 72%);
+  pointer-events: none;
 }
 
 .roadmap-copy {
@@ -58,12 +55,7 @@
 }
 
 .live-mark {
-  padding: 8px 12px;
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-  border-radius: 8px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  box-shadow: 0 10px 34px var(--accent-soft);
+  color: var(--accent);
   font-weight: 800;
 }
 
@@ -93,7 +85,7 @@
   padding: 13px 0;
   border-bottom: 1px solid var(--line);
   color: var(--muted);
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .roadmap-copy li:first-child {
@@ -103,7 +95,7 @@
 .roadmap-visual {
   position: relative;
   min-width: 0;
-  min-height: 520px;
+  min-height: 620px;
   display: grid;
   place-items: center;
 }
@@ -113,28 +105,26 @@
 }
 
 .live-phone .phone {
-  width: min(350px, 70%);
-  margin-bottom: -96px;
+  width: min(310px, 66%);
+  margin-bottom: 0;
 }
 
 .next-stack {
-  margin-top: 34px;
+  margin-top: 128px;
   display: flex;
   flex-direction: column;
-  gap: 34px;
+  gap: 132px;
 }
 
 .roadmap-row {
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.028), transparent 44%),
-    var(--surface);
+  background: transparent;
 }
 
 .route-roster {
-  padding: clamp(42px, 5vw, 70px);
+  padding: clamp(32px, 4vw, 58px);
   align-content: center;
   justify-items: stretch;
-  background: var(--surface-2);
+  background: transparent;
 }
 
 .route-group {
@@ -189,13 +179,13 @@
   margin: 0;
   align-self: center;
   color: var(--muted-strong);
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
 }
 
 .interaction-note {
   color: var(--accent) !important;
-  font-size: 11px !important;
+  font-size: 15px !important;
 }
 
 .card-interaction {
@@ -271,35 +261,44 @@
   margin: 44px 0 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 32px;
 }
 
 .rnpl-example div {
-  padding: 18px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: color-mix(in srgb, var(--surface-2) 70%, transparent);
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
 }
 
 .rnpl-example dt {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .rnpl-example dd {
   margin: 8px 0 0;
   color: var(--text);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .rnpl-phone {
   align-items: end;
-  background: radial-gradient(circle at 50% 56%, var(--accent-soft), transparent 60%);
+}
+
+.rnpl-phone::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: min(520px, 82%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+  filter: blur(28px);
+  opacity: 0.5;
 }
 
 .rnpl-phone .phone {
-  width: min(340px, 66%);
-  margin-bottom: -96px;
+  width: min(310px, 64%);
+  margin-bottom: 0;
 }
 
 @media (max-width: 1120px) {
@@ -335,17 +334,12 @@
 }
 
 @media (max-width: 620px) {
-  .live-product,
-  .roadmap-row {
-    border-radius: 28px;
-  }
-
   .live-product {
-    margin-top: 58px;
+    margin-top: 72px;
   }
 
   .roadmap-copy {
-    padding: 36px 26px;
+    padding: 28px 0;
   }
 
   .roadmap h3 {
@@ -358,7 +352,7 @@
 
   .route-roster {
     min-height: 0;
-    padding: 30px 25px;
+    padding: 26px 0;
   }
 
   .route-group {
@@ -398,17 +392,21 @@
   .rnpl-example {
     grid-template-columns: 1fr;
   }
+
+  .next-stack {
+    margin-top: 92px;
+    gap: 94px;
+  }
 }
 
 @media (min-width: 901px) {
   .live-product,
   .roadmap-row {
-    min-height: 607px;
-    border-radius: 37px;
+    min-height: 620px;
   }
 
   .live-product {
-    margin-top: 77px;
+    margin-top: 92px;
   }
 
   .roadmap-copy {
@@ -420,24 +418,24 @@
   }
 
   .roadmap-visual {
-    min-height: 458px;
+    min-height: 620px;
   }
 
   .live-phone .phone {
-    width: min(308px, 70%);
+    width: min(290px, 64%);
   }
 
   .next-stack {
-    margin-top: 30px;
-    gap: 30px;
+    margin-top: 112px;
+    gap: 116px;
   }
 
   .route-roster {
-    padding: 62px;
+    padding: 36px 46px;
   }
 
   .card-interaction {
-    min-height: 475px;
+    min-height: 520px;
   }
 
   .card-object {
@@ -445,6 +443,6 @@
   }
 
   .rnpl-phone .phone {
-    width: min(299px, 66%);
+    width: min(288px, 62%);
   }
 }

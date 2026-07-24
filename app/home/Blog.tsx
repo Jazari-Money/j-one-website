@@ -17,10 +17,6 @@ export function Blog() {
             href={withBasePath(`/blog/${guide.slug}`)}
             key={guide.slug}
           >
-            <div className="blog-card-meta">
-              <span>{guide.route}</span>
-              <span>{guide.read}</span>
-            </div>
             <h3>{guide.title}</h3>
             <p>{guide.deck}</p>
             <span className="blog-read">Read guide</span>

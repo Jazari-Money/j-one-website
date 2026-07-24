@@ -56,6 +56,11 @@ illustrative.
 - Product screenshots stay upright and must never overlap headings.
 - Product phones float directly on the page with a restrained halo; do not put
   them inside large colored rounded-rectangle plates.
+- Roadmap and network stories are open editorial compositions with generous
+  whitespace and localized glow; do not enclose them in large rounded plates.
+- Supporting descriptions use a readable 15px size. Footer navigation, legal
+  copy, and company information use 12px.
+- Blog cards do not show country or read-time prefixes above their headlines.
 - Third-party/network marks are monochrome and optically normalized by visual
   mass rather than assigned one identical numeric size.
 - Avoid repeated generic bento-card layouts.
