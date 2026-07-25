@@ -57,7 +57,8 @@
 .step-tabs span {
   display: block;
   color: var(--text);
-  font-size: 22px;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: -0.035em;
 }
 
@@ -65,8 +66,8 @@
   display: block;
   max-width: 390px;
   margin-top: 11px;
-  color: var(--muted);
-  font-size: 13px;
+  color: var(--muted-strong);
+  font-size: 15px;
   line-height: 1.58;
 }
 
@@ -160,7 +161,7 @@
 }
 
 .numeric {
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-family: var(--font-inter), Arial, sans-serif;
   font-variant-numeric: tabular-nums lining-nums;
   font-feature-settings: "tnum" 1, "lnum" 1;
   font-weight: 500;
@@ -305,7 +306,7 @@
   border: 0;
   background: transparent;
   color: var(--text);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-family: var(--font-inter), Arial, sans-serif;
   font-size: 28px;
   font-variant-numeric: tabular-nums lining-nums;
   outline: 0;
@@ -317,7 +318,7 @@
   grid-template-columns: 1fr auto;
   gap: 13px 24px;
   color: var(--muted-strong);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-family: var(--font-inter), Arial, sans-serif;
   font-size: 14px;
   font-variant-numeric: tabular-nums lining-nums;
 }
@@ -489,7 +490,7 @@
   }
 
   .step-tabs span {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .step-screen {

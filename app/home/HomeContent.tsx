@@ -1,10 +1,6 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
-
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
-import { withBasePath } from "../site-paths";
 import { AudienceExplorer } from "./AudienceExplorer";
 import { BenefitLedger } from "./BenefitLedger";
 import { Blog } from "./Blog";
@@ -12,7 +8,6 @@ import {
   currencies,
   themeOptions,
   type CurrencyCode,
-  type ThemeKey,
 } from "./data";
 import { Hero } from "./Hero";
 import { HowItWorks } from "./HowItWorks";
@@ -20,10 +15,12 @@ import { FAQ } from "./FAQ";
 import { MoneyRain } from "./MoneyRain";
 import { NetworkExplorer } from "./NetworkExplorer";
 import { ProductRoadmap } from "./ProductRoadmap";
+import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
+import { useVisualPreferences } from "./useVisualPreferences";
 
 export function HomeContent() {
-  const [theme, setTheme] = useState<ThemeKey>("carbon");
+  const { theme, setTheme, shader, setShader } = useVisualPreferences();
   const [email, setEmail] = useState("");
   const [joined, setJoined] = useState(false);
   const [accessOpen, setAccessOpen] = useState(false);
@@ -36,18 +33,6 @@ export function HomeContent() {
     const number = Number.parseFloat(amount.replace(/,/g, ""));
     return Number.isFinite(number) ? number * currencies[currency].rate : 0;
   }, [amount, currency]);
-
-  useEffect(() => {
-    const stored = window.localStorage.getItem("jazari-theme") as ThemeKey | null;
-    if (!stored || !themeOptions.some((option) => option.key === stored)) return;
-    const timer = window.setTimeout(() => setTheme(stored), 0);
-    return () => window.clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem("jazari-theme", theme);
-  }, [theme]);
 
   useEffect(() => {
     if (window.location.hash !== "#access") return;
@@ -71,8 +56,14 @@ export function HomeContent() {
   }
 
   return (
-    <main data-theme={theme}>
-      <SiteHeader theme={theme} onThemeChange={setTheme} onAccess={openAccess} />
+    <main data-theme={theme} data-shader={shader}>
+      <SiteHeader
+        theme={theme}
+        shader={shader}
+        onThemeChange={setTheme}
+        onShaderChange={setShader}
+        onAccess={openAccess}
+      />
       <Hero
         theme={selectedTheme}
         accessOpen={accessOpen}
@@ -93,44 +84,12 @@ export function HomeContent() {
       />
       <AudienceExplorer />
       <NetworkExplorer />
-      <ProductRoadmap theme={selectedTheme} />
+      <ProductRoadmap />
       <Blog />
       <MoneyRain onAccess={openAccess} />
       <FAQ />
 
-      <footer>
-        <div className="footer-top">
-          <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
-          <div>
-            <a href="#how">How It Works</a>
-            <a href="#rates">Rates</a>
-            <a href="#roadmap">Roadmap</a>
-            <Link href="/blog">Blog</Link>
-            <a href="#faq">FAQ</a>
-            <a href="mailto:hello@jazari.xyz">Contact</a>
-          </div>
-        </div>
-        <div className="footer-stores" aria-label="Mobile apps coming soon">
-          <span className="store-badge">
-            <img src={withBasePath("/images/stores/apple.svg")} alt="" />
-            <span><small>Coming Soon</small><b>iOS App</b></span>
-          </span>
-          <span className="store-badge">
-            <img src={withBasePath("/images/stores/google-play.svg")} alt="" />
-            <span><small>Coming Soon</small><b>Android App</b></span>
-          </span>
-        </div>
-        <p>
-          Jazari One is a technology service provider. Wallet, custody, and
-          payment services are delivered by licensed and regulated third-party
-          providers. Jazari does not hold customer funds or provide regulated
-          financial services directly.
-        </p>
-        <div className="footer-bottom">
-          <span>JAZARI FINTECH SERVICES — FZCO · Dubai, UAE</span>
-          <span>© 2026 Jazari One. All rights reserved.</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

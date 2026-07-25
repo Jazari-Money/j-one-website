@@ -14,29 +14,26 @@ export function NetworkExplorer() {
         </p>
       </header>
 
-      <div className="provider-table" role="table" aria-label="Jazari providers and network rails">
-        <div className="provider-row provider-head" role="row">
-          <span role="columnheader">Provider</span>
-          <span role="columnheader">Layer</span>
-          <span role="columnheader">Role</span>
-        </div>
+      <div className="provider-grid" aria-label="Jazari providers and network rails">
         {networkStories.map((item) => (
-          <div className="provider-row" role="row" key={item.name}>
-            <div className="provider-identity" role="cell">
+          <article
+            className={`provider-card ${item.logoFormat === "wide" ? "has-wordmark" : ""}`}
+            key={item.name}
+          >
+            <div className="provider-logo-slot">
               <span
                 className={`provider-logo ${item.logoFormat === "wide" ? "is-wide" : ""}`}
                 style={{ "--logo-scale": item.logoScale } as CSSProperties}
-                aria-hidden="true"
               >
-                <img src={item.logo} alt="" />
+                <img src={item.logo} alt={`${item.name} logo`} />
               </span>
-              <b className={item.logoFormat === "wide" ? "sr-only" : "provider-name"}>
-                {item.name}
-              </b>
             </div>
-            <span className="provider-layer" role="cell">{item.kind}</span>
-            <p role="cell">{item.short}</p>
-          </div>
+            <div className="provider-card-copy">
+              <span className="provider-layer">{item.kind}</span>
+              <h3>{item.name}</h3>
+              <p>{item.short}</p>
+            </div>
+          </article>
         ))}
       </div>
     </section>

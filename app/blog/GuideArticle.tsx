@@ -1,7 +1,5 @@
-/* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
-
 import Link from "next/link";
-import { withBasePath } from "../site-paths";
+import { InternalSiteHeader } from "../home/InternalSiteHeader";
 
 type ArticleSection = {
   heading: string;
@@ -267,12 +265,7 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
 
   return (
     <main className="article-shell">
-      <nav className="article-nav" aria-label="Article navigation">
-        <Link href="/#top" aria-label="Jazari One home">
-          <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
-        </Link>
-        <Link href="/blog">Back to Blog</Link>
-      </nav>
+      <InternalSiteHeader />
 
       <article className="guide-article">
         <header className="article-header">

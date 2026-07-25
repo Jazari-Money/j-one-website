@@ -19,44 +19,39 @@
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 12px;
+  gap: 2px;
 }
 
 .benefit-row {
   position: relative;
-  min-height: 142px;
+  min-height: 118px;
   padding: 0;
   overflow: visible;
   isolation: isolate;
 }
 
 .benefit-row-inner {
-  min-height: 142px;
-  padding: 24px 18px;
-  border-radius: 22px;
+  min-height: 118px;
+  padding: 17px 8px;
+  border-radius: 0;
   background: transparent;
   display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
+  grid-template-columns: 86px minmax(0, 1fr);
   align-items: center;
-  gap: 28px;
-  transition: background-color 180ms ease;
-}
-
-.benefit-row:hover .benefit-row-inner {
-  background: color-mix(in srgb, var(--surface) 42%, transparent);
+  gap: 22px;
 }
 
 .benefit-row img {
-  width: 58px;
-  height: 58px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
   filter: grayscale(1) contrast(1.08);
 }
 
 .benefit-row h3 {
   margin: 0;
-  font-size: 19px;
-  font-weight: 520;
+  font-size: 18px;
+  font-weight: 600;
   letter-spacing: -0.025em;
 }
 
@@ -66,8 +61,8 @@
 
 .benefit-row p {
   max-width: 500px;
-  margin: 10px 0 0;
-  color: var(--muted);
+  margin: 8px 0 0;
+  color: var(--muted-strong);
   font-size: 15px;
   line-height: 1.62;
 }
@@ -83,7 +78,7 @@
   }
 
   .benefit-row-inner {
-    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-columns: 86px minmax(0, 1fr);
   }
 }
 
@@ -93,7 +88,7 @@
   }
 
   .benefit-row-inner {
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 74px 1fr;
     gap: 18px;
   }
 
@@ -109,15 +104,15 @@
   }
 
   .benefit-row-inner {
-    min-height: 172px;
-    padding: 24px 10px;
-    grid-template-columns: 54px 1fr;
+    min-height: 132px;
+    padding: 16px 4px;
+    grid-template-columns: 64px 1fr;
     gap: 14px;
   }
 
   .benefit-row img {
-    width: 46px;
-    height: 46px;
+    width: 56px;
+    height: 56px;
   }
 
   .benefit-row h3 {
@@ -139,17 +134,17 @@
   }
 
   .benefit-row {
-    min-height: 125px;
+    min-height: 112px;
   }
 
   .benefit-row-inner {
-    min-height: 125px;
-    padding: 25px 18px;
+    min-height: 112px;
+    padding: 16px 8px;
     gap: 25px;
   }
 
   .benefit-row img {
-    width: 51px;
-    height: 51px;
+    width: 68px;
+    height: 68px;
   }
 }

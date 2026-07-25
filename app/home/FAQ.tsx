@@ -41,7 +41,17 @@ export function FAQ() {
       <div className="faq-list">
         {questions.map((item) => (
           <details key={item.question}>
-            <summary>{item.question}</summary>
+            <summary>
+              <span>{item.question}</span>
+              <span className="faq-icon" aria-hidden="true">
+                <svg className="faq-plus" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5v14" />
+                </svg>
+                <svg className="faq-minus" viewBox="0 0 24 24">
+                  <path d="M5 12h14" />
+                </svg>
+              </span>
+            </summary>
             <p>{item.answer}</p>
           </details>
         ))}

@@ -12,32 +12,37 @@
   content: "";
   position: absolute;
   z-index: -1;
-  top: 72px;
+  top: 52px;
   left: 50%;
-  width: min(1180px, 100vw);
-  height: 610px;
+  width: min(1080px, 94vw);
+  height: 500px;
   transform: translateX(-50%);
   background:
     radial-gradient(
-      ellipse 62% 54% at 48% 18%,
-      color-mix(in srgb, var(--accent-2) 42%, transparent),
-      transparent 72%
+      ellipse 68% 38% at 50% 18%,
+      color-mix(in srgb, var(--accent-2) 42%, transparent) 0%,
+      color-mix(in srgb, var(--accent) 18%, transparent) 48%,
+      transparent 70%
     );
-  opacity: 0.82;
-  filter: blur(12px);
+  opacity: 0.88;
+  filter: blur(18px);
   pointer-events: none;
 }
 
 .hero-shader {
   position: absolute;
   z-index: -2;
-  inset: 0 -5% auto;
-  height: 460px;
+  top: 58px;
+  left: 50%;
+  width: min(1120px, 96vw);
+  height: 390px;
+  transform: translateX(-50%);
   overflow: hidden;
   background: var(--surface);
-  opacity: 0.58;
-  filter: saturate(96%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 96%);
+  opacity: 0.56;
+  filter: saturate(112%);
+  border-radius: 50%;
+  mask-image: radial-gradient(ellipse 70% 58% at 50% 42%, #000 0 38%, transparent 76%);
   pointer-events: none;
 }
 
@@ -46,8 +51,49 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 72% 62% at 50% 8%, transparent 44%, color-mix(in srgb, var(--bg) 28%, transparent) 78%),
-    linear-gradient(to bottom, transparent 0 52%, var(--bg) 100%);
+    radial-gradient(ellipse 68% 56% at 50% 42%, transparent 36%, color-mix(in srgb, var(--bg) 26%, transparent) 70%),
+    linear-gradient(to bottom, transparent 0 56%, var(--bg) 100%);
+}
+
+[data-shader="orbital"] .hero-shader {
+  width: min(760px, 84vw);
+  height: 560px;
+  border-radius: 50%;
+  mask-image: radial-gradient(circle at 50% 34%, #000 0 35%, transparent 72%);
+}
+
+[data-shader="orbital"] .hero::before {
+  width: min(720px, 84vw);
+  height: 650px;
+  background: radial-gradient(circle at 50% 26%, color-mix(in srgb, var(--accent-2) 28%, transparent), transparent 64%);
+}
+
+[data-shader="ribbon"] .hero-shader {
+  top: -70px;
+  width: min(1220px, 100vw);
+  height: 500px;
+  border-radius: 0;
+  transform: translateX(-50%) rotate(-7deg);
+  mask-image: linear-gradient(to bottom, transparent 12%, #000 38% 52%, transparent 80%);
+}
+
+[data-shader="ribbon"] .hero::before {
+  width: min(1180px, 100vw);
+  height: 420px;
+  background: linear-gradient(168deg, transparent 35%, color-mix(in srgb, var(--accent-2) 22%, transparent) 52%, transparent 69%);
+}
+
+[data-shader="beam"] .hero-shader {
+  width: min(620px, 72vw);
+  height: 560px;
+  border-radius: 0;
+  mask-image: linear-gradient(90deg, transparent, #000 30% 70%, transparent);
+}
+
+[data-shader="beam"] .hero::before {
+  width: min(760px, 84vw);
+  height: 560px;
+  background: linear-gradient(90deg, transparent 12%, color-mix(in srgb, var(--accent-2) 20%, transparent) 50%, transparent 88%);
 }
 
 .hero-copy {
@@ -352,7 +398,7 @@
   }
 
   .magic-access-button {
-    width: 140px;
+    width: 128px;
   }
 
   .button-label {

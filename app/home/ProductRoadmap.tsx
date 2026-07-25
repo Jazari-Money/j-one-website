@@ -2,115 +2,127 @@
 
 /* eslint-disable @next/next/no-img-element -- local flags use exact downloaded assets */
 
-import { MeshGradient } from "@paper-design/shaders-react";
+import { useRef } from "react";
 import { withBasePath } from "../site-paths";
-import type { ThemeOption } from "./data";
-import { useInViewport, useReducedMotion } from "./hooks";
 import { InteractiveCard } from "./InteractiveCard";
 import { Phone } from "./Phone";
 
-export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
-  const reduced = useReducedMotion();
-  const [liveRef, liveShaderVisible] = useInViewport<HTMLElement>("260px");
+function ArrowIcon({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d={direction === "left" ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6"} />
+    </svg>
+  );
+}
+
+export function ProductRoadmap() {
+  const track = useRef<HTMLDivElement>(null);
+
+  function move(direction: -1 | 1) {
+    const node = track.current;
+    if (!node) return;
+    node.scrollBy({ left: node.clientWidth * 0.76 * direction, behavior: "smooth" });
+  }
 
   return (
     <section className="roadmap section" id="roadmap">
-      <header className="chapter-heading">
-        <h2>Roadmap 2026</h2>
-        <p>One useful layer at a time, starting with the USD account.</p>
+      <header className="roadmap-heading">
+        <div className="chapter-heading">
+          <h2>Roadmap</h2>
+          <p>One useful layer at a time, starting with the USD account.</p>
+        </div>
+        <div className="roadmap-controls" aria-label="Roadmap navigation">
+          <button type="button" onClick={() => move(-1)} aria-label="Previous milestone">
+            <ArrowIcon direction="left" />
+          </button>
+          <button type="button" onClick={() => move(1)} aria-label="Next milestone">
+            <ArrowIcon direction="right" />
+          </button>
+        </div>
       </header>
 
-      <div className="roadmap-flow">
-        <article className="live-product" ref={liveRef}>
-          <div className="live-shader" aria-hidden="true">
-            {liveShaderVisible && (
-              <MeshGradient
-                width="100%"
-                height="100%"
-                colors={[theme.mesh[0], theme.mesh[1], theme.mesh[2], theme.mesh[3]]}
-                distortion={0.12}
-                swirl={0.02}
-                grainMixer={0}
-                grainOverlay={0}
-                speed={reduced ? 0 : 0.06}
-              />
-            )}
-          </div>
-          <div className="roadmap-copy">
-            <h3>USD account</h3>
-            <p>Hold and receive supported digital dollars, then send through the bank routes available to you.</p>
-            <ul>
-              <li>One account for holding, receiving, and sending</li>
-              <li>Transfer information visible before confirmation</li>
-              <li>Available routes collected in one experience</li>
-            </ul>
-          </div>
-          <div className="roadmap-visual live-phone">
-            <Phone src={withBasePath("/images/screens/home.webp")} alt="Jazari One dollar account home screen" />
-          </div>
-        </article>
-
-        <article className="roadmap-row routes-row">
-          <div className="roadmap-copy">
-            <h3>More receive countries</h3>
-            <p>
-              We&apos;re preparing routes for India, Bangladesh, and Pakistan,
-              followed by selected African markets. Each route opens only when
-              its local banking and compliance requirements are ready.
-            </p>
-          </div>
-          <div className="roadmap-visual route-roster" aria-label="Planned local routes">
-            <section className="route-group">
-              <h4>South Asia</h4>
-              <ul className="route-country-list">
-                <li><img className="route-flag" src={withBasePath("/images/flags/in.png")} alt="" /><span>India</span></li>
-                <li><img className="route-flag" src={withBasePath("/images/flags/bd.png")} alt="" /><span>Bangladesh</span></li>
-                <li><img className="route-flag" src={withBasePath("/images/flags/pk.png")} alt="" /><span>Pakistan</span></li>
-              </ul>
-            </section>
-            <section className="route-group">
-              <h4>Africa</h4>
-              <p className="route-note">
-                Specific countries will be announced as routes are confirmed.
+      <div className="roadmap-window">
+        <div className="roadmap-track" ref={track}>
+          <article className="roadmap-card live-product">
+            <div className="roadmap-copy">
+              <h3>USD account</h3>
+              <p>
+                Hold and receive supported digital dollars, then send through
+                the bank routes available to you.
               </p>
-            </section>
-          </div>
-        </article>
+              <ul>
+                <li>Hold, receive, and send from one account</li>
+                <li>Review every transfer before confirmation</li>
+              </ul>
+            </div>
+            <div className="roadmap-visual live-phone">
+              <Phone
+                src={withBasePath("/images/screens/home.webp")}
+                alt="Jazari One dollar account home screen"
+              />
+            </div>
+          </article>
 
-        <article className="roadmap-row card-row">
-          <div className="roadmap-copy">
-            <h3>VISA Virtual card</h3>
-            <p>
-              Use the same balance for card spending, with purchase history and
-              controls in the app. Availability and terms will depend on country
-              and eligibility.
-            </p>
-            <p id="card-interaction-help" className="interaction-note">
-              Drag the card or use your arrow keys to rotate it.
-            </p>
-          </div>
-          <div className="roadmap-visual">
-            <InteractiveCard />
-          </div>
-        </article>
+          <article className="roadmap-card routes-row">
+            <div className="roadmap-copy">
+              <h3>More receive countries</h3>
+              <p>
+                We&apos;re preparing new routes as local banking and compliance
+                requirements become ready.
+              </p>
+            </div>
+            <div className="roadmap-visual route-roster" aria-label="Planned receive countries">
+              <section className="route-group">
+                <h4>South Asia</h4>
+                <ul className="route-country-list">
+                  <li><img className="route-flag" src={withBasePath("/images/flags/in.png")} alt="" /><span>India</span></li>
+                  <li><img className="route-flag" src={withBasePath("/images/flags/bd.png")} alt="" /><span>Bangladesh</span></li>
+                  <li><img className="route-flag" src={withBasePath("/images/flags/pk.png")} alt="" /><span>Pakistan</span></li>
+                </ul>
+              </section>
+              <section className="route-group africa-group">
+                <h4>Africa</h4>
+                <p>Countries will be announced as routes are confirmed.</p>
+              </section>
+            </div>
+          </article>
 
-        <article className="roadmap-row rnpl-row">
-          <div className="roadmap-copy">
-            <h3>Remit Now Pay Later</h3>
-            <p>
-              Eligible members may be able to choose a support amount and a
-              repayment option before confirming. Limits, pricing, terms, and
-              availability will vary.
-            </p>
-            <dl className="rnpl-example">
-              <div><dt>Example support</dt><dd>$500</dd></div>
-              <div><dt>Repayment selection</dt><dd>Shown upfront</dd></div>
-            </dl>
-          </div>
-          <div className="roadmap-visual rnpl-phone">
-            <Phone src={withBasePath("/images/screens/amount-entry.webp")} alt="Remit Now Pay Later amount screen" />
-          </div>
-        </article>
+          <article className="roadmap-card card-row">
+            <div className="roadmap-copy">
+              <h3>VISA Virtual card</h3>
+              <p>
+                Spend from the same balance, with purchase history and controls
+                in the app.
+              </p>
+              <p id="card-interaction-help" className="interaction-note">
+                Drag or use the arrow keys to rotate the card.
+              </p>
+            </div>
+            <div className="roadmap-visual">
+              <InteractiveCard />
+            </div>
+          </article>
+
+          <article className="roadmap-card rnpl-row">
+            <div className="roadmap-copy">
+              <h3>Remit Now Pay Later</h3>
+              <p>
+                Eligible members may choose a support amount and repayment
+                option before confirming.
+              </p>
+              <dl className="rnpl-example">
+                <div><dt>Example support</dt><dd>$500</dd></div>
+                <div><dt>Repayment</dt><dd>Shown upfront</dd></div>
+              </dl>
+            </div>
+            <div className="roadmap-visual rnpl-phone">
+              <Phone
+                src={withBasePath("/images/screens/amount-entry.webp")}
+                alt="Remit Now Pay Later amount screen"
+              />
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   );

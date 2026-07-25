@@ -1,24 +1,14 @@
-/* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
+"use client";
 
 import Link from "next/link";
 import { guides } from "../home/data";
-import { withBasePath } from "../site-paths";
+import { SiteFooter } from "../home/SiteFooter";
+import { InternalSiteHeader } from "../home/InternalSiteHeader";
 
 export function BlogIndex() {
   return (
     <main className="blog-index-shell">
-      <nav className="blog-index-nav" aria-label="Blog navigation">
-        <Link href="/#top" aria-label="Jazari One home">
-          <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
-        </Link>
-        <div>
-          <Link href="/#how">How It Works</Link>
-          <Link href="/#rates">Rates</Link>
-          <Link href="/#roadmap">Roadmap</Link>
-          <Link href="/#faq">FAQ</Link>
-        </div>
-        <Link className="blog-index-cta" href="/#access">Get Early Access</Link>
-      </nav>
+      <InternalSiteHeader />
 
       <header className="blog-index-header">
         <h1>Blog</h1>
@@ -49,10 +39,7 @@ export function BlogIndex() {
         </div>
       </section>
 
-      <footer className="blog-index-footer">
-        <Link href="/#top">Jazari One</Link>
-        <p>Useful context before money moves.</p>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

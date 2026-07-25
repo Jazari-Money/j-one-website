@@ -14,66 +14,75 @@ export const themeOptions = [
     key: "carbon",
     name: "Pre-Dawn",
     family: "Calm",
-    mesh: ["#07112a", "#315cff", "#86b8ff", "#ffd79a"],
+    mesh: ["#040817", "#10285c", "#3b6fff", "#94baff"],
   },
   {
     key: "stone",
     name: "Sunrise",
     family: "Calm",
-    mesh: ["#fff0c2", "#ffc65c", "#ff7557", "#7469ff"],
+    mesh: ["#fff1d6", "#ffc47d", "#ff7f66", "#fff8ec"],
   },
   {
     key: "blue",
     name: "Daylight",
     family: "Calm",
-    mesh: ["#d8ecff", "#6bb6ff", "#315cff", "#ffe09b"],
+    mesh: ["#e8f5ff", "#93cfff", "#4c8dff", "#ffffff"],
   },
   {
     key: "sea",
     name: "Glacier",
     family: "Calm",
-    mesh: ["#d7f8ff", "#56d9d1", "#3b86ff", "#bcdfff"],
+    mesh: ["#e5fbff", "#83e5ef", "#439cff", "#d2f2ff"],
   },
   {
     key: "toxic",
     name: "Electric Lime",
     family: "Wild",
-    mesh: ["#ecffba", "#b9f342", "#38d5a5", "#315cff"],
+    mesh: ["#f3ffc7", "#bff44b", "#52d99b", "#172436"],
   },
   {
     key: "solar",
     name: "Golden Hour",
     family: "Wild",
-    mesh: ["#fff0b8", "#ffb84d", "#ff6b4a", "#7665ff"],
+    mesh: ["#fff1c7", "#ffc45e", "#ff814f", "#fff7e2"],
   },
   {
     key: "magenta",
     name: "Afterglow",
     family: "Wild",
-    mesh: ["#ffd0e5", "#ff5fa2", "#ff8a4c", "#735cff"],
+    mesh: ["#ffe0ec", "#ff7fae", "#9a72ff", "#422d6b"],
   },
   {
     key: "violet",
     name: "Dusk",
     family: "Experimental",
-    mesh: ["#c7d2ff", "#806dff", "#4c5dff", "#ffbd73"],
+    mesh: ["#d9ddff", "#7c82ff", "#3945aa", "#161c42"],
   },
   {
     key: "infrared",
     name: "Ember",
     family: "Experimental",
-    mesh: ["#ffd1c7", "#ff5a5f", "#ff8a3d", "#7b61ff"],
+    mesh: ["#ffe1d4", "#ff8a63", "#e84d5b", "#3c1722"],
   },
   {
     key: "aurora",
     name: "Aurora",
     family: "Experimental",
-    mesh: ["#c9fff3", "#24d6b0", "#5b7cff", "#d9b8ff"],
+    mesh: ["#ddfff7", "#61dfc5", "#4f8fff", "#172c52"],
   },
 ] as const;
 
 export type ThemeKey = (typeof themeOptions)[number]["key"];
 export type ThemeOption = (typeof themeOptions)[number];
+
+export const shaderOptions = [
+  { key: "horizon", name: "Horizon", description: "A low, open field" },
+  { key: "orbital", name: "Orbital", description: "A centered luminous form" },
+  { key: "ribbon", name: "Ribbon", description: "A quiet diagonal sweep" },
+  { key: "beam", name: "Beam", description: "A precise vertical light" },
+] as const;
+
+export type ShaderKey = (typeof shaderOptions)[number]["key"];
 
 export const features = [
   {

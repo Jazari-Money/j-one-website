@@ -5,23 +5,38 @@
 import { CSSProperties, useEffect, useState } from "react";
 import { MeshGradient } from "@paper-design/shaders-react";
 import { withBasePath } from "../site-paths";
-import { themeOptions, type ThemeKey } from "./data";
+import {
+  shaderOptions,
+  themeOptions,
+  type ShaderKey,
+  type ThemeKey,
+} from "./data";
 import { resetPointer, trackPointer, useReducedMotion } from "./hooks";
 
 export function SiteHeader({
   theme,
+  shader,
   onThemeChange,
+  onShaderChange,
   onAccess,
+  mode = "home",
 }: {
   theme: ThemeKey;
+  shader: ShaderKey;
   onThemeChange: (theme: ThemeKey) => void;
+  onShaderChange: (shader: ShaderKey) => void;
   onAccess: () => void;
+  mode?: "home" | "internal";
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const reduced = useReducedMotion();
   const selected = themeOptions.find((option) => option.key === theme) ?? themeOptions[0];
+  const selectedShader = shaderOptions.find((option) => option.key === shader) ?? shaderOptions[0];
+  const homeHref = mode === "home" ? "#top" : withBasePath("/#top");
+  const sectionHref = (section: string) =>
+    mode === "home" ? `#${section}` : withBasePath(`/#${section}`);
 
   useEffect(() => {
     const update = () => setScrolled(window.scrollY > 12);
@@ -48,16 +63,16 @@ export function SiteHeader({
   return (
     <header className={`site-header ${scrolled || mobileOpen ? "is-scrolled" : ""}`}>
       <nav className="site-nav" aria-label="Main navigation">
-        <a className="brand" href="#top" aria-label="Jazari One home" onClick={closeMobile}>
+        <a className="brand" href={homeHref} aria-label="Jazari One home" onClick={closeMobile}>
           <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <a href="#how" onClick={closeMobile}>How It Works</a>
-          <a href="#rates" onClick={closeMobile}>Rates</a>
-          <a href="#roadmap" onClick={closeMobile}>Roadmap</a>
+          <a href={sectionHref("how")} onClick={closeMobile}>How It Works</a>
+          <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
+          <a href={sectionHref("roadmap")} onClick={closeMobile}>Roadmap</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
-          <a href="#faq" onClick={closeMobile}>FAQ</a>
+          <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
         </div>
 
         <div className="nav-actions">
@@ -71,32 +86,61 @@ export function SiteHeader({
               aria-expanded={themeOpen}
               aria-controls="theme-menu"
             >
-              Palette: {selected.name}
+              Visuals: {selected.name} · {selectedShader.name}
             </button>
             <div
               className={`theme-menu ${themeOpen ? "is-open" : ""}`}
               id="theme-menu"
               aria-hidden={!themeOpen}
             >
-              {themeOptions.map((option) => (
-                <button
-                  key={option.key}
-                  type="button"
-                  className={theme === option.key ? "is-active" : ""}
-                  onClick={() => {
-                    onThemeChange(option.key);
-                    setThemeOpen(false);
-                  }}
-                  aria-pressed={theme === option.key}
-                  style={{
-                    "--swatch": option.mesh[0],
-                    "--swatch-2": option.mesh[2],
-                  } as CSSProperties}
-                >
-                  <span>{option.name}</span>
-                  <small>{option.family}</small>
-                </button>
-              ))}
+              <div className="theme-menu-section">
+                <p>Color</p>
+                <div className="theme-swatch-grid">
+                  {themeOptions.map((option) => (
+                    <button
+                      key={option.key}
+                      type="button"
+                      className={theme === option.key ? "is-active" : ""}
+                      onClick={() => onThemeChange(option.key)}
+                      aria-pressed={theme === option.key}
+                      style={{
+                        "--swatch": option.mesh[0],
+                        "--swatch-2": option.mesh[2],
+                      } as CSSProperties}
+                    >
+                      <span>{option.name}</span>
+                      <small>{option.family}</small>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="theme-menu-section field-options">
+                <p>Field</p>
+                <div>
+                  {shaderOptions.map((option) => (
+                    <button
+                      key={option.key}
+                      type="button"
+                      className={shader === option.key ? "is-active" : ""}
+                      onClick={() => {
+                        onShaderChange(option.key);
+                        setThemeOpen(false);
+                      }}
+                      aria-pressed={shader === option.key}
+                    >
+                      <span>{option.name}</span>
+                      <small>{option.description}</small>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <button
+                className="visuals-done"
+                type="button"
+                onClick={() => setThemeOpen(false)}
+              >
+                Done
+              </button>
             </div>
           </div>
           <button

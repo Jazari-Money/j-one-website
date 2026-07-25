@@ -7,28 +7,10 @@
   color: var(--text);
 }
 
-.article-nav {
-  width: min(1240px, calc(100% - 72px));
-  min-height: 86px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.article-nav img {
-  width: 126px;
-}
-
-.article-nav > a:last-child {
-  color: var(--muted-strong);
-  font-size: 12px;
-}
-
 .guide-article {
   width: min(1160px, calc(100% - 72px));
   margin: 0 auto;
-  padding: 112px 0 150px;
+  padding: 176px 0 150px;
 }
 
 .article-header {

@@ -240,6 +240,9 @@ Key files:
 
 - `app/page.tsx` — thin homepage entry
 - `app/home/HomeContent.tsx` — shared homepage state and composition
+- `app/home/SiteHeader.tsx` — shared homepage, Blog, and article navigation
+- `app/home/SiteFooter.tsx` — shared legal, store, and brand footer
+- `app/home/useVisualPreferences.ts` — persisted color and field preferences
 - `app/home/data.ts` — themes, currencies, and section content
 - `app/home/*.tsx` — one focused component per homepage section
 - `app/globals.css` — ordered stylesheet import chain
@@ -311,8 +314,11 @@ Default local URL: `http://localhost:3000`
 
 ## Current visual language
 
-- Use a neutral, concrete page foundation. Theme choices change the accent and
-  shader palette, not the entire page background.
+- Color profiles use coherent dark foundations and bright, restricted accent
+  families. Each profile may adjust the background and surfaces, but should
+  remain internally consistent rather than mixing unrelated hues.
+- The independent field switcher offers Horizon, Orbital, Ribbon, and Beam.
+  Field shape and color profile are separate persisted preferences.
 - CTA buttons are pill-shaped, use Title Case, contain no decorative glyphs,
   and may carry a restrained cursor-position highlight.
 - Header controls and content cards do not use decorative strokes.
@@ -325,10 +331,10 @@ Default local URL: `http://localhost:3000`
   and values. `1 USD = destination value` is prominent; expected delivery is
   `2–5 minutes`. The two horizontal proof points use Instrument Serif values
   with short underlines: `0% Hidden FX rate fee` and `0% Transaction fee`.
-- The roadmap reads as one compact vertical sequence connected by a continuous
-  line; its nested stages should not feel like full-size standalone sections.
-  It follows the provider table and precedes Blog. The current naming is
-  `Roadmap 2026`, `USD account`, `More receive countries`,
+- The roadmap is a compact horizontal scroll-snap carousel controlled by round
+  previous/next buttons. It has no timeline line and keeps the overall page
+  shorter. It follows the provider grid and precedes Blog. The current naming is
+  `Roadmap`, `USD account`, `More receive countries`,
   `VISA Virtual card`, and `Remit Now Pay Later`; do not add phase prefixes.
 - The virtual card is code-generated with front, back, and four visible edge
   planes. It keeps only the Jazari One and Visa marks, uses a restrained
@@ -341,6 +347,13 @@ Default local URL: `http://localhost:3000`
   keep the button compact and avoid adding icons.
 - The FAQ belongs immediately after the “Your dollars should move with you”
   conversion section.
+- The provider/network presentation is a balanced five-column desktop grid,
+  collapsing to three, two, and one columns. Wordmarks and symbols occupy a
+  fixed visual slot and stay monochrome.
+- Blog index and every guide use the same header component as the homepage.
+  The homepage Blog chapter shows “View All Articles” beside its heading.
+- Footer copy uses Inter, official Apple and Google store badges, and ends with
+  a large shader-filled Jazari One wordmark.
 
 ## Reference direction
 

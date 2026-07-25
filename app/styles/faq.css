@@ -11,18 +11,26 @@
 }
 
 .faq-list {
-  border-top: 1px solid var(--line-strong);
+  display: grid;
+  gap: 10px;
 }
 
 .faq details {
-  border-bottom: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+  transition: background-color 180ms ease;
+}
+
+.faq details[open] {
+  background: var(--surface-2);
 }
 
 .faq summary {
   position: relative;
-  padding: 27px 54px 27px 0;
+  min-height: 72px;
+  padding: 20px 22px;
   color: var(--text);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 540;
   line-height: 1.35;
   cursor: pointer;
@@ -31,36 +39,53 @@
 
 .faq summary::-webkit-details-marker {
   display: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.faq summary::before,
-.faq summary::after {
-  content: "";
-  position: absolute;
-  top: 37px;
-  right: 4px;
-  width: 15px;
-  height: 1px;
-  background: var(--muted-strong);
-  transition: transform 180ms ease, background-color 180ms ease;
+.faq-icon {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-2) 74%, transparent);
+  color: var(--muted-strong);
+  display: grid;
+  place-items: center;
 }
 
-.faq summary::after {
-  transform: rotate(90deg);
+.faq-icon svg {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
 }
 
-.faq details[open] summary::after {
-  transform: rotate(0);
+.faq-minus {
+  display: none;
 }
 
-.faq details[open] summary::before,
-.faq details[open] summary::after {
+.faq details[open] .faq-plus {
+  display: none;
+}
+
+.faq details[open] .faq-minus {
+  display: block;
+}
+
+.faq details[open] .faq-icon {
   background: var(--accent);
+  color: var(--accent-ink);
 }
 
 .faq details p {
   max-width: 620px;
-  padding: 0 54px 28px 0;
+  padding: 0 72px 22px 22px;
   color: var(--muted-strong);
   font-size: 15px;
   line-height: 1.65;
@@ -84,12 +109,7 @@
   }
 
   .faq summary {
-    padding-block: 23px;
+    padding: 18px;
     font-size: 17px;
-  }
-
-  .faq summary::before,
-  .faq summary::after {
-    top: 34px;
   }
 }

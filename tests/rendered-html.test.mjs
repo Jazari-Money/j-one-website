@@ -35,7 +35,8 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /class="numeric">1<\/b><small class="numeric">USD/);
   assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
   assert.match(html, /Transaction fee/);
-  assert.match(html, /Roadmap 2026/);
+  assert.match(html, />Roadmap</);
+  assert.doesNotMatch(html, /Roadmap 2026/);
   assert.match(html, /USD account/);
   assert.match(html, /More receive countries/);
   assert.match(html, /VISA Virtual card/);
@@ -97,8 +98,8 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /\/images\/flags\/in\.png/);
   assert.match(page, /\/images\/flags\/bd\.png/);
   assert.match(page, /\/images\/flags\/pk\.png/);
-  assert.match(page, /\/images\/stores\/apple\.svg/);
-  assert.match(page, /\/images\/stores\/google-play\.svg/);
+  assert.match(page, /\/images\/stores\/app-store-badge\.svg/);
+  assert.match(page, /\/images\/stores\/google-play-badge\.png/);
   assert.match(page, /\/images\/brand\/visa-white\.svg/);
   assert.match(page, /className="audience-caption"/);
   assert.match(page, /\/images\/rails\/bridge\.svg/);
@@ -141,7 +142,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.doesNotMatch(page, /className="card-(?:shader|chip|number|holder)"/);
   assert.doesNotMatch(css, /\.liquid-metal-layer|\.hero-proof|\.audience-details/);
   assert.doesNotMatch(packageJson, /"glimm"/);
-  assert.match(css, /filter:\s*brightness\(0\)\s*invert\(1\)/);
+  assert.match(css, /filter:\s*grayscale\(1\)\s*brightness\(0\)\s*invert\(1\)/);
   assert.match(css, /mask-image:\s*linear-gradient\(to bottom, #000 0 88%, transparent 100%\)/);
 });
 

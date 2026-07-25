@@ -1,7 +1,7 @@
-footer {
+.site-footer {
   width: var(--page);
   margin: 0 auto;
-  padding: 70px 0 42px;
+  padding: 88px 0 0;
   color: var(--muted);
 }
 
@@ -9,11 +9,11 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
+  gap: 32px;
 }
 
-.footer-top img {
-  width: 132px;
+.footer-top > img {
+  width: 150px;
 }
 
 .footer-top > div {
@@ -24,77 +24,94 @@ footer {
 
 .footer-top a {
   color: var(--muted-strong);
-  font-size: 12px;
-  transition: color 180ms ease;
+  font-size: 14px;
+  transition: color 160ms ease;
 }
 
-.footer-top a:hover {
+.footer-top a:hover,
+.footer-top a:focus-visible {
   color: var(--accent);
 }
 
 .footer-stores {
+  margin-top: 38px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 34px;
-}
-
-.store-badge {
-  display: inline-flex;
   align-items: center;
-  min-width: 148px;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 14px;
-  color: var(--text);
-  background: color-mix(in srgb, var(--panel) 82%, transparent);
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.store-badge > img {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+.official-store-badge {
+  display: block;
+  height: 46px;
 }
 
-.store-badge > span {
-  display: grid;
-  gap: 1px;
+.official-store-badge img {
+  width: auto;
+  height: 46px;
 }
 
-.store-badge small {
-  color: var(--muted);
-  font-size: 9px;
-  line-height: 1;
+.google-play-badge img {
+  height: 54px;
+  margin: -4px -8px;
 }
 
-.store-badge b {
-  font-size: 12px;
-  font-weight: 600;
-}
-
-footer > p {
-  max-width: 760px;
-  margin: 52px 0 0;
-  font-size: 12px;
+.site-footer > p {
+  max-width: 830px;
+  margin-top: 56px;
+  color: var(--muted-strong);
+  font-size: 14px;
   line-height: 1.7;
 }
 
 .footer-bottom {
-  margin-top: 42px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
+  margin-top: 44px;
+  padding-top: 26px;
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  font-family: var(--font-geist-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-family: var(--font-inter);
+  font-size: 14px;
+}
+
+.footer-mark {
+  position: relative;
+  width: 100%;
+  height: clamp(150px, 20vw, 260px);
+  margin-top: 64px;
+  overflow: hidden;
+}
+
+.footer-mark-shader {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 55%, var(--accent), transparent 42%),
+    radial-gradient(circle at 68% 38%, var(--accent-2), transparent 46%),
+    linear-gradient(90deg, var(--accent-3), var(--accent), var(--accent-2));
+  -webkit-mask-image: var(--footer-logo);
+  mask-image: var(--footer-logo);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  filter: saturate(112%);
+}
+
+[data-shader="ribbon"] .footer-mark-shader {
+  background: linear-gradient(112deg, var(--accent-3), var(--accent), var(--accent-2), var(--accent));
+}
+
+[data-shader="beam"] .footer-mark-shader {
+  background: linear-gradient(90deg, var(--accent-2), #fff, var(--accent));
 }
 
 @media (max-width: 620px) {
-  footer {
-    padding-top: 50px;
+  .site-footer {
+    padding-top: 64px;
   }
 
   .footer-top,
@@ -104,26 +121,16 @@ footer > p {
   }
 
   .footer-top > div {
-    gap: 18px;
+    gap: 16px 20px;
   }
 
-  .store-badge {
-    min-width: 136px;
-    padding: 9px 12px;
-  }
-}
-
-@media (min-width: 901px) {
-  footer {
-    padding: 62px 0 37px;
+  .site-footer > p,
+  .footer-bottom {
+    font-size: 13px;
   }
 
-  .footer-top img {
-    width: 116px;
-  }
-
-  footer > p {
-    max-width: 669px;
-    margin-top: 63px;
+  .footer-mark {
+    height: 92px;
+    margin-top: 48px;
   }
 }

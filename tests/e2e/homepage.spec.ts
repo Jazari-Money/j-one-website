@@ -3,6 +3,7 @@ import { expect, test, type Page } from "@playwright/test";
 async function prepareStablePage(page: Page) {
   await page.addInitScript(() => {
     window.localStorage.setItem("jazari-theme", "carbon");
+    window.localStorage.setItem("jazari-shader", "horizon");
   });
   await page.goto("/", { waitUntil: "networkidle" });
   await page.addStyleTag({
@@ -46,12 +47,17 @@ test("keeps the core interactions working", async ({ page }) => {
     )
     .not.toBe("0");
 
-  await page.getByRole("button", { name: /Palette:/ }).click();
+  await page.getByRole("button", { name: /Visuals:/ }).click();
   await page.getByRole("button", { name: /Electric Lime/ }).click();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "toxic");
   await expect
     .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
     .toBe("toxic");
+  await page.getByRole("button", { name: /Ribbon/ }).click();
+  await expect(page.locator("main")).toHaveAttribute("data-shader", "ribbon");
+  await expect
+    .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-shader")))
+    .toBe("ribbon");
 
   const accountTab = page.getByRole("tab", { name: /Set Up Your Account/ });
   await accountTab.focus();

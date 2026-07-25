@@ -2,6 +2,18 @@
   font-size: clamp(76px, 9vw, 136px);
 }
 
+.blog .chapter-heading {
+  max-width: none;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 36px;
+}
+
+.blog .chapter-heading > div {
+  max-width: 780px;
+}
+
 .blog-grid {
   margin-top: 76px;
   display: grid;
@@ -108,17 +120,18 @@
   margin-top: auto;
   padding-top: 32px;
   color: var(--text);
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 650;
 }
 
 .blog-all-link {
   width: max-content;
-  margin: 32px 0 0 auto;
+  flex: 0 0 auto;
+  margin: 0 0 10px;
   padding-bottom: 5px;
   border-bottom: 1px solid var(--accent);
   color: var(--text);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
 }
 
@@ -136,6 +149,12 @@
 }
 
 @media (max-width: 620px) {
+  .blog .chapter-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+
   .blog-grid {
     margin-top: 58px;
   }
