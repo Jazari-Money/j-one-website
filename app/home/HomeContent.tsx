@@ -15,6 +15,7 @@ import {
 } from "./data";
 import { Hero } from "./Hero";
 import { HowItWorks } from "./HowItWorks";
+import { FAQ } from "./FAQ";
 import { MoneyRain } from "./MoneyRain";
 import { NetworkExplorer } from "./NetworkExplorer";
 import { ProductRoadmap } from "./ProductRoadmap";
@@ -89,18 +90,19 @@ export function HomeContent() {
         onAmount={setAmount}
         onCurrency={setCurrency}
       />
-      <ProductRoadmap theme={selectedTheme} />
       <AudienceExplorer />
       <NetworkExplorer />
+      <ProductRoadmap theme={selectedTheme} />
       <Blog />
       <MoneyRain onAccess={openAccess} />
+      <FAQ />
 
       <footer>
         <div className="footer-top">
           <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
           <div>
             <a href="#how">How it works</a>
-            <a href="#roadmap">What&apos;s next</a>
+            <a href="#roadmap">Roadmap</a>
             <a href="#blog">Blog</a>
             <a href="mailto:hello@jazari.xyz">Contact</a>
           </div>

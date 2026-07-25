@@ -35,8 +35,16 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /class="numeric">1<\/b><small class="numeric">USD/);
   assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
   assert.match(html, /Transaction fee/);
-  assert.match(html, /Live now\. Built next\./);
+  assert.match(html, /Roadmap 2026/);
+  assert.match(html, /USD account/);
+  assert.match(html, /More receive countries/);
+  assert.match(html, /VISA Virtual card/);
   assert.match(html, /One balance\. Multiple rails\./);
+  assert.match(html, /Questions, answered\./);
+  assert.ok(
+    html.indexOf('id="networks"') < html.indexOf('id="roadmap"'),
+  );
+  assert.ok(html.indexOf('id="roadmap"') < html.indexOf('id="blog"'));
   assert.match(html, />Blog</);
   assert.match(html, /South Asia/);
   assert.match(html, /USDC/);
@@ -102,7 +110,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /\/images\/rails\/polygon-symbol\.svg/);
   assert.match(page, /\/images\/rails\/base\.svg/);
   assert.match(page, /\/images\/coins\/jazari-dollar-3d\.webp/);
-  assert.match(page, /src=\{story\.logo\}/);
+  assert.match(page, /src=\{item\.logo\}/);
   assert.match(page, /--card-rx/);
   assert.match(page, /coinSeeds/);
 
@@ -110,11 +118,13 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(css, /\.card-object/);
   assert.match(css, /\.coin-fall/);
   assert.match(css, /\.coin-fall img/);
-  assert.match(css, /\.network-orbit img/);
+  assert.match(css, /\.provider-logo img/);
+  assert.match(css, /\.faq-list/);
   assert.match(css, /@media \(min-width: 901px\)/);
   assert.match(css, /--page:\s*min\(1160px/);
   assert.match(css, /\.access-control\.is-open/);
   assert.match(css, /\.hero-shader/);
+  assert.match(css, /"Instrument Serif"/);
   assert.match(css, /\[data-theme="aurora"\]/);
   assert.doesNotMatch(page, /GodRays|GrainGradient/);
   assert.doesNotMatch(page, /→|↗/);

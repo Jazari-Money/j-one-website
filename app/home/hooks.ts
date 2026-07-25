@@ -17,6 +17,8 @@ export function trackPointer(event: ReactPointerEvent<HTMLElement>) {
 
   node.style.setProperty("--pointer-x", `${x * 100}%`);
   node.style.setProperty("--pointer-y", `${y * 100}%`);
+  node.style.setProperty("--pointer-nx", `${x - 0.5}`);
+  node.style.setProperty("--pointer-ny", `${y - 0.5}`);
   node.style.setProperty("--tilt-x", `${(0.5 - y) * 1.4}deg`);
   node.style.setProperty("--tilt-y", `${(x - 0.5) * 1.6}deg`);
 }
@@ -25,6 +27,8 @@ export function resetPointer(event: ReactPointerEvent<HTMLElement>) {
   const node = event.currentTarget;
   node.style.setProperty("--pointer-x", "50%");
   node.style.setProperty("--pointer-y", "50%");
+  node.style.setProperty("--pointer-nx", "0");
+  node.style.setProperty("--pointer-ny", "0");
   node.style.setProperty("--tilt-x", "0deg");
   node.style.setProperty("--tilt-y", "0deg");
 }

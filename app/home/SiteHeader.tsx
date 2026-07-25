@@ -52,7 +52,7 @@ export function SiteHeader({
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
           <a href="#how" onClick={closeMobile}>How it works</a>
-          <a href="#roadmap" onClick={closeMobile}>What&apos;s next</a>
+          <a href="#roadmap" onClick={closeMobile}>Roadmap</a>
           <a href="#audience" onClick={closeMobile}>For whom</a>
           <a href="#blog" onClick={closeMobile}>Blog</a>
         </div>

@@ -74,22 +74,6 @@
   justify-content: center;
 }
 
-.live-mark,
-.roadmap-state {
-  width: max-content;
-  margin-bottom: 30px;
-  color: var(--muted-strong);
-  font-family: var(--font-geist-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.live-mark {
-  color: var(--accent);
-  font-weight: 800;
-}
-
 .roadmap h3 {
   max-width: 560px;
   margin: 0;
@@ -233,13 +217,16 @@
 .card-object {
   --card-rx: -7deg;
   --card-ry: 16deg;
+  --card-px: 50%;
+  --card-py: 50%;
+  --card-depth: 24px;
   position: relative;
   width: min(430px, 78%);
   aspect-ratio: 1.586 / 1;
   transform-style: preserve-3d;
   transform: rotateX(var(--card-rx)) rotateY(var(--card-ry));
   transition: transform 120ms ease-out;
-  filter: drop-shadow(0 26px 30px rgba(0, 0, 0, 0.28));
+  filter: drop-shadow(0 30px 34px rgba(0, 0, 0, 0.36));
 }
 
 .card-face {
@@ -247,15 +234,83 @@
   inset: 0;
   overflow: hidden;
   border: 0;
-  border-radius: 29px;
-  background: color-mix(in srgb, var(--surface-2) 92%, #0b0e0c);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface-2) 93%, #05070b);
   backface-visibility: hidden;
   transform-style: preserve-3d;
   box-shadow: none;
 }
 
+.card-face::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background:
+    radial-gradient(
+      circle 190px at var(--card-px) var(--card-py),
+      color-mix(in srgb, var(--accent) 38%, white 8%),
+      transparent 67%
+    ),
+    linear-gradient(118deg, transparent 18%, rgba(255, 255, 255, 0.11) 46%, transparent 70%);
+  opacity: 0.12;
+  mix-blend-mode: screen;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.card-interaction:hover .card-face::before,
+.card-interaction:focus-visible .card-face::before {
+  opacity: 0.44;
+}
+
+.card-front {
+  transform: translateZ(calc(var(--card-depth) / 2));
+}
+
 .card-back {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) translateZ(calc(var(--card-depth) / 2));
+}
+
+.card-edge {
+  position: absolute;
+  display: block;
+  background: linear-gradient(90deg, #07090e, #2b323c 48%, #080a0f);
+  pointer-events: none;
+}
+
+.card-edge-top,
+.card-edge-bottom {
+  left: 14px;
+  right: 14px;
+  height: var(--card-depth);
+}
+
+.card-edge-top {
+  top: calc(var(--card-depth) / -2);
+  transform: rotateX(90deg);
+}
+
+.card-edge-bottom {
+  bottom: calc(var(--card-depth) / -2);
+  transform: rotateX(90deg);
+}
+
+.card-edge-right,
+.card-edge-left {
+  top: 14px;
+  bottom: 14px;
+  width: var(--card-depth);
+  background: linear-gradient(180deg, #080a0f, #343b46 50%, #07090e);
+}
+
+.card-edge-right {
+  right: calc(var(--card-depth) / -2);
+  transform: rotateY(90deg);
+}
+
+.card-edge-left {
+  left: calc(var(--card-depth) / -2);
+  transform: rotateY(90deg);
 }
 
 .card-brand,
@@ -397,7 +452,7 @@
   }
 
   .card-face {
-    border-radius: 20px;
+    border-radius: 14px;
   }
 
   .card-brand {

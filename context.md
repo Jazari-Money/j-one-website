@@ -179,9 +179,9 @@ Articles are brief, route-specific, and include useful details such as CLABE,
 Pix, Colombian account type, destination currency, and IBAN. Shared article
 rendering lives in `app/blog/GuideArticle.tsx`.
 
-## Technology and network stories
+## Provider and network table
 
-The homepage currently explains:
+The homepage presents a static, three-column table of:
 
 - Bridge
 - Privy
@@ -195,7 +195,8 @@ The homepage currently explains:
 - Base
 
 Use neutral language. Do not imply every asset/network is already available on
-every Jazari route.
+every Jazari route. Keep the logos monochrome and compensate their apparent
+weight inside one fixed logo field; do not restore the former tabbed explorer.
 
 ## Local assets
 
@@ -218,7 +219,8 @@ The current card is generated in code.
 - Next.js 16 with static export for GitHub Pages
 - React 19
 - TypeScript
-- Locally bundled Geist Sans and Geist Mono
+- Locally bundled Instrument Serif for editorial display type
+- Locally bundled Geist Sans and Geist Mono for interface copy and numbers
 - `@paper-design/shaders-react`
 - Plain modular CSS for layout, 3D card, transitions, and money rain
 - Playwright for interaction and visual regression checks
@@ -314,9 +316,25 @@ Default local URL: `http://localhost:3000`
 - The three transfer steps behave as one borderless segmented control. Do not
   add helper labels such as “View screen” or “Showing screen.”
 - The FX preview is deliberately sparse: no outer plate border, no internal
-  separators, and one consistent tabular style for currencies and values.
+  separators, an enlarged “FX preview” label, and one consistent Geist tabular
+  style for currencies and values. The companion proof points are `0% Hidden
+  FX rate fee` and `0% Transaction fee`.
 - The roadmap reads as one compact vertical sequence connected by a continuous
   line; its nested stages should not feel like full-size standalone sections.
+  It follows the provider table and precedes Blog. The current naming is
+  `Roadmap 2026`, `USD account`, `More receive countries`,
+  `VISA Virtual card`, and `Remit Now Pay Later`; do not add phase prefixes.
+- The virtual card is code-generated with front, back, and four visible edge
+  planes. It keeps only the Jazari One and Visa marks, uses a restrained
+  cursor-position sheen, and supports drag and keyboard rotation.
+- Theme keys stay stable for local-storage compatibility, but their public
+  names and shader colors are the brighter 2026 set: Emerald Voltage, Cobalt
+  Signal, Signal Blue, Cyan Current, Acid Lime, Solar Flare, Hot Magenta,
+  Plasma Violet, Laser Red, and Aurora Electric.
+- The early-access shader follows the pointer through CSS custom properties;
+  keep the button compact and avoid adding icons.
+- The FAQ belongs immediately after the “Your dollars should move with you”
+  conversion section.
 
 ## Reference direction
 

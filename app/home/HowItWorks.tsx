@@ -89,15 +89,15 @@ export function HowItWorks({
             See the exchange rate, transaction fee, recipient amount, and
             expected delivery before you confirm.
           </p>
-          <div
-            className="review-fee"
-            aria-label="Transaction fee: zero percent for this illustrative route"
-          >
-            <strong className="numeric">0%</strong>
-            <span>
+          <div className="review-metrics">
+            <div className="review-fee" aria-label="Hidden foreign exchange rate fee: zero percent">
+              <strong className="numeric">0%</strong>
+              <b>Hidden FX rate fee</b>
+            </div>
+            <div className="review-fee" aria-label="Transaction fee: zero percent">
+              <strong className="numeric">0%</strong>
               <b>Transaction fee</b>
-              <small>For this illustrative route</small>
-            </span>
+            </div>
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export function HowItWorks({
               onChange={(event) => onAmount(event.target.value)}
               aria-label="Amount in US dollars"
             />
-            <span>USD</span>
+            <span className="numeric">USD</span>
           </div>
 
           <output
@@ -142,7 +142,7 @@ export function HowItWorks({
               {converted.toLocaleString(undefined, { maximumFractionDigits: 2 })}
             </strong>
             <select
-              className="currency-select"
+              className="currency-select numeric"
               id="receive-currency"
               value={currency}
               onChange={(event) => onCurrency(event.target.value as CurrencyCode)}
@@ -160,7 +160,7 @@ export function HowItWorks({
             <span>Transaction fee</span>
             <strong className="numeric">0%</strong>
             <span>Expected delivery</span>
-            <strong>Shown before confirmation</strong>
+            <strong className="numeric">Shown before confirmation</strong>
           </div>
           <p className="rate-disclaimer">
             Indicative rate, for illustration only. Final rates, fees, delivery

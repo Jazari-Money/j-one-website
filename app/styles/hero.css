@@ -97,8 +97,8 @@
 .access-control {
   position: relative;
   width: min(560px, 100%);
-  height: 68px;
-  margin-top: 36px;
+  height: 56px;
+  margin-top: 32px;
 }
 
 .magic-access-button,
@@ -113,10 +113,12 @@
 .magic-access-button {
   --pointer-x: 50%;
   --pointer-y: 50%;
-  width: 210px;
+  --pointer-nx: 0;
+  --pointer-ny: 0;
+  width: 176px;
   left: 50%;
   overflow: hidden;
-  border: 1px solid color-mix(in srgb, var(--accent) 70%, white);
+  border: 0;
   background: var(--accent);
   color: var(--accent-ink);
   transform: translateX(-50%);
@@ -168,14 +170,21 @@
 .button-shader {
   position: absolute;
   z-index: 0;
-  inset: -18px;
+  inset: -22px;
   opacity: 0.9;
+  transform:
+    translate(
+      calc(var(--pointer-nx) * -12%),
+      calc(var(--pointer-ny) * -16%)
+    )
+    scale(1.18);
+  transition: transform 150ms ease-out;
 }
 
 .button-label {
   position: relative;
   z-index: 3;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 780;
 }
 
@@ -340,17 +349,17 @@
   }
 
   .access-control {
-    height: 62px;
+    height: 56px;
   }
 
   .magic-access-button {
-    width: 188px;
+    width: 174px;
   }
 
   .access-form {
     position: relative;
     height: auto;
-    min-height: 62px;
+    min-height: 56px;
   }
 
   .access-control.is-open {
@@ -410,12 +419,12 @@
 
   .access-control {
     width: min(493px, 100%);
-    height: 60px;
+    height: 54px;
     margin-top: 32px;
   }
 
   .magic-access-button {
-    width: 185px;
+    width: 170px;
   }
 
   .hero-product {

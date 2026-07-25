@@ -49,9 +49,11 @@ export function InteractiveCard() {
     }
     if (event.pointerType !== "mouse") return;
     const rect = event.currentTarget.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width - 0.5;
-    const py = (event.clientY - rect.top) / rect.height - 0.5;
-    commit(py * -14, px * 24);
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    cardRef.current?.style.setProperty("--card-px", `${x * 100}%`);
+    cardRef.current?.style.setProperty("--card-py", `${y * 100}%`);
+    commit((y - 0.5) * -14, (x - 0.5) * 24);
   }
 
   function onPointerUp(event: ReactPointerEvent<HTMLDivElement>) {
@@ -85,7 +87,11 @@ export function InteractiveCard() {
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerUp}
       onPointerLeave={() => {
-        if (!drag.current.active && !reduced) commit(-7, 16);
+        if (!drag.current.active && !reduced) {
+          cardRef.current?.style.setProperty("--card-px", "50%");
+          cardRef.current?.style.setProperty("--card-py", "50%");
+          commit(-7, 16);
+        }
       }}
       onKeyDown={onKeyDown}
       tabIndex={0}
@@ -123,6 +129,10 @@ export function InteractiveCard() {
             draggable={false}
           />
         </div>
+        <i className="card-edge card-edge-top" aria-hidden="true" />
+        <i className="card-edge card-edge-right" aria-hidden="true" />
+        <i className="card-edge card-edge-bottom" aria-hidden="true" />
+        <i className="card-edge card-edge-left" aria-hidden="true" />
       </div>
     </div>
   );

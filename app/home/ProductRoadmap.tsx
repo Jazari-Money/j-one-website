@@ -14,8 +14,8 @@ export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
   return (
     <section className="roadmap section" id="roadmap">
       <header className="chapter-heading">
-        <h2>Live now. Built next.</h2>
-        <p>Jazari is growing one useful layer at a time, starting with the dollar account.</p>
+        <h2>Roadmap 2026</h2>
+        <p>One useful layer at a time, starting with the USD account.</p>
       </header>
 
       <div className="roadmap-flow">
@@ -35,8 +35,7 @@ export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
             )}
           </div>
           <div className="roadmap-copy">
-            <span className="live-mark">LIVE</span>
-            <h3>Your dollar account</h3>
+            <h3>USD account</h3>
             <p>Hold and receive supported digital dollars, then send through the bank routes available to you.</p>
             <ul>
               <li>One account for holding, receiving, and sending</li>
@@ -51,8 +50,7 @@ export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
 
         <article className="roadmap-row routes-row">
           <div className="roadmap-copy">
-            <span className="roadmap-state">Next</span>
-            <h3>More local routes</h3>
+            <h3>More receive countries</h3>
             <p>
               We&apos;re preparing routes for India, Bangladesh, and Pakistan,
               followed by selected African markets. Each route opens only when
@@ -79,8 +77,7 @@ export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
 
         <article className="roadmap-row card-row">
           <div className="roadmap-copy">
-            <span className="roadmap-state">Then</span>
-            <h3>The Jazari card</h3>
+            <h3>VISA Virtual card</h3>
             <p>
               Use the same balance for card spending, with purchase history and
               controls in the app. Availability and terms will depend on country
@@ -97,7 +94,6 @@ export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
 
         <article className="roadmap-row rnpl-row">
           <div className="roadmap-copy">
-            <span className="roadmap-state">Later</span>
             <h3>Remit Now Pay Later</h3>
             <p>
               Eligible members may be able to choose a support amount and a

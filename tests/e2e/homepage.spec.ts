@@ -38,8 +38,16 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /Your dollars,/ })).toBeVisible();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "carbon");
 
+  const heroAccess = page.locator(".magic-access-button");
+  await heroAccess.hover({ position: { x: 22, y: 12 } });
+  await expect
+    .poll(() =>
+      heroAccess.evaluate((node) => node.style.getPropertyValue("--pointer-nx")),
+    )
+    .not.toBe("0");
+
   await page.getByRole("button", { name: /Palette:/ }).click();
-  await page.getByRole("button", { name: /Toxic Bloom/ }).click();
+  await page.getByRole("button", { name: /Acid Lime/ }).click();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "toxic");
   await expect
     .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
@@ -63,7 +71,9 @@ test("keeps the core interactions working", async ({ page }) => {
 
   const card = page.locator(".card-interaction");
   await card.scrollIntoViewIfNeeded();
+  await expect(card.locator(".card-edge")).toHaveCount(4);
   await card.focus();
+  await card.press("Home");
   await card.press("ArrowRight");
   await expect
     .poll(() =>
@@ -78,6 +88,12 @@ test("keeps the core interactions working", async ({ page }) => {
   await moneyRain.hover();
   await expect(moneyRain).toHaveClass(/is-raining/);
   await expect(moneyRain.locator(".coin-fall")).toHaveCount(28);
+
+  const firstQuestion = page.getByText("What is a Jazari USD account?", { exact: true });
+  await firstQuestion.click();
+  await expect(
+    page.getByText(/one interface for holding supported digital dollars/i),
+  ).toBeVisible();
 });
 
 for (const viewport of [
