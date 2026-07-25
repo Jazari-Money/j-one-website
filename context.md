@@ -1,6 +1,6 @@
 # Jazari One website context
 
-Last updated: 2026-07-24
+Last updated: 2026-07-26
 
 ## Product
 
@@ -49,15 +49,16 @@ illustrative.
 - Shaders should be shallow, masked, and atmospheric.
 - Keep the original Jazari One app video inside the local phone frame.
 - CTA buttons use text only: no arrows, icons, or decorative glyphs.
-- The primary CTA uses a toxic-green fluid shader.
+- The primary CTA uses the active palette’s fluid shader and follows the
+  pointer quietly.
 - Do not use green status dots. “LIVE” is a typographic mark.
 - Do not use separator rules between whole sections. Internal ledger/list
   boundaries are acceptable.
 - Product screenshots stay upright and must never overlap headings.
 - Product phones float directly on the page with a restrained halo; do not put
   them inside large colored rounded-rectangle plates.
-- Roadmap and network stories are open editorial compositions with generous
-  whitespace and localized glow; do not enclose them in large rounded plates.
+- Roadmap milestones and provider stories use compact cards with generous
+  internal whitespace, a localized cursor glow, and restrained radii.
 - Supporting descriptions use a readable 15px size. Footer navigation, legal
   copy, and company information use 12px.
 - Blog cards do not show country or read-time prefixes above their headlines.
@@ -70,20 +71,20 @@ illustrative.
 
 1. Bridge-inspired full-width fixed header
 2. Hero with shallow masked mesh shader and Jazari app video
-3. Editorial capability ledger using Jazari icon assets and simple surface hover
+3. Editorial capability ledger using Jazari icon assets and a staggered reveal
 4. Interactive How It Works tabs with one upright phone at a time
 5. FX/review experience integrated inside How It Works
 6. Static audience/use-case stories
-7. Provider and network table
-8. Vertical roadmap:
+7. Provider and network grid
+8. Horizontal roadmap:
    - Live: dollar account
    - Next: more local routes
    - Then: interactive 3D Jazari Visa card
    - Later: Remit Now Pay Later
 9. Homepage Blog preview with the four latest guides
-10. Closing waitlist panel with performant CSS 3D money rain
+10. Closing download panel with performant CSS 3D money rain
 11. FAQ
-12. Legal/product footer with iOS and Android coming-soon badges
+12. Legal/product footer with official iOS and Android store badges
 
 Do not reintroduce separate FX, clarity, Card, or RNPL promo sections. Their
 content is intentionally consolidated.
@@ -94,7 +95,7 @@ content is intentionally consolidated.
 
 - Transparent full-width bar at the top.
 - Adds a translucent blurred background and hairline after scrolling.
-- Desktop navigation links use an animated underline.
+- Desktop navigation links are deliberately larger than supporting UI copy.
 - Mobile control uses the text “Menu” / “Close.”
 - The palette control offers ten persisted themes using `localStorage`.
 
@@ -102,23 +103,25 @@ content is intentionally consolidated.
 
 The ten schemes are:
 
-1. Pre-Dawn (default, calm)
-2. Sunrise (calm)
-3. Daylight (calm)
-4. Glacier (calm)
-5. Electric Lime (wild)
-6. Golden Hour (wild)
-7. Afterglow (wild)
-8. Dusk (experimental)
-9. Ember (experimental)
-10. Aurora (experimental)
+1. Pure Black (calm)
+2. Deep Graphite (calm)
+3. Cobalt (calm)
+4. Digital Cyan (calm)
+5. Acid Lime (wild)
+6. Solar Flare (wild)
+7. Hot Coral (wild)
+8. Ultraviolet (experimental)
+9. Signal Red (experimental)
+10. Aurora Pulse (default, experimental)
 
 Theme variables live in `app/styles/tokens.css`; mesh colors live in
-`themeOptions` in `app/home/data.ts`.
+`themeOptions` in `app/home/data.ts`. Layout tokens must never live inside a
+palette selector: changing a color scheme cannot change page geometry.
 
-### Early access
+### Download CTA
 
-- The hero’s shader CTA expands into an email field and text-only submit button.
+- The hero’s “Download App” shader CTA expands into an email field and
+  text-only waitlist submit button while native distribution is staged.
 - Header and closing CTAs scroll to and open the same form.
 - This is currently a front-end demo state only; no backend persistence exists.
 
@@ -141,6 +144,9 @@ Theme variables live in `app/styles/tokens.css`; mesh colors live in
 ### Capability ledger
 
 - Rows use a quiet surface-color change on hover.
+- Rows reveal once from top to bottom when the list enters the viewport.
+- Content remains visible without JavaScript; reveal motion is progressive
+  enhancement, never a readability dependency.
 - No liquid-metal canvas, cursor distortion, or decorative edge sweep is used.
 
 ### 3D card
@@ -149,16 +155,17 @@ Theme variables live in `app/styles/tokens.css`; mesh colors live in
 - Pointer hover adds a subtle tilt; pointer dragging rotates it freely.
 - Arrow keys rotate it; Home resets it.
 - Front and back faces contain only the Jazari One and official white Visa
-  brand marks on a restrained solid surface.
-- There is no card shader, chip, number, holder name, expiry, magnetic strip, or
-  signature strip.
+  brand marks on a thick CSS-built body.
+- There is a restrained cursor-position sheen, but no chip, number, holder
+  name, expiry, magnetic strip, or signature strip.
 - Reduced-motion users receive a static angled card.
 
 ### Audience
 
-- Each category is a static photographic story with a headline and one concise
-  value statement.
-- There is no click, hover expansion, chip list, or detail overlay.
+- Each category is a photographic story with a headline and one concise value
+  statement.
+- Cards may react subtly to the cursor but do not expand, add chip lists, or
+  reveal a detail overlay.
 - Mobile stacks the stories vertically.
 
 ### Money rain
@@ -184,9 +191,9 @@ The homepage shows the four latest guides. The Blog index shows all seven.
 Articles are brief and include useful route, safety, planning, and digital
 dollar context. Shared article rendering lives in `app/blog/GuideArticle.tsx`.
 
-## Provider and network table
+## Provider and network grid
 
-The homepage presents a static, three-column table of:
+The homepage presents a stagger-revealing, optically balanced grid of:
 
 - Bridge
 - Privy
@@ -225,7 +232,8 @@ The current card is generated in code.
 - React 19
 - TypeScript
 - Locally bundled Instrument Serif for editorial display type
-- Locally bundled Geist Sans and Geist Mono for interface copy and numbers
+- Locally bundled Inter Variable for interface copy and Geist Mono only where
+  code-like article metadata benefits from it
 - `@paper-design/shaders-react`
 - Plain modular CSS for layout, 3D card, transitions, and money rain
 - Playwright for interaction and visual regression checks
@@ -234,7 +242,7 @@ GitHub Pages is the canonical and only deployment target. Local development
 uses `next dev`, so the development and deployment paths use the same framework.
 There is no Cloudflare Worker, Vinext/Vite runtime, Tailwind layer, D1 database,
 or Drizzle ORM. Every production build uses Next.js static export; there is no
-server-start path. The early-access form remains front-end demo state.
+server-start path. The download/waitlist form remains front-end demo state.
 
 Key files:
 
@@ -326,11 +334,11 @@ Default local URL: `http://localhost:3000`
   not separator rules, to establish rhythm.
 - The three transfer steps behave as one borderless segmented control. Do not
   add helper labels such as “View screen” or “Showing screen.”
-- The FX preview is deliberately sparse: no heading label, no outer border, no
+- The FX preview is deliberately sparse: no “FX preview” heading label, no outer border, no
   internal separators, and one consistent Geist tabular style for currencies
   and values. `1 USD = destination value` is prominent; expected delivery is
   `2–5 minutes`. The two horizontal proof points use Instrument Serif values
-  with short underlines: `0% Hidden FX rate fee` and `0% Transaction fee`.
+  without underlines: `0% Hidden FX rate fee` and `0% Transaction fee`.
 - The roadmap is a compact horizontal scroll-snap carousel controlled by round
   previous/next buttons. It has no timeline line and keeps the overall page
   shorter. It follows the provider grid and precedes Blog. The current naming is
@@ -340,16 +348,22 @@ Default local URL: `http://localhost:3000`
   planes. It keeps only the Jazari One and Visa marks, uses a restrained
   cursor-position sheen, and supports drag and keyboard rotation.
 - Theme keys stay stable for local-storage compatibility. Public names are
-  Pre-Dawn, Sunrise, Daylight, Glacier, Electric Lime, Golden Hour, Afterglow,
-  Dusk, Ember, and Aurora. Their clean, bright fields reference Stripe’s
-  time-of-day palette discipline; do not add grain or muddy color mixing.
-- The early-access shader follows the pointer through CSS custom properties;
-  keep the button compact and avoid adding icons.
+  Pure Black, Deep Graphite, Cobalt, Digital Cyan, Acid Lime, Solar Flare,
+  Hot Coral, Ultraviolet, Signal Red, and Aurora Pulse. Aurora Pulse is the
+  default; Pure Black and Deep Graphite remain deliberately neutral options.
+  Their clean, bright fields reference Stripe’s palette discipline; do not add
+  grain or muddy color mixing.
+- Orbital is the default field shape. It uses a large fluid mesh plus a few
+  masked, animated contour bands to suggest layered energy flow without noise.
+- The download shader follows the pointer through CSS custom properties; keep
+  the button compact and avoid adding icons.
 - The FAQ belongs immediately after the “Your dollars should move with you”
   conversion section.
 - The provider/network presentation is a balanced five-column desktop grid,
-  collapsing to three, two, and one columns. Wordmarks and symbols occupy a
-  fixed visual slot and stay monochrome.
+  collapsing to three, two, and one columns. Each card shows only the service
+  name and description. Wordmarks and symbols occupy a fixed visual slot, stay
+  monochrome, and are optically normalized; Bridge omits its subsidiary line,
+  while Gauntlet and Base use mark-only artwork.
 - Blog index and every guide use the same header component as the homepage.
   The homepage Blog chapter shows “View All Articles” beside its heading.
 - Footer copy uses Inter, official Apple and Google store badges, and ends with

@@ -9,8 +9,8 @@ import {
 } from "./data";
 
 export function useVisualPreferences() {
-  const [theme, setTheme] = useState<ThemeKey>("carbon");
-  const [shader, setShader] = useState<ShaderKey>("horizon");
+  const [theme, setTheme] = useState<ThemeKey>("aurora");
+  const [shader, setShader] = useState<ShaderKey>("orbital");
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem("jazari-theme") as ThemeKey | null;

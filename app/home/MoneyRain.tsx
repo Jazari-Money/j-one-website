@@ -71,7 +71,7 @@ export function MoneyRain({ onAccess }: { onAccess: () => void }) {
           onPointerMove={trackPointer}
           onPointerLeave={resetPointer}
         >
-          Get Early Access
+          Download App
         </button>
       </div>
     </section>

@@ -4,6 +4,7 @@
 
 import { useRef } from "react";
 import { withBasePath } from "../site-paths";
+import { resetPointer, trackPointer } from "./hooks";
 import { InteractiveCard } from "./InteractiveCard";
 import { Phone } from "./Phone";
 
@@ -43,17 +44,23 @@ export function ProductRoadmap() {
 
       <div className="roadmap-window">
         <div className="roadmap-track" ref={track}>
-          <article className="roadmap-card live-product">
+          <article
+            className="roadmap-card live-product"
+            onPointerMove={trackPointer}
+            onPointerLeave={resetPointer}
+          >
             <div className="roadmap-copy">
               <h3>USD account</h3>
-              <p>
-                Hold and receive supported digital dollars, then send through
-                the bank routes available to you.
-              </p>
-              <ul>
-                <li>Hold, receive, and send from one account</li>
-                <li>Review every transfer before confirmation</li>
-              </ul>
+              <div className="roadmap-copy-bottom">
+                <p>
+                  Hold and receive supported digital dollars, then send through
+                  the bank routes available to you.
+                </p>
+                <ul>
+                  <li>Hold, receive, and send from one account</li>
+                  <li>Review every transfer before confirmation</li>
+                </ul>
+              </div>
             </div>
             <div className="roadmap-visual live-phone">
               <Phone
@@ -63,13 +70,19 @@ export function ProductRoadmap() {
             </div>
           </article>
 
-          <article className="roadmap-card routes-row">
+          <article
+            className="roadmap-card routes-row"
+            onPointerMove={trackPointer}
+            onPointerLeave={resetPointer}
+          >
             <div className="roadmap-copy">
               <h3>More receive countries</h3>
-              <p>
-                We&apos;re preparing new routes as local banking and compliance
-                requirements become ready.
-              </p>
+              <div className="roadmap-copy-bottom">
+                <p>
+                  We&apos;re preparing new routes as local banking and compliance
+                  requirements become ready.
+                </p>
+              </div>
             </div>
             <div className="roadmap-visual route-roster" aria-label="Planned receive countries">
               <section className="route-group">
@@ -87,33 +100,45 @@ export function ProductRoadmap() {
             </div>
           </article>
 
-          <article className="roadmap-card card-row">
+          <article
+            className="roadmap-card card-row"
+            onPointerMove={trackPointer}
+            onPointerLeave={resetPointer}
+          >
             <div className="roadmap-copy">
               <h3>VISA Virtual card</h3>
-              <p>
-                Spend from the same balance, with purchase history and controls
-                in the app.
-              </p>
-              <p id="card-interaction-help" className="interaction-note">
-                Drag or use the arrow keys to rotate the card.
-              </p>
+              <div className="roadmap-copy-bottom">
+                <p>
+                  Spend from the same balance, with purchase history and controls
+                  in the app.
+                </p>
+                <p id="card-interaction-help" className="interaction-note">
+                  Drag or use the arrow keys to rotate the card.
+                </p>
+              </div>
             </div>
             <div className="roadmap-visual">
               <InteractiveCard />
             </div>
           </article>
 
-          <article className="roadmap-card rnpl-row">
+          <article
+            className="roadmap-card rnpl-row"
+            onPointerMove={trackPointer}
+            onPointerLeave={resetPointer}
+          >
             <div className="roadmap-copy">
               <h3>Remit Now Pay Later</h3>
-              <p>
-                Eligible members may choose a support amount and repayment
-                option before confirming.
-              </p>
-              <dl className="rnpl-example">
-                <div><dt>Example support</dt><dd>$500</dd></div>
-                <div><dt>Repayment</dt><dd>Shown upfront</dd></div>
-              </dl>
+              <div className="roadmap-copy-bottom">
+                <p>
+                  Eligible members may choose a support amount and repayment
+                  option before confirming.
+                </p>
+                <dl className="rnpl-example">
+                  <div><dt>Example support</dt><dd>$500</dd></div>
+                  <div><dt>Repayment</dt><dd>Shown upfront</dd></div>
+                </dl>
+              </div>
             </div>
             <div className="roadmap-visual rnpl-phone">
               <Phone

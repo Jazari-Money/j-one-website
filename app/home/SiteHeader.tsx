@@ -162,7 +162,7 @@ export function SiteHeader({
                 speed={reduced ? 0 : 0.08}
               />
             </span>
-            <span className="nav-cta-label">Get Early Access</span>
+            <span className="nav-cta-label">Download App</span>
           </button>
           <button
             className="mobile-toggle"

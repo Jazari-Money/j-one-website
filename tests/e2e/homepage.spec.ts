@@ -2,7 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 
 async function prepareStablePage(page: Page) {
   await page.addInitScript(() => {
-    window.localStorage.setItem("jazari-theme", "carbon");
+    window.localStorage.setItem("jazari-theme", "black");
     window.localStorage.setItem("jazari-shader", "horizon");
   });
   await page.goto("/", { waitUntil: "networkidle" });
@@ -21,6 +21,13 @@ async function prepareStablePage(page: Page) {
         transition-delay: 0s !important;
         transition-duration: 0.001ms !important;
       }
+
+      .benefit-list.is-visible .benefit-row,
+      .provider-grid.is-visible .provider-card {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
     `,
   });
   await page.evaluate(async () => {
@@ -33,11 +40,30 @@ async function prepareStablePage(page: Page) {
   });
 }
 
+async function revealScrollableContent(page: Page) {
+  for (const selector of [".benefit-list", ".provider-grid"]) {
+    const revealTarget = page.locator(selector);
+    await revealTarget.scrollIntoViewIfNeeded();
+    await expect(revealTarget).toHaveClass(/is-visible/);
+  }
+
+  const pageHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+  const viewportHeight = page.viewportSize()?.height ?? 800;
+
+  for (let offset = 0; offset < pageHeight; offset += Math.max(320, viewportHeight * 0.7)) {
+    await page.evaluate((nextOffset) => window.scrollTo(0, nextOffset), offset);
+    await page.waitForTimeout(24);
+  }
+
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.waitForTimeout(50);
+}
+
 test("keeps the core interactions working", async ({ page }) => {
   await prepareStablePage(page);
 
   await expect(page.getByRole("heading", { name: /Your dollars,/ })).toBeVisible();
-  await expect(page.locator("main")).toHaveAttribute("data-theme", "carbon");
+  await expect(page.locator("main")).toHaveAttribute("data-theme", "black");
 
   const heroAccess = page.locator(".magic-access-button");
   await heroAccess.hover({ position: { x: 22, y: 12 } });
@@ -48,7 +74,7 @@ test("keeps the core interactions working", async ({ page }) => {
     .not.toBe("0");
 
   await page.getByRole("button", { name: /Visuals:/ }).click();
-  await page.getByRole("button", { name: /Electric Lime/ }).click();
+  await page.getByRole("button", { name: /Acid Lime/ }).click();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "toxic");
   await expect
     .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
@@ -110,6 +136,7 @@ for (const viewport of [
   test(`matches the ${viewport.name} layout baseline`, async ({ page }) => {
     await page.setViewportSize({ width: viewport.width, height: viewport.height });
     await prepareStablePage(page);
+    await revealScrollableContent(page);
 
     const overflow = await page.evaluate(
       () => document.documentElement.scrollWidth - document.documentElement.clientWidth,

@@ -2,6 +2,7 @@
 
 import { KeyboardEvent, useRef, useState } from "react";
 import { currencies, howSteps, type CurrencyCode } from "./data";
+import { resetPointer, trackPointer } from "./hooks";
 import { Phone } from "./Phone";
 
 export function HowItWorks({
@@ -101,7 +102,11 @@ export function HowItWorks({
           </div>
         </div>
 
-        <div className="rate-card">
+        <div
+          className="rate-card"
+          onPointerMove={trackPointer}
+          onPointerLeave={resetPointer}
+        >
           <label htmlFor="send-amount">You send</label>
           <div className="money-input">
             <input

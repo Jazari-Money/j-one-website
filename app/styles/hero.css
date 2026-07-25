@@ -56,16 +56,101 @@
 }
 
 [data-shader="orbital"] .hero-shader {
-  width: min(760px, 84vw);
-  height: 560px;
+  top: -120px;
+  width: min(1240px, 112vw);
+  height: 820px;
   border-radius: 50%;
-  mask-image: radial-gradient(circle at 50% 34%, #000 0 35%, transparent 72%);
+  opacity: 0.76;
+  filter: saturate(122%);
+  mask-image: radial-gradient(ellipse 66% 62% at 50% 35%, #000 0 42%, transparent 78%);
 }
 
 [data-shader="orbital"] .hero::before {
-  width: min(720px, 84vw);
-  height: 650px;
-  background: radial-gradient(circle at 50% 26%, color-mix(in srgb, var(--accent-2) 28%, transparent), transparent 64%);
+  top: 0;
+  width: min(1180px, 108vw);
+  height: 760px;
+  background:
+    radial-gradient(
+      ellipse 54% 46% at 50% 28%,
+      color-mix(in srgb, var(--accent-3) 30%, transparent),
+      color-mix(in srgb, var(--accent-2) 18%, transparent) 44%,
+      transparent 72%
+    );
+  filter: blur(34px);
+}
+
+.orbital-energy {
+  display: none;
+  position: absolute;
+  inset: 5% 11% 17%;
+  border-radius: 50%;
+  opacity: 0.58;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+[data-shader="orbital"] .orbital-energy {
+  display: block;
+}
+
+.orbital-energy-a {
+  opacity: 0.72;
+  background:
+    conic-gradient(
+      from 24deg,
+      transparent 0 14%,
+      color-mix(in srgb, var(--accent-3) 70%, transparent) 21%,
+      transparent 31% 54%,
+      color-mix(in srgb, var(--accent) 58%, transparent) 66%,
+      transparent 78%
+    );
+  mask-image: radial-gradient(ellipse, transparent 35%, #000 44% 60%, transparent 72%);
+  filter: blur(24px);
+  animation: orbital-flow-a 15s ease-in-out infinite alternate;
+}
+
+.orbital-energy-b {
+  inset: 8% 15% 20%;
+  background:
+    repeating-radial-gradient(
+      ellipse at 50% 48%,
+      transparent 0 47px,
+      color-mix(in srgb, var(--accent-3) 36%, transparent) 49px 50px,
+      transparent 52px 82px
+    );
+  mask-image:
+    conic-gradient(from 18deg, transparent 0 9%, #000 17% 40%, transparent 48% 57%, #000 66% 88%, transparent 96%),
+    radial-gradient(ellipse, transparent 10%, #000 28% 76%, transparent 88%);
+  mask-composite: intersect;
+  filter: blur(0.45px);
+  opacity: 0.38;
+  animation: orbital-flow-b 22s linear infinite;
+}
+
+.orbital-energy-c {
+  inset: 21% 28% 32%;
+  border: 1px solid color-mix(in srgb, var(--accent-3) 42%, transparent);
+  box-shadow:
+    0 0 70px color-mix(in srgb, var(--accent) 30%, transparent),
+    inset 0 0 55px color-mix(in srgb, var(--accent-2) 26%, transparent);
+  filter: blur(3px);
+  opacity: 0.54;
+  animation: orbital-pulse 6.5s ease-in-out infinite;
+}
+
+@keyframes orbital-flow-a {
+  0% { transform: rotate(-14deg) scale(0.92, 1.08); }
+  45% { transform: rotate(24deg) scale(1.08, 0.94); }
+  100% { transform: rotate(68deg) scale(0.98, 1.12); }
+}
+
+@keyframes orbital-flow-b {
+  to { transform: rotate(360deg) scale(1.05); }
+}
+
+@keyframes orbital-pulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.3; }
+  50% { transform: scale(1.08); opacity: 0.58; }
 }
 
 [data-shader="ribbon"] .hero-shader {
@@ -117,14 +202,14 @@
 .article-copy h2 {
   font-family: var(--serif);
   font-weight: 400;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.1px;
 }
 
 .hero h1 {
   max-width: 1060px;
   margin: 0;
   color: #fff;
-  font-size: clamp(78px, 9.4vw, 144px);
+  font-size: clamp(72px, 8.8vw, 132px);
   line-height: 0.83;
   text-wrap: balance;
   text-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
@@ -303,10 +388,10 @@
   position: relative;
   z-index: 1;
   width: min(760px, 100%);
-  height: 690px;
-  margin-top: 104px;
+  height: 550px;
+  margin-top: 58px;
   overflow: hidden;
-  mask-image: linear-gradient(to bottom, #000 0 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0 72%, transparent 96%);
 }
 
 .hero-device-glow {
@@ -326,7 +411,7 @@
   z-index: 2;
   top: 0;
   left: 50%;
-  width: min(410px, 72vw);
+  width: min(460px, 78vw);
   aspect-ratio: 1450 / 2934;
   transform: translateX(-50%);
   filter: drop-shadow(0 58px 95px rgba(0, 0, 0, 0.7));
@@ -363,12 +448,12 @@
   }
 
   .hero h1 {
-    font-size: clamp(66px, 13vw, 104px);
+    font-size: clamp(62px, 12.4vw, 96px);
   }
 
   .hero-product {
-    height: 640px;
-    margin-top: 86px;
+    height: 520px;
+    margin-top: 54px;
   }
 }
 
@@ -384,7 +469,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(58px, 17vw, 82px);
+    font-size: clamp(54px, 15.8vw, 76px);
     line-height: 0.87;
   }
 
@@ -425,18 +510,18 @@
   }
 
   .hero-product {
-    height: 520px;
-    margin-top: 74px;
+    height: 460px;
+    margin-top: 46px;
   }
 
   .hero-device {
-    width: min(330px, 84vw);
+    width: min(360px, 90vw);
   }
 }
 
 @media (min-width: 901px) {
   .hero {
-    min-height: 1118px;
+    min-height: 970px;
     padding: 157px 42px 53px;
   }
 
@@ -455,8 +540,8 @@
   }
 
   .hero h1 {
-    max-width: 900px;
-    font-size: clamp(68px, 7.7vw, 116px);
+    max-width: 860px;
+    font-size: clamp(64px, 7.2vw, 108px);
     line-height: 0.86;
   }
 
@@ -477,9 +562,9 @@
   }
 
   .hero-product {
-    width: min(669px, 100%);
-    height: 607px;
-    margin-top: 92px;
+    width: min(720px, 100%);
+    height: 520px;
+    margin-top: 54px;
   }
 
   .hero-device-glow {
@@ -488,6 +573,6 @@
   }
 
   .hero-device {
-    width: min(361px, 72vw);
+    width: min(430px, 76vw);
   }
 }

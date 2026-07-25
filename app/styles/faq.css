@@ -16,9 +16,37 @@
 }
 
 .faq details {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  position: relative;
   border-radius: 18px;
   background: var(--surface);
-  transition: background-color 180ms ease;
+  overflow: hidden;
+  isolation: isolate;
+  transition: background-color 180ms ease, transform 220ms ease;
+}
+
+.faq details::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(
+    circle 240px at var(--pointer-x) var(--pointer-y),
+    var(--accent-soft),
+    transparent 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
+.faq details:hover {
+  transform: translateY(-3px);
+}
+
+.faq details:hover::before {
+  opacity: 0.38;
 }
 
 .faq details[open] {
@@ -27,6 +55,7 @@
 
 .faq summary {
   position: relative;
+  z-index: 1;
   min-height: 72px;
   padding: 20px 22px;
   color: var(--text);
@@ -35,14 +64,14 @@
   line-height: 1.35;
   cursor: pointer;
   list-style: none;
-}
-
-.faq summary::-webkit-details-marker {
-  display: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
 }
 
 .faq-icon {
@@ -84,6 +113,8 @@
 }
 
 .faq details p {
+  position: relative;
+  z-index: 1;
   max-width: 620px;
   padding: 0 72px 22px 22px;
   color: var(--muted-strong);

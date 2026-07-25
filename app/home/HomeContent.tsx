@@ -66,6 +66,7 @@ export function HomeContent() {
       />
       <Hero
         theme={selectedTheme}
+        shader={shader}
         accessOpen={accessOpen}
         joined={joined}
         email={email}

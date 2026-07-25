@@ -69,3 +69,30 @@ export function useInViewport<T extends Element>(rootMargin = "240px") {
 
   return [ref, visible] as const;
 }
+
+export function useRevealInViewport<T extends Element>(rootMargin = "-10% 0px") {
+  const ref = useRef<T>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || revealed) return;
+    if (typeof IntersectionObserver === "undefined") {
+      const timer = globalThis.setTimeout(() => setRevealed(true), 0);
+      return () => globalThis.clearTimeout(timer);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setRevealed(true);
+        observer.disconnect();
+      },
+      { rootMargin },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [revealed, rootMargin]);
+
+  return [ref, revealed] as const;
+}

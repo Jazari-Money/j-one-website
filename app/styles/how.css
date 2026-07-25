@@ -194,13 +194,7 @@
 }
 
 .review-fee > strong::after {
-  content: "";
-  position: absolute;
-  right: 4px;
-  bottom: 0;
-  left: 2px;
-  height: 1px;
-  background: color-mix(in srgb, var(--accent) 72%, transparent);
+  display: none;
 }
 
 .review-fee b {
@@ -210,6 +204,9 @@
 }
 
 .rate-card {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  position: relative;
   min-width: 0;
   min-height: 0;
   padding: 38px;
@@ -219,6 +216,32 @@
   box-shadow: none;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 240ms ease, background-color 240ms ease;
+}
+
+.rate-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(
+    circle 280px at var(--pointer-x) var(--pointer-y),
+    var(--accent-soft),
+    transparent 76%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.rate-card:hover {
+  transform: translateY(-4px);
+}
+
+.rate-card:hover::before {
+  opacity: 0.34;
 }
 
 .rate-card label {

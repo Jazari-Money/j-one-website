@@ -28,7 +28,7 @@ test("server-renders the Jazari One landing page", async () => {
     /Hold your money in dollars that keep their value — and send it to any bank account/,
   );
   assert.match(html, /jazari-app\.mp4/);
-  assert.match(html, /Get Early Access/);
+  assert.match(html, /Download App/);
   assert.match(html, /One account for money that crosses borders/);
   assert.match(html, /How It Works/);
   assert.match(html, /Know what arrives before you send/);
@@ -104,14 +104,14 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /className="audience-caption"/);
   assert.match(page, /\/images\/rails\/bridge\.svg/);
   assert.match(page, /\/images\/rails\/privy\.svg/);
-  assert.match(page, /\/images\/rails\/gauntlet\.svg/);
+  assert.match(page, /\/images\/rails\/gauntlet-mark\.svg/);
   assert.match(page, /\/images\/rails\/usdt\.svg/);
   assert.match(page, /\/images\/rails\/usdc\.svg/);
   assert.match(page, /\/images\/rails\/ethereum\.svg/);
   assert.match(page, /\/images\/rails\/tron\.svg/);
   assert.match(page, /\/images\/rails\/solana\.svg/);
   assert.match(page, /\/images\/rails\/polygon-symbol\.svg/);
-  assert.match(page, /\/images\/rails\/base\.svg/);
+  assert.match(page, /\/images\/rails\/base-mark\.svg/);
   assert.match(page, /\/images\/coins\/jazari-dollar-3d\.webp/);
   assert.match(page, /src=\{item\.logo\}/);
   assert.match(page, /--card-rx/);
@@ -124,7 +124,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(css, /\.provider-logo img/);
   assert.match(css, /\.faq-list/);
   assert.match(css, /@media \(min-width: 901px\)/);
-  assert.match(css, /--page:\s*min\(1160px/);
+  assert.match(css, /--page:\s*min\(1320px/);
   assert.match(css, /\.access-control\.is-open/);
   assert.match(css, /\.hero-shader/);
   assert.match(css, /"Instrument Serif"/);
@@ -143,21 +143,21 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.doesNotMatch(css, /\.liquid-metal-layer|\.hero-proof|\.audience-details/);
   assert.doesNotMatch(packageJson, /"glimm"/);
   assert.match(css, /filter:\s*grayscale\(1\)\s*brightness\(0\)\s*invert\(1\)/);
-  assert.match(css, /mask-image:\s*linear-gradient\(to bottom, #000 0 88%, transparent 100%\)/);
+  assert.match(css, /mask-image:\s*linear-gradient\(to bottom, #000 0 72%, transparent 96%\)/);
 });
 
 test("ships local SVG rail marks and the transparent 3D coin asset", async () => {
   const svgAssets = [
     "bridge.svg",
     "privy.svg",
-    "gauntlet.svg",
+    "gauntlet-mark.svg",
     "usdt.svg",
     "usdc.svg",
     "ethereum.svg",
     "tron.svg",
     "solana.svg",
     "polygon-symbol.svg",
-    "base.svg",
+    "base-mark.svg",
   ];
 
   for (const asset of svgAssets) {

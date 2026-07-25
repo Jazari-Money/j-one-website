@@ -10,15 +10,67 @@
 }
 
 .provider-card {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
   min-height: 238px;
   padding: 24px;
   border-radius: 22px;
   background: var(--surface);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    transform 240ms ease,
+    background-color 240ms ease;
+}
+
+.provider-grid.is-visible .provider-card {
+  animation: provider-reveal 620ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--reveal-index) * 70ms);
+}
+
+@keyframes provider-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.provider-card::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: radial-gradient(
+    circle 230px at var(--pointer-x) var(--pointer-y),
+    var(--accent-soft),
+    transparent 72%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.provider-grid.is-visible .provider-card:hover {
+  transform: translateY(-5px);
+  background: color-mix(in srgb, var(--surface-2) 82%, var(--surface));
+}
+
+.provider-card:hover::before {
+  opacity: 0.52;
 }
 
 .provider-logo-slot {
+  position: relative;
+  z-index: 1;
   height: 74px;
   display: flex;
   align-items: center;
@@ -51,32 +103,36 @@
   max-height: 48px;
 }
 
+.provider-logo.is-bridge {
+  width: 132px;
+  height: 27px;
+  overflow: hidden;
+}
+
+.provider-logo.is-bridge img {
+  width: 132px;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  object-fit: initial;
+  transform: none;
+  transform-origin: top left;
+}
+
 .provider-card-copy {
+  position: relative;
+  z-index: 1;
   margin-top: auto;
 }
 
-.provider-layer {
-  color: var(--muted);
-  font-size: 15px;
-}
-
 .provider-card h3 {
-  margin-top: 8px;
   color: var(--text);
   font-size: 18px;
   font-weight: 600;
 }
 
-.provider-card.has-wordmark h3 {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-}
-
 .provider-card p {
-  margin-top: 10px;
+  margin-top: 12px;
   color: var(--muted-strong);
   font-size: 15px;
   line-height: 1.55;

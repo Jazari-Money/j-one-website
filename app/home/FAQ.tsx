@@ -1,3 +1,7 @@
+"use client";
+
+import { resetPointer, trackPointer } from "./hooks";
+
 const questions = [
   {
     question: "What is a Jazari USD account?",
@@ -40,7 +44,11 @@ export function FAQ() {
       </header>
       <div className="faq-list">
         {questions.map((item) => (
-          <details key={item.question}>
+          <details
+            key={item.question}
+            onPointerMove={trackPointer}
+            onPointerLeave={resetPointer}
+          >
             <summary>
               <span>{item.question}</span>
               <span className="faq-icon" aria-hidden="true">
