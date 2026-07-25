@@ -159,6 +159,107 @@ const articleData: Record<string, GuideArticleData> = {
       },
     ],
   },
+  costs: {
+    route: "Planning",
+    read: "4 min read",
+    title: "How to compare a transfer beyond the headline rate",
+    deck: "The useful number is what arrives, when it arrives, and what the full transfer costs.",
+    checks: [
+      "Recipient amount in the destination currency",
+      "Transaction fee and conversion shown together",
+      "Delivery estimate for the selected route",
+    ],
+    sections: [
+      {
+        heading: "Start with the recipient amount",
+        paragraphs: [
+          "A strong-looking exchange rate does not always produce the best result. Compare the final amount the recipient is expected to receive after applicable costs.",
+          "Use the same source amount and destination currency for every comparison so the numbers describe the same transfer.",
+        ],
+      },
+      {
+        heading: "Put cost and timing on one line",
+        paragraphs: [
+          "Review the transfer fee, conversion, and estimated delivery together. A route can be inexpensive but unsuitable when the payment is time-sensitive.",
+        ],
+        bullets: [
+          "Amount leaving your dollar balance",
+          "Amount expected at the destination",
+          "Fee, conversion, and delivery estimate",
+        ],
+      },
+      {
+        heading: "Compare the confirmation screens",
+        paragraphs: [
+          "Quotes can change. Make the final decision using current confirmation screens, then keep the reference for the route you selected.",
+        ],
+      },
+    ],
+  },
+  recipient: {
+    route: "Safety",
+    read: "3 min read",
+    title: "What to verify before sending money to a new recipient",
+    deck: "A short recipient check is usually faster than correcting a transfer later.",
+    checks: [
+      "Legal name matches the account",
+      "Bank, account type, and identifier are current",
+      "Recipient confirms the destination currency",
+    ],
+    sections: [
+      {
+        heading: "Verify through a trusted channel",
+        paragraphs: [
+          "Ask the recipient for their current account information directly. If payment instructions changed unexpectedly, confirm them through a second familiar channel before sending.",
+        ],
+      },
+      {
+        heading: "Match every field",
+        paragraphs: [
+          "Compare the recipient name, bank, account type, account number, and destination currency with the information shown in the transfer.",
+          "Do not substitute a card number, phone number, or email address unless the selected route explicitly requests it.",
+        ],
+      },
+      {
+        heading: "Use a smaller first payment when appropriate",
+        paragraphs: [
+          "For a new or unusually large transfer, a smaller initial payment can confirm the route and recipient details. Wait for confirmation before sending the remainder.",
+        ],
+      },
+    ],
+  },
+  "digital-dollars": {
+    route: "Basics",
+    read: "4 min read",
+    title: "Digital dollars and bank payouts: what each part does",
+    deck: "Your balance, the transfer rail, and the destination bank each have a different job.",
+    checks: [
+      "Supported digital-dollar balance selected",
+      "Available route matches the destination",
+      "Local bank details are complete",
+    ],
+    sections: [
+      {
+        heading: "The balance holds the dollar value",
+        paragraphs: [
+          "Supported digital dollars let you keep a dollar-denominated balance without immediately converting each incoming payment into local currency.",
+          "Availability and the supported asset can vary by account and country.",
+        ],
+      },
+      {
+        heading: "The route moves the payment",
+        paragraphs: [
+          "Jazari can select from available infrastructure and local payment routes according to the destination. The route determines which recipient details are required and the delivery estimate shown.",
+        ],
+      },
+      {
+        heading: "The bank receives locally",
+        paragraphs: [
+          "The recipient receives funds through the available destination route. Before confirming, review the local-currency estimate, applicable cost, recipient account, and expected delivery.",
+        ],
+      },
+    ],
+  },
 };
 
 export function GuideArticle({ article }: { article: keyof typeof articleData }) {
@@ -170,7 +271,7 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
         <Link href="/#top" aria-label="Jazari One home">
           <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
         </Link>
-        <Link href="/#blog">Back to Blog</Link>
+        <Link href="/blog">Back to Blog</Link>
       </nav>
 
       <article className="guide-article">

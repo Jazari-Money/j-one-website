@@ -73,16 +73,17 @@ illustrative.
 3. Editorial capability ledger using Jazari icon assets and simple surface hover
 4. Interactive How It Works tabs with one upright phone at a time
 5. FX/review experience integrated inside How It Works
-6. Vertical roadmap:
+6. Static audience/use-case stories
+7. Provider and network table
+8. Vertical roadmap:
    - Live: dollar account
    - Next: more local routes
    - Then: interactive 3D Jazari Visa card
    - Later: Remit Now Pay Later
-7. Static audience/use-case stories
-8. Interactive technology, digital-dollar, and network stories
-9. Blog with four real internal article routes
+9. Homepage Blog preview with the four latest guides
 10. Closing waitlist panel with performant CSS 3D money rain
-11. Legal/product footer
+11. FAQ
+12. Legal/product footer with iOS and Android coming-soon badges
 
 Do not reintroduce separate FX, clarity, Card, or RNPL promo sections. Their
 content is intentionally consolidated.
@@ -101,16 +102,16 @@ content is intentionally consolidated.
 
 The ten schemes are:
 
-1. Carbon Mint (default, calm)
-2. Warm Stone (calm)
-3. Blue Hour (calm)
-4. Sea Glass (calm)
-5. Toxic Bloom (wild)
-6. Solar Heat (wild)
-7. Magenta Current (wild)
-8. Ultraviolet (experimental)
-9. Infrared (experimental)
-10. Aurora Glass (experimental)
+1. Pre-Dawn (default, calm)
+2. Sunrise (calm)
+3. Daylight (calm)
+4. Glacier (calm)
+5. Electric Lime (wild)
+6. Golden Hour (wild)
+7. Afterglow (wild)
+8. Dusk (experimental)
+9. Ember (experimental)
+10. Aurora (experimental)
 
 Theme variables live in `app/styles/tokens.css`; mesh colors live in
 `themeOptions` in `app/home/data.ts`.
@@ -129,7 +130,7 @@ Theme variables live in `app/styles/tokens.css`; mesh colors live in
   - Follow the payment
 - Arrow, Home, and End keys change tabs.
 - One upright local screenshot is shown at a time.
-- Each tab has a bordered surface and an explicit “View screen” affordance.
+- The tabs form one quiet, borderless segmented control without helper labels.
 - The active phone uses a transparent, borderless stage with a localized glow
   and bottom fade—no background card or decorative ghost typography.
 - FX conversion supports MXN, COP, BRL, and EUR. The review leads with “Know
@@ -170,14 +171,18 @@ Theme variables live in `app/styles/tokens.css`; mesh colors live in
 
 ## Blog routes
 
+- `/blog`
 - `/blog/send-money-to-mexico`
 - `/blog/send-money-to-brazil`
 - `/blog/send-money-to-colombia`
 - `/blog/send-money-to-europe`
+- `/blog/compare-transfer-costs`
+- `/blog/verify-recipient-details`
+- `/blog/digital-dollars-bank-payouts`
 
-Articles are brief, route-specific, and include useful details such as CLABE,
-Pix, Colombian account type, destination currency, and IBAN. Shared article
-rendering lives in `app/blog/GuideArticle.tsx`.
+The homepage shows the four latest guides. The Blog index shows all seven.
+Articles are brief and include useful route, safety, planning, and digital
+dollar context. Shared article rendering lives in `app/blog/GuideArticle.tsx`.
 
 ## Provider and network table
 
@@ -315,10 +320,11 @@ Default local URL: `http://localhost:3000`
   not separator rules, to establish rhythm.
 - The three transfer steps behave as one borderless segmented control. Do not
   add helper labels such as “View screen” or “Showing screen.”
-- The FX preview is deliberately sparse: no outer plate border, no internal
-  separators, an enlarged “FX preview” label, and one consistent Geist tabular
-  style for currencies and values. The companion proof points are `0% Hidden
-  FX rate fee` and `0% Transaction fee`.
+- The FX preview is deliberately sparse: no heading label, no outer border, no
+  internal separators, and one consistent Geist tabular style for currencies
+  and values. `1 USD = destination value` is prominent; expected delivery is
+  `2–5 minutes`. The two horizontal proof points use Instrument Serif values
+  with short underlines: `0% Hidden FX rate fee` and `0% Transaction fee`.
 - The roadmap reads as one compact vertical sequence connected by a continuous
   line; its nested stages should not feel like full-size standalone sections.
   It follows the provider table and precedes Blog. The current naming is
@@ -327,10 +333,10 @@ Default local URL: `http://localhost:3000`
 - The virtual card is code-generated with front, back, and four visible edge
   planes. It keeps only the Jazari One and Visa marks, uses a restrained
   cursor-position sheen, and supports drag and keyboard rotation.
-- Theme keys stay stable for local-storage compatibility, but their public
-  names and shader colors are the brighter 2026 set: Emerald Voltage, Cobalt
-  Signal, Signal Blue, Cyan Current, Acid Lime, Solar Flare, Hot Magenta,
-  Plasma Violet, Laser Red, and Aurora Electric.
+- Theme keys stay stable for local-storage compatibility. Public names are
+  Pre-Dawn, Sunrise, Daylight, Glacier, Electric Lime, Golden Hour, Afterglow,
+  Dusk, Ember, and Aurora. Their clean, bright fields reference Stripe’s
+  time-of-day palette discipline; do not add grain or muddy color mixing.
 - The early-access shader follows the pointer through CSS custom properties;
   keep the button compact and avoid adding icons.
 - The FAQ belongs immediately after the “Your dollars should move with you”

@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- local flags use exact downloaded assets */
+
 import { MeshGradient } from "@paper-design/shaders-react";
 import { withBasePath } from "../site-paths";
 import type { ThemeOption } from "./data";
@@ -25,12 +27,12 @@ export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
               <MeshGradient
                 width="100%"
                 height="100%"
-                colors={[theme.mesh[0], theme.mesh[1], theme.mesh[3], theme.mesh[0]]}
-                distortion={0.5}
-                swirl={0.14}
+                colors={[theme.mesh[0], theme.mesh[1], theme.mesh[2], theme.mesh[3]]}
+                distortion={0.12}
+                swirl={0.02}
                 grainMixer={0}
                 grainOverlay={0}
-                speed={reduced ? 0 : 0.16}
+                speed={reduced ? 0 : 0.06}
               />
             )}
           </div>
@@ -61,9 +63,9 @@ export function ProductRoadmap({ theme }: { theme: ThemeOption }) {
             <section className="route-group">
               <h4>South Asia</h4>
               <ul className="route-country-list">
-                <li><span className="route-flag" aria-hidden="true">🇮🇳</span><span>India</span></li>
-                <li><span className="route-flag" aria-hidden="true">🇧🇩</span><span>Bangladesh</span></li>
-                <li><span className="route-flag" aria-hidden="true">🇵🇰</span><span>Pakistan</span></li>
+                <li><img className="route-flag" src={withBasePath("/images/flags/in.png")} alt="" /><span>India</span></li>
+                <li><img className="route-flag" src={withBasePath("/images/flags/bd.png")} alt="" /><span>Bangladesh</span></li>
+                <li><img className="route-flag" src={withBasePath("/images/flags/pk.png")} alt="" /><span>Pakistan</span></li>
               </ul>
             </section>
             <section className="route-group">

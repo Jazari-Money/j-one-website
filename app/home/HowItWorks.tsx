@@ -41,7 +41,7 @@ export function HowItWorks({
   return (
     <section className="how section" id="how">
       <header className="chapter-heading">
-        <h2>Send in three clear steps.</h2>
+        <h2>How It Works</h2>
         <p>Choose a step to see the screen and information you use at that point.</p>
       </header>
 
@@ -102,10 +102,6 @@ export function HowItWorks({
         </div>
 
         <div className="rate-card">
-          <div className="rate-card-top">
-            <strong>FX preview</strong>
-          </div>
-
           <label htmlFor="send-amount">You send</label>
           <div className="money-input">
             <input
@@ -160,7 +156,7 @@ export function HowItWorks({
             <span>Transaction fee</span>
             <strong className="numeric">0%</strong>
             <span>Expected delivery</span>
-            <strong className="numeric">Shown before confirmation</strong>
+            <strong className="numeric">2–5 minutes</strong>
           </div>
           <p className="rate-disclaimer">
             Indicative rate, for illustration only. Final rates, fees, delivery

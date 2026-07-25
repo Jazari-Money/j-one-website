@@ -54,12 +54,12 @@ function MagicAccess({
             <MeshGradient
               width="100%"
               height="100%"
-              colors={[theme.mesh[1], theme.mesh[3], "#eaffdf", theme.mesh[2]]}
-              distortion={0.24}
-              swirl={0.05}
+              colors={[theme.mesh[2], theme.mesh[3], "#ffffff", theme.mesh[1]]}
+              distortion={0.12}
+              swirl={0.02}
               grainMixer={0}
               grainOverlay={0}
-              speed={reduced ? 0 : 0.16}
+              speed={reduced ? 0 : 0.08}
             />
           )}
         </span>
@@ -134,12 +134,12 @@ export function Hero({
             width="100%"
             height="100%"
             colors={[theme.mesh[0], theme.mesh[1], theme.mesh[2], theme.mesh[3]]}
-            distortion={0.26}
-            swirl={0.06}
+            distortion={0.12}
+            swirl={0.018}
             grainMixer={0}
             grainOverlay={0}
-            speed={reduced ? 0 : 0.08}
-            scale={0.82}
+            speed={reduced ? 0 : 0.045}
+            scale={0.92}
           />
         )}
       </div>

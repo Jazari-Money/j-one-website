@@ -32,21 +32,21 @@
 }
 
 .brand img {
-  width: 128px;
+  width: 147px;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 38px;
+  gap: 30px;
 }
 
 .nav-menu a {
   position: relative;
   padding: 8px 0;
   color: var(--muted-strong);
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: -0.01em;
   transition: color 180ms ease;
 }
@@ -157,7 +157,7 @@
   height: 14px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
-  background: var(--swatch);
+  background: linear-gradient(135deg, var(--swatch), var(--swatch-2));
   box-shadow: 0 0 14px color-mix(in srgb, var(--swatch) 55%, transparent);
 }
 
@@ -181,6 +181,8 @@
 .nav-cta {
   --pointer-x: 50%;
   --pointer-y: 50%;
+  --pointer-nx: 0;
+  --pointer-ny: 0;
   position: relative;
   min-height: 40px;
   padding: 0 18px;
@@ -195,6 +197,24 @@
   isolation: isolate;
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.nav-cta-shader {
+  position: absolute;
+  z-index: 0;
+  inset: -16px;
+  transform:
+    translate(
+      calc(var(--pointer-nx) * -12%),
+      calc(var(--pointer-ny) * -16%)
+    )
+    scale(1.18);
+  transition: transform 150ms ease-out;
+}
+
+.nav-cta-label {
+  position: relative;
+  z-index: 2;
 }
 
 .nav-cta:hover,
@@ -215,7 +235,7 @@
   }
 
   .nav-menu {
-    gap: 24px;
+    gap: 18px;
   }
 
   .theme-trigger {
@@ -237,7 +257,7 @@
   }
 
   .brand img {
-    width: 112px;
+    width: 129px;
   }
 
   .nav-menu {
@@ -289,7 +309,7 @@
   }
 
   .brand img {
-    width: 102px;
+    width: 117px;
   }
 
   .nav-actions {
@@ -336,10 +356,10 @@
   }
 
   .brand img {
-    width: 112px;
+    width: 129px;
   }
 
   .nav-menu {
-    gap: 33px;
+    gap: 28px;
   }
 }

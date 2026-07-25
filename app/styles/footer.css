@@ -32,9 +32,50 @@ footer {
   color: var(--accent);
 }
 
+.footer-stores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 34px;
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  min-width: 148px;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  color: var(--text);
+  background: color-mix(in srgb, var(--panel) 82%, transparent);
+}
+
+.store-badge > img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.store-badge > span {
+  display: grid;
+  gap: 1px;
+}
+
+.store-badge small {
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1;
+}
+
+.store-badge b {
+  font-size: 12px;
+  font-weight: 600;
+}
+
 footer > p {
   max-width: 760px;
-  margin: 72px 0 0;
+  margin: 52px 0 0;
   font-size: 12px;
   line-height: 1.7;
 }
@@ -64,6 +105,11 @@ footer > p {
 
   .footer-top > div {
     gap: 18px;
+  }
+
+  .store-badge {
+    min-width: 136px;
+    padding: 9px 12px;
   }
 }
 

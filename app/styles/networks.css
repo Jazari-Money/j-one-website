@@ -80,14 +80,6 @@
   line-height: 1.5;
 }
 
-.provider-note {
-  max-width: 680px;
-  margin: 26px 0 0 auto;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
-}
-
 @media (max-width: 900px) {
   .provider-row {
     grid-template-columns: minmax(150px, 0.55fr) minmax(130px, 0.45fr) 1fr;

@@ -112,6 +112,16 @@
   font-weight: 650;
 }
 
+.blog-all-link {
+  width: max-content;
+  margin: 32px 0 0 auto;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--accent);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
   .blog-card-featured,
   .blog-card {

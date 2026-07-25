@@ -35,7 +35,7 @@ export function FAQ() {
   return (
     <section className="faq section" id="faq">
       <header className="chapter-heading">
-        <h2>Questions, answered.</h2>
+        <h2>FAQ</h2>
         <p>Clear answers about the account, transfers, availability, and what comes next.</p>
       </header>
       <div className="faq-list">

@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { withBasePath } from "../site-paths";
 import { AudienceExplorer } from "./AudienceExplorer";
 import { BenefitLedger } from "./BenefitLedger";
@@ -101,11 +102,23 @@ export function HomeContent() {
         <div className="footer-top">
           <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
           <div>
-            <a href="#how">How it works</a>
+            <a href="#how">How It Works</a>
+            <a href="#rates">Rates</a>
             <a href="#roadmap">Roadmap</a>
-            <a href="#blog">Blog</a>
+            <Link href="/blog">Blog</Link>
+            <a href="#faq">FAQ</a>
             <a href="mailto:hello@jazari.xyz">Contact</a>
           </div>
+        </div>
+        <div className="footer-stores" aria-label="Mobile apps coming soon">
+          <span className="store-badge">
+            <img src={withBasePath("/images/stores/apple.svg")} alt="" />
+            <span><small>Coming Soon</small><b>iOS App</b></span>
+          </span>
+          <span className="store-badge">
+            <img src={withBasePath("/images/stores/google-play.svg")} alt="" />
+            <span><small>Coming Soon</small><b>Android App</b></span>
+          </span>
         </div>
         <p>
           Jazari One is a technology service provider. Wallet, custody, and

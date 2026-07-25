@@ -47,7 +47,7 @@ test("keeps the core interactions working", async ({ page }) => {
     .not.toBe("0");
 
   await page.getByRole("button", { name: /Palette:/ }).click();
-  await page.getByRole("button", { name: /Acid Lime/ }).click();
+  await page.getByRole("button", { name: /Electric Lime/ }).click();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "toxic");
   await expect
     .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
@@ -81,7 +81,7 @@ test("keeps the core interactions working", async ({ page }) => {
         node.style.getPropertyValue("--card-ry"),
       ),
     )
-    .toBe("28deg");
+    .toBe("33deg");
 
   const moneyRain = page.locator(".money-rain");
   await moneyRain.scrollIntoViewIfNeeded();

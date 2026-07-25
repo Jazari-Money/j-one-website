@@ -14,8 +14,8 @@ import { useReducedMotion } from "./hooks";
 export function InteractiveCard() {
   const cardRef = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
-  const rotation = useRef({ x: -7, y: 16 });
-  const drag = useRef({ active: false, x: 0, y: 0, rx: -7, ry: 16 });
+  const rotation = useRef({ x: -11, y: 21 });
+  const drag = useRef({ active: false, x: 0, y: 0, rx: -11, ry: 21 });
   const frame = useRef(0);
 
   function commit(x: number, y: number) {
@@ -41,6 +41,12 @@ export function InteractiveCard() {
 
   function onPointerMove(event: ReactPointerEvent<HTMLDivElement>) {
     if (reduced) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+    cardRef.current?.style.setProperty("--card-px", `${x * 100}%`);
+    cardRef.current?.style.setProperty("--card-py", `${y * 100}%`);
+
     if (drag.current.active) {
       const nextY = drag.current.ry + (event.clientX - drag.current.x) * 0.36;
       const nextX = Math.max(-26, Math.min(26, drag.current.rx - (event.clientY - drag.current.y) * 0.22));
@@ -48,12 +54,7 @@ export function InteractiveCard() {
       return;
     }
     if (event.pointerType !== "mouse") return;
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
-    cardRef.current?.style.setProperty("--card-px", `${x * 100}%`);
-    cardRef.current?.style.setProperty("--card-py", `${y * 100}%`);
-    commit((y - 0.5) * -14, (x - 0.5) * 24);
+    commit(-11 + (y - 0.5) * -18, 21 + (x - 0.5) * 32);
   }
 
   function onPointerUp(event: ReactPointerEvent<HTMLDivElement>) {
@@ -70,8 +71,8 @@ export function InteractiveCard() {
     else if (event.key === "ArrowUp") x -= 8;
     else if (event.key === "ArrowDown") x += 8;
     else if (event.key === "Home") {
-      x = -7;
-      y = 16;
+      x = -11;
+      y = 21;
     } else return;
     event.preventDefault();
     commit(x, y);
@@ -90,7 +91,7 @@ export function InteractiveCard() {
         if (!drag.current.active && !reduced) {
           cardRef.current?.style.setProperty("--card-px", "50%");
           cardRef.current?.style.setProperty("--card-py", "50%");
-          commit(-7, 16);
+          commit(-11, 21);
         }
       }}
       onKeyDown={onKeyDown}

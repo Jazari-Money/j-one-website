@@ -7,7 +7,7 @@ export function NetworkExplorer() {
   return (
     <section className="networks section" id="networks">
       <header className="chapter-heading">
-        <h2>One balance. Multiple rails.</h2>
+        <h2>How Jazari Moves Money.</h2>
         <p>
           Jazari can combine money movement, wallet access, digital dollars,
           risk tooling, and public networks according to the route.
@@ -39,10 +39,6 @@ export function NetworkExplorer() {
           </div>
         ))}
       </div>
-      <p className="provider-note">
-        The exact provider and network depend on the selected country, asset,
-        availability, and compliance requirements.
-      </p>
     </section>
   );
 }

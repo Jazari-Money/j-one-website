@@ -8,9 +8,11 @@
   --muted-strong: #c5cbd7;
   --line: rgba(247, 248, 255, 0.11);
   --line-strong: rgba(247, 248, 255, 0.2);
-  --accent: #00ff94;
-  --accent-soft: rgba(0, 255, 148, 0.2);
-  --accent-ink: #00180d;
+  --accent: #6f9eff;
+  --accent-2: #9fc8ff;
+  --accent-3: #ffd27a;
+  --accent-soft: rgba(111, 158, 255, 0.2);
+  --accent-ink: #07112a;
   --cream: #f4f5ff;
   --cream-ink: #080a0e;
   --serif: "Instrument Serif", "Times New Roman", serif;
@@ -18,57 +20,75 @@
 }
 
 [data-theme="stone"] {
-  --accent: #4e7dff;
-  --accent-soft: rgba(78, 125, 255, 0.22);
-  --accent-ink: #050d25;
+  --accent: #ffb84d;
+  --accent-2: #ff7657;
+  --accent-3: #7469ff;
+  --accent-soft: rgba(255, 184, 77, 0.22);
+  --accent-ink: #261100;
 }
 
 [data-theme="blue"] {
-  --accent: #278cff;
-  --accent-soft: rgba(39, 140, 255, 0.22);
-  --accent-ink: #031325;
+  --accent: #5aa8ff;
+  --accent-2: #315cff;
+  --accent-3: #ffe09b;
+  --accent-soft: rgba(90, 168, 255, 0.22);
+  --accent-ink: #06162d;
 }
 
 [data-theme="sea"] {
-  --accent: #00f5d4;
-  --accent-soft: rgba(0, 245, 212, 0.2);
-  --accent-ink: #001b17;
+  --accent: #54d6d0;
+  --accent-2: #3b86ff;
+  --accent-3: #bcdfff;
+  --accent-soft: rgba(84, 214, 208, 0.2);
+  --accent-ink: #061b1b;
 }
 
 [data-theme="toxic"] {
-  --accent: #b8ff00;
-  --accent-soft: rgba(184, 255, 0, 0.2);
-  --accent-ink: #111900;
+  --accent: #b9f342;
+  --accent-2: #38d5a5;
+  --accent-3: #315cff;
+  --accent-soft: rgba(185, 243, 66, 0.2);
+  --accent-ink: #172000;
 }
 
 [data-theme="solar"] {
-  --accent: #ff6a00;
-  --accent-soft: rgba(255, 106, 0, 0.23);
-  --accent-ink: #210900;
+  --accent: #ffb84d;
+  --accent-2: #ff6b4a;
+  --accent-3: #7665ff;
+  --accent-soft: rgba(255, 184, 77, 0.22);
+  --accent-ink: #261100;
 }
 
 [data-theme="magenta"] {
-  --accent: #ff2bd6;
-  --accent-soft: rgba(255, 43, 214, 0.22);
-  --accent-ink: #24001d;
+  --accent: #ff6da9;
+  --accent-2: #ff8a4c;
+  --accent-3: #735cff;
+  --accent-soft: rgba(255, 109, 169, 0.22);
+  --accent-ink: #290817;
 }
 
 [data-theme="violet"] {
-  --accent: #8a4dff;
-  --accent-soft: rgba(138, 77, 255, 0.23);
-  --accent-ink: #110029;
+  --accent: #8a78ff;
+  --accent-2: #5367ff;
+  --accent-3: #ffbd73;
+  --accent-soft: rgba(138, 120, 255, 0.22);
+  --accent-ink: #110b2e;
 }
 
 [data-theme="infrared"] {
-  --accent: #ff1744;
-  --accent-soft: rgba(255, 23, 68, 0.23);
-  --accent-ink: #270008;
+  --accent: #ff666b;
+  --accent-2: #ff983d;
+  --accent-3: #7b61ff;
+  --accent-soft: rgba(255, 102, 107, 0.22);
+  --accent-ink: #2b0809;
 }
 
 [data-theme="aurora"] {
-  --accent: #00e0b8;
-  --accent-soft: rgba(0, 224, 184, 0.22);
-  --accent-ink: #001b16;
+  --accent: #35d7b3;
+  --accent-2: #5b7cff;
+  --accent-3: #d9b8ff;
+  --accent-soft: rgba(53, 215, 179, 0.22);
+  --accent-ink: #041d17;
 }
 
 @media (max-width: 1120px) {

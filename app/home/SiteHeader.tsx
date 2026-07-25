@@ -3,9 +3,10 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
 import { CSSProperties, useEffect, useState } from "react";
+import { MeshGradient } from "@paper-design/shaders-react";
 import { withBasePath } from "../site-paths";
 import { themeOptions, type ThemeKey } from "./data";
-import { resetPointer, trackPointer } from "./hooks";
+import { resetPointer, trackPointer, useReducedMotion } from "./hooks";
 
 export function SiteHeader({
   theme,
@@ -19,6 +20,7 @@ export function SiteHeader({
   const [scrolled, setScrolled] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const reduced = useReducedMotion();
   const selected = themeOptions.find((option) => option.key === theme) ?? themeOptions[0];
 
   useEffect(() => {
@@ -51,10 +53,11 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <a href="#how" onClick={closeMobile}>How it works</a>
+          <a href="#how" onClick={closeMobile}>How It Works</a>
+          <a href="#rates" onClick={closeMobile}>Rates</a>
           <a href="#roadmap" onClick={closeMobile}>Roadmap</a>
-          <a href="#audience" onClick={closeMobile}>For whom</a>
-          <a href="#blog" onClick={closeMobile}>Blog</a>
+          <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
+          <a href="#faq" onClick={closeMobile}>FAQ</a>
         </div>
 
         <div className="nav-actions">
@@ -85,7 +88,10 @@ export function SiteHeader({
                     setThemeOpen(false);
                   }}
                   aria-pressed={theme === option.key}
-                  style={{ "--swatch": option.mesh.at(-1) } as CSSProperties}
+                  style={{
+                    "--swatch": option.mesh[0],
+                    "--swatch-2": option.mesh[2],
+                  } as CSSProperties}
                 >
                   <span>{option.name}</span>
                   <small>{option.family}</small>
@@ -100,7 +106,19 @@ export function SiteHeader({
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}
           >
-            Get Early Access
+            <span className="nav-cta-shader" aria-hidden="true">
+              <MeshGradient
+                width="100%"
+                height="100%"
+                colors={[selected.mesh[2], selected.mesh[3], "#ffffff", selected.mesh[1]]}
+                distortion={0.12}
+                swirl={0.02}
+                grainMixer={0}
+                grainOverlay={0}
+                speed={reduced ? 0 : 0.08}
+              />
+            </span>
+            <span className="nav-cta-label">Get Early Access</span>
           </button>
           <button
             className="mobile-toggle"
