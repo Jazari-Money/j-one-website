@@ -91,7 +91,7 @@ test("keeps the core interactions working", async ({ page }) => {
     "aria-selected",
     "true",
   );
-  await expect(page.locator("#step-screen img")).toHaveAttribute(
+  await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
     "src",
     /amount-entry\.webp$/,
   );
@@ -115,6 +115,18 @@ test("keeps the core interactions working", async ({ page }) => {
   await moneyRain.scrollIntoViewIfNeeded();
   await moneyRain.hover();
   await expect(moneyRain.locator(".money-flow-canvas")).toHaveCount(1);
+
+  const roadmapTrack = page.locator(".roadmap-track");
+  await roadmapTrack.evaluate((node) => {
+    node.scrollLeft = node.scrollWidth;
+  });
+  await expect
+    .poll(() =>
+      roadmapTrack.evaluate((node) =>
+        Math.round(node.scrollWidth - node.clientWidth - node.scrollLeft),
+      ),
+    )
+    .toBeLessThanOrEqual(1);
 
   const firstQuestion = page.getByText("What is a Jazari USD account?", { exact: true });
   await firstQuestion.click();

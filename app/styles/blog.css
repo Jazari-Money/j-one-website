@@ -1,7 +1,3 @@
-.blog .chapter-heading h2 {
-  font-size: clamp(76px, 9vw, 136px);
-}
-
 .blog .chapter-heading {
   max-width: none;
   display: flex;
@@ -24,7 +20,7 @@
   --tilt-x: 0deg;
   --tilt-y: 0deg;
   position: relative;
-  min-height: 240px;
+  min-height: 170px;
   padding: clamp(28px, 4vw, 48px);
   border: 0;
   border-radius: 30px;
@@ -48,7 +44,7 @@
 }
 
 .blog-card-featured {
-  min-height: 752px;
+  min-height: 542px;
   grid-column: span 7;
   grid-row: span 3;
   background: linear-gradient(145deg, var(--surface-2), var(--surface));
@@ -68,16 +64,6 @@
   font-size: clamp(28px, 3vw, 42px);
 }
 
-.blog-card > p {
-  position: relative;
-  z-index: 1;
-  max-width: 620px;
-  margin: 24px 0 0;
-  color: var(--muted);
-  font-size: 15px;
-  line-height: 1.6;
-}
-
 .blog-read {
   position: relative;
   z-index: 1;
@@ -89,6 +75,14 @@
   color: var(--text);
   font-size: 15px;
   font-weight: 650;
+  transition: transform 220ms ease, background-color 220ms ease, color 220ms ease;
+}
+
+.blog-card:hover .blog-read,
+.blog-card:focus-visible .blog-read {
+  background: var(--accent);
+  color: var(--accent-ink);
+  transform: translateY(-2px);
 }
 
 .blog-all-link {
@@ -135,10 +129,6 @@
     margin-top: 58px;
   }
 
-  .blog .chapter-heading h2 {
-    font-size: 78px;
-  }
-
   .blog-card,
   .blog-card-featured {
     min-height: 380px;
@@ -157,10 +147,6 @@
 }
 
 @media (min-width: 901px) {
-  .blog .chapter-heading h2 {
-    font-size: clamp(67px, 7.9vw, 120px);
-  }
-
   .blog-grid {
     margin-top: 67px;
     grid-auto-rows: minmax(185px, auto);
@@ -168,13 +154,13 @@
   }
 
   .blog-card {
-    min-height: 211px;
+    min-height: 170px;
     padding: clamp(25px, 3.5vw, 42px);
     border-radius: 26px;
   }
 
   .blog-card-featured {
-    min-height: 662px;
+    min-height: 538px;
   }
 
   .blog-card h3 {

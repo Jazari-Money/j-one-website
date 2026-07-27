@@ -124,7 +124,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /\/images\/stores\/google-play-badge\.avif/);
   assert.match(page, /\/images\/brand\/visa-white\.svg/);
   assert.match(page, /className="audience-caption"/);
-  assert.match(page, /\/images\/rails\/bridge-mark\.png/);
+  assert.match(page, /\/images\/rails\/bridge\.svg/);
   assert.match(page, /\/images\/rails\/privy\.svg/);
   assert.match(page, /\/images\/rails\/gauntlet-mark\.svg/);
   assert.match(page, /\/images\/rails\/usdt\.svg/);
@@ -197,7 +197,7 @@ test("ships local provider marks and product artwork", async () => {
   assert.match(visa, /<svg\b/i);
 
   const bridge = await readFile(
-    new URL("../public/images/rails/bridge-mark.png", import.meta.url),
+    new URL("../public/images/rails/bridge.svg", import.meta.url),
   );
   assert.ok(bridge.byteLength > 1_000);
 });

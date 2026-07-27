@@ -153,14 +153,14 @@ export function Hero({
           <i />
         </span>
         <span className="beam-dust">
-          {Array.from({ length: 46 }, (_, index) => (
+          {Array.from({ length: 72 }, (_, index) => (
             <i
               key={index}
               style={{
                 "--dust-index": index,
                 "--dust-x": `${(index * 47 + index * index * 3 + 7) % 98}%`,
                 "--dust-y": `${(index * 31 + index * index * 5 + 11) % 92}%`,
-                "--dust-size": `${0.65 + (index % 4) * 0.28}px`,
+                "--dust-size": `${0.82 + (index % 4) * 0.35}px`,
                 "--dust-dx": `${-34 + ((index * 19) % 72)}px`,
                 "--dust-dy": `${-68 - ((index * 23) % 96)}px`,
                 "--dust-duration": `${5.4 + (index % 9) * 0.61}s`,

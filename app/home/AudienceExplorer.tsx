@@ -7,7 +7,7 @@ export function AudienceExplorer() {
   return (
     <section className="audience section" id="audience">
       <header className="chapter-heading">
-        <h2>For the people who power the global economy</h2>
+        <h2>For those who power the global economy</h2>
       </header>
 
       <div className="audience-explorer">

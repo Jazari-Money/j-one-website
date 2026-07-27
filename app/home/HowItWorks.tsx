@@ -74,12 +74,16 @@ export function HowItWorks({
           role="tabpanel"
           aria-labelledby={`step-tab-${step.id}`}
         >
-          <Phone
-            key={step.id}
-            src={step.screen}
-            alt={step.alt}
-            className="active-step-phone"
-          />
+          <div className="step-screen-stack">
+            {howSteps.map((item, index) => (
+              <Phone
+                key={item.id}
+                src={item.screen}
+                alt={activeStep === index ? item.alt : ""}
+                className={`active-step-phone ${activeStep === index ? "is-active" : ""}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 

@@ -41,6 +41,12 @@ export const themeOptions = [
     mesh: ["#071000", "#3f7900", "#b9ff24", "#efffb8"],
   },
   {
+    key: "jazari",
+    name: "Jazari Lime",
+    family: "Hybrid",
+    mesh: ["#000000", "#052414", "#2ef27e", "#c8ffdb"],
+  },
+  {
     key: "solar",
     name: "Solar Flare",
     family: "Wild",
@@ -205,8 +211,8 @@ export const guides = [
 export const networkStories = [
   {
     name: "Bridge",
-    logo: withBasePath("/images/rails/bridge-mark.png"),
-    logoFormat: "mark",
+    logo: withBasePath("/images/rails/bridge.svg"),
+    logoFormat: "bridge",
     logoScale: 1,
     wordmarkOnly: true,
     kind: "Infrastructure",

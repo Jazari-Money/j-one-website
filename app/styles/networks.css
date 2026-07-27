@@ -67,16 +67,16 @@
 
 .provider-logo.is-bridge {
   width: 150px;
-  height: 58px;
-  overflow: visible;
+  height: 52px;
+  overflow: hidden;
 }
 
 .provider-logo.is-bridge img {
-  width: 150px;
-  height: 58px;
+  width: 142px;
+  height: auto;
   max-width: 100%;
-  object-fit: contain;
-  object-position: left center;
+  object-fit: cover;
+  object-position: left top;
   transform: none;
 }
 

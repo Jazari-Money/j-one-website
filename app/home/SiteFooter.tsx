@@ -15,14 +15,6 @@ export function SiteFooter() {
       <div className="footer-primary">
         <div className="footer-brand">
           <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
-          <div className="footer-stores" aria-label="Download the Jazari One app">
-            <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
-              <img src={withBasePath("/images/stores/app-store-badge.avif")} alt="Download on the App Store" />
-            </a>
-            <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
-              <img src={withBasePath("/images/stores/google-play-badge.avif")} alt="Get it on Google Play" />
-            </a>
-          </div>
         </div>
 
         <nav className="footer-navigation" aria-label="Footer navigation">
@@ -47,6 +39,7 @@ export function SiteFooter() {
             <button type="button" onClick={() => setCookieOpen(true)}>Cookie Preferences</button>
           </div>
         </nav>
+        <SocialLinks className="footer-socials" />
       </div>
 
       <div className="footer-meta">
@@ -68,7 +61,14 @@ export function SiteFooter() {
         <div className="footer-signoff">
           <span>Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc.</span>
           <span>© 2026 Jazari One. All rights reserved.</span>
-          <SocialLinks className="footer-socials" />
+        </div>
+        <div className="footer-stores" aria-label="Download the Jazari One app">
+          <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
+            <img src={withBasePath("/images/stores/app-store-badge.avif")} alt="Download on the App Store" />
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
+            <img src={withBasePath("/images/stores/google-play-badge.avif")} alt="Get it on Google Play" />
+          </a>
         </div>
       </div>
 

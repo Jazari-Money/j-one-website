@@ -87,8 +87,8 @@ export function HomeContent() {
       <NetworkExplorer />
       <ProductRoadmap />
       <Blog />
-      <MoneyRain onAccess={openAccess} />
       <FAQ />
+      <MoneyRain onAccess={openAccess} />
 
       <SiteFooter />
     </main>

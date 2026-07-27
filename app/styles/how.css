@@ -72,13 +72,11 @@
 
 .step-screen {
   position: relative;
-  min-height: 620px;
+  min-height: 520px;
   border: 0;
   border-radius: 0;
-  overflow: visible;
+  overflow: hidden;
   background: transparent;
-  display: grid;
-  place-items: center;
   isolation: isolate;
 }
 
@@ -86,7 +84,7 @@
   content: "";
   position: absolute;
   z-index: 0;
-  top: 50%;
+  top: 38%;
   left: 50%;
   width: min(470px, 72%);
   aspect-ratio: 1;
@@ -108,24 +106,40 @@
   height: auto;
 }
 
-.active-step-phone {
+.step-screen-stack {
+  position: absolute;
   z-index: 1;
-  width: min(280px, 74%);
-  margin: 0;
-  animation: phone-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  top: 16px;
+  left: 50%;
+  width: min(380px, 86%);
+  height: 610px;
+  transform: translateX(-50%);
+  mask-image: linear-gradient(to bottom, #000 0 68%, rgba(0, 0, 0, 0.92) 78%, transparent 96%);
 }
 
-@keyframes phone-enter {
-  from {
-    opacity: 0;
-    transform: translateY(36px);
-    filter: blur(8px) drop-shadow(0 45px 80px rgba(0, 0, 0, 0.4));
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0) drop-shadow(0 45px 80px rgba(0, 0, 0, 0.62));
-  }
+.active-step-phone {
+  position: absolute;
+  inset: 0 auto auto 50%;
+  width: 100%;
+  margin: 0;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.985);
+  transform-origin: 50% 16%;
+  clip-path: inset(0 0 18% 0 round 10%);
+  filter: blur(3px) drop-shadow(0 45px 80px rgba(0, 0, 0, 0.4));
+  transition:
+    opacity 420ms ease,
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    clip-path 520ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 420ms ease;
+  pointer-events: none;
+}
+
+.active-step-phone.is-active {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  clip-path: inset(0 0 0 0 round 0);
+  filter: blur(0) drop-shadow(0 45px 80px rgba(0, 0, 0, 0.62));
 }
 
 .review-block {
@@ -379,7 +393,7 @@
   }
 
   .step-screen {
-    min-height: 570px;
+    min-height: 500px;
   }
 
   .review-block {
@@ -414,11 +428,13 @@
   }
 
   .step-screen {
-    min-height: 510px;
+    min-height: 430px;
   }
 
-  .active-step-phone {
-    width: min(246px, 78%);
+  .step-screen-stack {
+    top: 10px;
+    width: min(310px, 82%);
+    height: 500px;
   }
 
   .review-copy h3 {
@@ -505,12 +521,7 @@
   }
 
   .step-screen {
-    min-height: 620px;
-  }
-
-  .active-step-phone {
-    width: min(276px, 70%);
-    margin-bottom: 0;
+    min-height: 520px;
   }
 
   .review-block {

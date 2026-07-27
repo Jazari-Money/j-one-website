@@ -170,21 +170,23 @@
 
 [data-shader="beam"] .hero-shader {
   top: -128px;
-  width: min(820px, 86vw);
+  width: min(920px, 92vw);
   height: 930px;
   border-radius: 0;
   mask-image:
     linear-gradient(to bottom, #000 0 70%, transparent 100%),
     linear-gradient(90deg, transparent, #000 28% 72%, transparent);
   mask-composite: intersect;
-  opacity: 0.66;
+  opacity: 0.82;
+  filter: saturate(116%) brightness(1.08);
 }
 
 [data-shader="beam"] .hero::before {
   top: -96px;
-  width: min(760px, 84vw);
+  width: min(860px, 90vw);
   height: 880px;
-  background: linear-gradient(90deg, transparent 12%, color-mix(in srgb, var(--accent-2) 20%, transparent) 50%, transparent 88%);
+  background: linear-gradient(90deg, transparent 8%, color-mix(in srgb, var(--accent-2) 28%, transparent) 50%, transparent 92%);
+  animation: beam-ambient 6.4s ease-in-out infinite;
 }
 
 .beam-rays,
@@ -203,13 +205,13 @@
 .beam-rays {
   z-index: 2;
   background:
-    linear-gradient(101deg, transparent 8%, rgba(255, 255, 255, 0.02) 24%, rgba(255, 255, 255, 0.22) 45%, transparent 59%),
-    linear-gradient(84deg, transparent 28%, color-mix(in srgb, var(--accent-3) 18%, transparent) 48%, transparent 64%);
-  filter: blur(7px);
+    linear-gradient(101deg, transparent 7%, rgba(255, 255, 255, 0.03) 24%, rgba(255, 255, 255, 0.42) 45%, transparent 60%),
+    linear-gradient(84deg, transparent 24%, color-mix(in srgb, var(--accent-3) 30%, transparent) 49%, transparent 67%);
+  filter: blur(9px);
   mix-blend-mode: screen;
-  opacity: 0.58;
+  opacity: 0.78;
   transform-origin: 50% 0;
-  animation: church-light-pulse 7.4s ease-in-out infinite;
+  animation: church-light-pulse 5.6s ease-in-out infinite;
 }
 
 .beam-rays i {
@@ -220,16 +222,16 @@
 }
 
 .beam-rays i:first-child {
-  background: linear-gradient(98deg, transparent 18%, rgba(255, 255, 255, 0.34) 44%, transparent 57%);
-  filter: blur(9px);
-  animation: church-light-a 8.6s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  background: linear-gradient(98deg, transparent 15%, rgba(255, 255, 255, 0.52) 44%, transparent 58%);
+  filter: blur(12px);
+  animation: church-light-a 6.3s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 .beam-rays i:last-child {
   background: linear-gradient(78deg, transparent 34%, color-mix(in srgb, var(--accent-3) 34%, #fff) 49%, transparent 63%);
-  filter: blur(13px);
-  opacity: 0.34;
-  animation: church-light-b 8.6s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  filter: blur(16px);
+  opacity: 0.5;
+  animation: church-light-b 7.1s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 .beam-dust {
@@ -244,29 +246,34 @@
   width: var(--dust-size);
   height: var(--dust-size);
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.46);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.66);
   opacity: 0;
   animation: floating-dust var(--dust-duration) cubic-bezier(0.35, 0, 0.18, 1) infinite;
   animation-delay: calc(var(--dust-index) * -0.37s);
 }
 
 @keyframes church-light-pulse {
-  0%, 100% { transform: translateX(-2%) skewX(-2deg) scaleX(0.92); opacity: 0.36; }
-  42% { transform: translateX(2%) skewX(1deg) scaleX(1.08); opacity: 0.76; }
-  68% { transform: translateX(4%) skewX(3deg) scaleX(0.98); opacity: 0.48; }
+  0%, 100% { transform: translateX(-5%) skewX(-4deg) scaleX(0.76); opacity: 0.2; }
+  38% { transform: translateX(1%) skewX(0deg) scaleX(1.16); opacity: 0.94; }
+  68% { transform: translateX(6%) skewX(5deg) scaleX(0.9); opacity: 0.42; }
 }
 
 @keyframes church-light-a {
-  0%, 12% { transform: translateX(-7%) skewX(-5deg) scaleX(0.78); opacity: 0.18; }
-  44% { transform: translateX(3%) skewX(1deg) scaleX(1.12); opacity: 0.82; }
-  70%, 100% { transform: translateX(8%) skewX(5deg) scaleX(0.86); opacity: 0.12; }
+  0%, 10% { transform: translateX(-12%) skewX(-8deg) scaleX(0.58); opacity: 0.06; }
+  42% { transform: translateX(2%) skewX(1deg) scaleX(1.24); opacity: 0.98; }
+  72%, 100% { transform: translateX(12%) skewX(8deg) scaleX(0.7); opacity: 0.08; }
 }
 
 @keyframes church-light-b {
-  0%, 32% { transform: translateX(7%) skewX(4deg) scaleX(0.82); opacity: 0.08; }
-  68% { transform: translateX(-3%) skewX(-2deg) scaleX(1.1); opacity: 0.72; }
-  100% { transform: translateX(-8%) skewX(-5deg) scaleX(0.9); opacity: 0.14; }
+  0%, 26% { transform: translateX(12%) skewX(8deg) scaleX(0.62); opacity: 0.04; }
+  66% { transform: translateX(-2%) skewX(-1deg) scaleX(1.22); opacity: 0.9; }
+  100% { transform: translateX(-12%) skewX(-8deg) scaleX(0.72); opacity: 0.08; }
+}
+
+@keyframes beam-ambient {
+  0%, 100% { opacity: 0.46; filter: blur(22px); transform: translateX(-50%) scaleX(0.84); }
+  50% { opacity: 0.94; filter: blur(34px); transform: translateX(-50%) scaleX(1.14); }
 }
 
 @keyframes floating-dust {
@@ -305,7 +312,7 @@
   max-width: 1060px;
   margin: 0;
   color: #fff;
-  font-size: clamp(72px, 8.8vw, 132px);
+  font-size: clamp(68px, 8.2vw, 122px);
   line-height: 0.83;
   text-wrap: balance;
   text-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
@@ -484,8 +491,8 @@
   position: relative;
   z-index: 1;
   width: min(760px, 100%);
-  height: 550px;
-  margin-top: 58px;
+  height: 430px;
+  margin-top: 44px;
   overflow: hidden;
   mask-image: linear-gradient(to bottom, #000 0 72%, transparent 96%);
 }
@@ -507,7 +514,7 @@
   z-index: 2;
   top: 0;
   left: 50%;
-  width: min(460px, 78vw);
+  width: min(345px, 72vw);
   aspect-ratio: 1450 / 2934;
   transform: translateX(-50%);
   filter: drop-shadow(0 58px 95px rgba(0, 0, 0, 0.7));
@@ -539,7 +546,7 @@
 
 @media (max-width: 900px) {
   .hero {
-    min-height: 1160px;
+    min-height: 980px;
     padding: 146px 20px 48px;
   }
 
@@ -548,14 +555,14 @@
   }
 
   .hero-product {
-    height: 520px;
-    margin-top: 54px;
+    height: 350px;
+    margin-top: 44px;
   }
 }
 
 @media (max-width: 620px) {
   .hero {
-    min-height: 1040px;
+    min-height: 860px;
     padding-top: 126px;
   }
 
@@ -606,18 +613,18 @@
   }
 
   .hero-product {
-    height: 460px;
-    margin-top: 46px;
+    height: 300px;
+    margin-top: 38px;
   }
 
   .hero-device {
-    width: min(360px, 90vw);
+    width: min(270px, 72vw);
   }
 }
 
 @media (min-width: 901px) {
   .hero {
-    min-height: 970px;
+    min-height: 770px;
     padding: 157px 42px 53px;
   }
 
@@ -659,8 +666,8 @@
 
   .hero-product {
     width: min(720px, 100%);
-    height: 520px;
-    margin-top: 54px;
+    height: 300px;
+    margin-top: 42px;
   }
 
   .hero-device-glow {
@@ -669,6 +676,15 @@
   }
 
   .hero-device {
-    width: min(430px, 76vw);
+    width: min(322px, 68vw);
+  }
+
+  [data-shader="beam"] .hero-shader {
+    height: 720px;
+  }
+
+  [data-shader="beam"] .hero::before {
+    top: -70px;
+    height: 760px;
   }
 }

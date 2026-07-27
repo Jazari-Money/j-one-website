@@ -21,7 +21,6 @@ export function Blog() {
             onPointerLeave={resetPointer}
           >
             <h3>{guide.title}</h3>
-            <p>{guide.deck}</p>
             <span className="blog-read">Read Article</span>
           </Link>
         ))}

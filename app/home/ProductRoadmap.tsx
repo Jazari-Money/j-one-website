@@ -1,6 +1,9 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- local flag assets */
+
 import { useRef } from "react";
+import { withBasePath } from "../site-paths";
 import { resetPointer, trackPointer } from "./hooks";
 
 function ArrowIcon({ direction }: { direction: "left" | "right" }) {
@@ -22,7 +25,12 @@ const milestones = [
     title: "More countries",
     copy:
       "New receive routes open as local banking partners and regulatory approvals are ready.",
-    notes: ["India", "Bangladesh", "Pakistan", "Selected African markets"],
+    notes: ["Selected African markets"],
+    flags: [
+      { name: "India", src: withBasePath("/images/flags/in.png") },
+      { name: "Bangladesh", src: withBasePath("/images/flags/bd.png") },
+      { name: "Pakistan", src: withBasePath("/images/flags/pk.png") },
+    ],
   },
   {
     title: "More yield strategies",
@@ -82,6 +90,16 @@ export function ProductRoadmap() {
               <h3>{milestone.title}</h3>
               <div className="roadmap-card-bottom">
                 <p>{milestone.copy}</p>
+                {"flags" in milestone && (
+                  <div className="roadmap-flags" aria-label="Planned receive countries">
+                    {milestone.flags.map((flag) => (
+                      <span key={flag.name}>
+                        <img src={flag.src} alt="" />
+                        {flag.name}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <ul>
                   {milestone.notes.map((note) => <li key={note}>{note}</li>)}
                 </ul>
