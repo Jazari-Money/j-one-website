@@ -80,11 +80,13 @@ export function SiteHeader({
           <a href={sectionHref("how")} onClick={closeMobile}>How it works</a>
           <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
           <a href={withBasePath("/pricing/")} onClick={closeMobile}>Pricing</a>
+          <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
           <a href={sectionHref("roadmap")} onClick={closeMobile}>Roadmap</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
           <div className="nav-mobile-extras">
             <button
+              className="realism-button"
               type="button"
               onClick={() => {
                 closeMobile();
@@ -165,7 +167,7 @@ export function SiteHeader({
                 </div>
               </div>
               <button
-                className="visuals-done"
+                className="visuals-done realism-button"
                 type="button"
                 onClick={() => setThemeOpen(false)}
               >
@@ -174,7 +176,7 @@ export function SiteHeader({
             </div>
           </div>
           <button
-            className="nav-cta"
+            className="nav-cta realism-button"
             type="button"
             onClick={onAccess}
             onPointerMove={trackPointer}
@@ -195,7 +197,7 @@ export function SiteHeader({
             <span className="nav-cta-label">Download App</span>
           </button>
           <button
-            className="mobile-toggle"
+            className="mobile-toggle realism-icon-button"
             type="button"
             onClick={() => {
               setThemeOpen(false);

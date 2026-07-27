@@ -6,8 +6,15 @@ import { resetPointer, trackPointer } from "../home/hooks";
 
 const groups = [
   {
+    title: "Money movement",
+    rows: [
+      ["Foreign Exchange", "Not Offered"],
+      ["Stablecoin Transfer", "$1 Network Fee"],
+      ["Local Payout", "No Transfer Fee · No Hidden FX Margin"],
+    ],
+  },
+  {
     title: "Accounts",
-    intro: "Local account details, introduced country by country.",
     rows: [
       ["USD Account", "Coming Soon"],
       ["GBP Account", "Coming Soon"],
@@ -16,17 +23,7 @@ const groups = [
   },
   {
     title: "Cards",
-    intro: "Spend from the same balance when cards become available.",
     rows: [["VISA Virtual Card", "Coming Soon"]],
-  },
-  {
-    title: "Money Movement",
-    intro: "Clear costs for supported stablecoin and local payout routes.",
-    rows: [
-      ["Foreign Exchange", "Not Offered"],
-      ["Stablecoin Transfer", "$1 Network Fee"],
-      ["Local Payout", "No Transfer Fee · No Hidden FX Margin"],
-    ],
   },
 ] as const;
 
@@ -35,21 +32,21 @@ export function PricingPage() {
     <main className="pricing-shell">
       <InternalSiteHeader />
       <header className="pricing-hero">
-        <h1>Simple, visible pricing.</h1>
-        <p>No tiers. The applicable cost is shown before you confirm a supported transaction.</p>
+        <h1>Pricing</h1>
+        <p>
+          Preview pricing only. Availability, eligibility, final fees, and route
+          terms are confirmed in the app.
+        </p>
       </header>
-      <section className="pricing-groups" aria-label="Jazari One pricing">
+      <section
+        className="pricing-groups pointer-card"
+        aria-label="Jazari One pricing"
+        onPointerMove={trackPointer}
+        onPointerLeave={resetPointer}
+      >
         {groups.map((group) => (
-          <article
-            className="pricing-group pointer-card"
-            key={group.title}
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
-          >
-            <header>
-              <h2>{group.title}</h2>
-              <p>{group.intro}</p>
-            </header>
+          <article className="pricing-group" key={group.title}>
+            <h2>{group.title}</h2>
             <dl>
               {group.rows.map(([label, value]) => (
                 <div key={label}>
@@ -61,9 +58,6 @@ export function PricingPage() {
           </article>
         ))}
       </section>
-      <p className="pricing-note">
-        Preview pricing only. Availability, eligibility, final fees, and route terms are confirmed in the app.
-      </p>
       <SiteFooter />
     </main>
   );

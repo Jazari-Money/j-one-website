@@ -14,7 +14,7 @@
   margin: 0;
   font-size: clamp(58px, 6.7vw, 100px);
   line-height: 0.94;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.2px;
   text-wrap: balance;
 }
 

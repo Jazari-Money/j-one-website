@@ -12,10 +12,10 @@
   content: "";
   position: absolute;
   z-index: -1;
-  top: 52px;
+  top: -48px;
   left: 50%;
   width: min(1080px, 94vw);
-  height: 500px;
+  height: 720px;
   transform: translateX(-50%);
   background:
     radial-gradient(
@@ -32,17 +32,17 @@
 .hero-shader {
   position: absolute;
   z-index: -2;
-  top: 58px;
+  top: -96px;
   left: 50%;
   width: min(1120px, 96vw);
-  height: 390px;
+  height: 760px;
   transform: translateX(-50%);
   overflow: hidden;
   background: var(--surface);
   opacity: 0.56;
   filter: saturate(112%);
   border-radius: 50%;
-  mask-image: radial-gradient(ellipse 70% 58% at 50% 42%, #000 0 38%, transparent 76%);
+  mask-image: radial-gradient(ellipse 70% 68% at 50% 36%, #000 0 38%, transparent 82%);
   pointer-events: none;
 }
 
@@ -52,7 +52,7 @@
   inset: 0;
   background:
     radial-gradient(ellipse 68% 56% at 50% 42%, transparent 36%, color-mix(in srgb, var(--bg) 26%, transparent) 70%),
-    linear-gradient(to bottom, transparent 0 56%, var(--bg) 100%);
+    linear-gradient(to bottom, transparent 0 62%, color-mix(in srgb, var(--bg) 42%, transparent) 82%, var(--bg) 100%);
 }
 
 [data-shader="orbital"] .hero-shader {
@@ -154,9 +154,9 @@
 }
 
 [data-shader="ribbon"] .hero-shader {
-  top: -70px;
+  top: -150px;
   width: min(1220px, 100vw);
-  height: 500px;
+  height: 760px;
   border-radius: 0;
   transform: translateX(-50%) rotate(-7deg);
   mask-image: linear-gradient(to bottom, transparent 12%, #000 38% 52%, transparent 80%);
@@ -169,16 +169,21 @@
 }
 
 [data-shader="beam"] .hero-shader {
+  top: -128px;
   width: min(820px, 86vw);
-  height: 620px;
+  height: 930px;
   border-radius: 0;
-  mask-image: linear-gradient(90deg, transparent, #000 30% 70%, transparent);
-  opacity: 0.6;
+  mask-image:
+    linear-gradient(to bottom, #000 0 70%, transparent 100%),
+    linear-gradient(90deg, transparent, #000 28% 72%, transparent);
+  mask-composite: intersect;
+  opacity: 0.66;
 }
 
 [data-shader="beam"] .hero::before {
+  top: -96px;
   width: min(760px, 84vw);
-  height: 560px;
+  height: 880px;
   background: linear-gradient(90deg, transparent 12%, color-mix(in srgb, var(--accent-2) 20%, transparent) 50%, transparent 88%);
 }
 
@@ -198,13 +203,33 @@
 .beam-rays {
   z-index: 2;
   background:
-    linear-gradient(101deg, transparent 12%, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.28) 44%, transparent 57%),
-    linear-gradient(84deg, transparent 31%, color-mix(in srgb, var(--accent-3) 24%, transparent) 47%, transparent 61%);
-  filter: blur(5px);
+    linear-gradient(101deg, transparent 8%, rgba(255, 255, 255, 0.02) 24%, rgba(255, 255, 255, 0.22) 45%, transparent 59%),
+    linear-gradient(84deg, transparent 28%, color-mix(in srgb, var(--accent-3) 18%, transparent) 48%, transparent 64%);
+  filter: blur(7px);
   mix-blend-mode: screen;
-  opacity: 0.64;
+  opacity: 0.58;
   transform-origin: 50% 0;
-  animation: church-light 8s ease-in-out infinite alternate;
+  animation: church-light-pulse 7.4s ease-in-out infinite;
+}
+
+.beam-rays i {
+  position: absolute;
+  inset: -8% -18%;
+  transform-origin: 50% 0;
+  mix-blend-mode: screen;
+}
+
+.beam-rays i:first-child {
+  background: linear-gradient(98deg, transparent 18%, rgba(255, 255, 255, 0.34) 44%, transparent 57%);
+  filter: blur(9px);
+  animation: church-light-a 8.6s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+}
+
+.beam-rays i:last-child {
+  background: linear-gradient(78deg, transparent 34%, color-mix(in srgb, var(--accent-3) 34%, #fff) 49%, transparent 63%);
+  filter: blur(13px);
+  opacity: 0.34;
+  animation: church-light-b 8.6s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 .beam-dust {
@@ -220,22 +245,36 @@
   height: var(--dust-size);
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.46);
   opacity: 0;
-  animation: floating-dust 7s ease-in-out infinite;
-  animation-delay: calc(var(--dust-index) * -0.42s);
+  animation: floating-dust var(--dust-duration) cubic-bezier(0.35, 0, 0.18, 1) infinite;
+  animation-delay: calc(var(--dust-index) * -0.37s);
 }
 
-@keyframes church-light {
-  from { transform: translateX(-3%) skewX(-3deg) scaleX(0.92); opacity: 0.42; }
-  to { transform: translateX(4%) skewX(2deg) scaleX(1.06); opacity: 0.72; }
+@keyframes church-light-pulse {
+  0%, 100% { transform: translateX(-2%) skewX(-2deg) scaleX(0.92); opacity: 0.36; }
+  42% { transform: translateX(2%) skewX(1deg) scaleX(1.08); opacity: 0.76; }
+  68% { transform: translateX(4%) skewX(3deg) scaleX(0.98); opacity: 0.48; }
+}
+
+@keyframes church-light-a {
+  0%, 12% { transform: translateX(-7%) skewX(-5deg) scaleX(0.78); opacity: 0.18; }
+  44% { transform: translateX(3%) skewX(1deg) scaleX(1.12); opacity: 0.82; }
+  70%, 100% { transform: translateX(8%) skewX(5deg) scaleX(0.86); opacity: 0.12; }
+}
+
+@keyframes church-light-b {
+  0%, 32% { transform: translateX(7%) skewX(4deg) scaleX(0.82); opacity: 0.08; }
+  68% { transform: translateX(-3%) skewX(-2deg) scaleX(1.1); opacity: 0.72; }
+  100% { transform: translateX(-8%) skewX(-5deg) scaleX(0.9); opacity: 0.14; }
 }
 
 @keyframes floating-dust {
-  0%, 100% { transform: translate3d(-8px, 28px, 0); opacity: 0; }
-  20% { opacity: 0.72; }
-  65% { opacity: 0.35; }
-  88% { transform: translate3d(18px, -62px, 0); opacity: 0; }
+  0%, 100% { transform: translate3d(0, 20px, 0) scale(0.7); opacity: 0; }
+  16% { opacity: 0.62; }
+  47% { transform: translate3d(calc(var(--dust-dx) * -0.45), calc(var(--dust-dy) * 0.45), 0) scale(1.15); opacity: 0.32; }
+  78% { transform: translate3d(var(--dust-dx), var(--dust-dy), 0) scale(0.82); opacity: 0.52; }
+  94% { opacity: 0; }
 }
 
 .hero-copy {
@@ -259,7 +298,7 @@
 .article-copy h2 {
   font-family: var(--serif);
   font-weight: 400;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.2px;
 }
 
 .hero h1 {
@@ -456,9 +495,9 @@
   top: 38%;
   left: 50%;
   width: 520px;
-  height: 360px;
+  height: 480px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-soft), transparent 70%);
+  background: radial-gradient(ellipse, color-mix(in srgb, var(--accent-soft) 72%, transparent), transparent 74%);
   transform: translate(-50%, -50%);
   filter: blur(38px);
 }

@@ -94,6 +94,7 @@ export function MoneyRain({ onAccess }: { onAccess: () => void }) {
         <h2>Your dollars should move with you.</h2>
         <p>Download Jazari and see when the account becomes available in your country.</p>
         <button
+          className="realism-button"
           type="button"
           onClick={onAccess}
           onPointerMove={trackPointer}

@@ -25,6 +25,12 @@ const milestones = [
     notes: ["India", "Bangladesh", "Pakistan", "Selected African markets"],
   },
   {
+    title: "More yield strategies",
+    copy:
+      "Additional independently managed yield strategies with different assets, risk profiles, and variable APYs.",
+    notes: ["Variable rates", "Risk shown before funding"],
+  },
+  {
     title: "VISA Virtual card",
     copy:
       "Pay for subscriptions, software, and everyday spending directly from your Jazari balance.",
@@ -55,10 +61,10 @@ export function ProductRoadmap() {
           <p>One useful layer at a time, starting with the USD account.</p>
         </div>
         <div className="roadmap-controls" aria-label="Roadmap navigation">
-          <button type="button" onClick={() => move(-1)} aria-label="Previous milestone">
+          <button className="realism-icon-button" type="button" onClick={() => move(-1)} aria-label="Previous milestone">
             <ArrowIcon direction="left" />
           </button>
-          <button type="button" onClick={() => move(1)} aria-label="Next milestone">
+          <button className="realism-icon-button" type="button" onClick={() => move(1)} aria-label="Next milestone">
             <ArrowIcon direction="right" />
           </button>
         </div>

@@ -125,7 +125,8 @@ test("keeps the core interactions working", async ({ page }) => {
 
 test("renders the pricing preview and legal links", async ({ page }) => {
   await page.goto("/pricing/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Simple, visible pricing." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Pricing" })).toBeVisible();
+  await expect(page.getByText(/Preview pricing only/)).toBeVisible();
   await expect(page.getByText("$1 Network Fee")).toBeVisible();
   await expect(page.getByRole("link", { name: "Terms & Conditions" })).toHaveAttribute(
     "href",
@@ -134,6 +135,20 @@ test("renders the pricing preview and legal links", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Privacy Policy" })).toHaveAttribute(
     "href",
     "https://jazari.xyz/privacy-policy",
+  );
+});
+
+test("explains variable yields and links back to the roadmap", async ({ page }) => {
+  await page.goto("/yields/", { waitUntil: "networkidle" });
+  await expect(
+    page.getByRole("heading", { name: /Variable yield, clearly explained/ }),
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
+  await expect(page.getByText("4.66%")).toBeVisible();
+  await expect(page.getByText("Principal is at risk.")).toBeVisible();
+  await expect(page.getByRole("link", { name: "View Roadmap" })).toHaveAttribute(
+    "href",
+    "/#roadmap",
   );
 });
 

@@ -336,7 +336,9 @@ Default local URL: `http://localhost:3000`
 - The independent field switcher offers Horizon, Orbital, Ribbon, and Beam.
   Field shape and color profile are separate persisted preferences.
 - CTA buttons are pill-shaped, use Title Case, contain no decorative glyphs,
-  and may carry a restrained cursor-position highlight.
+  and use one shared “realism” treatment: shallow material depth, an inner
+  highlight, soft accent glow, cursor-position response, and a short light
+  pass on hover. Keep the movement restrained and never let it displace copy.
 - Header controls and content cards do not use decorative strokes.
 - Benefit rows place the description directly below the title and use spacing,
   not separator rules, to establish rhythm.
@@ -351,7 +353,7 @@ Default local URL: `http://localhost:3000`
   controlled by round previous/next buttons. It has no timeline line, product
   image, or phase prefix. It follows the provider grid and precedes Blog. The
   current naming is `Roadmap`, `USD account`, `More countries`,
-  `VISA Virtual card`, and `Remit Now Pay Later`.
+  `More yield strategies`, `VISA Virtual card`, and `Remit Now Pay Later`.
 - The virtual card is code-generated with front, back, and four visible edge
   planes. It keeps only the Jazari One and Visa marks, uses a restrained
   cursor-position sheen, and supports drag and keyboard rotation.
@@ -363,8 +365,16 @@ Default local URL: `http://localhost:3000`
   grain or muddy color mixing.
 - Orbital is the default field shape. It uses a large fluid mesh plus a few
   masked, animated contour bands to suggest layered energy flow without noise.
+- Beam uses two alternating animated light layers and numerous very small,
+  irregularly drifting dust particles. Its lower fade must continue behind
+  the phone without a visible horizontal seam.
 - The download shader follows the pointer through CSS custom properties; keep
   the button compact and avoid adding icons.
+- The homepage headline is `Your dollars, wherever you are` without a final
+  period. Instrument Serif display text uses `-0.2px` letter spacing.
+- The benefit list uses the supplied chrome dollar object for “Keep a dollar
+  balance” and ends with “Access variable yield,” which links the product story
+  to the dedicated Yields page.
 - The FAQ belongs immediately after the “Your dollars should move with you”
   conversion section.
 - The provider/network presentation is a balanced five-column desktop grid,
@@ -381,9 +391,21 @@ Default local URL: `http://localhost:3000`
   artwork. It uses a normal multi-column layout without separator rules and
   links directly to Jazari’s official Terms and Privacy Policy. Cookie
   Preferences is currently a clearly mocked local modal.
-- Pricing has no tiers. It lists USD, GBP, and EUR accounts and Cards as
-  coming soon; no foreign exchange; stablecoins at a $1 network fee; and local
-  payout with no hidden FX margin and no transfer fee.
+- Pricing has no tiers. It is one combined surface divided by restrained
+  separators, ordered `Money movement`, `Accounts`, then `Cards`; the group
+  headings have no explanatory subtitles. It lists no foreign exchange,
+  stablecoins at a $1 network fee, local payout with no hidden FX margin and no
+  transfer fee, and USD/GBP/EUR accounts plus the Visa virtual card as coming
+  soon.
+- `/yields/` explains variable onchain yield and the current Gauntlet USD Alpha
+  strategy. The displayed `4.66%` is an illustrative, variable APY supplied by
+  Jazari, not a guaranteed quote. The page must keep its explicit principal,
+  liquidity, stablecoin, smart-contract, oracle, bridge, collateral, and
+  withdrawal-delay disclosures. It also points to the `More yield strategies`
+  roadmap milestone.
+- The visual preference hook must load persisted theme and field choices
+  before writing defaults back to local storage; do not reintroduce the
+  mount-time overwrite race.
 
 ## Reference direction
 
@@ -393,3 +415,7 @@ Default local URL: `http://localhost:3000`
 - Paper shaders: https://shaders.paper.design/
 - Recent web-design references: https://recent.design/websites
 - Original Jazari behavior/assets: https://jazari.xyz/
+- Framer Realism Button material and hover reference:
+  https://www.framer.com/community/marketplace/components/realismbutton/
+- Gauntlet USD Alpha strategy and risk reference:
+  https://www.gauntlet.xyz/gauntlet-strategies/gtusda

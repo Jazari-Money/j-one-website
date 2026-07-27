@@ -106,9 +106,9 @@ export const features = [
     image: withBasePath("/images/features/new/know.webp"),
   },
   {
-    title: "Specialist infrastructure",
-    copy: "Identity, wallets, stablecoins, and payment rails work behind one experience.",
-    image: withBasePath("/images/features/new/infrastructure.webp"),
+    title: "Access variable yield",
+    copy: "Put eligible USDC or USDT to work through independently managed onchain strategies.",
+    image: withBasePath("/images/features/hand-coin.webp"),
   },
 ] as const;
 

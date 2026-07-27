@@ -1,0 +1,336 @@
+.yields-shell {
+  min-height: 100vh;
+  overflow: clip;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.yields-hero,
+.yield-feature,
+.yield-risk,
+.yield-questions,
+.yield-roadmap {
+  width: var(--page);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.yields-hero {
+  padding: 190px 0 94px;
+}
+
+.yields-hero h1 {
+  max-width: 1020px;
+  font-family: var(--serif);
+  font-size: clamp(76px, 8.5vw, 124px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.88;
+}
+
+.yields-hero p {
+  max-width: 690px;
+  margin-top: 34px;
+  color: var(--muted-strong);
+  font-size: 18px;
+  line-height: 1.62;
+}
+
+.yield-feature {
+  min-height: 560px;
+  padding: 54px;
+  border-radius: 30px;
+  overflow: hidden;
+  background:
+    linear-gradient(140deg, color-mix(in srgb, var(--surface-2) 80%, transparent), var(--surface));
+  display: grid;
+  grid-template-columns: minmax(330px, 0.9fr) minmax(260px, 0.55fr);
+  grid-template-rows: 1fr auto;
+  gap: 52px 88px;
+}
+
+.yield-strategy-copy,
+.yield-rate,
+.yield-facts {
+  position: relative;
+  z-index: 1;
+}
+
+.yield-strategy-copy img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  object-position: left center;
+  filter: grayscale(1) brightness(0) invert(1);
+}
+
+.yield-strategy-copy > p:first-of-type {
+  margin-top: 42px;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.yield-strategy-copy h2 {
+  max-width: 620px;
+  margin-top: 16px;
+  font-family: var(--serif);
+  font-size: clamp(54px, 5.8vw, 78px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.92;
+}
+
+.yield-strategy-copy h2 + p {
+  max-width: 620px;
+  margin-top: 26px;
+  color: var(--muted-strong);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.yield-strategy-copy a {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--text);
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+.yield-rate {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.yield-rate strong {
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: clamp(96px, 11vw, 156px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.78;
+}
+
+.yield-rate span {
+  margin-top: 26px;
+  color: var(--text);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.yield-rate small {
+  max-width: 280px;
+  margin-top: 9px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.yield-facts {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+
+.yield-facts > div {
+  padding: 25px 22px 0 0;
+}
+
+.yield-facts dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.yield-facts dd {
+  margin-top: 9px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.yield-risk {
+  padding: 108px 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 80px;
+}
+
+.yield-risk h2,
+.yield-questions h2,
+.yield-roadmap h2 {
+  font-family: var(--serif);
+  font-size: clamp(54px, 5.6vw, 78px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.94;
+}
+
+.yield-risk p,
+.yield-roadmap p {
+  max-width: 680px;
+  margin-top: 22px;
+  color: var(--muted-strong);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.yield-risk > strong {
+  color: var(--accent);
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.yield-questions {
+  padding: 34px 0 118px;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.72fr) minmax(580px, 1.28fr);
+  gap: clamp(64px, 9vw, 150px);
+}
+
+.yield-questions header {
+  position: sticky;
+  top: 130px;
+  align-self: start;
+}
+
+.yield-questions header p {
+  margin-top: 20px;
+  color: var(--muted-strong);
+  font-size: 15px;
+}
+
+.yield-questions > div {
+  display: grid;
+  gap: 10px;
+}
+
+.yield-questions details {
+  padding: 24px 26px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.yield-questions summary {
+  position: relative;
+  z-index: 1;
+  color: var(--text);
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.yield-questions summary::-webkit-details-marker {
+  display: none;
+}
+
+.yield-questions details p {
+  position: relative;
+  z-index: 1;
+  max-width: 670px;
+  margin-top: 18px;
+  color: var(--muted-strong);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.yield-roadmap {
+  margin-bottom: 118px;
+  padding: 62px;
+  border-radius: 30px;
+  background: var(--surface);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 70px;
+}
+
+.yield-roadmap .realism-button {
+  min-width: 150px;
+  min-height: 50px;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .yield-feature {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .yield-facts {
+    grid-column: auto;
+  }
+
+  .yield-questions {
+    grid-template-columns: 1fr;
+  }
+
+  .yield-questions header {
+    position: static;
+  }
+}
+
+@media (max-width: 620px) {
+  .yields-hero {
+    padding: 146px 0 68px;
+  }
+
+  .yields-hero h1 {
+    font-size: 63px;
+  }
+
+  .yields-hero p {
+    font-size: 16px;
+  }
+
+  .yield-feature {
+    min-height: 0;
+    padding: 30px 24px;
+    border-radius: 22px;
+    gap: 48px;
+  }
+
+  .yield-strategy-copy h2 {
+    font-size: 50px;
+  }
+
+  .yield-rate strong {
+    font-size: 92px;
+  }
+
+  .yield-facts {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .yield-risk {
+    padding: 82px 0;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .yield-questions {
+    padding-bottom: 84px;
+    gap: 42px;
+  }
+
+  .yield-questions details {
+    padding: 22px 20px;
+    border-radius: 17px;
+  }
+
+  .yield-roadmap {
+    margin-bottom: 84px;
+    padding: 36px 26px;
+    border-radius: 22px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -39,7 +39,7 @@ function MagicAccess({
   return (
     <div className={`access-control ${open ? "is-open" : ""}`} id="access">
       <button
-        className="magic-access-button"
+        className="magic-access-button realism-button"
         type="button"
         onClick={onOpen}
         onPointerMove={trackPointer}
@@ -90,6 +90,7 @@ function MagicAccess({
               required
             />
             <button
+              className="realism-button"
               type="submit"
               tabIndex={open ? 0 : -1}
               onPointerMove={trackPointer}
@@ -147,23 +148,29 @@ export function Hero({
         <span className="orbital-energy orbital-energy-a" />
         <span className="orbital-energy orbital-energy-b" />
         <span className="orbital-energy orbital-energy-c" />
-        <span className="beam-rays" />
+        <span className="beam-rays">
+          <i />
+          <i />
+        </span>
         <span className="beam-dust">
-          {Array.from({ length: 18 }, (_, index) => (
+          {Array.from({ length: 46 }, (_, index) => (
             <i
               key={index}
               style={{
                 "--dust-index": index,
-                "--dust-x": `${(index * 43 + 7) % 96}%`,
-                "--dust-y": `${(index * 29 + 13) % 88}%`,
-                "--dust-size": `${2 + (index % 3)}px`,
+                "--dust-x": `${(index * 47 + index * index * 3 + 7) % 98}%`,
+                "--dust-y": `${(index * 31 + index * index * 5 + 11) % 92}%`,
+                "--dust-size": `${0.65 + (index % 4) * 0.28}px`,
+                "--dust-dx": `${-34 + ((index * 19) % 72)}px`,
+                "--dust-dy": `${-68 - ((index * 23) % 96)}px`,
+                "--dust-duration": `${5.4 + (index % 9) * 0.61}s`,
               } as React.CSSProperties}
             />
           ))}
         </span>
       </div>
       <div className="hero-copy">
-        <h1>Your dollars,<br />wherever you are.</h1>
+        <h1>Your dollars,<br />wherever you are</h1>
         <p>
           Hold your money in dollars that keep their value — and send it to any
           bank account in Mexico, Colombia, Brazil, Europe and 26 more countries.

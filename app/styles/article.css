@@ -48,7 +48,7 @@
   margin: 0;
   font-size: clamp(66px, 8vw, 118px);
   line-height: 0.88;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.2px;
   text-wrap: balance;
 }
 
@@ -76,7 +76,7 @@
   margin: 0;
   font-size: clamp(44px, 5.4vw, 72px);
   line-height: 0.95;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.2px;
 }
 
 .article-copy section > p {
@@ -123,7 +123,7 @@
   font-family: var(--serif);
   font-size: clamp(48px, 6.4vw, 86px);
   font-weight: 400;
-  letter-spacing: -0.1px;
+  letter-spacing: -0.2px;
   line-height: 0.92;
 }
 

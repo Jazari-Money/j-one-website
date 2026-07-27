@@ -22,7 +22,7 @@ test("server-renders the Jazari One landing page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Jazari One — Your dollars, wherever you are<\/title>/i);
   assert.match(html, /Your dollars,/);
-  assert.match(html, /wherever you are\./);
+  assert.match(html, /wherever you are/);
   assert.match(
     html,
     /Hold your money in dollars that keep their value — and send it to any bank account/,
@@ -36,6 +36,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
   assert.match(html, /Transaction fee/);
   assert.match(html, />Roadmap</);
+  assert.match(html, />Yields</);
   assert.doesNotMatch(html, /Roadmap 2026/);
   assert.match(html, /USD account/);
   assert.match(html, /More countries/);
@@ -54,6 +55,27 @@ test("server-renders the Jazari One landing page", async () => {
     /Private beta · No commitment · Availability varies by country/,
   );
   assert.doesNotMatch(html, /audience-index/);
+});
+
+test("server-renders pricing and yields pages", async () => {
+  const [pricingResponse, yieldsResponse] = await Promise.all([
+    render("/pricing"),
+    render("/yields"),
+  ]);
+  const [pricing, yields] = await Promise.all([
+    pricingResponse.text(),
+    yieldsResponse.text(),
+  ]);
+
+  assert.match(pricing, /<h1>Pricing<\/h1>/);
+  assert.match(pricing, /Preview pricing only/);
+  assert.ok(pricing.indexOf("Money movement") < pricing.indexOf("Accounts"));
+  assert.ok(pricing.indexOf("Accounts") < pricing.indexOf("Cards"));
+
+  assert.match(yields, /Gauntlet USD Alpha/);
+  assert.match(yields, /4\.66%/);
+  assert.match(yields, /Principal is at risk/);
+  assert.match(yields, /More yields are coming/);
 });
 
 test("keeps the restrained interactions and clear content hierarchy in source", async () => {

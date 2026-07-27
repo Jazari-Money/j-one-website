@@ -11,6 +11,7 @@ import {
 export function useVisualPreferences() {
   const [theme, setTheme] = useState<ThemeKey>("aurora");
   const [shader, setShader] = useState<ShaderKey>("orbital");
+  const [preferencesLoaded, setPreferencesLoaded] = useState(false);
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem("jazari-theme") as ThemeKey | null;
@@ -22,20 +23,23 @@ export function useVisualPreferences() {
       if (storedShader && shaderOptions.some((option) => option.key === storedShader)) {
         setShader(storedShader);
       }
+      setPreferencesLoaded(true);
     }, 0);
 
     return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
+    if (!preferencesLoaded) return;
     document.documentElement.dataset.theme = theme;
     window.localStorage.setItem("jazari-theme", theme);
-  }, [theme]);
+  }, [preferencesLoaded, theme]);
 
   useEffect(() => {
+    if (!preferencesLoaded) return;
     document.documentElement.dataset.shader = shader;
     window.localStorage.setItem("jazari-shader", shader);
-  }, [shader]);
+  }, [preferencesLoaded, shader]);
 
   return { theme, setTheme, shader, setShader };
 }

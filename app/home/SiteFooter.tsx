@@ -31,6 +31,7 @@ export function SiteFooter() {
             <Link href="/#how">How it works</Link>
             <Link href="/#rates">Rates</Link>
             <Link href="/pricing">Pricing</Link>
+            <Link href="/yields">Yields</Link>
             <Link href="/#roadmap">Roadmap</Link>
           </div>
           <div>
@@ -77,8 +78,8 @@ export function SiteFooter() {
             <h2 id="cookie-title">Cookie preferences</h2>
             <p>This preview uses essential storage for your visual preferences. Optional analytics are not enabled.</p>
             <div>
-              <button type="button" onClick={() => setCookieOpen(false)}>Essential Only</button>
-              <button type="button" onClick={() => setCookieOpen(false)}>Accept All</button>
+              <button className="realism-button" type="button" onClick={() => setCookieOpen(false)}>Essential Only</button>
+              <button className="realism-button" type="button" onClick={() => setCookieOpen(false)}>Accept All</button>
             </div>
           </div>
         </div>
