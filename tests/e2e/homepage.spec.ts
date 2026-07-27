@@ -145,12 +145,26 @@ test("renders the pricing preview and legal links", async ({ page }) => {
   await expect(page.getByText("$1 Network Fee")).toBeVisible();
   await expect(page.getByRole("link", { name: "Terms & Conditions" })).toHaveAttribute(
     "href",
-    "https://jazari.xyz/terms",
+    /\/terms\/?$/,
   );
   await expect(page.getByRole("link", { name: "Privacy Policy" })).toHaveAttribute(
     "href",
-    "https://jazari.xyz/privacy-policy",
+    /\/privacy-policy\/?$/,
   );
+});
+
+test("renders the legal documents as internal Jazari pages", async ({ page }) => {
+  await page.goto("/terms/", { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { name: "Terms & Conditions" })).toBeVisible();
+  await expect(page.getByText("Effective date: April 2026")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "1. Introduction" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "20. How We Use Your Information" })).toBeVisible();
+
+  await page.getByRole("link", { name: "Privacy Policy" }).first().click();
+  await expect(page).toHaveURL(/\/privacy-policy\/?$/);
+  await expect(page.getByRole("heading", { name: "Privacy Policy" })).toBeVisible();
+  await expect(page.getByText("Last updated: April 2026")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "11. Cookies" })).toBeVisible();
 });
 
 test("explains yields and links into the app flow", async ({ page }) => {

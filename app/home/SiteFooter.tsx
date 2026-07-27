@@ -34,8 +34,8 @@ export function SiteFooter() {
           </div>
           <div>
             <strong>Legal</strong>
-            <a href="https://jazari.xyz/terms" target="_blank" rel="noreferrer">Terms &amp; Conditions</a>
-            <a href="https://jazari.xyz/privacy-policy" target="_blank" rel="noreferrer">Privacy Policy</a>
+            <Link href="/terms">Terms &amp; Conditions</Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
             <button type="button" onClick={() => setCookieOpen(true)}>Cookie Preferences</button>
           </div>
         </nav>

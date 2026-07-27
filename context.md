@@ -395,9 +395,11 @@ Default local URL: `http://localhost:3000`
   pages use visible breadcrumbs, one left-aligned reading column, no “At a
   glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
 - Footer copy uses Inter and the official CDN-supplied Apple and Google badge
-  artwork. It uses a normal multi-column layout without separator rules and
-  links directly to Jazari’s official Terms and Privacy Policy. Cookie
-  Preferences is currently a clearly mocked local modal.
+  artwork. It uses a normal multi-column layout without separator rules.
+  Terms & Conditions and Privacy Policy are internal pages at `/terms/` and
+  `/privacy-policy/`, using the April 2026 wording from jazari.xyz in a shared,
+  responsive legal-reading layout. Cookie Preferences is currently a clearly
+  mocked local modal.
 - Pricing has no tiers. It is one combined surface divided by restrained
   separators, ordered `Money movement`, `Accounts`, then `Cards`; the group
   headings have no explanatory subtitles. It lists no foreign exchange,

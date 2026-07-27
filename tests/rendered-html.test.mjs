@@ -85,6 +85,28 @@ test("server-renders pricing, yields, and roadmap pages", async () => {
   assert.match(roadmap, /Remit Now Pay Later/);
 });
 
+test("server-renders the internal legal pages", async () => {
+  const [termsResponse, privacyResponse] = await Promise.all([
+    render("/terms"),
+    render("/privacy-policy"),
+  ]);
+  const [terms, privacy] = await Promise.all([
+    termsResponse.text(),
+    privacyResponse.text(),
+  ]);
+
+  assert.match(terms, /<h1>Terms &amp; Conditions<\/h1>/);
+  assert.match(terms, /Effective date: April 2026/);
+  assert.match(terms, /20\. How We Use Your Information/);
+  assert.match(terms, /href="\/j-one-website\/privacy-policy\/?"/);
+
+  assert.match(privacy, /<h1>Privacy Policy<\/h1>/);
+  assert.match(privacy, /Last updated: April 2026/);
+  assert.match(privacy, /11\. Cookies/);
+  assert.match(privacy, /jazari_cookie_consent/);
+  assert.match(privacy, /href="\/j-one-website\/terms\/?"/);
+});
+
 test("keeps the restrained interactions and clear content hierarchy in source", async () => {
   const homeDirectory = new URL("../app/home/", import.meta.url);
   const homeFiles = (await readdir(homeDirectory))
