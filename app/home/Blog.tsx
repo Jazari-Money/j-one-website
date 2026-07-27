@@ -8,11 +8,8 @@ export function Blog() {
   return (
     <section className="blog section" id="blog">
       <header className="chapter-heading">
-        <div>
-          <h2>Blog</h2>
-          <p>Brief, practical answers for checking a route before you send.</p>
-        </div>
-        <Link className="blog-all-link" href="/blog">View All Articles</Link>
+        <h2>Blog</h2>
+        <Link className="blog-all-link" href="/blog">All Articles</Link>
       </header>
       <div className="blog-grid">
         {guides.slice(0, 4).map((guide, index) => (
@@ -25,7 +22,7 @@ export function Blog() {
           >
             <h3>{guide.title}</h3>
             <p>{guide.deck}</p>
-            <span className="blog-read">Read Guide</span>
+            <span className="blog-read">Read Article</span>
           </Link>
         ))}
       </div>

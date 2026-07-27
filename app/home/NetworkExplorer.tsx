@@ -12,11 +12,8 @@ export function NetworkExplorer() {
   return (
     <section className="networks section" id="networks">
       <header className="chapter-heading">
-        <h2>How Jazari Moves Money.</h2>
-        <p>
-          Jazari can combine money movement, wallet access, digital dollars,
-          risk tooling, and public networks according to the route.
-        </p>
+        <h2>Partners &amp; Networks</h2>
+        <p>Jazari One is built on licensed partners and public blockchains. Here&apos;s every one of them.</p>
       </header>
 
       <div

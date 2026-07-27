@@ -1,6 +1,6 @@
 # Jazari One website context
 
-Last updated: 2026-07-26
+Last updated: 2026-07-27
 
 ## Product
 
@@ -34,9 +34,8 @@ These claims require product/legal confirmation before a public launch:
 - RNPL limits, pricing, eligibility, repayment terms, and credit disclosures.
 - The exact licensed entity holding customer funds.
 
-The homepage therefore calls the network section “Technology and networks,”
-not a definitive commercial-partner list. FX examples are explicitly marked as
-illustrative.
+The homepage currently uses the approved heading “Partners & Networks.”
+Commercial relationship wording still requires confirmation before launch.
 
 ## User’s enduring design preferences
 
@@ -71,7 +70,7 @@ illustrative.
 
 1. Bridge-inspired full-width fixed header
 2. Hero with shallow masked mesh shader and Jazari app video
-3. Editorial capability ledger using Jazari icon assets and a staggered reveal
+3. Static editorial capability ledger using Jazari icon assets
 4. Interactive How It Works tabs with one upright phone at a time
 5. FX/review experience integrated inside How It Works
 6. Static audience/use-case stories
@@ -84,7 +83,8 @@ illustrative.
 9. Homepage Blog preview with the four latest guides
 10. Closing download panel with performant CSS 3D money rain
 11. FAQ
-12. Legal/product footer with official iOS and Android store badges
+12. Legal/product footer with official iOS and Android store badges, social
+    links, and both UAE and US entities
 
 Do not reintroduce separate FX, clarity, Card, or RNPL promo sections. Their
 content is intentionally consolidated.
@@ -94,9 +94,10 @@ content is intentionally consolidated.
 ### Header
 
 - Transparent full-width bar at the top.
-- Adds a translucent blurred background and hairline after scrolling.
+- Adds a translucent blurred background after scrolling; no persistent hairline.
 - Desktop navigation links are deliberately larger than supporting UI copy.
-- Mobile control uses the text “Menu” / “Close.”
+- Mobile uses Lucide-style burger and close icons. The open menu covers the
+  viewport and includes the Download App action plus X, Instagram, and Facebook.
 - The palette control offers ten persisted themes using `localStorage`.
 
 ### Themes
@@ -128,25 +129,24 @@ palette selector: changing a color scheme cannot change page geometry.
 ### How It Works
 
 - Three accessible tabs:
-  - Set up your account
-  - Build the transfer
-  - Follow the payment
+  - Create an account
+  - Enter the amount
+  - Done!
 - Arrow, Home, and End keys change tabs.
-- One upright local screenshot is shown at a time.
+- One upright, equal-ratio local screenshot is shown at a time.
 - The tabs form one quiet, borderless segmented control without helper labels.
 - The active phone uses a transparent, borderless stage with a localized glow
   and bottom fade—no background card or decorative ghost typography.
 - FX conversion supports MXN, COP, BRL, and EUR. The review leads with “Know
   what arrives before you send,” shows `1 USD = destination value` prominently,
-  highlights the illustrative 0% transaction fee, and keeps the indicative-rate
-  disclaimer at the bottom of the card.
+  keeps the two 0% proof points beside the copy, and keeps the live-rate
+  partner disclaimer at the bottom of the card.
 
 ### Capability ledger
 
-- Rows use a quiet surface-color change on hover.
-- Rows reveal once from top to bottom when the list enters the viewport.
-- Content remains visible without JavaScript; reveal motion is progressive
-  enhancement, never a readability dependency.
+- Rows are static: no entrance reveal and no hover surface effect.
+- The USD-account claim is omitted here because that product remains on the
+  roadmap.
 - No liquid-metal canvas, cursor distortion, or decorative edge sweep is used.
 
 ### 3D card
@@ -162,10 +162,10 @@ palette selector: changing a color scheme cannot change page geometry.
 
 ### Audience
 
-- Each category is a photographic story with a headline and one concise value
-  statement.
-- Cards may react subtly to the cursor but do not expand, add chip lists, or
-  reveal a detail overlay.
+- The three supplied 2:3 portraits map to Freelancers, Migrants, and Their
+  families.
+- The photography is displayed without CSS tint, brightness filter, shader,
+  or gradient scrim; the authored lower image area carries the caption.
 - Mobile stacks the stories vertically.
 
 ### Money rain
@@ -342,7 +342,7 @@ Default local URL: `http://localhost:3000`
 - The roadmap is a compact horizontal scroll-snap carousel controlled by round
   previous/next buttons. It has no timeline line and keeps the overall page
   shorter. It follows the provider grid and precedes Blog. The current naming is
-  `Roadmap`, `USD account`, `More receive countries`,
+  `Roadmap`, `USD account`, `More countries`,
   `VISA Virtual card`, and `Remit Now Pay Later`; do not add phase prefixes.
 - The virtual card is code-generated with front, back, and four visible edge
   planes. It keeps only the Jazari One and Visa marks, uses a restrained
@@ -360,14 +360,17 @@ Default local URL: `http://localhost:3000`
 - The FAQ belongs immediately after the “Your dollars should move with you”
   conversion section.
 - The provider/network presentation is a balanced five-column desktop grid,
-  collapsing to three, two, and one columns. Each card shows only the service
+  collapsing to three and two columns. Each card shows only the service
   name and description. Wordmarks and symbols occupy a fixed visual slot, stay
   monochrome, and are optically normalized; Bridge omits its subsidiary line,
   while Gauntlet and Base use mark-only artwork.
-- Blog index and every guide use the same header component as the homepage.
-  The homepage Blog chapter shows “View All Articles” beside its heading.
-- Footer copy uses Inter, official Apple and Google store badges, and ends with
-  a large shader-filled Jazari One wordmark.
+- Blog index and every article use the same header and footer components as the
+  homepage. The homepage Blog chapter shows “All Articles” beside its heading.
+- The Blog index presents seven articles without read-time labels. Article
+  pages use visible breadcrumbs, one left-aligned reading column, no “At a
+  glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
+- Footer copy uses Inter and the official CDN-supplied Apple and Google badge
+  artwork. Do not reintroduce the oversized shader wordmark.
 
 ## Reference direction
 

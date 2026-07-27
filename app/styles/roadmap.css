@@ -198,7 +198,7 @@
   font-family: var(--serif);
   font-size: 34px;
   font-weight: 400;
-  letter-spacing: 0.1px;
+  letter-spacing: -0.1px;
   line-height: 1;
 }
 

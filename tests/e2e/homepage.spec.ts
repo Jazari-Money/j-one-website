@@ -22,7 +22,6 @@ async function prepareStablePage(page: Page) {
         transition-duration: 0.001ms !important;
       }
 
-      .benefit-list.is-visible .benefit-row,
       .provider-grid.is-visible .provider-card {
         opacity: 1 !important;
         transform: none !important;
@@ -41,7 +40,7 @@ async function prepareStablePage(page: Page) {
 }
 
 async function revealScrollableContent(page: Page) {
-  for (const selector of [".benefit-list", ".provider-grid"]) {
+  for (const selector of [".provider-grid"]) {
     const revealTarget = page.locator(selector);
     await revealTarget.scrollIntoViewIfNeeded();
     await expect(revealTarget).toHaveClass(/is-visible/);
@@ -73,7 +72,7 @@ test("keeps the core interactions working", async ({ page }) => {
     )
     .not.toBe("0");
 
-  await page.getByRole("button", { name: /Visuals:/ }).click();
+  await page.getByRole("button", { name: /Choose color theme/ }).click();
   await page.getByRole("button", { name: /Acid Lime/ }).click();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "toxic");
   await expect
@@ -85,10 +84,10 @@ test("keeps the core interactions working", async ({ page }) => {
     .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-shader")))
     .toBe("ribbon");
 
-  const accountTab = page.getByRole("tab", { name: /Set Up Your Account/ });
+  const accountTab = page.getByRole("tab", { name: /Create an account/ });
   await accountTab.focus();
   await accountTab.press("ArrowRight");
-  await expect(page.getByRole("tab", { name: /Build The Transfer/ })).toHaveAttribute(
+  await expect(page.getByRole("tab", { name: /Enter the amount/ })).toHaveAttribute(
     "aria-selected",
     "true",
   );
@@ -126,6 +125,28 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(
     page.getByText(/one interface for holding supported digital dollars/i),
   ).toBeVisible();
+});
+
+test("opens a full-height mobile navigation with download and social actions", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await prepareStablePage(page);
+
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  const menu = page.locator(".nav-menu");
+  await expect(menu).toHaveClass(/is-open/);
+  await expect(menu.getByRole("button", { name: "Download App" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Jazari One on X" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Jazari One on Instagram" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Jazari One on Facebook" })).toBeVisible();
+  await expect
+    .poll(() => menu.evaluate((node) => Math.round(node.getBoundingClientRect().height)))
+    .toBe(844);
+  await expect
+    .poll(() => page.evaluate(() => document.body.style.overflow))
+    .toBe("hidden");
+
+  await page.getByRole("button", { name: "Close navigation" }).click();
+  await expect(menu).not.toHaveClass(/is-open/);
 });
 
 for (const viewport of [

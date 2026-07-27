@@ -3,6 +3,7 @@
   z-index: 100;
   inset: 0 0 auto;
   height: 76px;
+  border-bottom: 1px solid transparent;
   color: var(--text);
   transition: background-color 220ms ease, backdrop-filter 220ms ease;
 }
@@ -24,6 +25,8 @@
 }
 
 .brand {
+  position: relative;
+  z-index: 3;
   width: max-content;
 }
 
@@ -51,6 +54,8 @@
 }
 
 .nav-actions {
+  position: relative;
+  z-index: 3;
   justify-self: end;
   display: flex;
   align-items: center;
@@ -65,13 +70,27 @@
 .mobile-toggle {
   position: relative;
   min-height: 40px;
-  padding: 0 14px;
+  padding: 0;
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface) 72%, transparent);
   color: var(--muted-strong);
   font-size: 11px;
   cursor: pointer;
   transition: color 160ms ease, background-color 160ms ease;
+}
+
+.theme-trigger {
+  width: 40px;
+  display: grid;
+  place-items: center;
+}
+
+.theme-trigger-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--swatch), var(--swatch-2));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.24);
 }
 
 .theme-trigger:hover,
@@ -224,16 +243,56 @@
   display: none;
 }
 
+.nav-mobile-extras {
+  display: none;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-2) 72%, transparent);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  background: var(--accent);
+  color: var(--accent-ink);
+  transform: translateY(-2px);
+  outline: 0;
+}
+
+.social-links svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  stroke: none;
+}
+
+.social-links svg rect,
+.social-links svg circle:not(.social-dot) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.social-links .social-dot {
+  fill: currentColor;
+}
+
 @media (max-width: 1080px) {
   .nav-menu {
     gap: 18px;
-  }
-
-  .theme-trigger {
-    width: 88px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
   }
 }
 
@@ -251,19 +310,22 @@
   }
 
   .nav-menu {
-    position: absolute;
-    top: 70px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
     right: 0;
     left: 0;
-    padding: 28px 20px 34px;
-    background: color-mix(in srgb, var(--bg) 96%, transparent);
+    min-height: 100dvh;
+    padding: 116px max(20px, calc((100vw - var(--page)) / 2)) 34px;
+    background: color-mix(in srgb, var(--bg) 98%, transparent);
     backdrop-filter: blur(22px);
     flex-direction: column;
     align-items: flex-start;
-    gap: 2px;
+    justify-content: flex-start;
+    gap: 0;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-10px);
+    transform: translateY(-14px);
     transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
   }
 
@@ -273,11 +335,12 @@
     transform: translateY(0);
   }
 
-  .nav-menu a {
+  .nav-menu > a {
     width: 100%;
-    padding: 10px 0;
+    padding: 7px 0;
     font-family: var(--serif);
-    font-size: 30px;
+    font-size: clamp(30px, 7vw, 42px);
+    letter-spacing: -0.1px;
   }
 
   .nav-cta {
@@ -285,7 +348,43 @@
   }
 
   .mobile-toggle {
-    display: block;
+    width: 40px;
+    display: grid;
+    place-items: center;
+  }
+
+  .mobile-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+
+  .nav-mobile-extras {
+    width: 100%;
+    margin-top: auto;
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .nav-mobile-extras > button {
+    min-height: 48px;
+    padding: 0 24px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .nav-mobile-socials {
+    width: auto;
   }
 }
 
@@ -297,18 +396,14 @@
   .theme-trigger,
   .mobile-toggle {
     min-height: 36px;
-    padding: 0 10px;
+    width: 36px;
+    padding: 0;
     font-size: 10px;
   }
 
-  .theme-trigger {
-    width: 58px;
-    font-size: 0;
-  }
-
-  .theme-trigger::after {
-    content: "Visuals";
-    font-size: 10px;
+  .theme-trigger-swatch {
+    width: 19px;
+    height: 19px;
   }
 
   .theme-menu {
@@ -319,5 +414,10 @@
     width: auto;
     max-height: calc(100vh - 78px);
     overflow-y: auto;
+  }
+
+  .nav-mobile-extras {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

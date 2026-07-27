@@ -9,38 +9,38 @@
 }
 
 .how-experience {
-  margin-top: 88px;
+  margin-top: 72px;
   display: grid;
-  grid-template-columns: minmax(330px, 0.74fr) minmax(500px, 1.26fr);
-  gap: 26px;
+  grid-template-columns: 1fr;
+  gap: 34px;
 }
 
 .step-tabs {
-  align-self: center;
-  padding: 6px;
-  border-radius: 24px;
-  background: color-mix(in srgb, var(--surface) 72%, transparent);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  padding: 5px;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--surface) 68%, transparent);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px;
 }
 
 .step-tabs button {
   position: relative;
   width: 100%;
-  min-height: 112px;
-  padding: 24px 28px;
+  min-height: 122px;
+  padding: 22px 24px;
   border: 0;
-  border-radius: 18px;
+  border-radius: 16px;
   background: transparent;
   text-align: left;
   cursor: pointer;
-  transition: background-color 180ms ease, transform 180ms ease;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 .step-tabs button:hover {
-  background: color-mix(in srgb, var(--surface-2) 72%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 52%, transparent);
 }
 
 .step-tabs button:focus-visible {
@@ -49,9 +49,7 @@
 }
 
 .step-tabs button.is-active {
-  background:
-    radial-gradient(circle at 10% 50%, var(--accent-soft), transparent 72%),
-    color-mix(in srgb, var(--surface-2) 88%, transparent);
+  background: color-mix(in srgb, var(--surface-2) 88%, transparent);
 }
 
 .step-tabs span {
@@ -64,7 +62,7 @@
 
 .step-tabs small {
   display: block;
-  max-width: 390px;
+  max-width: 310px;
   margin-top: 11px;
   color: var(--muted-strong);
   font-size: 15px;
@@ -73,30 +71,29 @@
 
 .step-screen {
   position: relative;
-  min-height: 680px;
+  min-height: 590px;
   border: 0;
   border-radius: 0;
-  overflow: hidden;
+  overflow: visible;
   background: transparent;
   display: grid;
-  place-items: end center;
+  place-items: center;
   isolation: isolate;
-  mask-image: linear-gradient(to bottom, #000 0 88%, transparent 100%);
 }
 
 .step-screen::before {
   content: "";
   position: absolute;
   z-index: 0;
-  top: 44%;
+  top: 50%;
   left: 50%;
-  width: min(500px, 82%);
+  width: min(470px, 72%);
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(circle, var(--accent-soft), transparent 68%);
   transform: translate(-50%, -50%);
-  filter: blur(36px);
-  opacity: 0.42;
+  filter: blur(44px);
+  opacity: 0.32;
   pointer-events: none;
 }
 
@@ -112,8 +109,8 @@
 
 .active-step-phone {
   z-index: 1;
-  width: min(330px, 70%);
-  margin-bottom: -72px;
+  width: min(280px, 74%);
+  margin: 0;
   animation: phone-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -363,14 +360,12 @@
 }
 
 @media (max-width: 1120px) {
-  .how-experience,
   .review-block {
     grid-template-columns: minmax(340px, 0.92fr) minmax(420px, 1.08fr);
   }
 }
 
 @media (max-width: 900px) {
-  .how-experience,
   .review-block {
     grid-template-columns: 1fr;
   }
@@ -380,18 +375,20 @@
   }
 
   .step-tabs {
-    flex-direction: row;
+    display: flex;
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
 
   .step-tabs button {
-    min-width: 250px;
-    min-height: 112px;
+    min-width: 260px;
+    min-height: 118px;
+    scroll-snap-align: start;
   }
 
   .step-screen {
-    min-height: 650px;
+    min-height: 570px;
   }
 
   .review-block {
@@ -411,13 +408,13 @@
 @media (max-width: 620px) {
   .step-tabs {
     width: 100%;
-    flex-direction: column;
-    overflow: visible;
+    margin-right: 0;
+    margin-left: 0;
   }
 
   .step-tabs button {
-    min-width: 0;
-    min-height: 102px;
+    min-width: 238px;
+    min-height: 112px;
     padding: 20px;
   }
 
@@ -426,11 +423,11 @@
   }
 
   .step-screen {
-    min-height: 540px;
+    min-height: 510px;
   }
 
   .active-step-phone {
-    width: min(285px, 77%);
+    width: min(246px, 78%);
   }
 
   .review-copy h3 {
@@ -503,13 +500,13 @@
 
 @media (min-width: 901px) {
   .how-experience {
-    margin-top: 77px;
-    gap: 23px;
+    margin-top: 68px;
+    gap: 30px;
   }
 
   .step-tabs button {
-    min-height: 112px;
-    padding: 23px 25px;
+    min-height: 118px;
+    padding: 22px 24px;
   }
 
   .step-tabs span {
@@ -517,12 +514,12 @@
   }
 
   .step-screen {
-    min-height: 600px;
+    min-height: 570px;
   }
 
   .active-step-phone {
-    width: min(300px, 70%);
-    margin-bottom: -64px;
+    width: min(276px, 70%);
+    margin-bottom: 0;
   }
 
   .review-block {

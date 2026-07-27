@@ -13,16 +13,12 @@ export function BlogIndex() {
       <header className="blog-index-header">
         <h1>Blog</h1>
         <p>
-          Practical guides for sending, receiving, and understanding money
-          across borders.
+          {guides.length} practical articles for sending, receiving, and
+          understanding money across borders.
         </p>
       </header>
 
-      <section className="blog-index-articles" aria-labelledby="all-articles">
-        <header>
-          <h2 id="all-articles">All Articles</h2>
-          <p>{guides.length} guides</p>
-        </header>
+      <section className="blog-index-articles" aria-label="All articles">
         <div className="blog-index-grid">
           {guides.map((guide, index) => (
             <Link
@@ -33,7 +29,7 @@ export function BlogIndex() {
               <span>{guide.route}</span>
               <h3>{guide.title}</h3>
               <p>{guide.deck}</p>
-              <small>{guide.read}</small>
+              <strong className="blog-index-read">Read Article</strong>
             </Link>
           ))}
         </div>

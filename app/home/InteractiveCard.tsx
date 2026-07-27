@@ -101,6 +101,9 @@ export function InteractiveCard() {
       aria-label="Jazari One Visa card"
       aria-describedby="card-interaction-help"
     >
+      <span className="sr-only" id="card-interaction-help">
+        Drag the card or use the arrow keys to rotate it.
+      </span>
       <div className="card-object" ref={cardRef}>
         <div className="card-face card-front">
           <img

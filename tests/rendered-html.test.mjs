@@ -29,8 +29,8 @@ test("server-renders the Jazari One landing page", async () => {
   );
   assert.match(html, /jazari-app\.mp4/);
   assert.match(html, /Download App/);
-  assert.match(html, /One account for money that crosses borders/);
-  assert.match(html, /How It Works/);
+  assert.match(html, /One app for money that crosses borders/);
+  assert.match(html, /How it works/);
   assert.match(html, /Know what arrives before you send/);
   assert.match(html, /class="numeric">1<\/b><small class="numeric">USD/);
   assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
@@ -38,9 +38,9 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, />Roadmap</);
   assert.doesNotMatch(html, /Roadmap 2026/);
   assert.match(html, /USD account/);
-  assert.match(html, /More receive countries/);
+  assert.match(html, /More countries/);
   assert.match(html, /VISA Virtual card/);
-  assert.match(html, /How Jazari Moves Money\./);
+  assert.match(html, /Partners &amp; Networks/);
   assert.match(html, />FAQ</);
   assert.ok(
     html.indexOf('id="networks"') < html.indexOf('id="roadmap"'),
@@ -94,12 +94,12 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /className="review-fee"/);
   assert.match(page, /className="numeric"/);
   assert.match(page, /Know what arrives before you send/);
-  assert.match(page, /Indicative rate, for illustration only/);
+  assert.match(page, /Live rate from our payment partner/);
   assert.match(page, /\/images\/flags\/in\.png/);
   assert.match(page, /\/images\/flags\/bd\.png/);
   assert.match(page, /\/images\/flags\/pk\.png/);
-  assert.match(page, /\/images\/stores\/app-store-badge\.svg/);
-  assert.match(page, /\/images\/stores\/google-play-badge\.png/);
+  assert.match(page, /\/images\/stores\/app-store-badge\.avif/);
+  assert.match(page, /\/images\/stores\/google-play-badge\.avif/);
   assert.match(page, /\/images\/brand\/visa-white\.svg/);
   assert.match(page, /className="audience-caption"/);
   assert.match(page, /\/images\/rails\/bridge\.svg/);
@@ -187,8 +187,9 @@ test("renders the Blog index and all seven guides", async () => {
   const indexResponse = await render("/blog");
   assert.equal(indexResponse.status, 200);
   const indexHtml = await indexResponse.text();
-  assert.match(indexHtml, /All Articles/);
-  assert.match(indexHtml, /7(?:<!--.*?-->)?\s*guides/);
+  assert.match(indexHtml, /7(?:<!--.*?-->)?\s*practical articles/);
+  assert.equal((indexHtml.match(/Read Article/g) ?? []).length, 7);
+  assert.doesNotMatch(indexHtml, /min read/i);
 
   const routes = [
     ["/blog/send-money-to-mexico", /five checks before you confirm/],
@@ -205,8 +206,12 @@ test("renders the Blog index and all seven guides", async () => {
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.match(html, title);
-    assert.match(html, /Before confirming/);
-    assert.match(html, /Availability, fees, exchange rates/);
+    assert.match(html, /aria-label="Breadcrumb"/);
+    assert.match(html, /Ready to join Jazari One\?/);
+    assert.match(html, /Jazari Fintech Services/);
+    assert.doesNotMatch(html, /At a glance/);
+    assert.doesNotMatch(html, /class="article-note"/);
+    assert.doesNotMatch(html, /min read/i);
     assert.match(html, /href="\/j-one-website\/#top"/);
     assert.match(html, /href="\/j-one-website\/blog\/?"/);
     assert.match(html, /href="\/j-one-website\/#access"/);

@@ -12,6 +12,7 @@ import {
   type ThemeKey,
 } from "./data";
 import { resetPointer, trackPointer, useReducedMotion } from "./hooks";
+import { SocialLinks } from "./SocialLinks";
 
 export function SiteHeader({
   theme,
@@ -33,7 +34,6 @@ export function SiteHeader({
   const [mobileOpen, setMobileOpen] = useState(false);
   const reduced = useReducedMotion();
   const selected = themeOptions.find((option) => option.key === theme) ?? themeOptions[0];
-  const selectedShader = shaderOptions.find((option) => option.key === shader) ?? shaderOptions[0];
   const homeHref = mode === "home" ? "#top" : withBasePath("/#top");
   const sectionHref = (section: string) =>
     mode === "home" ? `#${section}` : withBasePath(`/#${section}`);
@@ -56,6 +56,15 @@ export function SiteHeader({
     return () => window.removeEventListener("keydown", close);
   }, []);
 
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [mobileOpen]);
+
   function closeMobile() {
     setMobileOpen(false);
   }
@@ -68,11 +77,23 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <a href={sectionHref("how")} onClick={closeMobile}>How It Works</a>
+          <a href={sectionHref("how")} onClick={closeMobile}>How it works</a>
           <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
           <a href={sectionHref("roadmap")} onClick={closeMobile}>Roadmap</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
+          <div className="nav-mobile-extras">
+            <button
+              type="button"
+              onClick={() => {
+                closeMobile();
+                onAccess();
+              }}
+            >
+              Download App
+            </button>
+            <SocialLinks className="nav-mobile-socials" />
+          </div>
         </div>
 
         <div className="nav-actions">
@@ -85,8 +106,16 @@ export function SiteHeader({
               onPointerLeave={resetPointer}
               aria-expanded={themeOpen}
               aria-controls="theme-menu"
+              aria-label={`Choose color theme. Current theme: ${selected.name}`}
             >
-              Visuals: {selected.name} · {selectedShader.name}
+              <span
+                className="theme-trigger-swatch"
+                style={{
+                  "--swatch": selected.mesh[1],
+                  "--swatch-2": selected.mesh[2],
+                } as CSSProperties}
+                aria-hidden="true"
+              />
             </button>
             <div
               className={`theme-menu ${themeOpen ? "is-open" : ""}`}
@@ -167,12 +196,24 @@ export function SiteHeader({
           <button
             className="mobile-toggle"
             type="button"
-            onClick={() => setMobileOpen((open) => !open)}
+            onClick={() => {
+              setThemeOpen(false);
+              setMobileOpen((open) => !open);
+            }}
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}
             aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
           >
-            {mobileOpen ? "Close" : "Menu"}
+            {mobileOpen ? (
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            )}
           </button>
         </div>
       </nav>

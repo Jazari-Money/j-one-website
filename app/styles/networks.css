@@ -157,7 +157,8 @@
 }
 
 @media (max-width: 460px) {
-  .provider-grid {
-    grid-template-columns: 1fr;
+  .provider-card {
+    min-height: 230px;
+    padding: 20px;
   }
 }

@@ -1,9 +1,8 @@
 .audience .chapter-heading {
-  max-width: 980px;
+  max-width: 1080px;
 }
 
 .audience-explorer {
-  min-height: 620px;
   margin-top: 86px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -11,78 +10,32 @@
 }
 
 .audience-panel {
-  --pointer-x: 50%;
-  --pointer-y: 50%;
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
   position: relative;
   min-width: 0;
+  aspect-ratio: 2 / 3;
   border: 0;
-  border-radius: 34px;
+  border-radius: 26px;
   overflow: clip;
   contain: paint;
-  isolation: isolate;
-  background: var(--surface);
-  transform:
-    perspective(1200px)
-    rotateX(var(--tilt-x))
-    rotateY(var(--tilt-y));
-  transform-style: preserve-3d;
-  will-change: transform;
-  transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.audience-panel::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  inset: 0;
-  background: radial-gradient(
-    circle 280px at var(--pointer-x) var(--pointer-y),
-    color-mix(in srgb, var(--accent) 12%, transparent),
-    transparent 74%
-  );
-  opacity: 0.2;
-  transition: opacity 240ms ease;
-  pointer-events: none;
-}
-
-.audience-panel:hover {
-  transform:
-    perspective(1200px)
-    rotateX(var(--tilt-x))
-    rotateY(var(--tilt-y))
-    translateY(-2px);
-}
-
-.audience-panel:hover::after {
-  opacity: 0.66;
+  background: #080a0a;
 }
 
 .audience-panel > img {
   position: absolute;
-  inset: -1px;
-  width: calc(100% + 2px);
-  height: calc(100% + 2px);
-  object-fit: cover;
-  filter: saturate(0.82) brightness(0.72);
-}
-
-.audience-scrim {
-  position: absolute;
-  z-index: 1;
   inset: 0;
-  background: linear-gradient(to top, rgba(2, 4, 3, 0.94), transparent 72%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .audience-caption {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   right: 0;
   bottom: 0;
   left: 0;
-  min-height: 166px;
-  padding: 34px;
+  min-height: 176px;
+  padding: 32px;
   color: #fff;
 }
 
@@ -92,31 +45,25 @@
   font-size: clamp(32px, 3.2vw, 50px);
   font-weight: 400;
   line-height: 0.96;
-  letter-spacing: 0.1px;
+  letter-spacing: -0.1px;
 }
 
 .audience-caption p {
   max-width: 440px;
   margin-top: 14px;
-  color: rgba(255, 255, 255, 0.68);
+  color: rgba(255, 255, 255, 0.78);
   font-size: 15px;
   line-height: 1.5;
 }
 
-@media (max-width: 1120px) {
-  .audience-explorer {
-    height: 650px;
-  }
-}
-
 @media (max-width: 900px) {
   .audience-explorer {
-    height: auto;
     grid-template-columns: 1fr;
+    width: min(520px, 100%);
   }
 
   .audience-panel {
-    min-height: 420px;
+    min-height: 0;
   }
 }
 
@@ -126,7 +73,7 @@
   }
 
   .audience-panel {
-    min-height: 480px;
+    border-radius: 22px;
   }
 
   .audience-caption {
@@ -136,13 +83,7 @@
 
 @media (min-width: 901px) {
   .audience-explorer {
-    min-height: 634px;
-    height: auto;
     margin-top: 76px;
     gap: 14px;
-  }
-
-  .audience-panel {
-    min-height: 634px;
   }
 }

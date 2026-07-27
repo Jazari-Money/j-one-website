@@ -30,7 +30,6 @@ export function ProductRoadmap() {
       <header className="roadmap-heading">
         <div className="chapter-heading">
           <h2>Roadmap</h2>
-          <p>One useful layer at a time, starting with the USD account.</p>
         </div>
         <div className="roadmap-controls" aria-label="Roadmap navigation">
           <button type="button" onClick={() => move(-1)} aria-label="Previous milestone">
@@ -53,18 +52,18 @@ export function ProductRoadmap() {
               <h3>USD account</h3>
               <div className="roadmap-copy-bottom">
                 <p>
-                  Hold and receive supported digital dollars, then send through
-                  the bank routes available to you.
+                  A US routing and account number in your name, issued through a
+                  licensed US bank partner. Get paid from clients and platforms
+                  by ACH, FedNow, domestic wire, or SWIFT.
                 </p>
                 <ul>
-                  <li>Hold, receive, and send from one account</li>
-                  <li>Review every transfer before confirmation</li>
+                  <li>No US residency required.</li>
                 </ul>
               </div>
             </div>
             <div className="roadmap-visual live-phone">
               <Phone
-                src={withBasePath("/images/screens/home.webp")}
+                src={withBasePath("/images/screens/account-home.webp")}
                 alt="Jazari One dollar account home screen"
               />
             </div>
@@ -76,11 +75,11 @@ export function ProductRoadmap() {
             onPointerLeave={resetPointer}
           >
             <div className="roadmap-copy">
-              <h3>More receive countries</h3>
+              <h3>More countries</h3>
               <div className="roadmap-copy-bottom">
                 <p>
-                  We&apos;re preparing new routes as local banking and compliance
-                  requirements become ready.
+                  Adding new corridors is ongoing work. Every route needs a local
+                  banking partner and regulatory approval before it goes live.
                 </p>
               </div>
             </div>
@@ -109,11 +108,8 @@ export function ProductRoadmap() {
               <h3>VISA Virtual card</h3>
               <div className="roadmap-copy-bottom">
                 <p>
-                  Spend from the same balance, with purchase history and controls
-                  in the app.
-                </p>
-                <p id="card-interaction-help" className="interaction-note">
-                  Drag or use the arrow keys to rotate the card.
+                  Pay for subscriptions, software, and everyday spending from
+                  your Jazari balance.
                 </p>
               </div>
             </div>
@@ -142,7 +138,7 @@ export function ProductRoadmap() {
             </div>
             <div className="roadmap-visual rnpl-phone">
               <Phone
-                src={withBasePath("/images/screens/amount-entry.webp")}
+                src={withBasePath("/images/screens/rnpl-amount.webp")}
                 alt="Remit Now Pay Later amount screen"
               />
             </div>

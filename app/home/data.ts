@@ -106,11 +106,6 @@ export const features = [
     image: withBasePath("/images/features/hand-coin.webp"),
   },
   {
-    title: "An account in your name",
-    copy: "A personal dollar account designed for people whose money crosses borders.",
-    image: withBasePath("/images/features/head.webp"),
-  },
-  {
     title: "Specialist infrastructure",
     copy: "Identity, wallets, stablecoins, and payment rails work behind one experience.",
     image: withBasePath("/images/features/shield.webp"),
@@ -120,45 +115,45 @@ export const features = [
 export const howSteps = [
   {
     id: "account",
-    title: "Set Up Your Account",
-    copy: "Open your account and complete the checks required for your country.",
+    title: "Create an account",
+    copy: "Enter phone number and complete the checks required for your country.",
     screen: withBasePath("/images/screens/home.webp"),
-    alt: "Jazari One dollar account home screen",
+    alt: "Jazari One account creation screen",
   },
   {
     id: "amount",
-    title: "Build The Transfer",
-    copy: "Choose a recipient and amount, then review the rate and expected result.",
+    title: "Enter the amount",
+    copy: "Type the amount and see exactly what arrives in local currency.",
     screen: withBasePath("/images/screens/amount-entry.webp"),
-    alt: "Jazari One transfer amount screen",
+    alt: "Jazari One amount and exchange preview screen",
   },
   {
     id: "arrival",
-    title: "Follow The Payment",
-    copy: "See when money arrives and keep one reference if you need to follow up.",
+    title: "Done!",
+    copy: "Transaction details are always there if you need to check or follow up.",
     screen: withBasePath("/images/screens/send-success.webp"),
-    alt: "Jazari One successful transfer screen",
+    alt: "Jazari One completed transaction screen",
   },
 ] as const;
 
 export const audiences = [
   {
     title: "Freelancers",
-    line: "Get paid. Hold dollars. Move money when you choose.",
+    line: "Get paid in dollars, hold them, and put what’s sitting idle to work at a variable rate.",
     image: withBasePath("/images/audience/freelancer.webp"),
-    alt: "Freelancer working on her laptop in a café",
+    alt: "Freelancer working at a desk",
   },
   {
-    title: "Global movers",
-    line: "Take one familiar balance across changing countries.",
+    title: "Migrants",
+    line: "One dollar balance that follows you across countries without heavy bank cuts, hidden FX spreads, or transfer fees.",
     image: withBasePath("/images/audience/global-mover.webp"),
-    alt: "Remote professional working abroad",
+    alt: "Traveler moving between countries",
   },
   {
-    title: "Families across borders",
-    line: "Make regular support easier to plan and understand.",
+    title: "Their families",
+    line: "More of what was sent actually arrives. Held in dollars, not a falling local currency.",
     image: withBasePath("/images/audience/family-support.webp"),
-    alt: "Family looking at a phone together",
+    alt: "Older couple looking at a phone together",
   },
 ] as const;
 
@@ -167,50 +162,43 @@ export const guides = [
     slug: "send-money-to-mexico",
     route: "Mexico",
     title: "Sending dollars to Mexico: five checks before you confirm",
-    deck: "The right recipient details and a clear MXN preview do most of the work.",
-    read: "3 min read",
+    deck: "A CLABE is an 18-digit standardized banking code used in Mexico to ensure secure domestic electronic fund transfers and wire payments. It consists of three key parts: a 3-digit bank code, a 3-digit city/branch code, and an 11-digit individual account number followed by a control digit.",
   },
   {
     slug: "send-money-to-brazil",
     route: "Brazil",
     title: "Sending money to Brazil: a cleaner Pix and bank checklist",
     deck: "Use the exact recipient identifier, read the BRL amount, and keep one reliable record.",
-    read: "3 min read",
   },
   {
     slug: "send-money-to-colombia",
     route: "Colombia",
     title: "Planning a transfer to Colombia without avoidable delays",
     deck: "Account type and recipient details matter as much as the account number.",
-    read: "3 min read",
   },
   {
     slug: "send-money-to-europe",
     route: "Europe",
     title: "Sending to Europe: choose the right currency and bank route",
     deck: "Europe is not one currency or one payment route. Check the destination first.",
-    read: "4 min read",
   },
   {
     slug: "compare-transfer-costs",
     route: "Planning",
     title: "How to compare a transfer beyond the headline rate",
     deck: "The amount received, total cost, and delivery estimate belong in one comparison.",
-    read: "4 min read",
   },
   {
     slug: "verify-recipient-details",
     route: "Safety",
     title: "What to verify before sending money to a new recipient",
     deck: "A short recipient check prevents most avoidable transfer problems.",
-    read: "3 min read",
   },
   {
     slug: "digital-dollars-bank-payouts",
     route: "Basics",
     title: "Digital dollars and bank payouts: what each part does",
     deck: "Understand what stays in dollars, what converts, and what reaches the bank.",
-    read: "5 min read",
   },
 ] as const;
 

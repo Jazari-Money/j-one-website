@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
+import { SiteFooter } from "../home/SiteFooter";
 
 type ArticleSection = {
   heading: string;
@@ -8,25 +9,15 @@ type ArticleSection = {
 };
 
 type GuideArticleData = {
-  route: string;
-  read: string;
   title: string;
   deck: string;
-  checks: string[];
   sections: ArticleSection[];
 };
 
 const articleData: Record<string, GuideArticleData> = {
   mexico: {
-    route: "Mexico",
-    read: "3 min read",
     title: "Sending dollars to Mexico: five checks before you confirm",
-    deck: "The right recipient details and a clear MXN preview do most of the work.",
-    checks: [
-      "Correct recipient name and bank",
-      "18-digit CLABE when the route requests it",
-      "Clear MXN estimate and saved reference",
-    ],
+    deck: "A CLABE is an 18-digit standardized banking code used in Mexico to ensure secure domestic electronic fund transfers and wire payments. It consists of three key parts: a 3-digit bank code, a 3-digit city/branch code, and an 11-digit individual account number followed by a control digit.",
     sections: [
       {
         heading: "Ask for the bank details directly",
@@ -56,15 +47,8 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   brazil: {
-    route: "Brazil",
-    read: "3 min read",
     title: "Sending money to Brazil: a cleaner Pix and bank checklist",
     deck: "Use the exact recipient identifier, read the BRL amount, and keep one reliable record.",
-    checks: [
-      "Exact Pix key or requested bank details",
-      "Recipient name matches the intended person",
-      "Clear BRL estimate and no duplicate transfer",
-    ],
     sections: [
       {
         heading: "Use the recipient method Jazari requests",
@@ -90,15 +74,8 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   colombia: {
-    route: "Colombia",
-    read: "3 min read",
     title: "Planning a transfer to Colombia without avoidable delays",
     deck: "Account type and recipient details matter as much as the account number.",
-    checks: [
-      "Correct bank and account type",
-      "Exact account number and matching recipient",
-      "Current COP estimate reviewed",
-    ],
     sections: [
       {
         heading: "Confirm the complete account",
@@ -124,15 +101,8 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   europe: {
-    route: "Europe",
-    read: "4 min read",
     title: "Sending to Europe: choose the right currency and bank route",
     deck: "Europe is not one currency or one payment route. Check the destination before the account.",
-    checks: [
-      "Correct country and destination currency",
-      "Exact IBAN and matching recipient name",
-      "Complete delivery estimate reviewed",
-    ],
     sections: [
       {
         heading: "Choose the destination currency first",
@@ -158,15 +128,8 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   costs: {
-    route: "Planning",
-    read: "4 min read",
     title: "How to compare a transfer beyond the headline rate",
     deck: "The useful number is what arrives, when it arrives, and what the full transfer costs.",
-    checks: [
-      "Recipient amount in the destination currency",
-      "Transaction fee and conversion shown together",
-      "Delivery estimate for the selected route",
-    ],
     sections: [
       {
         heading: "Start with the recipient amount",
@@ -195,15 +158,8 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   recipient: {
-    route: "Safety",
-    read: "3 min read",
     title: "What to verify before sending money to a new recipient",
     deck: "A short recipient check is usually faster than correcting a transfer later.",
-    checks: [
-      "Legal name matches the account",
-      "Bank, account type, and identifier are current",
-      "Recipient confirms the destination currency",
-    ],
     sections: [
       {
         heading: "Verify through a trusted channel",
@@ -227,15 +183,8 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   "digital-dollars": {
-    route: "Basics",
-    read: "4 min read",
     title: "Digital dollars and bank payouts: what each part does",
     deck: "Your balance, the transfer rail, and the destination bank each have a different job.",
-    checks: [
-      "Supported digital-dollar balance selected",
-      "Available route matches the destination",
-      "Local bank details are complete",
-    ],
     sections: [
       {
         heading: "The balance holds the dollar value",
@@ -268,24 +217,17 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
       <InternalSiteHeader />
 
       <article className="guide-article">
+        <nav className="article-breadcrumbs" aria-label="Breadcrumb">
+          <Link href="/blog">Blog</Link>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{guide.title}</span>
+        </nav>
         <header className="article-header">
-          <div className="article-meta">
-            <span>Blog</span>
-            <span>{guide.route}</span>
-            <span>{guide.read}</span>
-          </div>
           <h1>{guide.title}</h1>
           <p>{guide.deck}</p>
         </header>
 
         <div className="article-layout">
-          <aside className="article-checklist">
-            <span>At a glance</span>
-            <ul>
-              {guide.checks.map((check) => <li key={check}>{check}</li>)}
-            </ul>
-          </aside>
-
           <div className="article-copy">
             {guide.sections.map((section) => (
               <section key={section.heading}>
@@ -298,22 +240,15 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
                 )}
               </section>
             ))}
-            <div className="article-note">
-              <strong>Before confirming</strong>
-              <p>
-                Availability, fees, exchange rates, limits, eligibility, and
-                delivery times vary by route. Review the current information
-                shown in Jazari One before every transfer.
-              </p>
-            </div>
           </div>
         </div>
       </article>
 
-      <footer className="article-footer">
-        <p>Ready to hold and move dollars across borders?</p>
-        <Link href="/#access">Download App</Link>
-      </footer>
+      <section className="article-cta" aria-labelledby="article-cta-title">
+        <h2 id="article-cta-title">Ready to join Jazari One?</h2>
+        <Link className="article-cta-link" href="/#access">Download App</Link>
+      </section>
+      <SiteFooter />
     </main>
   );
 }

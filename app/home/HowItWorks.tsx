@@ -42,8 +42,8 @@ export function HowItWorks({
   return (
     <section className="how section" id="how">
       <header className="chapter-heading">
-        <h2>How It Works</h2>
-        <p>Choose a step to see the screen and information you use at that point.</p>
+        <h2>How it works</h2>
+        <p>Three steps show the screen and information you use at each point.</p>
       </header>
 
       <div className="how-experience">
@@ -85,11 +85,8 @@ export function HowItWorks({
 
       <div className="review-block" id="rates">
         <div className="review-copy">
-          <h3>Know what arrives before you send.</h3>
-          <p>
-            See the exchange rate, transaction fee, recipient amount, and
-            expected delivery before you confirm.
-          </p>
+          <h3>Know what arrives before you send</h3>
+          <p>Everything is on screen before you confirm. Nothing hidden in the rate.</p>
           <div className="review-metrics">
             <div className="review-fee" aria-label="Hidden foreign exchange rate fee: zero percent">
               <strong className="numeric">0%</strong>
@@ -158,14 +155,12 @@ export function HowItWorks({
           </div>
 
           <div className="rate-details">
-            <span>Transaction fee</span>
-            <strong className="numeric">0%</strong>
             <span>Expected delivery</span>
             <strong className="numeric">2–5 minutes</strong>
           </div>
           <p className="rate-disclaimer">
-            Indicative rate, for illustration only. Final rates, fees, delivery
-            times, eligibility, and route availability are shown before confirmation.
+            Live rate from our payment partner. Final rates, fees, delivery times,
+            eligibility, and route availability are confirmed in the app before you send.
           </p>
         </div>
       </div>
