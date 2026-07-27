@@ -43,37 +43,50 @@
   padding-bottom: 150px;
   display: grid;
   grid-template-columns: minmax(180px, 250px) minmax(0, 820px);
+  grid-template-rows: auto 1fr;
   justify-content: space-between;
   gap: clamp(70px, 10vw, 150px);
 }
 
 .legal-index {
   position: sticky;
-  top: 116px;
-  align-self: start;
-  display: grid;
-  gap: 3px;
-}
-
-.legal-index strong {
-  margin-bottom: 18px;
-  color: var(--text);
-  font-size: 13px;
-  font-weight: 560;
+  z-index: 8;
+  top: 92px;
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 10px;
+  border-radius: 999px;
+  overflow-x: auto;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(18px);
+  display: flex;
+  gap: 5px;
+  scrollbar-width: none;
 }
 
 .legal-index a {
-  width: fit-content;
-  padding: 6px 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.35;
+  flex: 1 0 42px;
+  min-width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: var(--muted-strong);
+  font-size: 14px;
   text-decoration: none;
-  transition: color 180ms ease;
+  display: grid;
+  place-items: center;
+  transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
 }
 
-.legal-index a:hover {
-  color: var(--text);
+.legal-index a:hover,
+.legal-index a:focus-visible {
+  color: var(--accent-ink);
+  background: var(--accent);
+  transform: translateY(-1px);
+  outline: 0;
+}
+
+.legal-document {
+  grid-column: 2;
 }
 
 .legal-document > section {
@@ -160,17 +173,11 @@
 @media (max-width: 900px) {
   .legal-layout {
     grid-template-columns: 1fr;
-    gap: 70px;
+    gap: 64px;
   }
 
-  .legal-index {
-    position: static;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2px 22px;
-  }
-
-  .legal-index strong {
-    grid-column: 1 / -1;
+  .legal-document {
+    grid-column: 1;
   }
 }
 
@@ -194,7 +201,16 @@
   }
 
   .legal-index {
-    display: none;
+    top: 78px;
+    margin-inline: -6px;
+    width: calc(100% + 12px);
+    padding: 7px;
+  }
+
+  .legal-index a {
+    flex-basis: 36px;
+    min-width: 36px;
+    height: 36px;
   }
 
   .legal-document > section {

@@ -211,12 +211,12 @@
   --pointer-ny: 0;
   position: relative;
   min-height: 40px;
-  padding: 0 18px;
+  padding: 0 16px;
   border-radius: 999px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-size: 12px;
-  font-weight: 500;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
@@ -226,13 +226,13 @@
 .nav-cta-shader {
   position: absolute;
   z-index: 0;
-  inset: -16px;
-  background: linear-gradient(to top, var(--cta-from), var(--cta-to));
+  inset: -10px;
+  background: radial-gradient(circle 84px at var(--pointer-x) var(--pointer-y), var(--accent-soft), transparent 72%);
   transform:
     translate(calc(var(--pointer-nx) * -12%), calc(var(--pointer-ny) * -16%))
     scale(1.06);
   transition: transform 150ms ease-out;
-  opacity: 0.62;
+  opacity: 0.52;
 }
 
 .nav-cta-label {

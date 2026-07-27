@@ -93,6 +93,8 @@
 }
 
 .blog-index-read {
+  position: relative;
+  overflow: hidden;
   width: max-content;
   margin-top: auto;
   padding: 11px 16px;
@@ -106,8 +108,8 @@
 
 .blog-index-grid > a:hover .blog-index-read,
 .blog-index-grid > a:focus-visible .blog-index-read {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--surface-2) 70%, var(--accent) 12%);
+  color: var(--text);
   transform: translateY(-2px);
 }
 

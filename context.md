@@ -414,6 +414,29 @@ Default local URL: `http://localhost:3000`
 - The visual preference hook must load persisted theme and field choices
   before writing defaults back to local storage; do not reintroduce the
   mount-time overwrite race.
+- The legal documents use one horizontal numbered section rail instead of a
+  vertical contents list. Each number remains an accessible anchor with the
+  full section name exposed through its label and title.
+- Pricing, Yields, Roadmap, and Blog share one internal-page hero system:
+  identical container width, top rhythm, display scale, and description style.
+  Their functional cards use neutral charcoal surfaces rather than
+  theme-tinted green panels.
+- The shared CTA is a compact dark material pill. Its label is semibold and
+  its border highlight follows the pointer; avoid broad white gradients or
+  oversized padding.
+- The homepage download panel and the Yields conversion panel share the same
+  Citrus vertical flow component and particle language. Desktop motion starts
+  on hover; touch layouts trigger it once the panel enters the viewport.
+- Card hover lighting may softly reflect onto an adjacent card, but it must
+  remain a restrained edge reflection rather than a large colored spotlight.
+- The hero shader should favor a dark horizon/orb composition with animated
+  beams, contour wisps, and sparse dust. Suppress white hotspots and muddy
+  bloom; preserve darker negative space and occasional sharper energy bands.
+- Footer metadata has no separator rules. Copyright aligns to the right, and
+  the footer may end with a large, layered metallic Jazari One wordmark used as
+  a closing visual rather than another content section.
+- The local Bridge asset is cropped to the standalone Bridge wordmark. Do not
+  restore the “a stripe company” subline in provider cards.
 
 ## Reference direction
 
@@ -425,5 +448,7 @@ Default local URL: `http://localhost:3000`
 - Original Jazari behavior/assets: https://jazari.xyz/
 - Framer Realism Button material and hover reference:
   https://www.framer.com/community/marketplace/components/realismbutton/
+- Unicorn Studio’s layered volumetric-light and interactive shader direction:
+  https://www.unicorn.studio/
 - Gauntlet USD Alpha strategy and risk reference:
   https://www.gauntlet.xyz/gauntlet-strategies/gtusda

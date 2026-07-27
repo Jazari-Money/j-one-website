@@ -186,7 +186,7 @@
 }
 
 .yield-questions {
-  padding: 34px 0 118px;
+  padding: 132px 0 118px;
   display: grid;
   grid-template-columns: minmax(300px, 0.72fr) minmax(580px, 1.28fr);
   gap: clamp(64px, 9vw, 150px);
@@ -293,9 +293,7 @@
   border-radius: 30px;
   overflow: hidden;
   isolation: isolate;
-  background:
-    radial-gradient(circle at 82% 28%, var(--accent-soft), transparent 34%),
-    var(--surface);
+  background: var(--surface);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -311,15 +309,19 @@
     radial-gradient(circle, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.6px),
     radial-gradient(circle, color-mix(in srgb, var(--accent) 62%, transparent) 0 1.2px, transparent 1.8px);
   background-position: 0 0, 28px 19px;
-  background-size: 54px 58px, 76px 72px;
-  opacity: 0.28;
-  animation: yield-particle-drift 18s linear infinite;
+  background-size: 42px 48px, 67px 62px;
+  opacity: 0.38;
+  animation: yield-particle-drift 17s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
   pointer-events: none;
 }
 
-.yield-roadmap > * {
+.yield-roadmap > *:not(.flow-field-canvas) {
   position: relative;
   z-index: 1;
+}
+
+.yield-roadmap .flow-field-canvas {
+  z-index: 0;
 }
 
 .yield-roadmap .realism-button {
@@ -331,7 +333,9 @@
 }
 
 @keyframes yield-particle-drift {
-  to { transform: translate3d(38px, -46px, 0); }
+  0% { transform: translate3d(-18px, 16px, 0) rotate(-1deg); }
+  52% { transform: translate3d(24px, -28px, 0) rotate(1.5deg); }
+  100% { transform: translate3d(-10px, -54px, 0) rotate(-0.6deg); }
 }
 
 @media (max-width: 900px) {
@@ -392,6 +396,7 @@
   }
 
   .yield-questions {
+    padding-top: 92px;
     padding-bottom: 84px;
     gap: 42px;
   }

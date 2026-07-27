@@ -1,0 +1,73 @@
+.pricing-hero,
+.yields-hero,
+.roadmap-full-hero,
+.blog-index-header {
+  width: var(--page);
+  margin-inline: auto;
+  padding: 190px 0 86px;
+}
+
+.pricing-hero h1,
+.yields-hero h1,
+.roadmap-full-hero h1,
+.blog-index-header h1 {
+  max-width: 900px;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(76px, 8.2vw, 116px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+.pricing-hero p,
+.yields-hero p,
+.roadmap-full-hero p,
+.blog-index-header p {
+  max-width: 700px;
+  margin: 30px 0 0;
+  color: var(--muted-strong);
+  font-size: 18px;
+  line-height: 1.62;
+  letter-spacing: -0.012em;
+}
+
+.pricing-groups,
+.yield-feature,
+.yield-questions details,
+.yield-roadmap,
+.roadmap-full-card,
+.blog-index-grid > a {
+  background-color: var(--surface);
+  background-image: linear-gradient(
+    145deg,
+    color-mix(in srgb, #ffffff 2.5%, transparent),
+    transparent 48%
+  );
+}
+
+@media (max-width: 620px) {
+  .pricing-hero,
+  .yields-hero,
+  .roadmap-full-hero,
+  .blog-index-header {
+    width: var(--page);
+    padding: 146px 0 64px;
+  }
+
+  .pricing-hero h1,
+  .yields-hero h1,
+  .roadmap-full-hero h1,
+  .blog-index-header h1 {
+    font-size: 66px;
+  }
+
+  .pricing-hero p,
+  .yields-hero p,
+  .roadmap-full-hero p,
+  .blog-index-header p {
+    margin-top: 26px;
+    font-size: 16px;
+  }
+}

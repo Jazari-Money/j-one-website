@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- official and local brand artwork */
 
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { useState } from "react";
 import { withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
@@ -69,6 +70,19 @@ export function SiteFooter() {
           <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
             <img src={withBasePath("/images/stores/google-play-badge.avif")} alt="Get it on Google Play" />
           </a>
+        </div>
+      </div>
+
+      <div className="footer-metal-stage" aria-hidden="true">
+        <div className="footer-metal-logo">
+          {Array.from({ length: 8 }, (_, index) => (
+            <img
+              key={index}
+              src={withBasePath("/images/brand/jazari-one-logo.svg")}
+              alt=""
+              style={{ "--metal-depth": index } as CSSProperties}
+            />
+          ))}
         </div>
       </div>
 

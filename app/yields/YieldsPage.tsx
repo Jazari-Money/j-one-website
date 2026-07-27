@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local provider artwork */
 
 import Link from "next/link";
+import { FlowField } from "../home/FlowField";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
 import { resetPointer, trackPointer } from "../home/hooks";
@@ -139,6 +140,7 @@ export function YieldsPage() {
       </section>
 
       <section className="yield-roadmap">
+        <FlowField />
         <div>
           <h2>Ready to open a yield?</h2>
           <p>Review the current strategy and risks, then continue in the Jazari app.</p>

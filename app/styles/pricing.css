@@ -24,9 +24,9 @@
 .pricing-hero p {
   max-width: 720px;
   margin-top: 30px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.55;
+  color: var(--muted-strong);
+  font-size: 18px;
+  line-height: 1.62;
 }
 
 .pricing-groups {
@@ -35,18 +35,30 @@
   border-radius: 28px;
   overflow: hidden;
   background: var(--surface);
+  box-shadow: 0 34px 110px rgba(0, 0, 0, 0.14);
 }
 
 .pricing-group {
+  position: relative;
   min-height: 250px;
-  padding: 38px 42px;
+  padding: 46px 52px;
   display: grid;
-  grid-template-columns: minmax(240px, 0.72fr) minmax(460px, 1.28fr);
-  gap: 70px;
+  grid-template-columns: minmax(220px, 0.64fr) minmax(520px, 1.36fr);
+  gap: clamp(54px, 7vw, 102px);
 }
 
 .pricing-group + .pricing-group {
-  border-top: 1px solid var(--line);
+  border-top: 0;
+}
+
+.pricing-group + .pricing-group::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 52px;
+  left: 52px;
+  height: 1px;
+  background: var(--line);
 }
 
 .pricing-group h2,
@@ -66,15 +78,28 @@
 .pricing-group dl {
   display: grid;
   align-content: center;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--surface-2) 36%, transparent);
 }
 
 .pricing-group dl > div {
+  position: relative;
   min-height: 72px;
-  padding: 14px 0;
+  padding: 18px 22px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 30px;
+}
+
+.pricing-group dl > div + div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 22px;
+  left: 22px;
+  height: 1px;
+  background: var(--line);
 }
 
 .pricing-group dt {
@@ -90,14 +115,19 @@
 }
 
 @media (max-width: 820px) {
-  .pricing-group { grid-template-columns: 1fr; gap: 42px; }
+  .pricing-group {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
 }
 
 @media (max-width: 620px) {
   .pricing-hero { padding: 146px 0 62px; }
   .pricing-hero h1 { font-size: 68px; }
   .pricing-groups { border-radius: 22px; }
-  .pricing-group { min-height: 0; padding: 30px 24px 34px; }
-  .pricing-group dl > div { grid-template-columns: 1fr; gap: 5px; }
+  .pricing-group { min-height: 0; padding: 32px 24px 36px; }
+  .pricing-group + .pricing-group::before { right: 24px; left: 24px; }
+  .pricing-group dl > div { grid-template-columns: 1fr; gap: 5px; padding: 17px 18px; }
+  .pricing-group dl > div + div::before { right: 18px; left: 18px; }
   .pricing-group dd { text-align: left; }
 }
