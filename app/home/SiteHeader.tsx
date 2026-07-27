@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
 import { CSSProperties, useEffect, useState } from "react";
-import { MeshGradient } from "@paper-design/shaders-react";
 import { withBasePath } from "../site-paths";
 import {
   shaderOptions,
@@ -11,7 +10,7 @@ import {
   type ShaderKey,
   type ThemeKey,
 } from "./data";
-import { resetPointer, trackPointer, useReducedMotion } from "./hooks";
+import { resetPointer, trackPointer } from "./hooks";
 import { SocialLinks } from "./SocialLinks";
 
 export function SiteHeader({
@@ -32,7 +31,6 @@ export function SiteHeader({
   const [scrolled, setScrolled] = useState(false);
   const [themeOpen, setThemeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const reduced = useReducedMotion();
   const selected = themeOptions.find((option) => option.key === theme) ?? themeOptions[0];
   const homeHref = mode === "home" ? "#top" : withBasePath("/#top");
   const sectionHref = (section: string) =>
@@ -81,7 +79,7 @@ export function SiteHeader({
           <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
           <a href={withBasePath("/pricing/")} onClick={closeMobile}>Pricing</a>
           <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
-          <a href={sectionHref("roadmap")} onClick={closeMobile}>Roadmap</a>
+          <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Roadmap</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
           <div className="nav-mobile-extras">
@@ -182,18 +180,14 @@ export function SiteHeader({
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}
           >
-            <span className="nav-cta-shader" aria-hidden="true">
-              <MeshGradient
-                width="100%"
-                height="100%"
-                colors={[selected.mesh[2], selected.mesh[3], "#ffffff", selected.mesh[1]]}
-                distortion={0.12}
-                swirl={0.02}
-                grainMixer={0}
-                grainOverlay={0}
-                speed={reduced ? 0 : 0.08}
-              />
-            </span>
+            <span
+              className="nav-cta-shader"
+              style={{
+                "--cta-from": selected.mesh[2],
+                "--cta-to": selected.mesh[3],
+              } as CSSProperties}
+              aria-hidden="true"
+            />
             <span className="nav-cta-label">Download App</span>
           </button>
           <button

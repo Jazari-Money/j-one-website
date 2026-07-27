@@ -14,8 +14,6 @@ import {
 } from "./hooks";
 
 function MagicAccess({
-  theme,
-  shaderActive,
   open,
   joined,
   email,
@@ -24,8 +22,6 @@ function MagicAccess({
   onEmail,
   onSubmit,
 }: {
-  theme: ThemeOption;
-  shaderActive: boolean;
   open: boolean;
   joined: boolean;
   email: string;
@@ -34,8 +30,6 @@ function MagicAccess({
   onEmail: (value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }) {
-  const reduced = useReducedMotion();
-
   return (
     <div className={`access-control ${open ? "is-open" : ""}`} id="access">
       <button
@@ -49,20 +43,7 @@ function MagicAccess({
         aria-hidden={open}
         tabIndex={open ? -1 : 0}
       >
-        <span className="button-shader" aria-hidden="true">
-          {shaderActive && (
-            <MeshGradient
-              width="100%"
-              height="100%"
-              colors={[theme.mesh[2], theme.mesh[3], "#ffffff", theme.mesh[1]]}
-              distortion={0.12}
-              swirl={0.02}
-              grainMixer={0}
-              grainOverlay={0}
-              speed={reduced ? 0 : 0.08}
-            />
-          )}
-        </span>
+        <span className="button-shader" aria-hidden="true" />
         <span className="button-label">Download App</span>
       </button>
       <form
@@ -141,7 +122,7 @@ export function Hero({
             swirl={shader === "orbital" ? 0.1 : 0.018}
             grainMixer={0}
             grainOverlay={0}
-            speed={reduced ? 0 : shader === "orbital" ? 0.11 : 0.045}
+            speed={reduced ? 0 : shader === "orbital" ? 0.11 : shader === "beam" ? 0.018 : 0.045}
             scale={shader === "orbital" ? 1.24 : 0.92}
           />
         )}
@@ -176,8 +157,6 @@ export function Hero({
           bank account in Mexico, Colombia, Brazil, Europe and 26 more countries.
         </p>
         <MagicAccess
-          theme={theme}
-          shaderActive={shaderVisible}
           open={accessOpen}
           joined={joined}
           email={email}

@@ -44,7 +44,7 @@ export const themeOptions = [
     key: "jazari",
     name: "Jazari Lime",
     family: "Hybrid",
-    mesh: ["#000000", "#052414", "#2ef27e", "#c8ffdb"],
+    mesh: ["#000000", "#07150b", "#1ad959", "#4eff9e"],
   },
   {
     key: "solar",

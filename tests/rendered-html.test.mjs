@@ -57,14 +57,16 @@ test("server-renders the Jazari One landing page", async () => {
   assert.doesNotMatch(html, /audience-index/);
 });
 
-test("server-renders pricing and yields pages", async () => {
-  const [pricingResponse, yieldsResponse] = await Promise.all([
+test("server-renders pricing, yields, and roadmap pages", async () => {
+  const [pricingResponse, yieldsResponse, roadmapResponse] = await Promise.all([
     render("/pricing"),
     render("/yields"),
+    render("/roadmap"),
   ]);
-  const [pricing, yields] = await Promise.all([
+  const [pricing, yields, roadmap] = await Promise.all([
     pricingResponse.text(),
     yieldsResponse.text(),
+    roadmapResponse.text(),
   ]);
 
   assert.match(pricing, /<h1>Pricing<\/h1>/);
@@ -74,8 +76,13 @@ test("server-renders pricing and yields pages", async () => {
 
   assert.match(yields, /Gauntlet USD Alpha/);
   assert.match(yields, /4\.66%/);
-  assert.match(yields, /Principal is at risk/);
-  assert.match(yields, /More yields are coming/);
+  assert.match(yields, /<h1>Yields<\/h1>/);
+  assert.doesNotMatch(yields, /Return and risk move together/);
+  assert.match(yields, /Ready to open a yield/);
+
+  assert.match(roadmap, /<h1>Roadmap<\/h1>/);
+  assert.match(roadmap, /More yield strategies/);
+  assert.match(roadmap, /Remit Now Pay Later/);
 });
 
 test("keeps the restrained interactions and clear content hierarchy in source", async () => {

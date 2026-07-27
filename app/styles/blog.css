@@ -68,7 +68,7 @@
   position: relative;
   z-index: 1;
   width: max-content;
-  margin-top: auto;
+  margin-top: 30px;
   padding: 11px 16px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface-2) 82%, transparent);

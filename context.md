@@ -339,6 +339,8 @@ Default local URL: `http://localhost:3000`
   and use one shared “realism” treatment: shallow material depth, an inner
   highlight, soft accent glow, cursor-position response, and a short light
   pass on hover. Keep the movement restrained and never let it displace copy.
+  The Jazari green profile uses the live product tokens `#1ad959`, `#4eff9e`,
+  `#21f668`, and `#4dff99`; do not approximate these with yellow-green hues.
 - Header controls and content cards do not use decorative strokes.
 - Benefit rows place the description directly below the title and use spacing,
   not separator rules, to establish rhythm.
@@ -354,6 +356,8 @@ Default local URL: `http://localhost:3000`
   image, or phase prefix. It follows the provider grid and precedes Blog. The
   current naming is `Roadmap`, `USD account`, `More countries`,
   `More yield strategies`, `VISA Virtual card`, and `Remit Now Pay Later`.
+  The homepage carousel includes a `View All` entry point to `/roadmap/`,
+  which presents every milestone in a compact responsive grid.
 - The virtual card is code-generated with front, back, and four visible edge
   planes. It keeps only the Jazari One and Visa marks, uses a restrained
   cursor-position sheen, and supports drag and keyboard rotation.
@@ -384,6 +388,9 @@ Default local URL: `http://localhost:3000`
   while Gauntlet and Base use mark-only artwork.
 - Blog index and every article use the same header and footer components as the
   homepage. The homepage Blog chapter shows “All Articles” beside its heading.
+- The Blog index headline follows the same display scale as Pricing. Homepage
+  article previews keep a clear gap between their title and `Read Article`
+  button; buttons must never touch or overlap their title.
 - The Blog index presents seven articles without read-time labels. Article
   pages use visible breadcrumbs, one left-aligned reading column, no “At a
   glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
@@ -399,10 +406,9 @@ Default local URL: `http://localhost:3000`
   soon.
 - `/yields/` explains variable onchain yield and the current Gauntlet USD Alpha
   strategy. The displayed `4.66%` is an illustrative, variable APY supplied by
-  Jazari, not a guaranteed quote. The page must keep its explicit principal,
-  liquidity, stablecoin, smart-contract, oracle, bridge, collateral, and
-  withdrawal-delay disclosures. It also points to the `More yield strategies`
-  roadmap milestone.
+  Jazari, not a guaranteed quote. Risk information lives in the expandable
+  `How yield works` answers rather than a duplicated standalone risk section.
+  The page ends with `Ready to open a yield?` and a `Download App` action.
 - The visual preference hook must load persisted theme and field choices
   before writing defaults back to local storage; do not reintroduce the
   mount-time overwrite race.

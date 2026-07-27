@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local flag assets */
 
 import { useRef } from "react";
+import Link from "next/link";
 import { withBasePath } from "../site-paths";
 import { resetPointer, trackPointer } from "./hooks";
 
@@ -14,7 +15,7 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
-const milestones = [
+export const milestones = [
   {
     title: "USD account",
     copy:
@@ -69,6 +70,7 @@ export function ProductRoadmap() {
           <p>One useful layer at a time, starting with the USD account.</p>
         </div>
         <div className="roadmap-controls" aria-label="Roadmap navigation">
+          <Link className="roadmap-all-link" href="/roadmap">View All</Link>
           <button className="realism-icon-button" type="button" onClick={() => move(-1)} aria-label="Previous milestone">
             <ArrowIcon direction="left" />
           </button>

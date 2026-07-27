@@ -177,8 +177,8 @@
     linear-gradient(to bottom, #000 0 70%, transparent 100%),
     linear-gradient(90deg, transparent, #000 28% 72%, transparent);
   mask-composite: intersect;
-  opacity: 0.82;
-  filter: saturate(116%) brightness(1.08);
+  opacity: 0.66;
+  filter: saturate(108%) brightness(0.94);
 }
 
 [data-shader="beam"] .hero::before {
@@ -186,7 +186,7 @@
   width: min(860px, 90vw);
   height: 880px;
   background: linear-gradient(90deg, transparent 8%, color-mix(in srgb, var(--accent-2) 28%, transparent) 50%, transparent 92%);
-  animation: beam-ambient 6.4s ease-in-out infinite;
+  animation: beam-ambient 11s ease-in-out infinite;
 }
 
 .beam-rays,
@@ -209,9 +209,9 @@
     linear-gradient(84deg, transparent 24%, color-mix(in srgb, var(--accent-3) 30%, transparent) 49%, transparent 67%);
   filter: blur(9px);
   mix-blend-mode: screen;
-  opacity: 0.78;
+  opacity: 0.56;
   transform-origin: 50% 0;
-  animation: church-light-pulse 5.6s ease-in-out infinite;
+  animation: church-light-pulse 10.8s ease-in-out infinite;
 }
 
 .beam-rays i {
@@ -224,14 +224,14 @@
 .beam-rays i:first-child {
   background: linear-gradient(98deg, transparent 15%, rgba(255, 255, 255, 0.52) 44%, transparent 58%);
   filter: blur(12px);
-  animation: church-light-a 6.3s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  animation: church-light-a 12.4s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 .beam-rays i:last-child {
   background: linear-gradient(78deg, transparent 34%, color-mix(in srgb, var(--accent-3) 34%, #fff) 49%, transparent 63%);
   filter: blur(16px);
   opacity: 0.5;
-  animation: church-light-b 7.1s cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  animation: church-light-b 14.2s cubic-bezier(0.45, 0, 0.25, 1) infinite;
 }
 
 .beam-dust {
@@ -255,25 +255,25 @@
 
 @keyframes church-light-pulse {
   0%, 100% { transform: translateX(-5%) skewX(-4deg) scaleX(0.76); opacity: 0.2; }
-  38% { transform: translateX(1%) skewX(0deg) scaleX(1.16); opacity: 0.94; }
+  38% { transform: translateX(1%) skewX(0deg) scaleX(1.12); opacity: 0.68; }
   68% { transform: translateX(6%) skewX(5deg) scaleX(0.9); opacity: 0.42; }
 }
 
 @keyframes church-light-a {
   0%, 10% { transform: translateX(-12%) skewX(-8deg) scaleX(0.58); opacity: 0.06; }
-  42% { transform: translateX(2%) skewX(1deg) scaleX(1.24); opacity: 0.98; }
+  42% { transform: translateX(2%) skewX(1deg) scaleX(1.18); opacity: 0.66; }
   72%, 100% { transform: translateX(12%) skewX(8deg) scaleX(0.7); opacity: 0.08; }
 }
 
 @keyframes church-light-b {
   0%, 26% { transform: translateX(12%) skewX(8deg) scaleX(0.62); opacity: 0.04; }
-  66% { transform: translateX(-2%) skewX(-1deg) scaleX(1.22); opacity: 0.9; }
+  66% { transform: translateX(-2%) skewX(-1deg) scaleX(1.16); opacity: 0.58; }
   100% { transform: translateX(-12%) skewX(-8deg) scaleX(0.72); opacity: 0.08; }
 }
 
 @keyframes beam-ambient {
   0%, 100% { opacity: 0.46; filter: blur(22px); transform: translateX(-50%) scaleX(0.84); }
-  50% { opacity: 0.94; filter: blur(34px); transform: translateX(-50%) scaleX(1.14); }
+  50% { opacity: 0.68; filter: blur(32px); transform: translateX(-50%) scaleX(1.1); }
 }
 
 @keyframes floating-dust {
@@ -337,29 +337,31 @@
 .magic-access-button,
 .access-form {
   position: absolute;
-  inset: 0;
-  width: 100%;
   height: 100%;
   border-radius: 999px;
 }
 
-.magic-access-button {
+.access-control > .magic-access-button {
   --pointer-x: 50%;
   --pointer-y: 50%;
   --pointer-nx: 0;
   --pointer-ny: 0;
+  position: absolute;
   width: 160px;
+  top: 0;
+  right: auto;
+  bottom: auto;
   left: 50%;
   overflow: hidden;
   border: 0;
-  background: var(--accent);
+  background: linear-gradient(to top, var(--accent-2), var(--accent-3));
   color: var(--accent-ink);
   transform: translateX(-50%);
   cursor: pointer;
   isolation: isolate;
   box-shadow:
-    0 16px 60px var(--accent-soft),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    0 14px 42px var(--accent-soft),
+    inset 0 0 0 1px color-mix(in srgb, var(--accent-3) 64%, transparent);
   transition:
     width 380ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 220ms ease,
@@ -373,8 +375,12 @@
   z-index: 2;
   inset: 1px;
   border-radius: 999px;
-  background: linear-gradient(105deg, rgba(255, 255, 255, 0.34), transparent 28% 68%, rgba(255, 255, 255, 0.24));
-  opacity: 0.52;
+  background: radial-gradient(
+    circle 86px at var(--pointer-x) var(--pointer-y),
+    rgba(255, 255, 255, 0.28),
+    transparent 72%
+  );
+  opacity: 0.42;
   pointer-events: none;
 }
 
@@ -403,14 +409,15 @@
 .button-shader {
   position: absolute;
   z-index: 0;
-  inset: -22px;
-  opacity: 0.9;
+  inset: 0;
+  background: linear-gradient(to top, var(--accent-2), var(--accent-3));
+  opacity: 1;
   transform:
     translate(
       calc(var(--pointer-nx) * -12%),
       calc(var(--pointer-ny) * -16%)
     )
-    scale(1.18);
+    scale(1.04);
   transition: transform 150ms ease-out;
 }
 
@@ -418,10 +425,13 @@
   position: relative;
   z-index: 3;
   font-size: 12px;
-  font-weight: 780;
+  color: var(--accent-ink);
+  font-weight: 500;
 }
 
 .access-form {
+  inset: 0;
+  width: 100%;
   padding: 7px;
   border: 1px solid var(--line-strong);
   background: color-mix(in srgb, var(--surface) 72%, transparent);

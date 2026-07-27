@@ -8,15 +8,16 @@
 .blog-index-header {
   width: var(--page);
   margin: 0 auto;
-  padding: 184px 0 110px;
+  padding: 190px 0 86px;
 }
 
 .blog-index-header h1 {
+  max-width: 820px;
   font-family: var(--serif);
-  font-size: clamp(104px, 15vw, 220px);
+  font-size: clamp(76px, 8.2vw, 116px);
   font-weight: 400;
   letter-spacing: -0.2px;
-  line-height: 0.78;
+  line-height: 0.88;
 }
 
 .blog-index-header p {
@@ -100,6 +101,14 @@
   color: var(--text);
   font-size: 15px;
   font-weight: 650;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.blog-index-grid > a:hover .blog-index-read,
+.blog-index-grid > a:focus-visible .blog-index-read {
+  background: var(--accent);
+  color: var(--accent-ink);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 900px) {
@@ -123,7 +132,7 @@
   }
 
   .blog-index-header h1 {
-    font-size: 104px;
+    font-size: 68px;
   }
 
   .blog-index-header p {

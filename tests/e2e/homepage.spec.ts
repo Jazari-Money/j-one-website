@@ -54,8 +54,11 @@ async function revealScrollableContent(page: Page) {
     await page.waitForTimeout(24);
   }
 
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await page.waitForTimeout(50);
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+  });
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 }
 
 test("keeps the core interactions working", async ({ page }) => {
@@ -150,18 +153,25 @@ test("renders the pricing preview and legal links", async ({ page }) => {
   );
 });
 
-test("explains variable yields and links back to the roadmap", async ({ page }) => {
+test("explains yields and links into the app flow", async ({ page }) => {
   await page.goto("/yields/", { waitUntil: "networkidle" });
   await expect(
-    page.getByRole("heading", { name: /Variable yield, clearly explained/ }),
+    page.getByRole("heading", { name: "Yields" }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
   await expect(page.getByText("4.66%")).toBeVisible();
-  await expect(page.getByText("Principal is at risk.")).toBeVisible();
-  await expect(page.getByRole("link", { name: "View Roadmap" })).toHaveAttribute(
-    "href",
-    "/#roadmap",
+  await expect(page.getByText("Return and risk move together")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Download App" }).last()).toHaveAttribute(
+    "href", "/#access",
   );
+});
+
+test("shows every product milestone on the roadmap page", async ({ page }) => {
+  await page.goto("/roadmap/", { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { name: "Roadmap" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "USD account" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "More yield strategies" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
 });
 
 test("opens a full-height mobile navigation with download and social actions", async ({ page }) => {

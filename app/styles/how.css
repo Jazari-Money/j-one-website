@@ -72,7 +72,7 @@
 
 .step-screen {
   position: relative;
-  min-height: 520px;
+  min-height: 510px;
   border: 0;
   border-radius: 0;
   overflow: hidden;
@@ -112,9 +112,23 @@
   top: 16px;
   left: 50%;
   width: min(380px, 86%);
-  height: 610px;
+  height: 494px;
+  overflow: hidden;
   transform: translateX(-50%);
-  mask-image: linear-gradient(to bottom, #000 0 68%, rgba(0, 0, 0, 0.92) 78%, transparent 96%);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0 52%,
+    rgba(0, 0, 0, 0.88) 66%,
+    rgba(0, 0, 0, 0.38) 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0 52%,
+    rgba(0, 0, 0, 0.88) 66%,
+    rgba(0, 0, 0, 0.38) 82%,
+    transparent 100%
+  );
 }
 
 .active-step-phone {
@@ -393,7 +407,7 @@
   }
 
   .step-screen {
-    min-height: 500px;
+    min-height: 470px;
   }
 
   .review-block {
@@ -428,13 +442,13 @@
   }
 
   .step-screen {
-    min-height: 430px;
+    min-height: 410px;
   }
 
   .step-screen-stack {
     top: 10px;
     width: min(310px, 82%);
-    height: 500px;
+    height: 400px;
   }
 
   .review-copy h3 {
@@ -521,7 +535,7 @@
   }
 
   .step-screen {
-    min-height: 520px;
+    min-height: 510px;
   }
 
   .review-block {

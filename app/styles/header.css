@@ -49,14 +49,14 @@
 
 .nav-menu a {
   padding: 8px 0;
-  color: var(--muted-strong);
+  color: rgba(255, 255, 255, 0.86);
   font-size: 15.5px;
   transition: color 160ms ease;
 }
 
 .nav-menu a:hover,
 .nav-menu a:focus-visible {
-  color: var(--text);
+  color: #ffffff;
 }
 
 .nav-actions {
@@ -216,7 +216,7 @@
   background: var(--accent);
   color: var(--accent-ink);
   font-size: 12px;
-  font-weight: 760;
+  font-weight: 500;
   cursor: pointer;
   overflow: hidden;
   isolation: isolate;
@@ -227,10 +227,12 @@
   position: absolute;
   z-index: 0;
   inset: -16px;
+  background: linear-gradient(to top, var(--cta-from), var(--cta-to));
   transform:
     translate(calc(var(--pointer-nx) * -12%), calc(var(--pointer-ny) * -16%))
-    scale(1.18);
+    scale(1.06);
   transition: transform 150ms ease-out;
+  opacity: 0.62;
 }
 
 .nav-cta-label {

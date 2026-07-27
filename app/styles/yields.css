@@ -57,8 +57,8 @@
 }
 
 .yield-strategy-copy img {
-  width: 56px;
-  height: 56px;
+  width: 190px;
+  height: 46px;
   object-fit: contain;
   object-position: left center;
   filter: grayscale(1) brightness(0) invert(1);
@@ -224,10 +224,56 @@
   font-weight: 600;
   cursor: pointer;
   list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .yield-questions summary::-webkit-details-marker {
   display: none;
+}
+
+.yield-question-icon {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface-2) 74%, transparent);
+  color: var(--muted-strong);
+  display: grid;
+  place-items: center;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.yield-question-icon svg {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+
+.yield-question-minus {
+  display: none;
+}
+
+.yield-questions summary:hover .yield-question-icon,
+.yield-questions summary:focus-visible .yield-question-icon,
+.yield-questions details[open] .yield-question-icon {
+  background: var(--accent);
+  color: var(--accent-ink);
+  transform: scale(1.08);
+}
+
+.yield-questions details[open] .yield-question-plus {
+  display: none;
+}
+
+.yield-questions details[open] .yield-question-minus {
+  display: block;
 }
 
 .yield-questions details p {
@@ -241,14 +287,39 @@
 }
 
 .yield-roadmap {
+  position: relative;
   margin-bottom: 118px;
   padding: 62px;
   border-radius: 30px;
-  background: var(--surface);
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 82% 28%, var(--accent-soft), transparent 34%),
+    var(--surface);
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
   gap: 70px;
+}
+
+.yield-roadmap::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -16%;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.6px),
+    radial-gradient(circle, color-mix(in srgb, var(--accent) 62%, transparent) 0 1.2px, transparent 1.8px);
+  background-position: 0 0, 28px 19px;
+  background-size: 54px 58px, 76px 72px;
+  opacity: 0.28;
+  animation: yield-particle-drift 18s linear infinite;
+  pointer-events: none;
+}
+
+.yield-roadmap > * {
+  position: relative;
+  z-index: 1;
 }
 
 .yield-roadmap .realism-button {
@@ -256,7 +327,11 @@
   min-height: 50px;
   padding: 0 24px;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 500;
+}
+
+@keyframes yield-particle-drift {
+  to { transform: translate3d(38px, -46px, 0); }
 }
 
 @media (max-width: 900px) {

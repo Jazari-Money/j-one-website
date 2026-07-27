@@ -57,7 +57,7 @@ export function YieldsPage() {
       <InternalSiteHeader />
 
       <header className="yields-hero">
-        <h1>Variable yield,<br />clearly explained</h1>
+        <h1>Yields</h1>
         <p>
           Put eligible digital dollars to work through independently managed
           onchain strategies. Rates move daily and returns are never guaranteed.
@@ -108,18 +108,6 @@ export function YieldsPage() {
         </dl>
       </section>
 
-      <section className="yield-risk" aria-labelledby="yield-risk-title">
-        <div>
-          <h2 id="yield-risk-title">Return and risk move together</h2>
-          <p>
-            The rate may fall close to zero. Market, liquidity, stablecoin,
-            smart-contract, oracle, bridge, and collateral events can delay
-            withdrawals or reduce the amount returned.
-          </p>
-        </div>
-        <strong>Principal is at risk.</strong>
-      </section>
-
       <section className="yield-questions" aria-labelledby="yield-questions-title">
         <header>
           <h2 id="yield-questions-title">How yield works</h2>
@@ -133,7 +121,17 @@ export function YieldsPage() {
               onPointerMove={trackPointer}
               onPointerLeave={resetPointer}
             >
-              <summary>{item.question}</summary>
+              <summary>
+                <span>{item.question}</span>
+                <span className="yield-question-icon" aria-hidden="true">
+                  <svg className="yield-question-plus" viewBox="0 0 24 24">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                  <svg className="yield-question-minus" viewBox="0 0 24 24">
+                    <path d="M5 12h14" />
+                  </svg>
+                </span>
+              </summary>
               <p>{item.answer}</p>
             </details>
           ))}
@@ -142,20 +140,16 @@ export function YieldsPage() {
 
       <section className="yield-roadmap">
         <div>
-          <h2>More yields are coming</h2>
-          <p>
-            Future strategies may use different assets, managers, risk
-            profiles, networks, and variable APYs. Each will have its own review
-            and risk disclosure.
-          </p>
+          <h2>Ready to open a yield?</h2>
+          <p>Review the current strategy and risks, then continue in the Jazari app.</p>
         </div>
         <Link
           className="realism-button"
-          href="/#roadmap"
+          href="/#access"
           onPointerMove={trackPointer}
           onPointerLeave={resetPointer}
         >
-          View Roadmap
+          Download App
         </Link>
       </section>
 
