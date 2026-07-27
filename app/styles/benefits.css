@@ -22,6 +22,23 @@
   gap: 2px;
 }
 
+.benefit-reveal {
+  opacity: 0;
+  transform: translateY(-16px);
+}
+
+.benefit-list.is-visible .benefit-reveal {
+  animation: benefit-reveal 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--benefit-index) * 85ms);
+}
+
+@keyframes benefit-reveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .benefit-row {
   position: relative;
   min-height: 118px;
@@ -47,7 +64,7 @@
   width: 72px;
   height: 72px;
   object-fit: contain;
-  filter: grayscale(1) contrast(1.08);
+  filter: grayscale(1) contrast(1.04);
 }
 
 .benefit-row h3 {

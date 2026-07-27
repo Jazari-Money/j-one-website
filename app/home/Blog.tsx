@@ -14,7 +14,7 @@ export function Blog() {
       <div className="blog-grid">
         {guides.slice(0, 4).map((guide, index) => (
           <Link
-            className={`blog-card ${index === 0 ? "blog-card-featured" : ""}`}
+            className={`blog-card pointer-card ${index === 0 ? "blog-card-featured" : ""}`}
             href={`/blog/${guide.slug}`}
             key={guide.slug}
             onPointerMove={trackPointer}

@@ -48,420 +48,79 @@
 .roadmap-window {
   position: relative;
   width: 100%;
-  margin-top: 64px;
+  margin-top: 56px;
   overflow: hidden;
   mask-image: linear-gradient(to right, #000 0 91%, transparent 100%);
 }
 
 .roadmap-track {
   display: flex;
-  gap: 18px;
+  gap: 16px;
+  padding: 2px 12vw 10px 2px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   overscroll-behavior-inline: contain;
   scrollbar-width: none;
 }
 
-.roadmap-track::-webkit-scrollbar {
-  display: none;
-}
+.roadmap-track::-webkit-scrollbar { display: none; }
 
 .roadmap-card {
-  --pointer-x: 50%;
-  --pointer-y: 50%;
-  position: relative;
-  min-width: min(760px, 78vw);
-  height: 510px;
+  min-width: min(440px, 68vw);
+  min-height: 410px;
+  padding: 40px;
   border-radius: 26px;
   overflow: hidden;
   background: var(--surface);
   scroll-snap-align: start;
-  display: grid;
-  grid-template-columns: minmax(280px, 0.82fr) minmax(330px, 1.18fr);
-  isolation: isolate;
-  transition: transform 260ms ease, background-color 260ms ease;
-}
-
-.roadmap-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle 340px at var(--pointer-x) var(--pointer-y), var(--accent-soft), transparent 72%),
-    radial-gradient(circle 360px at 86% 10%, var(--accent-soft), transparent 72%);
-  opacity: 0.36;
-  pointer-events: none;
-  transition: opacity 240ms ease;
-}
-
-.roadmap-card:hover {
-  transform: translateY(-5px);
-}
-
-.roadmap-card:hover::before {
-  opacity: 0.7;
-}
-
-[data-shader="orbital"] .roadmap-card::before {
-  background:
-    radial-gradient(circle 250px at var(--pointer-x) var(--pointer-y), var(--accent-soft), transparent 72%),
-    radial-gradient(circle 290px at 76% 42%, var(--accent-soft), transparent 70%);
-}
-
-[data-shader="ribbon"] .roadmap-card::before {
-  background:
-    radial-gradient(circle 250px at var(--pointer-x) var(--pointer-y), var(--accent-soft), transparent 72%),
-    linear-gradient(132deg, transparent 43%, var(--accent-soft) 57%, transparent 73%);
-}
-
-[data-shader="beam"] .roadmap-card::before {
-  background:
-    radial-gradient(circle 250px at var(--pointer-x) var(--pointer-y), var(--accent-soft), transparent 72%),
-    linear-gradient(92deg, transparent 54%, var(--accent-soft) 70%, transparent 85%);
-}
-
-.roadmap-copy,
-.roadmap-visual {
-  position: relative;
-  z-index: 1;
-  min-width: 0;
-}
-
-.roadmap-copy {
-  padding: 48px 20px 48px 48px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 28px;
 }
 
-.roadmap h3 {
-  max-width: 440px;
-  font-size: clamp(45px, 4vw, 62px);
+.roadmap-card h3 {
+  position: relative;
+  z-index: 1;
+  max-width: 340px;
+  font-size: clamp(46px, 4vw, 62px);
   line-height: 0.94;
   text-wrap: balance;
 }
 
-.roadmap-copy-bottom > p {
-  max-width: 440px;
+.roadmap-card-bottom {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+}
+
+.roadmap-card p {
+  max-width: 360px;
   color: var(--muted-strong);
   font-size: 15px;
   line-height: 1.62;
 }
 
-.roadmap-copy ul {
-  margin-top: 20px;
-  display: grid;
-  gap: 8px;
-}
-
-.roadmap-copy li {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.roadmap-copy-bottom {
-  margin-top: auto;
-}
-
-.roadmap-visual {
-  display: grid;
-  place-items: center;
-}
-
-.live-phone {
-  align-items: end;
-}
-
-.live-phone .phone {
-  width: min(250px, 70%);
-  margin-bottom: -28px;
-  filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.48));
-}
-
-.route-roster {
-  padding: 38px 44px 38px 24px;
-  align-content: center;
-}
-
-.route-group {
-  width: 100%;
-  padding: 20px 0;
-  display: grid;
-  grid-template-columns: minmax(110px, 0.52fr) 1fr;
-  align-items: start;
-  gap: 24px;
-}
-
-.route-group h4 {
-  font-family: var(--serif);
-  font-size: 34px;
-  font-weight: 400;
-  letter-spacing: -0.1px;
-  line-height: 1;
-}
-
-.route-country-list {
-  display: grid;
-  gap: 8px;
-}
-
-.route-country-list li {
-  min-height: 36px;
-  display: grid;
-  grid-template-columns: 30px 1fr;
-  align-items: center;
-  gap: 8px;
-  color: var(--text);
-  font-size: 15px;
-}
-
-.route-flag {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.africa-group p {
-  color: var(--muted-strong);
-  font-size: 14px;
-  line-height: 1.55;
-}
-
-.interaction-note {
-  color: var(--accent) !important;
-  font-size: 13px !important;
-}
-
-.card-interaction {
-  width: 100%;
-  height: 100%;
-  perspective: 1100px;
-  display: grid;
-  place-items: center;
-  cursor: grab;
-  touch-action: pan-y;
-}
-
-.card-interaction:active {
-  cursor: grabbing;
-}
-
-.card-interaction:focus-visible {
-  outline: 0;
-}
-
-.card-object {
-  --card-rx: -11deg;
-  --card-ry: 21deg;
-  --card-px: 50%;
-  --card-py: 50%;
-  --card-depth: 36px;
-  position: relative;
-  width: min(390px, 80%);
-  aspect-ratio: 1.586 / 1;
-  transform-style: preserve-3d;
-  transform: rotateX(var(--card-rx)) rotateY(var(--card-ry));
-  transition: transform 120ms ease-out;
-  filter:
-    drop-shadow(0 36px 45px rgba(0, 0, 0, 0.58))
-    drop-shadow(12px 8px 15px rgba(0, 0, 0, 0.28));
-}
-
-.card-object::before,
-.card-face {
-  position: absolute;
-  inset: 0;
-  border-radius: 10px;
-  backface-visibility: hidden;
-}
-
-.card-object::before {
-  content: "";
-  background: linear-gradient(145deg, #77808b 0%, #202731 40%, #05070a 100%);
-  transform: translate3d(-8px, 10px, calc(var(--card-depth) * -1));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.card-face {
-  overflow: hidden;
-  background:
-    radial-gradient(circle at var(--card-px) var(--card-py), color-mix(in srgb, var(--accent) 18%, transparent), transparent 46%),
-    linear-gradient(145deg, #1d232b 0%, #10151b 58%, #080b0f 100%);
-  transform-style: preserve-3d;
-}
-
-.card-face::before {
-  content: "";
-  position: absolute;
-  inset: -20%;
-  background: linear-gradient(112deg, transparent 33%, rgba(255,255,255,.16) 50%, transparent 67%);
-  transform: translate(calc((var(--card-px) - 50%) * .25), calc((var(--card-py) - 50%) * .2));
-  opacity: 0.34;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-.card-front {
-  transform: translateZ(calc(var(--card-depth) / 2));
-}
-
-.card-back {
-  transform: rotateY(180deg) translateZ(calc(var(--card-depth) / 2));
-}
-
-.card-edge {
-  position: absolute;
-  display: block;
-  background: linear-gradient(90deg, #05070a, #747d88 48%, #080b10);
-  pointer-events: none;
-}
-
-.card-edge-top,
-.card-edge-bottom {
-  left: 10px;
-  right: 10px;
-  height: var(--card-depth);
-}
-
-.card-edge-top {
-  top: calc(var(--card-depth) / -2);
-  transform: rotateX(90deg);
-}
-
-.card-edge-bottom {
-  bottom: calc(var(--card-depth) / -2);
-  transform: rotateX(90deg);
-}
-
-.card-edge-right,
-.card-edge-left {
-  top: 10px;
-  bottom: 10px;
-  width: var(--card-depth);
-  background: linear-gradient(180deg, #07090d, #606a76 50%, #06080c);
-}
-
-.card-edge-right {
-  right: calc(var(--card-depth) / -2);
-  transform: rotateY(90deg);
-}
-
-.card-edge-left {
-  left: calc(var(--card-depth) / -2);
-  transform: rotateY(90deg);
-}
-
-.card-brand,
-.card-visa {
-  position: absolute;
-  z-index: 2;
-  height: auto;
-  transform: translateZ(22px);
-  pointer-events: none;
-  user-select: none;
-}
-
-.card-brand {
-  top: 27px;
-  left: 29px;
-  width: 128px;
-}
-
-.card-visa {
-  top: 27px;
-  right: 29px;
-  width: 52px;
-}
-
-.rnpl-example {
-  margin-top: 26px;
+.roadmap-card ul {
+  margin-top: 22px;
   display: flex;
-  gap: 32px;
+  flex-wrap: wrap;
+  gap: 8px 18px;
 }
 
-.rnpl-example dt {
+.roadmap-card li {
   color: var(--muted);
-  font-size: 12px;
-}
-
-.rnpl-example dd {
-  margin-top: 6px;
-  color: var(--text);
-  font-size: 15px;
-}
-
-.rnpl-phone {
-  align-items: end;
-}
-
-.rnpl-phone .phone {
-  width: min(245px, 68%);
-  margin-bottom: -12px;
-}
-
-@media (max-width: 900px) {
-  .roadmap-card {
-    min-width: min(680px, 88vw);
-    grid-template-columns: minmax(260px, 0.8fr) minmax(300px, 1.2fr);
-  }
+  font-size: 13px;
+  line-height: 1.45;
 }
 
 @media (max-width: 620px) {
-  .roadmap-heading {
-    align-items: end;
-  }
-
-  .roadmap-controls button {
-    width: 42px;
-    height: 42px;
-  }
-
-  .roadmap-window {
-    margin-top: 46px;
-  }
-
+  .roadmap-heading { align-items: flex-start; }
+  .roadmap-controls { padding-top: 12px; }
+  .roadmap-window { margin-top: 40px; }
   .roadmap-card {
-    min-width: calc(100vw - 48px);
-    height: 650px;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+    min-width: min(328px, 84vw);
+    min-height: 350px;
+    padding: 30px 26px;
+    border-radius: 22px;
   }
-
-  .roadmap-copy {
-    padding: 30px 26px 12px;
-    gap: 22px;
-  }
-
-  .roadmap h3 {
-    font-size: 46px;
-  }
-
-  .roadmap-visual {
-    min-height: 340px;
-  }
-
-  .live-phone .phone,
-  .rnpl-phone .phone {
-    width: min(230px, 65%);
-  }
-
-  .route-roster {
-    padding: 18px 26px 30px;
-  }
-
-  .route-group {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .card-object {
-    width: min(330px, 82%);
-  }
-
-  .rnpl-example {
-    gap: 20px;
-  }
+  .roadmap-card h3 { font-size: 46px; }
 }

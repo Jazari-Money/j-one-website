@@ -100,31 +100,41 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(page.locator("#access")).toHaveClass(/is-open/);
   await expect(page.getByLabel("Email address")).toBeVisible();
 
-  const card = page.locator(".card-interaction");
+  const card = page.locator(".blog-card").first();
   await card.scrollIntoViewIfNeeded();
-  await expect(card.locator(".card-edge")).toHaveCount(4);
-  await card.focus();
-  await card.press("Home");
-  await card.press("ArrowRight");
+  await card.hover({ position: { x: 80, y: 90 } });
   await expect
     .poll(() =>
-      card.locator(".card-object").evaluate((node) =>
-        node.style.getPropertyValue("--card-ry"),
+      card.evaluate((node) =>
+        node.style.getPropertyValue("--pointer-x"),
       ),
     )
-    .toBe("33deg");
+    .not.toBe("50%");
 
   const moneyRain = page.locator(".money-rain");
   await moneyRain.scrollIntoViewIfNeeded();
   await moneyRain.hover();
-  await expect(moneyRain).toHaveClass(/is-raining/);
-  await expect(moneyRain.locator(".coin-fall")).toHaveCount(28);
+  await expect(moneyRain.locator(".money-flow-canvas")).toHaveCount(1);
 
   const firstQuestion = page.getByText("What is a Jazari USD account?", { exact: true });
   await firstQuestion.click();
   await expect(
     page.getByText(/one interface for holding supported digital dollars/i),
   ).toBeVisible();
+});
+
+test("renders the pricing preview and legal links", async ({ page }) => {
+  await page.goto("/pricing/", { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { name: "Simple, visible pricing." })).toBeVisible();
+  await expect(page.getByText("$1 Network Fee")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Terms & Conditions" })).toHaveAttribute(
+    "href",
+    "https://jazari.xyz/terms",
+  );
+  await expect(page.getByRole("link", { name: "Privacy Policy" })).toHaveAttribute(
+    "href",
+    "https://jazari.xyz/privacy-policy",
+  );
 });
 
 test("opens a full-height mobile navigation with download and social actions", async ({ page }) => {

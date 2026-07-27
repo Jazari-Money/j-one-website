@@ -88,27 +88,27 @@ export const features = [
   {
     title: "Keep a dollar balance",
     copy: "Hold supported digital dollars instead of converting every payment immediately.",
-    image: withBasePath("/images/features/card-plate.webp"),
+    image: withBasePath("/images/features/new/dollar-balance.webp"),
   },
   {
     title: "Get paid in one place",
     copy: "Receive eligible client and platform payments into the same clear balance.",
-    image: withBasePath("/images/features/globe.webp"),
+    image: withBasePath("/images/features/new/get-paid.webp"),
   },
   {
     title: "Send to supported banks",
     copy: "Choose a recipient, enter an amount, and use the routes available for their country.",
-    image: withBasePath("/images/features/paper-plane.webp"),
+    image: withBasePath("/images/features/new/send.webp"),
   },
   {
     title: "Know before you send",
     copy: "Review the rate, cost, recipient amount, and expected timing together.",
-    image: withBasePath("/images/features/hand-coin.webp"),
+    image: withBasePath("/images/features/new/know.webp"),
   },
   {
     title: "Specialist infrastructure",
     copy: "Identity, wallets, stablecoins, and payment rails work behind one experience.",
-    image: withBasePath("/images/features/shield.webp"),
+    image: withBasePath("/images/features/new/infrastructure.webp"),
   },
 ] as const;
 
@@ -205,9 +205,10 @@ export const guides = [
 export const networkStories = [
   {
     name: "Bridge",
-    logo: withBasePath("/images/rails/bridge.svg"),
-    logoFormat: "bridge",
+    logo: withBasePath("/images/rails/bridge-mark.png"),
+    logoFormat: "mark",
     logoScale: 1,
+    wordmarkOnly: true,
     kind: "Infrastructure",
     short: "Stablecoin, fiat, conversion, and payout infrastructure.",
   },
@@ -216,6 +217,7 @@ export const networkStories = [
     logo: withBasePath("/images/rails/privy.svg"),
     logoFormat: "wide",
     logoScale: 0.56,
+    wordmarkOnly: true,
     kind: "Wallet access",
     short: "Authentication, embedded wallets, and transaction controls.",
   },
@@ -228,10 +230,10 @@ export const networkStories = [
     short: "Onchain risk and financial modeling.",
   },
   {
-    name: "USD₮",
+    name: "USDT",
     logo: withBasePath("/images/rails/usdt.svg"),
     logoFormat: "mark",
-    logoScale: 0.75,
+    logoScale: 0.98,
     kind: "Digital dollar",
     short: "A dollar-referenced token issued by Tether.",
   },
@@ -255,7 +257,7 @@ export const networkStories = [
     name: "TRON",
     logo: withBasePath("/images/rails/tron.svg"),
     logoFormat: "mark",
-    logoScale: 0.82,
+    logoScale: 1.08,
     kind: "Public network",
     short: "Public network supporting TRC-20 asset transfers.",
   },
@@ -263,7 +265,7 @@ export const networkStories = [
     name: "Solana",
     logo: withBasePath("/images/rails/solana.svg"),
     logoFormat: "mark",
-    logoScale: 0.92,
+    logoScale: 0.72,
     kind: "Public network",
     short: "High-performance network used for payments and apps.",
   },
@@ -284,12 +286,3 @@ export const networkStories = [
     short: "An Ethereum Layer 2 incubated by Coinbase.",
   },
 ] as const;
-
-export const coinSeeds = Array.from({ length: 28 }, (_, index) => ({
-  left: (index * 37 + 5) % 96,
-  delay: (index % 7) * 0.11,
-  duration: 1.8 + (index % 5) * 0.2,
-  size: 26 + (index % 6) * 7,
-  drift: -72 + ((index * 29) % 144),
-  spin: 400 + ((index * 83) % 680),
-}));

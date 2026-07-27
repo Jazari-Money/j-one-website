@@ -1,12 +1,7 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- local flags use exact downloaded assets */
-
 import { useRef } from "react";
-import { withBasePath } from "../site-paths";
 import { resetPointer, trackPointer } from "./hooks";
-import { InteractiveCard } from "./InteractiveCard";
-import { Phone } from "./Phone";
 
 function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -16,13 +11,40 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   );
 }
 
+const milestones = [
+  {
+    title: "USD account",
+    copy:
+      "A US routing and account number in your name, issued through a licensed US bank partner. Receive eligible payments by ACH, FedNow, domestic wire, or SWIFT.",
+    notes: ["No US residency required", "Details shown before every transfer"],
+  },
+  {
+    title: "More countries",
+    copy:
+      "New receive routes open as local banking partners and regulatory approvals are ready.",
+    notes: ["India", "Bangladesh", "Pakistan", "Selected African markets"],
+  },
+  {
+    title: "VISA Virtual card",
+    copy:
+      "Pay for subscriptions, software, and everyday spending directly from your Jazari balance.",
+    notes: ["Country availability will vary", "Controls stay in the app"],
+  },
+  {
+    title: "Remit Now Pay Later",
+    copy:
+      "Eligible members may choose a support amount and repayment option before confirming.",
+    notes: ["Limits and pricing shown upfront", "Eligibility will vary"],
+  },
+] as const;
+
 export function ProductRoadmap() {
   const track = useRef<HTMLDivElement>(null);
 
   function move(direction: -1 | 1) {
     const node = track.current;
     if (!node) return;
-    node.scrollBy({ left: node.clientWidth * 0.76 * direction, behavior: "smooth" });
+    node.scrollBy({ left: node.clientWidth * 0.72 * direction, behavior: "smooth" });
   }
 
   return (
@@ -30,6 +52,7 @@ export function ProductRoadmap() {
       <header className="roadmap-heading">
         <div className="chapter-heading">
           <h2>Roadmap</h2>
+          <p>One useful layer at a time, starting with the USD account.</p>
         </div>
         <div className="roadmap-controls" aria-label="Roadmap navigation">
           <button type="button" onClick={() => move(-1)} aria-label="Previous milestone">
@@ -43,106 +66,22 @@ export function ProductRoadmap() {
 
       <div className="roadmap-window">
         <div className="roadmap-track" ref={track}>
-          <article
-            className="roadmap-card live-product"
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
-          >
-            <div className="roadmap-copy">
-              <h3>USD account</h3>
-              <div className="roadmap-copy-bottom">
-                <p>
-                  A US routing and account number in your name, issued through a
-                  licensed US bank partner. Get paid from clients and platforms
-                  by ACH, FedNow, domestic wire, or SWIFT.
-                </p>
+          {milestones.map((milestone) => (
+            <article
+              className="roadmap-card pointer-card"
+              key={milestone.title}
+              onPointerMove={trackPointer}
+              onPointerLeave={resetPointer}
+            >
+              <h3>{milestone.title}</h3>
+              <div className="roadmap-card-bottom">
+                <p>{milestone.copy}</p>
                 <ul>
-                  <li>No US residency required.</li>
+                  {milestone.notes.map((note) => <li key={note}>{note}</li>)}
                 </ul>
               </div>
-            </div>
-            <div className="roadmap-visual live-phone">
-              <Phone
-                src={withBasePath("/images/screens/account-home.webp")}
-                alt="Jazari One dollar account home screen"
-              />
-            </div>
-          </article>
-
-          <article
-            className="roadmap-card routes-row"
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
-          >
-            <div className="roadmap-copy">
-              <h3>More countries</h3>
-              <div className="roadmap-copy-bottom">
-                <p>
-                  Adding new corridors is ongoing work. Every route needs a local
-                  banking partner and regulatory approval before it goes live.
-                </p>
-              </div>
-            </div>
-            <div className="roadmap-visual route-roster" aria-label="Planned receive countries">
-              <section className="route-group">
-                <h4>South Asia</h4>
-                <ul className="route-country-list">
-                  <li><img className="route-flag" src={withBasePath("/images/flags/in.png")} alt="" /><span>India</span></li>
-                  <li><img className="route-flag" src={withBasePath("/images/flags/bd.png")} alt="" /><span>Bangladesh</span></li>
-                  <li><img className="route-flag" src={withBasePath("/images/flags/pk.png")} alt="" /><span>Pakistan</span></li>
-                </ul>
-              </section>
-              <section className="route-group africa-group">
-                <h4>Africa</h4>
-                <p>Countries will be announced as routes are confirmed.</p>
-              </section>
-            </div>
-          </article>
-
-          <article
-            className="roadmap-card card-row"
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
-          >
-            <div className="roadmap-copy">
-              <h3>VISA Virtual card</h3>
-              <div className="roadmap-copy-bottom">
-                <p>
-                  Pay for subscriptions, software, and everyday spending from
-                  your Jazari balance.
-                </p>
-              </div>
-            </div>
-            <div className="roadmap-visual">
-              <InteractiveCard />
-            </div>
-          </article>
-
-          <article
-            className="roadmap-card rnpl-row"
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
-          >
-            <div className="roadmap-copy">
-              <h3>Remit Now Pay Later</h3>
-              <div className="roadmap-copy-bottom">
-                <p>
-                  Eligible members may choose a support amount and repayment
-                  option before confirming.
-                </p>
-                <dl className="rnpl-example">
-                  <div><dt>Example support</dt><dd>$500</dd></div>
-                  <div><dt>Repayment</dt><dd>Shown upfront</dd></div>
-                </dl>
-              </div>
-            </div>
-            <div className="roadmap-visual rnpl-phone">
-              <Phone
-                src={withBasePath("/images/screens/rnpl-amount.webp")}
-                alt="Remit Now Pay Later amount screen"
-              />
-            </div>
-          </article>
+            </article>
+          ))}
         </div>
       </div>
     </section>

@@ -79,6 +79,7 @@ export function SiteHeader({
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
           <a href={sectionHref("how")} onClick={closeMobile}>How it works</a>
           <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
+          <a href={withBasePath("/pricing/")} onClick={closeMobile}>Pricing</a>
           <a href={sectionHref("roadmap")} onClick={closeMobile}>Roadmap</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>

@@ -45,6 +45,7 @@ export function FAQ() {
       <div className="faq-list">
         {questions.map((item) => (
           <details
+            className="pointer-card"
             key={item.question}
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}

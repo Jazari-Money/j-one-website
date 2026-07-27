@@ -47,7 +47,7 @@ test("server-renders the Jazari One landing page", async () => {
   );
   assert.ok(html.indexOf('id="roadmap"') < html.indexOf('id="blog"'));
   assert.match(html, />Blog</);
-  assert.match(html, /South Asia/);
+  assert.match(html, /India/);
   assert.match(html, /USDC/);
   assert.doesNotMatch(
     html,
@@ -95,14 +95,14 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /className="numeric"/);
   assert.match(page, /Know what arrives before you send/);
   assert.match(page, /Live rate from our payment partner/);
-  assert.match(page, /\/images\/flags\/in\.png/);
-  assert.match(page, /\/images\/flags\/bd\.png/);
-  assert.match(page, /\/images\/flags\/pk\.png/);
+  assert.match(page, /\/images\/features\/new\/dollar-balance\.webp/);
+  assert.match(page, /\/images\/features\/new\/get-paid\.webp/);
+  assert.match(page, /\/images\/features\/new\/send\.webp/);
   assert.match(page, /\/images\/stores\/app-store-badge\.avif/);
   assert.match(page, /\/images\/stores\/google-play-badge\.avif/);
   assert.match(page, /\/images\/brand\/visa-white\.svg/);
   assert.match(page, /className="audience-caption"/);
-  assert.match(page, /\/images\/rails\/bridge\.svg/);
+  assert.match(page, /\/images\/rails\/bridge-mark\.png/);
   assert.match(page, /\/images\/rails\/privy\.svg/);
   assert.match(page, /\/images\/rails\/gauntlet-mark\.svg/);
   assert.match(page, /\/images\/rails\/usdt\.svg/);
@@ -112,15 +112,16 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /\/images\/rails\/solana\.svg/);
   assert.match(page, /\/images\/rails\/polygon-symbol\.svg/);
   assert.match(page, /\/images\/rails\/base-mark\.svg/);
-  assert.match(page, /\/images\/coins\/jazari-dollar-3d\.webp/);
   assert.match(page, /src=\{item\.logo\}/);
   assert.match(page, /--card-rx/);
-  assert.match(page, /coinSeeds/);
+  assert.match(page, /createShader/);
+  assert.match(page, /playSweep/);
+  assert.match(page, /bandTight:\s*40/);
 
   assert.match(css, /\.benefit-row-inner/);
   assert.match(css, /\.card-object/);
-  assert.match(css, /\.coin-fall/);
-  assert.match(css, /\.coin-fall img/);
+  assert.match(css, /\.money-flow-canvas/);
+  assert.match(css, /\.pointer-card::after/);
   assert.match(css, /\.provider-logo img/);
   assert.match(css, /\.faq-list/);
   assert.match(css, /@media \(min-width: 901px\)/);
@@ -135,20 +136,19 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.doesNotMatch(page, /<i>\$<\/i>/);
   assert.doesNotMatch(page, /className="network-flow"/);
   assert.doesNotMatch(page, /className="step-screen-copy"/);
-  assert.doesNotMatch(page, /from "glimm"|createShader|playSweep|PageLoadSweep/);
+  assert.doesNotMatch(page, /PageLoadSweep/);
   assert.doesNotMatch(page, /LiquidMetal|LiquidFadeLayer/);
   assert.doesNotMatch(page, /className="hero-proof"/);
   assert.doesNotMatch(page, /className="audience-details"/);
   assert.doesNotMatch(page, /className="card-(?:shader|chip|number|holder)"/);
   assert.doesNotMatch(css, /\.liquid-metal-layer|\.hero-proof|\.audience-details/);
-  assert.doesNotMatch(packageJson, /"glimm"/);
+  assert.match(packageJson, /"glimm"/);
   assert.match(css, /filter:\s*grayscale\(1\)\s*brightness\(0\)\s*invert\(1\)/);
   assert.match(css, /mask-image:\s*linear-gradient\(to bottom, #000 0 72%, transparent 96%\)/);
 });
 
-test("ships local SVG rail marks and the transparent 3D coin asset", async () => {
+test("ships local provider marks and product artwork", async () => {
   const svgAssets = [
-    "bridge.svg",
     "privy.svg",
     "gauntlet-mark.svg",
     "usdt.svg",
@@ -174,13 +174,10 @@ test("ships local SVG rail marks and the transparent 3D coin asset", async () =>
   );
   assert.match(visa, /<svg\b/i);
 
-  const coin = await readFile(
-    new URL(
-      "../public/images/coins/jazari-dollar-3d.webp",
-      import.meta.url,
-    ),
+  const bridge = await readFile(
+    new URL("../public/images/rails/bridge-mark.png", import.meta.url),
   );
-  assert.ok(coin.byteLength > 50_000);
+  assert.ok(bridge.byteLength > 1_000);
 });
 
 test("renders the Blog index and all seven guides", async () => {

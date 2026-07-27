@@ -1,6 +1,6 @@
 # Jazari One website context
 
-Last updated: 2026-07-27
+Last updated: 2026-07-28
 
 ## Product
 
@@ -56,8 +56,8 @@ Commercial relationship wording still requires confirmation before launch.
 - Product screenshots stay upright and must never overlap headings.
 - Product phones float directly on the page with a restrained halo; do not put
   them inside large colored rounded-rectangle plates.
-- Roadmap milestones and provider stories use compact cards with generous
-  internal whitespace, a localized cursor glow, and restrained radii.
+- Cards use a low-amplitude shared 3D pointer response and a cursor-localized
+  masked gradient border. Never put a radial glow inside the card surface.
 - Supporting descriptions use a readable 15px size. Footer navigation, legal
   copy, and company information use 12px.
 - Blog cards do not show country or read-time prefixes above their headlines.
@@ -70,18 +70,18 @@ Commercial relationship wording still requires confirmation before launch.
 
 1. Bridge-inspired full-width fixed header
 2. Hero with shallow masked mesh shader and Jazari app video
-3. Static editorial capability ledger using Jazari icon assets
+3. Revealing editorial capability ledger using the supplied Jazari icon assets
 4. Interactive How It Works tabs with one upright phone at a time
 5. FX/review experience integrated inside How It Works
 6. Static audience/use-case stories
 7. Provider and network grid
-8. Horizontal roadmap:
-   - Live: dollar account
-   - Next: more local routes
-   - Then: interactive 3D Jazari Visa card
-   - Later: Remit Now Pay Later
+8. Compact horizontal roadmap without product imagery:
+   - USD account
+   - More countries
+   - VISA Virtual card
+   - Remit Now Pay Later
 9. Homepage Blog preview with the four latest guides
-10. Closing download panel with performant CSS 3D money rain
+10. Closing download panel with a hover/viewport-triggered Citrus gradient flow
 11. FAQ
 12. Legal/product footer with official iOS and Android store badges, social
     links, and both UAE and US entities
@@ -168,13 +168,13 @@ palette selector: changing a color scheme cannot change page geometry.
   or gradient scrim; the authored lower image area carries the caption.
 - Mobile stacks the stories vertically.
 
-### Money rain
+### Closing gradient flow
 
-- A deterministic pool of 28 coins is rendered only while the closing panel is
-  hovered, focused, or temporarily touched.
-- Mobile hides coins after the first 14.
-- Animations use only transforms and opacity.
-- Reduced-motion users see only the static glow.
+- The closing panel uses Glimm’s Citrus palette with a top-to-bottom sweep,
+  `snap` easing, and band tightness/width 40.
+- Desktop triggers the sweep on pointer entry. Mobile triggers it once when
+  roughly 42% of the panel enters the viewport.
+- Reduced-motion users get the final quiet gradient state without a sweep.
 
 ## Blog routes
 
@@ -186,6 +186,7 @@ palette selector: changing a color scheme cannot change page geometry.
 - `/blog/compare-transfer-costs`
 - `/blog/verify-recipient-details`
 - `/blog/digital-dollars-bank-payouts`
+- `/pricing`
 
 The homepage shows the four latest guides. The Blog index shows all seven.
 Articles are brief and include useful route, safety, planning, and digital
@@ -220,6 +221,7 @@ weight inside one fixed logo field; do not restore the former tabbed explorer.
   - `public/images/screens/amount-entry.webp`
   - `public/images/screens/send-success.webp`
 - Jazari icons: `public/images/features/*.webp`
+- Current capability icons: `public/images/features/new/*.webp`
 - Audience photography: `public/images/audience/*.webp`
 - Monochrome technology/network SVGs: `public/images/rails/*`
 - Official white Visa mark: `public/images/brand/visa-white.svg`
@@ -235,7 +237,8 @@ The current card is generated in code.
 - Locally bundled Inter Variable for interface copy and Geist Mono only where
   code-like article metadata benefits from it
 - `@paper-design/shaders-react`
-- Plain modular CSS for layout, 3D card, transitions, and money rain
+- `glimm` for the closing gradient sweep
+- Plain modular CSS for layout, shared pointer-card borders, and transitions
 - Playwright for interaction and visual regression checks
 
 GitHub Pages is the canonical and only deployment target. Local development
@@ -250,6 +253,7 @@ Key files:
 - `app/home/HomeContent.tsx` — shared homepage state and composition
 - `app/home/SiteHeader.tsx` — shared homepage, Blog, and article navigation
 - `app/home/SiteFooter.tsx` — shared legal, store, and brand footer
+- `app/pricing/PricingPage.tsx` — no-tier public pricing page
 - `app/home/useVisualPreferences.ts` — persisted color and field preferences
 - `app/home/data.ts` — themes, currencies, and section content
 - `app/home/*.tsx` — one focused component per homepage section
@@ -300,6 +304,9 @@ Default local URL: `http://localhost:3000`
   three times.
 - Do not add a package for a small effect that can be implemented clearly with
   existing React or CSS.
+- All presentational card hover behavior belongs to
+  `app/styles/interactions.css`; do not implement one-off cursor glows inside
+  section styles.
 - A focused visual change should normally touch one component, one stylesheet,
   and its relevant test.
 - Update visual baselines only after reviewing the intended change.
@@ -312,11 +319,12 @@ Default local URL: `http://localhost:3000`
 - Avoid more than two visually dominant shader canvases in one viewport.
 - Keep the hero shader confined to the top of the hero and render it as a
   structured, abstract field rather than a smoky wash.
-- Do not reintroduce Glimm or liquid-metal effects.
+- Glimm is allowed only for the closing Citrus sweep. Do not use it as a global
+  page-load effect or on ordinary cards.
 - Do not drive pointer tilt through React state on every move; write the small
   normalized pointer values directly to CSS custom properties.
-- Presentational cards may use only a very subtle pointer tilt and quiet
-  cursor-position radial light; functional controls should stay visually still.
+- Presentational cards may use only a subtle pointer tilt and cursor-localized
+  masked border color; functional controls should stay visually still.
 - Keep images in their visual column; never position them over copy.
 - Test desktop, tablet, and narrow mobile layouts after structural changes.
 
@@ -339,11 +347,11 @@ Default local URL: `http://localhost:3000`
   and values. `1 USD = destination value` is prominent; expected delivery is
   `2–5 minutes`. The two horizontal proof points use Instrument Serif values
   without underlines: `0% Hidden FX rate fee` and `0% Transaction fee`.
-- The roadmap is a compact horizontal scroll-snap carousel controlled by round
-  previous/next buttons. It has no timeline line and keeps the overall page
-  shorter. It follows the provider grid and precedes Blog. The current naming is
-  `Roadmap`, `USD account`, `More countries`,
-  `VISA Virtual card`, and `Remit Now Pay Later`; do not add phase prefixes.
+- The roadmap is a compact, text-only horizontal scroll-snap carousel
+  controlled by round previous/next buttons. It has no timeline line, product
+  image, or phase prefix. It follows the provider grid and precedes Blog. The
+  current naming is `Roadmap`, `USD account`, `More countries`,
+  `VISA Virtual card`, and `Remit Now Pay Later`.
 - The virtual card is code-generated with front, back, and four visible edge
   planes. It keeps only the Jazari One and Visa marks, uses a restrained
   cursor-position sheen, and supports drag and keyboard rotation.
@@ -370,7 +378,12 @@ Default local URL: `http://localhost:3000`
   pages use visible breadcrumbs, one left-aligned reading column, no “At a
   glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
 - Footer copy uses Inter and the official CDN-supplied Apple and Google badge
-  artwork. Do not reintroduce the oversized shader wordmark.
+  artwork. It uses a normal multi-column layout without separator rules and
+  links directly to Jazari’s official Terms and Privacy Policy. Cookie
+  Preferences is currently a clearly mocked local modal.
+- Pricing has no tiers. It lists USD, GBP, and EUR accounts and Cards as
+  coming soon; no foreign exchange; stablecoins at a $1 network fee; and local
+  payout with no hidden FX margin and no transfer fee.
 
 ## Reference direction
 

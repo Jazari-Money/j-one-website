@@ -11,25 +11,26 @@
 .how-experience {
   margin-top: 72px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 34px;
+  grid-template-columns: minmax(330px, 0.72fr) minmax(440px, 1.28fr);
+  gap: clamp(50px, 7vw, 110px);
+  align-items: center;
 }
 
 .step-tabs {
-  width: min(1040px, 100%);
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 5px;
   border-radius: 20px;
   background: color-mix(in srgb, var(--surface) 68%, transparent);
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 4px;
 }
 
 .step-tabs button {
   position: relative;
   width: 100%;
-  min-height: 122px;
+  min-height: 116px;
   padding: 22px 24px;
   border: 0;
   border-radius: 16px;
@@ -71,7 +72,7 @@
 
 .step-screen {
   position: relative;
-  min-height: 590px;
+  min-height: 620px;
   border: 0;
   border-radius: 0;
   overflow: visible;
@@ -219,26 +220,11 @@
 }
 
 .rate-card::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background: radial-gradient(
-    circle 280px at var(--pointer-x) var(--pointer-y),
-    var(--accent-soft),
-    transparent 76%
-  );
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 220ms ease;
+  display: none;
 }
 
 .rate-card:hover {
-  transform: translateY(-4px);
-}
-
-.rate-card:hover::before {
-  opacity: 0.34;
+  background-color: color-mix(in srgb, var(--surface) 86%, transparent);
 }
 
 .rate-card label {
@@ -372,6 +358,7 @@
 
   .how-experience {
     margin-top: 64px;
+    grid-template-columns: 1fr;
   }
 
   .step-tabs {
@@ -382,9 +369,13 @@
   }
 
   .step-tabs button {
-    min-width: 260px;
-    min-height: 118px;
+    min-width: 190px;
+    min-height: 76px;
     scroll-snap-align: start;
+  }
+
+  .step-tabs small {
+    display: none;
   }
 
   .step-screen {
@@ -413,9 +404,9 @@
   }
 
   .step-tabs button {
-    min-width: 238px;
-    min-height: 112px;
-    padding: 20px;
+    min-width: 168px;
+    min-height: 68px;
+    padding: 16px;
   }
 
   .step-tabs span {
@@ -501,11 +492,11 @@
 @media (min-width: 901px) {
   .how-experience {
     margin-top: 68px;
-    gap: 30px;
+    gap: clamp(50px, 7vw, 110px);
   }
 
   .step-tabs button {
-    min-height: 118px;
+    min-height: 116px;
     padding: 22px 24px;
   }
 
@@ -514,7 +505,7 @@
   }
 
   .step-screen {
-    min-height: 570px;
+    min-height: 620px;
   }
 
   .active-step-phone {

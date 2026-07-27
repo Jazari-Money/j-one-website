@@ -100,7 +100,7 @@ export function HowItWorks({
         </div>
 
         <div
-          className="rate-card"
+          className="rate-card pointer-card"
           onPointerMove={trackPointer}
           onPointerLeave={resetPointer}
         >

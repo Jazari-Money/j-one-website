@@ -4,6 +4,7 @@ import Link from "next/link";
 import { guides } from "../home/data";
 import { SiteFooter } from "../home/SiteFooter";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
+import { resetPointer, trackPointer } from "../home/hooks";
 
 export function BlogIndex() {
   return (
@@ -22,9 +23,11 @@ export function BlogIndex() {
         <div className="blog-index-grid">
           {guides.map((guide, index) => (
             <Link
-              className={index === 0 ? "is-featured" : ""}
+              className={`pointer-card ${index === 0 ? "is-featured" : ""}`}
               href={`/blog/${guide.slug}`}
               key={guide.slug}
+              onPointerMove={trackPointer}
+              onPointerLeave={resetPointer}
             >
               <span>{guide.route}</span>
               <h3>{guide.title}</h3>

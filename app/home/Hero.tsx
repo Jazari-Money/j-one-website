@@ -147,6 +147,20 @@ export function Hero({
         <span className="orbital-energy orbital-energy-a" />
         <span className="orbital-energy orbital-energy-b" />
         <span className="orbital-energy orbital-energy-c" />
+        <span className="beam-rays" />
+        <span className="beam-dust">
+          {Array.from({ length: 18 }, (_, index) => (
+            <i
+              key={index}
+              style={{
+                "--dust-index": index,
+                "--dust-x": `${(index * 43 + 7) % 96}%`,
+                "--dust-y": `${(index * 29 + 13) % 88}%`,
+                "--dust-size": `${2 + (index % 3)}px`,
+              } as React.CSSProperties}
+            />
+          ))}
+        </span>
       </div>
       <div className="hero-copy">
         <h1>Your dollars,<br />wherever you are.</h1>

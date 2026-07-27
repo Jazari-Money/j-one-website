@@ -27,26 +27,7 @@
 }
 
 .faq details::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  background: radial-gradient(
-    circle 240px at var(--pointer-x) var(--pointer-y),
-    var(--accent-soft),
-    transparent 72%
-  );
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 200ms ease;
-}
-
-.faq details:hover {
-  transform: translateY(-3px);
-}
-
-.faq details:hover::before {
-  opacity: 0.38;
+  display: none;
 }
 
 .faq details[open] {

@@ -1,5 +1,6 @@
 @import "./styles/tokens.css";
 @import "./styles/base.css";
+@import "./styles/interactions.css";
 @import "./styles/header.css";
 @import "./styles/hero.css";
 @import "./styles/section.css";
@@ -14,4 +15,5 @@
 @import "./styles/faq.css";
 @import "./styles/footer.css";
 @import "./styles/article.css";
+@import "./styles/pricing.css";
 @import "./styles/reduced-motion.css";

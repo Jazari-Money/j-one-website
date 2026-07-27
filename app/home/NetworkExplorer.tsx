@@ -23,7 +23,7 @@ export function NetworkExplorer() {
       >
         {networkStories.map((item, index) => (
           <article
-            className={`provider-card logo-${item.logoFormat}`}
+            className={`provider-card pointer-card logo-${item.logoFormat}`}
             key={item.name}
             style={{
               "--reveal-index": index,
@@ -40,7 +40,7 @@ export function NetworkExplorer() {
               </span>
             </div>
             <div className="provider-card-copy">
-              <h3>{item.name}</h3>
+              {!("wordmarkOnly" in item && item.wordmarkOnly) && <h3>{item.name}</h3>}
               <p>{item.short}</p>
             </div>
           </article>
