@@ -86,6 +86,18 @@ Commercial relationship wording still requires confirmation before launch.
 12. Legal/product footer with official iOS and Android store badges, social
     links, and both UAE and US entities
 
+## Component board
+
+- `/storyboard` is a deliberately unlinked, `noindex` review surface.
+- It renders the real production components and tokens rather than maintaining
+  separate mock copies.
+- The board uses stable numbered anchors:
+  01 Foundations, 02 Actions, 03 Hero, 04 Benefit Ledger,
+  05 Transfer Experience, 06 Persona Cards, 07 Partner Grid, 08 Roadmap,
+  09 Article Cards, 10 FAQ, 11 Closing CTA, and 12 Footer.
+- Use those numbers and names in review notes so component-level iterations can
+  be discussed and implemented without ambiguity.
+
 Do not reintroduce separate FX, clarity, Card, or RNPL promo sections. Their
 content is intentionally consolidated.
 

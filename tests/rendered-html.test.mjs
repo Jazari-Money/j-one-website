@@ -85,6 +85,21 @@ test("server-renders pricing, yields, and roadmap pages", async () => {
   assert.match(roadmap, /Remit Now Pay Later/);
 });
 
+test("server-renders the standalone component board", async () => {
+  const response = await render("/storyboard");
+  const html = await response.text();
+
+  assert.match(html, /<title>Jazari One Component Board<\/title>/);
+  assert.match(html, /Jazari One/);
+  assert.match(html, /component board/);
+  assert.match(html, /Internal review surface/);
+  assert.match(html, /Foundations/);
+  assert.match(html, /Transfer Experience/);
+  assert.match(html, /Partner Grid/);
+  assert.match(html, /Closing CTA/);
+  assert.match(html, /This route is intentionally absent from the public navigation/);
+});
+
 test("server-renders the internal legal pages", async () => {
   const [termsResponse, privacyResponse] = await Promise.all([
     render("/terms"),

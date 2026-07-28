@@ -180,6 +180,26 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
 });
 
+test("renders the numbered component board with live interactions", async ({ page }) => {
+  await page.goto("/storyboard/", { waitUntil: "networkidle" });
+
+  await expect(
+    page.getByRole("heading", { name: /Jazari One component board/ }),
+  ).toBeVisible();
+  await expect(page.locator(".storyboard-story")).toHaveCount(12);
+  await expect(page.getByRole("heading", { name: "Transfer Experience" })).toBeVisible();
+
+  const transferIndex = page.getByRole("link", { name: /05 Transfer Experience/ });
+  await transferIndex.click();
+  await expect(page).toHaveURL(/#story-transfer$/);
+
+  const faq = page.locator("#story-faq");
+  await faq.scrollIntoViewIfNeeded();
+  const firstQuestion = faq.locator("details").first();
+  await firstQuestion.locator("summary").click();
+  await expect(firstQuestion).toHaveAttribute("open", "");
+});
+
 test("opens a full-height mobile navigation with download and social actions", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await prepareStablePage(page);

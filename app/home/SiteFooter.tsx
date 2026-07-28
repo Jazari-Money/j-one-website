@@ -76,7 +76,7 @@ export function SiteFooter() {
         <div className="cookie-panel" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
           <div className="cookie-panel-card">
             <h2 id="cookie-title">Cookie preferences</h2>
-            <p>This preview uses essential storage for your visual preferences. Optional analytics are not enabled.</p>
+            <p>This preview uses essential storage for core site functionality. Optional analytics are not enabled.</p>
             <div>
               <button className="realism-button" type="button" onClick={() => setCookieOpen(false)}>Essential Only</button>
               <button className="realism-button" type="button" onClick={() => setCookieOpen(false)}>Accept All</button>
