@@ -190,13 +190,14 @@
 
   .blog-index-grid > a,
   .blog-index-grid > a.is-featured {
-    min-height: 390px;
+    min-height: 0;
+    aspect-ratio: 1 / 1;
     padding: 27px 24px;
   }
 
   .blog-index-grid > a.is-featured {
     padding: 0;
-    min-height: 520px;
+    min-height: 0;
   }
 
   .blog-index-grid > a.is-featured .blog-index-copy {

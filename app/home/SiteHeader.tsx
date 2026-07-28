@@ -7,10 +7,8 @@ import { withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
 
 export function SiteHeader({
-  onAccess,
   mode = "home",
 }: {
-  onAccess: () => void;
   mode?: "home" | "internal";
 }) {
   const [scrolled, setScrolled] = useState(false);
@@ -57,8 +55,9 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <details className="nav-dropdown">
+          <details className="nav-dropdown" open={mobileOpen || undefined}>
             <summary>Personal</summary>
+            <span className="nav-mobile-section-title">Personal</span>
             <div className="nav-dropdown-menu">
               <a href={sectionHref("how-send")} onClick={closeMobile}>Send</a>
               <a href={sectionHref("how-receive")} onClick={closeMobile}>Receive</a>
@@ -69,28 +68,28 @@ export function SiteHeader({
           <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <div className="nav-mobile-extras">
-            <button
+            <a
               className="neutral-control"
-              type="button"
-              onClick={() => {
-                closeMobile();
-                onAccess();
-              }}
+              href="https://apps.apple.com/"
+              target="_blank"
+              rel="noreferrer"
+              onClick={closeMobile}
             >
               Download App
-            </button>
+            </a>
             <SocialLinks className="nav-mobile-socials" />
           </div>
         </div>
 
         <div className="nav-actions">
-          <button
+          <a
             className="nav-cta neutral-control"
-            type="button"
-            onClick={onAccess}
+            href="https://apps.apple.com/"
+            target="_blank"
+            rel="noreferrer"
           >
             <span className="nav-cta-label">Download App</span>
-          </button>
+          </a>
           <button
             className="mobile-toggle realism-icon-button"
             type="button"

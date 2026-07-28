@@ -99,7 +99,6 @@ const sections: LegalSection[] = [
             ["Intercom", "Customer support chat and automation"],
             ["SendGrid", "Email notifications and verification"],
             ["TeleSign", "OTP and authentication services for login and fraud protection"],
-            ["Manychat", "Waitlist and WhatsApp messaging"],
             ["Framer", "Website hosting for jazari.xyz"],
             ["OneSignal", "Push notification platform"],
           ]}

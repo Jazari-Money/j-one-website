@@ -164,7 +164,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
 
   assert.match(page, /import \{ MeshGradient \}/);
   assert.match(page, /className="hero-shader"/);
-  assert.match(page, /accessOpen/);
+  assert.doesNotMatch(page, /accessOpen|Join Waitlist|Email address/);
   assert.match(page, /activeStep/);
   assert.match(page, /role="tablist"/);
   assert.doesNotMatch(page, /View screen|Showing screen/);
@@ -202,7 +202,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(css, /\.faq-list/);
   assert.match(css, /@media \(min-width: 901px\)/);
   assert.match(css, /--page:\s*min\(1320px/);
-  assert.match(css, /\.access-control\.is-open/);
+  assert.match(css, /\.hero-download-control/);
   assert.match(css, /\.hero-shader/);
   assert.match(css, /"Instrument Serif"/);
   assert.match(css, /\[data-theme="jazari"\]/);

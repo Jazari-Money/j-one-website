@@ -108,9 +108,10 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(currencyPicker).toContainText("COP");
   await expect(page.locator(".money-input.result strong")).toContainText("$4,175,000.00");
 
-  await page.locator(".nav-cta").click();
-  await expect(page.locator("#access")).toHaveClass(/is-open/);
-  await expect(page.getByLabel("Email address")).toBeVisible();
+  await expect(page.locator(".nav-cta")).toHaveAttribute(
+    "href",
+    "https://apps.apple.com/",
+  );
 
   const card = page.locator(".blog-card").first();
   await card.scrollIntoViewIfNeeded();
@@ -220,7 +221,7 @@ test("opens a full-height mobile navigation with download and social actions", a
   await page.getByRole("button", { name: "Open navigation" }).click();
   const menu = page.locator(".nav-menu");
   await expect(menu).toHaveClass(/is-open/);
-  await expect(menu.getByRole("button", { name: "Download App" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Download App" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on X" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on Instagram" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on Facebook" })).toBeVisible();

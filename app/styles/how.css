@@ -583,19 +583,26 @@
     padding: 12px 8px;
     border-radius: 15px;
     text-align: center;
+    font-weight: 400;
   }
 
   .step-tabs span {
-    font-size: 15px;
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .how-scenario-tabs button {
+    font-size: 13px;
+    font-weight: 400;
   }
 
   .step-screen {
-    min-height: 360px;
+    min-height: 285px;
   }
 
   .step-screen-stack {
-    width: min(248px, 74%);
-    height: 360px;
+    width: min(186px, 56%);
+    height: 270px;
   }
 
   .review-block {

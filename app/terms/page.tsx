@@ -190,7 +190,6 @@ const sections: LegalSection[] = [
         <p>16.2. We may monitor and record communications between you and us.</p>
         <p>16.3. You must provide and maintain a valid email address and phone number.</p>
         <p>16.4. This agreement is governed by the laws of the United Arab Emirates. Any disputes shall be subject to the non-exclusive jurisdiction of the courts of the Dubai International Financial Centre (DIFC).</p>
-        <p>16.5. Waitlist Communications: If you joined our pre-launch waitlist by submitting your email address on jazari.xyz, you consent to receive product updates and launch communications from Jazari One. You can unsubscribe at any time via the link in any email. Details of how your data is handled are set out in our <PrivacyLink />.</p>
       </>
     ),
   },

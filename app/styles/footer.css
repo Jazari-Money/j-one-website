@@ -192,11 +192,25 @@
 
 @media (max-width: 620px) {
   .site-footer { padding-top: 68px; }
+  .footer-primary {
+    grid-template-columns: 1fr auto;
+  }
+  .footer-brand > img {
+    width: 136px;
+  }
   .footer-navigation {
+    grid-column: 1 / -1;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: 34px;
     row-gap: 40px;
   }
   .footer-addresses { grid-template-columns: 1fr; gap: 26px; }
   .footer-signoff { align-items: flex-start; flex-direction: column; }
-  .footer-socials { margin: 8px 0 0; }
+  .footer-socials {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    justify-self: end;
+    margin: 0;
+  }
 }

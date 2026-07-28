@@ -276,8 +276,15 @@
 }
 
 @media (max-width: 620px) {
-  .roadmap-heading { align-items: flex-start; }
-  .roadmap-controls { padding-top: 12px; }
+  .roadmap-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .roadmap-controls {
+    align-self: flex-start;
+    padding-top: 0;
+  }
   .roadmap-window { margin-top: 40px; }
   .roadmap-card {
     min-width: min(328px, 84vw);

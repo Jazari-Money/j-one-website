@@ -2,9 +2,7 @@
 
 import {
   type CSSProperties,
-  type FormEvent,
   useMemo,
-  useRef,
   useState,
 } from "react";
 import { AudienceExplorer } from "../home/AudienceExplorer";
@@ -55,35 +53,17 @@ function StoryLabel({
 }
 
 export function StoryboardPage() {
-  const [email, setEmail] = useState("");
-  const [joined, setJoined] = useState(false);
-  const [accessOpen, setAccessOpen] = useState(false);
   const [amount, setAmount] = useState("1,000.00");
   const [currency, setCurrency] = useState<CurrencyCode>("MXN");
-  const emailInput = useRef<HTMLInputElement>(null);
 
   const converted = useMemo(() => {
     const number = Number.parseFloat(amount.replace(/,/g, ""));
     return Number.isFinite(number) ? number * currencies[currency].rate : 0;
   }, [amount, currency]);
 
-  function openAccess() {
-    setAccessOpen(true);
-    document.getElementById("access")?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-    window.setTimeout(() => emailInput.current?.focus(), 520);
-  }
-
-  function submitWaitlist(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setJoined(true);
-  }
-
   return (
     <main className="storyboard-page" data-theme="jazari" data-shader="beam">
-      <SiteHeader mode="internal" onAccess={openAccess} />
+      <SiteHeader mode="internal" />
 
       <section className="storyboard-intro">
         <span>Internal review surface</span>
@@ -172,15 +152,7 @@ export function StoryboardPage() {
           name="Hero"
           note="Beam field, editorial message, download action, product video, and phone mask."
         />
-        <Hero
-          accessOpen={accessOpen}
-          joined={joined}
-          email={email}
-          emailInput={emailInput}
-          onOpen={openAccess}
-          onEmail={setEmail}
-          onSubmit={submitWaitlist}
-        />
+        <Hero />
       </section>
 
       <section className="storyboard-story story-full" id="story-benefits">

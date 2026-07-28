@@ -90,10 +90,6 @@
   transform: translateX(-50%);
 }
 
-.access-control.is-open .magic-access-button {
-  transform: translateX(-50%) scaleX(0.5);
-}
-
 .realism-button:hover::before,
 .realism-button:focus-visible::before {
   opacity: 1;

@@ -2,7 +2,6 @@
 
 /* eslint-disable @next/next/no-img-element -- local, art-directed assets use exact source files */
 
-import { FormEvent } from "react";
 import { MeshGradient } from "@paper-design/shaders-react";
 import { withBasePath } from "../site-paths";
 import { jazariVisualProfile } from "./data";
@@ -33,96 +32,25 @@ const heroDust = (() => {
   }));
 })();
 
-function MagicAccess({
-  open,
-  joined,
-  email,
-  emailInput,
-  onOpen,
-  onEmail,
-  onSubmit,
-}: {
-  open: boolean;
-  joined: boolean;
-  email: string;
-  emailInput: React.RefObject<HTMLInputElement | null>;
-  onOpen: () => void;
-  onEmail: (value: string) => void;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-}) {
+function HeroDownload() {
   return (
-    <div className={`access-control ${open ? "is-open" : ""}`} id="access">
-      <button
-        className="magic-access-button realism-button"
-        type="button"
-        onClick={onOpen}
+    <div className="hero-download-control" id="access">
+      <a
+        className="magic-access-button hero-download-button"
+        href="https://apps.apple.com/"
+        target="_blank"
+        rel="noreferrer"
         onPointerMove={trackPointer}
         onPointerLeave={resetPointer}
-        aria-expanded={open}
-        aria-controls="access-form"
-        aria-hidden={open}
-        tabIndex={open ? -1 : 0}
       >
         <span className="button-shader" aria-hidden="true" />
         <span className="button-label">Download App</span>
-      </button>
-      <form
-        className="access-form"
-        id="access-form"
-        onSubmit={onSubmit}
-        aria-hidden={!open}
-      >
-        {joined ? (
-          <div className="success-message" role="status">
-            You&apos;re on the list. We&apos;ll be in touch.
-          </div>
-        ) : (
-          <>
-            <label className="sr-only" htmlFor="email">Email address</label>
-            <input
-              ref={emailInput}
-              id="email"
-              type="email"
-              value={email}
-              onChange={(event) => onEmail(event.target.value)}
-              placeholder="Email address"
-              autoComplete="email"
-              tabIndex={open ? 0 : -1}
-              required
-            />
-            <button
-              className="realism-button"
-              type="submit"
-              tabIndex={open ? 0 : -1}
-              onPointerMove={trackPointer}
-              onPointerLeave={resetPointer}
-            >
-              Join Waitlist
-            </button>
-          </>
-        )}
-      </form>
+      </a>
     </div>
   );
 }
 
-export function Hero({
-  accessOpen,
-  joined,
-  email,
-  emailInput,
-  onOpen,
-  onEmail,
-  onSubmit,
-}: {
-  accessOpen: boolean;
-  joined: boolean;
-  email: string;
-  emailInput: React.RefObject<HTMLInputElement | null>;
-  onOpen: () => void;
-  onEmail: (value: string) => void;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-}) {
+export function Hero() {
   const reduced = useReducedMotion();
   const [shaderRef, shaderVisible] = useInViewport<HTMLDivElement>("160px");
 
@@ -169,15 +97,7 @@ export function Hero({
           Hold your money in dollars that keep their value — and send it to any
           bank account in Mexico, Colombia, Brazil, Europe and 26 more countries.
         </p>
-        <MagicAccess
-          open={accessOpen}
-          joined={joined}
-          email={email}
-          emailInput={emailInput}
-          onOpen={onOpen}
-          onEmail={onEmail}
-          onSubmit={onSubmit}
-        />
+        <HeroDownload />
       </div>
 
       <div className="hero-product" aria-label="Jazari One app preview">
