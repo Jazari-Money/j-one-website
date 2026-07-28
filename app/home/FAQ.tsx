@@ -41,8 +41,8 @@ export function FAQ() {
       <header className="chapter-heading">
         <h2>FAQ</h2>
         <p className="faq-contact">
-          If you didn&apos;t find an answer to your question, email{" "}
-          <a href="mailto:hello@jazary.xyz">hello@jazary.xyz</a>.
+          Something we missed?{" "}
+          <a href="mailto:hello@jazary.xyz">Email us.</a>
         </p>
       </header>
       <div className="faq-content">

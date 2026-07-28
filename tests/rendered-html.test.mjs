@@ -272,10 +272,10 @@ test("renders the Blog index and all seven guides", async () => {
   assert.doesNotMatch(indexHtml, /min read/i);
 
   const routes = [
-    ["/blog/send-money-to-mexico", /five checks before you confirm/],
-    ["/blog/send-money-to-brazil", /Pix and bank checklist/],
-    ["/blog/send-money-to-colombia", /without avoidable delays/],
-    ["/blog/send-money-to-europe", /choose the right currency/],
+    ["/blog/send-money-to-mexico", /3 steps before you confirm/],
+    ["/blog/send-money-to-brazil", /3 steps before you confirm/],
+    ["/blog/send-money-to-colombia", /3 steps before you confirm/],
+    ["/blog/send-money-to-europe", /3 steps before you confirm/],
     ["/blog/compare-transfer-costs", /beyond the headline rate/],
     ["/blog/verify-recipient-details", /before sending money to a new recipient/],
     ["/blog/digital-dollars-bank-payouts", /what each part does/],

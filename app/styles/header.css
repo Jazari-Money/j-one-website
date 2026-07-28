@@ -50,7 +50,7 @@
 .nav-menu a {
   padding: 8px 0;
   color: rgba(255, 255, 255, 0.86);
-  font-size: 15.5px;
+  font-size: 16.5px;
   transition: color 160ms ease;
 }
 
@@ -61,7 +61,7 @@
 .nav-dropdown summary {
   padding: 8px 0;
   color: rgba(255, 255, 255, 0.86);
-  font-size: 15.5px;
+  font-size: 16.5px;
   cursor: pointer;
   list-style: none;
   transition: color 160ms ease;
@@ -79,7 +79,9 @@
   transition: transform 160ms ease;
 }
 
-.nav-dropdown[open] summary::after {
+.nav-dropdown[open] summary::after,
+.nav-dropdown:hover summary::after,
+.nav-dropdown:focus-within summary::after {
   transform: translateY(3px) rotate(225deg);
 }
 
@@ -111,7 +113,9 @@
   transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
 }
 
-.nav-dropdown[open] .nav-dropdown-menu {
+.nav-dropdown[open] .nav-dropdown-menu,
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, 0);

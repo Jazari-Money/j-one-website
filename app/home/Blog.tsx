@@ -16,14 +16,18 @@ export function Blog() {
       <div className="blog-grid">
         {guides.slice(0, 4).map((guide, index) => (
           <Link
-            className={`blog-card pointer-card ${index === 0 ? "blog-card-featured" : ""}`}
+            className={`blog-card pointer-card ${index === 0 ? "blog-card-featured" : ""} ${"image" in guide ? "has-image" : ""}`}
             href={`/blog/${guide.slug}`}
             key={guide.slug}
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}
           >
             {"image" in guide && (
-              <img className="blog-card-image" src={guide.image} alt="Family walking together in Mexico" />
+              <img
+                className="blog-card-image"
+                src={guide.image}
+                alt={`${guide.route} transfer guide`}
+              />
             )}
             <div className="blog-card-copy">
               <h3>{guide.title}</h3>

@@ -1,10 +1,34 @@
 import { withBasePath } from "../site-paths";
 
 export const currencies = {
-  MXN: { name: "Mexican peso", rate: 18.72, symbol: "$" },
-  COP: { name: "Colombian peso", rate: 4175, symbol: "$" },
-  BRL: { name: "Brazilian real", rate: 5.49, symbol: "R$" },
-  EUR: { name: "Euro", rate: 0.92, symbol: "€" },
+  MXN: {
+    country: "Mexico",
+    name: "Mexican peso",
+    rate: 18.72,
+    symbol: "$",
+    flag: withBasePath("/images/flags/mx.png"),
+  },
+  COP: {
+    country: "Colombia",
+    name: "Colombian peso",
+    rate: 4175,
+    symbol: "$",
+    flag: withBasePath("/images/flags/co.png"),
+  },
+  BRL: {
+    country: "Brazil",
+    name: "Brazilian real",
+    rate: 5.49,
+    symbol: "R$",
+    flag: withBasePath("/images/flags/br.png"),
+  },
+  EUR: {
+    country: "Europe",
+    name: "Euro",
+    rate: 0.92,
+    symbol: "€",
+    flag: withBasePath("/images/flags/eu.png"),
+  },
 } as const;
 
 export type CurrencyCode = keyof typeof currencies;
@@ -33,39 +57,98 @@ export const features = [
   },
   {
     id: "zero-fees",
-    copy: "No monthly fee. No transfer fee. No hidden fees.",
+    copy: "No transfer fees. No hidden fees.",
     image: withBasePath("/images/features/new/zero.png"),
   },
   {
     id: "minutes",
-    copy: "Money arrives in minutes, not business days.",
+    copy: "Money arrives in minutes.",
     image: withBasePath("/images/features/new/send.webp"),
   },
 ] as const;
 
-export const howSteps = [
-  {
-    id: "account",
-    title: "Create an account",
-    copy: "Enter phone number and complete the checks required for your country.",
-    screen: withBasePath("/images/screens/home.webp"),
-    alt: "Jazari One account creation screen",
+export const howScenarios = {
+  receive: {
+    label: "Receive",
+    steps: [
+      {
+        id: "receive-home",
+        title: "Open Receive",
+        copy: "Choose Receive from your dollar balance.",
+        screen: withBasePath("/images/how-to/how-to-receive-01.png"),
+        alt: "Jazari One balance with the receive action",
+      },
+      {
+        id: "receive-stablecoins",
+        title: "Share wallet details",
+        copy: "Use a QR code or address for supported stablecoins.",
+        screen: withBasePath("/images/how-to/how-to-receive-02.png"),
+        alt: "Stablecoin receive details in Jazari One",
+      },
+      {
+        id: "receive-usd",
+        title: "Use USD details",
+        copy: "Open your personal USD account details for bank transfers.",
+        screen: withBasePath("/images/how-to/how-to-receive-03.png"),
+        alt: "USD account details in Jazari One",
+      },
+    ],
   },
-  {
-    id: "amount",
-    title: "Enter the amount",
-    copy: "Type the amount and see exactly what arrives in local currency.",
-    screen: withBasePath("/images/screens/amount-entry.webp"),
-    alt: "Jazari One amount and exchange preview screen",
+  send: {
+    label: "Send",
+    steps: [
+      {
+        id: "send-recipient",
+        title: "Choose a recipient",
+        copy: "Start with the recipient and their destination.",
+        screen: withBasePath("/images/how-to/how-to-send-01.png"),
+        alt: "Recipient details in Jazari One",
+      },
+      {
+        id: "send-amount",
+        title: "Enter the amount",
+        copy: "See the local amount and live rate before continuing.",
+        screen: withBasePath("/images/how-to/how-to-send-02.png"),
+        alt: "Transfer amount and local currency preview",
+      },
+      {
+        id: "send-confirm",
+        title: "Review and send",
+        copy: "Confirm the destination, total, and delivery estimate.",
+        screen: withBasePath("/images/how-to/how-to-send-03.png"),
+        alt: "Transfer confirmation in Jazari One",
+      },
+    ],
   },
-  {
-    id: "arrival",
-    title: "Done!",
-    copy: "Transaction details are always there if you need to check or follow up.",
-    screen: withBasePath("/images/screens/send-success.webp"),
-    alt: "Jazari One completed transaction screen",
+  yields: {
+    label: "Yields",
+    steps: [
+      {
+        id: "yield-strategy",
+        title: "Choose a yield",
+        copy: "Open an available strategy from your balance.",
+        screen: withBasePath("/images/how-to/how-to-yield-01.png"),
+        alt: "Available yield strategy in Jazari One",
+      },
+      {
+        id: "yield-amount",
+        title: "Add funds",
+        copy: "Choose how much USDC or USDT to put to work.",
+        screen: withBasePath("/images/how-to/how-to-yield-02.png"),
+        alt: "Adding funds to a yield in Jazari One",
+      },
+      {
+        id: "yield-position",
+        title: "Track your yield",
+        copy: "See your position and withdraw when you need to.",
+        screen: withBasePath("/images/how-to/how-to-yield-03.png"),
+        alt: "Yield position details in Jazari One",
+      },
+    ],
   },
-] as const;
+} as const;
+
+export type HowScenario = keyof typeof howScenarios;
 
 export const audiences = [
   {
@@ -92,27 +175,30 @@ export const guides = [
   {
     slug: "send-money-to-mexico",
     route: "Mexico",
-    title: "Sending dollars to Mexico: five checks before you confirm",
-    deck: "A CLABE is an 18-digit standardized banking code used in Mexico to ensure secure domestic electronic fund transfers and wire payments. It consists of three key parts: a 3-digit bank code, a 3-digit city/branch code, and an 11-digit individual account number followed by a control digit.",
+    title: "How to send dollars to Mexico: 3 steps before you confirm",
+    deck: "Use the recipient’s full name, bank, and 18-digit CLABE for a SPEI payout.",
     image: withBasePath("/images/blog/mexico-transfer.webp"),
   },
   {
     slug: "send-money-to-brazil",
     route: "Brazil",
-    title: "Sending money to Brazil: a cleaner Pix and bank checklist",
-    deck: "Use the exact recipient identifier, read the BRL amount, and keep one reliable record.",
+    title: "How to send dollars to Brazil: 3 steps before you confirm",
+    deck: "For a Pix payout, use the recipient’s full name and exact Pix key.",
+    image: withBasePath("/images/blog/brazil.jpg"),
   },
   {
     slug: "send-money-to-colombia",
     route: "Colombia",
-    title: "Planning a transfer to Colombia without avoidable delays",
-    deck: "Account type and recipient details matter as much as the account number.",
+    title: "How to send dollars to Colombia: 3 steps before you confirm",
+    deck: "For a Bre-B payout, use the recipient’s full name and exact llave.",
+    image: withBasePath("/images/blog/colombia.jpg"),
   },
   {
     slug: "send-money-to-europe",
     route: "Europe",
-    title: "Sending to Europe: choose the right currency and bank route",
-    deck: "Europe is not one currency or one payment route. Check the destination first.",
+    title: "How to send dollars to Europe: 3 steps before you confirm",
+    deck: "For a SEPA payout, collect the full name, IBAN, BIC, and address.",
+    image: withBasePath("/images/blog/europe.jpg"),
   },
   {
     slug: "compare-transfer-costs",

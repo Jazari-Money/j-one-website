@@ -37,7 +37,11 @@ export function BlogIndex() {
                 <strong className="blog-index-read neutral-control">Read Article</strong>
               </div>
               {"image" in guide && (
-                <img className="blog-index-image" src={guide.image} alt="Family walking together in Mexico" />
+                <img
+                  className="blog-index-image"
+                  src={guide.image}
+                  alt={`${guide.route} transfer guide`}
+                />
               )}
             </Link>
           ))}

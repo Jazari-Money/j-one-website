@@ -58,6 +58,22 @@
   transform: scale(1.025);
 }
 
+.blog-card.has-image:not(.blog-card-featured) .blog-card-image {
+  top: auto;
+  height: 62%;
+  object-position: 50% 42%;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
+}
+
+.blog-card.has-image:not(.blog-card-featured) .blog-card-copy {
+  padding-bottom: 42%;
+}
+
+.blog-card.has-image:not(.blog-card-featured):hover .blog-card-image,
+.blog-card.has-image:not(.blog-card-featured):focus-visible .blog-card-image {
+  transform: scale(1.025);
+}
+
 .blog-card::before {
   display: none;
 }

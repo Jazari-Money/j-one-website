@@ -71,20 +71,20 @@ Commercial relationship wording still requires confirmation before launch.
 1. Bridge-inspired full-width fixed header
 2. Hero with shallow masked mesh shader and Jazari app video
 3. Revealing editorial capability ledger using the supplied Jazari icon assets
-4. Interactive How It Works tabs with one upright phone at a time
+4. Interactive How It Works with Receive, Send, and Yields scenarios; each
+   scenario contains three steps and one upright phone at a time
 5. FX/review experience integrated inside How It Works
 6. Static audience/use-case stories
-7. Provider and network grid
-8. Compact horizontal roadmap without product imagery:
+7. Compact horizontal roadmap without product imagery:
    - USD account
    - New receive countries
    - Yields with higher APY
    - Visa card
    - Remit Now Pay Later
-9. Homepage Blog preview with the four latest guides and dedicated Mexico imagery
-10. Closing download panel with an animated vertical green beam and irregular dust
-11. FAQ
-12. Legal/product footer with official iOS and Android store badges, social
+8. Homepage Blog preview with the four latest guides and dedicated corridor imagery
+9. Partner preview linking to the complete partners and networks page
+10. FAQ
+11. Legal/product footer with official iOS and Android store badges, social
     links, and both UAE and US entities
 
 ## Component board
@@ -130,19 +130,20 @@ localStorage preferences, or a header swatch.
 
 ### How It Works
 
-- Three accessible tabs:
-  - Create an account
-  - Enter the amount
-  - Done!
-- Arrow, Home, and End keys change tabs.
+- Three accessible scenario tabs: Receive, Send, and Yields.
+- Each scenario has three concise, task-specific steps.
+- Arrow, Home, and End keys change scenarios and steps.
+- All nine screenshots use one equal-ratio local asset system.
 - One upright, equal-ratio local screenshot is shown at a time.
-- The tabs form one quiet, borderless segmented control without helper labels.
+- The scenario tabs form one quiet segmented control. Step tabs remain visually
+  aligned with the phone stage at desktop and collapse into a compact mobile flow.
 - The active phone uses a transparent, borderless stage with a localized glow
   and bottom fade—no background card or decorative ghost typography.
-- FX conversion supports MXN, COP, BRL, and EUR. The review leads with “Know
-  what arrives before you send,” shows `1 USD = destination value` prominently,
-  keeps the two 0% proof points beside the copy, and keeps the live-rate
-  partner disclaimer at the bottom of the card.
+- FX conversion supports MXN, COP, BRL, and EUR through a custom accessible
+  selector showing each country, circular flag, and currency code. Amounts use
+  two decimals. The review leads with “Know what arrives before you send,”
+  keeps the delivery-time and transaction-fee proof points beside the copy,
+  and keeps the live-rate partner disclaimer at the bottom of the card.
 
 ### Capability ledger
 
@@ -170,14 +171,6 @@ localStorage preferences, or a header swatch.
   or gradient scrim; the authored lower image area carries the caption.
 - Mobile stacks the stories vertically.
 
-### Closing gradient flow
-
-- The closing panel uses Glimm’s Citrus palette with a top-to-bottom sweep,
-  `snap` easing, and band tightness/width 40.
-- Desktop triggers the sweep on pointer entry. Mobile triggers it once when
-  roughly 42% of the panel enters the viewport.
-- Reduced-motion users get the final quiet gradient state without a sweep.
-
 ## Blog routes
 
 - `/blog`
@@ -188,26 +181,25 @@ localStorage preferences, or a header swatch.
 - `/blog/compare-transfer-costs`
 - `/blog/verify-recipient-details`
 - `/blog/digital-dollars-bank-payouts`
-- `/pricing`
+- `/plan`
 
 The homepage shows the four latest guides. The Blog index shows all seven.
-Articles are brief and include useful route, safety, planning, and digital
-dollar context. Shared article rendering lives in `app/blog/GuideArticle.tsx`.
+Mexico, Brazil, Colombia, and Europe use dedicated route imagery on the
+homepage, Blog index, and article pages. Their content follows the supplied
+briefs: SPEI/CLABE, Pix, Bre-B llave, and SEPA/IBAN respectively. Shared article
+rendering lives in `app/blog/GuideArticle.tsx`.
 
 ## Provider and network grid
 
-The homepage presents a stagger-revealing, optically balanced grid of:
+The homepage previews four partners:
 
 - Bridge
 - Privy
 - Gauntlet
-- USD₮
-- USDC
-- Ethereum
-- TRON
-- Solana
-- Polygon
-- Base
+- Lido
+
+The dedicated partners page also includes the supported asset and network
+reference grid.
 
 Use neutral language. Do not imply every asset/network is already available on
 every Jazari route. Keep the logos monochrome and compensate their apparent

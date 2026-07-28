@@ -1,9 +1,18 @@
 "use client";
 
-import { KeyboardEvent, useRef, useState } from "react";
-import { currencies, howSteps, type CurrencyCode } from "./data";
+/* eslint-disable @next/next/no-img-element -- local flags are art-directed assets */
+
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
+import {
+  currencies,
+  howScenarios,
+  type CurrencyCode,
+  type HowScenario,
+} from "./data";
 import { resetPointer, trackPointer } from "./hooks";
 import { Phone } from "./Phone";
+
+const scenarioKeys = Object.keys(howScenarios) as HowScenario[];
 
 export function HowItWorks({
   amount,
@@ -18,24 +27,62 @@ export function HowItWorks({
   onAmount: (value: string) => void;
   onCurrency: (value: CurrencyCode) => void;
 }) {
+  const [activeScenario, setActiveScenario] = useState<HowScenario>("receive");
   const [activeStep, setActiveStep] = useState(0);
+  const [currencyOpen, setCurrencyOpen] = useState(false);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const scenarioRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const currencyPicker = useRef<HTMLDivElement | null>(null);
+  const scenario = howScenarios[activeScenario];
+  const step = scenario.steps[activeStep];
+  const selectedCurrency = currencies[currency];
+
+  useEffect(() => {
+    const closeCurrencyPicker = (event: MouseEvent) => {
+      if (!currencyPicker.current?.contains(event.target as Node)) setCurrencyOpen(false);
+    };
+    const closeOnEscape = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape") setCurrencyOpen(false);
+    };
+    document.addEventListener("pointerdown", closeCurrencyPicker);
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("pointerdown", closeCurrencyPicker);
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
+
+  function selectScenario(next: HowScenario) {
+    setActiveScenario(next);
+    setActiveStep(0);
+  }
+
+  function moveScenario(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    let next = index;
+    if (event.key === "ArrowRight") next = (index + 1) % scenarioKeys.length;
+    else if (event.key === "ArrowLeft") next = (index - 1 + scenarioKeys.length) % scenarioKeys.length;
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = scenarioKeys.length - 1;
+    else return;
+    event.preventDefault();
+    selectScenario(scenarioKeys[next]);
+    scenarioRefs.current[next]?.focus();
+  }
 
   function moveStep(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next = index;
-    if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % howSteps.length;
-    else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + howSteps.length) % howSteps.length;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") next = (index + 1) % scenario.steps.length;
+    else if (event.key === "ArrowLeft" || event.key === "ArrowUp") next = (index - 1 + scenario.steps.length) % scenario.steps.length;
     else if (event.key === "Home") next = 0;
-    else if (event.key === "End") next = howSteps.length - 1;
+    else if (event.key === "End") next = scenario.steps.length - 1;
     else return;
     event.preventDefault();
     setActiveStep(next);
     tabRefs.current[next]?.focus();
   }
 
-  const step = howSteps[activeStep];
-  const rateLabel = currencies[currency].rate.toLocaleString(undefined, {
-    minimumFractionDigits: Number.isInteger(currencies[currency].rate) ? 0 : 2,
+  const rateLabel = selectedCurrency.rate.toLocaleString(undefined, {
+    minimumFractionDigits: Number.isInteger(selectedCurrency.rate) ? 0 : 2,
     maximumFractionDigits: 2,
   });
 
@@ -43,12 +90,30 @@ export function HowItWorks({
     <section className="how section" id="how">
       <header className="chapter-heading">
         <h2>How it works</h2>
-        <p>Three steps show the screen and information you use at each point.</p>
+        <p>Choose what you want to do, then see each step in the app.</p>
       </header>
 
+      <div className="how-scenario-tabs" role="tablist" aria-label="Jazari actions">
+        {scenarioKeys.map((key, index) => (
+          <button
+            key={key}
+            ref={(node) => { scenarioRefs.current[index] = node; }}
+            type="button"
+            role="tab"
+            aria-selected={activeScenario === key}
+            tabIndex={activeScenario === key ? 0 : -1}
+            className={activeScenario === key ? "is-active" : ""}
+            onClick={() => selectScenario(key)}
+            onKeyDown={(event) => moveScenario(event, index)}
+          >
+            {howScenarios[key].label}
+          </button>
+        ))}
+      </div>
+
       <div className="how-experience">
-        <div className="step-tabs" role="tablist" aria-label="Jazari transfer steps">
-          {howSteps.map((item, index) => (
+        <div className="step-tabs" role="tablist" aria-label={`${scenario.label} steps`}>
+          {scenario.steps.map((item, index) => (
             <button
               key={item.id}
               ref={(node) => { tabRefs.current[index] = node; }}
@@ -75,7 +140,7 @@ export function HowItWorks({
           aria-labelledby={`step-tab-${step.id}`}
         >
           <div className="step-screen-stack">
-            {howSteps.map((item, index) => (
+            {scenario.steps.map((item, index) => (
               <Phone
                 key={item.id}
                 src={item.screen}
@@ -92,13 +157,13 @@ export function HowItWorks({
           <h3>Know what arrives before you send</h3>
           <p>Everything is on screen before you confirm. Nothing hidden in the rate.</p>
           <div className="review-metrics">
-            <div className="review-fee is-timing" aria-label="Delivery time: two to five minutes">
-              <strong className="numeric">2–5 min.</strong>
-              <b>Delivery time</b>
-            </div>
             <div className="review-fee" aria-label="Transaction fee: zero percent">
-              <strong className="numeric">0%</strong>
+              <strong>0%</strong>
               <b>Transaction fee</b>
+            </div>
+            <div className="review-fee is-timing" aria-label="Delivery time: two to five minutes">
+              <strong>2–5 min.</strong>
+              <b>Delivery time</b>
             </div>
           </div>
         </div>
@@ -137,28 +202,51 @@ export function HowItWorks({
             </span>
           </output>
 
-          <label htmlFor="receive-currency">Recipient receives</label>
+          <label id="receive-currency-label">Recipient receives</label>
           <div className="money-input result">
             <strong className="numeric" aria-live="polite">
-              {currencies[currency].symbol}
+              {selectedCurrency.symbol}
               {converted.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })}
             </strong>
-            <select
-              className="currency-select numeric"
-              id="receive-currency"
-              value={currency}
-              onChange={(event) => onCurrency(event.target.value as CurrencyCode)}
-              aria-label="Recipient currency"
-            >
-              {Object.entries(currencies).map(([code, item]) => (
-                <option value={code} key={code} aria-label={`${code}, ${item.name}`}>
-                  {code}
-                </option>
-              ))}
-            </select>
+            <div className="currency-picker" ref={currencyPicker}>
+              <button
+                className="currency-trigger"
+                id="receive-currency"
+                type="button"
+                aria-haspopup="listbox"
+                aria-expanded={currencyOpen}
+                aria-labelledby="receive-currency-label"
+                onClick={() => setCurrencyOpen((open) => !open)}
+              >
+                <img src={selectedCurrency.flag} alt="" />
+                <span className="numeric">{currency}</span>
+                <svg viewBox="0 0 12 8" aria-hidden="true"><path d="m1 1 5 5 5-5" /></svg>
+              </button>
+              {currencyOpen && (
+                <div className="currency-menu" role="listbox" aria-label="Recipient currency">
+                  {(Object.entries(currencies) as Array<[CurrencyCode, (typeof currencies)[CurrencyCode]]>).map(([code, item]) => (
+                    <button
+                      key={code}
+                      type="button"
+                      role="option"
+                      aria-selected={currency === code}
+                      className="currency-option"
+                      onClick={() => {
+                        onCurrency(code);
+                        setCurrencyOpen(false);
+                      }}
+                    >
+                      <img src={item.flag} alt="" />
+                      <span>{item.country}</span>
+                      <b className="numeric">{code}</b>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
           <p className="rate-disclaimer">

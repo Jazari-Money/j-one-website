@@ -57,7 +57,6 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
           <details className="nav-dropdown">
             <summary>Personal</summary>
             <div className="nav-dropdown-menu">
@@ -67,6 +66,7 @@ export function SiteHeader({
               <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
             </div>
           </details>
+          <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <div className="nav-mobile-extras">
             <button

@@ -45,7 +45,7 @@
       var(--accent) 34%,
       transparent 72%
     );
-  opacity: 0.74;
+  opacity: 0;
   pointer-events: none;
   transition: opacity 260ms ease;
   -webkit-mask:

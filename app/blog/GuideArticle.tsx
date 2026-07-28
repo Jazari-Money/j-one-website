@@ -14,118 +14,140 @@ type ArticleSection = {
 type GuideArticleData = {
   title: string;
   deck: string;
+  image?: string;
+  imageAlt?: string;
   sections: ArticleSection[];
 };
 
 const articleData: Record<string, GuideArticleData> = {
   mexico: {
-    title: "Sending dollars to Mexico: five checks before you confirm",
-    deck: "A CLABE is an 18-digit standardized banking code used in Mexico to ensure secure domestic electronic fund transfers and wire payments. It consists of three key parts: a 3-digit bank code, a 3-digit city/branch code, and an 11-digit individual account number followed by a control digit.",
+    title: "How to send dollars to Mexico: 3 steps before you confirm",
+    deck: "Use the recipient’s full name, bank, and 18-digit CLABE for a SPEI payout.",
+    image: "/images/blog/mexico-transfer.webp",
+    imageAlt: "Family walking together in Mexico",
     sections: [
       {
-        heading: "Ask for the bank details directly",
+        heading: "What you need",
         paragraphs: [
-          "Get the recipient’s full name as it appears on their account and the bank information requested in Jazari. If the route asks for a CLABE, enter all 18 digits.",
-          "A CLABE identifies a specific Mexican bank account. Do not replace it with a card number or phone number unless the current transfer flow explicitly supports that option.",
+          "Before you begin, ask the recipient for the full name on the account, the bank name, and the complete 18-digit CLABE. Jazari uses these details for a local SPEI payout.",
+        ],
+        bullets: ["Full legal name", "Bank name", "18-digit CLABE"],
+      },
+      {
+        heading: "1. Add the recipient",
+        paragraphs: [
+          "Enter the name, bank, and CLABE exactly as the recipient provided them. A CLABE identifies a Mexican bank account; it is not a card number or phone number.",
         ],
       },
       {
-        heading: "Read the complete MXN preview",
+        heading: "2. Enter dollars and check MXN",
         paragraphs: [
-          "The recipient estimate is usually more useful than looking at the exchange rate alone. Use the final confirmation screen rather than an earlier quote or screenshot.",
-        ],
-        bullets: [
-          "The dollars leaving your balance",
-          "The reference rate and estimated Mexican-peso amount",
-          "Applicable costs and the expected delivery window",
+          "Enter the dollars you want to send. Read the MXN amount, rate, transaction cost, and delivery estimate together before continuing.",
         ],
       },
       {
-        heading: "Confirm once, then keep the reference",
+        heading: "3. Confirm and track",
         paragraphs: [
-          "Tell the recipient the estimated MXN amount and the account you selected. This is one final chance to catch an old or incorrect account.",
-          "Save the confirmation until the recipient verifies receipt. One reference and one verified set of details make any follow-up much simpler.",
+          "Check the recipient and CLABE one final time, then confirm. Keep the transfer reference until the recipient confirms that the pesos arrived.",
         ],
       },
     ],
   },
   brazil: {
-    title: "Sending money to Brazil: a cleaner Pix and bank checklist",
-    deck: "Use the exact recipient identifier, read the BRL amount, and keep one reliable record.",
+    title: "How to send dollars to Brazil: 3 steps before you confirm",
+    deck: "For a Pix payout, use the recipient’s full name and exact Pix key.",
+    image: "/images/blog/brazil.jpg",
+    imageAlt: "People using a phone in Brazil",
     sections: [
       {
-        heading: "Use the recipient method Jazari requests",
+        heading: "What you need",
         paragraphs: [
-          "If Jazari offers Pix for the route, the recipient may provide a CPF or CNPJ, email address, mobile number, or random Pix key. Copy the key exactly.",
-          "If the route asks for bank details instead, enter the bank, branch, account type, and account number exactly as shown in the flow.",
+          "Ask for the recipient’s full name and Pix key. The key may be a CPF or CNPJ, email address, phone number, or random key. Jazari does not need bank or account details for this route.",
+        ],
+        bullets: ["Full legal name", "Exact Pix key"],
+      },
+      {
+        heading: "1. Add the recipient",
+        paragraphs: [
+          "Choose Brazil, enter the recipient’s full name, and copy the Pix key exactly. Compare any returned recipient name with the person or business you intend to pay.",
         ],
       },
       {
-        heading: "Check the recipient before the amount",
+        heading: "2. Enter dollars and check BRL",
         paragraphs: [
-          "Where a recipient name is returned, compare it with the person or business you intend to pay. A familiar phone number is not enough on its own.",
-          "Then review the amount leaving your dollar balance, the estimated BRL amount, the reference rate, applicable costs, and expected delivery time together.",
+          "Enter the dollars you want to send. Review the BRL amount, live rate, transaction cost, and expected delivery before continuing.",
         ],
       },
       {
-        heading: "Send once, then track",
+        heading: "3. Confirm and track",
         paragraphs: [
-          "Avoid submitting a second transfer because the first one does not appear immediately. Check its status and reference first.",
-          "Keep the confirmation until the recipient verifies the payment.",
+          "Check the name and Pix key once more, then confirm. Use the transfer status and reference instead of creating a duplicate payment while the first is processing.",
         ],
       },
     ],
   },
   colombia: {
-    title: "Planning a transfer to Colombia without avoidable delays",
-    deck: "Account type and recipient details matter as much as the account number.",
+    title: "How to send dollars to Colombia: 3 steps before you confirm",
+    deck: "For a Bre-B payout, use the recipient’s full name and exact llave.",
+    image: "/images/blog/colombia.jpg",
+    imageAlt: "Friends together in Colombia",
     sections: [
       {
-        heading: "Confirm the complete account",
+        heading: "What you need",
         paragraphs: [
-          "Ask for the recipient’s full legal name, bank, account type, and account number. Provide identification details only when the current route requests them.",
-          "Savings and current accounts are not interchangeable. Select the account type the recipient confirms.",
+          "Ask the recipient for their full name and Bre-B llave. Jazari does not need an account type or account number for this route.",
+        ],
+        bullets: ["Full legal name", "Exact Bre-B llave"],
+      },
+      {
+        heading: "1. Add the recipient",
+        paragraphs: [
+          "Choose Colombia, enter the recipient’s full name, and copy the llave exactly as supplied. Do not substitute an account number or other identifier.",
         ],
       },
       {
-        heading: "Copy the details; do not interpret them",
+        heading: "2. Enter dollars and check COP",
         paragraphs: [
-          "Enter the account number exactly as provided, including leading zeros. Do not add spaces or punctuation unless the form does so automatically.",
-          "Review the dollars sent, reference conversion, estimated Colombian pesos, applicable costs, and expected delivery on the same preview.",
+          "Enter the dollars you want to send, then review the COP amount, live rate, transaction cost, and delivery estimate.",
         ],
       },
       {
-        heading: "Keep one source for status",
+        heading: "3. Confirm and track",
         paragraphs: [
-          "Use the Jazari transfer status as the source of truth. Keep the reference until the recipient confirms receipt.",
-          "Avoid creating a duplicate payment while the first remains in progress.",
+          "Check the recipient name and llave one final time. After sending, keep the transfer reference until the recipient confirms receipt.",
         ],
       },
     ],
   },
   europe: {
-    title: "Sending to Europe: choose the right currency and bank route",
-    deck: "Europe is not one currency or one payment route. Check the destination before the account.",
+    title: "How to send dollars to Europe: 3 steps before you confirm",
+    deck: "For a SEPA payout, collect the full name, IBAN, BIC, and address.",
+    image: "/images/blog/europe.jpg",
+    imageAlt: "Person walking through a European city",
     sections: [
       {
-        heading: "Choose the destination currency first",
+        heading: "What you need",
         paragraphs: [
-          "Many European accounts receive euros through SEPA, but not every European country uses the euro. Confirm whether the recipient expects EUR or another local currency.",
-          "Then select the matching route currently available in Jazari.",
+          "Ask for the recipient’s full legal name, IBAN, BIC, and address. These details identify the recipient and their bank for a SEPA payout.",
+        ],
+        bullets: ["Full legal name", "IBAN", "BIC", "Address"],
+      },
+      {
+        heading: "1. Add the recipient",
+        paragraphs: [
+          "Choose the European destination and enter the full name, address, BIC, and complete IBAN, including the country prefix and leading zeros.",
         ],
       },
       {
-        heading: "Copy the IBAN exactly",
+        heading: "2. Enter dollars and check EUR",
         paragraphs: [
-          "For a route that requests an IBAN, enter the complete value, including its country prefix and leading zeros. Use the recipient’s full account name.",
-          "Enter a BIC or SWIFT code only when the current form requests one.",
+          "Enter the dollars you want to send. Review the EUR amount, live rate, transaction cost, and expected delivery before continuing.",
         ],
       },
       {
-        heading: "Review the route, not only the rate",
+        heading: "3. Confirm and track",
         paragraphs: [
-          "Check the source amount, destination currency, reference rate, estimated recipient amount, applicable costs, and expected delivery time.",
-          "Save the final confirmation and the IBAN you used. If the recipient has several accounts, this prevents confusion about which one received the payment.",
+          "Check the recipient and IBAN once more, then confirm. Save the transfer reference until the recipient verifies that the euros arrived.",
         ],
       },
     ],
@@ -230,11 +252,11 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
           <p>{guide.deck}</p>
         </header>
 
-        {article === "mexico" && (
+        {guide.image && (
           <figure className="article-hero-image">
             <img
-              src={withBasePath("/images/blog/mexico-transfer.webp")}
-              alt="Family walking together in Mexico"
+              src={withBasePath(guide.image)}
+              alt={guide.imageAlt ?? ""}
             />
           </figure>
         )}

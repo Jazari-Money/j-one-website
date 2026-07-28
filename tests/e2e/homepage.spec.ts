@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 
 async function prepareStablePage(page: Page) {
   await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator(".home-page")).toHaveClass(/is-ready/);
   await page.addStyleTag({
     content: `
       canvas,
@@ -79,17 +80,33 @@ test("keeps the core interactions working", async ({ page }) => {
     )
     .not.toBe("0");
 
-  const accountTab = page.getByRole("tab", { name: /Create an account/ });
-  await accountTab.focus();
-  await accountTab.press("ArrowRight");
-  await expect(page.getByRole("tab", { name: /Enter the amount/ })).toHaveAttribute(
+  const receiveScenario = page.getByRole("tab", { name: "Receive", exact: true });
+  await receiveScenario.focus();
+  await receiveScenario.press("ArrowRight");
+  await expect(page.getByRole("tab", { name: "Send", exact: true })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(page.getByRole("tab", { name: /Choose a recipient/ })).toHaveAttribute(
     "aria-selected",
     "true",
   );
   await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
     "src",
-    /amount-entry\.webp$/,
+    /how-to-send-01\.png$/,
   );
+
+  const currencyPicker = page.locator("#receive-currency");
+  await currencyPicker.click();
+  const currencyMenu = page.getByRole("listbox", { name: "Recipient currency" });
+  await expect(currencyMenu.getByRole("option")).toHaveCount(4);
+  await expect(currencyMenu.getByRole("option", { name: /Mexico.*MXN/ })).toBeVisible();
+  await expect(currencyMenu.getByRole("option", { name: /Colombia.*COP/ })).toBeVisible();
+  await expect(currencyMenu.getByRole("option", { name: /Brazil.*BRL/ })).toBeVisible();
+  await expect(currencyMenu.getByRole("option", { name: /Europe.*EUR/ })).toBeVisible();
+  await currencyMenu.getByRole("option", { name: /Colombia.*COP/ }).click();
+  await expect(currencyPicker).toContainText("COP");
+  await expect(page.locator(".money-input.result strong")).toContainText("$4,175,000.00");
 
   await page.locator(".nav-cta").click();
   await expect(page.locator("#access")).toHaveClass(/is-open/);
