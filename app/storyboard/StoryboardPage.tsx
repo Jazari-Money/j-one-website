@@ -14,7 +14,6 @@ import { currencies, type CurrencyCode } from "../home/data";
 import { FAQ } from "../home/FAQ";
 import { Hero } from "../home/Hero";
 import { HowItWorks } from "../home/HowItWorks";
-import { MoneyRain } from "../home/MoneyRain";
 import { NetworkExplorer } from "../home/NetworkExplorer";
 import { ProductRoadmap } from "../home/ProductRoadmap";
 import { SiteFooter } from "../home/SiteFooter";
@@ -32,7 +31,6 @@ const stories = [
   ["roadmap", "Roadmap"],
   ["articles", "Article Cards"],
   ["faq", "FAQ"],
-  ["closing", "Closing CTA"],
   ["footer", "Footer"],
 ] as const;
 
@@ -254,18 +252,9 @@ export function StoryboardPage() {
         <FAQ />
       </section>
 
-      <section className="storyboard-story story-full" id="story-closing">
-        <StoryLabel
-          number="11"
-          name="Closing CTA"
-          note="Citrus flow field, irregular particles, and the shared download action."
-        />
-        <MoneyRain onAccess={openAccess} />
-      </section>
-
       <section className="storyboard-story story-footer" id="story-footer">
         <StoryLabel
-          number="12"
+          number="11"
           name="Footer"
           note="Navigation, legal identity, store badges, and company metadata."
         />

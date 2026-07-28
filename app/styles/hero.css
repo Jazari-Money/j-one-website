@@ -269,7 +269,6 @@
 .roadmap h3,
 .review-copy h3,
 .blog h3,
-.money-rain h2,
 .article-header h1,
 .article-copy h2 {
   font-family: var(--serif);
@@ -343,8 +342,13 @@
   inset: 0;
   padding: 1px;
   border-radius: 999px;
-  background: radial-gradient(circle 110px at var(--pointer-x) var(--pointer-y), var(--accent-3), var(--accent) 36%, transparent 72%);
-  opacity: 0.86;
+  background: radial-gradient(
+    circle 110px at var(--pointer-x) var(--pointer-y),
+    rgba(255, 255, 255, 0.88),
+    rgba(190, 198, 194, 0.5) 38%,
+    transparent 74%
+  );
+  opacity: 0.58;
   pointer-events: none;
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -364,8 +368,8 @@
   position: absolute;
   z-index: 0;
   inset: 0;
-  background: radial-gradient(circle 140px at var(--pointer-x) var(--pointer-y), var(--accent-soft), transparent 74%);
-  opacity: 0.42;
+  background: radial-gradient(circle 140px at var(--pointer-x) var(--pointer-y), rgba(255, 255, 255, 0.13), transparent 74%);
+  opacity: 0.36;
   transform:
     translate(
       calc(var(--pointer-nx) * -12%),

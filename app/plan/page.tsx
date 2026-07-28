@@ -1,4 +1,4 @@
-import { PricingPage } from "./PricingPage";
+import { PricingPage } from "../pricing/PricingPage";
 
 export const metadata = {
   title: "Plan — Jazari One",

@@ -12,7 +12,6 @@ import {
 import { Hero } from "./Hero";
 import { HowItWorks } from "./HowItWorks";
 import { FAQ } from "./FAQ";
-import { MoneyRain } from "./MoneyRain";
 import { NetworkExplorer } from "./NetworkExplorer";
 import { ProductRoadmap } from "./ProductRoadmap";
 import { SiteFooter } from "./SiteFooter";
@@ -89,11 +88,10 @@ export function HomeContent() {
         onCurrency={setCurrency}
       />
       <AudienceExplorer />
-      <NetworkExplorer />
       <ProductRoadmap />
       <Blog />
+      <NetworkExplorer />
       <FAQ />
-      <MoneyRain onAccess={openAccess} />
 
       <SiteFooter />
     </main>

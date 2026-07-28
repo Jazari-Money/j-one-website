@@ -1,17 +1,9 @@
 .benefit-ledger {
-  display: grid;
-  grid-template-columns: minmax(310px, 0.82fr) minmax(590px, 1.18fr);
-  gap: clamp(70px, 9vw, 150px);
-  align-items: start;
-}
-
-.ledger-heading {
-  position: sticky;
-  top: 132px;
-}
-
-.ledger-heading h2 {
-  font-size: clamp(58px, 5.5vw, 86px);
+  position: relative;
+  z-index: 3;
+  width: var(--page);
+  margin: clamp(-32px, -2vw, -18px) auto 0;
+  padding: 34px 0 12px;
 }
 
 .benefit-list {
@@ -19,7 +11,8 @@
   padding: 0;
   list-style: none;
   display: grid;
-  gap: 2px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 38px);
 }
 
 .benefit-reveal {
@@ -41,35 +34,35 @@
 
 .benefit-row {
   position: relative;
-  min-height: 118px;
+  min-width: 0;
   padding: 0;
   overflow: visible;
 }
 
 .benefit-row-inner {
   position: relative;
-  min-height: 118px;
-  padding: 17px 8px;
+  min-height: 0;
+  padding: 0;
   border-radius: 0;
   background: transparent;
   display: grid;
-  grid-template-columns: 86px minmax(0, 1fr);
-  align-items: center;
-  gap: 22px;
+  grid-template-columns: 52px minmax(0, 1fr);
+  align-items: start;
+  gap: 14px;
 }
 
 .benefit-row img {
   position: relative;
   z-index: 1;
-  width: 72px;
-  height: 72px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
   filter: grayscale(1) contrast(1.04);
 }
 
 .benefit-row h3 {
   margin: 0;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   letter-spacing: -0.025em;
 }
@@ -82,90 +75,49 @@
 
 .benefit-row p {
   max-width: 500px;
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   color: var(--muted-strong);
-  font-size: 15px;
-  line-height: 1.62;
+  font-size: 13px;
+  line-height: 1.5;
 }
 
 @media (max-width: 1120px) {
-  .benefit-ledger {
-    grid-template-columns: 1fr;
-    gap: 64px;
-  }
-
-  .ledger-heading {
-    position: static;
-  }
-
-  .benefit-row-inner {
-    grid-template-columns: 86px minmax(0, 1fr);
+  .benefit-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 34px;
   }
 }
 
 @media (max-width: 900px) {
-  .ledger-heading h2 {
-    font-size: clamp(54px, 10vw, 82px);
+  .benefit-ledger {
+    margin-top: 0;
+    padding-top: 32px;
   }
-
-  .benefit-row-inner {
-    grid-template-columns: 74px 1fr;
-    gap: 18px;
-  }
-
 }
 
 @media (max-width: 620px) {
-  .ledger-heading h2 {
-    font-size: clamp(48px, 14vw, 66px);
-  }
-
-  .benefit-ledger {
-    gap: 48px;
+  .benefit-list {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .benefit-row-inner {
-    min-height: 132px;
-    padding: 16px 4px;
-    grid-template-columns: 64px 1fr;
-    gap: 14px;
+    min-height: 88px;
+    padding: 15px 0;
+    grid-template-columns: 54px 1fr;
   }
 
   .benefit-row img {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
   }
 
   .benefit-row h3 {
-    font-size: 17px;
+    font-size: 16px;
   }
 
   .benefit-row p {
-    font-size: 15px;
-  }
-}
-
-@media (min-width: 901px) {
-  .ledger-heading h2 {
-    font-size: clamp(51px, 4.85vw, 76px);
-  }
-
-  .benefit-ledger {
-    gap: clamp(62px, 7.9vw, 132px);
-  }
-
-  .benefit-row {
-    min-height: 112px;
-  }
-
-  .benefit-row-inner {
-    min-height: 112px;
-    padding: 16px 8px;
-    gap: 25px;
-  }
-
-  .benefit-row img {
-    width: 68px;
-    height: 68px;
+    max-width: 330px;
+    font-size: 14px;
   }
 }

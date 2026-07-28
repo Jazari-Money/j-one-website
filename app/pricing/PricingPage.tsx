@@ -8,22 +8,26 @@ const groups = [
   {
     title: "Money movement",
     rows: [
-      ["Foreign Exchange", "Not Offered"],
-      ["Stablecoin Transfer", "$1 Network Fee"],
-      ["Local Payout", "No Transfer Fee · No Hidden FX Margin"],
+      ["Receive stablecoins", "Free"],
+      ["Send to a bank account", "Free · rate includes our margin"],
+      ["Send to a wallet", "Free over $10 · $1 below $10"],
     ],
   },
   {
-    title: "Accounts",
+    title: "Account",
     rows: [
-      ["USD Account", "Coming Soon"],
-      ["GBP Account", "Coming Soon"],
-      ["EUR Account", "Coming Soon"],
+      ["Opening an account", "Free"],
+      ["Monthly fee", "None"],
+      ["Annual fee", "None"],
+      ["Holding dollars", "Free"],
     ],
   },
   {
-    title: "Cards",
-    rows: [["Visa Card", "Coming Soon"]],
+    title: "Earn",
+    rows: [
+      ["Gauntlet USD Alpha", "Variable APY · our share taken before the rate you see"],
+      ["Adding or withdrawing funds", "Network cost only — cents on Base"],
+    ],
   },
 ] as const;
 
@@ -32,7 +36,7 @@ export function PricingPage() {
     <main className="pricing-shell">
       <InternalSiteHeader />
       <header className="pricing-hero">
-        <h1>Pricing</h1>
+        <h1>Plan</h1>
         <p>
           Preview pricing only. Availability, eligibility, final fees, and route
           terms are confirmed in the app.
@@ -40,7 +44,7 @@ export function PricingPage() {
       </header>
       <section
         className="pricing-groups pointer-card"
-        aria-label="Jazari One pricing"
+        aria-label="Jazari One plan"
         onPointerMove={trackPointer}
         onPointerLeave={resetPointer}
       >

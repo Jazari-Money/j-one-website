@@ -58,12 +58,18 @@ export function SiteHeader({
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
           <a href={sectionHref("how")} onClick={closeMobile}>How it works</a>
-          <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
-          <a href={withBasePath("/pricing/")} onClick={closeMobile}>Pricing</a>
-          <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
-          <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Roadmap</a>
+          <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
+          <details className="nav-dropdown">
+            <summary>Personal</summary>
+            <div className="nav-dropdown-menu">
+              <a href={sectionHref("how")} onClick={closeMobile}>Send</a>
+              <a href={sectionHref("features")} onClick={closeMobile}>Receive</a>
+              <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
+              <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
+            </div>
+          </details>
+          <a href={withBasePath("/partners/")} onClick={closeMobile}>Partners</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
-          <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
           <div className="nav-mobile-extras">
             <button
               className="neutral-control"

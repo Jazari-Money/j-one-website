@@ -29,13 +29,12 @@ test("server-renders the Jazari One landing page", async () => {
   );
   assert.match(html, /jazari-app\.mp4/);
   assert.match(html, /Download App/);
-  assert.match(html, /One app for money that crosses borders/);
+  assert.match(html, /Hold dollars/);
   assert.match(html, /How it works/);
   assert.match(html, /Know what arrives before you send/);
   assert.match(html, /class="numeric">1<\/b><small class="numeric">USD/);
   assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
   assert.match(html, /Transaction fee/);
-  assert.match(html, />Roadmap</);
   assert.match(html, />Yields</);
   assert.doesNotMatch(html, /Roadmap 2026/);
   assert.match(html, /USD account/);
@@ -43,15 +42,14 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Visa card/);
   assert.match(html, /Nigeria/);
   assert.match(html, /mexico-transfer\.webp/);
-  assert.match(html, /Partners &amp; Networks/);
+  assert.match(html, />Partners</);
   assert.match(html, />FAQ</);
-  assert.ok(
-    html.indexOf('id="networks"') < html.indexOf('id="roadmap"'),
-  );
   assert.ok(html.indexOf('id="roadmap"') < html.indexOf('id="blog"'));
+  assert.ok(html.indexOf('id="blog"') < html.indexOf('id="networks"'));
+  assert.ok(html.indexOf('id="networks"') < html.indexOf('id="faq"'));
   assert.match(html, />Blog</);
-  assert.match(html, /India/);
-  assert.match(html, /USDC/);
+  assert.match(html, /Bridge/);
+  assert.match(html, /Laido/);
   assert.doesNotMatch(
     html,
     /Private beta · No commitment · Availability varies by country/,
@@ -59,22 +57,26 @@ test("server-renders the Jazari One landing page", async () => {
   assert.doesNotMatch(html, /audience-index/);
 });
 
-test("server-renders pricing, yields, and roadmap pages", async () => {
-  const [pricingResponse, yieldsResponse, roadmapResponse] = await Promise.all([
-    render("/pricing"),
+test("server-renders plan, yields, roadmap, and partners pages", async () => {
+  const [planResponse, yieldsResponse, roadmapResponse, partnersResponse] = await Promise.all([
+    render("/plan"),
     render("/yields"),
     render("/roadmap"),
+    render("/partners"),
   ]);
-  const [pricing, yields, roadmap] = await Promise.all([
-    pricingResponse.text(),
+  const [plan, yields, roadmap, partners] = await Promise.all([
+    planResponse.text(),
     yieldsResponse.text(),
     roadmapResponse.text(),
+    partnersResponse.text(),
   ]);
 
-  assert.match(pricing, /<h1>Pricing<\/h1>/);
-  assert.match(pricing, /Preview pricing only/);
-  assert.ok(pricing.indexOf("Money movement") < pricing.indexOf("Accounts"));
-  assert.ok(pricing.indexOf("Accounts") < pricing.indexOf("Cards"));
+  assert.match(plan, /<h1>Plan<\/h1>/);
+  assert.match(plan, /Preview pricing only/);
+  assert.ok(plan.indexOf("Money movement") < plan.indexOf("Account"));
+  assert.ok(plan.indexOf("Account") < plan.indexOf("Earn"));
+  assert.match(plan, /Free over \$10/);
+  assert.match(plan, /Variable APY/);
 
   assert.match(yields, /Gauntlet USD Alpha/);
   assert.match(yields, /4\.66%/);
@@ -85,6 +87,11 @@ test("server-renders pricing, yields, and roadmap pages", async () => {
   assert.match(roadmap, /<h1>Roadmap<\/h1>/);
   assert.match(roadmap, /Yields with higher APY/);
   assert.match(roadmap, /Remit Now Pay Later/);
+
+  assert.match(partners, /<h1>Partners<\/h1>/);
+  assert.match(partners, /Laido/);
+  assert.match(partners, /Networks and digital dollars/);
+  assert.match(partners, /USDC/);
 });
 
 test("server-renders the standalone component board", async () => {
@@ -98,7 +105,7 @@ test("server-renders the standalone component board", async () => {
   assert.match(html, /Foundations/);
   assert.match(html, /Transfer Experience/);
   assert.match(html, /Partner Grid/);
-  assert.match(html, /Closing CTA/);
+  assert.match(html, /Footer/);
   assert.match(html, /This route is intentionally absent from the public navigation/);
 });
 
@@ -188,7 +195,6 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
 
   assert.match(css, /\.benefit-row-inner/);
   assert.match(css, /\.card-object/);
-  assert.match(css, /\.money-flow-canvas/);
   assert.match(css, /\.pointer-card::after/);
   assert.match(css, /\.provider-logo img/);
   assert.match(css, /\.faq-list/);

@@ -1,11 +1,24 @@
 .networks .chapter-heading {
-  max-width: 960px;
+  max-width: none;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.networks-all-link {
+  flex: 0 0 auto;
+  margin-bottom: 8px;
+  padding: 12px 18px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .provider-grid {
   margin-top: 70px;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -36,6 +49,14 @@
   height: 58px;
   display: flex;
   align-items: flex-start;
+}
+
+.provider-wordmark {
+  color: var(--text);
+  font-size: 30px;
+  font-weight: 680;
+  letter-spacing: -0.05em;
+  line-height: 1;
 }
 
 .provider-logo {
@@ -103,11 +124,75 @@
   margin-top: 0;
 }
 
+.partners-shell {
+  min-height: 100vh;
+  overflow: clip;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.partners-hero,
+.partner-directory {
+  width: var(--page);
+  margin-inline: auto;
+}
+
+.partners-hero {
+  padding: 190px 0 86px;
+}
+
+.partners-hero h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(76px, 8.2vw, 116px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.88;
+}
+
+.partners-hero p {
+  max-width: 660px;
+  margin: 30px 0 0;
+  color: var(--muted-strong);
+  font-size: 18px;
+  line-height: 1.62;
+}
+
+.partner-directory {
+  padding: 36px 0 74px;
+}
+
+.partner-directory + .partner-directory {
+  padding-top: 40px;
+}
+
+.partner-directory > h2 {
+  font-family: var(--serif);
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.94;
+}
+
+.partner-directory .provider-grid {
+  margin-top: 48px;
+}
+
+.directory-network-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 @media (max-width: 900px) {
   .provider-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 720px) {
+  .networks .chapter-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+
   .provider-grid {
     margin-top: 48px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -116,5 +201,21 @@
   .provider-card {
     min-height: 214px;
     padding: 22px;
+  }
+
+  .partners-hero {
+    padding: 146px 0 64px;
+  }
+
+  .partners-hero h1 {
+    font-size: 66px;
+  }
+
+  .partners-hero p {
+    font-size: 16px;
+  }
+
+  .partner-directory {
+    padding-bottom: 50px;
   }
 }

@@ -3,7 +3,8 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
 import type { CSSProperties } from "react";
-import { networkStories } from "./data";
+import Link from "next/link";
+import { partnerStories } from "./data";
 import { resetPointer, trackPointer, useRevealInViewport } from "./hooks";
 
 export function NetworkExplorer() {
@@ -12,16 +13,18 @@ export function NetworkExplorer() {
   return (
     <section className="networks section" id="networks">
       <header className="chapter-heading">
-        <h2>Partners &amp; Networks</h2>
-        <p>Jazari One is built on licensed partners and public blockchains. Here&apos;s every one of them.</p>
+        <h2>Partners</h2>
+        <Link className="networks-all-link neutral-control" href="/partners">
+          All Partners
+        </Link>
       </header>
 
       <div
         className={`provider-grid ${revealed ? "is-visible" : ""}`}
-        aria-label="Jazari providers and network rails"
+        aria-label="Jazari partners"
         ref={gridRef}
       >
-        {networkStories.map((item, index) => (
+        {partnerStories.map((item, index) => (
           <article
             className={`provider-card pointer-card logo-${item.logoFormat}`}
             key={item.name}
@@ -32,12 +35,18 @@ export function NetworkExplorer() {
             onPointerLeave={resetPointer}
           >
             <div className="provider-logo-slot">
-              <span
-                className={`provider-logo is-${item.logoFormat}`}
-                style={{ "--logo-scale": item.logoScale } as CSSProperties}
-              >
-                <img src={item.logo} alt={`${item.name} logo`} />
-              </span>
+              {"logo" in item ? (
+                <span
+                  className={`provider-logo is-${item.logoFormat}`}
+                  style={{ "--logo-scale": item.logoScale } as CSSProperties}
+                >
+                  <img src={item.logo} alt={`${item.name} logo`} />
+                </span>
+              ) : (
+                <span className="provider-wordmark" aria-label={`${item.name} logo`}>
+                  {item.wordmarkText}
+                </span>
+              )}
             </div>
             <div className="provider-card-copy">
               {!("wordmarkOnly" in item && item.wordmarkOnly) && <h3>{item.name}</h3>}

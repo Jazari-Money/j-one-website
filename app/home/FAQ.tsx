@@ -40,7 +40,6 @@ export function FAQ() {
     <section className="faq section" id="faq">
       <header className="chapter-heading">
         <h2>FAQ</h2>
-        <p>Clear answers about the account, transfers, availability, and what comes next.</p>
         <p className="faq-contact">
           If you didn&apos;t find an answer to your question, email{" "}
           <a href="mailto:hello@jazary.xyz">hello@jazary.xyz</a>.

@@ -106,12 +106,6 @@ test("keeps the core interactions working", async ({ page }) => {
     )
     .not.toBe("50%");
 
-  const moneyRain = page.locator(".money-rain");
-  await moneyRain.scrollIntoViewIfNeeded();
-  await moneyRain.hover();
-  await expect(moneyRain.locator(".money-beam")).toHaveCount(1);
-  await expect(moneyRain.locator(".money-particles i")).toHaveCount(58);
-
   const roadmapTrack = page.locator(".roadmap-track");
   await roadmapTrack.evaluate((node) => {
     node.scrollLeft = node.scrollWidth;
@@ -131,11 +125,12 @@ test("keeps the core interactions working", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("renders the pricing preview and legal links", async ({ page }) => {
-  await page.goto("/pricing/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Pricing" })).toBeVisible();
+test("renders the plan preview and legal links", async ({ page }) => {
+  await page.goto("/plan/", { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { name: "Plan" })).toBeVisible();
   await expect(page.getByText(/Preview pricing only/)).toBeVisible();
-  await expect(page.getByText("$1 Network Fee")).toBeVisible();
+  await expect(page.getByText(/Free over \$10/)).toBeVisible();
+  await expect(page.getByText(/Variable APY/)).toBeVisible();
   await expect(page.getByRole("link", { name: "Terms & Conditions" })).toHaveAttribute(
     "href",
     /\/terms\/?$/,
@@ -187,7 +182,7 @@ test("renders the numbered component board with live interactions", async ({ pag
   await expect(
     page.getByRole("heading", { name: /Jazari One component board/ }),
   ).toBeVisible();
-  await expect(page.locator(".storyboard-story")).toHaveCount(12);
+  await expect(page.locator(".storyboard-story")).toHaveCount(11);
   await expect(page.getByRole("heading", { name: "Transfer Experience" })).toBeVisible();
 
   const transferIndex = page.getByRole("link", { name: /05 Transfer Experience/ });

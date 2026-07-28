@@ -17,28 +17,28 @@ export const jazariVisualProfile = {
 
 export const features = [
   {
-    title: "Keep a dollar balance",
-    copy: "Hold supported digital dollars instead of converting every payment immediately.",
+    title: "Hold dollars",
+    copy: "Keep supported digital dollars in one balance.",
     image: withBasePath("/images/features/new/dollar-balance.webp"),
   },
   {
-    title: "Get paid in one place",
-    copy: "Receive eligible client and platform payments into the same clear balance.",
+    title: "Get paid",
+    copy: "Receive eligible client and platform payments.",
     image: withBasePath("/images/features/new/get-paid.webp"),
   },
   {
-    title: "Send to supported banks",
-    copy: "Choose a recipient, enter an amount, and use the routes available for their country.",
+    title: "Send to banks",
+    copy: "Use the local routes available for each country.",
     image: withBasePath("/images/features/new/send.webp"),
   },
   {
-    title: "Know before you send",
-    copy: "Review the rate, cost, recipient amount, and expected timing together.",
+    title: "Know the total",
+    copy: "See the rate, cost, amount, and timing upfront.",
     image: withBasePath("/images/features/new/know.webp"),
   },
   {
-    title: "Access variable yield",
-    copy: "Put eligible USDC or USDT to work through independently managed onchain strategies.",
+    title: "Access yield",
+    copy: "Put eligible USDC or USDT to work.",
     image: withBasePath("/images/features/hand-coin.webp"),
   },
 ] as const;
@@ -75,7 +75,7 @@ export const audiences = [
     alt: "Freelancer working at a desk",
   },
   {
-    title: "Migrants",
+    title: "Solopreneurs",
     line: "One dollar balance that follows you across countries without heavy bank cuts, hidden FX spreads, or transfer fees.",
     image: withBasePath("/images/audience/global-mover.webp"),
     alt: "Traveler moving between countries",
@@ -134,7 +134,7 @@ export const guides = [
   },
 ] as const;
 
-export const networkStories = [
+export const partnerStories = [
   {
     name: "Bridge",
     logo: withBasePath("/images/rails/bridge.svg"),
@@ -161,6 +161,17 @@ export const networkStories = [
     kind: "Risk",
     short: "Onchain risk and financial modeling.",
   },
+  {
+    name: "Laido",
+    logoFormat: "wordmark",
+    logoScale: 1,
+    wordmarkText: "Laido",
+    kind: "Operations",
+    short: "Operational infrastructure connecting complex payment workflows.",
+  },
+] as const;
+
+export const networkStories = [
   {
     name: "USDT",
     logo: withBasePath("/images/rails/usdt.svg"),
@@ -218,3 +229,5 @@ export const networkStories = [
     short: "An Ethereum Layer 2 incubated by Coinbase.",
   },
 ] as const;
+
+export const allPartnerStories = [...partnerStories, ...networkStories] as const;

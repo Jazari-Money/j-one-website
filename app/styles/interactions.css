@@ -27,9 +27,9 @@
   background:
     radial-gradient(
       circle 240px at var(--pointer-x) var(--pointer-y),
-      var(--accent-3) 0%,
-      var(--accent) 34%,
-      color-mix(in srgb, var(--accent-2) 76%, transparent) 54%,
+      rgba(255, 255, 255, 0.92) 0%,
+      rgba(196, 203, 200, 0.64) 34%,
+      rgba(118, 126, 123, 0.36) 54%,
       transparent 82%
     );
   opacity: 0;

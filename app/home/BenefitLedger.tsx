@@ -33,11 +33,7 @@ export function BenefitLedger() {
   const [listRef, revealed] = useRevealInViewport<HTMLUListElement>("-6% 0px");
 
   return (
-    <section className="benefit-ledger section">
-      <header className="ledger-heading">
-        <h2>One app for money that crosses borders</h2>
-        <p>Receive payments, hold dollars, and move money through supported routes from one clear account.</p>
-      </header>
+    <section className="benefit-ledger" id="features" aria-label="Jazari One features">
       <ul className={`benefit-list ${revealed ? "is-visible" : ""}`} ref={listRef}>
         {features.map((feature, index) => (
           <BenefitRow feature={feature} index={index} key={feature.title} />

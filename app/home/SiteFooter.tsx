@@ -22,13 +22,14 @@ export function SiteFooter() {
             <strong>Product</strong>
             <Link href="/#how">How it works</Link>
             <Link href="/#rates">Rates</Link>
-            <Link href="/pricing">Pricing</Link>
+            <Link href="/plan">Plan</Link>
             <Link href="/yields">Yields</Link>
             <Link href="/roadmap">Roadmap</Link>
           </div>
           <div>
             <strong>Explore</strong>
             <Link href="/blog">Blog</Link>
+            <Link href="/partners">Partners</Link>
             <Link href="/#faq">FAQ</Link>
             <a href="mailto:hello@jazari.xyz">Contact</a>
           </div>

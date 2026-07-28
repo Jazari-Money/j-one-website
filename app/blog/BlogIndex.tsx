@@ -34,7 +34,6 @@ export function BlogIndex() {
               <div className="blog-index-copy">
                 <span>{guide.route}</span>
                 <h3>{guide.title}</h3>
-                <p>{guide.deck}</p>
                 <strong className="blog-index-read neutral-control">Read Article</strong>
               </div>
               {"image" in guide && (
