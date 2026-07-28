@@ -103,12 +103,15 @@ test("server-renders the standalone component board", async () => {
   assert.match(html, /<title>Jazari One Component Board<\/title>/);
   assert.match(html, /Jazari One/);
   assert.match(html, /component board/);
-  assert.match(html, /Internal review surface/);
-  assert.match(html, /Foundations/);
-  assert.match(html, /Transfer Experience/);
-  assert.match(html, /Partner Grid/);
-  assert.match(html, /Footer/);
-  assert.match(html, /This route is intentionally absent from the public navigation/);
+  assert.match(html, /Atomic UI inventory/);
+  assert.match(html, /Typography/);
+  assert.match(html, /Fields &amp; values/);
+  assert.match(html, /Dropdowns/);
+  assert.match(html, /Segmented controls/);
+  assert.match(html, /Accordions/);
+  assert.match(html, /Badges &amp; media/);
+  assert.match(html, /Desktop/);
+  assert.match(html, /Mobile/);
 });
 
 test("server-renders the internal legal pages", async () => {

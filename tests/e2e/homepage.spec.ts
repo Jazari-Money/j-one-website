@@ -201,15 +201,17 @@ test("renders the numbered component board with live interactions", async ({ pag
     page.getByRole("heading", { name: /Jazari One component board/ }),
   ).toBeVisible();
   await expect(page.locator(".storyboard-story")).toHaveCount(11);
-  await expect(page.getByRole("heading", { name: "Transfer Experience" })).toBeVisible();
+  await expect(page.locator(".sb-specimen.sb-desktop")).toHaveCount(11);
+  await expect(page.locator(".sb-specimen.sb-mobile")).toHaveCount(11);
+  await expect(page.getByRole("heading", { name: "Dropdowns" })).toBeVisible();
 
-  const transferIndex = page.getByRole("link", { name: /05 Transfer Experience/ });
-  await transferIndex.click();
-  await expect(page).toHaveURL(/#story-transfer$/);
+  const dropdownIndex = page.getByRole("link", { name: /06 Dropdowns/ });
+  await dropdownIndex.click();
+  await expect(page).toHaveURL(/#story-dropdowns$/);
 
-  const faq = page.locator("#story-faq");
-  await faq.scrollIntoViewIfNeeded();
-  const firstQuestion = faq.locator("details").first();
+  const accordions = page.locator("#story-accordions");
+  await accordions.scrollIntoViewIfNeeded();
+  const firstQuestion = accordions.locator("details").first();
   await firstQuestion.locator("summary").click();
   await expect(firstQuestion).toHaveAttribute("open", "");
 });
