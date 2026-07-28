@@ -2,36 +2,20 @@
 
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
-import { CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { withBasePath } from "../site-paths";
-import {
-  shaderOptions,
-  themeOptions,
-  type ShaderKey,
-  type ThemeKey,
-} from "./data";
 import { resetPointer, trackPointer } from "./hooks";
 import { SocialLinks } from "./SocialLinks";
 
 export function SiteHeader({
-  theme,
-  shader,
-  onThemeChange,
-  onShaderChange,
   onAccess,
   mode = "home",
 }: {
-  theme: ThemeKey;
-  shader: ShaderKey;
-  onThemeChange: (theme: ThemeKey) => void;
-  onShaderChange: (shader: ShaderKey) => void;
   onAccess: () => void;
   mode?: "home" | "internal";
 }) {
   const [scrolled, setScrolled] = useState(false);
-  const [themeOpen, setThemeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const selected = themeOptions.find((option) => option.key === theme) ?? themeOptions[0];
   const homeHref = mode === "home" ? "#top" : withBasePath("/#top");
   const sectionHref = (section: string) =>
     mode === "home" ? `#${section}` : withBasePath(`/#${section}`);
@@ -46,7 +30,6 @@ export function SiteHeader({
   useEffect(() => {
     const close = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") {
-        setThemeOpen(false);
         setMobileOpen(false);
       }
     };
@@ -98,81 +81,6 @@ export function SiteHeader({
         </div>
 
         <div className="nav-actions">
-          <div className="theme-control">
-            <button
-              className="theme-trigger"
-              type="button"
-              onClick={() => setThemeOpen((open) => !open)}
-              onPointerMove={trackPointer}
-              onPointerLeave={resetPointer}
-              aria-expanded={themeOpen}
-              aria-controls="theme-menu"
-              aria-label={`Choose color theme. Current theme: ${selected.name}`}
-            >
-              <span
-                className="theme-trigger-swatch"
-                style={{
-                  "--swatch": selected.mesh[1],
-                  "--swatch-2": selected.mesh[2],
-                } as CSSProperties}
-                aria-hidden="true"
-              />
-            </button>
-            <div
-              className={`theme-menu ${themeOpen ? "is-open" : ""}`}
-              id="theme-menu"
-              aria-hidden={!themeOpen}
-            >
-              <div className="theme-menu-section">
-                <p>Color</p>
-                <div className="theme-swatch-grid">
-                  {themeOptions.map((option) => (
-                    <button
-                      key={option.key}
-                      type="button"
-                      className={theme === option.key ? "is-active" : ""}
-                      onClick={() => onThemeChange(option.key)}
-                      aria-pressed={theme === option.key}
-                      style={{
-                        "--swatch": option.mesh[0],
-                        "--swatch-2": option.mesh[2],
-                      } as CSSProperties}
-                    >
-                      <span>{option.name}</span>
-                      <small>{option.family}</small>
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="theme-menu-section field-options">
-                <p>Field</p>
-                <div>
-                  {shaderOptions.map((option) => (
-                    <button
-                      key={option.key}
-                      type="button"
-                      className={shader === option.key ? "is-active" : ""}
-                      onClick={() => {
-                        onShaderChange(option.key);
-                        setThemeOpen(false);
-                      }}
-                      aria-pressed={shader === option.key}
-                    >
-                      <span>{option.name}</span>
-                      <small>{option.description}</small>
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <button
-                className="visuals-done realism-button"
-                type="button"
-                onClick={() => setThemeOpen(false)}
-              >
-                Done
-              </button>
-            </div>
-          </div>
           <button
             className="nav-cta realism-button"
             type="button"
@@ -182,10 +90,6 @@ export function SiteHeader({
           >
             <span
               className="nav-cta-shader"
-              style={{
-                "--cta-from": selected.mesh[2],
-                "--cta-to": selected.mesh[3],
-              } as CSSProperties}
               aria-hidden="true"
             />
             <span className="nav-cta-label">Download App</span>
@@ -194,7 +98,6 @@ export function SiteHeader({
             className="mobile-toggle realism-icon-button"
             type="button"
             onClick={() => {
-              setThemeOpen(false);
               setMobileOpen((open) => !open);
             }}
             onPointerMove={trackPointer}

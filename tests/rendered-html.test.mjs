@@ -180,7 +180,10 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(css, /\.access-control\.is-open/);
   assert.match(css, /\.hero-shader/);
   assert.match(css, /"Instrument Serif"/);
-  assert.match(css, /\[data-theme="aurora"\]/);
+  assert.match(css, /\[data-theme="jazari"\]/);
+  assert.doesNotMatch(css, /\[data-theme="(?:black|dark|blue|sea|toxic|solar|magenta|violet|infrared|aurora)"\]/);
+  assert.doesNotMatch(css, /\[data-shader="(?:horizon|orbital|ribbon)"\]/);
+  assert.doesNotMatch(page, /Choose color theme|themeOptions|shaderOptions/);
   assert.doesNotMatch(page, /GodRays|GrainGradient/);
   assert.doesNotMatch(page, /→|↗/);
   assert.doesNotMatch(page, /story\.name\.slice\(0, 2\)/);

@@ -6,7 +6,7 @@ import { BenefitLedger } from "./BenefitLedger";
 import { Blog } from "./Blog";
 import {
   currencies,
-  themeOptions,
+  jazariVisualProfile,
   type CurrencyCode,
 } from "./data";
 import { Hero } from "./Hero";
@@ -17,18 +17,14 @@ import { NetworkExplorer } from "./NetworkExplorer";
 import { ProductRoadmap } from "./ProductRoadmap";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
-import { useVisualPreferences } from "./useVisualPreferences";
 
 export function HomeContent() {
-  const { theme, setTheme, shader, setShader } = useVisualPreferences();
   const [email, setEmail] = useState("");
   const [joined, setJoined] = useState(false);
   const [accessOpen, setAccessOpen] = useState(false);
   const [amount, setAmount] = useState("1,000");
   const [currency, setCurrency] = useState<CurrencyCode>("MXN");
   const emailInput = useRef<HTMLInputElement>(null);
-  const selectedTheme = themeOptions.find((option) => option.key === theme) ?? themeOptions[0];
-
   const converted = useMemo(() => {
     const number = Number.parseFloat(amount.replace(/,/g, ""));
     return Number.isFinite(number) ? number * currencies[currency].rate : 0;
@@ -56,17 +52,12 @@ export function HomeContent() {
   }
 
   return (
-    <main data-theme={theme} data-shader={shader}>
-      <SiteHeader
-        theme={theme}
-        shader={shader}
-        onThemeChange={setTheme}
-        onShaderChange={setShader}
-        onAccess={openAccess}
-      />
+    <main
+      data-theme={jazariVisualProfile.theme}
+      data-shader={jazariVisualProfile.shader}
+    >
+      <SiteHeader onAccess={openAccess} />
       <Hero
-        theme={selectedTheme}
-        shader={shader}
         accessOpen={accessOpen}
         joined={joined}
         email={email}

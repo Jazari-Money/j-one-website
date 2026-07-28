@@ -1,10 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 
 async function prepareStablePage(page: Page) {
-  await page.addInitScript(() => {
-    window.localStorage.setItem("jazari-theme", "black");
-    window.localStorage.setItem("jazari-shader", "horizon");
-  });
   await page.goto("/", { waitUntil: "networkidle" });
   await page.addStyleTag({
     content: `
@@ -65,7 +61,15 @@ test("keeps the core interactions working", async ({ page }) => {
   await prepareStablePage(page);
 
   await expect(page.getByRole("heading", { name: /Your dollars,/ })).toBeVisible();
-  await expect(page.locator("main")).toHaveAttribute("data-theme", "black");
+  await expect(page.locator("main")).toHaveAttribute("data-theme", "jazari");
+  await expect(page.locator("main")).toHaveAttribute("data-shader", "beam");
+  await expect(page.getByRole("button", { name: /Choose color theme/ })).toHaveCount(0);
+  await expect
+    .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
+    .toBeNull();
+  await expect
+    .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-shader")))
+    .toBeNull();
 
   const heroAccess = page.locator(".magic-access-button");
   await heroAccess.hover({ position: { x: 22, y: 12 } });
@@ -74,18 +78,6 @@ test("keeps the core interactions working", async ({ page }) => {
       heroAccess.evaluate((node) => node.style.getPropertyValue("--pointer-nx")),
     )
     .not.toBe("0");
-
-  await page.getByRole("button", { name: /Choose color theme/ }).click();
-  await page.getByRole("button", { name: /Acid Lime/ }).click();
-  await expect(page.locator("main")).toHaveAttribute("data-theme", "toxic");
-  await expect
-    .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
-    .toBe("toxic");
-  await page.getByRole("button", { name: /Ribbon/ }).click();
-  await expect(page.locator("main")).toHaveAttribute("data-shader", "ribbon");
-  await expect
-    .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-shader")))
-    .toBe("ribbon");
 
   const accountTab = page.getByRole("tab", { name: /Create an account/ });
   await accountTab.focus();

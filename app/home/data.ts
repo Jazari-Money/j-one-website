@@ -9,86 +9,11 @@ export const currencies = {
 
 export type CurrencyCode = keyof typeof currencies;
 
-export const themeOptions = [
-  {
-    key: "black",
-    name: "Pure Black",
-    family: "Calm",
-    mesh: ["#000000", "#111111", "#f7f7f2", "#525252"],
-  },
-  {
-    key: "dark",
-    name: "Deep Graphite",
-    family: "Calm",
-    mesh: ["#07090f", "#151c2c", "#4c7dff", "#b7c9ff"],
-  },
-  {
-    key: "blue",
-    name: "Cobalt",
-    family: "Calm",
-    mesh: ["#020a1f", "#07338f", "#1578ff", "#a8d8ff"],
-  },
-  {
-    key: "sea",
-    name: "Digital Cyan",
-    family: "Calm",
-    mesh: ["#001417", "#006e79", "#00e5ff", "#a7fff7"],
-  },
-  {
-    key: "toxic",
-    name: "Acid Lime",
-    family: "Wild",
-    mesh: ["#071000", "#3f7900", "#b9ff24", "#efffb8"],
-  },
-  {
-    key: "jazari",
-    name: "Jazari Lime",
-    family: "Hybrid",
-    mesh: ["#000000", "#07150b", "#1ad959", "#4eff9e"],
-  },
-  {
-    key: "solar",
-    name: "Solar Flare",
-    family: "Wild",
-    mesh: ["#170500", "#b52a00", "#ff6a00", "#ffd36b"],
-  },
-  {
-    key: "magenta",
-    name: "Hot Coral",
-    family: "Wild",
-    mesh: ["#17000b", "#b00043", "#ff3d72", "#ffb199"],
-  },
-  {
-    key: "violet",
-    name: "Ultraviolet",
-    family: "Experimental",
-    mesh: ["#080018", "#4a00c7", "#8f39ff", "#d7b4ff"],
-  },
-  {
-    key: "infrared",
-    name: "Signal Red",
-    family: "Experimental",
-    mesh: ["#170002", "#a80014", "#ff2942", "#ffc0a8"],
-  },
-  {
-    key: "aurora",
-    name: "Aurora Pulse",
-    family: "Experimental",
-    mesh: ["#00130f", "#007d61", "#00f0bd", "#6b8cff"],
-  },
-] as const;
-
-export type ThemeKey = (typeof themeOptions)[number]["key"];
-export type ThemeOption = (typeof themeOptions)[number];
-
-export const shaderOptions = [
-  { key: "horizon", name: "Horizon", description: "A low, open field" },
-  { key: "orbital", name: "Orbital", description: "A centered luminous form" },
-  { key: "ribbon", name: "Ribbon", description: "A quiet diagonal sweep" },
-  { key: "beam", name: "Beam", description: "A precise vertical light" },
-] as const;
-
-export type ShaderKey = (typeof shaderOptions)[number]["key"];
+export const jazariVisualProfile = {
+  theme: "jazari",
+  shader: "beam",
+  mesh: ["#000000", "#07150b", "#1ad959", "#4eff9e"],
+} as const;
 
 export const features = [
   {

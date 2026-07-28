@@ -48,8 +48,8 @@ Commercial relationship wording still requires confirmation before launch.
 - Shaders should be shallow, masked, and atmospheric.
 - Keep the original Jazari One app video inside the local phone frame.
 - CTA buttons use text only: no arrows, icons, or decorative glyphs.
-- The primary CTA uses the active palette’s fluid shader and follows the
-  pointer quietly.
+- The primary CTA uses Jazari Lime’s fluid shader and follows the pointer
+  quietly.
 - Do not use green status dots. “LIVE” is a typographic mark.
 - Do not use separator rules between whole sections. Internal ledger/list
   boundaries are acceptable.
@@ -98,26 +98,15 @@ content is intentionally consolidated.
 - Desktop navigation links are deliberately larger than supporting UI copy.
 - Mobile uses Lucide-style burger and close icons. The open menu covers the
   viewport and includes the Download App action plus X, Instagram, and Facebook.
-- The palette control offers ten persisted themes using `localStorage`.
+- There is no public visual switcher. Every route uses the fixed Jazari Lime
+  color system and the fixed Beam hero field.
 
-### Themes
+### Visual profile
 
-The ten schemes are:
-
-1. Pure Black (calm)
-2. Deep Graphite (calm)
-3. Cobalt (calm)
-4. Digital Cyan (calm)
-5. Acid Lime (wild)
-6. Solar Flare (wild)
-7. Hot Coral (wild)
-8. Ultraviolet (experimental)
-9. Signal Red (experimental)
-10. Aurora Pulse (default, experimental)
-
-Theme variables live in `app/styles/tokens.css`; mesh colors live in
-`themeOptions` in `app/home/data.ts`. Layout tokens must never live inside a
-palette selector: changing a color scheme cannot change page geometry.
+Jazari Lime tokens live in `app/styles/tokens.css`; the Beam mesh colors live
+in `jazariVisualProfile` in `app/home/data.ts`. Root attributes are fixed in
+`app/layout.tsx`. Do not reintroduce alternate palettes, shader choices,
+localStorage preferences, or a header swatch.
 
 ### Download CTA
 
@@ -254,8 +243,7 @@ Key files:
 - `app/home/SiteHeader.tsx` — shared homepage, Blog, and article navigation
 - `app/home/SiteFooter.tsx` — shared legal, store, and brand footer
 - `app/pricing/PricingPage.tsx` — no-tier public pricing page
-- `app/home/useVisualPreferences.ts` — persisted color and field preferences
-- `app/home/data.ts` — themes, currencies, and section content
+- `app/home/data.ts` — fixed visual profile, currencies, and section content
 - `app/home/*.tsx` — one focused component per homepage section
 - `app/globals.css` — ordered stylesheet import chain
 - `app/styles/*.css` — section, breakpoint, and token styles
@@ -330,17 +318,16 @@ Default local URL: `http://localhost:3000`
 
 ## Current visual language
 
-- Color profiles use coherent dark foundations and bright, restricted accent
-  families. Each profile may adjust the background and surfaces, but should
-  remain internally consistent rather than mixing unrelated hues.
-- The independent field switcher offers Horizon, Orbital, Ribbon, and Beam.
-  Field shape and color profile are separate persisted preferences.
+- Jazari Lime is the only color profile: a pure-black foundation with the live
+  product greens `#1ad959`, `#4eff9e`, `#21f668`, and `#4dff99`.
+- Beam is the only hero field. It combines a restrained animated mesh, two
+  alternating light layers, and irregular drifting dust without white
+  hotspots or a visible seam behind the phone.
 - CTA buttons are pill-shaped, use Title Case, contain no decorative glyphs,
   and use one shared “realism” treatment: shallow material depth, an inner
   highlight, soft accent glow, cursor-position response, and a short light
   pass on hover. Keep the movement restrained and never let it displace copy.
-  The Jazari green profile uses the live product tokens `#1ad959`, `#4eff9e`,
-  `#21f668`, and `#4dff99`; do not approximate these with yellow-green hues.
+  Do not approximate Jazari Lime with yellow-green hues.
 - Header controls and content cards do not use decorative strokes.
 - Benefit rows place the description directly below the title and use spacing,
   not separator rules, to establish rhythm.
@@ -361,17 +348,9 @@ Default local URL: `http://localhost:3000`
 - The virtual card is code-generated with front, back, and four visible edge
   planes. It keeps only the Jazari One and Visa marks, uses a restrained
   cursor-position sheen, and supports drag and keyboard rotation.
-- Theme keys stay stable for local-storage compatibility. Public names are
-  Pure Black, Deep Graphite, Cobalt, Digital Cyan, Acid Lime, Solar Flare,
-  Hot Coral, Ultraviolet, Signal Red, and Aurora Pulse. Aurora Pulse is the
-  default; Pure Black and Deep Graphite remain deliberately neutral options.
-  Their clean, bright fields reference Stripe’s palette discipline; do not add
-  grain or muddy color mixing.
-- Orbital is the default field shape. It uses a large fluid mesh plus a few
-  masked, animated contour bands to suggest layered energy flow without noise.
-- Beam uses two alternating animated light layers and numerous very small,
-  irregularly drifting dust particles. Its lower fade must continue behind
-  the phone without a visible horizontal seam.
+- Alternate palette and shader keys no longer exist. The UI and automated
+  tests must not expose a visual switcher or write visual preferences to
+  localStorage.
 - The download shader follows the pointer through CSS custom properties; keep
   the button compact and avoid adding icons.
 - The homepage headline is `Your dollars, wherever you are` without a final
@@ -416,9 +395,8 @@ Default local URL: `http://localhost:3000`
   Jazari, not a guaranteed quote. Risk information lives in the expandable
   `How yield works` answers rather than a duplicated standalone risk section.
   The page ends with `Ready to open a yield?` and a `Download App` action.
-- The visual preference hook must load persisted theme and field choices
-  before writing defaults back to local storage; do not reintroduce the
-  mount-time overwrite race.
+- Visual styling is deterministic: `data-theme="jazari"` and
+  `data-shader="beam"` are fixed at the root and on the homepage composition.
 - The legal documents use a named vertical `Contents` sidebar on desktop with
   the document body on its right. On narrow layouts the same named links wrap
   above the document. Never replace the names with an unexplained numbered
@@ -436,9 +414,9 @@ Default local URL: `http://localhost:3000`
 - Card hover lighting stays local to the pointer: a thin edge highlight may
   travel around the hovered card, but it must not cast a broad glow across the
   card or reflect onto adjacent cards.
-- The hero shader should favor a dark horizon/orb composition with animated
-  beams, contour wisps, and sparse dust. Suppress white hotspots and muddy
-  bloom; preserve darker negative space and occasional sharper energy bands.
+- The Beam hero shader should preserve dark negative space while animated
+  light layers and sparse dust move through the Jazari Lime field. Suppress
+  white hotspots, radial orbs, muddy bloom, and alternate field shapes.
 - The compact download panels use an irregular animated green-and-yellow
   energy horizon plus randomized dust positions and sizes. Never tile dots in
   a visible grid or align them into rows.

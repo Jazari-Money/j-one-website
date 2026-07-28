@@ -5,7 +5,7 @@
 import { FormEvent } from "react";
 import { MeshGradient } from "@paper-design/shaders-react";
 import { withBasePath } from "../site-paths";
-import type { ShaderKey, ThemeOption } from "./data";
+import { jazariVisualProfile } from "./data";
 import {
   resetPointer,
   trackPointer,
@@ -87,8 +87,6 @@ function MagicAccess({
 }
 
 export function Hero({
-  theme,
-  shader,
   accessOpen,
   joined,
   email,
@@ -97,8 +95,6 @@ export function Hero({
   onEmail,
   onSubmit,
 }: {
-  theme: ThemeOption;
-  shader: ShaderKey;
   accessOpen: boolean;
   joined: boolean;
   email: string;
@@ -117,18 +113,15 @@ export function Hero({
           <MeshGradient
             width="100%"
             height="100%"
-            colors={[theme.mesh[0], theme.mesh[1], theme.mesh[2], theme.mesh[3]]}
-            distortion={shader === "orbital" ? 0.28 : 0.12}
-            swirl={shader === "orbital" ? 0.1 : 0.018}
+            colors={[...jazariVisualProfile.mesh]}
+            distortion={0.12}
+            swirl={0.018}
             grainMixer={0}
             grainOverlay={0}
-            speed={reduced ? 0 : shader === "orbital" ? 0.11 : shader === "beam" ? 0.018 : 0.045}
-            scale={shader === "orbital" ? 1.24 : 0.92}
+            speed={reduced ? 0 : 0.018}
+            scale={0.92}
           />
         )}
-        <span className="orbital-energy orbital-energy-a" />
-        <span className="orbital-energy orbital-energy-b" />
-        <span className="orbital-energy orbital-energy-c" />
         <span className="beam-rays">
           <i />
           <i />
