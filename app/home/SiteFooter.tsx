@@ -49,6 +49,14 @@ export function SiteFooter() {
           services are delivered by licensed and regulated third-party providers.
           Jazari does not hold customer funds or provide regulated financial services directly.
         </p>
+        <div className="footer-stores" aria-label="Download the Jazari One app">
+          <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
+            <img src={withBasePath("/images/stores/app-store-badge.avif")} alt="Download on the App Store" />
+          </a>
+          <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
+            <img src={withBasePath("/images/stores/google-play-badge.avif")} alt="Get it on Google Play" />
+          </a>
+        </div>
         <div className="footer-addresses">
           <address>
             <strong>Jazari Fintech Services — FZCO,</strong>{" "}
@@ -58,14 +66,6 @@ export function SiteFooter() {
             <strong>Jazari One, Inc.,</strong>{" "}
             <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>
           </address>
-        </div>
-        <div className="footer-stores" aria-label="Download the Jazari One app">
-          <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
-            <img src={withBasePath("/images/stores/app-store-badge.avif")} alt="Download on the App Store" />
-          </a>
-          <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
-            <img src={withBasePath("/images/stores/google-play-badge.avif")} alt="Get it on Google Play" />
-          </a>
         </div>
         <div className="footer-signoff">
           <span>Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc.</span>

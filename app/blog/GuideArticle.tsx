@@ -22,21 +22,21 @@ type GuideArticleData = {
 const articleData: Record<string, GuideArticleData> = {
   mexico: {
     title: "How to send dollars to Mexico: 3 steps before you confirm",
-    deck: "Use the recipient’s full name, bank, and 18-digit CLABE for a SPEI payout.",
+    deck: "Use the recipient’s full legal name and 18-digit CLABE for a SPEI payout.",
     image: "/images/blog/mexico-transfer.webp",
     imageAlt: "Family walking together in Mexico",
     sections: [
       {
         heading: "What you need",
         paragraphs: [
-          "Before you begin, ask the recipient for the full name on the account, the bank name, and the complete 18-digit CLABE. Jazari uses these details for a local SPEI payout.",
+          "A CLABE is Mexico’s standardized 18-digit bank-account identifier for SPEI transfers. Ask for the recipient’s full legal name and complete CLABE. The CLABE already identifies the bank and account, so a separate bank name is not required.",
         ],
-        bullets: ["Full legal name", "Bank name", "18-digit CLABE"],
+        bullets: ["Full legal name", "18-digit CLABE"],
       },
       {
         heading: "1. Add the recipient",
         paragraphs: [
-          "Enter the name, bank, and CLABE exactly as the recipient provided them. A CLABE identifies a Mexican bank account; it is not a card number or phone number.",
+          "Enter the name and CLABE exactly as the recipient provided them. A CLABE is not a card number or phone number, and there is no separate bank-name field for this route.",
         ],
       },
       {
@@ -62,7 +62,7 @@ const articleData: Record<string, GuideArticleData> = {
       {
         heading: "What you need",
         paragraphs: [
-          "Ask for the recipient’s full name and Pix key. The key may be a CPF or CNPJ, email address, phone number, or random key. Jazari does not need bank or account details for this route.",
+          "A Pix key is a registered identifier linked to a Brazilian account. It may be a CPF or CNPJ, email address, phone number, or random key. Ask for the recipient’s full legal name and exact key; separate bank and account details are not required.",
         ],
         bullets: ["Full legal name", "Exact Pix key"],
       },
@@ -95,7 +95,7 @@ const articleData: Record<string, GuideArticleData> = {
       {
         heading: "What you need",
         paragraphs: [
-          "Ask the recipient for their full name and Bre-B llave. Jazari does not need an account type or account number for this route.",
+          "A Bre-B llave is a registered identifier that points to an account at a participating Colombian institution. Ask for the recipient’s full legal name and exact llave; a separate account type and account number are not required.",
         ],
         bullets: ["Full legal name", "Exact Bre-B llave"],
       },
@@ -121,21 +121,21 @@ const articleData: Record<string, GuideArticleData> = {
   },
   europe: {
     title: "How to send dollars to Europe: 3 steps before you confirm",
-    deck: "For a SEPA payout, collect the full name, IBAN, BIC, and address.",
+    deck: "For a SEPA payout, collect the full name, IBAN, and BIC or SWIFT code.",
     image: "/images/blog/europe.jpg",
     imageAlt: "Person walking through a European city",
     sections: [
       {
         heading: "What you need",
         paragraphs: [
-          "Ask for the recipient’s full legal name, IBAN, BIC, and address. These details identify the recipient and their bank for a SEPA payout.",
+          "An IBAN identifies the recipient’s bank account, while a BIC or SWIFT code identifies the bank. Ask for the recipient’s full legal name, complete IBAN, and BIC or SWIFT code. Add an address only if the selected route asks for it.",
         ],
-        bullets: ["Full legal name", "IBAN", "BIC", "Address"],
+        bullets: ["Full legal name", "Complete IBAN", "BIC or SWIFT code", "Address only if requested"],
       },
       {
         heading: "1. Add the recipient",
         paragraphs: [
-          "Choose the European destination and enter the full name, address, BIC, and complete IBAN, including the country prefix and leading zeros.",
+          "Choose the European destination and enter the full name, complete IBAN, and BIC or SWIFT code. Preserve the country prefix and any leading zeros, and provide an address only when prompted.",
         ],
       },
       {

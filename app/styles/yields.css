@@ -215,12 +215,12 @@
   font-size: 15px;
 }
 
-.yield-questions > div {
+.yield-question-list {
   display: grid;
   gap: 10px;
 }
 
-.yield-questions details {
+.yield-question-list details {
   padding: 24px 26px;
   border-radius: 20px;
   overflow: hidden;
@@ -228,7 +228,7 @@
   box-shadow: none;
 }
 
-.yield-questions summary {
+.yield-question-list summary {
   position: relative;
   z-index: 1;
   color: var(--text);
@@ -242,7 +242,7 @@
   gap: 24px;
 }
 
-.yield-questions summary::-webkit-details-marker {
+.yield-question-list summary::-webkit-details-marker {
   display: none;
 }
 
@@ -271,22 +271,22 @@
   display: none;
 }
 
-.yield-questions summary:hover .yield-question-icon,
-.yield-questions summary:focus-visible .yield-question-icon,
-.yield-questions details[open] .yield-question-icon {
+.yield-question-list summary:hover .yield-question-icon,
+.yield-question-list summary:focus-visible .yield-question-icon,
+.yield-question-list details[open] .yield-question-icon {
   color: var(--text);
   transform: scale(1.08);
 }
 
-.yield-questions details[open] .yield-question-plus {
+.yield-question-list details[open] .yield-question-plus {
   display: none;
 }
 
-.yield-questions details[open] .yield-question-minus {
+.yield-question-list details[open] .yield-question-minus {
   display: block;
 }
 
-.yield-questions details p {
+.yield-question-list details p {
   position: relative;
   z-index: 1;
   max-width: 670px;

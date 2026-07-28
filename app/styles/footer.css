@@ -16,8 +16,14 @@
   width: 170px;
 }
 
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .footer-stores {
-  margin-top: 34px;
+  margin-top: 28px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

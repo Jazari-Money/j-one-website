@@ -2,7 +2,8 @@
 
 /* eslint-disable @next/next/no-img-element -- local flags are art-directed assets */
 
-import { KeyboardEvent, useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { type CSSProperties, KeyboardEvent, useEffect, useRef, useState } from "react";
 import {
   currencies,
   howScenarios,
@@ -52,9 +53,23 @@ export function HowItWorks({
     };
   }, []);
 
+  useEffect(() => {
+    const syncScenarioFromHash = () => {
+      const key = window.location.hash.replace("#how-", "") as HowScenario;
+      if (!scenarioKeys.includes(key)) return;
+      setActiveScenario(key);
+      setActiveStep(0);
+    };
+
+    syncScenarioFromHash();
+    window.addEventListener("hashchange", syncScenarioFromHash);
+    return () => window.removeEventListener("hashchange", syncScenarioFromHash);
+  }, []);
+
   function selectScenario(next: HowScenario) {
     setActiveScenario(next);
     setActiveStep(0);
+    window.history.replaceState(null, "", `#how-${next}`);
   }
 
   function moveScenario(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -88,12 +103,20 @@ export function HowItWorks({
 
   return (
     <section className="how section" id="how">
+      {scenarioKeys.map((key) => (
+        <span className="how-anchor" id={`how-${key}`} key={key} />
+      ))}
       <header className="chapter-heading">
         <h2>How it works</h2>
         <p>Choose what you want to do, then see each step in the app.</p>
       </header>
 
-      <div className="how-scenario-tabs" role="tablist" aria-label="Jazari actions">
+      <div
+        className="how-scenario-tabs"
+        role="tablist"
+        aria-label="Jazari actions"
+        style={{ "--scenario-index": scenarioKeys.indexOf(activeScenario) } as CSSProperties}
+      >
         {scenarioKeys.map((key, index) => (
           <button
             key={key}
@@ -112,25 +135,33 @@ export function HowItWorks({
       </div>
 
       <div className="how-experience">
-        <div className="step-tabs" role="tablist" aria-label={`${scenario.label} steps`}>
-          {scenario.steps.map((item, index) => (
-            <button
-              key={item.id}
-              ref={(node) => { tabRefs.current[index] = node; }}
-              id={`step-tab-${item.id}`}
-              type="button"
-              role="tab"
-              aria-selected={activeStep === index}
-              aria-controls="step-screen"
-              tabIndex={activeStep === index ? 0 : -1}
-              className={activeStep === index ? "is-active" : ""}
-              onClick={() => setActiveStep(index)}
-              onKeyDown={(event) => moveStep(event, index)}
-            >
-              <span>{item.title}</span>
-              <small>{item.copy}</small>
-            </button>
-          ))}
+        <div className="step-copy-column">
+          <div className="step-tabs" role="tablist" aria-label={`${scenario.label} steps`}>
+            {scenario.steps.map((item, index) => (
+              <button
+                key={item.id}
+                ref={(node) => { tabRefs.current[index] = node; }}
+                id={`step-tab-${item.id}`}
+                type="button"
+                role="tab"
+                aria-selected={activeStep === index}
+                aria-controls="step-screen"
+                tabIndex={activeStep === index ? 0 : -1}
+                className={activeStep === index ? "is-active" : ""}
+                onClick={() => setActiveStep(index)}
+                onKeyDown={(event) => moveStep(event, index)}
+              >
+                <span>{item.title}</span>
+                <small>{item.copy}</small>
+                {item.id === "receive-usd" && <em className="step-status">Coming Soon</em>}
+              </button>
+            ))}
+          </div>
+          {activeScenario === "yields" && (
+            <Link className="how-learn-more neutral-control" href="/yields/">
+              Learn More
+            </Link>
+          )}
         </div>
 
         <div

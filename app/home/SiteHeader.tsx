@@ -60,8 +60,8 @@ export function SiteHeader({
           <details className="nav-dropdown">
             <summary>Personal</summary>
             <div className="nav-dropdown-menu">
-              <a href={sectionHref("how")} onClick={closeMobile}>Send</a>
-              <a href={sectionHref("features")} onClick={closeMobile}>Receive</a>
+              <a href={sectionHref("how-send")} onClick={closeMobile}>Send</a>
+              <a href={sectionHref("how-receive")} onClick={closeMobile}>Receive</a>
               <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
               <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
             </div>

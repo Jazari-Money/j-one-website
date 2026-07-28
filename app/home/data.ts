@@ -176,7 +176,7 @@ export const guides = [
     slug: "send-money-to-mexico",
     route: "Mexico",
     title: "How to send dollars to Mexico: 3 steps before you confirm",
-    deck: "Use the recipient’s full name, bank, and 18-digit CLABE for a SPEI payout.",
+    deck: "Use the recipient’s full legal name and 18-digit CLABE for a SPEI payout.",
     image: withBasePath("/images/blog/mexico-transfer.webp"),
   },
   {
@@ -197,7 +197,7 @@ export const guides = [
     slug: "send-money-to-europe",
     route: "Europe",
     title: "How to send dollars to Europe: 3 steps before you confirm",
-    deck: "For a SEPA payout, collect the full name, IBAN, BIC, and address.",
+    deck: "For a SEPA payout, collect the full name, IBAN, and BIC or SWIFT code.",
     image: withBasePath("/images/blog/europe.jpg"),
   },
   {

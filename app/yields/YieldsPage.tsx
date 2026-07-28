@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local provider artwork */
 
 import Link from "next/link";
+import { AccordionList } from "../home/AccordionList";
 import { FlowField } from "../home/FlowField";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
@@ -109,29 +110,7 @@ export function YieldsPage() {
           <h2 id="yield-questions-title">How yield works</h2>
           <p>Read this before adding funds.</p>
         </header>
-        <div>
-          {questions.map((item) => (
-            <details
-              className="pointer-card"
-              key={item.question}
-              onPointerMove={trackPointer}
-              onPointerLeave={resetPointer}
-            >
-              <summary>
-                <span>{item.question}</span>
-                <span className="yield-question-icon neutral-control" aria-hidden="true">
-                  <svg className="yield-question-plus" viewBox="0 0 24 24">
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                  <svg className="yield-question-minus" viewBox="0 0 24 24">
-                    <path d="M5 12h14" />
-                  </svg>
-                </span>
-              </summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
-        </div>
+        <AccordionList items={questions} />
       </section>
 
       <section className="yield-roadmap">

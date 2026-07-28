@@ -1,6 +1,4 @@
-"use client";
-
-import { resetPointer, trackPointer } from "./hooks";
+import { AccordionList } from "./AccordionList";
 
 const questions = [
   {
@@ -46,29 +44,7 @@ export function FAQ() {
         </p>
       </header>
       <div className="faq-content">
-        <div className="faq-list">
-          {questions.map((item) => (
-            <details
-              className="pointer-card"
-              key={item.question}
-              onPointerMove={trackPointer}
-              onPointerLeave={resetPointer}
-            >
-              <summary>
-                <span>{item.question}</span>
-                <span className="faq-icon neutral-control" aria-hidden="true">
-                  <svg className="faq-plus" viewBox="0 0 24 24">
-                    <path d="M5 12h14M12 5v14" />
-                  </svg>
-                  <svg className="faq-minus" viewBox="0 0 24 24">
-                    <path d="M5 12h14" />
-                  </svg>
-                </span>
-              </summary>
-              <p>{item.answer}</p>
-            </details>
-          ))}
-        </div>
+        <AccordionList items={questions} />
       </div>
     </section>
   );
