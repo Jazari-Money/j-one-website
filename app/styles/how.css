@@ -157,6 +157,7 @@
 }
 
 .review-block {
+  scroll-margin-top: 118px;
   margin-top: 128px;
   display: grid;
   grid-template-columns: minmax(440px, 1.08fr) minmax(440px, 0.92fr);

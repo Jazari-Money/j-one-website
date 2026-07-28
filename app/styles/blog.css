@@ -81,29 +81,12 @@
 
 .blog-read::before,
 .blog-index-read::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: inherit;
-  background: radial-gradient(
-    circle 92px at var(--pointer-x) var(--pointer-y),
-    var(--accent-3),
-    var(--accent) 36%,
-    transparent 74%
-  );
-  opacity: 0.72;
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  display: none;
 }
 
 .blog-card:hover .blog-read,
 .blog-card:focus-visible .blog-read {
-  background: color-mix(in srgb, var(--surface-2) 70%, var(--accent) 12%);
+  background: color-mix(in srgb, var(--surface-2) 78%, var(--text) 8%);
   color: var(--text);
   transform: translateY(-2px);
 }

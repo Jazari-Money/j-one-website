@@ -35,14 +35,13 @@ export function LegalPage({
 
       <div className="legal-layout">
         <nav className="legal-index" aria-label={`${title} sections`}>
-          {sections.map((section, index) => (
+          <strong>Contents</strong>
+          {sections.map((section) => (
             <a
               href={`#${section.id}`}
               key={section.id}
-              aria-label={section.title}
-              title={section.title.replace(/^\d+\.\s*/, "")}
             >
-              <span>{index + 1}</span>
+              {section.title.replace(/^\d+\.\s*/, "")}
             </a>
           ))}
         </nav>

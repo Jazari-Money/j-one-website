@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element -- official and local brand artwork */
 
 import Link from "next/link";
-import type { CSSProperties } from "react";
 import { useState } from "react";
 import { withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
@@ -59,10 +58,6 @@ export function SiteFooter() {
             <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>
           </address>
         </div>
-        <div className="footer-signoff">
-          <span>Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc.</span>
-          <span>© 2026 Jazari One. All rights reserved.</span>
-        </div>
         <div className="footer-stores" aria-label="Download the Jazari One app">
           <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
             <img src={withBasePath("/images/stores/app-store-badge.avif")} alt="Download on the App Store" />
@@ -71,18 +66,9 @@ export function SiteFooter() {
             <img src={withBasePath("/images/stores/google-play-badge.avif")} alt="Get it on Google Play" />
           </a>
         </div>
-      </div>
-
-      <div className="footer-metal-stage" aria-hidden="true">
-        <div className="footer-metal-logo">
-          {Array.from({ length: 8 }, (_, index) => (
-            <img
-              key={index}
-              src={withBasePath("/images/brand/jazari-one-logo.svg")}
-              alt=""
-              style={{ "--metal-depth": index } as CSSProperties}
-            />
-          ))}
+        <div className="footer-signoff">
+          <span>Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc.</span>
+          <span>© 2026 Jazari One. All rights reserved.</span>
         </div>
       </div>
 

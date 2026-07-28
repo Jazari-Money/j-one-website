@@ -108,7 +108,7 @@
 
 .blog-index-grid > a:hover .blog-index-read,
 .blog-index-grid > a:focus-visible .blog-index-read {
-  background: color-mix(in srgb, var(--surface-2) 70%, var(--accent) 12%);
+  background: color-mix(in srgb, var(--surface-2) 78%, var(--text) 8%);
   color: var(--text);
   transform: translateY(-2px);
 }

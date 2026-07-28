@@ -384,8 +384,9 @@ Default local URL: `http://localhost:3000`
 - The provider/network presentation is a balanced five-column desktop grid,
   collapsing to three and two columns. Each card shows only the service
   name and description. Wordmarks and symbols occupy a fixed visual slot, stay
-  monochrome, and are optically normalized; Bridge omits its subsidiary line,
-  while Gauntlet and Base use mark-only artwork.
+  monochrome, align to the top of that slot with equal outer padding, and are
+  optically normalized; Bridge uses a true vector wordmark without its
+  subsidiary line, while Gauntlet and Base use mark-only artwork.
 - Blog index and every article use the same header and footer components as the
   homepage. The homepage Blog chapter shows “All Articles” beside its heading.
 - The Blog index headline follows the same display scale as Pricing. Homepage
@@ -395,14 +396,18 @@ Default local URL: `http://localhost:3000`
   pages use visible breadcrumbs, one left-aligned reading column, no “At a
   glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
 - Footer copy uses Inter and the official CDN-supplied Apple and Google badge
-  artwork. It uses a normal multi-column layout without separator rules.
+  artwork. It uses a normal multi-column layout without separator rules. The
+  two legal entities stack vertically; the store badges precede the subsidiary
+  and copyright signoff, with copyright aligned right. Do not add a decorative
+  metallic wordmark or 3D closing object below the footer.
   Terms & Conditions and Privacy Policy are internal pages at `/terms/` and
   `/privacy-policy/`, using the April 2026 wording from jazari.xyz in a shared,
   responsive legal-reading layout. Cookie Preferences is currently a clearly
   mocked local modal.
-- Pricing has no tiers. It is one combined surface divided by restrained
-  separators, ordered `Money movement`, `Accounts`, then `Cards`; the group
-  headings have no explanatory subtitles. It lists no foreign exchange,
+- Pricing has no tiers. It is one combined surface ordered `Money movement`,
+  `Accounts`, then `Cards`; section boundaries are established through spacing,
+  not full-width rules, while row separators remain short, inset, and faint.
+  Group headings are compact Inter labels with no explanatory subtitles. It lists no foreign exchange,
   stablecoins at a $1 network fee, local payout with no hidden FX margin and no
   transfer fee, and USD/GBP/EUR accounts plus the Visa virtual card as coming
   soon.
@@ -414,9 +419,10 @@ Default local URL: `http://localhost:3000`
 - The visual preference hook must load persisted theme and field choices
   before writing defaults back to local storage; do not reintroduce the
   mount-time overwrite race.
-- The legal documents use one horizontal numbered section rail instead of a
-  vertical contents list. Each number remains an accessible anchor with the
-  full section name exposed through its label and title.
+- The legal documents use a named vertical `Contents` sidebar on desktop with
+  the document body on its right. On narrow layouts the same named links wrap
+  above the document. Never replace the names with an unexplained numbered
+  horizontal rail.
 - Pricing, Yields, Roadmap, and Blog share one internal-page hero system:
   identical container width, top rhythm, display scale, and description style.
   Their functional cards use neutral charcoal surfaces rather than
@@ -427,14 +433,16 @@ Default local URL: `http://localhost:3000`
 - The homepage download panel and the Yields conversion panel share the same
   Citrus vertical flow component and particle language. Desktop motion starts
   on hover; touch layouts trigger it once the panel enters the viewport.
-- Card hover lighting may softly reflect onto an adjacent card, but it must
-  remain a restrained edge reflection rather than a large colored spotlight.
+- Card hover lighting stays local to the pointer: a thin edge highlight may
+  travel around the hovered card, but it must not cast a broad glow across the
+  card or reflect onto adjacent cards.
 - The hero shader should favor a dark horizon/orb composition with animated
   beams, contour wisps, and sparse dust. Suppress white hotspots and muddy
   bloom; preserve darker negative space and occasional sharper energy bands.
-- Footer metadata has no separator rules. Copyright aligns to the right, and
-  the footer may end with a large, layered metallic Jazari One wordmark used as
-  a closing visual rather than another content section.
+- The compact download panels use an irregular animated green-and-yellow
+  energy horizon plus randomized dust positions and sizes. Never tile dots in
+  a visible grid or align them into rows.
+- Footer metadata has no separator rules. Copyright aligns to the right.
 - The local Bridge asset is cropped to the standalone Bridge wordmark. Do not
   restore the “a stripe company” subline in provider cards.
 

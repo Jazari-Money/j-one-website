@@ -19,7 +19,8 @@
   min-height: 46px;
   padding: 0 18px;
   border-radius: 999px;
-  background: var(--surface);
+  border: 0;
+  background: var(--surface-2);
   color: var(--text);
   font-size: 14px;
   display: inline-flex;
@@ -29,8 +30,8 @@
 
 .roadmap-all-link:hover,
 .roadmap-all-link:focus-visible {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--surface-2) 78%, var(--text) 8%);
+  color: var(--text);
   transform: translateY(-2px);
   outline: 0;
 }
@@ -39,7 +40,8 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  background: var(--surface);
+  border: 0;
+  background: var(--surface-2);
   color: var(--text);
   cursor: pointer;
   display: grid;
@@ -49,8 +51,8 @@
 
 .roadmap-controls button:hover,
 .roadmap-controls button:focus-visible {
-  background: var(--accent);
-  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--surface-2) 78%, var(--text) 8%);
+  color: var(--text);
   transform: translateY(-2px);
   outline: 0;
 }

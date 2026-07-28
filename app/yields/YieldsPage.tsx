@@ -73,7 +73,6 @@ export function YieldsPage() {
       >
         <div className="yield-strategy-copy">
           <img src={withBasePath("/images/rails/gauntlet.svg")} alt="Gauntlet" />
-          <p>Current strategy</p>
           <h2 id="yield-strategy-title">Gauntlet USD Alpha</h2>
           <p>
             An independently managed, Base-based strategy that reallocates
@@ -95,12 +94,8 @@ export function YieldsPage() {
             <dd>USDC · USDT</dd>
           </div>
           <div>
-            <dt>Manager</dt>
-            <dd>Gauntlet</dd>
-          </div>
-          <div>
-            <dt>Lock-up</dt>
-            <dd>No fixed period</dd>
+            <dt>Access</dt>
+            <dd>Add or withdraw funds at any time</dd>
           </div>
           <div>
             <dt>Protection</dt>

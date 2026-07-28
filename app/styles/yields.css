@@ -57,24 +57,16 @@
 }
 
 .yield-strategy-copy img {
-  width: 190px;
+  width: 210px;
   height: 46px;
   object-fit: contain;
   object-position: left center;
   filter: grayscale(1) brightness(0) invert(1);
 }
 
-.yield-strategy-copy > p:first-of-type {
-  margin-top: 42px;
-  color: var(--accent);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .yield-strategy-copy h2 {
   max-width: 620px;
-  margin-top: 16px;
+  margin-top: 42px;
   font-family: var(--serif);
   font-size: clamp(54px, 5.8vw, 78px);
   font-weight: 400;
@@ -113,6 +105,25 @@
   font-weight: 400;
   letter-spacing: -0.2px;
   line-height: 0.78;
+  text-shadow:
+    0 0 16px color-mix(in srgb, var(--accent) 38%, transparent),
+    0 0 48px color-mix(in srgb, var(--accent) 20%, transparent);
+  animation: yield-apy-pulse 4.4s ease-in-out infinite;
+}
+
+@keyframes yield-apy-pulse {
+  0%, 100% {
+    filter: brightness(0.92);
+    text-shadow:
+      0 0 12px color-mix(in srgb, var(--accent) 28%, transparent),
+      0 0 34px color-mix(in srgb, var(--accent) 14%, transparent);
+  }
+  50% {
+    filter: brightness(1.08);
+    text-shadow:
+      0 0 20px color-mix(in srgb, var(--accent) 48%, transparent),
+      0 0 64px color-mix(in srgb, var(--accent) 26%, transparent);
+  }
 }
 
 .yield-rate span {
@@ -133,7 +144,7 @@
 .yield-facts {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid var(--line);
 }
 
@@ -214,6 +225,7 @@
   border-radius: 20px;
   overflow: hidden;
   background: var(--surface);
+  box-shadow: none;
 }
 
 .yield-questions summary {
@@ -304,13 +316,21 @@
   content: "";
   position: absolute;
   z-index: 0;
-  inset: -16%;
-  background-image:
-    radial-gradient(circle, rgba(255, 255, 255, 0.5) 0 1px, transparent 1.6px),
-    radial-gradient(circle, color-mix(in srgb, var(--accent) 62%, transparent) 0 1.2px, transparent 1.8px);
-  background-position: 0 0, 28px 19px;
-  background-size: 42px 48px, 67px 62px;
-  opacity: 0.38;
+  inset: -10%;
+  background:
+    radial-gradient(circle at 4% 18%, rgba(255,255,255,.44) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 11% 72%, color-mix(in srgb, var(--accent) 65%, transparent) 0 1.4px, transparent 2.1px),
+    radial-gradient(circle at 19% 34%, rgba(255,255,255,.28) 0 .8px, transparent 1.6px),
+    radial-gradient(circle at 28% 81%, color-mix(in srgb, #dfff36 58%, transparent) 0 1.8px, transparent 2.7px),
+    radial-gradient(circle at 37% 13%, color-mix(in srgb, var(--accent) 58%, transparent) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 46% 58%, rgba(255,255,255,.35) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 57% 26%, color-mix(in srgb, #f3ff7a 56%, transparent) 0 1.5px, transparent 2.4px),
+    radial-gradient(circle at 66% 88%, color-mix(in srgb, var(--accent) 62%, transparent) 0 1px, transparent 1.9px),
+    radial-gradient(circle at 74% 43%, rgba(255,255,255,.3) 0 .8px, transparent 1.7px),
+    radial-gradient(circle at 83% 16%, color-mix(in srgb, #dfff36 60%, transparent) 0 1.7px, transparent 2.6px),
+    radial-gradient(circle at 91% 69%, color-mix(in srgb, var(--accent) 66%, transparent) 0 1.2px, transparent 2.1px),
+    radial-gradient(ellipse 58% 22% at 58% 94%, color-mix(in srgb, #dfff36 20%, transparent), transparent 72%);
+  opacity: 0.46;
   animation: yield-particle-drift 17s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
   pointer-events: none;
 }
@@ -333,9 +353,9 @@
 }
 
 @keyframes yield-particle-drift {
-  0% { transform: translate3d(-18px, 16px, 0) rotate(-1deg); }
-  52% { transform: translate3d(24px, -28px, 0) rotate(1.5deg); }
-  100% { transform: translate3d(-10px, -54px, 0) rotate(-0.6deg); }
+  0% { transform: translate3d(-2.4%, 4%, 0) scale(1.02) rotate(-0.8deg); }
+  43% { transform: translate3d(3%, -7%, 0) scale(1.08) rotate(1.2deg); }
+  100% { transform: translate3d(-1%, -13%, 0) scale(1.04) rotate(-0.4deg); }
 }
 
 @media (max-width: 900px) {

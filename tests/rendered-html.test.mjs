@@ -227,8 +227,11 @@ test("ships local provider marks and product artwork", async () => {
 
   const bridge = await readFile(
     new URL("../public/images/rails/bridge.svg", import.meta.url),
+    "utf8",
   );
-  assert.ok(bridge.byteLength > 1_000);
+  assert.match(bridge, /<svg\b/i);
+  assert.match(bridge, /<path\b/i);
+  assert.doesNotMatch(bridge, /data:image|<image\b/i);
 });
 
 test("renders the Blog index and all seven guides", async () => {

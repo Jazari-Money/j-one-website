@@ -239,7 +239,7 @@ export const networkStories = [
     name: "USDT",
     logo: withBasePath("/images/rails/usdt.svg"),
     logoFormat: "mark",
-    logoScale: 0.98,
+    logoScale: 1.13,
     kind: "Digital dollar",
     short: "A dollar-referenced token issued by Tether.",
   },
