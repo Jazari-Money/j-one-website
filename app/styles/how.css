@@ -239,7 +239,7 @@
   padding: 38px;
   border: 0;
   border-radius: 22px;
-  background: color-mix(in srgb, var(--surface) 78%, transparent);
+  background: color-mix(in srgb, var(--surface) 96%, var(--text) 4%);
   box-shadow: none;
   display: flex;
   flex-direction: column;
@@ -253,7 +253,7 @@
 }
 
 .rate-card:hover {
-  background-color: color-mix(in srgb, var(--surface) 86%, transparent);
+  background-color: color-mix(in srgb, var(--surface-2) 96%, var(--text) 4%);
 }
 
 .rate-card label {

@@ -19,6 +19,7 @@ import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
 
 export function HomeContent() {
+  const [pageReady, setPageReady] = useState(false);
   const [email, setEmail] = useState("");
   const [joined, setJoined] = useState(false);
   const [accessOpen, setAccessOpen] = useState(false);
@@ -29,6 +30,18 @@ export function HomeContent() {
     const number = Number.parseFloat(amount.replace(/,/g, ""));
     return Number.isFinite(number) ? number * currencies[currency].rate : 0;
   }, [amount, currency]);
+
+  useEffect(() => {
+    let revealFrame = 0;
+    const revealTimer = window.setTimeout(() => {
+      revealFrame = window.requestAnimationFrame(() => setPageReady(true));
+    }, 90);
+
+    return () => {
+      window.clearTimeout(revealTimer);
+      window.cancelAnimationFrame(revealFrame);
+    };
+  }, []);
 
   useEffect(() => {
     if (window.location.hash !== "#access") return;
@@ -53,6 +66,7 @@ export function HomeContent() {
 
   return (
     <main
+      className={`home-page ${pageReady ? "is-ready" : ""}`}
       data-theme={jazariVisualProfile.theme}
       data-shader={jazariVisualProfile.shader}
     >

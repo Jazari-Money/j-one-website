@@ -115,7 +115,8 @@
 }
 
 .faq-contact {
-  margin-top: 28px;
+  max-width: 430px;
+  margin-top: 24px;
   color: var(--muted-strong);
   font-size: 15px;
   line-height: 1.6;

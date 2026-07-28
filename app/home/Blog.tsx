@@ -22,13 +22,13 @@ export function Blog() {
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}
           >
+            {"image" in guide && (
+              <img className="blog-card-image" src={guide.image} alt="Family walking together in Mexico" />
+            )}
             <div className="blog-card-copy">
               <h3>{guide.title}</h3>
               <span className="blog-read neutral-control">Read Article</span>
             </div>
-            {"image" in guide && (
-              <img className="blog-card-image" src={guide.image} alt="Family walking together in Mexico" />
-            )}
           </Link>
         ))}
       </div>

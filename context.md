@@ -434,12 +434,22 @@ Default local URL: `http://localhost:3000`
 - The Beam hero shader should preserve dark negative space while animated
   light layers and sparse dust move through the Jazari Lime field. Suppress
   white hotspots, radial orbs, muddy bloom, and alternate field shapes.
-- The hero begins on black and reveals its beam after a one-second pause.
-  Its dust uses deterministic but irregular positions, sizes, drift vectors,
+- The homepage uses the Garden of Code loading rhythm: it begins on black,
+  holds for roughly 90ms, then reveals the header, beam, copy, CTA, and phone
+  in a short stagger. Do not add a splash screen or blocking loader.
+  Hero dust uses deterministic but irregular positions, sizes, drift vectors,
   durations, and delays so visual output stays testable without forming a grid.
 - Footer metadata has no separator rules. Copyright aligns to the right.
-- The local Bridge asset is cropped to the standalone Bridge wordmark. Do not
-  restore the “a stripe company” subline in provider cards.
+- The local Bridge asset is a path-traced vector made from the standalone
+  wordmark embedded by Bridge’s official site. Do not synthesize the lettering
+  or restore the “a stripe company” subline in provider cards.
+- The homepage Mexico article is an image-led card: the editorial image fills
+  the complete surface, with the title and action anchored over a restrained
+  bottom gradient.
+- FAQ fallback contact copy belongs in the left introduction column beneath
+  the FAQ description, not underneath the accordion.
+- The FX preview uses the same visible charcoal card family as the provider
+  grid. It should read as a distinct surface even on a pure-black background.
 
 ## Reference direction
 

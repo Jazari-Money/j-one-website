@@ -4,7 +4,6 @@
 
 import { useEffect, useState } from "react";
 import { withBasePath } from "../site-paths";
-import { resetPointer, trackPointer } from "./hooks";
 import { SocialLinks } from "./SocialLinks";
 
 export function SiteHeader({
@@ -67,7 +66,7 @@ export function SiteHeader({
           <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
           <div className="nav-mobile-extras">
             <button
-              className="realism-button"
+              className="neutral-control"
               type="button"
               onClick={() => {
                 closeMobile();
@@ -82,16 +81,10 @@ export function SiteHeader({
 
         <div className="nav-actions">
           <button
-            className="nav-cta realism-button"
+            className="nav-cta neutral-control"
             type="button"
             onClick={onAccess}
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
           >
-            <span
-              className="nav-cta-shader"
-              aria-hidden="true"
-            />
             <span className="nav-cta-label">Download App</span>
           </button>
           <button
@@ -100,8 +93,6 @@ export function SiteHeader({
             onClick={() => {
               setMobileOpen((open) => !open);
             }}
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
           >
