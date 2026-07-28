@@ -1,6 +1,9 @@
+/* eslint-disable @next/next/no-img-element -- local editorial imagery */
+
 import Link from "next/link";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
+import { withBasePath } from "../site-paths";
 
 type ArticleSection = {
   heading: string;
@@ -227,6 +230,15 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
           <p>{guide.deck}</p>
         </header>
 
+        {article === "mexico" && (
+          <figure className="article-hero-image">
+            <img
+              src={withBasePath("/images/blog/mexico-transfer.webp")}
+              alt="Family walking together in Mexico"
+            />
+          </figure>
+        )}
+
         <div className="article-layout">
           <div className="article-copy">
             {guide.sections.map((section) => (
@@ -246,7 +258,7 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
 
       <section className="article-cta" aria-labelledby="article-cta-title">
         <h2 id="article-cta-title">Ready to join Jazari One?</h2>
-        <Link className="article-cta-link" href="/#access">Download App</Link>
+        <Link className="article-cta-link neutral-control" href="/#access">Download App</Link>
       </section>
       <SiteFooter />
     </main>

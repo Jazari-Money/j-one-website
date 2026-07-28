@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- local editorial imagery */
+
 import Link from "next/link";
 import { guides } from "./data";
 import { resetPointer, trackPointer } from "./hooks";
@@ -9,7 +11,7 @@ export function Blog() {
     <section className="blog section" id="blog">
       <header className="chapter-heading">
         <h2>Blog</h2>
-        <Link className="blog-all-link" href="/blog">All Articles</Link>
+        <Link className="blog-all-link neutral-control" href="/blog">All Articles</Link>
       </header>
       <div className="blog-grid">
         {guides.slice(0, 4).map((guide, index) => (
@@ -20,8 +22,13 @@ export function Blog() {
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}
           >
-            <h3>{guide.title}</h3>
-            <span className="blog-read">Read Article</span>
+            <div className="blog-card-copy">
+              <h3>{guide.title}</h3>
+              <span className="blog-read neutral-control">Read Article</span>
+            </div>
+            {"image" in guide && (
+              <img className="blog-card-image" src={guide.image} alt="Family walking together in Mexico" />
+            )}
           </Link>
         ))}
       </div>

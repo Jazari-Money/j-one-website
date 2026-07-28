@@ -23,7 +23,7 @@ const groups = [
   },
   {
     title: "Cards",
-    rows: [["VISA Virtual Card", "Coming Soon"]],
+    rows: [["Visa Card", "Coming Soon"]],
   },
 ] as const;
 

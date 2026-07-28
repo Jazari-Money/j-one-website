@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- local editorial imagery */
+
 import Link from "next/link";
 import { guides } from "../home/data";
 import { SiteFooter } from "../home/SiteFooter";
@@ -29,10 +31,15 @@ export function BlogIndex() {
               onPointerMove={trackPointer}
               onPointerLeave={resetPointer}
             >
-              <span>{guide.route}</span>
-              <h3>{guide.title}</h3>
-              <p>{guide.deck}</p>
-              <strong className="blog-index-read">Read Article</strong>
+              <div className="blog-index-copy">
+                <span>{guide.route}</span>
+                <h3>{guide.title}</h3>
+                <p>{guide.deck}</p>
+                <strong className="blog-index-read neutral-control">Read Article</strong>
+              </div>
+              {"image" in guide && (
+                <img className="blog-index-image" src={guide.image} alt="Family walking together in Mexico" />
+              )}
             </Link>
           ))}
         </div>

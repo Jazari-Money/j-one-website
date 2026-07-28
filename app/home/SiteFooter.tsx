@@ -50,11 +50,11 @@ export function SiteFooter() {
         </p>
         <div className="footer-addresses">
           <address>
-            <strong>Jazari Fintech Services — FZCO</strong>
+            <strong>Jazari Fintech Services — FZCO,</strong>{" "}
             <span>#78870, Building A1, IFZA Business Park, Dubai Silicon Oasis, Dubai, UAE</span>
           </address>
           <address>
-            <strong>Jazari One, Inc.</strong>
+            <strong>Jazari One, Inc.,</strong>{" "}
             <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>
           </address>
         </div>

@@ -64,6 +64,22 @@
   margin-top: 96px;
 }
 
+.article-hero-image {
+  width: 100%;
+  margin-top: 72px;
+  border-radius: 30px;
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.article-hero-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: 50% 43%;
+}
+
 .article-copy {
   max-width: 790px;
 }
@@ -159,8 +175,7 @@
   min-height: 52px;
   padding: 0 24px;
   border-radius: 999px;
-  background: linear-gradient(to top, var(--accent-2), var(--accent-3));
-  color: var(--accent-ink);
+  color: var(--text);
   font-size: 14px;
   font-weight: 500;
   display: inline-flex;
@@ -171,8 +186,6 @@
 
 .article-cta-link:hover,
 .article-cta-link:focus-visible {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
   outline: 0;
 }
 

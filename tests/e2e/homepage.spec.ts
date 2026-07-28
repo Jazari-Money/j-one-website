@@ -109,7 +109,8 @@ test("keeps the core interactions working", async ({ page }) => {
   const moneyRain = page.locator(".money-rain");
   await moneyRain.scrollIntoViewIfNeeded();
   await moneyRain.hover();
-  await expect(moneyRain.locator(".money-flow-canvas")).toHaveCount(1);
+  await expect(moneyRain.locator(".money-beam")).toHaveCount(1);
+  await expect(moneyRain.locator(".money-particles i")).toHaveCount(58);
 
   const roadmapTrack = page.locator(".roadmap-track");
   await roadmapTrack.evaluate((node) => {
@@ -176,7 +177,7 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   await page.goto("/roadmap/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Roadmap" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "USD account" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "More yield strategies" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Yields with higher APY" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
 });
 

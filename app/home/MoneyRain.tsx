@@ -1,8 +1,6 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { FlowField } from "./FlowField";
-import { resetPointer, trackPointer } from "./hooks";
 
 const particles = (() => {
   let seed = 0x51f15e;
@@ -28,7 +26,10 @@ const particles = (() => {
 export function MoneyRain({ onAccess }: { onAccess: () => void }) {
   return (
     <section className="money-rain section">
-      <FlowField />
+      <div className="money-beam" aria-hidden="true">
+        <i />
+        <i />
+      </div>
       <div className="money-particles" aria-hidden="true">
         {particles.map((particle, index) => (
           <i
@@ -49,11 +50,9 @@ export function MoneyRain({ onAccess }: { onAccess: () => void }) {
       <div className="money-rain-content">
         <h2>Your dollars should move with you</h2>
         <button
-          className="realism-button"
+          className="neutral-control"
           type="button"
           onClick={onAccess}
-          onPointerMove={trackPointer}
-          onPointerLeave={resetPointer}
         >
           Download App
         </button>

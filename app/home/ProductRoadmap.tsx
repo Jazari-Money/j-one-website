@@ -23,33 +23,34 @@ export const milestones = [
     notes: ["No US residency required", "Details shown before every transfer"],
   },
   {
-    title: "More countries",
+    title: "New receive countries",
     copy:
       "New receive routes open as local banking partners and regulatory approvals are ready.",
-    notes: ["Selected African markets"],
+    notes: [],
     flags: [
       { name: "India", src: withBasePath("/images/flags/in.png") },
       { name: "Bangladesh", src: withBasePath("/images/flags/bd.png") },
       { name: "Pakistan", src: withBasePath("/images/flags/pk.png") },
+      { name: "Nigeria", src: withBasePath("/images/flags/ng.png") },
     ],
   },
   {
-    title: "More yield strategies",
+    title: "Yields with higher APY",
     copy:
-      "Additional independently managed yield strategies with different assets, risk profiles, and variable APYs.",
-    notes: ["Variable rates", "Risk shown before funding"],
+      "Additional independently managed strategies with different assets and potential APYs.",
+    notes: [],
   },
   {
-    title: "VISA Virtual card",
+    title: "Visa card",
     copy:
       "Pay for subscriptions, software, and everyday spending directly from your Jazari balance.",
-    notes: ["Country availability will vary", "Controls stay in the app"],
+    notes: [],
   },
   {
     title: "Remit Now Pay Later",
     copy:
       "Eligible members may choose a support amount and repayment option before confirming.",
-    notes: ["Limits and pricing shown upfront", "Eligibility will vary"],
+    notes: [],
   },
 ] as const;
 
@@ -70,7 +71,7 @@ export function ProductRoadmap() {
           <p>One useful layer at a time, starting with the USD account.</p>
         </div>
         <div className="roadmap-controls" aria-label="Roadmap navigation">
-          <Link className="roadmap-all-link" href="/roadmap">View All</Link>
+          <Link className="roadmap-all-link neutral-control" href="/roadmap">View All</Link>
           <button className="realism-icon-button" type="button" onClick={() => move(-1)} aria-label="Previous milestone">
             <ArrowIcon direction="left" />
           </button>
@@ -102,9 +103,11 @@ export function ProductRoadmap() {
                     ))}
                   </div>
                 )}
-                <ul>
-                  {milestone.notes.map((note) => <li key={note}>{note}</li>)}
-                </ul>
+                {milestone.notes.length > 0 && (
+                  <ul>
+                    {milestone.notes.map((note) => <li key={note}>{note}</li>)}
+                  </ul>
+                )}
               </div>
             </article>
           ))}

@@ -1,9 +1,9 @@
 .money-rain {
   position: relative;
   width: var(--page);
-  min-height: 270px;
+  min-height: 240px;
   margin-block: 72px 96px;
-  padding: 52px 0;
+  padding: 44px 0;
   border-radius: 30px;
   overflow: hidden;
   background: var(--surface);
@@ -18,14 +18,23 @@
   content: "";
   position: absolute;
   z-index: 0;
-  inset: -12%;
+  top: -38%;
+  bottom: -38%;
+  left: 50%;
+  width: min(520px, 58%);
   background:
-    radial-gradient(ellipse 34% 13% at 76% 87%, color-mix(in srgb, #f2ff41 38%, transparent), transparent 68%),
-    radial-gradient(ellipse 56% 18% at 46% 94%, color-mix(in srgb, var(--accent) 34%, transparent), transparent 70%),
-    radial-gradient(ellipse 22% 9% at 22% 77%, color-mix(in srgb, #b7ff25 18%, transparent), transparent 72%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 42%);
-  filter: blur(4px) saturate(1.25);
-  animation: energy-horizon-wander 9s cubic-bezier(.45,0,.25,1) infinite alternate;
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      color-mix(in srgb, var(--accent-2) 11%, transparent) 21%,
+      color-mix(in srgb, var(--accent) 28%, transparent) 45%,
+      color-mix(in srgb, #e7ff32 22%, transparent) 54%,
+      color-mix(in srgb, var(--accent) 18%, transparent) 68%,
+      transparent 100%
+    );
+  filter: blur(15px) saturate(1.22);
+  transform: translateX(-50%);
+  animation: money-beam-breathe 8.5s cubic-bezier(.42, 0, .24, 1) infinite alternate;
   pointer-events: none;
 }
 
@@ -33,29 +42,69 @@
   content: "";
   position: absolute;
   z-index: 1;
-  right: -10%;
-  bottom: 13%;
-  left: -10%;
-  height: 34%;
-  background:
-    radial-gradient(ellipse 24% 8% at 62% 62%, color-mix(in srgb, #ecff47 36%, transparent), transparent 76%),
-    radial-gradient(ellipse 42% 11% at 43% 70%, color-mix(in srgb, var(--accent) 38%, transparent), transparent 78%);
-  filter: blur(10px);
-  opacity: 0.74;
-  animation: energy-ridge 10s cubic-bezier(.45,0,.2,1) infinite alternate;
+  top: -22%;
+  bottom: -22%;
+  left: 50%;
+  width: min(190px, 24%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--accent) 24%, transparent) 42%,
+    color-mix(in srgb, #eeff6a 32%, transparent) 50%,
+    color-mix(in srgb, var(--accent) 20%, transparent) 59%,
+    transparent
+  );
+  filter: blur(6px);
+  opacity: 0.58;
+  transform: translateX(-50%);
+  animation: money-beam-core 7.2s cubic-bezier(.45, 0, .2, 1) infinite alternate;
   pointer-events: none;
 }
 
-@keyframes energy-ridge {
-  0% { transform: translate3d(-9%, 5%, 0) scaleX(.78); opacity: .38; }
-  47% { transform: translate3d(4%, -4%, 0) scaleX(1.12); opacity: .8; }
-  100% { transform: translate3d(13%, 2%, 0) scaleX(.9); opacity: .52; }
+@keyframes money-beam-core {
+  0% { transform: translateX(-58%) scaleX(.72); opacity: .24; }
+  46% { transform: translateX(-43%) scaleX(1.14); opacity: .62; }
+  100% { transform: translateX(-52%) scaleX(.88); opacity: .38; }
 }
 
-@keyframes energy-horizon-wander {
-  0% { transform: translate3d(-7%, 2%, 0) scaleX(.82); opacity: .56; }
-  48% { transform: translate3d(5%, -3%, 0) scaleX(1.16); opacity: .9; }
-  100% { transform: translate3d(11%, 1%, 0) scaleX(.94); opacity: .68; }
+@keyframes money-beam-breathe {
+  0% { transform: translateX(-58%) scaleX(.72); opacity: .42; }
+  48% { transform: translateX(-45%) scaleX(1.16); opacity: .82; }
+  100% { transform: translateX(-52%) scaleX(.9); opacity: .58; }
+}
+
+.money-beam {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.money-beam i {
+  position: absolute;
+  top: -25%;
+  bottom: -25%;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--accent) 62%, #fff), transparent);
+  box-shadow: 0 0 28px 8px color-mix(in srgb, var(--accent) 22%, transparent);
+  opacity: .34;
+  transform: translateX(-50%);
+  animation: money-ray-slide 6.8s ease-in-out infinite alternate;
+}
+
+.money-beam i:last-child {
+  left: 47%;
+  opacity: .2;
+  animation-delay: -3.1s;
+  animation-duration: 8.2s;
+}
+
+@keyframes money-ray-slide {
+  from { transform: translateX(-95px) scaleY(.78); opacity: .12; }
+  52% { opacity: .46; }
+  to { transform: translateX(90px) scaleY(1.08); opacity: .2; }
 }
 
 .flow-field-canvas,
@@ -136,7 +185,7 @@
   border-radius: 999px;
   overflow: hidden;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 540;
   cursor: pointer;
   transition: transform 220ms ease, box-shadow 220ms ease;
 }
@@ -151,7 +200,7 @@
 @media (max-width: 620px) {
   .money-rain {
     width: calc(100% - 20px);
-    min-height: 270px;
+    min-height: 238px;
     margin-block: 52px 70px;
     border-radius: 28px;
   }

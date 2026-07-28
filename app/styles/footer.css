@@ -7,8 +7,8 @@
 
 .footer-primary {
   display: grid;
-  grid-template-columns: minmax(210px, 0.58fr) minmax(500px, 1.42fr) auto;
-  gap: clamp(28px, 3.2vw, 48px);
+  grid-template-columns: minmax(190px, 0.42fr) minmax(540px, 1.58fr) auto;
+  gap: clamp(20px, 2vw, 30px);
   align-items: start;
 }
 
@@ -32,7 +32,7 @@
 .footer-navigation {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  gap: 14px;
 }
 
 .footer-navigation > div {
@@ -86,13 +86,13 @@
 }
 
 .footer-addresses address {
-  max-width: 520px;
+  max-width: none;
   font-style: normal;
 }
 
 .footer-addresses strong,
 .footer-addresses span {
-  display: block;
+  display: inline;
 }
 
 .footer-addresses strong {
@@ -102,7 +102,7 @@
 }
 
 .footer-addresses span {
-  margin-top: 8px;
+  margin-top: 0;
   color: var(--muted-strong);
   font-size: 14px;
   line-height: 1.6;

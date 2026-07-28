@@ -17,6 +17,12 @@
     filter: saturate(80%);
   }
 
+  .hero-shader {
+    opacity: 0.58;
+    animation: none !important;
+    transform: translateX(-50%);
+  }
+
   .card-object {
     transform: rotateX(-11deg) rotateY(21deg);
   }

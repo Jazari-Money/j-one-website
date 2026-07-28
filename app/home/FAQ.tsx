@@ -42,28 +42,34 @@ export function FAQ() {
         <h2>FAQ</h2>
         <p>Clear answers about the account, transfers, availability, and what comes next.</p>
       </header>
-      <div className="faq-list">
-        {questions.map((item) => (
-          <details
-            className="pointer-card"
-            key={item.question}
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
-          >
-            <summary>
-              <span>{item.question}</span>
-              <span className="faq-icon" aria-hidden="true">
-                <svg className="faq-plus" viewBox="0 0 24 24">
-                  <path d="M5 12h14M12 5v14" />
-                </svg>
-                <svg className="faq-minus" viewBox="0 0 24 24">
-                  <path d="M5 12h14" />
-                </svg>
-              </span>
-            </summary>
-            <p>{item.answer}</p>
-          </details>
-        ))}
+      <div className="faq-content">
+        <div className="faq-list">
+          {questions.map((item) => (
+            <details
+              className="pointer-card"
+              key={item.question}
+              onPointerMove={trackPointer}
+              onPointerLeave={resetPointer}
+            >
+              <summary>
+                <span>{item.question}</span>
+                <span className="faq-icon neutral-control" aria-hidden="true">
+                  <svg className="faq-plus" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5v14" />
+                  </svg>
+                  <svg className="faq-minus" viewBox="0 0 24 24">
+                    <path d="M5 12h14" />
+                  </svg>
+                </span>
+              </summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+        <p className="faq-contact">
+          If you didn&apos;t find an answer to your question, email{" "}
+          <a href="mailto:hello@jazary.xyz">hello@jazary.xyz</a>.
+        </p>
       </div>
     </section>
   );

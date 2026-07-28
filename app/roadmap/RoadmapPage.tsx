@@ -38,9 +38,11 @@ export function RoadmapPage() {
                   ))}
                 </div>
               )}
-              <ul>
-                {milestone.notes.map((note) => <li key={note}>{note}</li>)}
-              </ul>
+              {milestone.notes.length > 0 && (
+                <ul>
+                  {milestone.notes.map((note) => <li key={note}>{note}</li>)}
+                </ul>
+              )}
             </div>
           </article>
         ))}

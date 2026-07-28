@@ -13,6 +13,26 @@ import {
   useReducedMotion,
 } from "./hooks";
 
+const heroDust = (() => {
+  let seed = 0x72b4c91;
+  const random = () => {
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    return (seed >>> 0) / 0xffffffff;
+  };
+
+  return Array.from({ length: 118 }, () => ({
+    x: 2 + random() * 96,
+    y: 2 + random() * 90,
+    size: 0.86 + random() * 2.35,
+    driftX: -48 + random() * 96,
+    driftY: -72 - random() * 118,
+    duration: 5.2 + random() * 7.8,
+    delay: -random() * 13,
+  }));
+})();
+
 function MagicAccess({
   open,
   joined,
@@ -127,17 +147,17 @@ export function Hero({
           <i />
         </span>
         <span className="beam-dust">
-          {Array.from({ length: 72 }, (_, index) => (
+          {heroDust.map((particle, index) => (
             <i
               key={index}
               style={{
-                "--dust-index": index,
-                "--dust-x": `${(index * 47 + index * index * 3 + 7) % 98}%`,
-                "--dust-y": `${(index * 31 + index * index * 5 + 11) % 92}%`,
-                "--dust-size": `${0.82 + (index % 4) * 0.35}px`,
-                "--dust-dx": `${-34 + ((index * 19) % 72)}px`,
-                "--dust-dy": `${-68 - ((index * 23) % 96)}px`,
-                "--dust-duration": `${5.4 + (index % 9) * 0.61}s`,
+                "--dust-x": `${particle.x}%`,
+                "--dust-y": `${particle.y}%`,
+                "--dust-size": `${particle.size}px`,
+                "--dust-dx": `${particle.driftX}px`,
+                "--dust-dy": `${particle.driftY}px`,
+                "--dust-duration": `${particle.duration}s`,
+                "--dust-delay": `${particle.delay}s`,
               } as React.CSSProperties}
             />
           ))}

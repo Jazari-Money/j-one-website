@@ -38,11 +38,23 @@
   background: #000;
   opacity: 0.58;
   filter: saturate(145%) brightness(0.56) contrast(1.32);
+  animation: hero-shader-reveal 1.45s cubic-bezier(0.22, 1, 0.36, 1) 1s both;
   mask-image:
     linear-gradient(to bottom, #000 0 70%, transparent 100%),
     linear-gradient(90deg, transparent, #000 28% 72%, transparent);
   mask-composite: intersect;
   pointer-events: none;
+}
+
+@keyframes hero-shader-reveal {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.96);
+  }
+  to {
+    opacity: 0.58;
+    transform: translateX(-50%) scale(1);
+  }
 }
 
 .hero-shader::before {
@@ -147,7 +159,7 @@
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.66);
   opacity: 0;
   animation: floating-dust var(--dust-duration) cubic-bezier(0.35, 0, 0.18, 1) infinite;
-  animation-delay: calc(var(--dust-index) * -0.37s);
+  animation-delay: var(--dust-delay);
 }
 
 @keyframes church-light-pulse {
@@ -176,8 +188,8 @@
 @keyframes floating-dust {
   0%, 100% { transform: translate3d(0, 20px, 0) scale(0.7); opacity: 0; }
   16% { opacity: 0.62; }
-  47% { transform: translate3d(calc(var(--dust-dx) * -0.45), calc(var(--dust-dy) * 0.45), 0) scale(1.15); opacity: 0.32; }
-  78% { transform: translate3d(var(--dust-dx), var(--dust-dy), 0) scale(0.82); opacity: 0.52; }
+  47% { transform: translate3d(calc(var(--dust-dx) * -0.45), calc(var(--dust-dy) * 0.45), 0) scale(1.15); opacity: 0.46; }
+  78% { transform: translate3d(var(--dust-dx), var(--dust-dy), 0) scale(0.82); opacity: 0.68; }
   94% { opacity: 0; }
 }
 
@@ -541,7 +553,7 @@
   }
 
   .hero-copy > p {
-    width: min(580px, 100%);
+    width: min(760px, 100%);
     margin-top: 37px;
     font-size: clamp(16px, 1.35vw, 18px);
   }

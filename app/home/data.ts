@@ -94,6 +94,7 @@ export const guides = [
     route: "Mexico",
     title: "Sending dollars to Mexico: five checks before you confirm",
     deck: "A CLABE is an 18-digit standardized banking code used in Mexico to ensure secure domestic electronic fund transfers and wire payments. It consists of three key parts: a 3-digit bank code, a 3-digit city/branch code, and an 11-digit individual account number followed by a control digit.",
+    image: withBasePath("/images/blog/mexico-transfer.webp"),
   },
   {
     slug: "send-money-to-brazil",

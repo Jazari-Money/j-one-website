@@ -119,7 +119,7 @@ export function YieldsPage() {
             >
               <summary>
                 <span>{item.question}</span>
-                <span className="yield-question-icon" aria-hidden="true">
+                <span className="yield-question-icon neutral-control" aria-hidden="true">
                   <svg className="yield-question-plus" viewBox="0 0 24 24">
                     <path d="M12 5v14M5 12h14" />
                   </svg>

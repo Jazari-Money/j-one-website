@@ -39,8 +39,10 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, />Yields</);
   assert.doesNotMatch(html, /Roadmap 2026/);
   assert.match(html, /USD account/);
-  assert.match(html, /More countries/);
-  assert.match(html, /VISA Virtual card/);
+  assert.match(html, /New receive countries/);
+  assert.match(html, /Visa card/);
+  assert.match(html, /Nigeria/);
+  assert.match(html, /mexico-transfer\.webp/);
   assert.match(html, /Partners &amp; Networks/);
   assert.match(html, />FAQ</);
   assert.ok(
@@ -81,7 +83,7 @@ test("server-renders pricing, yields, and roadmap pages", async () => {
   assert.match(yields, /Ready to open a yield/);
 
   assert.match(roadmap, /<h1>Roadmap<\/h1>/);
-  assert.match(roadmap, /More yield strategies/);
+  assert.match(roadmap, /Yields with higher APY/);
   assert.match(roadmap, /Remit Now Pay Later/);
 });
 
@@ -258,6 +260,7 @@ test("renders the Blog index and all seven guides", async () => {
   const indexHtml = await indexResponse.text();
   assert.match(indexHtml, /7(?:<!--.*?-->)?\s*practical articles/);
   assert.equal((indexHtml.match(/Read Article/g) ?? []).length, 7);
+  assert.match(indexHtml, /mexico-transfer\.webp/);
   assert.doesNotMatch(indexHtml, /min read/i);
 
   const routes = [
@@ -286,4 +289,7 @@ test("renders the Blog index and all seven guides", async () => {
     assert.match(html, /href="\/j-one-website\/#access"/);
     assert.doesNotMatch(html, /\/j-one-website\/j-one-website\//);
   }
+
+  const mexico = await (await render("/blog/send-money-to-mexico")).text();
+  assert.match(mexico, /mexico-transfer\.webp/);
 });

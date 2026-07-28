@@ -77,11 +77,12 @@ Commercial relationship wording still requires confirmation before launch.
 7. Provider and network grid
 8. Compact horizontal roadmap without product imagery:
    - USD account
-   - More countries
-   - VISA Virtual card
+   - New receive countries
+   - Yields with higher APY
+   - Visa card
    - Remit Now Pay Later
-9. Homepage Blog preview with the four latest guides
-10. Closing download panel with a hover/viewport-triggered Citrus gradient flow
+9. Homepage Blog preview with the four latest guides and dedicated Mexico imagery
+10. Closing download panel with an animated vertical green beam and irregular dust
 11. FAQ
 12. Legal/product footer with official iOS and Android store badges, social
     links, and both UAE and US entities
@@ -353,8 +354,8 @@ Default local URL: `http://localhost:3000`
 - The roadmap is a compact, text-only horizontal scroll-snap carousel
   controlled by round previous/next buttons. It has no timeline line, product
   image, or phase prefix. It follows the provider grid and precedes Blog. The
-  current naming is `Roadmap`, `USD account`, `More countries`,
-  `More yield strategies`, `VISA Virtual card`, and `Remit Now Pay Later`.
+  current naming is `Roadmap`, `USD account`, `New receive countries`,
+  `Yields with higher APY`, `Visa card`, and `Remit Now Pay Later`.
   The homepage carousel includes a `View All` entry point to `/roadmap/`,
   which presents every milestone in a compact responsive grid.
 - The virtual card is code-generated with front, back, and four visible edge
@@ -363,8 +364,9 @@ Default local URL: `http://localhost:3000`
 - Alternate palette and shader keys no longer exist. The UI and automated
   tests must not expose a visual switcher or write visual preferences to
   localStorage.
-- The download shader follows the pointer through CSS custom properties; keep
-  the button compact and avoid adding icons.
+- The closing download panel uses a compact vertical green beam with
+  independently randomized green/yellow dust. Keep the action neutral,
+  compact, and icon-free.
 - The homepage headline is `Your dollars, wherever you are` without a final
   period. Instrument Serif display text uses `-0.2px` letter spacing.
 - The benefit list uses the supplied chrome dollar object for “Keep a dollar
@@ -380,6 +382,8 @@ Default local URL: `http://localhost:3000`
   subsidiary line, while Gauntlet and Base use mark-only artwork.
 - Blog index and every article use the same header and footer components as the
   homepage. The homepage Blog chapter shows “All Articles” beside its heading.
+  The Mexico preview and article use the local `mexico-transfer.webp` editorial
+  image with no tint overlay.
 - The Blog index headline follows the same display scale as Pricing. Homepage
   article previews keep a clear gap between their title and `Read Article`
   button; buttons must never touch or overlap their title.
@@ -388,7 +392,8 @@ Default local URL: `http://localhost:3000`
   glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
 - Footer copy uses Inter and the official CDN-supplied Apple and Google badge
   artwork. It uses a normal multi-column layout without separator rules. The
-  two legal entities stack vertically; the store badges precede the subsidiary
+  two legal entities stack vertically, with each entity and address composed
+  as one inline sentence; the store badges precede the subsidiary
   and copyright signoff, with copyright aligned right. Do not add a decorative
   metallic wordmark or 3D closing object below the footer.
   Terms & Conditions and Privacy Policy are internal pages at `/terms/` and
@@ -420,18 +425,18 @@ Default local URL: `http://localhost:3000`
 - The shared CTA is a compact dark material pill. Its label is semibold and
   its border highlight follows the pointer; avoid broad white gradients or
   oversized padding.
-- The homepage download panel and the Yields conversion panel share the same
-  Citrus vertical flow component and particle language. Desktop motion starts
-  on hover; touch layouts trigger it once the panel enters the viewport.
+- Neutral controls—including roadmap navigation, article links, FAQ toggles,
+  and closing CTAs—share one dark material pill with a quiet inner top
+  highlight. They do not show a green outline in the resting state.
 - Card hover lighting stays local to the pointer: a thin edge highlight may
   travel around the hovered card, but it must not cast a broad glow across the
   card or reflect onto adjacent cards.
 - The Beam hero shader should preserve dark negative space while animated
   light layers and sparse dust move through the Jazari Lime field. Suppress
   white hotspots, radial orbs, muddy bloom, and alternate field shapes.
-- The compact download panels use an irregular animated green-and-yellow
-  energy horizon plus randomized dust positions and sizes. Never tile dots in
-  a visible grid or align them into rows.
+- The hero begins on black and reveals its beam after a one-second pause.
+  Its dust uses deterministic but irregular positions, sizes, drift vectors,
+  durations, and delays so visual output stays testable without forming a grid.
 - Footer metadata has no separator rules. Copyright aligns to the right.
 - The local Bridge asset is cropped to the standalone Bridge wordmark. Do not
   restore the “a stripe company” subline in provider cards.

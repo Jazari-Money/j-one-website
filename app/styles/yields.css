@@ -251,7 +251,6 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--surface-2) 74%, transparent);
   color: var(--muted-strong);
   display: grid;
   place-items: center;
@@ -275,8 +274,7 @@
 .yield-questions summary:hover .yield-question-icon,
 .yield-questions summary:focus-visible .yield-question-icon,
 .yield-questions details[open] .yield-question-icon {
-  background: var(--accent);
-  color: var(--accent-ink);
+  color: var(--text);
   transform: scale(1.08);
 }
 
