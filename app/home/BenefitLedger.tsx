@@ -21,7 +21,6 @@ function BenefitRow({
       <div className="benefit-row-inner">
         <img src={feature.image} alt="" aria-hidden="true" />
         <div className="benefit-copy">
-          <h3>{feature.title}</h3>
           <p>{feature.copy}</p>
         </div>
       </div>
@@ -36,7 +35,7 @@ export function BenefitLedger() {
     <section className="benefit-ledger" id="features" aria-label="Jazari One features">
       <ul className={`benefit-list ${revealed ? "is-visible" : ""}`} ref={listRef}>
         {features.map((feature, index) => (
-          <BenefitRow feature={feature} index={index} key={feature.title} />
+          <BenefitRow feature={feature} index={index} key={feature.id} />
         ))}
       </ul>
     </section>

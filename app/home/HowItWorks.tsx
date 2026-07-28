@@ -92,9 +92,9 @@ export function HowItWorks({
           <h3>Know what arrives before you send</h3>
           <p>Everything is on screen before you confirm. Nothing hidden in the rate.</p>
           <div className="review-metrics">
-            <div className="review-fee" aria-label="Hidden foreign exchange rate fee: zero percent">
-              <strong className="numeric">0%</strong>
-              <b>Hidden FX rate fee</b>
+            <div className="review-fee is-timing" aria-label="Delivery time: two to five minutes">
+              <strong className="numeric">2–5 min.</strong>
+              <b>Delivery time</b>
             </div>
             <div className="review-fee" aria-label="Transaction fee: zero percent">
               <strong className="numeric">0%</strong>
@@ -141,7 +141,10 @@ export function HowItWorks({
           <div className="money-input result">
             <strong className="numeric" aria-live="polite">
               {currencies[currency].symbol}
-              {converted.toLocaleString(undefined, { maximumFractionDigits: 2 })}
+              {converted.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })}
             </strong>
             <select
               className="currency-select numeric"
@@ -158,10 +161,6 @@ export function HowItWorks({
             </select>
           </div>
 
-          <div className="rate-details">
-            <span>Expected delivery</span>
-            <strong className="numeric">2–5 minutes</strong>
-          </div>
           <p className="rate-disclaimer">
             Live rate from our payment partner. Final rates, fees, delivery times,
             eligibility, and route availability are confirmed in the app before you send.

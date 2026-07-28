@@ -29,7 +29,7 @@ test("server-renders the Jazari One landing page", async () => {
   );
   assert.match(html, /jazari-app\.mp4/);
   assert.match(html, /Download App/);
-  assert.match(html, /Hold dollars/);
+  assert.match(html, /Your balance sits in dollars, out of reach of devaluation/);
   assert.match(html, /How it works/);
   assert.match(html, /Know what arrives before you send/);
   assert.match(html, /class="numeric">1<\/b><small class="numeric">USD/);
@@ -49,7 +49,9 @@ test("server-renders the Jazari One landing page", async () => {
   assert.ok(html.indexOf('id="networks"') < html.indexOf('id="faq"'));
   assert.match(html, />Blog</);
   assert.match(html, /Bridge/);
-  assert.match(html, /Laido/);
+  assert.match(html, /Lido/);
+  assert.match(html, /2–5 min\./);
+  assert.doesNotMatch(html, /Hidden FX rate fee/);
   assert.doesNotMatch(
     html,
     /Private beta · No commitment · Availability varies by country/,
@@ -89,7 +91,7 @@ test("server-renders plan, yields, roadmap, and partners pages", async () => {
   assert.match(roadmap, /Remit Now Pay Later/);
 
   assert.match(partners, /<h1>Partners<\/h1>/);
-  assert.match(partners, /Laido/);
+  assert.match(partners, /Lido/);
   assert.match(partners, /Networks and digital dollars/);
   assert.match(partners, /USDC/);
 });

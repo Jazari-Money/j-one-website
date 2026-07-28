@@ -17,29 +17,29 @@ export const jazariVisualProfile = {
 
 export const features = [
   {
-    title: "Hold dollars",
-    copy: "Keep supported digital dollars in one balance.",
+    id: "dollar-balance",
+    copy: "Your balance sits in dollars, out of reach of devaluation.",
     image: withBasePath("/images/features/new/dollar-balance.webp"),
   },
   {
-    title: "Get paid",
-    copy: "Receive eligible client and platform payments.",
+    id: "local-money",
+    copy: "Send dollars and they land in local money across 30+ countries.",
     image: withBasePath("/images/features/new/get-paid.webp"),
   },
   {
-    title: "Send to banks",
-    copy: "Use the local routes available for each country.",
-    image: withBasePath("/images/features/new/send.webp"),
-  },
-  {
-    title: "Know the total",
-    copy: "See the rate, cost, amount, and timing upfront.",
-    image: withBasePath("/images/features/new/know.webp"),
-  },
-  {
-    title: "Access yield",
-    copy: "Put eligible USDC or USDT to work.",
+    id: "earn",
+    copy: "Earn on the dollars you're not using.",
     image: withBasePath("/images/features/hand-coin.webp"),
+  },
+  {
+    id: "zero-fees",
+    copy: "No monthly fee. No transfer fee. No hidden fees.",
+    image: withBasePath("/images/features/new/zero.png"),
+  },
+  {
+    id: "minutes",
+    copy: "Money arrives in minutes, not business days.",
+    image: withBasePath("/images/features/new/send.webp"),
   },
 ] as const;
 
@@ -77,8 +77,8 @@ export const audiences = [
   {
     title: "Solopreneurs",
     line: "One dollar balance that follows you across countries without heavy bank cuts, hidden FX spreads, or transfer fees.",
-    image: withBasePath("/images/audience/global-mover.webp"),
-    alt: "Traveler moving between countries",
+    image: withBasePath("/images/audience/solopreneur.jpg"),
+    alt: "Independent barber working with a client",
   },
   {
     title: "Their families",
@@ -162,12 +162,12 @@ export const partnerStories = [
     short: "Onchain risk and financial modeling.",
   },
   {
-    name: "Laido",
-    logoFormat: "wordmark",
-    logoScale: 1,
-    wordmarkText: "Laido",
-    kind: "Operations",
-    short: "Operational infrastructure connecting complex payment workflows.",
+    name: "Lido",
+    logo: withBasePath("/images/rails/lido.svg"),
+    logoFormat: "mark",
+    logoScale: 0.94,
+    kind: "Liquid staking",
+    short: "Liquid staking and onchain reward infrastructure.",
   },
 ] as const;
 

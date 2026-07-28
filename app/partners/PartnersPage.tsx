@@ -23,18 +23,12 @@ function DirectoryCard({
       onPointerLeave={resetPointer}
     >
       <div className="provider-logo-slot">
-        {"logo" in item ? (
-          <span
-            className={`provider-logo is-${item.logoFormat}`}
-            style={{ "--logo-scale": item.logoScale } as CSSProperties}
-          >
-            <img src={item.logo} alt={`${item.name} logo`} />
-          </span>
-        ) : (
-          <span className="provider-wordmark" aria-label={`${item.name} logo`}>
-            {item.wordmarkText}
-          </span>
-        )}
+        <span
+          className={`provider-logo is-${item.logoFormat}`}
+          style={{ "--logo-scale": item.logoScale } as CSSProperties}
+        >
+          <img src={item.logo} alt={`${item.name} logo`} />
+        </span>
       </div>
       <div className="provider-card-copy">
         {!("wordmarkOnly" in item && item.wordmarkOnly) && <h3>{item.name}</h3>}

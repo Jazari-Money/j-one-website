@@ -204,7 +204,7 @@
 
 .review-fee {
   display: grid;
-  grid-template-columns: minmax(76px, 94px) 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 16px;
 }
@@ -218,6 +218,17 @@
   font-weight: 400;
   letter-spacing: -0.02em;
   line-height: 1;
+}
+
+.review-fee.is-timing {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.review-fee.is-timing > strong {
+  font-family: var(--font-inter), Arial, sans-serif;
+  font-size: clamp(28px, 2.7vw, 38px);
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .review-fee > strong::after {
@@ -347,25 +358,6 @@
   outline: 0;
 }
 
-.rate-details {
-  padding: 20px 0;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 13px 24px;
-  color: var(--muted-strong);
-  font-family: var(--font-inter), Arial, sans-serif;
-  font-size: 14px;
-  font-variant-numeric: tabular-nums lining-nums;
-}
-
-.rate-details strong {
-  min-width: 0;
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 500;
-  text-align: right;
-}
-
 .rate-disclaimer {
   margin: 0;
   padding-top: 18px;
@@ -466,8 +458,16 @@
   }
 
   .review-fee {
-    grid-template-columns: 72px 1fr;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 10px;
+  }
+
+  .review-fee.is-timing {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .review-fee.is-timing > strong {
+    font-size: 28px;
   }
 
   .review-fee b {
@@ -508,16 +508,6 @@
     font-size: 24px;
   }
 
-  .rate-details {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    gap: 13px 16px;
-    font-size: 13px;
-  }
-
-  .rate-details strong {
-    font-size: 13px;
-    line-height: 1.35;
-  }
 }
 
 @media (min-width: 901px) {

@@ -58,7 +58,7 @@ export function StoryboardPage() {
   const [email, setEmail] = useState("");
   const [joined, setJoined] = useState(false);
   const [accessOpen, setAccessOpen] = useState(false);
-  const [amount, setAmount] = useState("1,000");
+  const [amount, setAmount] = useState("1,000.00");
   const [currency, setCurrency] = useState<CurrencyCode>("MXN");
   const emailInput = useRef<HTMLInputElement>(null);
 
