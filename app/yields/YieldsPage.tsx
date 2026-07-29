@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import { AccordionList } from "../home/AccordionList";
-import { FlowField } from "../home/FlowField";
+import { ContainedColorEvent } from "../home/ContainedColorEvent";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
 import { resetPointer, trackPointer } from "../home/hooks";
@@ -113,10 +113,9 @@ export function YieldsPage() {
         <AccordionList items={questions} />
       </section>
 
-      <section className="yield-roadmap">
-        <FlowField />
-        <div>
-          <h2>Ready to open a yield?</h2>
+      <ContainedColorEvent className="yield-roadmap" labelledBy="yield-cta-title">
+        <div className="color-event-cta-copy">
+          <h2 id="yield-cta-title">Ready to open a yield?</h2>
           <p>Review the current strategy and risks, then continue in the Jazari app.</p>
         </div>
         <Link
@@ -127,7 +126,7 @@ export function YieldsPage() {
         >
           Download App
         </Link>
-      </section>
+      </ContainedColorEvent>
 
       <SiteFooter />
     </main>

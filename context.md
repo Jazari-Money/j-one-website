@@ -485,3 +485,27 @@ Default local URL: `http://localhost:3000`
   https://www.unicorn.studio/
 - Gauntlet USD Alpha strategy and risk reference:
   https://www.gauntlet.xyz/gauntlet-strategies/gtusda
+
+## Hero Lab (internal)
+
+- `/hero-lab/` is an unlinked, `noindex` comparison sandbox with ten working
+  hero direction studies at `/hero-lab/01/`–`/hero-lab/10/` plus a
+  side-by-side `/hero-lab/compare/` view. It exists to choose the next
+  production hero direction; it does not touch the live homepage.
+- Composition quota across the ten studies: four rounded-container scenes,
+  four edge-to-edge scenes, two hybrids that break their container.
+- Code lives in `app/hero-lab/` (registry in `lab-data.ts`, one component per
+  study in `variants/`, raw-WebGL/Canvas hosts in `gl/`). Styles live in
+  `app/styles/hero-lab-runtime.css`. No new dependencies: scenes use
+  hand-written GLSL fragment shaders and Canvas 2D.
+- Lab controls: replay intro, play/pause, forced reduced motion, intensity
+  (0.4–1.5), cursor reaction toggle, desktop/mobile preview frame. Settings
+  persist in localStorage under `jazari-hero-lab-settings`.
+- Runtime discipline: only the open study renders a live scene (overview cards
+  are static CSS previews), DPR is capped, RAF stops in hidden tabs and when
+  paused, WebGL contexts are released when a canvas actually leaves the DOM
+  (guarding React StrictMode remounts), and every scene has a static no-WebGL
+  fallback plus reduced-motion states.
+- The in-lab mobile preview is driven by container queries on `.hlab-frame`
+  (`@container herostage`), which mirror the `max-width: 620px` media block —
+  keep the two in sync when editing responsive rules.

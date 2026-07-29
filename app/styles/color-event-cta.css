@@ -1,0 +1,141 @@
+.color-event-cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #020303;
+}
+
+.contained-color-event-canvas {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: inherit;
+  background: #020303;
+  pointer-events: none;
+}
+
+.color-event-cta.is-started .contained-color-event-canvas:not(canvas) {
+  background:
+    radial-gradient(circle at 8% 35%, rgba(247, 239, 224, 0.52) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 32% 76%, rgba(181, 218, 204, 0.38) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 57% 19%, rgba(247, 239, 224, 0.46) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 79% 63%, rgba(181, 218, 204, 0.36) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 94% 27%, rgba(247, 239, 224, 0.42) 0 1px, transparent 1.7px),
+    radial-gradient(120% 24% at 50% 104%, rgba(111, 55, 20, 0.13), transparent 70%),
+    #020303;
+}
+
+.article-cta::before,
+.yield-roadmap::before {
+  content: none;
+}
+
+.color-event-cta > *:not(.contained-color-event-canvas) {
+  position: relative;
+  z-index: 2;
+}
+
+.color-event-cta-copy {
+  isolation: isolate;
+}
+
+.color-event-cta-copy::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -34px -48px;
+  border-radius: 999px;
+  background: radial-gradient(ellipse, rgba(2, 3, 3, 0.58), rgba(2, 3, 3, 0) 72%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.color-event-cta .color-event-cta-copy h2,
+.color-event-cta .color-event-cta-copy p,
+.color-event-cta .article-cta-link,
+.color-event-cta .realism-button {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+}
+
+.color-event-cta.is-started .color-event-cta-copy h2 {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 560ms ease 725ms,
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1) 725ms;
+}
+
+.color-event-cta.is-started .color-event-cta-copy p {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 500ms ease 900ms,
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 900ms;
+}
+
+.color-event-cta.is-started .article-cta-link,
+.color-event-cta.is-started .realism-button {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 460ms ease 1010ms,
+    transform 560ms cubic-bezier(0.22, 1, 0.36, 1) 1010ms,
+    filter 180ms ease;
+}
+
+.color-event-cta .article-cta-link,
+.color-event-cta .realism-button {
+  background: rgba(23, 26, 25, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 12px 32px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(9px);
+}
+
+.color-event-cta .article-cta-link:hover,
+.color-event-cta .article-cta-link:focus-visible,
+.color-event-cta .realism-button:hover,
+.color-event-cta .realism-button:focus-visible {
+  filter: brightness(1.14);
+}
+
+.color-event-cta .article-cta-link:focus-visible,
+.color-event-cta .realism-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.82);
+  outline-offset: 3px;
+}
+
+@media (max-width: 620px) {
+  .color-event-cta-copy::before {
+    inset: -24px -28px;
+  }
+
+  .color-event-cta.is-started .color-event-cta-copy h2 {
+    transition-delay: 610ms;
+  }
+
+  .color-event-cta.is-started .color-event-cta-copy p {
+    transition-delay: 760ms;
+  }
+
+  .color-event-cta.is-started .article-cta-link,
+  .color-event-cta.is-started .realism-button {
+    transition-delay: 850ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .color-event-cta .color-event-cta-copy h2,
+  .color-event-cta .color-event-cta-copy p,
+  .color-event-cta .article-cta-link,
+  .color-event-cta .realism-button {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

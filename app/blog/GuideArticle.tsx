@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- local editorial imagery */
 
 import Link from "next/link";
+import { ContainedColorEvent } from "../home/ContainedColorEvent";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
 import { withBasePath } from "../site-paths";
@@ -278,10 +279,12 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
         </div>
       </article>
 
-      <section className="article-cta" aria-labelledby="article-cta-title">
-        <h2 id="article-cta-title">Ready to join Jazari One?</h2>
+      <ContainedColorEvent className="article-cta" labelledBy="article-cta-title">
+        <div className="color-event-cta-copy">
+          <h2 id="article-cta-title">Ready to join Jazari One?</h2>
+        </div>
         <Link className="article-cta-link neutral-control" href="/#access">Download App</Link>
-      </section>
+      </ContainedColorEvent>
       <SiteFooter />
     </main>
   );
