@@ -174,7 +174,7 @@ test("keeps the core interactions working", async ({ page }) => {
     "aria-selected",
     "true",
   );
-  await expect(page.getByRole("tab", { name: /Choose a recipient/ })).toHaveAttribute(
+  await expect(page.getByRole("tab", { name: /Pick a destination/ })).toHaveAttribute(
     "aria-selected",
     "true",
   );
@@ -428,7 +428,9 @@ test("keeps the core interactions working", async ({ page }) => {
 test("renders the plan preview and legal links", async ({ page }) => {
   await page.goto("/plan/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Plan" })).toBeVisible();
-  await expect(page.getByText(/Preview pricing only/)).toBeVisible();
+  await expect(
+    page.getByText(/Preview pricing\. Final fees and availability are confirmed in the app\./),
+  ).toBeVisible();
   await expect(page.getByText(/Free over \$10/)).toBeVisible();
   await expect(page.getByText(/Variable APY/)).toBeVisible();
   await expect(page.getByRole("link", { name: "Terms & Conditions" })).toHaveAttribute(
@@ -479,13 +481,15 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
     "src",
     /usa-flag\.png$/,
   );
-  const fullCardRegions = await usdAccountCard.evaluate((node) => {
-    const copy = node.querySelector(":scope > div")?.getBoundingClientRect();
-    const art = node.querySelector(".roadmap-full-card-art")?.getBoundingClientRect();
-    return copy && art ? { copyRight: copy.right, artLeft: art.left } : null;
-  });
-  expect(fullCardRegions).not.toBeNull();
-  expect(fullCardRegions!.copyRight).toBeLessThanOrEqual(fullCardRegions!.artLeft);
+  const roadmapCards = page.locator(".roadmap-full-card");
+  const [firstCard, secondCard] = await Promise.all([
+    roadmapCards.nth(0).boundingBox(),
+    roadmapCards.nth(1).boundingBox(),
+  ]);
+  expect(firstCard).not.toBeNull();
+  expect(secondCard).not.toBeNull();
+  expect(Math.abs(firstCard!.width - firstCard!.height)).toBeLessThanOrEqual(1);
+  expect(secondCard!.x).toBeGreaterThan(firstCard!.x + firstCard!.width);
 });
 
 test("uses concise Blog titles without route labels", async ({ page }) => {

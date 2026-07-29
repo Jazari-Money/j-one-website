@@ -88,7 +88,7 @@ test("server-renders plan, yields, roadmap, and partners pages", async () => {
   ]);
 
   assert.match(plan, /<h1>Plan<\/h1>/);
-  assert.match(plan, /Preview pricing only/);
+  assert.match(plan, /Preview pricing\. Final fees and availability are confirmed in the app\./);
   assert.ok(plan.indexOf("Money movement") < plan.indexOf("Account"));
   assert.ok(plan.indexOf("Account") < plan.indexOf("Earn"));
   assert.match(plan, /Free over \$10/);
