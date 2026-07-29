@@ -16,7 +16,8 @@ varying vec2 v_uv;
 uniform vec2 u_res;
 uniform float u_time;
 uniform float u_intro;
-uniform vec2 u_ptr;
+uniform float u_dust_time;
+uniform float u_css_height;
 
 float hash21(vec2 p) {
   p = fract(p * vec2(234.34, 435.345));
@@ -43,7 +44,6 @@ float mote(vec2 p, float scale, float rpx, float t, float resY) {
   float rnd = hash21(id);
   float keep = step(.56, rnd);
   vec2 c = vec2(.2) + .6 * vec2(hash21(id + 7.31), hash21(id + 3.17));
-  c += .07 * vec2(sin(t * .11 + rnd * 6.28), cos(t * .09 + rnd * 4.7));
   float cellPx = resY / scale;
   float d = length(f - c) * cellPx;
   float m = 1. - smoothstep(rpx * .5, rpx, d);
@@ -71,11 +71,15 @@ void main() {
   band *= 1. - smoothstep(.965, 1., u_intro);
 
   float wake = smoothstep(pos + .03, pos - .22, uv.x);
-  vec2 p = vec2(uv.x * asp, uv.y);
-  p += vec2(u_time * .0022, u_time * .0011);
-  p += (u_ptr - .5) * vec2(.012, -.008);
-  float dfine = mote(p, 26., 1.15, u_time, u_res.y);
-  float dbig = mote(p + 13.7, 14., 1.8, u_time * .8 + 7., u_res.y);
+  float cssHeight = max(u_css_height, 1.);
+  vec2 dustSpace = vec2(uv.x * asp, uv.y);
+  vec2 fineP =
+    dustSpace + vec2(u_dust_time * 9.5 / cssHeight, 0.);
+  vec2 nearP =
+    dustSpace + vec2(u_dust_time * 12.5 / cssHeight, 0.);
+  float dfine = mote(fineP, 26., 1.15, u_time, u_res.y);
+  float dbig =
+    mote(nearP + vec2(13.7), 14., 1.8, u_time * .8 + 7., u_res.y);
   float dustA = wake * smoothstep(.3, .85, u_intro);
   vec3 dust =
     (vec3(.96, .94, .88) * dfine * .5 +
@@ -154,17 +158,17 @@ export function HeroColorEvent({ reduced }: { reduced: boolean }) {
     const resolution = gl.getUniformLocation(program, "u_res");
     const clock = gl.getUniformLocation(program, "u_time");
     const introProgress = gl.getUniformLocation(program, "u_intro");
-    const pointer = gl.getUniformLocation(program, "u_ptr");
+    const dustClock = gl.getUniformLocation(program, "u_dust_time");
+    const cssHeight = gl.getUniformLocation(program, "u_css_height");
 
     let raf = 0;
     let disposed = false;
     let inView = true;
     let documentVisible = !document.hidden;
     let time = 0;
+    let dustTime = 0;
     let intro = 0;
     let last = performance.now();
-    const pointerTarget = { x: 0.5, y: 0.5 };
-    const pointerSmooth = { x: 0.5, y: 0.5 };
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.4);
@@ -195,37 +199,23 @@ export function HeroColorEvent({ reduced }: { reduced: boolean }) {
           intro = 1;
         } else {
           time += dt * 0.45;
+          dustTime += dt;
           intro = Math.min(1, intro + (dt * 1000) / 2000);
         }
       }
-
-      pointerSmooth.x += (pointerTarget.x - pointerSmooth.x) * 0.08;
-      pointerSmooth.y += (pointerTarget.y - pointerSmooth.y) * 0.08;
 
       resize();
       gl.uniform2f(resolution, canvas.width, canvas.height);
       gl.uniform1f(clock, time);
       gl.uniform1f(introProgress, intro);
-      gl.uniform2f(pointer, pointerSmooth.x, 1 - pointerSmooth.y);
+      gl.uniform1f(dustClock, dustTime);
+      gl.uniform1f(cssHeight, Math.max(1, canvas.clientHeight));
       gl.drawArrays(gl.TRIANGLES, 0, 3);
       canvas.dataset.rendered = "true";
       canvas.dataset.intro = intro.toFixed(3);
+      canvas.dataset.dustTime = dustTime.toFixed(3);
 
       if (!reducedRef.current || !pageReady) schedule();
-    };
-
-    const onPointerMove = (event: PointerEvent) => {
-      if (event.pointerType !== "mouse") return;
-      const bounds = canvas.getBoundingClientRect();
-      pointerTarget.x = Math.min(
-        1,
-        Math.max(0, (event.clientX - bounds.left) / bounds.width),
-      );
-      pointerTarget.y = Math.min(
-        1,
-        Math.max(0, (event.clientY - bounds.top) / bounds.height),
-      );
-      schedule();
     };
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -242,7 +232,6 @@ export function HeroColorEvent({ reduced }: { reduced: boolean }) {
       if (documentVisible) schedule();
     };
 
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
     document.addEventListener("visibilitychange", onVisibilityChange);
     schedule();
 
@@ -251,7 +240,6 @@ export function HeroColorEvent({ reduced }: { reduced: boolean }) {
       if (raf) cancelAnimationFrame(raf);
       observer.disconnect();
       resizeObserver.disconnect();
-      window.removeEventListener("pointermove", onPointerMove);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       gl.deleteBuffer(quad);
       gl.deleteProgram(program);

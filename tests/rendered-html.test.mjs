@@ -171,10 +171,11 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
     )
   ).join("\n");
 
-  const [pageEntry, globals, packageJson] = await Promise.all([
+  const [pageEntry, globals, packageJson, heroColorEventSource] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
+    readFile(new URL("../app/home/HeroColorEvent.tsx", import.meta.url), "utf8"),
   ]);
   const page = `${pageEntry}\n${homeSource}`;
   const css = `${globals}\n${stylesSource}`;
@@ -183,6 +184,10 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /className="hero-shader"/);
   assert.match(page, /className="hero-title-line"/);
   assert.match(page, /vec3\(1\., \.3, \.16\)/);
+  assert.match(heroColorEventSource, /u_dust_time \* 9\.5 \/ cssHeight/);
+  assert.match(heroColorEventSource, /u_dust_time \* 12\.5 \/ cssHeight/);
+  assert.doesNotMatch(heroColorEventSource, /u_ptr|pointerTarget|pointerSmooth/);
+  assert.doesNotMatch(heroColorEventSource, /addEventListener\("pointermove"/);
   assert.doesNotMatch(page, /accessOpen|Join Waitlist|Email address/);
   assert.match(page, /activeStep/);
   assert.match(page, /role="tablist"/);

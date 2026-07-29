@@ -50,6 +50,9 @@ Commercial relationship wording still requires confirmation before launch.
 - Hero copy begins as the spectral band crosses center at 1 second; supporting
   copy follows at 1.28 seconds, the CTA at 1.43 seconds, and the phone at 2.05
   seconds. Preserve these timings unless the whole sequence is redesigned.
+- Hero dust never responds to the pointer. Its fine and near layers drift
+  continuously from right to left at 9.5px/s and 12.5px/s respectively, with
+  no vertical wandering.
 - Hero shaders should remain masked and atmospheric after their intro event.
 - Keep the original Jazari One app video inside the local phone frame.
 - CTA buttons use text only: no arrows, icons, or decorative glyphs.

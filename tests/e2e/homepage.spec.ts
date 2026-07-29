@@ -103,13 +103,21 @@ test("runs the color event with the reference choreography", async ({ page }) =>
   });
 
   const introStart = Number(await canvas.getAttribute("data-intro"));
+  const dustStart = Number(await canvas.getAttribute("data-dust-time"));
   expect(introStart).toBeLessThan(0.5);
   await page.waitForTimeout(350);
   const introAfter = Number(await canvas.getAttribute("data-intro"));
+  const dustAfter = Number(await canvas.getAttribute("data-dust-time"));
   expect(introAfter).toBeGreaterThan(introStart);
+  expect(dustAfter).toBeGreaterThan(dustStart);
   await expect
     .poll(async () => Number(await canvas.getAttribute("data-intro")))
     .toBe(1);
+  const settledDust = Number(await canvas.getAttribute("data-dust-time"));
+  await page.waitForTimeout(250);
+  expect(Number(await canvas.getAttribute("data-dust-time"))).toBeGreaterThan(
+    settledDust,
+  );
 });
 
 test("keeps the core interactions working", async ({ page }) => {
