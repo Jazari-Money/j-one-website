@@ -108,7 +108,6 @@ export function HowItWorks({
       ))}
       <header className="chapter-heading">
         <h2>How it works</h2>
-        <p>Choose what you want to do, then see each step in the app.</p>
       </header>
 
       <div
@@ -138,30 +137,32 @@ export function HowItWorks({
         <div className="step-copy-column">
           <div className="step-tabs" role="tablist" aria-label={`${scenario.label} steps`}>
             {scenario.steps.map((item, index) => (
-              <button
-                key={item.id}
-                ref={(node) => { tabRefs.current[index] = node; }}
-                id={`step-tab-${item.id}`}
-                type="button"
-                role="tab"
-                aria-selected={activeStep === index}
-                aria-controls="step-screen"
-                tabIndex={activeStep === index ? 0 : -1}
-                className={activeStep === index ? "is-active" : ""}
-                onClick={() => setActiveStep(index)}
-                onKeyDown={(event) => moveStep(event, index)}
-              >
-                <span>{item.title}</span>
-                <small>{item.copy}</small>
-                {item.id === "receive-usd" && <em className="step-status">Coming Soon</em>}
-              </button>
+              <div className={`step-tab-item ${activeStep === index ? "is-active" : ""}`} key={item.id}>
+                <button
+                  ref={(node) => { tabRefs.current[index] = node; }}
+                  id={`step-tab-${item.id}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeStep === index}
+                  aria-controls="step-screen"
+                  tabIndex={activeStep === index ? 0 : -1}
+                  onClick={() => setActiveStep(index)}
+                  onKeyDown={(event) => moveStep(event, index)}
+                >
+                  <span className="step-title-line">
+                    <span>{item.title}</span>
+                    {item.id === "receive-usd" && <em className="step-status">Coming Soon</em>}
+                  </span>
+                  <small>{item.copy}</small>
+                </button>
+                {activeScenario === "yields" && activeStep === index && (
+                  <Link className="how-learn-more" href="/yields/">
+                    Learn More
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
-          {activeScenario === "yields" && (
-            <Link className="how-learn-more neutral-control" href="/yields/">
-              Learn More
-            </Link>
-          )}
         </div>
 
         <div
@@ -186,7 +187,7 @@ export function HowItWorks({
       <div className="review-block" id="rates">
         <div className="review-copy">
           <h3>Know what arrives before you send</h3>
-          <p>Everything is on screen before you confirm. Nothing hidden in the rate.</p>
+          <p>Everything is on screen before you confirm.</p>
           <div className="review-metrics">
             <div className="review-fee" aria-label="Transaction fee: zero percent">
               <strong>0%</strong>
@@ -210,11 +211,10 @@ export function HowItWorks({
               className="numeric"
               id="send-amount"
               inputMode="decimal"
-              value={amount}
-              onChange={(event) => onAmount(event.target.value)}
+              value={`$${amount}`}
+              onChange={(event) => onAmount(event.target.value.replace(/^\$/, ""))}
               aria-label="Amount in US dollars"
             />
-            <span className="numeric">USD</span>
           </div>
 
           <output
@@ -223,8 +223,7 @@ export function HowItWorks({
             aria-live="polite"
           >
             <span className="rate-side">
-              <b className="numeric">1</b>
-              <small className="numeric">USD</small>
+              <b className="numeric">$1</b>
             </span>
             <span className="rate-equals" aria-hidden="true">=</span>
             <span className="rate-side is-result">
@@ -233,7 +232,7 @@ export function HowItWorks({
             </span>
           </output>
 
-          <label id="receive-currency-label">Recipient receives</label>
+          <label id="receive-currency-label">Recipient gets</label>
           <div className="money-input result">
             <strong className="numeric" aria-live="polite">
               {selectedCurrency.symbol}

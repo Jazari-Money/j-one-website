@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- component board uses exact local production artwork */
+
 import {
   type CSSProperties,
   type ReactNode,
@@ -204,7 +206,7 @@ function CurrencyField({
 
   return (
     <div className={`sb-currency-field ${compact ? "is-compact" : ""}`}>
-      <span className="sb-field-label">Recipient receives</span>
+      <span className="sb-field-label">Recipient gets</span>
       <div className="sb-currency-row">
         <strong className="numeric">{amount}</strong>
         <button
@@ -292,7 +294,7 @@ function SegmentControl({ compact = false }: { compact?: boolean }) {
 function FeatureList({ compact = false }: { compact?: boolean }) {
   return (
     <ul className={`sb-feature-list ${compact ? "is-compact" : ""}`}>
-      {features.slice(0, compact ? 3 : 5).map((feature) => (
+      {features.map((feature) => (
         <li key={feature.id}>
           <img src={feature.image} alt="" />
           <span>{feature.copy}</span>
@@ -390,7 +392,7 @@ function TypographySpecimen({ compact = false }: { compact?: boolean }) {
     <div className={`sb-type-stack ${compact ? "is-compact" : ""}`}>
       <div>
         <code>Display / Instrument Serif</code>
-        <h1>Your dollars, wherever you are</h1>
+        <h1>Use dollars. Anywhere.</h1>
       </div>
       <div>
         <code>Section / Instrument Serif</code>
@@ -514,7 +516,7 @@ export function StoryboardPage() {
             <div className="sb-field-stack">
               <label className="sb-amount-field">
                 <span>You send</span>
-                <span><input value="1,000.00" readOnly aria-label="Amount" /><b>USD</b></span>
+                <span><input value="$1,000.00" readOnly aria-label="Amount" /></span>
               </label>
               <CurrencyField
                 amount={convertedDesktop}
@@ -530,7 +532,7 @@ export function StoryboardPage() {
             <div className="sb-field-stack">
               <label className="sb-amount-field is-compact">
                 <span>You send</span>
-                <span><input value="1,000.00" readOnly aria-label="Amount" /><b>USD</b></span>
+                <span><input value="$1,000.00" readOnly aria-label="Amount" /></span>
               </label>
               <CurrencyField
                 amount={convertedMobile}

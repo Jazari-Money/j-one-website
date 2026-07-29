@@ -20,12 +20,11 @@ export const milestones = [
     title: "USD account",
     copy:
       "A US routing and account number in your name, issued through a licensed US bank partner. Receive eligible payments by ACH, FedNow, domestic wire, or SWIFT.",
-    notes: ["No US residency required", "Details shown before every transfer"],
+    notes: ["No US residency required"],
   },
   {
     title: "New receive countries",
-    copy:
-      "New receive routes open as local banking partners and regulatory approvals are ready.",
+    copy: "",
     notes: [],
     flags: [
       { name: "India", src: withBasePath("/images/flags/in.png") },
@@ -43,7 +42,7 @@ export const milestones = [
   {
     title: "Visa card",
     copy:
-      "Pay for subscriptions, software, and everyday spending directly from your Jazari balance.",
+      "Pay for subscriptions, software, and everyday spending directly from your Jazari One balance.",
     notes: [],
   },
   {
@@ -60,7 +59,14 @@ export function ProductRoadmap() {
   function move(direction: -1 | 1) {
     const node = track.current;
     if (!node) return;
-    node.scrollBy({ left: node.clientWidth * 0.72 * direction, behavior: "smooth" });
+    const card = node.querySelector<HTMLElement>(".roadmap-card");
+    const styles = window.getComputedStyle(node);
+    const gap = Number.parseFloat(styles.columnGap || styles.gap || "16") || 16;
+    const cardsPerPage = window.matchMedia("(max-width: 620px)").matches ? 1 : 2;
+    const distance = card
+      ? (card.getBoundingClientRect().width + gap) * cardsPerPage
+      : node.clientWidth;
+    node.scrollBy({ left: distance * direction, behavior: "smooth" });
   }
 
   return (
@@ -68,7 +74,7 @@ export function ProductRoadmap() {
       <header className="roadmap-heading">
         <div className="chapter-heading">
           <h2>Roadmap</h2>
-          <p>One useful layer at a time, starting with the USD account.</p>
+          <p>What we&apos;re building next.</p>
         </div>
         <div className="roadmap-controls" aria-label="Roadmap navigation">
           <Link className="roadmap-all-link neutral-control" href="/roadmap">View All</Link>
@@ -92,7 +98,7 @@ export function ProductRoadmap() {
             >
               <h3>{milestone.title}</h3>
               <div className="roadmap-card-bottom">
-                <p>{milestone.copy}</p>
+                {milestone.copy && <p>{milestone.copy}</p>}
                 {"flags" in milestone && (
                   <div className="roadmap-flags" aria-label="Planned receive countries">
                     {milestone.flags.map((flag) => (

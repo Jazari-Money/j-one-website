@@ -111,6 +111,17 @@
   gap: 4px;
 }
 
+.step-tab-item {
+  overflow: hidden;
+  border-radius: 18px;
+  transition: background-color 180ms ease;
+}
+
+.step-tab-item:hover,
+.step-tab-item.is-active {
+  background: color-mix(in srgb, var(--surface-2) 86%, transparent);
+}
+
 .step-tabs button {
   width: 100%;
   min-height: 116px;
@@ -124,7 +135,7 @@
 }
 
 .step-tabs button:hover {
-  background: color-mix(in srgb, var(--surface-2) 52%, transparent);
+  background: transparent;
 }
 
 .step-tabs button:focus-visible {
@@ -132,11 +143,14 @@
   outline-offset: -2px;
 }
 
-.step-tabs button.is-active {
-  background: color-mix(in srgb, var(--surface-2) 86%, transparent);
+.step-title-line {
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.step-tabs span {
+.step-title-line > span {
   display: block;
   color: var(--text);
   font-size: 18px;
@@ -155,7 +169,7 @@
 
 .step-status {
   width: max-content;
-  margin-top: 12px;
+  margin: 0;
   padding: 6px 9px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface-2) 82%, transparent);
@@ -167,13 +181,16 @@
 }
 
 .how-learn-more {
+  display: inline-flex;
   width: max-content;
-  margin: 18px 0 0 4px;
-  padding: 12px 18px;
-  border-radius: 999px;
+  margin: -8px 24px 20px;
+  padding: 0;
   color: var(--text);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--text) 42%, transparent);
+  text-underline-offset: 5px;
 }
 
 .step-screen {
@@ -307,7 +324,7 @@
 }
 
 .review-fee b {
-  padding-bottom: 4px;
+  padding-bottom: 3px;
   color: var(--text);
   font-size: 15px;
   font-weight: 500;
@@ -406,6 +423,7 @@
 .money-input.result {
   position: relative;
   margin-bottom: 20px;
+  padding-right: 0;
 }
 
 .money-input.result > strong {
@@ -419,11 +437,12 @@
 }
 
 .currency-trigger {
-  min-height: 50px;
-  padding: 7px 8px 7px 10px;
+  min-height: 76px;
+  align-self: stretch;
+  padding: 7px 18px;
   border: 0;
-  border-radius: 13px;
-  background: transparent;
+  border-radius: 0 14px 14px 0;
+  background: color-mix(in srgb, var(--surface-2) 88%, #111 12%);
   color: var(--text);
   display: flex;
   align-items: center;
@@ -470,6 +489,9 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
     0 22px 54px rgba(0, 0, 0, 0.52);
   backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  isolation: isolate;
+  opacity: 1;
 }
 
 .currency-option {
@@ -586,9 +608,18 @@
     font-weight: 400;
   }
 
-  .step-tabs span {
+  .step-title-line > span {
     font-size: 13px;
     font-weight: 400;
+  }
+
+  .step-title-line {
+    justify-content: center;
+  }
+
+  .how-learn-more {
+    margin: -4px auto 14px;
+    font-size: 12px;
   }
 
   .how-scenario-tabs button {
@@ -661,7 +692,8 @@
   }
 
   .currency-trigger {
-    min-height: 46px;
+    min-height: 68px;
+    padding-inline: 12px;
     gap: 6px;
   }
 

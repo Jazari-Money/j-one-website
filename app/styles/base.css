@@ -8,7 +8,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   background: var(--bg);
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
@@ -49,7 +49,7 @@ h5,
 h6 {
   font-size: inherit;
   font-weight: inherit;
-  letter-spacing: -0.2px;
+  letter-spacing: -0.3px;
 }
 
 ol,

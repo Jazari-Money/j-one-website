@@ -20,20 +20,21 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Jazari One — Your dollars, wherever you are<\/title>/i);
-  assert.match(html, /Your dollars,/);
-  assert.match(html, /wherever you are/);
-  assert.match(
-    html,
-    /Hold your money in dollars that keep their value — and send it to any bank account/,
-  );
+  assert.match(html, /<title>Jazari One — Use dollars\. Anywhere\.<\/title>/i);
+  assert.match(html, /Use dollars\./);
+  assert.match(html, /Anywhere\./);
+  assert.match(html, /Hold them\. Send them\. Grow them\./);
   assert.match(html, /jazari-app\.mp4/);
   assert.match(html, /Download App/);
-  assert.match(html, /Your balance sits in dollars, out of reach of devaluation/);
+  assert.match(html, /Hold in dollars\. Keep its value\./);
+  assert.match(html, /Send to 30\+ countries in local currency\./);
+  assert.match(html, /Earn on the dollars you&#x27;re not using\./);
+  assert.match(html, /No transfer fees\. No hidden fees\./);
   assert.match(html, /How it works/);
   assert.match(html, /Know what arrives before you send/);
-  assert.match(html, /class="numeric">1<\/b><small class="numeric">USD/);
+  assert.match(html, /class="numeric">\$1<\/b>/);
   assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
+  assert.match(html, /Recipient gets/);
   assert.match(html, /Transaction fee/);
   assert.match(html, />Yields</);
   assert.doesNotMatch(html, /Roadmap 2026/);
@@ -42,6 +43,9 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Visa card/);
   assert.match(html, /Nigeria/);
   assert.match(html, /mexico-transfer\.webp/);
+  assert.match(html, /brazil\.jpg/);
+  assert.match(html, /colombia\.jpg/);
+  assert.match(html, /europe\.jpg/);
   assert.match(html, />Partners</);
   assert.match(html, />FAQ</);
   assert.ok(html.indexOf('id="roadmap"') < html.indexOf('id="blog"'));
@@ -104,6 +108,7 @@ test("server-renders the standalone component board", async () => {
   assert.match(html, /Jazari One/);
   assert.match(html, /component board/);
   assert.match(html, /Atomic UI inventory/);
+  assert.match(html, /Use dollars\. Anywhere\./);
   assert.match(html, /Typography/);
   assert.match(html, /Fields &amp; values/);
   assert.match(html, /Dropdowns/);
@@ -177,7 +182,8 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /Live rate from our payment partner/);
   assert.match(page, /\/images\/features\/new\/dollar-balance\.webp/);
   assert.match(page, /\/images\/features\/new\/get-paid\.webp/);
-  assert.match(page, /\/images\/features\/new\/send\.webp/);
+  assert.doesNotMatch(page, /\/images\/features\/new\/send\.webp/);
+  assert.match(page, /guides\.slice\(0, 4\)/);
   assert.match(page, /\/images\/stores\/app-store-badge\.avif/);
   assert.match(page, /\/images\/stores\/google-play-badge\.avif/);
   assert.match(page, /\/images\/brand\/visa-white\.svg/);

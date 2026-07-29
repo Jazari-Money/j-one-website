@@ -14,7 +14,7 @@ export function RoadmapPage() {
 
       <header className="roadmap-full-hero">
         <h1>Roadmap</h1>
-        <p>One useful layer at a time, starting with the USD account.</p>
+        <p>What we&apos;re building next.</p>
       </header>
 
       <section className="roadmap-full-grid" aria-label="Jazari One product roadmap">
@@ -27,7 +27,7 @@ export function RoadmapPage() {
           >
             <h2>{milestone.title}</h2>
             <div>
-              <p>{milestone.copy}</p>
+              {milestone.copy && <p>{milestone.copy}</p>}
               {"flags" in milestone && (
                 <div className="roadmap-flags" aria-label="Planned receive countries">
                   {milestone.flags.map((flag) => (

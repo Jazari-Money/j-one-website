@@ -1,6 +1,6 @@
 # Jazari One website context
 
-Last updated: 2026-07-28
+Last updated: 2026-07-29
 
 ## Product
 
@@ -15,18 +15,17 @@ money crosses borders. The core story is:
 
 Current hero line:
 
-> Your dollars, wherever you are.
+> Use dollars. Anywhere.
 
-Current hero description is intentionally kept as requested:
+Current hero description:
 
-> Hold your money in dollars that keep their value — and send it to any bank
-> account in Mexico, Colombia, Brazil, Europe and 26 more countries.
+> Hold them. Send them. Grow them.
 
 ## Important claim guardrails
 
 These claims require product/legal confirmation before a public launch:
 
-- Exact supported country count and the phrase “26 more countries.”
+- The homepage’s “30+ countries” coverage claim.
 - The displayed 0% / $0 Jazari transaction fee.
 - Which assets and networks are live in the Jazari product.
 - Formal “partner” status for Bridge, Privy, Gauntlet, Tether, or Circle.
@@ -359,11 +358,11 @@ Default local URL: `http://localhost:3000`
 - The closing download panel uses a compact vertical green beam with
   independently randomized green/yellow dust. Keep the action neutral,
   compact, and icon-free.
-- The homepage headline is `Your dollars, wherever you are` without a final
-  period. Instrument Serif display text uses `-0.2px` letter spacing.
-- The benefit list uses the supplied chrome dollar object for “Keep a dollar
-  balance” and ends with “Access variable yield,” which links the product story
-  to the dedicated Yields page.
+- The homepage headline is `Use dollars. Anywhere.` and the supporting line is
+  `Hold them. Send them. Grow them.`
+- The benefit list contains four concise claims: hold in dollars, send to 30+
+  countries in local currency, earn on unused dollars, and no transfer or
+  hidden fees.
 - The FAQ belongs immediately after the “Your dollars should move with you”
   conversion section.
 - The provider/network presentation is a balanced five-column desktop grid,

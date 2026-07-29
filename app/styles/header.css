@@ -106,11 +106,11 @@
   min-width: 172px;
   padding: 9px;
   border-radius: 16px;
-  background: color-mix(in srgb, var(--surface-2) 88%, transparent);
+  background: #171a18;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     0 20px 54px rgba(0, 0, 0, 0.34);
-  backdrop-filter: blur(20px);
+  backdrop-filter: none;
   opacity: 0;
   visibility: hidden;
   transform: translate(-50%, -5px);

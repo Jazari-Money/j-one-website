@@ -14,7 +14,7 @@ export function Blog() {
         <Link className="blog-all-link neutral-control" href="/blog">All Articles</Link>
       </header>
       <div className="blog-grid">
-        {guides.slice(0, 3).map((guide, index) => (
+        {guides.slice(0, 4).map((guide, index) => (
           <Link
             className={`blog-card pointer-card ${index === 0 ? "blog-card-featured" : ""} ${"image" in guide ? "has-image" : ""}`}
             href={`/blog/${guide.slug}`}

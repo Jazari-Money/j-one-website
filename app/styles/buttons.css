@@ -81,15 +81,6 @@
   outline: 0;
 }
 
-.magic-access-button:hover,
-.magic-access-button:focus-visible {
-  transform: translateX(-50%) translateY(-2px) scale(1.018);
-}
-
-.magic-access-button {
-  transform: translateX(-50%);
-}
-
 .realism-button:hover::before,
 .realism-button:focus-visible::before {
   opacity: 1;

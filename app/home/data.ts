@@ -42,12 +42,12 @@ export const jazariVisualProfile = {
 export const features = [
   {
     id: "dollar-balance",
-    copy: "Your balance sits in dollars, out of reach of devaluation.",
+    copy: "Hold in dollars. Keep its value.",
     image: withBasePath("/images/features/new/dollar-balance.webp"),
   },
   {
     id: "local-money",
-    copy: "Send dollars and they land in local money across 30+ countries.",
+    copy: "Send to 30+ countries in local currency.",
     image: withBasePath("/images/features/new/get-paid.webp"),
   },
   {
@@ -59,11 +59,6 @@ export const features = [
     id: "zero-fees",
     copy: "No transfer fees. No hidden fees.",
     image: withBasePath("/images/features/new/zero.png"),
-  },
-  {
-    id: "minutes",
-    copy: "Money arrives in minutes.",
-    image: withBasePath("/images/features/new/send.webp"),
   },
 ] as const;
 

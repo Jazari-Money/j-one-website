@@ -61,7 +61,7 @@ async function revealScrollableContent(page: Page) {
 test("keeps the core interactions working", async ({ page }) => {
   await prepareStablePage(page);
 
-  await expect(page.getByRole("heading", { name: /Your dollars,/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Use dollars\.\s*Anywhere\./ })).toBeVisible();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "jazari");
   await expect(page.locator("main")).toHaveAttribute("data-shader", "beam");
   await expect(page.getByRole("button", { name: /Choose color theme/ })).toHaveCount(0);
@@ -71,6 +71,12 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect
     .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-shader")))
     .toBeNull();
+
+  const personalMenu = page.locator(".nav-dropdown");
+  await personalMenu.locator("summary").click();
+  await expect(personalMenu).toHaveAttribute("open", "");
+  await page.mouse.click(40, 300);
+  await expect(personalMenu).not.toHaveAttribute("open", "");
 
   const heroAccess = page.locator(".magic-access-button");
   await heroAccess.hover({ position: { x: 22, y: 12 } });
@@ -107,6 +113,8 @@ test("keeps the core interactions working", async ({ page }) => {
   await currencyMenu.getByRole("option", { name: /Colombia.*COP/ }).click();
   await expect(currencyPicker).toContainText("COP");
   await expect(page.locator(".money-input.result strong")).toContainText("$4,175,000.00");
+  await expect(page.locator("#send-amount")).toHaveValue("$1,000.00");
+  await expect(page.getByText("Recipient gets", { exact: true })).toBeVisible();
 
   await expect(page.locator(".nav-cta")).toHaveAttribute(
     "href",
@@ -125,6 +133,14 @@ test("keeps the core interactions working", async ({ page }) => {
     .not.toBe("50%");
 
   const roadmapTrack = page.locator(".roadmap-track");
+  await page.getByRole("button", { name: "Next milestone" }).click();
+  await expect
+    .poll(() => roadmapTrack.evaluate((node) => Math.round(node.scrollLeft)))
+    .toBeGreaterThan(0);
+  await page.getByRole("button", { name: "Previous milestone" }).click();
+  await expect
+    .poll(() => roadmapTrack.evaluate((node) => Math.round(node.scrollLeft)))
+    .toBe(0);
   await roadmapTrack.evaluate((node) => {
     node.scrollLeft = node.scrollWidth;
   });

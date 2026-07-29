@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
 
@@ -13,6 +13,7 @@ export function SiteHeader({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const personalMenuRef = useRef<HTMLDetailsElement>(null);
   const homeHref = mode === "home" ? "#top" : withBasePath("/#top");
   const sectionHref = (section: string) =>
     mode === "home" ? `#${section}` : withBasePath(`/#${section}`);
@@ -43,6 +44,17 @@ export function SiteHeader({
     };
   }, [mobileOpen]);
 
+  useEffect(() => {
+    const closePersonalMenu = (event: PointerEvent) => {
+      const menu = personalMenuRef.current;
+      if (menu && !menu.contains(event.target as Node)) {
+        menu.removeAttribute("open");
+      }
+    };
+    document.addEventListener("pointerdown", closePersonalMenu);
+    return () => document.removeEventListener("pointerdown", closePersonalMenu);
+  }, []);
+
   function closeMobile() {
     setMobileOpen(false);
   }
@@ -55,7 +67,7 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <details className="nav-dropdown" open={mobileOpen || undefined}>
+          <details ref={personalMenuRef} className="nav-dropdown" open={mobileOpen || undefined}>
             <summary>Personal</summary>
             <span className="nav-mobile-section-title">Personal</span>
             <div className="nav-dropdown-menu">

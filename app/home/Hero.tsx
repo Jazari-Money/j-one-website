@@ -92,11 +92,8 @@ export function Hero() {
         </span>
       </div>
       <div className="hero-copy">
-        <h1>Your dollars,<br />wherever you are</h1>
-        <p>
-          Hold your money in dollars that keep their value — and send it to any
-          bank account in Mexico, Colombia, Brazil, Europe and 26 more countries.
-        </p>
+        <h1>Use dollars.<br />Anywhere.</h1>
+        <p>Hold them. Send them. Grow them.</p>
         <HeroDownload />
       </div>
 

@@ -342,6 +342,11 @@
     0 12px 36px rgba(0, 0, 0, 0.26);
 }
 
+.hero-download-control > .magic-access-button.hero-download-button {
+  background: #f4f4ef;
+  color: #080a09;
+}
+
 .hero-download-button .button-label {
   color: #080a09;
 }
