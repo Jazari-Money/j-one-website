@@ -100,6 +100,10 @@ test("keeps the core interactions working", async ({ page }) => {
     );
   });
   expect(heroLabelOffset).toBeLessThanOrEqual(1);
+  const heroTitleSize = await page
+    .getByRole("heading", { name: /Use dollars\.\s*Anywhere\./ })
+    .evaluate((node) => Number.parseFloat(getComputedStyle(node).fontSize));
+  expect(heroTitleSize).toBeGreaterThanOrEqual(107);
 
   const receiveScenario = page.getByRole("tab", { name: "Receive", exact: true });
   await receiveScenario.focus();
@@ -116,6 +120,21 @@ test("keeps the core interactions working", async ({ page }) => {
     "src",
     /how-to-send-01\.png$/,
   );
+  await page.getByRole("tab", { name: "Yields", exact: true }).click();
+  const yieldsLink = page.getByRole("link", { name: "Learn more about Yields" });
+  await expect(yieldsLink).toHaveCount(1);
+  await expect(yieldsLink).toBeVisible();
+  await page.getByRole("tab", { name: "Receive", exact: true }).click();
+  const comingSoon = page.locator(".step-status");
+  await expect(comingSoon).toHaveText("Coming Soon");
+  await expect
+    .poll(() =>
+      comingSoon.evaluate((node) => {
+        const style = getComputedStyle(node);
+        return `${style.backgroundColor}|${style.color}`;
+      }),
+    )
+    .toBe("rgb(244, 244, 239)|rgb(8, 10, 9)");
 
   const currencyPicker = page.locator("#receive-currency");
   await currencyPicker.click();
@@ -125,6 +144,22 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(currencyMenu.getByRole("option", { name: /Colombia.*COP/ })).toBeVisible();
   await expect(currencyMenu.getByRole("option", { name: /Brazil.*BRL/ })).toBeVisible();
   await expect(currencyMenu.getByRole("option", { name: /Europe.*EUR/ })).toBeVisible();
+  const currencyMenuStyle = await currencyMenu.evaluate((node) => {
+    const style = getComputedStyle(node);
+    const option = node.querySelector("[role=option]");
+    return {
+      background: style.backgroundColor,
+      opacity: style.opacity,
+      optionBackground: option ? getComputedStyle(option).backgroundColor : "",
+      zIndex: style.zIndex,
+    };
+  });
+  expect(currencyMenuStyle).toEqual({
+    background: "rgb(23, 26, 24)",
+    opacity: "1",
+    optionBackground: "rgb(36, 40, 38)",
+    zIndex: "20",
+  });
   await currencyMenu.getByRole("option", { name: /Colombia.*COP/ }).click();
   await expect(currencyPicker).toContainText("COP");
   await expect(page.locator(".money-input.result strong")).toContainText("$4,175,000.00");
@@ -144,9 +179,30 @@ test("keeps the core interactions working", async ({ page }) => {
     "href",
     "https://apps.apple.com/",
   );
+  const navbarLabelOffset = await page.locator(".nav-cta").evaluate((node) => {
+    const button = node.getBoundingClientRect();
+    const label = node.querySelector(".nav-cta-label")?.getBoundingClientRect();
+    if (!label) return Number.POSITIVE_INFINITY;
+    return Math.abs(
+      button.top + button.height / 2 - (label.top + label.height / 2),
+    );
+  });
+  expect(navbarLabelOffset).toBeLessThanOrEqual(1);
+
+  const receivingCountries = [
+    "Andorra", "Austria", "Belgium", "Brazil", "Colombia", "Croatia",
+    "Cyprus", "Estonia", "Finland", "France", "Germany", "Greece",
+    "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta",
+    "Mexico", "Monaco", "Montenegro", "Netherlands", "Poland", "Portugal",
+    "Romania", "San Marino", "Slovakia", "Slovenia", "Spain", "United Kingdom",
+  ];
+  await expect(page.locator(".receive-countries li")).toHaveText(receivingCountries);
 
   const card = page.locator(".blog-card").first();
   await card.scrollIntoViewIfNeeded();
+  const blogImageTransformBefore = await card
+    .locator(".blog-card-image")
+    .evaluate((node) => getComputedStyle(node).transform);
   await card.hover({ position: { x: 80, y: 90 } });
   await expect
     .poll(() =>
@@ -155,6 +211,11 @@ test("keeps the core interactions working", async ({ page }) => {
       ),
     )
     .not.toBe("50%");
+  await expect
+    .poll(() =>
+      card.locator(".blog-card-image").evaluate((node) => getComputedStyle(node).transform),
+    )
+    .toBe(blogImageTransformBefore);
   const desktopCardMetrics = await page.evaluate(() => {
     const benefits = getComputedStyle(
       document.querySelector(".benefit-list") as Element,
@@ -175,22 +236,34 @@ test("keeps the core interactions working", async ({ page }) => {
     ).size;
     const title = document.querySelector(".blog-card h3")?.getBoundingClientRect();
     const action = document.querySelector(".blog-read")?.getBoundingClientRect();
+    const firstBenefitIcon = document.querySelector(".benefit-row img");
+    const firstBenefitCopy = document.querySelector(".benefit-row p");
     return {
       benefits,
       personaHeights,
       articleHeights,
       articleTitleSizes,
+      benefitIconWidth: firstBenefitIcon
+        ? Math.round(firstBenefitIcon.getBoundingClientRect().width)
+        : 0,
+      benefitCopySize: firstBenefitCopy
+        ? Number.parseFloat(getComputedStyle(firstBenefitCopy).fontSize)
+        : 0,
       articleBaselineOffset:
         title && action ? Math.abs(title.bottom - action.bottom) : Number.POSITIVE_INFINITY,
     };
   });
   expect(desktopCardMetrics.benefits).toBe(4);
-  expect(desktopCardMetrics.personaHeights).toEqual([650, 650, 650]);
-  expect(desktopCardMetrics.articleHeights).toEqual([650, 650, 650, 650]);
+  expect(desktopCardMetrics.benefitIconWidth).toBe(62);
+  expect(desktopCardMetrics.benefitCopySize).toBe(16);
+  expect(desktopCardMetrics.personaHeights).toEqual([550, 550, 550]);
+  expect(desktopCardMetrics.articleHeights).toEqual([550, 550, 550, 550]);
   expect(desktopCardMetrics.articleTitleSizes).toBe(1);
   expect(desktopCardMetrics.articleBaselineOffset).toBeLessThanOrEqual(4);
 
   const roadmapTrack = page.locator(".roadmap-track");
+  const roadmapWindow = page.locator(".roadmap-window");
+  await expect(roadmapWindow).toHaveClass(/is-at-start/);
   await page.getByRole("button", { name: "Next milestone" }).click();
   await expect
     .poll(() => roadmapTrack.evaluate((node) => Math.round(node.scrollLeft)))
@@ -209,12 +282,14 @@ test("keeps the core interactions working", async ({ page }) => {
       ),
     )
     .toBeLessThanOrEqual(1);
+  await expect(roadmapWindow).toHaveClass(/is-at-end/);
 
   const firstQuestion = page.getByText("What is a Jazari USD account?", { exact: true });
   await firstQuestion.click();
   await expect(
     page.getByText(/one interface for holding supported digital dollars/i),
   ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Email us", exact: true })).toBeVisible();
 });
 
 test("renders the plan preview and legal links", async ({ page }) => {

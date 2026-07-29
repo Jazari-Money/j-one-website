@@ -96,6 +96,8 @@
   top: 0;
   bottom: 0;
   width: clamp(34px, 5vw, 74px);
+  opacity: 1;
+  transition: opacity 180ms ease;
   pointer-events: none;
 }
 
@@ -107,6 +109,11 @@
 .roadmap-window::after {
   right: 0;
   background: linear-gradient(to left, var(--bg), transparent);
+}
+
+.roadmap-window.is-at-start::before,
+.roadmap-window.is-at-end::after {
+  opacity: 0;
 }
 
 .roadmap-track {

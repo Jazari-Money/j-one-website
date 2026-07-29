@@ -33,6 +33,39 @@ export const currencies = {
 
 export type CurrencyCode = keyof typeof currencies;
 
+export const receivingCountries = [
+  "Andorra",
+  "Austria",
+  "Belgium",
+  "Brazil",
+  "Colombia",
+  "Croatia",
+  "Cyprus",
+  "Estonia",
+  "Finland",
+  "France",
+  "Germany",
+  "Greece",
+  "Ireland",
+  "Italy",
+  "Latvia",
+  "Lithuania",
+  "Luxembourg",
+  "Malta",
+  "Mexico",
+  "Monaco",
+  "Montenegro",
+  "Netherlands",
+  "Poland",
+  "Portugal",
+  "Romania",
+  "San Marino",
+  "Slovakia",
+  "Slovenia",
+  "Spain",
+  "United Kingdom",
+] as const;
+
 export const jazariVisualProfile = {
   theme: "jazari",
   shader: "beam",

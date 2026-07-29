@@ -32,6 +32,11 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /No transfer fees\. No hidden fees\./);
   assert.match(html, /How it works/);
   assert.match(html, /Know what arrives before you send/);
+  assert.match(html, /Everything is on screen before you confirm\./);
+  assert.match(html, /Receiving countries/);
+  assert.match(html, /30(?:<!-- -->)? countries/);
+  assert.match(html, /Andorra/);
+  assert.match(html, /United Kingdom/);
   assert.match(html, /class="numeric">\$1<\/b>/);
   assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
   assert.match(html, /Recipient gets/);
@@ -48,6 +53,8 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /europe\.jpg/);
   assert.match(html, />Partners</);
   assert.match(html, />FAQ</);
+  assert.match(html, />Email us<\/a>/);
+  assert.doesNotMatch(html, />Email us\.<\/a>/);
   assert.ok(html.indexOf('id="roadmap"') < html.indexOf('id="blog"'));
   assert.ok(html.indexOf('id="blog"') < html.indexOf('id="networks"'));
   assert.ok(html.indexOf('id="networks"') < html.indexOf('id="faq"'));

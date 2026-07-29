@@ -57,12 +57,18 @@ Commercial relationship wording still requires confirmation before launch.
   them inside large colored rounded-rectangle plates.
 - Cards use a low-amplitude shared 3D pointer response and a cursor-localized
   masked gradient border. Never put a radial glow inside the card surface.
-- Supporting descriptions use a readable 15px size. Footer navigation, legal
+- Supporting descriptions use a readable 15px size, with the primary transfer
+  review description enlarged to 18px. Footer navigation, legal
   copy, and company information use 12px.
 - Blog cards do not show country or read-time prefixes above their headlines.
-- Homepage persona and article-preview cards are capped at 650px on desktop.
+- Homepage persona and article-preview cards are capped at 550px on desktop.
 - Homepage article cards use one shared title scale, a bottom readability tint,
-  and a right-aligned action on the title baseline.
+  no image zoom, and a right-aligned action on the title baseline.
+- The transfer review publishes the complete current list of 30 receiving
+  countries beneath the amount preview.
+- The Yields walkthrough has one “Learn more about Yields” action below its
+  steps, rather than repeating an action inside each step.
+- Roadmap edge fades disappear at the first and last carousel positions.
 - Third-party/network marks are monochrome and optically normalized by visual
   mass rather than assigned one identical numeric size.
 - Avoid repeated generic bento-card layouts.

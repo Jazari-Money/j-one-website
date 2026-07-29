@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- local flag assets */
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { withBasePath } from "../site-paths";
 import { resetPointer, trackPointer } from "./hooks";
@@ -55,6 +55,28 @@ export const milestones = [
 
 export function ProductRoadmap() {
   const track = useRef<HTMLDivElement>(null);
+  const [edgeState, setEdgeState] = useState({ atStart: true, atEnd: false });
+
+  useEffect(() => {
+    const node = track.current;
+    if (!node) return;
+
+    const updateEdges = () => {
+      const remaining = node.scrollWidth - node.clientWidth - node.scrollLeft;
+      setEdgeState({
+        atStart: node.scrollLeft <= 1,
+        atEnd: remaining <= 1,
+      });
+    };
+
+    updateEdges();
+    node.addEventListener("scroll", updateEdges, { passive: true });
+    window.addEventListener("resize", updateEdges);
+    return () => {
+      node.removeEventListener("scroll", updateEdges);
+      window.removeEventListener("resize", updateEdges);
+    };
+  }, []);
 
   function move(direction: -1 | 1) {
     const node = track.current;
@@ -87,7 +109,9 @@ export function ProductRoadmap() {
         </div>
       </header>
 
-      <div className="roadmap-window">
+      <div
+        className={`roadmap-window${edgeState.atStart ? " is-at-start" : ""}${edgeState.atEnd ? " is-at-end" : ""}`}
+      >
         <div className="roadmap-track" ref={track}>
           {milestones.map((milestone) => (
             <article

@@ -7,6 +7,7 @@ import { type CSSProperties, KeyboardEvent, useEffect, useRef, useState } from "
 import {
   currencies,
   howScenarios,
+  receivingCountries,
   type CurrencyCode,
   type HowScenario,
 } from "./data";
@@ -155,14 +156,14 @@ export function HowItWorks({
                   </span>
                   <small>{item.copy}</small>
                 </button>
-                {activeScenario === "yields" && activeStep === index && (
-                  <Link className="how-learn-more" href="/yields/">
-                    Learn More
-                  </Link>
-                )}
               </div>
             ))}
           </div>
+          {activeScenario === "yields" && (
+            <Link className="how-learn-more neutral-control" href="/yields/">
+              Learn more about Yields
+            </Link>
+          )}
         </div>
 
         <div
@@ -283,6 +284,18 @@ export function HowItWorks({
             Live rate from our payment partner. Final rates, fees, delivery times,
             eligibility, and route availability are confirmed in the app before you send.
           </p>
+        </div>
+
+        <div className="receive-countries">
+          <div className="receive-countries-heading">
+            <h4>Receiving countries</h4>
+            <span>{receivingCountries.length} countries</span>
+          </div>
+          <ul>
+            {receivingCountries.map((country) => (
+              <li key={country}>{country}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
