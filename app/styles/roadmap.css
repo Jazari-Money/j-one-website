@@ -345,6 +345,13 @@
   font-size: 13px;
 }
 
+@media (min-width: 901px) {
+  .roadmap-full-card {
+    height: 500px;
+    aspect-ratio: auto;
+  }
+}
+
 @media (max-width: 620px) {
   .roadmap-heading {
     align-items: flex-start;

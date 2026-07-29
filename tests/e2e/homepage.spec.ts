@@ -488,7 +488,7 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   ]);
   expect(firstCard).not.toBeNull();
   expect(secondCard).not.toBeNull();
-  expect(Math.abs(firstCard!.width - firstCard!.height)).toBeLessThanOrEqual(1);
+  expect(firstCard!.height).toBe(500);
   expect(secondCard!.x).toBeGreaterThan(firstCard!.x + firstCard!.width);
 });
 
