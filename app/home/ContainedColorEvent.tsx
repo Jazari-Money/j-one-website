@@ -52,10 +52,10 @@ void main(){
 
   // Autonomous right-to-left drift. There is deliberately no pointer input.
   vec2 dustSpace=vec2(uv.x*asp,uv.y);
-  vec2 fineP=dustSpace+vec2(u_time*.012,u_time*.00055);
-  vec2 depthP=dustSpace+vec2(u_time*.016,u_time*.00035);
-  float fine=eventMote(fineP,24.,1.05,u_time,u_res.y);
-  float depth=eventMote(depthP+13.7,13.,1.55,u_time*.74+7.,u_res.y);
+  vec2 fineP=dustSpace+vec2(u_time*.018,u_time*.00055);
+  vec2 depthP=dustSpace+vec2(u_time*.024,u_time*.00035);
+  float fine=eventMote(fineP,22.,1.45,u_time,u_res.y);
+  float depth=eventMote(depthP+13.7,11.,2.15,u_time*.74+7.,u_res.y);
   float dustAlpha=wake*settled*min(u_fx,1.15);
   vec3 dust=(
     vec3(.96,.94,.89)*fine*.4+
