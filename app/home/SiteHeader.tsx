@@ -71,10 +71,10 @@ export function SiteHeader({
             <summary>Personal</summary>
             <span className="nav-mobile-section-title">Personal</span>
             <div className="nav-dropdown-menu">
-              <a href={sectionHref("how-send")} onClick={closeMobile}>Send</a>
               <a href={sectionHref("how-receive")} onClick={closeMobile}>Receive</a>
-              <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
+              <a href={sectionHref("how-send")} onClick={closeMobile}>Send</a>
               <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
+              <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
             </div>
           </details>
           <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>

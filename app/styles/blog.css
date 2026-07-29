@@ -40,6 +40,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-end;
 }
 
 .blog-card-image {
@@ -67,7 +68,6 @@
 
 .blog-card.has-image:not(.blog-card-featured) .blog-card-copy {
   padding-bottom: 0;
-  justify-content: flex-end;
 }
 
 .blog-card.has-image:not(.blog-card-featured):hover .blog-card-image,
@@ -86,9 +86,9 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.04) 0%,
-    rgba(0, 0, 0, 0.08) 42%,
-    rgba(0, 0, 0, 0.9) 100%
+    rgba(0, 0, 0, 0.02) 16%,
+    rgba(0, 0, 0, 0.26) 48%,
+    rgba(0, 0, 0, 0.92) 100%
   );
   pointer-events: none;
 }
@@ -112,15 +112,11 @@
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.06) 0%,
-    rgba(0, 0, 0, 0.08) 42%,
-    rgba(0, 0, 0, 0.86) 100%
+    rgba(0, 0, 0, 0.02) 16%,
+    rgba(0, 0, 0, 0.26) 48%,
+    rgba(0, 0, 0, 0.92) 100%
   );
   pointer-events: none;
-}
-
-.blog-card-featured .blog-card-copy {
-  justify-content: flex-end;
 }
 
 .blog-card h3 {
@@ -131,10 +127,6 @@
   font-size: clamp(38px, 4.4vw, 66px);
   line-height: 0.96;
   text-wrap: balance;
-}
-
-.blog-card:not(.blog-card-featured) h3 {
-  font-size: clamp(28px, 3vw, 42px);
 }
 
 .blog-read {
@@ -223,8 +215,7 @@
     display: none;
   }
 
-  .blog-card h3,
-  .blog-card:not(.blog-card-featured) h3 {
+  .blog-card h3 {
     font-size: 38px;
   }
 
@@ -240,7 +231,9 @@
   }
 
   .blog-card {
+    height: 650px;
     min-height: 0;
+    aspect-ratio: auto;
     padding: clamp(25px, 3.5vw, 42px);
     border-radius: 26px;
   }
@@ -251,11 +244,22 @@
   }
 
   .blog-card h3 {
+    min-width: 0;
     max-width: 580px;
     font-size: clamp(34px, 3.9vw, 58px);
   }
 
-  .blog-card:not(.blog-card-featured) h3 {
-    font-size: clamp(25px, 2.65vw, 37px);
+  .blog-card-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-content: end;
+    align-items: end;
+    justify-content: stretch;
+    gap: 24px;
+  }
+
+  .blog-read {
+    align-self: end;
+    margin: 0 0 3px;
   }
 }

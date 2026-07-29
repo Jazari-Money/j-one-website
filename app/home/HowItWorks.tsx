@@ -243,7 +243,7 @@ export function HowItWorks({
             </strong>
             <div className="currency-picker" ref={currencyPicker}>
               <button
-                className="currency-trigger"
+                className="currency-trigger neutral-control"
                 id="receive-currency"
                 type="button"
                 aria-haspopup="listbox"

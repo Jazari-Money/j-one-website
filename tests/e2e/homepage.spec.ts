@@ -75,6 +75,12 @@ test("keeps the core interactions working", async ({ page }) => {
   const personalMenu = page.locator(".nav-dropdown");
   await personalMenu.locator("summary").click();
   await expect(personalMenu).toHaveAttribute("open", "");
+  await expect(personalMenu.locator(".nav-dropdown-menu a")).toHaveText([
+    "Receive",
+    "Send",
+    "Rates",
+    "Yields",
+  ]);
   await page.mouse.click(40, 300);
   await expect(personalMenu).not.toHaveAttribute("open", "");
 
@@ -85,6 +91,15 @@ test("keeps the core interactions working", async ({ page }) => {
       heroAccess.evaluate((node) => node.style.getPropertyValue("--pointer-nx")),
     )
     .not.toBe("0");
+  const heroLabelOffset = await heroAccess.evaluate((node) => {
+    const button = node.getBoundingClientRect();
+    const label = node.querySelector(".button-label")?.getBoundingClientRect();
+    if (!label) return Number.POSITIVE_INFINITY;
+    return Math.abs(
+      button.top + button.height / 2 - (label.top + label.height / 2),
+    );
+  });
+  expect(heroLabelOffset).toBeLessThanOrEqual(1);
 
   const receiveScenario = page.getByRole("tab", { name: "Receive", exact: true });
   await receiveScenario.focus();
@@ -115,6 +130,15 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(page.locator(".money-input.result strong")).toContainText("$4,175,000.00");
   await expect(page.locator("#send-amount")).toHaveValue("$1,000.00");
   await expect(page.getByText("Recipient gets", { exact: true })).toBeVisible();
+  await expect(currencyPicker).toHaveClass(/neutral-control/);
+  const currencyControlStyle = await currencyPicker.evaluate((node) => {
+    const style = getComputedStyle(node);
+    return {
+      height: Math.round(node.getBoundingClientRect().height),
+      radius: style.borderRadius,
+    };
+  });
+  expect(currencyControlStyle).toEqual({ height: 50, radius: "999px" });
 
   await expect(page.locator(".nav-cta")).toHaveAttribute(
     "href",
@@ -131,6 +155,40 @@ test("keeps the core interactions working", async ({ page }) => {
       ),
     )
     .not.toBe("50%");
+  const desktopCardMetrics = await page.evaluate(() => {
+    const benefits = getComputedStyle(
+      document.querySelector(".benefit-list") as Element,
+    ).gridTemplateColumns.split(" ").length;
+    const personaHeights = Array.from(
+      document.querySelectorAll(".audience-panel"),
+      (node) => Math.round(node.getBoundingClientRect().height),
+    );
+    const articleHeights = Array.from(
+      document.querySelectorAll(".blog-card"),
+      (node) => Math.round(Number.parseFloat(getComputedStyle(node).height)),
+    );
+    const articleTitleSizes = new Set(
+      Array.from(
+        document.querySelectorAll(".blog-card h3"),
+        (node) => getComputedStyle(node).fontSize,
+      ),
+    ).size;
+    const title = document.querySelector(".blog-card h3")?.getBoundingClientRect();
+    const action = document.querySelector(".blog-read")?.getBoundingClientRect();
+    return {
+      benefits,
+      personaHeights,
+      articleHeights,
+      articleTitleSizes,
+      articleBaselineOffset:
+        title && action ? Math.abs(title.bottom - action.bottom) : Number.POSITIVE_INFINITY,
+    };
+  });
+  expect(desktopCardMetrics.benefits).toBe(4);
+  expect(desktopCardMetrics.personaHeights).toEqual([650, 650, 650]);
+  expect(desktopCardMetrics.articleHeights).toEqual([650, 650, 650, 650]);
+  expect(desktopCardMetrics.articleTitleSizes).toBe(1);
+  expect(desktopCardMetrics.articleBaselineOffset).toBeLessThanOrEqual(4);
 
   const roadmapTrack = page.locator(".roadmap-track");
   await page.getByRole("button", { name: "Next milestone" }).click();

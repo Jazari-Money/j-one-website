@@ -87,4 +87,9 @@
     margin-top: 76px;
     gap: 14px;
   }
+
+  .audience-panel {
+    height: 650px;
+    aspect-ratio: auto;
+  }
 }

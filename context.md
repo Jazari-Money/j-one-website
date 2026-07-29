@@ -60,6 +60,9 @@ Commercial relationship wording still requires confirmation before launch.
 - Supporting descriptions use a readable 15px size. Footer navigation, legal
   copy, and company information use 12px.
 - Blog cards do not show country or read-time prefixes above their headlines.
+- Homepage persona and article-preview cards are capped at 650px on desktop.
+- Homepage article cards use one shared title scale, a bottom readability tint,
+  and a right-aligned action on the title baseline.
 - Third-party/network marks are monochrome and optically normalized by visual
   mass rather than assigned one identical numeric size.
 - Avoid repeated generic bento-card layouts.
@@ -362,7 +365,7 @@ Default local URL: `http://localhost:3000`
   `Hold them. Send them. Grow them.`
 - The benefit list contains four concise claims: hold in dollars, send to 30+
   countries in local currency, earn on unused dollars, and no transfer or
-  hidden fees.
+  hidden fees. The four desktop items share one centered four-column row.
 - The FAQ belongs immediately after the “Your dollars should move with you”
   conversion section.
 - The provider/network presentation is a balanced five-column desktop grid,
