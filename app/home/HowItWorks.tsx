@@ -7,6 +7,7 @@ import { type CSSProperties, KeyboardEvent, useEffect, useRef, useState } from "
 import {
   currencies,
   howScenarios,
+  queuedReceivingCountries,
   receivingCountries,
   type CurrencyCode,
   type HowScenario,
@@ -286,7 +287,7 @@ export function HowItWorks({
             type="button"
             onClick={() => countriesDialog.current?.showModal()}
           >
-            View receiving countries
+            All receiving countries
           </button>
           <p className="rate-disclaimer">
             Live rate from our payment partner. Final rates, fees, delivery times,
@@ -306,7 +307,10 @@ export function HowItWorks({
           <header>
             <div>
               <h3>Receiving countries</h3>
-              <p>{receivingCountries.length} currently supported destinations</p>
+              <p>
+                {receivingCountries.length} currently supported destinations.
+                More countries will become available over time.
+              </p>
             </div>
             <button
               className="realism-icon-button"
@@ -319,14 +323,32 @@ export function HowItWorks({
               </svg>
             </button>
           </header>
-          <ul>
-            {receivingCountries.map((country) => (
-              <li key={country.name}>
-                <img src={country.flag} alt="" />
-                <span>{country.name}</span>
-              </li>
-            ))}
-          </ul>
+          <section className="receiving-country-group" aria-label="Currently supported countries">
+            <ul>
+              {receivingCountries.map((country) => (
+                <li key={country.name}>
+                  <img src={country.flag} alt="" />
+                  <span>{country.name}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="receiving-country-queue" aria-labelledby="receiving-country-queue-title">
+            <header>
+              <div>
+                <h4 id="receiving-country-queue-title">In queue</h4>
+                <p>Planned receiving destinations.</p>
+              </div>
+            </header>
+            <ul>
+              {queuedReceivingCountries.map((country) => (
+                <li key={country.name}>
+                  <img src={country.flag} alt="" />
+                  <span>{country.name}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </dialog>
     </section>

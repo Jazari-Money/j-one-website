@@ -258,12 +258,14 @@ test("keeps the core interactions working", async ({ page }) => {
     "Mexico", "Monaco", "Montenegro", "Netherlands", "Poland", "Portugal",
     "Romania", "San Marino", "Slovakia", "Slovenia", "Spain", "United Kingdom",
   ];
+  const queuedReceivingCountries = ["India", "Bangladesh", "Pakistan", "Nigeria"];
   const countriesDialog = page.locator(".receive-countries-dialog");
   await expect(countriesDialog).not.toBeVisible();
-  await page.getByRole("button", { name: "View receiving countries" }).click();
+  await page.getByRole("button", { name: "All receiving countries" }).click();
   await expect(countriesDialog).toBeVisible();
-  await expect(countriesDialog.locator("li")).toHaveText(receivingCountries);
-  await expect(countriesDialog.locator("li img")).toHaveCount(receivingCountries.length);
+  await expect(countriesDialog.locator(".receiving-country-group li")).toHaveText(receivingCountries);
+  await expect(countriesDialog.locator(".receiving-country-group li img")).toHaveCount(receivingCountries.length);
+  await expect(countriesDialog.locator(".receiving-country-queue li")).toHaveText(queuedReceivingCountries);
   await page.getByRole("button", { name: "Close receiving countries" }).click();
   await expect(countriesDialog).not.toBeVisible();
 

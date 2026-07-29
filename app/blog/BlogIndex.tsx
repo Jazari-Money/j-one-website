@@ -23,9 +23,9 @@ export function BlogIndex() {
 
       <section className="blog-index-articles" aria-label="All articles">
         <div className="blog-index-grid">
-          {guides.map((guide, index) => (
+          {guides.map((guide) => (
             <Link
-              className={`pointer-card ${index === 0 ? "is-featured" : ""}`}
+              className={`pointer-card${"image" in guide ? " has-image" : ""}`}
               href={`/blog/${guide.slug}`}
               key={guide.slug}
               onPointerMove={trackPointer}

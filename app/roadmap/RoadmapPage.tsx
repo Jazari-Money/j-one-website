@@ -20,7 +20,7 @@ export function RoadmapPage() {
       <section className="roadmap-full-grid" aria-label="Jazari One product roadmap">
         {milestones.map((milestone) => (
           <article
-            className={`roadmap-full-card pointer-card${"art" in milestone ? " has-art" : ""}`}
+            className={`roadmap-full-card pointer-card${"art" in milestone ? " has-art" : ""}${"art" in milestone && "variant" in milestone.art ? ` art-${milestone.art.variant}` : ""}`}
             key={milestone.title}
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}

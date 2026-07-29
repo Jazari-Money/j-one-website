@@ -27,6 +27,17 @@ export const milestones = [
     },
   },
   {
+    title: "Visa card",
+    copy:
+      "Pay for subscriptions, software, and everyday spending directly from your Jazari One balance.",
+    notes: [],
+    art: {
+      src: withBasePath("/images/roadmap/visa-card.png"),
+      alt: "Jazari One Visa card",
+      variant: "card",
+    },
+  },
+  {
     title: "New receive countries",
     copy: "",
     notes: [],
@@ -41,12 +52,6 @@ export const milestones = [
     title: "Yields with higher APY",
     copy:
       "Additional independently managed strategies with different assets and potential APYs.",
-    notes: [],
-  },
-  {
-    title: "Visa card",
-    copy:
-      "Pay for subscriptions, software, and everyday spending directly from your Jazari One balance.",
     notes: [],
   },
   {
@@ -119,7 +124,7 @@ export function ProductRoadmap() {
         <div className="roadmap-track" ref={track}>
           {milestones.map((milestone) => (
             <article
-              className={`roadmap-card pointer-card${"art" in milestone ? " has-art" : ""}`}
+              className={`roadmap-card pointer-card${"art" in milestone ? " has-art" : ""}${"art" in milestone && "variant" in milestone.art ? ` art-${milestone.art.variant}` : ""}`}
               key={milestone.title}
               onPointerMove={trackPointer}
               onPointerLeave={resetPointer}

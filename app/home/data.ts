@@ -66,6 +66,13 @@ export const receivingCountries = [
   { name: "United Kingdom", flag: withBasePath("/images/flags/gb.png") },
 ] as const;
 
+export const queuedReceivingCountries = [
+  { name: "India", flag: withBasePath("/images/flags/in.png") },
+  { name: "Bangladesh", flag: withBasePath("/images/flags/bd.png") },
+  { name: "Pakistan", flag: withBasePath("/images/flags/pk.png") },
+  { name: "Nigeria", flag: withBasePath("/images/flags/ng.png") },
+] as const;
+
 export const jazariVisualProfile = {
   theme: "jazari",
   shader: "color-event",

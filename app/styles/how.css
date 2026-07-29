@@ -566,7 +566,7 @@
 }
 
 .receive-countries-dialog {
-  width: min(760px, calc(100% - 32px));
+  width: min(860px, calc(100% - 32px));
   max-width: none;
   max-height: min(760px, calc(100dvh - 32px));
   margin: auto;
@@ -586,10 +586,10 @@
 }
 
 .receive-countries-modal {
-  padding: 32px;
+  padding: 38px 40px 40px;
   border: 1px solid var(--line);
   border-radius: 28px;
-  background: #111412;
+  background: #171a18;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -611,6 +611,7 @@
 }
 
 .receive-countries-modal header p {
+  max-width: 470px;
   margin-top: 12px;
   color: var(--muted-strong);
   font-size: 14px;
@@ -639,13 +640,12 @@
 }
 
 .receive-countries-modal ul {
-  margin: 30px 0 0;
-  padding: 28px 0 0;
-  border-top: 1px solid var(--line);
+  margin: 0;
+  padding: 0;
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px 24px;
+  gap: 22px 38px;
 }
 
 .receive-countries-modal li {
@@ -665,6 +665,41 @@
   border-radius: 50%;
   object-fit: cover;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.receiving-country-group {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid var(--line);
+}
+
+.receiving-country-queue {
+  margin-top: 36px;
+  padding: 26px 28px 28px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--surface-2) 74%, transparent);
+}
+
+.receiving-country-queue header {
+  align-items: end;
+}
+
+.receiving-country-queue h4 {
+  color: var(--text);
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.receiving-country-queue header p {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.receiving-country-queue ul {
+  margin-top: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 @media (max-width: 1120px) {
@@ -863,6 +898,16 @@
 
   .receive-countries-modal ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 13px 18px;
+    gap: 16px 20px;
+  }
+
+  .receiving-country-group {
+    margin-top: 26px;
+    padding-top: 26px;
+  }
+
+  .receiving-country-queue {
+    margin-top: 28px;
+    padding: 22px 18px 24px;
   }
 }
