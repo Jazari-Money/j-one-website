@@ -21,7 +21,7 @@ type GuideArticleData = {
 
 const articleData: Record<string, GuideArticleData> = {
   mexico: {
-    title: "How to send dollars to Mexico: 3 steps before you confirm",
+    title: "How to send dollars to Mexico in 3 steps",
     deck: "Use the recipient’s full legal name and 18-digit CLABE for a SPEI payout.",
     image: "/images/blog/mexico-transfer.webp",
     imageAlt: "Family walking together in Mexico",
@@ -54,7 +54,7 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   brazil: {
-    title: "How to send dollars to Brazil: 3 steps before you confirm",
+    title: "How to send dollars to Brazil in 3 steps",
     deck: "For a Pix payout, use the recipient’s full name and exact Pix key.",
     image: "/images/blog/brazil.jpg",
     imageAlt: "People using a phone in Brazil",
@@ -87,7 +87,7 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   colombia: {
-    title: "How to send dollars to Colombia: 3 steps before you confirm",
+    title: "How to send dollars to Colombia in 3 steps",
     deck: "For a Bre-B payout, use the recipient’s full name and exact llave.",
     image: "/images/blog/colombia.jpg",
     imageAlt: "Friends together in Colombia",
@@ -120,7 +120,7 @@ const articleData: Record<string, GuideArticleData> = {
     ],
   },
   europe: {
-    title: "How to send dollars to Europe: 3 steps before you confirm",
+    title: "How to send dollars to Europe in 3 steps",
     deck: "For a SEPA payout, collect the full name, IBAN, and BIC or SWIFT code.",
     image: "/images/blog/europe.jpg",
     imageAlt: "Person walking through a European city",

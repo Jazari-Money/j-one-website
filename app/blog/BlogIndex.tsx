@@ -32,7 +32,6 @@ export function BlogIndex() {
               onPointerLeave={resetPointer}
             >
               <div className="blog-index-copy">
-                <span>{guide.route}</span>
                 <h3>{guide.title}</h3>
                 <strong className="blog-index-read neutral-control">Read Article</strong>
               </div>

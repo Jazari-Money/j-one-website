@@ -21,6 +21,10 @@ export const milestones = [
     copy:
       "A US routing and account number in your name, issued through a licensed US bank partner. Receive eligible payments by ACH, FedNow, domestic wire, or SWIFT.",
     notes: ["No US residency required"],
+    art: {
+      src: withBasePath("/images/roadmap/usa-flag.png"),
+      alt: "United States flag",
+    },
   },
   {
     title: "New receive countries",
@@ -115,11 +119,14 @@ export function ProductRoadmap() {
         <div className="roadmap-track" ref={track}>
           {milestones.map((milestone) => (
             <article
-              className="roadmap-card pointer-card"
+              className={`roadmap-card pointer-card${"art" in milestone ? " has-art" : ""}`}
               key={milestone.title}
               onPointerMove={trackPointer}
               onPointerLeave={resetPointer}
             >
+              {"art" in milestone && (
+                <img className="roadmap-card-art" src={milestone.art.src} alt={milestone.art.alt} />
+              )}
               <h3>{milestone.title}</h3>
               <div className="roadmap-card-bottom">
                 {milestone.copy && <p>{milestone.copy}</p>}

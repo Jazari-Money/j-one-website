@@ -142,6 +142,18 @@
   flex-direction: column;
 }
 
+.roadmap-card-art {
+  position: absolute;
+  z-index: 0;
+  right: -10px;
+  bottom: -8px;
+  width: min(52%, 410px);
+  max-height: 64%;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+}
+
 .roadmap-card h3 {
   position: relative;
   z-index: 1;
@@ -151,10 +163,18 @@
   text-wrap: balance;
 }
 
+.roadmap-card.has-art h3 {
+  max-width: 48%;
+}
+
 .roadmap-card-bottom {
   position: relative;
   z-index: 1;
   margin-top: auto;
+}
+
+.roadmap-card.has-art .roadmap-card-bottom {
+  max-width: 42%;
 }
 
 .roadmap-card p {
@@ -252,12 +272,26 @@
   flex-direction: column;
 }
 
+.roadmap-full-card-art {
+  position: absolute;
+  z-index: 0;
+  right: -8px;
+  bottom: -8px;
+  width: min(55%, 640px);
+  max-height: 72%;
+  object-fit: contain;
+  object-position: right bottom;
+  pointer-events: none;
+}
+
 .roadmap-full-card:first-child {
   grid-column: 1 / -1;
   min-height: 500px;
 }
 
 .roadmap-full-card h2 {
+  position: relative;
+  z-index: 1;
   max-width: 650px;
   font-family: var(--serif);
   font-size: clamp(48px, 5vw, 72px);
@@ -266,11 +300,19 @@
   line-height: 0.94;
 }
 
+.roadmap-full-card.has-art h2 {
+  max-width: 44%;
+}
+
 .roadmap-full-card > div {
   position: relative;
   z-index: 1;
   max-width: 540px;
   margin-top: auto;
+}
+
+.roadmap-full-card.has-art > div {
+  max-width: 42%;
 }
 
 .roadmap-full-card p {
@@ -310,6 +352,20 @@
     border-radius: 22px;
   }
   .roadmap-card h3 { font-size: 46px; }
+  .roadmap-card.has-art {
+    min-height: 500px;
+  }
+  .roadmap-card.has-art h3,
+  .roadmap-card.has-art .roadmap-card-bottom {
+    max-width: 100%;
+  }
+  .roadmap-card.has-art .roadmap-card-bottom {
+    margin-bottom: 176px;
+  }
+  .roadmap-card-art {
+    width: 78%;
+    max-height: 190px;
+  }
   .roadmap-full-hero { padding: 146px 0 62px; }
   .roadmap-full-hero h1 { font-size: 68px; }
   .roadmap-full-grid { grid-template-columns: 1fr; padding-bottom: 84px; }
@@ -320,4 +376,18 @@
     padding: 30px 26px;
   }
   .roadmap-full-card h2 { font-size: 50px; }
+  .roadmap-full-card.has-art {
+    min-height: 560px;
+  }
+  .roadmap-full-card.has-art h2,
+  .roadmap-full-card.has-art > div {
+    max-width: 100%;
+  }
+  .roadmap-full-card.has-art > div {
+    margin-bottom: 190px;
+  }
+  .roadmap-full-card-art {
+    width: 86%;
+    max-height: 220px;
+  }
 }

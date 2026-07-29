@@ -2,7 +2,7 @@
   position: relative;
   z-index: 3;
   width: var(--page);
-  margin: clamp(-32px, -2vw, -18px) auto 0;
+  margin: clamp(8px, calc(40px - 2vw), 22px) auto 0;
   padding: 42px 0 18px;
 }
 

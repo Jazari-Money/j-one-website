@@ -68,7 +68,7 @@ export const receivingCountries = [
 
 export const jazariVisualProfile = {
   theme: "jazari",
-  shader: "beam",
+  shader: "color-event",
   mesh: ["#000000", "#07150b", "#1ad959", "#4eff9e"],
 } as const;
 
@@ -203,28 +203,28 @@ export const guides = [
   {
     slug: "send-money-to-mexico",
     route: "Mexico",
-    title: "How to send dollars to Mexico: 3 steps before you confirm",
+    title: "How to send dollars to Mexico in 3 steps",
     deck: "Use the recipient’s full legal name and 18-digit CLABE for a SPEI payout.",
     image: withBasePath("/images/blog/mexico-transfer.webp"),
   },
   {
     slug: "send-money-to-brazil",
     route: "Brazil",
-    title: "How to send dollars to Brazil: 3 steps before you confirm",
+    title: "How to send dollars to Brazil in 3 steps",
     deck: "For a Pix payout, use the recipient’s full name and exact Pix key.",
     image: withBasePath("/images/blog/brazil.jpg"),
   },
   {
     slug: "send-money-to-colombia",
     route: "Colombia",
-    title: "How to send dollars to Colombia: 3 steps before you confirm",
+    title: "How to send dollars to Colombia in 3 steps",
     deck: "For a Bre-B payout, use the recipient’s full name and exact llave.",
     image: withBasePath("/images/blog/colombia.jpg"),
   },
   {
     slug: "send-money-to-europe",
     route: "Europe",
-    title: "How to send dollars to Europe: 3 steps before you confirm",
+    title: "How to send dollars to Europe in 3 steps",
     deck: "For a SEPA payout, collect the full name, IBAN, and BIC or SWIFT code.",
     image: withBasePath("/images/blog/europe.jpg"),
   },

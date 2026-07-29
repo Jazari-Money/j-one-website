@@ -1,11 +1,15 @@
 import { expect, test, type Page } from "@playwright/test";
 
 async function prepareStablePage(page: Page) {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/", { waitUntil: "networkidle" });
   await expect(page.locator(".home-page")).toHaveClass(/is-ready/);
+  await expect(page.locator(".hero-color-event canvas")).toHaveAttribute(
+    "data-rendered",
+    "true",
+  );
   await page.addStyleTag({
     content: `
-      canvas,
       video {
         visibility: hidden !important;
       }
@@ -58,12 +62,62 @@ async function revealScrollableContent(page: Page) {
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 }
 
+test("runs the color event with the reference choreography", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await expect(page.locator(".home-page")).toHaveClass(/is-ready/);
+
+  const canvas = page.locator(".hero-color-event canvas");
+  await expect(canvas).toHaveAttribute("data-rendered", "true");
+  const choreography = await page.evaluate(() => {
+    const readAnimation = (node: Element | null) => {
+      if (!node) return null;
+      const style = getComputedStyle(node);
+      return {
+        delay: style.animationDelay,
+        duration: style.animationDuration,
+      };
+    };
+    const background = document.querySelector(".hero-color-event canvas");
+    return {
+      firstLine: readAnimation(
+        document.querySelector(".hero-title-line:first-child > span"),
+      ),
+      secondLine: readAnimation(
+        document.querySelector(".hero-title-line:last-child > span"),
+      ),
+      sub: readAnimation(document.querySelector(".hero-copy > p")),
+      action: readAnimation(document.querySelector(".hero-download-control")),
+      product: readAnimation(document.querySelector(".hero-product")),
+      backgroundWidth: background?.getBoundingClientRect().width ?? 0,
+    };
+  });
+
+  expect(choreography).toEqual({
+    firstLine: { delay: "1s", duration: "0.62s" },
+    secondLine: { delay: "1.09s", duration: "0.62s" },
+    sub: { delay: "1.28s", duration: "0.7s" },
+    action: { delay: "1.43s", duration: "0.7s" },
+    product: { delay: "2.05s", duration: "1.1s" },
+    backgroundWidth: 1280,
+  });
+
+  const introStart = Number(await canvas.getAttribute("data-intro"));
+  expect(introStart).toBeLessThan(0.5);
+  await page.waitForTimeout(350);
+  const introAfter = Number(await canvas.getAttribute("data-intro"));
+  expect(introAfter).toBeGreaterThan(introStart);
+  await expect
+    .poll(async () => Number(await canvas.getAttribute("data-intro")))
+    .toBe(1);
+});
+
 test("keeps the core interactions working", async ({ page }) => {
   await prepareStablePage(page);
 
   await expect(page.getByRole("heading", { name: /Use dollars\.\s*Anywhere\./ })).toBeVisible();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "jazari");
-  await expect(page.locator("main")).toHaveAttribute("data-shader", "beam");
+  await expect(page.locator("main")).toHaveAttribute("data-shader", "color-event");
   await expect(page.getByRole("button", { name: /Choose color theme/ })).toHaveCount(0);
   await expect
     .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
@@ -196,7 +250,13 @@ test("keeps the core interactions working", async ({ page }) => {
     "Mexico", "Monaco", "Montenegro", "Netherlands", "Poland", "Portugal",
     "Romania", "San Marino", "Slovakia", "Slovenia", "Spain", "United Kingdom",
   ];
-  await expect(page.locator(".receive-countries li")).toHaveText(receivingCountries);
+  const countriesDialog = page.locator(".receive-countries-dialog");
+  await expect(countriesDialog).not.toBeVisible();
+  await page.getByRole("button", { name: "View receiving countries" }).click();
+  await expect(countriesDialog).toBeVisible();
+  await expect(countriesDialog.locator("li")).toHaveText(receivingCountries);
+  await page.getByRole("button", { name: "Close receiving countries" }).click();
+  await expect(countriesDialog).not.toBeVisible();
 
   const card = page.locator(".blog-card").first();
   await card.scrollIntoViewIfNeeded();
@@ -211,6 +271,25 @@ test("keeps the core interactions working", async ({ page }) => {
       ),
     )
     .not.toBe("50%");
+  const pointerPositionBeforeLeave = await card.evaluate((node) => ({
+    x: node.style.getPropertyValue("--pointer-x"),
+    y: node.style.getPropertyValue("--pointer-y"),
+  }));
+  await page.mouse.move(0, 0);
+  await expect
+    .poll(() =>
+      card.evaluate((node) => ({
+        x: node.style.getPropertyValue("--pointer-x"),
+        y: node.style.getPropertyValue("--pointer-y"),
+        tiltX: node.style.getPropertyValue("--tilt-x"),
+        tiltY: node.style.getPropertyValue("--tilt-y"),
+      })),
+    )
+    .toEqual({
+      ...pointerPositionBeforeLeave,
+      tiltX: "0deg",
+      tiltY: "0deg",
+    });
   await expect
     .poll(() =>
       card.locator(".blog-card-image").evaluate((node) => getComputedStyle(node).transform),
@@ -238,6 +317,9 @@ test("keeps the core interactions working", async ({ page }) => {
     const action = document.querySelector(".blog-read")?.getBoundingClientRect();
     const firstBenefitIcon = document.querySelector(".benefit-row img");
     const firstBenefitCopy = document.querySelector(".benefit-row p");
+    const benefitLedger = document.querySelector(".benefit-ledger");
+    const reviewMetrics = document.querySelector(".review-metrics");
+    const firstBlogCard = document.querySelector(".blog-card");
     return {
       benefits,
       personaHeights,
@@ -249,6 +331,15 @@ test("keeps the core interactions working", async ({ page }) => {
       benefitCopySize: firstBenefitCopy
         ? Number.parseFloat(getComputedStyle(firstBenefitCopy).fontSize)
         : 0,
+      benefitLedgerMarginTop: benefitLedger
+        ? Number.parseFloat(getComputedStyle(benefitLedger).marginTop)
+        : 0,
+      reviewMetricsMarginTop: reviewMetrics
+        ? Number.parseFloat(getComputedStyle(reviewMetrics).marginTop)
+        : 0,
+      blogBottomTint: firstBlogCard
+        ? getComputedStyle(firstBlogCard, "::after").backgroundImage
+        : "",
       articleBaselineOffset:
         title && action ? Math.abs(title.bottom - action.bottom) : Number.POSITIVE_INFINITY,
     };
@@ -256,13 +347,28 @@ test("keeps the core interactions working", async ({ page }) => {
   expect(desktopCardMetrics.benefits).toBe(4);
   expect(desktopCardMetrics.benefitIconWidth).toBe(62);
   expect(desktopCardMetrics.benefitCopySize).toBe(16);
-  expect(desktopCardMetrics.personaHeights).toEqual([550, 550, 550]);
-  expect(desktopCardMetrics.articleHeights).toEqual([550, 550, 550, 550]);
+  expect(desktopCardMetrics.benefitLedgerMarginTop).toBeGreaterThanOrEqual(8);
+  expect(desktopCardMetrics.reviewMetricsMarginTop).toBe(150);
+  expect(desktopCardMetrics.blogBottomTint).toContain("0.98");
+  expect(desktopCardMetrics.personaHeights).toEqual([500, 500, 500]);
+  expect(desktopCardMetrics.articleHeights).toEqual([500, 500, 500, 500]);
   expect(desktopCardMetrics.articleTitleSizes).toBe(1);
   expect(desktopCardMetrics.articleBaselineOffset).toBeLessThanOrEqual(4);
 
   const roadmapTrack = page.locator(".roadmap-track");
   const roadmapWindow = page.locator(".roadmap-window");
+  const usdRoadmapCard = page.locator(".roadmap-card").first();
+  await expect(usdRoadmapCard.locator(".roadmap-card-art")).toHaveAttribute(
+    "src",
+    /usa-flag\.png$/,
+  );
+  const usdCardRegions = await usdRoadmapCard.evaluate((node) => {
+    const copy = node.querySelector(".roadmap-card-bottom")?.getBoundingClientRect();
+    const art = node.querySelector(".roadmap-card-art")?.getBoundingClientRect();
+    return copy && art ? { copyRight: copy.right, artLeft: art.left } : null;
+  });
+  expect(usdCardRegions).not.toBeNull();
+  expect(usdCardRegions!.copyRight).toBeLessThanOrEqual(usdCardRegions!.artLeft);
   await expect(roadmapWindow).toHaveClass(/is-at-start/);
   await page.getByRole("button", { name: "Next milestone" }).click();
   await expect
@@ -341,6 +447,26 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "USD account" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Yields with higher APY" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
+  const usdAccountCard = page.locator(".roadmap-full-card").first();
+  await expect(usdAccountCard.locator(".roadmap-full-card-art")).toHaveAttribute(
+    "src",
+    /usa-flag\.png$/,
+  );
+  const fullCardRegions = await usdAccountCard.evaluate((node) => {
+    const copy = node.querySelector(":scope > div")?.getBoundingClientRect();
+    const art = node.querySelector(".roadmap-full-card-art")?.getBoundingClientRect();
+    return copy && art ? { copyRight: copy.right, artLeft: art.left } : null;
+  });
+  expect(fullCardRegions).not.toBeNull();
+  expect(fullCardRegions!.copyRight).toBeLessThanOrEqual(fullCardRegions!.artLeft);
+});
+
+test("uses concise Blog titles without route labels", async ({ page }) => {
+  await page.goto("/blog/", { waitUntil: "networkidle" });
+  await expect(
+    page.getByRole("heading", { name: "How to send dollars to Mexico in 3 steps" }),
+  ).toBeVisible();
+  await expect(page.locator(".blog-index-copy > span")).toHaveCount(0);
 });
 
 test("renders the numbered component board with live interactions", async ({ page }) => {

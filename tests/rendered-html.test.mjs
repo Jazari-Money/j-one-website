@@ -34,7 +34,8 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Know what arrives before you send/);
   assert.match(html, /Everything is on screen before you confirm\./);
   assert.match(html, /Receiving countries/);
-  assert.match(html, /30(?:<!-- -->)? countries/);
+  assert.match(html, /View receiving countries/);
+  assert.match(html, /30(?:<!-- -->)? currently supported destinations/);
   assert.match(html, /Andorra/);
   assert.match(html, /United Kingdom/);
   assert.match(html, /class="numeric">\$1<\/b>/);
@@ -47,6 +48,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /New receive countries/);
   assert.match(html, /Visa card/);
   assert.match(html, /Nigeria/);
+  assert.match(html, /usa-flag\.png/);
   assert.match(html, /mexico-transfer\.webp/);
   assert.match(html, /brazil\.jpg/);
   assert.match(html, /colombia\.jpg/);
@@ -177,8 +179,10 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   const page = `${pageEntry}\n${homeSource}`;
   const css = `${globals}\n${stylesSource}`;
 
-  assert.match(page, /import \{ MeshGradient \}/);
+  assert.match(page, /HeroColorEvent/);
   assert.match(page, /className="hero-shader"/);
+  assert.match(page, /className="hero-title-line"/);
+  assert.match(page, /vec3\(1\., \.3, \.16\)/);
   assert.doesNotMatch(page, /accessOpen|Join Waitlist|Email address/);
   assert.match(page, /activeStep/);
   assert.match(page, /role="tablist"/);
@@ -220,6 +224,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(css, /--page:\s*min\(1320px/);
   assert.match(css, /\.hero-download-control/);
   assert.match(css, /\.hero-shader/);
+  assert.match(css, /hero-event-line/);
   assert.match(css, /"Instrument Serif"/);
   assert.match(css, /\[data-theme="jazari"\]/);
   assert.doesNotMatch(css, /\[data-theme="(?:black|dark|blue|sea|toxic|solar|magenta|violet|infrared|aurora)"\]/);
@@ -286,12 +291,14 @@ test("renders the Blog index and all seven guides", async () => {
   assert.equal((indexHtml.match(/Read Article/g) ?? []).length, 7);
   assert.match(indexHtml, /mexico-transfer\.webp/);
   assert.doesNotMatch(indexHtml, /min read/i);
+  assert.doesNotMatch(indexHtml, /<span>Mexico<\/span>/);
+  assert.doesNotMatch(indexHtml, /<span>Brazil<\/span>/);
 
   const routes = [
-    ["/blog/send-money-to-mexico", /3 steps before you confirm/],
-    ["/blog/send-money-to-brazil", /3 steps before you confirm/],
-    ["/blog/send-money-to-colombia", /3 steps before you confirm/],
-    ["/blog/send-money-to-europe", /3 steps before you confirm/],
+    ["/blog/send-money-to-mexico", /How to send dollars to Mexico in 3 steps/],
+    ["/blog/send-money-to-brazil", /How to send dollars to Brazil in 3 steps/],
+    ["/blog/send-money-to-colombia", /How to send dollars to Colombia in 3 steps/],
+    ["/blog/send-money-to-europe", /How to send dollars to Europe in 3 steps/],
     ["/blog/compare-transfer-costs", /beyond the headline rate/],
     ["/blog/verify-recipient-details", /before sending money to a new recipient/],
     ["/blog/digital-dollars-bank-payouts", /what each part does/],

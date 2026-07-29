@@ -35,6 +35,7 @@ export function HowItWorks({
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const scenarioRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const currencyPicker = useRef<HTMLDivElement | null>(null);
+  const countriesDialog = useRef<HTMLDialogElement | null>(null);
   const scenario = howScenarios[activeScenario];
   const step = scenario.steps[activeStep];
   const selectedCurrency = currencies[currency];
@@ -284,20 +285,47 @@ export function HowItWorks({
             Live rate from our payment partner. Final rates, fees, delivery times,
             eligibility, and route availability are confirmed in the app before you send.
           </p>
+          <button
+            className="receive-countries-link"
+            type="button"
+            onClick={() => countriesDialog.current?.showModal()}
+          >
+            View receiving countries
+          </button>
         </div>
+      </div>
 
-        <div className="receive-countries">
-          <div className="receive-countries-heading">
-            <h4>Receiving countries</h4>
-            <span>{receivingCountries.length} countries</span>
-          </div>
+      <dialog
+        className="receive-countries-dialog"
+        ref={countriesDialog}
+        onClick={(event) => {
+          if (event.target === event.currentTarget) event.currentTarget.close();
+        }}
+      >
+        <div className="receive-countries-modal">
+          <header>
+            <div>
+              <h3>Receiving countries</h3>
+              <p>{receivingCountries.length} currently supported destinations</p>
+            </div>
+            <button
+              className="realism-icon-button"
+              type="button"
+              aria-label="Close receiving countries"
+              onClick={() => countriesDialog.current?.close()}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18" />
+              </svg>
+            </button>
+          </header>
           <ul>
             {receivingCountries.map((country) => (
               <li key={country}>{country}</li>
             ))}
           </ul>
         </div>
-      </div>
+      </dialog>
     </section>
   );
 }

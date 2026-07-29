@@ -44,7 +44,13 @@ Commercial relationship wording still requires confirmation before launch.
 - Supporting copy immediately below the headline.
 - No kicker/eyebrow labels above homepage section headlines.
 - No noisy background grid, busy rays, or cheap multi-color gradients.
-- Shaders should be shallow, masked, and atmospheric.
+- The production hero uses a two-second edge-to-edge color event: a vermilion
+  lead, amber core, and deep-teal wake resolve into sparse ivory stars with a
+  restrained warm memory at the lower edge.
+- Hero copy begins as the spectral band crosses center at 1 second; supporting
+  copy follows at 1.28 seconds, the CTA at 1.43 seconds, and the phone at 2.05
+  seconds. Preserve these timings unless the whole sequence is redesigned.
+- Hero shaders should remain masked and atmospheric after their intro event.
 - Keep the original Jazari One app video inside the local phone frame.
 - CTA buttons use text only: no arrows, icons, or decorative glyphs.
 - The primary CTA uses Jazari Lime’s fluid shader and follows the pointer
@@ -61,14 +67,18 @@ Commercial relationship wording still requires confirmation before launch.
   review description enlarged to 18px. Footer navigation, legal
   copy, and company information use 12px.
 - Blog cards do not show country or read-time prefixes above their headlines.
-- Homepage persona and article-preview cards are capped at 550px on desktop.
+- Homepage persona and article-preview cards are capped at 500px on desktop.
 - Homepage article cards use one shared title scale, a bottom readability tint,
   no image zoom, and a right-aligned action on the title baseline.
-- The transfer review publishes the complete current list of 30 receiving
-  countries beneath the amount preview.
+- The transfer review opens the complete current list of 30 receiving countries
+  in an accessible modal from the amount preview.
 - The Yields walkthrough has one “Learn more about Yields” action below its
   steps, rather than repeating an action inside each step.
 - Roadmap edge fades disappear at the first and last carousel positions.
+- The USD account roadmap cards use the supplied transparent USA flag artwork,
+  placed away from account copy and notes.
+- Pointer-card highlights fade from their last cursor position on leave; they
+  must not jump back to the card center before disappearing.
 - Third-party/network marks are monochrome and optically normalized by visual
   mass rather than assigned one identical numeric size.
 - Avoid repeated generic bento-card layouts.
