@@ -37,10 +37,7 @@ export function PricingPage() {
       <InternalSiteHeader />
       <header className="pricing-hero">
         <h1>Plan</h1>
-        <p>
-          Preview pricing only. Availability, eligibility, final fees, and route
-          terms are confirmed in the app.
-        </p>
+        <p>Preview pricing. Final fees and availability are confirmed in the app.</p>
       </header>
       <section
         className="pricing-groups pointer-card"

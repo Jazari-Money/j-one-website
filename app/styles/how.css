@@ -382,6 +382,7 @@
   border: 0;
   background: transparent;
   color: var(--text);
+  caret-color: var(--accent);
   font-size: 28px;
   outline: 0;
 }
@@ -440,7 +441,7 @@
 
 .currency-picker {
   position: relative;
-  z-index: 6;
+  z-index: 7;
 }
 
 .currency-trigger {

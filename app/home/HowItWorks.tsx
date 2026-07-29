@@ -307,10 +307,7 @@ export function HowItWorks({
           <header>
             <div>
               <h3>Receiving countries</h3>
-              <p>
-                {receivingCountries.length} currently supported destinations.
-                More countries will become available over time.
-              </p>
+              <p>{receivingCountries.length} destinations today. More countries coming soon.</p>
             </div>
             <button
               className="realism-icon-button"
@@ -337,7 +334,6 @@ export function HowItWorks({
             <header>
               <div>
                 <h4 id="receiving-country-queue-title">In queue</h4>
-                <p>Planned receiving destinations.</p>
               </div>
             </header>
             <ul>

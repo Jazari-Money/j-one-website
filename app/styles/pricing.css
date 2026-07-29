@@ -40,8 +40,8 @@
 
 .pricing-group {
   position: relative;
-  min-height: 220px;
-  padding: 38px 52px;
+  min-height: 0;
+  padding: 18px 40px;
   display: grid;
   grid-template-columns: minmax(220px, 0.64fr) minmax(520px, 1.36fr);
   gap: clamp(54px, 7vw, 102px);
@@ -62,7 +62,7 @@
 }
 
 .pricing-group h2 {
-  padding-top: 18px;
+  padding-top: 14px;
   font-family: var(--font-inter);
   font-size: 18px;
   font-weight: 600;
@@ -73,14 +73,14 @@
 .pricing-group dl {
   display: grid;
   align-content: center;
-  border-radius: 20px;
+  border-radius: 18px;
   background: color-mix(in srgb, var(--surface-2) 36%, transparent);
 }
 
 .pricing-group dl > div {
   position: relative;
-  min-height: 72px;
-  padding: 18px 22px;
+  min-height: 60px;
+  padding: 14px 20px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
@@ -91,16 +91,16 @@
   content: "";
   position: absolute;
   top: 0;
-  right: 22px;
-  left: 22px;
+  right: 20px;
+  left: 20px;
   height: 1px;
   background: color-mix(in srgb, var(--line) 54%, transparent);
 }
 
 .pricing-group dt {
-  color: var(--text);
+  color: #ffffff;
   font-size: 17px;
-  font-weight: 560;
+  font-weight: 400;
 }
 
 .pricing-group dd {
@@ -112,7 +112,7 @@
 @media (max-width: 820px) {
   .pricing-group {
     grid-template-columns: 1fr;
-    gap: 34px;
+    gap: 20px;
   }
 }
 
@@ -120,9 +120,10 @@
   .pricing-hero { padding: 146px 0 62px; }
   .pricing-hero h1 { font-size: 68px; }
   .pricing-groups { border-radius: 22px; }
-  .pricing-group { min-height: 0; padding: 32px 24px 36px; }
+  .pricing-group { min-height: 0; padding: 18px 16px 22px; gap: 18px; }
+  .pricing-group h2 { padding-top: 4px; }
   .pricing-group + .pricing-group::before { right: 24px; left: 24px; }
-  .pricing-group dl > div { grid-template-columns: 1fr; gap: 5px; padding: 17px 18px; }
-  .pricing-group dl > div + div::before { right: 18px; left: 18px; }
+  .pricing-group dl > div { min-height: 0; grid-template-columns: 1fr; gap: 4px; padding: 14px 16px; }
+  .pricing-group dl > div + div::before { right: 16px; left: 16px; }
   .pricing-group dd { text-align: left; }
 }

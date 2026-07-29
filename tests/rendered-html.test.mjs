@@ -35,8 +35,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Everything is on screen before you confirm\./);
   assert.match(html, /Receiving countries/);
   assert.match(html, /All receiving countries/);
-  assert.match(html, /30(?:<!-- -->)? currently supported destinations/);
-  assert.match(html, /More countries will become available over time\./);
+  assert.match(html, /30(?:<!-- -->)? destinations today\. More countries coming soon\./);
   assert.match(html, /In queue/);
   assert.match(html, /Andorra/);
   assert.match(html, /United Kingdom/);
