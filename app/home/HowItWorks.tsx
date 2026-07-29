@@ -281,10 +281,6 @@ export function HowItWorks({
             </div>
           </div>
 
-          <p className="rate-disclaimer">
-            Live rate from our payment partner. Final rates, fees, delivery times,
-            eligibility, and route availability are confirmed in the app before you send.
-          </p>
           <button
             className="receive-countries-link"
             type="button"
@@ -292,6 +288,10 @@ export function HowItWorks({
           >
             View receiving countries
           </button>
+          <p className="rate-disclaimer">
+            Live rate from our payment partner. Final rates, fees, delivery times,
+            eligibility, and route availability are confirmed in the app before you send.
+          </p>
         </div>
       </div>
 
@@ -321,7 +321,10 @@ export function HowItWorks({
           </header>
           <ul>
             {receivingCountries.map((country) => (
-              <li key={country}>{country}</li>
+              <li key={country.name}>
+                <img src={country.flag} alt="" />
+                <span>{country.name}</span>
+              </li>
             ))}
           </ul>
         </div>

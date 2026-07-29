@@ -191,8 +191,10 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /className="numeric"/);
   assert.match(page, /Know what arrives before you send/);
   assert.match(page, /Live rate from our payment partner/);
-  assert.match(page, /\/images\/features\/new\/dollar-balance\.webp/);
-  assert.match(page, /\/images\/features\/new\/get-paid\.webp/);
+  assert.match(page, /\/images\/features\/dollar-01\.png/);
+  assert.match(page, /\/images\/features\/planet-02\.png/);
+  assert.match(page, /\/images\/features\/plus-03\.png/);
+  assert.match(page, /\/images\/features\/zero-04\.png/);
   assert.doesNotMatch(page, /\/images\/features\/new\/send\.webp/);
   assert.match(page, /guides\.slice\(0, 4\)/);
   assert.match(page, /\/images\/stores\/app-store-badge\.avif/);

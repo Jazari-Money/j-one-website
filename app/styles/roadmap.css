@@ -145,7 +145,7 @@
 .roadmap-card-art {
   position: absolute;
   z-index: 0;
-  right: -10px;
+  right: 10px;
   bottom: -8px;
   width: min(52%, 410px);
   max-height: 64%;
@@ -275,7 +275,7 @@
 .roadmap-full-card-art {
   position: absolute;
   z-index: 0;
-  right: -8px;
+  right: 12px;
   bottom: -8px;
   width: min(55%, 640px);
   max-height: 72%;

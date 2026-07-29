@@ -255,8 +255,16 @@ test("keeps the core interactions working", async ({ page }) => {
   await page.getByRole("button", { name: "View receiving countries" }).click();
   await expect(countriesDialog).toBeVisible();
   await expect(countriesDialog.locator("li")).toHaveText(receivingCountries);
+  await expect(countriesDialog.locator("li img")).toHaveCount(receivingCountries.length);
   await page.getByRole("button", { name: "Close receiving countries" }).click();
   await expect(countriesDialog).not.toBeVisible();
+
+  const rateCardDetailsOrder = await page.locator(".rate-card").evaluate((node) => {
+    const link = node.querySelector(".receive-countries-link")?.getBoundingClientRect();
+    const disclaimer = node.querySelector(".rate-disclaimer")?.getBoundingClientRect();
+    return link && disclaimer ? link.top < disclaimer.top : false;
+  });
+  expect(rateCardDetailsOrder).toBe(true);
 
   const card = page.locator(".blog-card").first();
   await card.scrollIntoViewIfNeeded();
@@ -320,6 +328,10 @@ test("keeps the core interactions working", async ({ page }) => {
     const benefitLedger = document.querySelector(".benefit-ledger");
     const reviewMetrics = document.querySelector(".review-metrics");
     const firstBlogCard = document.querySelector(".blog-card");
+    const audienceImagePositions = Array.from(
+      document.querySelectorAll(".audience-panel > img"),
+      (node) => getComputedStyle(node).objectPosition,
+    );
     return {
       benefits,
       personaHeights,
@@ -338,8 +350,9 @@ test("keeps the core interactions working", async ({ page }) => {
         ? Number.parseFloat(getComputedStyle(reviewMetrics).marginTop)
         : 0,
       blogBottomTint: firstBlogCard
-        ? getComputedStyle(firstBlogCard, "::after").backgroundImage
+        ? getComputedStyle(firstBlogCard, "::before").backgroundImage
         : "",
+      audienceImagePositions,
       articleBaselineOffset:
         title && action ? Math.abs(title.bottom - action.bottom) : Number.POSITIVE_INFINITY,
     };
@@ -348,8 +361,12 @@ test("keeps the core interactions working", async ({ page }) => {
   expect(desktopCardMetrics.benefitIconWidth).toBe(62);
   expect(desktopCardMetrics.benefitCopySize).toBe(16);
   expect(desktopCardMetrics.benefitLedgerMarginTop).toBeGreaterThanOrEqual(8);
-  expect(desktopCardMetrics.reviewMetricsMarginTop).toBe(150);
-  expect(desktopCardMetrics.blogBottomTint).toContain("0.98");
+  expect(desktopCardMetrics.reviewMetricsMarginTop).toBe(180);
+  expect(desktopCardMetrics.blogBottomTint).toContain("rgb(0, 0, 0)");
+  expect(desktopCardMetrics.audienceImagePositions.slice(0, 2)).toEqual([
+    "50% calc(50% + 30px)",
+    "50% calc(50% + 30px)",
+  ]);
   expect(desktopCardMetrics.personaHeights).toEqual([500, 500, 500]);
   expect(desktopCardMetrics.articleHeights).toEqual([500, 500, 500, 500]);
   expect(desktopCardMetrics.articleTitleSizes).toBe(1);

@@ -66,12 +66,19 @@ Commercial relationship wording still requires confirmation before launch.
 - Supporting descriptions use a readable 15px size, with the primary transfer
   review description enlarged to 18px. Footer navigation, legal
   copy, and company information use 12px.
+- The homepage feature line uses the supplied numbered dollar, planet, plus,
+  and zero icon set in that order.
 - Blog cards do not show country or read-time prefixes above their headlines.
 - Homepage persona and article-preview cards are capped at 500px on desktop.
+- The first two homepage persona photos use a 30px lower crop within their
+  cards; keep the card geometry and captions fixed.
 - Homepage article cards use one shared title scale, a bottom readability tint,
-  no image zoom, and a right-aligned action on the title baseline.
+  no image zoom, and a right-aligned action on the title baseline. The tint
+  lives on its own layer so it does not conflict with the pointer-border mask.
 - The transfer review opens the complete current list of 30 receiving countries
-  in an accessible modal from the amount preview.
+  with local country flags in an accessible modal from the amount preview. The
+  modal action appears above the rate disclaimer.
+- Desktop transfer factoids begin 180px below the review description.
 - The Yields walkthrough has one “Learn more about Yields” action below its
   steps, rather than repeating an action inside each step.
 - Roadmap edge fades disappear at the first and last carousel positions.
