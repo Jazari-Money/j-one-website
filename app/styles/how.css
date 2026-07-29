@@ -94,6 +94,17 @@
   justify-content: space-between;
   gap: clamp(54px, 7vw, 108px);
   align-items: start;
+  animation: how-scenario-fade 420ms ease both;
+}
+
+@keyframes how-scenario-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .step-copy-column {

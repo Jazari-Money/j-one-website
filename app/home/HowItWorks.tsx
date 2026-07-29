@@ -136,7 +136,7 @@ export function HowItWorks({
         ))}
       </div>
 
-      <div className="how-experience">
+      <div className="how-experience" key={activeScenario}>
         <div className="step-copy-column">
           <div className="step-tabs" role="tablist" aria-label={`${scenario.label} steps`}>
             {scenario.steps.map((item, index) => (
