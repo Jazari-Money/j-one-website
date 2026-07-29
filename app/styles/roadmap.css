@@ -159,6 +159,7 @@
   bottom: -38%;
   width: 78%;
   max-height: none;
+  transform: translate(60px, -40px);
 }
 
 .roadmap-card h3 {
@@ -296,6 +297,7 @@
   bottom: -42%;
   width: 80%;
   max-height: none;
+  transform: translate(60px, -40px);
 }
 
 .roadmap-full-card:first-child {
@@ -385,6 +387,7 @@
     bottom: -14%;
     width: 122%;
     max-height: none;
+    transform: translate(20px, -20px);
   }
   .roadmap-full-hero { padding: 146px 0 62px; }
   .roadmap-full-hero h1 { font-size: 68px; }
@@ -415,5 +418,6 @@
     bottom: -15%;
     width: 126%;
     max-height: none;
+    transform: translate(20px, -20px);
   }
 }

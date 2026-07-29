@@ -65,8 +65,8 @@
 }
 
 .article-hero-image {
-  width: 100%;
-  margin-top: 72px;
+  width: 70%;
+  margin: 72px auto 0;
   border-radius: 30px;
   overflow: hidden;
   background: var(--surface);
@@ -208,6 +208,10 @@
 
   .article-header > p {
     font-size: 16px;
+  }
+
+  .article-hero-image {
+    width: 100%;
   }
 
   .article-layout {

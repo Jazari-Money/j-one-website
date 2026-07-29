@@ -51,9 +51,11 @@ void main(){
   float settled=smoothstep(.3,.86,u_intro);
 
   // Autonomous right-to-left drift. There is deliberately no pointer input.
-  vec2 p=vec2(uv.x*asp,uv.y)+vec2(u_time*.0032,u_time*.00055);
-  float fine=eventMote(p,24.,1.05,u_time,u_res.y);
-  float depth=eventMote(p*.82+13.7,13.,1.55,u_time*.74+7.,u_res.y);
+  vec2 dustSpace=vec2(uv.x*asp,uv.y);
+  vec2 fineP=dustSpace+vec2(u_time*.012,u_time*.00055);
+  vec2 depthP=dustSpace+vec2(u_time*.016,u_time*.00035);
+  float fine=eventMote(fineP,24.,1.05,u_time,u_res.y);
+  float depth=eventMote(depthP+13.7,13.,1.55,u_time*.74+7.,u_res.y);
   float dustAlpha=wake*settled*min(u_fx,1.15);
   vec3 dust=(
     vec3(.96,.94,.89)*fine*.4+
