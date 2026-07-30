@@ -113,13 +113,18 @@ test("server-renders plan, yields, coming soon, partners, and about pages", asyn
   assert.match(partners, /Networks and digital dollars/);
   assert.match(partners, /USDC/);
 
-  assert.match(about, /<h1>Why we&#x27;re building Jazari One<\/h1>/);
+  assert.match(about, /<h1>About us<\/h1>/);
+  assert.match(about, /<h2 id="about-manifest-title">Manifesto<\/h2>/);
   assert.match(about, /Every transfer begins with something real/);
-  assert.match(about, /Built in the United States and the UAE/);
+  assert.match(about, /Alex and Has, founders of Jazari One/);
+  assert.match(about, /jazari-founders\.webp/);
+  assert.match(about, /Built in the United States and UAE/);
   assert.match(about, /Registered in Dover, Delaware/);
   assert.match(about, /Registration #78870/);
+  assert.match(about, /<h2 id="about-trust-title">Our partners<\/h2>/);
   assert.match(about, /We&#x27;re not a bank/);
   assert.match(about, /Bridge, a Stripe company/);
+  assert.match(about, /Lido logo/);
   assert.match(about, /Your account, your keys\./);
   assert.match(about, /not a bank and not us/);
   assert.match(about, /href="\/j-one-website\/partners\/?"/);

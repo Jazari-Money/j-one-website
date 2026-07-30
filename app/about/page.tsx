@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Why we are building Jazari One, where our businesses are registered, and who helps us move and manage money.",
   openGraph: {
-    title: "Why we’re building Jazari One",
+    title: "About us — Jazari One",
     description:
       "Our manifesto, our registered businesses in the United States and UAE, and the partners behind Jazari One.",
   },

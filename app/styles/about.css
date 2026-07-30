@@ -17,24 +17,43 @@
   scroll-margin-top: 110px;
 }
 
-.about-manifest > span,
-.about-entities > header > span {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 650;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.about-manifest h1 {
+.about-title h1 {
   max-width: 1040px;
-  margin-top: 24px;
   font-family: var(--serif);
   font-size: clamp(72px, 8vw, 112px);
   font-weight: 400;
   letter-spacing: -0.3px;
   line-height: 0.9;
   text-wrap: balance;
+}
+
+.about-manifest {
+  margin-top: 150px;
+}
+
+.about-manifest h2,
+.about-entities h2,
+.about-partners-heading h2 {
+  font-family: var(--serif);
+  font-size: clamp(64px, 7vw, 96px);
+  font-weight: 400;
+  letter-spacing: -0.3px;
+  line-height: 0.92;
+  text-wrap: balance;
+}
+
+.about-founders {
+  margin-top: 56px;
+  overflow: hidden;
+  border-radius: 28px;
+  background: var(--surface);
+}
+
+.about-founders img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
 }
 
 .about-manifest-copy {
@@ -55,15 +74,15 @@
 .about-manifest-copy .about-manifest-close {
   margin-top: 44px;
   color: var(--text);
-  font-family: var(--serif);
-  font-size: clamp(30px, 3.2vw, 44px);
-  line-height: 1.08;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.7;
 }
 
 .about-manifest-copy .about-manifest-signoff {
-  margin-top: 30px;
+  margin-top: 18px;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .about-entities {
@@ -71,18 +90,7 @@
 }
 
 .about-entities > header {
-  max-width: 900px;
-}
-
-.about-entities h2,
-.about-hero h2 {
-  margin-top: 22px;
-  font-family: var(--serif);
-  font-size: clamp(64px, 7vw, 96px);
-  font-weight: 400;
-  letter-spacing: -0.3px;
-  line-height: 0.92;
-  text-wrap: balance;
+  max-width: 980px;
 }
 
 .about-entity-grid {
@@ -130,11 +138,14 @@
   margin-top: 160px;
 }
 
-.about-hero {
-  max-width: 980px;
+.about-partners-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
 }
 
-.about-hero p {
+.about-partners-intro {
   max-width: 790px;
   margin-top: 40px;
   color: var(--muted-strong);
@@ -145,7 +156,7 @@
 .about-partners {
   margin-top: 72px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -159,11 +170,8 @@
   min-height: 240px;
 }
 
-.about-partners-action {
-  margin-top: 24px;
-}
-
 .about-partners-link {
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -200,9 +208,23 @@
     padding: 140px 0 48px;
   }
 
-  .about-manifest h1 {
-    margin-top: 18px;
+  .about-title h1 {
     font-size: clamp(58px, 16vw, 72px);
+  }
+
+  .about-manifest {
+    margin-top: 96px;
+  }
+
+  .about-manifest h2,
+  .about-entities h2,
+  .about-partners-heading h2 {
+    font-size: clamp(50px, 14vw, 64px);
+  }
+
+  .about-founders {
+    margin-top: 36px;
+    border-radius: 22px;
   }
 
   .about-manifest-copy {
@@ -220,18 +242,12 @@
 
   .about-manifest-copy .about-manifest-close {
     margin-top: 38px;
-    font-size: 32px;
+    font-size: 17px;
   }
 
   .about-entities,
   .about-trust {
     margin-top: 112px;
-  }
-
-  .about-entities h2,
-  .about-hero h2 {
-    margin-top: 18px;
-    font-size: clamp(50px, 14vw, 64px);
   }
 
   .about-entity-grid {
@@ -254,7 +270,12 @@
     font-size: 15px;
   }
 
-  .about-hero p {
+  .about-partners-heading {
+    align-items: center;
+    gap: 14px;
+  }
+
+  .about-partners-intro {
     margin-top: 30px;
     font-size: 17px;
   }
@@ -268,7 +289,40 @@
     min-height: 214px;
   }
 
-  .about-partners-action {
-    margin-top: 18px;
+  .about-partners-link {
+    min-height: 44px;
+    padding-inline: 15px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 390px) {
+  .about-partners-heading h2 {
+    font-size: 48px;
+  }
+
+  .about-partners-heading {
+    gap: 10px;
+  }
+
+  .about-partners-link {
+    padding-inline: 12px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .about-partners-heading h2 {
+    font-size: 44px;
+  }
+
+  .about-partners-heading {
+    gap: 8px;
+  }
+
+  .about-partners-link {
+    padding-inline: 10px;
+    font-size: 11px;
   }
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
 import { partnerStories } from "../home/data";
+import { withBasePath } from "../site-paths";
 
 const trustedPartners = [
   {
@@ -22,6 +23,11 @@ const trustedPartners = [
     heading: "Gauntlet",
     role: "Manages the yield strategies. A risk-management firm, not a bank and not us.",
   },
+  {
+    ...partnerStories[3],
+    heading: "Lido",
+    role: "Liquid staking and onchain reward infrastructure.",
+  },
 ] as const;
 
 export function AboutPage() {
@@ -30,9 +36,20 @@ export function AboutPage() {
       <InternalSiteHeader />
 
       <article className="about-page">
-        <header className="about-manifest">
-          <span>Manifesto</span>
-          <h1>Why we&apos;re building Jazari One</h1>
+        <header className="about-title">
+          <h1>About us</h1>
+        </header>
+
+        <section className="about-manifest" aria-labelledby="about-manifest-title">
+          <h2 id="about-manifest-title">Manifesto</h2>
+
+          <figure className="about-founders">
+            <img
+              src={withBasePath("/images/about/jazari-founders.webp")}
+              alt="Alex and Has, founders of Jazari One, seated together"
+            />
+          </figure>
+
           <div className="about-manifest-copy">
             <p>
               Every transfer begins with something real. Work that has been done. A bill
@@ -57,14 +74,15 @@ export function AboutPage() {
             <p className="about-manifest-close">
               So you can focus on your needs, your goals, your people, and your dreams.
             </p>
-            <p className="about-manifest-signoff">— Jazari One Team</p>
+            <p className="about-manifest-signoff">
+              — Alex and Has, founders of Jazari One
+            </p>
           </div>
-        </header>
+        </section>
 
         <section className="about-entities" aria-labelledby="about-entities-title">
           <header>
-            <span>Registered business</span>
-            <h2 id="about-entities-title">Built in the United States and the UAE.</h2>
+            <h2 id="about-entities-title">Built in the United States and UAE</h2>
           </header>
           <div className="about-entity-grid">
             <article>
@@ -81,14 +99,18 @@ export function AboutPage() {
         </section>
 
         <section className="about-trust" aria-labelledby="about-trust-title">
-          <header className="about-hero">
-            <h2 id="about-trust-title">Who you&apos;re trusting with your money</h2>
-            <p>
-              We&apos;re not a bank, and we don&apos;t hold your money ourselves. Your funds sit
-              with licensed, regulated partners whose names are public — so if you want to
-              check us, there&apos;s something to check.
-            </p>
+          <header className="about-partners-heading">
+            <h2 id="about-trust-title">Our partners</h2>
+            <Link className="about-partners-link neutral-control" href="/partners">
+              See all partners <span aria-hidden="true">→</span>
+            </Link>
           </header>
+
+          <p className="about-partners-intro">
+            We&apos;re not a bank, and we don&apos;t hold your money ourselves. Your funds sit
+            with licensed, regulated partners whose names are public — so if you want to
+            check us, there&apos;s something to check.
+          </p>
 
           <div className="about-partners" aria-label="The partners handling your money">
             {trustedPartners.map((partner, index) => (
@@ -115,12 +137,6 @@ export function AboutPage() {
                 </div>
               </article>
             ))}
-          </div>
-
-          <div className="about-partners-action">
-            <Link className="about-partners-link neutral-control" href="/partners">
-              See all partners <span aria-hidden="true">→</span>
-            </Link>
           </div>
         </section>
       </article>

@@ -535,22 +535,26 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
 
 test("explains who the reader trusts with their money", async ({ page }) => {
   await page.goto("/about/", { waitUntil: "networkidle" });
-  await expect(
-    page.getByRole("heading", { name: "Why we're building Jazari One" }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "About us" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Manifesto" })).toBeVisible();
   await expect(page.getByText(/Every transfer begins with something real/)).toBeVisible();
+  await expect(page.getByText(/Alex and Has, founders of Jazari One/)).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Built in the United States and the UAE." }),
+    page.getByRole("img", {
+      name: "Alex and Has, founders of Jazari One, seated together",
+    }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Built in the United States and UAE" }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Jazari One, Inc." })).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Jazari Fintech Services — FZCO" }),
   ).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "Who you're trusting with your money" }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Our partners" })).toBeVisible();
   await expect(page.getByRole("img", { name: "Bridge logo" })).toBeVisible();
-  await expect(page.locator(".about-partners .provider-card")).toHaveCount(3);
+  await expect(page.getByRole("img", { name: "Lido logo" })).toBeVisible();
+  await expect(page.locator(".about-partners .provider-card")).toHaveCount(4);
   await expect(page.getByText("Your account, your keys.")).toBeVisible();
   await expect(page.getByText(/not a bank and not us/)).toBeVisible();
   const allPartners = page.getByRole("link", { name: /See all partners/ });
@@ -559,6 +563,17 @@ test("explains who the reader trusts with their money", async ({ page }) => {
     /\/partners\/?$/,
   );
   await expect(allPartners).toHaveCSS("border-radius", "999px");
+  const [partnersHeadingBox, allPartnersBox] = await Promise.all([
+    page.getByRole("heading", { name: "Our partners" }).boundingBox(),
+    allPartners.boundingBox(),
+  ]);
+  expect(partnersHeadingBox).not.toBeNull();
+  expect(allPartnersBox).not.toBeNull();
+  expect(allPartnersBox!.x).toBeGreaterThan(partnersHeadingBox!.x);
+  expect(Math.abs(
+    (allPartnersBox!.y + allPartnersBox!.height) -
+    (partnersHeadingBox!.y + partnersHeadingBox!.height),
+  )).toBeLessThan(3);
 });
 
 test("uses concise Blog titles without route labels", async ({ page }) => {
