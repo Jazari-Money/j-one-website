@@ -69,7 +69,7 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <details ref={personalMenuRef} className="nav-dropdown" open={mobileOpen || personalOpen}>
+          <details ref={personalMenuRef} className="nav-dropdown nav-desktop-only" open={mobileOpen || personalOpen}>
             <summary
               onClick={(event) => {
                 event.preventDefault();
@@ -88,9 +88,40 @@ export function SiteHeader({
               <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
             </div>
           </details>
-          <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
-          <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
-          <a href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
+          <a className="nav-desktop-only" href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
+          <a className="nav-desktop-only" href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
+          <a className="nav-desktop-only" href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
+          <div className="nav-mobile-groups">
+            <section className="nav-mobile-group" aria-labelledby="mobile-product-links">
+              <strong id="mobile-product-links">Product</strong>
+              <a href={sectionHref("how")} onClick={closeMobile}>How it works</a>
+              <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
+              <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
+              <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
+              <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Coming Soon</a>
+            </section>
+            <section className="nav-mobile-group" aria-labelledby="mobile-company-links">
+              <strong id="mobile-company-links">Company</strong>
+              <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
+              <a href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
+              <a href={withBasePath("/partners/")} onClick={closeMobile}>Partners</a>
+              <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
+              <a href="mailto:hello@jazari.xyz" onClick={closeMobile}>Contact</a>
+              <div className="nav-mobile-legal">
+                <a href={withBasePath("/terms/")} onClick={closeMobile}>Terms</a>
+                <a href={withBasePath("/privacy-policy/")} onClick={closeMobile}>Privacy</a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    window.dispatchEvent(new Event("jazari:open-cookies"));
+                    closeMobile();
+                  }}
+                >
+                  Cookies
+                </button>
+              </div>
+            </section>
+          </div>
           <div className="nav-mobile-extras">
             <a
               className="neutral-control"

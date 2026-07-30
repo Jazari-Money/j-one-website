@@ -125,12 +125,13 @@
     background: transparent;
     box-shadow: none;
     display: grid;
-    gap: 12px;
+    gap: 16px;
   }
   .pricing-group {
     min-height: 0;
     padding: 22px 18px;
     border-radius: 22px;
+    border: 1px solid var(--line);
     background: var(--surface);
     gap: 14px;
   }
@@ -142,15 +143,17 @@
   }
   .pricing-group dl > div {
     min-height: 0;
-    grid-template-columns: 1fr;
-    gap: 4px;
+    grid-template-columns: minmax(0, 1fr) minmax(118px, 0.92fr);
+    align-items: baseline;
+    gap: 14px;
     padding: 14px 0;
   }
   .pricing-group dl > div + div::before { right: 0; left: 0; }
   .pricing-group dd {
     color: var(--text);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
-    text-align: left;
+    line-height: 1.42;
+    text-align: right;
   }
 }

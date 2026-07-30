@@ -1,25 +1,26 @@
 /* eslint-disable @next/next/no-img-element -- local partner marks use their exact sources */
 
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
-import { withBasePath } from "../site-paths";
+import { partnerStories } from "../home/data";
 
 const trustedPartners = [
   {
-    name: "Bridge, a Stripe company",
+    ...partnerStories[0],
+    heading: "Bridge, a Stripe company",
     role: "Holds and moves the money. Handles conversion and payouts to local banks.",
-    logo: "/images/rails/bridge.svg",
   },
   {
-    name: "Privy",
+    ...partnerStories[1],
+    heading: "Privy",
     role: "Runs the wallets and transaction controls. Your account, your keys.",
-    logo: "/images/rails/privy.svg",
   },
   {
-    name: "Gauntlet",
+    ...partnerStories[2],
+    heading: "Gauntlet",
     role: "Manages the yield strategies. A risk-management firm, not a bank and not us.",
-    logo: "/images/rails/gauntlet.svg",
   },
 ] as const;
 
@@ -39,13 +40,26 @@ export function AboutPage() {
         </header>
 
         <section className="about-partners" aria-label="The partners handling your money">
-          {trustedPartners.map((partner) => (
-            <article className="about-partner-card" key={partner.name}>
-              <div className="about-partner-logo">
-                <img src={withBasePath(partner.logo)} alt={`${partner.name} logo`} />
+          {trustedPartners.map((partner, index) => (
+            <article
+              className={`provider-card pointer-card logo-${partner.logoFormat}`}
+              style={{ "--reveal-index": index } as CSSProperties}
+              key={partner.name}
+            >
+              <div className="provider-logo-slot">
+                <span
+                  className={`provider-logo is-${partner.logoFormat}`}
+                  style={{ "--logo-scale": partner.logoScale } as CSSProperties}
+                >
+                  <img src={partner.logo} alt={`${partner.name} logo`} />
+                </span>
               </div>
-              <div>
-                <h2>{partner.name}</h2>
+              <div className="provider-card-copy">
+                {"wordmarkOnly" in partner && partner.wordmarkOnly ? (
+                  <h2 className="sr-only">{partner.heading}</h2>
+                ) : (
+                  <h2>{partner.heading}</h2>
+                )}
                 <p>{partner.role}</p>
               </div>
             </article>

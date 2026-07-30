@@ -192,9 +192,22 @@
 
 @media (max-width: 720px) {
   .networks .chapter-heading {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 24px;
+    align-items: center;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .networks .chapter-heading h2 {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .networks-all-link {
+    min-height: 42px;
+    margin-bottom: 0;
+    padding: 10px 14px;
+    font-size: 14px;
+    white-space: nowrap;
   }
 
   .provider-grid {

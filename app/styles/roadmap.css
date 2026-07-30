@@ -367,24 +367,24 @@
   .roadmap-card {
     flex-basis: min(328px, calc(100vw - 92px));
     min-width: min(328px, calc(100vw - 92px));
-    min-height: 350px;
-    padding: 30px 26px;
+    min-height: 300px;
+    padding: 26px 24px;
     border-radius: 22px;
   }
-  .roadmap-card h3 { font-size: 46px; }
+  .roadmap-card h3 { font-size: 40px; }
   .roadmap-card.has-art {
-    min-height: 500px;
+    min-height: 390px;
   }
   .roadmap-card.has-art h3,
   .roadmap-card.has-art .roadmap-card-bottom {
     max-width: 100%;
   }
   .roadmap-card.has-art .roadmap-card-bottom {
-    margin-bottom: 176px;
+    margin-bottom: 118px;
   }
   .roadmap-card-art {
-    width: 78%;
-    max-height: 190px;
+    width: 72%;
+    max-height: 148px;
   }
   .roadmap-card.art-card .roadmap-card-art {
     right: -36%;

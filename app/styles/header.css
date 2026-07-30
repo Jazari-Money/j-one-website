@@ -207,6 +207,10 @@
   display: none;
 }
 
+.nav-mobile-groups {
+  display: none;
+}
+
 .social-links {
   display: flex;
   align-items: center;
@@ -311,6 +315,63 @@
     align-items: center;
   }
 
+  .nav-desktop-only {
+    display: none !important;
+  }
+
+  .nav-mobile-groups {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+  }
+
+  .nav-mobile-group {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-mobile-group > strong {
+    margin-bottom: 9px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .nav-mobile-group > a {
+    min-height: 44px;
+    color: var(--muted-strong);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-mobile-legal {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .nav-mobile-legal a,
+  .nav-mobile-legal button {
+    min-height: 32px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+  }
+
   .nav-dropdown {
     width: 100%;
   }
@@ -397,6 +458,10 @@
     color: var(--cream-ink);
     font-size: 14px;
     font-weight: 650;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
   }
 
@@ -420,5 +485,25 @@
   .nav-mobile-extras {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .nav-mobile-groups {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .nav-mobile-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+  }
+
+  .nav-mobile-group > strong,
+  .nav-mobile-legal {
+    grid-column: 1 / -1;
+  }
+
+  .nav-mobile-group > a {
+    font-size: 18px;
   }
 }

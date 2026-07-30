@@ -40,47 +40,14 @@
   gap: 14px;
 }
 
-.about-partner-card {
-  min-height: 330px;
-  padding: 34px;
-  border-radius: 26px;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.03), transparent 48%),
-    var(--surface);
-  display: flex;
-  flex-direction: column;
-}
-
-.about-partner-logo {
-  width: 170px;
-  height: 58px;
-  display: flex;
-  align-items: flex-start;
-}
-
-.about-partner-logo img {
-  width: 160px;
-  max-height: 52px;
-  object-fit: contain;
-  object-position: left top;
-  filter: grayscale(1) brightness(0) invert(1);
-}
-
-.about-partner-card > div:last-child {
-  margin-top: auto;
-}
-
-.about-partner-card h2 {
+.about-partners .provider-card h2 {
   color: var(--text);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 }
 
-.about-partner-card p {
-  margin-top: 14px;
-  color: var(--muted-strong);
-  font-size: 15px;
-  line-height: 1.6;
+.about-partners .provider-card {
+  min-height: 240px;
 }
 
 .about-details {
@@ -121,9 +88,6 @@
     grid-template-columns: 1fr;
   }
 
-  .about-partner-card {
-    min-height: 260px;
-  }
 }
 
 @media (max-width: 620px) {
@@ -144,13 +108,7 @@
     margin-top: 68px;
   }
 
-  .about-partner-card {
-    min-height: 0;
-    padding: 28px 26px;
-    border-radius: 22px;
-  }
-
-  .about-partner-card > div:last-child {
-    margin-top: 24px;
+  .about-partners .provider-card {
+    min-height: 214px;
   }
 }

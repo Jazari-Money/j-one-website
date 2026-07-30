@@ -1049,6 +1049,29 @@
     border-radius: 22px;
   }
 
+  .receive-countries-link {
+    text-decoration-color: currentColor;
+  }
+
+  .step-screen-stack {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .step-screen-stack::after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    inset: 64% 0 0;
+    background: linear-gradient(to bottom, transparent, var(--bg) 94%);
+    pointer-events: none;
+  }
+
+  .active-step-phone,
+  .active-step-phone.is-active {
+    filter: none;
+  }
+
   .receive-countries-modal {
     padding: 24px 20px 26px;
     border-radius: 22px;

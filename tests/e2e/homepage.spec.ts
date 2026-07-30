@@ -180,7 +180,7 @@ test("keeps the core interactions working", async ({ page }) => {
   );
   await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
     "src",
-    /how-to-send-01\.webp$/,
+    /how-to-send-01\.png$/,
   );
   await page.getByRole("tab", { name: "Yields", exact: true }).click();
   const yieldsLink = page.getByRole("link", { name: "Learn more about Yields" });
@@ -429,6 +429,7 @@ test("keeps the core interactions working", async ({ page }) => {
 });
 
 test("renders the plan preview and legal links", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/plan/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Plan" })).toBeVisible();
   await expect(
@@ -444,6 +445,18 @@ test("renders the plan preview and legal links", async ({ page }) => {
     "href",
     /\/privacy-policy\/?$/,
   );
+  const firstPriceRow = page.locator(".pricing-group dl > div").first();
+  const priceColumns = await firstPriceRow.evaluate(
+    (node) => getComputedStyle(node).gridTemplateColumns.split(" ").length,
+  );
+  const [service, price] = await Promise.all([
+    firstPriceRow.locator("dt").boundingBox(),
+    firstPriceRow.locator("dd").boundingBox(),
+  ]);
+  expect(priceColumns).toBe(2);
+  expect(service).not.toBeNull();
+  expect(price).not.toBeNull();
+  expect(price!.x).toBeGreaterThan(service!.x);
 });
 
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
@@ -500,7 +513,8 @@ test("explains who the reader trusts with their money", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Who you're trusting with your money" }),
   ).toBeVisible();
-  await expect(page.getByText("Bridge, a Stripe company")).toBeVisible();
+  await expect(page.getByRole("img", { name: "Bridge logo" })).toBeVisible();
+  await expect(page.locator(".about-partners .provider-card")).toHaveCount(3);
   await expect(page.getByText("Your account, your keys.")).toBeVisible();
   await expect(page.getByText(/not a bank and not us/)).toBeVisible();
   await expect(page.getByRole("link", { name: /See all partners/ })).toHaveAttribute(
@@ -551,7 +565,12 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu.getByRole("link", { name: "Jazari One on Instagram" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on Facebook" })).toBeVisible();
   await menu.click({ position: { x: 360, y: 780 } });
-  await expect(menu.getByRole("link", { name: "Receive", exact: true })).toBeVisible();
+  await expect(menu.getByText("Product", { exact: true })).toBeVisible();
+  await expect(menu.getByText("Company", { exact: true })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "How it works" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Partners", exact: true })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Terms", exact: true })).toBeVisible();
+  await expect(menu.getByRole("button", { name: "Cookies", exact: true })).toBeVisible();
   await expect
     .poll(() => menu.evaluate((node) => Math.round(node.getBoundingClientRect().height)))
     .toBe(844);
@@ -561,6 +580,12 @@ test("opens a full-height mobile navigation with download and social actions", a
 
   await page.getByRole("button", { name: "Close navigation" }).click();
   await expect(menu).not.toHaveClass(/is-open/);
+
+  await page.getByRole("button", { name: "Open navigation" }).click();
+  await menu.getByRole("button", { name: "Cookies", exact: true }).click();
+  await expect(menu).not.toHaveClass(/is-open/);
+  await expect(page.getByRole("dialog", { name: "Cookie preferences" })).toBeVisible();
+  await page.getByRole("button", { name: "Essential Only" }).click();
 });
 
 test("keeps the mobile phone preview and step accordion in one viewport", async ({ page }) => {
@@ -576,6 +601,15 @@ test("keeps the mobile phone preview and step accordion in one viewport", async 
   const steps = stepTabs.getByRole("tab");
   await expect(steps).toHaveCount(3);
   await expect(page.locator(".step-screen .active-step-phone")).toHaveCount(1);
+  const activeScreenImage = page.locator(".step-screen .active-step-phone.is-active img");
+  await expect
+    .poll(() => activeScreenImage.evaluate((image) => (image as HTMLImageElement).naturalWidth))
+    .toBe(520);
+  await expect
+    .poll(() => page.locator(".step-screen-stack").evaluate(
+      (node) => getComputedStyle(node).maskImage,
+    ))
+    .toBe("none");
 
   const initialLayout = await page.evaluate(() => {
     const scenario = document.querySelector(".how-scenario-tabs")?.getBoundingClientRect();
@@ -607,7 +641,7 @@ test("keeps the mobile phone preview and step accordion in one viewport", async 
   await expect(steps.nth(1)).toHaveAttribute("aria-selected", "true");
   await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
     "src",
-    /how-to-receive-02\.webp$/,
+    /how-to-receive-02\.png$/,
   );
   await expect(page.locator(".step-tab-item").nth(1).locator("small")).toBeVisible();
   await expect(page.locator(".step-tab-item").nth(0).locator("small")).toBeHidden();

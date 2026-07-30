@@ -3,12 +3,18 @@
 /* eslint-disable @next/next/no-img-element -- official and local brand artwork */
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
 
 export function SiteFooter() {
   const [cookieOpen, setCookieOpen] = useState(false);
+
+  useEffect(() => {
+    const openCookies = () => setCookieOpen(true);
+    window.addEventListener("jazari:open-cookies", openCookies);
+    return () => window.removeEventListener("jazari:open-cookies", openCookies);
+  }, []);
 
   return (
     <footer className="site-footer">
