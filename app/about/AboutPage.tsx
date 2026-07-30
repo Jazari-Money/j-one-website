@@ -43,13 +43,6 @@ export function AboutPage() {
         <section className="about-manifest" aria-labelledby="about-manifest-title">
           <h2 id="about-manifest-title">Manifesto</h2>
 
-          <figure className="about-founders">
-            <img
-              src={withBasePath("/images/about/jazari-founders.webp")}
-              alt="Alex and Has, founders of Jazari One, seated together"
-            />
-          </figure>
-
           <div className="about-manifest-copy">
             <p>
               Every transfer begins with something real. Work that has been done. A bill
@@ -78,6 +71,13 @@ export function AboutPage() {
               — Alex and Has, founders of Jazari One
             </p>
           </div>
+
+          <figure className="about-founders">
+            <img
+              src={withBasePath("/images/about/jazari-founders.webp")}
+              alt="Alex and Has, founders of Jazari One, seated together"
+            />
+          </figure>
         </section>
 
         <section className="about-entities" aria-labelledby="about-entities-title">
@@ -86,12 +86,10 @@ export function AboutPage() {
           </header>
           <div className="about-entity-grid">
             <article>
-              <span>United States entity</span>
               <h3>Jazari One, Inc.</h3>
               <p>Registered in Dover, Delaware, United States.</p>
             </article>
             <article>
-              <span>UAE entity</span>
               <h3>Jazari Fintech Services — FZCO</h3>
               <p>Registration #78870 · Dubai Silicon Oasis, UAE.</p>
             </article>

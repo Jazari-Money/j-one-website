@@ -539,11 +539,19 @@ test("explains who the reader trusts with their money", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Manifesto" })).toBeVisible();
   await expect(page.getByText(/Every transfer begins with something real/)).toBeVisible();
   await expect(page.getByText(/Alex and Has, founders of Jazari One/)).toBeVisible();
+  const foundersPhoto = page.getByRole("img", {
+    name: "Alex and Has, founders of Jazari One, seated together",
+  });
   await expect(
-    page.getByRole("img", {
-      name: "Alex and Has, founders of Jazari One, seated together",
-    }),
+    foundersPhoto,
   ).toBeVisible();
+  const [signoffBox, foundersPhotoBox] = await Promise.all([
+    page.getByText(/Alex and Has, founders of Jazari One/).boundingBox(),
+    foundersPhoto.boundingBox(),
+  ]);
+  expect(signoffBox).not.toBeNull();
+  expect(foundersPhotoBox).not.toBeNull();
+  expect(foundersPhotoBox!.y).toBeGreaterThan(signoffBox!.y + signoffBox!.height);
   await expect(
     page.getByRole("heading", { name: "Built in the United States and UAE" }),
   ).toBeVisible();
@@ -551,6 +559,8 @@ test("explains who the reader trusts with their money", async ({ page }) => {
   await expect(
     page.getByRole("heading", { name: "Jazari Fintech Services — FZCO" }),
   ).toBeVisible();
+  await expect(page.getByText("United States entity")).toHaveCount(0);
+  await expect(page.getByText("UAE entity")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Our partners" })).toBeVisible();
   await expect(page.getByRole("img", { name: "Bridge logo" })).toBeVisible();
   await expect(page.getByRole("img", { name: "Lido logo" })).toBeVisible();

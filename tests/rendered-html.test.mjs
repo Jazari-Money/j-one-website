@@ -121,6 +121,8 @@ test("server-renders plan, yields, coming soon, partners, and about pages", asyn
   assert.match(about, /Built in the United States and UAE/);
   assert.match(about, /Registered in Dover, Delaware/);
   assert.match(about, /Registration #78870/);
+  assert.doesNotMatch(about, /United States entity/);
+  assert.doesNotMatch(about, /UAE entity/);
   assert.match(about, /<h2 id="about-trust-title">Our partners<\/h2>/);
   assert.match(about, /We&#x27;re not a bank/);
   assert.match(about, /Bridge, a Stripe company/);
