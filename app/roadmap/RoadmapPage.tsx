@@ -13,8 +13,8 @@ export function RoadmapPage() {
       <InternalSiteHeader />
 
       <header className="roadmap-full-hero">
-        <h1>Roadmap</h1>
-        <p>What we&apos;re building next.</p>
+        <h1>Coming Soon</h1>
+        <p>What you&apos;ll be able to do next.</p>
       </header>
 
       <section className="roadmap-full-grid" aria-label="Jazari One product roadmap">

@@ -132,8 +132,17 @@
 
 .legal-copy a {
   color: var(--text);
-  text-decoration-color: var(--line-strong);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
   text-underline-offset: 4px;
+  transition: color 180ms ease, text-decoration-color 220ms ease;
+}
+
+.legal-copy a:hover,
+.legal-copy a:focus-visible {
+  text-decoration-color: currentColor;
+  outline: 0;
 }
 
 .legal-copy code {

@@ -78,6 +78,7 @@ export function SiteHeader({
             </div>
           </details>
           <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
+          <a href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <div className="nav-mobile-extras">
             <a

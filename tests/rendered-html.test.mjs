@@ -26,7 +26,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Hold them\. Send them\. Grow them\./);
   assert.match(html, /jazari-app\.mp4/);
   assert.match(html, /Download App/);
-  assert.match(html, /Hold in dollars\. Keep its value\./);
+  assert.match(html, /Hold dollars\. Keep their value\./);
   assert.match(html, /Send to 30\+ countries in local currency\./);
   assert.match(html, /Earn on the dollars you&#x27;re not using\./);
   assert.match(html, /No transfer fees\. No hidden fees\./);
@@ -44,9 +44,10 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Recipient gets/);
   assert.match(html, /Transaction fee/);
   assert.match(html, />Yields</);
-  assert.doesNotMatch(html, /Roadmap 2026/);
+  assert.match(html, /Coming Soon/);
   assert.match(html, /USD account/);
-  assert.match(html, /New receive countries/);
+  assert.match(html, /Expanded payout corridors/);
+  assert.match(html, /Higher-yield APY/);
   assert.match(html, /Visa card/);
   assert.match(html, /Nigeria/);
   assert.match(html, /usa-flag\.png/);
@@ -55,6 +56,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /colombia\.jpg/);
   assert.match(html, /europe\.jpg/);
   assert.match(html, />Partners</);
+  assert.match(html, />About us</);
   assert.match(html, />FAQ</);
   assert.match(html, />Email us<\/a>/);
   assert.doesNotMatch(html, />Email us\.<\/a>/);
@@ -73,18 +75,20 @@ test("server-renders the Jazari One landing page", async () => {
   assert.doesNotMatch(html, /audience-index/);
 });
 
-test("server-renders plan, yields, roadmap, and partners pages", async () => {
-  const [planResponse, yieldsResponse, roadmapResponse, partnersResponse] = await Promise.all([
+test("server-renders plan, yields, coming soon, partners, and about pages", async () => {
+  const [planResponse, yieldsResponse, roadmapResponse, partnersResponse, aboutResponse] = await Promise.all([
     render("/plan"),
     render("/yields"),
     render("/roadmap"),
     render("/partners"),
+    render("/about"),
   ]);
-  const [plan, yields, roadmap, partners] = await Promise.all([
+  const [plan, yields, roadmap, partners, about] = await Promise.all([
     planResponse.text(),
     yieldsResponse.text(),
     roadmapResponse.text(),
     partnersResponse.text(),
+    aboutResponse.text(),
   ]);
 
   assert.match(plan, /<h1>Plan<\/h1>/);
@@ -100,14 +104,21 @@ test("server-renders plan, yields, roadmap, and partners pages", async () => {
   assert.doesNotMatch(yields, /Return and risk move together/);
   assert.match(yields, /Ready to open a yield/);
 
-  assert.match(roadmap, /<h1>Roadmap<\/h1>/);
-  assert.match(roadmap, /Yields with higher APY/);
+  assert.match(roadmap, /<h1>Coming Soon<\/h1>/);
+  assert.match(roadmap, /Higher-yield APY/);
   assert.match(roadmap, /Remit Now Pay Later/);
 
   assert.match(partners, /<h1>Partners<\/h1>/);
   assert.match(partners, /Lido/);
   assert.match(partners, /Networks and digital dollars/);
   assert.match(partners, /USDC/);
+
+  assert.match(about, /<h1>Who you&#x27;re trusting with your money<\/h1>/);
+  assert.match(about, /We&#x27;re not a bank/);
+  assert.match(about, /Bridge, a Stripe company/);
+  assert.match(about, /Your account, your keys\./);
+  assert.match(about, /not a bank and not us/);
+  assert.match(about, /href="\/j-one-website\/partners\/?"/);
 });
 
 test("server-renders the standalone component board", async () => {
@@ -331,4 +342,48 @@ test("renders the Blog index and all seven guides", async () => {
 
   const mexico = await (await render("/blog/send-money-to-mexico")).text();
   assert.match(mexico, /mexico-transfer\.webp/);
+
+  const corridorGuides = [
+    {
+      path: "/blog/send-money-to-mexico",
+      rail: "SPEI",
+      description:
+        "Send dollars to Mexico through SPEI in three steps. Learn which 18-digit CLABE and recipient details you need, plus timing and confirmation checks.",
+    },
+    {
+      path: "/blog/send-money-to-brazil",
+      rail: "Pix",
+      description:
+        "Send dollars to Brazil through Pix in three steps. Learn which Pix key and recipient details you need, what to review, and when the reais should arrive.",
+    },
+    {
+      path: "/blog/send-money-to-colombia",
+      rail: "Bre-B",
+      description:
+        "Send dollars to Colombia through Bre-B in three steps. Learn which llave and recipient details you need, what to check, and typical payout timing.",
+    },
+    {
+      path: "/blog/send-money-to-europe",
+      rail: "SEPA",
+      description:
+        "Send dollars to Europe through SEPA in three steps. Learn which IBAN, BIC or SWIFT details you need, what to review, and typical bank payout timing.",
+    },
+  ];
+
+  for (const guide of corridorGuides) {
+    const html = await (await render(guide.path)).text();
+    assert.match(html, /class="quick-answer"/);
+    assert.match(html, /<h2>Short answer<\/h2>/);
+    assert.match(html, new RegExp(guide.rail));
+    assert.ok(html.includes(`<meta name="description" content="${guide.description}"/>`));
+    assert.ok(html.includes(`<meta property="og:description" content="${guide.description}"/>`));
+
+    const quickAnswer = html.match(
+      /<div class="quick-answer"><h2>Short answer<\/h2><p>(.*?)<\/p><\/div>/,
+    )?.[1];
+    assert.ok(quickAnswer, guide.path);
+    const wordCount = quickAnswer.replace(/<[^>]+>/g, "").trim().split(/\s+/).length;
+    assert.ok(wordCount >= 40 && wordCount <= 60, `${guide.path}: ${wordCount} words`);
+    assert.ok(guide.description.length >= 140 && guide.description.length <= 155);
+  }
 });

@@ -24,10 +24,11 @@ export function SiteFooter() {
             <Link href="/#rates">Rates</Link>
             <Link href="/plan">Plan</Link>
             <Link href="/yields">Yields</Link>
-            <Link href="/roadmap">Roadmap</Link>
+            <Link href="/roadmap">Coming Soon</Link>
           </div>
           <div>
             <strong>Explore</strong>
+            <Link href="/about">About us</Link>
             <Link href="/blog">Blog</Link>
             <Link href="/partners">Partners</Link>
             <Link href="/#faq">FAQ</Link>

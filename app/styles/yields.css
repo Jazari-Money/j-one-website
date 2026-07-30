@@ -88,7 +88,16 @@
   color: var(--text);
   font-size: 14px;
   text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
   text-underline-offset: 5px;
+  transition: color 180ms ease, text-decoration-color 220ms ease;
+}
+
+.yield-strategy-copy a:hover,
+.yield-strategy-copy a:focus-visible {
+  text-decoration-color: currentColor;
+  outline: 0;
 }
 
 .yield-rate {

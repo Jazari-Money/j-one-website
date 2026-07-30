@@ -417,10 +417,10 @@ test("keeps the core interactions working", async ({ page }) => {
     .toBeLessThanOrEqual(1);
   await expect(roadmapWindow).toHaveClass(/is-at-end/);
 
-  const firstQuestion = page.getByText("What is a Jazari USD account?", { exact: true });
+  const firstQuestion = page.getByText("What can I do with a Jazari USD account?", { exact: true });
   await firstQuestion.click();
   await expect(
-    page.getByText(/one interface for holding supported digital dollars/i),
+    page.getByText(/You can hold USDC or USDT, receive payments/i),
   ).toBeVisible();
   await expect(page.getByRole("link", { name: "Email us", exact: true })).toBeVisible();
 });
@@ -472,9 +472,9 @@ test("explains yields and links into the app flow", async ({ page }) => {
 
 test("shows every product milestone on the roadmap page", async ({ page }) => {
   await page.goto("/roadmap/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Roadmap" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Coming Soon" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "USD account" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Yields with higher APY" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Higher-yield APY" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
   const usdAccountCard = page.locator(".roadmap-full-card").first();
   await expect(usdAccountCard.locator(".roadmap-full-card-art")).toHaveAttribute(
@@ -490,6 +490,20 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   expect(secondCard).not.toBeNull();
   expect(firstCard!.height).toBe(500);
   expect(secondCard!.x).toBeGreaterThan(firstCard!.x + firstCard!.width);
+});
+
+test("explains who the reader trusts with their money", async ({ page }) => {
+  await page.goto("/about/", { waitUntil: "networkidle" });
+  await expect(
+    page.getByRole("heading", { name: "Who you're trusting with your money" }),
+  ).toBeVisible();
+  await expect(page.getByText("Bridge, a Stripe company")).toBeVisible();
+  await expect(page.getByText("Your account, your keys.")).toBeVisible();
+  await expect(page.getByText(/not a bank and not us/)).toBeVisible();
+  await expect(page.getByRole("link", { name: /See all partners/ })).toHaveAttribute(
+    "href",
+    /\/partners\/?$/,
+  );
 });
 
 test("uses concise Blog titles without route labels", async ({ page }) => {

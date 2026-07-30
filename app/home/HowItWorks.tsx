@@ -320,7 +320,7 @@ export function HowItWorks({
               </svg>
             </button>
           </header>
-          <section className="receiving-country-group" aria-label="Currently supported countries">
+          <section className="receiving-country-group" aria-label="Current receiving countries">
             <ul>
               {receivingCountries.map((country) => (
                 <li key={country.name}>

@@ -2,14 +2,14 @@ import { AccordionList } from "./AccordionList";
 
 const questions = [
   {
-    question: "What is a Jazari USD account?",
+    question: "What can I do with a Jazari USD account?",
     answer:
-      "It is one interface for holding supported digital dollars, receiving eligible payments, and sending through the routes available in your country.",
+      "You can hold USDC or USDT, receive payments, and send money through the routes shown for your country.",
   },
   {
-    question: "Where is Jazari available?",
+    question: "Can I use Jazari where I live?",
     answer:
-      "Availability is introduced country by country. The app shows the routes, currencies, limits, and eligibility available to you before you start a transfer.",
+      "Open the app to see the routes, currencies, and limits you can use before you start a transfer.",
   },
   {
     question: "What does the recipient receive?",
@@ -19,17 +19,17 @@ const questions = [
   {
     question: "How are exchange rates and fees shown?",
     answer:
-      "Jazari keeps the indicative exchange reference, transaction cost, recipient amount, and expected delivery together on one review screen. Final details are shown before confirmation.",
+      "Before you confirm, you see the exchange reference, transaction cost, recipient amount, and expected delivery together on one screen.",
   },
   {
     question: "Is Jazari a bank?",
     answer:
-      "No. Jazari is a technology service provider. Wallet, custody, and payment services are provided by licensed and regulated third parties where available.",
+      "No. Jazari is a technology service provider. Licensed and regulated third parties provide wallet, custody, and payment services.",
   },
   {
-    question: "When will the virtual card and Remit Now Pay Later be available?",
+    question: "When can I use the virtual card and Remit Now Pay Later?",
     answer:
-      "They are planned roadmap products. Availability, pricing, limits, terms, and eligibility will be announced for each supported country before launch.",
+      "They’re coming later. You’ll see pricing, limits, terms, and country access before either product launches.",
   },
 ] as const;
 

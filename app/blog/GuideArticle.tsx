@@ -15,6 +15,7 @@ type ArticleSection = {
 type GuideArticleData = {
   title: string;
   deck: string;
+  quickAnswer?: string;
   image?: string;
   imageAlt?: string;
   sections: ArticleSection[];
@@ -24,13 +25,15 @@ const articleData: Record<string, GuideArticleData> = {
   mexico: {
     title: "How to send dollars to Mexico in 3 steps",
     deck: "Use the recipient’s full legal name and 18-digit CLABE for a SPEI payout.",
+    quickAnswer:
+      "To send dollars to Mexico, choose Mexico, enter the recipient’s full legal name and 18-digit CLABE, review the peso amount and live rate, then confirm. The payout travels through SPEI to the recipient’s bank account and typically arrives within minutes, although bank checks can sometimes take longer.",
     image: "/images/blog/mexico-transfer.webp",
     imageAlt: "Family walking together in Mexico",
     sections: [
       {
         heading: "What you need",
         paragraphs: [
-          "A CLABE is Mexico’s standardized 18-digit bank-account identifier for SPEI transfers. Ask for the recipient’s full legal name and complete CLABE. The CLABE already identifies the bank and account, so a separate bank name is not required.",
+          "Your payout reaches a Mexican bank account through SPEI, Mexico’s real-time payment rail. Ask for the recipient’s full legal name and complete 18-digit CLABE. The CLABE identifies the bank and account, so you do not need a separate bank name. Most payouts arrive within minutes, though a recipient-bank or compliance check can take longer.",
         ],
         bullets: ["Full legal name", "18-digit CLABE"],
       },
@@ -57,13 +60,15 @@ const articleData: Record<string, GuideArticleData> = {
   brazil: {
     title: "How to send dollars to Brazil in 3 steps",
     deck: "For a Pix payout, use the recipient’s full name and exact Pix key.",
+    quickAnswer:
+      "To send dollars to Brazil, choose Brazil, enter the recipient’s full legal name and exact Pix key, review the reais amount and live rate, then confirm. The payout travels through Pix and typically reaches the linked Brazilian account within minutes, though occasional compliance or bank checks can delay it.",
     image: "/images/blog/brazil.jpg",
     imageAlt: "People using a phone in Brazil",
     sections: [
       {
         heading: "What you need",
         paragraphs: [
-          "A Pix key is a registered identifier linked to a Brazilian account. It may be a CPF or CNPJ, email address, phone number, or random key. Ask for the recipient’s full legal name and exact key; separate bank and account details are not required.",
+          "Your payout reaches a Brazilian account through Pix, Brazil’s instant-payment rail. Ask for the recipient’s full legal name and exact Pix key, which may be a CPF or CNPJ, email address, phone number, or random key. The key points to the linked account, so you do not need separate bank details. Most payouts arrive within minutes, though a bank or compliance check can take longer.",
         ],
         bullets: ["Full legal name", "Exact Pix key"],
       },
@@ -90,13 +95,15 @@ const articleData: Record<string, GuideArticleData> = {
   colombia: {
     title: "How to send dollars to Colombia in 3 steps",
     deck: "For a Bre-B payout, use the recipient’s full name and exact llave.",
+    quickAnswer:
+      "To send dollars to Colombia, choose Colombia, enter the recipient’s full legal name and exact Bre-B llave, review the peso amount and live rate, then confirm. The payout uses Bre-B to reach the linked Colombian account and typically arrives within minutes, subject to bank or compliance checks.",
     image: "/images/blog/colombia.jpg",
     imageAlt: "Friends together in Colombia",
     sections: [
       {
         heading: "What you need",
         paragraphs: [
-          "A Bre-B llave is a registered identifier that points to an account at a participating Colombian institution. Ask for the recipient’s full legal name and exact llave; a separate account type and account number are not required.",
+          "Your payout reaches a Colombian account through Bre-B, Colombia’s interoperable instant-payment rail. Ask for the recipient’s full legal name and exact llave. The llave points to the linked account, so you do not need a separate account type or account number. Most payouts arrive within minutes, though a bank or compliance check can take longer.",
         ],
         bullets: ["Full legal name", "Exact Bre-B llave"],
       },
@@ -123,13 +130,15 @@ const articleData: Record<string, GuideArticleData> = {
   europe: {
     title: "How to send dollars to Europe in 3 steps",
     deck: "For a SEPA payout, collect the full name, IBAN, and BIC or SWIFT code.",
+    quickAnswer:
+      "To send dollars to Europe, choose the destination, enter the recipient’s full legal name, IBAN, and BIC or SWIFT code, review the euro amount and live rate, then confirm. The payout travels through SEPA and typically arrives the same day or next business day, depending on the receiving bank.",
     image: "/images/blog/europe.jpg",
     imageAlt: "Person walking through a European city",
     sections: [
       {
         heading: "What you need",
         paragraphs: [
-          "An IBAN identifies the recipient’s bank account, while a BIC or SWIFT code identifies the bank. Ask for the recipient’s full legal name, complete IBAN, and BIC or SWIFT code. Add an address only if the selected route asks for it.",
+          "Your euro payout reaches the recipient through SEPA, Europe’s bank-transfer network. Ask for the recipient’s full legal name, complete IBAN, and BIC or SWIFT code. The IBAN identifies the account and the BIC or SWIFT code identifies the bank; add an address only when the route asks for it. Most payouts arrive the same day or next business day, depending on the receiving bank and cutoff time.",
         ],
         bullets: ["Full legal name", "Complete IBAN", "BIC or SWIFT code", "Address only if requested"],
       },
@@ -215,20 +224,20 @@ const articleData: Record<string, GuideArticleData> = {
       {
         heading: "The balance holds the dollar value",
         paragraphs: [
-          "Supported digital dollars let you keep a dollar-denominated balance without immediately converting each incoming payment into local currency.",
-          "Availability and the supported asset can vary by account and country.",
+          "Your USDC or USDT balance lets you keep dollar-denominated value without converting each incoming payment into local currency.",
+          "What you can hold depends on your account and country.",
         ],
       },
       {
         heading: "The route moves the payment",
         paragraphs: [
-          "Jazari can select from available infrastructure and local payment routes according to the destination. The route determines which recipient details are required and the delivery estimate shown.",
+          "When you choose a destination, your transfer follows the matching infrastructure and local payment route. That route determines which recipient details you enter and the delivery estimate you see.",
         ],
       },
       {
         heading: "The bank receives locally",
         paragraphs: [
-          "The recipient receives funds through the available destination route. Before confirming, review the local-currency estimate, applicable cost, recipient account, and expected delivery.",
+          "Your recipient gets funds through the destination’s local route. Before you confirm, review the local-currency estimate, cost, recipient account, and expected delivery.",
         ],
       },
     ],
@@ -250,6 +259,12 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
         </nav>
         <header className="article-header">
           <h1>{guide.title}</h1>
+          {guide.quickAnswer && (
+            <div className="quick-answer">
+              <h2>Short answer</h2>
+              <p>{guide.quickAnswer}</p>
+            </div>
+          )}
           <p>{guide.deck}</p>
         </header>
 

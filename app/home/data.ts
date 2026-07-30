@@ -82,7 +82,7 @@ export const jazariVisualProfile = {
 export const features = [
   {
     id: "dollar-balance",
-    copy: "Hold in dollars. Keep its value.",
+    copy: "Hold dollars. Keep their value.",
     image: withBasePath("/images/features/dollar-01.png"),
   },
   {
@@ -116,7 +116,7 @@ export const howScenarios = {
       {
         id: "receive-stablecoins",
         title: "Share wallet details",
-        copy: "Use a QR code or address for supported stablecoins.",
+        copy: "Share a QR code or address for USDC or USDT.",
         screen: withBasePath("/images/how-to/how-to-receive-02.png"),
         alt: "Stablecoin receive details in Jazari One",
       },
@@ -163,7 +163,7 @@ export const howScenarios = {
         title: "Open yield",
         copy: "Review the vault, its current APY, and how it works.",
         screen: withBasePath("/images/how-to/how-to-yield-01.png"),
-        alt: "Available yield strategy in Jazari One",
+        alt: "Yield strategy in Jazari One",
       },
       {
         id: "yield-amount",
@@ -187,22 +187,34 @@ export type HowScenario = keyof typeof howScenarios;
 
 export const audiences = [
   {
-    title: "Freelancers",
-    line: "Get paid in dollars, hold them, and put what’s sitting idle to work at a variable rate.",
+    title: "Remote workers",
+    bullets: [
+      "Paid by an employer abroad",
+      "Losing money on every incoming transfer",
+      "Want the salary to stay in dollars, not convert on arrival",
+    ],
     image: withBasePath("/images/audience/freelancer.webp"),
-    alt: "Freelancer working at a desk",
+    alt: "Remote worker at a desk",
   },
   {
-    title: "Solopreneurs",
-    line: "One dollar balance that follows you across countries without heavy bank cuts, hidden FX spreads, or transfer fees.",
+    title: "Freelancers",
+    bullets: [
+      "Several clients, several countries",
+      "Income arrives in bursts, not on the 1st",
+      "Want dollars that hold value between projects",
+    ],
     image: withBasePath("/images/audience/solopreneur.jpg"),
-    alt: "Independent barber working with a client",
+    alt: "Freelancer working with a client",
   },
   {
-    title: "Their families",
-    line: "More of what was sent actually arrives. Held in dollars, not a falling local currency.",
+    title: "You and your family",
+    bullets: [
+      "Supporting parents, siblings, or children back home",
+      "Paying bills in another country",
+      "They receive without installing or learning anything",
+    ],
     image: withBasePath("/images/audience/family-support.webp"),
-    alt: "Older couple looking at a phone together",
+    alt: "Family members looking at a phone together",
   },
 ] as const;
 

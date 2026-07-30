@@ -7,7 +7,8 @@ export function AudienceExplorer() {
   return (
     <section className="audience section" id="audience">
       <header className="chapter-heading">
-        <h2>For those who power the global economy</h2>
+        <h2>Jazari is for you if…</h2>
+        <p>Three situations. One dollar balance.</p>
       </header>
 
       <div className="audience-explorer">
@@ -21,7 +22,9 @@ export function AudienceExplorer() {
             <img src={item.image} alt={item.alt} />
             <div className="audience-caption">
               <h3>{item.title}</h3>
-              <p>{item.line}</p>
+              <ul>
+                {item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+              </ul>
             </div>
           </article>
         ))}

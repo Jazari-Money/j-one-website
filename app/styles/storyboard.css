@@ -381,8 +381,15 @@
 }
 
 .sb-inline-link {
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid transparent;
   font-size: 15px;
+  transition: border-color 220ms ease;
+}
+
+.sb-inline-link:hover,
+.sb-inline-link:focus-visible {
+  border-color: currentColor;
+  outline: 0;
 }
 
 .sb-article-link {

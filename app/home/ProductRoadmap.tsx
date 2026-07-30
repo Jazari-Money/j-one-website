@@ -19,7 +19,7 @@ export const milestones = [
   {
     title: "USD account",
     copy:
-      "A US routing and account number in your name, issued through a licensed US bank partner. Receive eligible payments by ACH, FedNow, domestic wire, or SWIFT.",
+      "You get a US routing and account number in your name through a licensed US bank partner. Receive payments by ACH, FedNow, domestic wire, or SWIFT.",
     notes: ["No US residency required"],
     art: {
       src: withBasePath("/images/roadmap/usa-flag.png"),
@@ -38,7 +38,7 @@ export const milestones = [
     },
   },
   {
-    title: "New receive countries",
+    title: "Expanded payout corridors",
     copy: "",
     notes: [],
     flags: [
@@ -49,15 +49,15 @@ export const milestones = [
     ],
   },
   {
-    title: "Yields with higher APY",
+    title: "Higher-yield APY",
     copy:
-      "Additional independently managed strategies with different assets and potential APYs.",
+      "Put dollars into independently managed strategies with different assets and potential APYs.",
     notes: [],
   },
   {
     title: "Remit Now Pay Later",
     copy:
-      "Eligible members may choose a support amount and repayment option before confirming.",
+      "Choose a support amount and repayment option before you confirm.",
     notes: [],
   },
 ] as const;
@@ -104,10 +104,10 @@ export function ProductRoadmap() {
     <section className="roadmap section" id="roadmap">
       <header className="roadmap-heading">
         <div className="chapter-heading">
-          <h2>Roadmap</h2>
-          <p>What we&apos;re building next.</p>
+          <h2>Coming Soon</h2>
+          <p>What you&apos;ll be able to do next.</p>
         </div>
-        <div className="roadmap-controls" aria-label="Roadmap navigation">
+        <div className="roadmap-controls" aria-label="Coming Soon navigation">
           <Link className="roadmap-all-link neutral-control" href="/roadmap">View All</Link>
           <button className="realism-icon-button" type="button" onClick={() => move(-1)} aria-label="Previous milestone">
             <ArrowIcon direction="left" />

@@ -29,7 +29,16 @@
 .faq-contact a {
   color: var(--text);
   text-decoration: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
   text-underline-offset: 4px;
+  transition: color 180ms ease, text-decoration-color 220ms ease;
+}
+
+.faq-contact a:hover,
+.faq-contact a:focus-visible {
+  text-decoration-color: currentColor;
+  outline: 0;
 }
 
 @media (max-width: 900px) {

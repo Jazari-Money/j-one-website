@@ -29,22 +29,22 @@ const questions = [
   {
     question: "Why does the rate change?",
     answer:
-      "Borrowing demand, available liquidity, market conditions, and strategy allocation all move over time. That is why the displayed APY is a variable snapshot rather than a promise.",
+      "Borrowing demand, liquidity, market conditions, and strategy allocation all move over time. That is why the APY you see is a variable snapshot rather than a promise.",
   },
   {
     question: "Who manages the strategy?",
     answer:
-      "Gauntlet independently curates and manages Gauntlet USD Alpha. Gauntlet is a risk-management firm, not a bank and not Jazari One. Jazari provides the product interface where available.",
+      "Gauntlet independently curates and manages Gauntlet USD Alpha. Gauntlet is a risk-management firm, not a bank and not Jazari One. You access the strategy through Jazari.",
   },
   {
     question: "How do I add funds?",
     answer:
-      "Enter an amount up to your available balance and review the strategy, current APY, asset, network costs, and risk notice before confirming. Jazari balances may hold USDC or USDT; supported funding routes are shown in the app.",
+      "Choose an amount from your balance, then review the strategy, current APY, asset, network costs, and risk notice before you confirm. Your balance may hold USDC or USDT; the app shows the funding routes you can use.",
   },
   {
     question: "Can I withdraw?",
     answer:
-      "There is no fixed lock-up period. Withdrawals are typically available, but processing can take longer during high network congestion, low liquidity, heavy vault activity, or market stress.",
+      "You can normally withdraw without a fixed lock-up period. Processing can take longer during high network congestion, low liquidity, heavy vault activity, or market stress.",
   },
   {
     question: "What are the risks?",
@@ -61,7 +61,7 @@ export function YieldsPage() {
       <header className="yields-hero">
         <h1>Yields</h1>
         <p>
-          Put eligible digital dollars to work through independently managed
+          Put your USDC or USDT to work through independently managed
           onchain strategies. Rates move daily and returns are never guaranteed.
         </p>
       </header>
@@ -76,7 +76,7 @@ export function YieldsPage() {
           <img src={withBasePath("/images/rails/gauntlet.svg")} alt="Gauntlet" />
           <h2 id="yield-strategy-title">Gauntlet USD Alpha</h2>
           <p>
-            An independently managed, Base-based strategy that reallocates
+            You access an independently managed, Base-based strategy that reallocates
             across stablecoin opportunities while monitoring liquidity,
             stablecoin, and smart-contract risk.
           </p>
