@@ -145,8 +145,12 @@
   }
 
   .about-partner-card {
-    min-height: 240px;
+    min-height: 0;
     padding: 28px 26px;
     border-radius: 22px;
+  }
+
+  .about-partner-card > div:last-child {
+    margin-top: 24px;
   }
 }

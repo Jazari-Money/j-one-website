@@ -13,7 +13,7 @@ export function Phone({
 }) {
   return (
     <div className={`phone ${className}`}>
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt} loading="eager" decoding="async" />
     </div>
   );
 }

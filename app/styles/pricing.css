@@ -119,12 +119,34 @@
 @media (max-width: 620px) {
   .pricing-hero { padding: 146px 0 62px; }
   .pricing-hero h1 { font-size: 68px; }
-  .pricing-groups { border-radius: 22px; }
-  .pricing-group { min-height: 0; padding: 18px 16px 22px; gap: 18px; }
-  .pricing-group h2 { padding-top: 4px; }
+  .pricing-groups {
+    overflow: visible;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    display: grid;
+    gap: 12px;
+  }
+  .pricing-group {
+    min-height: 0;
+    padding: 22px 18px;
+    border-radius: 22px;
+    background: var(--surface);
+    gap: 14px;
+  }
+  .pricing-group h2 { padding-top: 0; }
   .pricing-group + .pricing-group::before { right: 24px; left: 24px; }
-  .pricing-group dl > div { min-height: 0; grid-template-columns: 1fr; gap: 4px; padding: 14px 16px; }
-  .pricing-group dl > div + div::before { right: 16px; left: 16px; }
+  .pricing-group dl {
+    border-radius: 0;
+    background: transparent;
+  }
+  .pricing-group dl > div {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 4px;
+    padding: 14px 0;
+  }
+  .pricing-group dl > div + div::before { right: 0; left: 0; }
   .pricing-group dd {
     color: var(--text);
     font-size: 16px;

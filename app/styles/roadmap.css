@@ -365,8 +365,8 @@
   }
   .roadmap-window { margin-top: 40px; }
   .roadmap-card {
-    flex-basis: min(328px, 84vw);
-    min-width: min(328px, 84vw);
+    flex-basis: min(328px, calc(100vw - 92px));
+    min-width: min(328px, calc(100vw - 92px));
     min-height: 350px;
     padding: 30px 26px;
     border-radius: 22px;
@@ -424,5 +424,12 @@
     width: 122%;
     max-height: none;
     transform: translate(20px, -20px);
+  }
+}
+
+@media (max-width: 360px) {
+  .roadmap-card {
+    flex-basis: calc(100vw - 56px);
+    min-width: calc(100vw - 56px);
   }
 }

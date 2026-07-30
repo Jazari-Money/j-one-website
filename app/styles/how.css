@@ -768,6 +768,11 @@
 }
 
 @media (max-width: 620px) {
+  .how-anchor,
+  .review-block {
+    scroll-margin-top: 82px;
+  }
+
   .how {
     padding-top: 132px;
   }

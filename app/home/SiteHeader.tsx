@@ -13,6 +13,7 @@ export function SiteHeader({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [personalOpen, setPersonalOpen] = useState(false);
   const personalMenuRef = useRef<HTMLDetailsElement>(null);
   const homeHref = mode === "home" ? "#top" : withBasePath("/#top");
   const sectionHref = (section: string) =>
@@ -29,6 +30,7 @@ export function SiteHeader({
     const close = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") {
         setMobileOpen(false);
+        setPersonalOpen(false);
       }
     };
     window.addEventListener("keydown", close);
@@ -47,9 +49,8 @@ export function SiteHeader({
   useEffect(() => {
     const closePersonalMenu = (event: PointerEvent) => {
       const menu = personalMenuRef.current;
-      if (menu && !menu.contains(event.target as Node)) {
-        menu.removeAttribute("open");
-      }
+      if (window.matchMedia("(max-width: 900px)").matches) return;
+      if (menu && !menu.contains(event.target as Node)) setPersonalOpen(false);
     };
     document.addEventListener("pointerdown", closePersonalMenu);
     return () => document.removeEventListener("pointerdown", closePersonalMenu);
@@ -57,6 +58,7 @@ export function SiteHeader({
 
   function closeMobile() {
     setMobileOpen(false);
+    setPersonalOpen(false);
   }
 
   return (
@@ -67,8 +69,17 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <details ref={personalMenuRef} className="nav-dropdown" open={mobileOpen || undefined}>
-            <summary>Personal</summary>
+          <details ref={personalMenuRef} className="nav-dropdown" open={mobileOpen || personalOpen}>
+            <summary
+              onClick={(event) => {
+                event.preventDefault();
+                if (!window.matchMedia("(max-width: 900px)").matches) {
+                  setPersonalOpen((open) => !open);
+                }
+              }}
+            >
+              Personal
+            </summary>
             <span className="nav-mobile-section-title">Personal</span>
             <div className="nav-dropdown-menu">
               <a href={sectionHref("how-receive")} onClick={closeMobile}>Receive</a>
@@ -78,8 +89,8 @@ export function SiteHeader({
             </div>
           </details>
           <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
-          <a href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
           <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
+          <a href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
           <div className="nav-mobile-extras">
             <a
               className="neutral-control"

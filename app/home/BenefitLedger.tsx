@@ -22,6 +22,18 @@ function BenefitRow({
         <img src={feature.image} alt="" aria-hidden="true" />
         <div className="benefit-copy">
           <p>{feature.copy}</p>
+          {feature.id === "local-money" && (
+            <a
+              className="benefit-countries-link"
+              href="#receiving-countries"
+              onClick={(event) => {
+                event.preventDefault();
+                window.dispatchEvent(new Event("jazari:open-countries"));
+              }}
+            >
+              View receiving countries
+            </a>
+          )}
         </div>
       </div>
     </li>

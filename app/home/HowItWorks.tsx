@@ -69,6 +69,15 @@ export function HowItWorks({
     return () => window.removeEventListener("hashchange", syncScenarioFromHash);
   }, []);
 
+  useEffect(() => {
+    const openCountries = () => {
+      const dialog = countriesDialog.current;
+      if (dialog && !dialog.open) dialog.showModal();
+    };
+    window.addEventListener("jazari:open-countries", openCountries);
+    return () => window.removeEventListener("jazari:open-countries", openCountries);
+  }, []);
+
   function selectScenario(next: HowScenario) {
     setActiveScenario(next);
     setActiveStep(0);
@@ -175,14 +184,12 @@ export function HowItWorks({
           aria-labelledby={`step-tab-${step.id}`}
         >
           <div className="step-screen-stack">
-            {scenario.steps.map((item, index) => (
-              <Phone
-                key={item.id}
-                src={item.screen}
-                alt={activeStep === index ? item.alt : ""}
-                className={`active-step-phone ${activeStep === index ? "is-active" : ""}`}
-              />
-            ))}
+            <Phone
+              key={step.id}
+              src={step.screen}
+              alt={step.alt}
+              className="active-step-phone is-active"
+            />
           </div>
         </div>
       </div>
@@ -297,6 +304,7 @@ export function HowItWorks({
       </div>
 
       <dialog
+        id="receiving-countries"
         className="receive-countries-dialog"
         ref={countriesDialog}
         onClick={(event) => {

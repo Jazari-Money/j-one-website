@@ -1,7 +1,7 @@
 .site-footer {
   width: var(--page);
   margin: 0 auto;
-  padding: 92px 0 48px;
+  padding: 92px 0 calc(48px + env(safe-area-inset-bottom));
   color: var(--muted);
 }
 
@@ -201,9 +201,18 @@
   }
   .footer-navigation {
     grid-column: 1 / -1;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-top: 34px;
-    gap: 20px 12px;
+    gap: 28px 20px;
+  }
+  .footer-navigation > div:last-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+  }
+  .footer-navigation > div:last-child strong {
+    grid-column: 1 / -1;
   }
   .footer-navigation a,
   .footer-navigation button {

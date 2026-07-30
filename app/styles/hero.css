@@ -613,11 +613,23 @@
   }
 
   .hero-product {
-    height: 300px;
+    height: 320px;
     margin-top: 38px;
     background: transparent;
-    -webkit-mask-image: none;
-    mask-image: none;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 50%,
+      rgba(0, 0, 0, 0.72) 72%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 50%,
+      rgba(0, 0, 0, 0.72) 72%,
+      transparent 100%
+    );
   }
 
   .hero-device-glow {
@@ -626,20 +638,8 @@
 
   .hero-device {
     width: min(270px, 72vw);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 47%,
-      rgba(0, 0, 0, 0.84) 57%,
-      transparent 82%
-    );
-    mask-image: linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 47%,
-      rgba(0, 0, 0, 0.84) 57%,
-      transparent 82%
-    );
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 }
 

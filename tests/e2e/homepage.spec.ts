@@ -180,7 +180,7 @@ test("keeps the core interactions working", async ({ page }) => {
   );
   await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
     "src",
-    /how-to-send-01\.png$/,
+    /how-to-send-01\.webp$/,
   );
   await page.getByRole("tab", { name: "Yields", exact: true }).click();
   const yieldsLink = page.getByRole("link", { name: "Learn more about Yields" });
@@ -261,6 +261,9 @@ test("keeps the core interactions working", async ({ page }) => {
   const queuedReceivingCountries = ["India", "Bangladesh", "Pakistan", "Nigeria"];
   const countriesDialog = page.locator(".receive-countries-dialog");
   await expect(countriesDialog).not.toBeVisible();
+  await page.getByRole("link", { name: "View receiving countries" }).click();
+  await expect(countriesDialog).toBeVisible();
+  await page.getByRole("button", { name: "Close receiving countries" }).click();
   await page.getByRole("button", { name: "All receiving countries" }).click();
   await expect(countriesDialog).toBeVisible();
   await expect(countriesDialog.locator(".receiving-country-group li")).toHaveText(receivingCountries);
@@ -547,6 +550,8 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu.getByRole("link", { name: "Jazari One on X" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on Instagram" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on Facebook" })).toBeVisible();
+  await menu.click({ position: { x: 360, y: 780 } });
+  await expect(menu.getByRole("link", { name: "Receive", exact: true })).toBeVisible();
   await expect
     .poll(() => menu.evaluate((node) => Math.round(node.getBoundingClientRect().height)))
     .toBe(844);
@@ -570,6 +575,7 @@ test("keeps the mobile phone preview and step accordion in one viewport", async 
   const stepTabs = page.locator(".step-tabs");
   const steps = stepTabs.getByRole("tab");
   await expect(steps).toHaveCount(3);
+  await expect(page.locator(".step-screen .active-step-phone")).toHaveCount(1);
 
   const initialLayout = await page.evaluate(() => {
     const scenario = document.querySelector(".how-scenario-tabs")?.getBoundingClientRect();
@@ -601,7 +607,7 @@ test("keeps the mobile phone preview and step accordion in one viewport", async 
   await expect(steps.nth(1)).toHaveAttribute("aria-selected", "true");
   await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
     "src",
-    /how-to-receive-02\.png$/,
+    /how-to-receive-02\.webp$/,
   );
   await expect(page.locator(".step-tab-item").nth(1).locator("small")).toBeVisible();
   await expect(page.locator(".step-tab-item").nth(0).locator("small")).toBeHidden();

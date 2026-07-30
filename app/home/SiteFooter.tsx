@@ -28,8 +28,8 @@ export function SiteFooter() {
           </div>
           <div>
             <strong>Explore</strong>
-            <Link href="/about">About us</Link>
             <Link href="/blog">Blog</Link>
+            <Link href="/about">About us</Link>
             <Link href="/partners">Partners</Link>
             <Link href="/#faq">FAQ</Link>
             <a href="mailto:hello@jazari.xyz">Contact</a>
