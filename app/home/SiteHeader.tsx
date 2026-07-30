@@ -107,19 +107,6 @@ export function SiteHeader({
               <a href={withBasePath("/partners/")} onClick={closeMobile}>Partners</a>
               <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
               <a href="mailto:hello@jazari.xyz" onClick={closeMobile}>Contact</a>
-              <div className="nav-mobile-legal">
-                <a href={withBasePath("/terms/")} onClick={closeMobile}>Terms</a>
-                <a href={withBasePath("/privacy-policy/")} onClick={closeMobile}>Privacy</a>
-                <button
-                  type="button"
-                  onClick={() => {
-                    window.dispatchEvent(new Event("jazari:open-cookies"));
-                    closeMobile();
-                  }}
-                >
-                  Cookies
-                </button>
-              </div>
             </section>
           </div>
           <div className="nav-mobile-extras">
@@ -133,6 +120,10 @@ export function SiteHeader({
               Download App
             </a>
             <SocialLinks className="nav-mobile-socials" />
+          </div>
+          <div className="nav-mobile-legal">
+            <a href={withBasePath("/terms/")} onClick={closeMobile}>Terms &amp; Conditions</a>
+            <a href={withBasePath("/privacy-policy/")} onClick={closeMobile}>Privacy Policy</a>
           </div>
         </div>
 

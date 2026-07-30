@@ -113,7 +113,11 @@ test("server-renders plan, yields, coming soon, partners, and about pages", asyn
   assert.match(partners, /Networks and digital dollars/);
   assert.match(partners, /USDC/);
 
-  assert.match(about, /<h1>Who you&#x27;re trusting with your money<\/h1>/);
+  assert.match(about, /<h1>Why we&#x27;re building Jazari One<\/h1>/);
+  assert.match(about, /Every transfer begins with something real/);
+  assert.match(about, /Built in the United States and the UAE/);
+  assert.match(about, /Registered in Dover, Delaware/);
+  assert.match(about, /Registration #78870/);
   assert.match(about, /We&#x27;re not a bank/);
   assert.match(about, /Bridge, a Stripe company/);
   assert.match(about, /Your account, your keys\./);

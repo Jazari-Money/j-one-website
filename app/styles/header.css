@@ -211,6 +211,10 @@
   display: none;
 }
 
+.nav-mobile-legal {
+  display: none;
+}
+
 .social-links {
   display: flex;
   align-items: center;
@@ -352,20 +356,18 @@
   }
 
   .nav-mobile-legal {
-    margin-top: 14px;
-    padding-top: 14px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 18px;
     border-top: 1px solid var(--line);
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 16px;
+    gap: 8px 20px;
   }
 
-  .nav-mobile-legal a,
-  .nav-mobile-legal button {
+  .nav-mobile-legal a {
     min-height: 32px;
     padding: 0;
-    border: 0;
-    background: transparent;
     color: var(--muted);
     font-size: 13px;
     display: inline-flex;
@@ -441,7 +443,7 @@
 
   .nav-mobile-extras {
     width: 100%;
-    margin-top: 28px;
+    margin-top: 32px;
     padding-top: 24px;
     border-top: 1px solid var(--line);
     display: flex;
@@ -483,13 +485,13 @@
   }
 
   .nav-mobile-extras {
-    align-items: flex-start;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
   }
 
   .nav-mobile-groups {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 44px;
   }
 
   .nav-mobile-group {
@@ -498,12 +500,31 @@
     column-gap: 20px;
   }
 
-  .nav-mobile-group > strong,
-  .nav-mobile-legal {
+  .nav-mobile-group > strong {
     grid-column: 1 / -1;
   }
 
   .nav-mobile-group > a {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 360px) {
+  .nav-mobile-extras {
+    gap: 12px;
+  }
+
+  .nav-mobile-extras > a {
+    padding-inline: 16px;
+    font-size: 13px;
+  }
+
+  .nav-mobile-socials {
+    gap: 6px;
+  }
+
+  .nav-mobile-socials a {
+    width: 36px;
+    height: 36px;
   }
 }

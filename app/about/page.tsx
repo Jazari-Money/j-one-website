@@ -4,11 +4,11 @@ import { AboutPage } from "./AboutPage";
 export const metadata: Metadata = {
   title: "About us — Jazari One",
   description:
-    "See who holds and moves your money, runs your wallet, and manages yield strategies when you use Jazari One.",
+    "Why we are building Jazari One, where our businesses are registered, and who helps us move and manage money.",
   openGraph: {
-    title: "Who you’re trusting with your money — Jazari One",
+    title: "Why we’re building Jazari One",
     description:
-      "See the public, regulated partners responsible for custody, payouts, wallet controls, and yield strategies.",
+      "Our manifesto, our registered businesses in the United States and UAE, and the partners behind Jazari One.",
   },
 };
 

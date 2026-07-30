@@ -506,10 +506,41 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   expect(secondCard).not.toBeNull();
   expect(firstCard!.height).toBe(500);
   expect(secondCard!.x).toBeGreaterThan(firstCard!.x + firstCard!.width);
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  const mobileHeights = await roadmapCards.evaluateAll((cards) =>
+    cards.map((card) => Math.round(card.getBoundingClientRect().height)),
+  );
+  expect(new Set(mobileHeights).size).toBe(1);
+  expect(mobileHeights[0]).toBe(440);
+  const [mobileCard, mobileArt] = await Promise.all([
+    usdAccountCard.boundingBox(),
+    usdAccountCard.locator(".roadmap-full-card-art").boundingBox(),
+  ]);
+  expect(mobileCard).not.toBeNull();
+  expect(mobileArt).not.toBeNull();
+  expect(mobileArt!.x).toBeGreaterThanOrEqual(mobileCard!.x);
+  expect(mobileArt!.x + mobileArt!.width).toBeLessThanOrEqual(
+    mobileCard!.x + mobileCard!.width + 1,
+  );
+  expect(mobileArt!.y + mobileArt!.height).toBeLessThanOrEqual(
+    mobileCard!.y + mobileCard!.height + 1,
+  );
 });
 
 test("explains who the reader trusts with their money", async ({ page }) => {
   await page.goto("/about/", { waitUntil: "networkidle" });
+  await expect(
+    page.getByRole("heading", { name: "Why we're building Jazari One" }),
+  ).toBeVisible();
+  await expect(page.getByText(/Every transfer begins with something real/)).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Built in the United States and the UAE." }),
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Jazari One, Inc." })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Jazari Fintech Services — FZCO" }),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Who you're trusting with your money" }),
   ).toBeVisible();
@@ -517,10 +548,12 @@ test("explains who the reader trusts with their money", async ({ page }) => {
   await expect(page.locator(".about-partners .provider-card")).toHaveCount(3);
   await expect(page.getByText("Your account, your keys.")).toBeVisible();
   await expect(page.getByText(/not a bank and not us/)).toBeVisible();
-  await expect(page.getByRole("link", { name: /See all partners/ })).toHaveAttribute(
+  const allPartners = page.getByRole("link", { name: /See all partners/ });
+  await expect(allPartners).toHaveAttribute(
     "href",
     /\/partners\/?$/,
   );
+  await expect(allPartners).toHaveCSS("border-radius", "999px");
 });
 
 test("uses concise Blog titles without route labels", async ({ page }) => {
@@ -569,8 +602,21 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu.getByText("Company", { exact: true })).toBeVisible();
   await expect(menu.getByRole("link", { name: "How it works" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Partners", exact: true })).toBeVisible();
-  await expect(menu.getByRole("link", { name: "Terms", exact: true })).toBeVisible();
-  await expect(menu.getByRole("button", { name: "Cookies", exact: true })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Terms & Conditions" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Privacy Policy" })).toBeVisible();
+  await expect(menu.getByText("Cookies", { exact: true })).toHaveCount(0);
+  const [download, socials, legal] = await Promise.all([
+    menu.getByRole("link", { name: "Download App" }).boundingBox(),
+    menu.locator(".nav-mobile-socials").boundingBox(),
+    menu.locator(".nav-mobile-legal").boundingBox(),
+  ]);
+  expect(download).not.toBeNull();
+  expect(socials).not.toBeNull();
+  expect(legal).not.toBeNull();
+  expect(Math.abs(
+    download!.y + download!.height / 2 - (socials!.y + socials!.height / 2),
+  )).toBeLessThanOrEqual(1);
+  expect(legal!.y).toBeGreaterThan(download!.y + download!.height);
   await expect
     .poll(() => menu.evaluate((node) => Math.round(node.getBoundingClientRect().height)))
     .toBe(844);
@@ -580,12 +626,50 @@ test("opens a full-height mobile navigation with download and social actions", a
 
   await page.getByRole("button", { name: "Close navigation" }).click();
   await expect(menu).not.toHaveClass(/is-open/);
+});
 
-  await page.getByRole("button", { name: "Open navigation" }).click();
-  await menu.getByRole("button", { name: "Cookies", exact: true }).click();
-  await expect(menu).not.toHaveClass(/is-open/);
-  await expect(page.getByRole("dialog", { name: "Cookie preferences" })).toBeVisible();
-  await page.getByRole("button", { name: "Essential Only" }).click();
+test("keeps mobile Coming Soon cards visible and their artwork contained", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await prepareStablePage(page);
+
+  const roadmapWindow = page.locator(".roadmap-window");
+  const roadmapTrack = page.locator(".roadmap-track");
+  await roadmapWindow.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() => roadmapWindow.evaluate(
+      (node) => getComputedStyle(node, "::after").display,
+    ))
+    .toBe("none");
+
+  for (const index of [0, 1]) {
+    const card = page.locator(".roadmap-card").nth(index);
+    const art = card.locator(".roadmap-card-art");
+    const copy = card.locator(".roadmap-card-bottom");
+    const [cardBox, artBox, copyBox] = await Promise.all([
+      card.boundingBox(),
+      art.boundingBox(),
+      copy.boundingBox(),
+    ]);
+    expect(cardBox).not.toBeNull();
+    expect(artBox).not.toBeNull();
+    expect(copyBox).not.toBeNull();
+    expect(artBox!.x).toBeGreaterThanOrEqual(cardBox!.x);
+    expect(artBox!.x + artBox!.width).toBeLessThanOrEqual(cardBox!.x + cardBox!.width + 1);
+    expect(artBox!.y + artBox!.height).toBeLessThanOrEqual(cardBox!.y + cardBox!.height + 1);
+    expect(copyBox!.y + copyBox!.height).toBeLessThanOrEqual(artBox!.y + 1);
+  }
+
+  await roadmapTrack.evaluate((node) => {
+    node.scrollLeft = node.scrollWidth - node.clientWidth;
+  });
+  await expect
+    .poll(() => roadmapTrack.evaluate(
+      (node) => Math.round(node.scrollWidth - node.clientWidth - node.scrollLeft),
+    ))
+    .toBeLessThanOrEqual(1);
+  await expect(page.locator(".roadmap-card").last()).toBeVisible();
+  await expect(page.locator(".roadmap-card").last()).toHaveCSS("transform-style", "flat");
+  await expect(page.locator(".roadmap-card").last()).toHaveCSS("will-change", "auto");
 });
 
 test("keeps the mobile phone preview and step accordion in one viewport", async ({ page }) => {
