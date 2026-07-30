@@ -558,6 +558,104 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu).not.toHaveClass(/is-open/);
 });
 
+test("keeps the mobile phone preview and step accordion in one viewport", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await prepareStablePage(page);
+
+  const scenarioTabs = page.locator(".how-scenario-tabs");
+  await scenarioTabs.evaluate((node) => node.scrollIntoView({ block: "start" }));
+  await page.evaluate(() => window.scrollBy(0, -86));
+
+  const phone = page.locator(".step-screen");
+  const stepTabs = page.locator(".step-tabs");
+  const steps = stepTabs.getByRole("tab");
+  await expect(steps).toHaveCount(3);
+
+  const initialLayout = await page.evaluate(() => {
+    const scenario = document.querySelector(".how-scenario-tabs")?.getBoundingClientRect();
+    const screen = document.querySelector(".step-screen")?.getBoundingClientRect();
+    const tabs = document.querySelector(".step-tabs")?.getBoundingClientRect();
+    const finalStep = document.querySelector(".step-tab-item:last-child")?.getBoundingClientRect();
+    return {
+      scenarioBottom: scenario?.bottom ?? Number.POSITIVE_INFINITY,
+      screenTop: screen?.top ?? 0,
+      screenBottom: screen?.bottom ?? Number.POSITIVE_INFINITY,
+      tabsTop: tabs?.top ?? 0,
+      finalStepBottom: finalStep?.bottom ?? Number.POSITIVE_INFINITY,
+      viewportHeight: window.innerHeight,
+    };
+  });
+
+  expect(initialLayout.screenTop).toBeGreaterThanOrEqual(initialLayout.scenarioBottom);
+  expect(initialLayout.tabsTop).toBeGreaterThanOrEqual(initialLayout.screenBottom);
+  expect(initialLayout.finalStepBottom).toBeLessThanOrEqual(initialLayout.viewportHeight);
+  await expect(phone).toBeVisible();
+  await expect(steps.nth(0)).toHaveAttribute("aria-selected", "true");
+  await expect
+    .poll(() => page.locator(".step-tab-item").nth(0).evaluate(
+      (node) => getComputedStyle(node).counterIncrement,
+    ))
+    .toBe("how-step 1");
+
+  await steps.nth(1).click();
+  await expect(steps.nth(1)).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
+    "src",
+    /how-to-receive-02\.png$/,
+  );
+  await expect(page.locator(".step-tab-item").nth(1).locator("small")).toBeVisible();
+  await expect(page.locator(".step-tab-item").nth(0).locator("small")).toBeHidden();
+});
+
+test("contains the mobile coming-soon badge at narrow widths", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await prepareStablePage(page);
+
+  const finalStep = page.getByRole("tab", { name: /Share USD account/ });
+  const badge = finalStep.locator(".step-status");
+  const bounds = await Promise.all([
+    finalStep.boundingBox(),
+    badge.boundingBox(),
+  ]);
+
+  expect(bounds[0]).not.toBeNull();
+  expect(bounds[1]).not.toBeNull();
+  expect(bounds[1]!.x).toBeGreaterThanOrEqual(bounds[0]!.x);
+  expect(bounds[1]!.x + bounds[1]!.width).toBeLessThanOrEqual(bounds[0]!.x + bounds[0]!.width);
+});
+
+test("fits the complete Yields mobile interaction at 430px", async ({ page }) => {
+  await page.setViewportSize({ width: 430, height: 932 });
+  await prepareStablePage(page);
+
+  await page.getByRole("tab", { name: "Yields", exact: true }).click();
+  const scenarioTabs = page.locator(".how-scenario-tabs");
+  await scenarioTabs.evaluate((node) => node.scrollIntoView({ block: "start" }));
+  await page.evaluate(() => window.scrollBy(0, -86));
+
+  const learnMore = page.getByRole("link", { name: "Learn more about Yields" });
+  await expect(learnMore).toBeVisible();
+  const layout = await page.evaluate(() => {
+    const scenario = document.querySelector(".how-scenario-tabs")?.getBoundingClientRect();
+    const screen = document.querySelector(".step-screen")?.getBoundingClientRect();
+    const finalStep = document.querySelector(".step-tab-item:last-child")?.getBoundingClientRect();
+    const link = document.querySelector(".how-learn-more")?.getBoundingClientRect();
+    return {
+      scenarioTop: scenario?.top ?? -1,
+      screenBottom: screen?.bottom ?? Number.POSITIVE_INFINITY,
+      finalStepBottom: finalStep?.bottom ?? Number.POSITIVE_INFINITY,
+      linkTop: link?.top ?? 0,
+      linkBottom: link?.bottom ?? Number.POSITIVE_INFINITY,
+      viewportHeight: window.innerHeight,
+    };
+  });
+
+  expect(layout.scenarioTop).toBeGreaterThanOrEqual(70);
+  expect(layout.finalStepBottom).toBeGreaterThanOrEqual(layout.screenBottom);
+  expect(layout.linkTop).toBeGreaterThanOrEqual(layout.finalStepBottom);
+  expect(layout.linkBottom).toBeLessThanOrEqual(layout.viewportHeight);
+});
+
 for (const viewport of [
   { name: "desktop", width: 1440, height: 1000 },
   { name: "tablet", width: 820, height: 1100 },
