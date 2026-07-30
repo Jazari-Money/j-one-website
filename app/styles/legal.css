@@ -42,7 +42,7 @@
   margin: 0 auto;
   padding-bottom: 150px;
   display: grid;
-  grid-template-columns: minmax(180px, 250px) minmax(0, 820px);
+  grid-template-columns: minmax(180px, 250px) minmax(0, 740px);
   justify-content: space-between;
   gap: clamp(70px, 10vw, 150px);
   align-items: start;
@@ -86,6 +86,7 @@
 
 .legal-document {
   grid-column: 2;
+  min-width: 0;
 }
 
 .legal-document > section {
@@ -100,6 +101,7 @@
   font-weight: 400;
   letter-spacing: -0.2px;
   line-height: 0.98;
+  text-wrap: balance;
 }
 
 .legal-copy {
@@ -180,7 +182,7 @@
 
 @media (max-width: 900px) {
   .legal-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 56px;
   }
 

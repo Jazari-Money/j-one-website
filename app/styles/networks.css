@@ -8,11 +8,14 @@
 
 .networks-all-link {
   flex: 0 0 auto;
+  min-height: 44px;
   margin-bottom: 8px;
   padding: 12px 18px;
   color: var(--text);
   font-size: 15px;
   font-weight: 500;
+  display: inline-flex;
+  align-items: center;
 }
 
 .provider-grid {
@@ -172,6 +175,7 @@
   font-weight: 400;
   letter-spacing: -0.2px;
   line-height: 0.94;
+  text-wrap: balance;
 }
 
 .partner-directory .provider-grid {
@@ -217,5 +221,12 @@
 
   .partner-directory {
     padding-bottom: 50px;
+  }
+}
+
+@media (max-width: 520px) {
+  .provider-grid,
+  .directory-network-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

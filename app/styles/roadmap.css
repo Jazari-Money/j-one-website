@@ -286,7 +286,7 @@
   z-index: 0;
   right: 12px;
   bottom: -8px;
-  width: min(55%, 640px);
+  width: min(43%, 500px);
   max-height: 72%;
   object-fit: contain;
   object-position: right bottom;
@@ -310,6 +310,7 @@
   font-weight: 400;
   letter-spacing: -0.3px;
   line-height: 0.94;
+  text-wrap: balance;
 }
 
 .roadmap-full-card.has-art h2 {
@@ -324,7 +325,7 @@
 }
 
 .roadmap-full-card.has-art > div {
-  max-width: 55%;
+  max-width: 48%;
 }
 
 .roadmap-full-card p {
@@ -396,8 +397,8 @@
   .roadmap-full-hero h1 { font-size: 68px; }
   .roadmap-full-grid { grid-template-columns: 1fr; padding-bottom: 84px; }
   .roadmap-full-card {
-    min-height: 0;
-    aspect-ratio: 4 / 5;
+    min-height: 330px;
+    aspect-ratio: auto;
     padding: 30px 26px;
   }
   .roadmap-full-card h2 { font-size: 50px; }
@@ -405,17 +406,22 @@
     max-width: 100%;
   }
   .roadmap-full-card.has-art > div {
-    max-width: 58%;
-    margin-bottom: 0;
+    max-width: 100%;
+    margin-bottom: 186px;
   }
   .roadmap-full-card-art {
-    width: 86%;
-    max-height: 220px;
+    right: 0;
+    bottom: 0;
+    width: 78%;
+    max-height: 190px;
+  }
+  .roadmap-full-card.has-art {
+    min-height: 540px;
   }
   .roadmap-full-card.art-card .roadmap-full-card-art {
-    right: -46%;
-    bottom: -12%;
-    width: 134%;
+    right: -36%;
+    bottom: -14%;
+    width: 122%;
     max-height: none;
     transform: translate(20px, -20px);
   }

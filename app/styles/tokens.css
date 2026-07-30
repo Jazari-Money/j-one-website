@@ -37,6 +37,6 @@
 
 @media (max-width: 620px) {
   :root {
-    --page: calc(100% - 28px);
+    --page: calc(100% - 40px);
   }
 }

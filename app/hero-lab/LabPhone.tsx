@@ -45,6 +45,7 @@ export function LabPhone({
         loop
         muted
         playsInline
+        poster={withBasePath("/images/screens/hero-video-poster.png")}
         preload="metadata"
         aria-label="Jazari One app experience"
       >

@@ -743,7 +743,7 @@
   }
 
   .step-tabs small {
-    display: none;
+    display: block;
   }
 
   .step-screen {
@@ -779,28 +779,34 @@
   .step-tabs {
     padding: 3px;
     border-radius: 18px;
+    grid-template-columns: 1fr;
   }
 
   .step-tabs button {
-    min-height: 62px;
-    padding: 12px 8px;
+    min-height: 0;
+    padding: 16px;
     border-radius: 15px;
-    text-align: center;
+    text-align: left;
     font-weight: 400;
   }
 
   .step-title-line > span {
-    font-size: 13px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 600;
   }
 
   .step-title-line {
-    justify-content: center;
+    justify-content: flex-start;
+  }
+
+  .step-tabs small {
+    margin-top: 7px;
+    font-size: 14px;
   }
 
   .how-learn-more {
-    margin: 14px auto 0;
-    font-size: 12px;
+    margin: 14px 0 0;
+    font-size: 13px;
   }
 
   .how-scenario-tabs button {

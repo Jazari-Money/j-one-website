@@ -143,7 +143,7 @@
 @media (max-width: 620px) {
   .blog-index-header,
   .blog-index-articles {
-    width: calc(100% - 28px);
+    width: var(--page);
   }
 
   .blog-index-header {
@@ -163,6 +163,21 @@
     aspect-ratio: 1 / 1;
     padding: 27px 24px;
     border-radius: 24px;
+  }
+
+  .blog-index-grid > a.has-image::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.12) 12%,
+      rgba(0, 0, 0, 0.56) 48%,
+      rgba(0, 0, 0, 0.94) 76%,
+      #000 100%
+    );
+  }
+
+  .blog-index-grid > a:not(.has-image) {
+    min-height: 300px;
+    aspect-ratio: auto;
   }
 
   .blog-index-grid h3 {

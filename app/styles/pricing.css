@@ -125,5 +125,10 @@
   .pricing-group + .pricing-group::before { right: 24px; left: 24px; }
   .pricing-group dl > div { min-height: 0; grid-template-columns: 1fr; gap: 4px; padding: 14px 16px; }
   .pricing-group dl > div + div::before { right: 16px; left: 16px; }
-  .pricing-group dd { text-align: left; }
+  .pricing-group dd {
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+  }
 }

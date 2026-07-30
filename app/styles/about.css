@@ -90,9 +90,14 @@
   line-height: 1.65;
 }
 
+.about-details p {
+  text-wrap: balance;
+}
+
 .about-partners-link {
   display: inline-flex;
   align-items: center;
+  min-height: 44px;
   gap: 8px;
   margin-top: 28px;
   color: var(--text);
@@ -123,7 +128,7 @@
 
 @media (max-width: 620px) {
   .about-page {
-    padding: 146px 0 92px;
+    padding: 146px 0 36px;
   }
 
   .about-hero h1 {

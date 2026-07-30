@@ -90,7 +90,10 @@ export function ContainedColorEvent({
     const panel = panelRef.current;
     if (!panel || started || reduced) return;
 
+    const fallback = window.setTimeout(() => setStarted(true), 2500);
+
     if (typeof IntersectionObserver === "undefined") {
+      window.clearTimeout(fallback);
       const timer = window.setTimeout(() => setStarted(true), 0);
       return () => window.clearTimeout(timer);
     }
@@ -104,7 +107,10 @@ export function ContainedColorEvent({
       { threshold: 0.5 },
     );
     observer.observe(panel);
-    return () => observer.disconnect();
+    return () => {
+      window.clearTimeout(fallback);
+      observer.disconnect();
+    };
   }, [reduced, started]);
 
   const visible = started || reduced;

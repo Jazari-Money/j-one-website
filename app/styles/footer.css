@@ -57,7 +57,8 @@
 
 .footer-navigation a,
 .footer-navigation button {
-  padding: 0;
+  min-height: 33px;
+  padding: 6px 0;
   color: var(--muted-strong);
   font-size: 14px;
   text-align: left;
@@ -200,9 +201,15 @@
   }
   .footer-navigation {
     grid-column: 1 / -1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-top: 34px;
-    row-gap: 40px;
+    gap: 20px 12px;
+  }
+  .footer-navigation a,
+  .footer-navigation button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
   }
   .footer-addresses { grid-template-columns: 1fr; gap: 26px; }
   .footer-signoff { align-items: flex-start; flex-direction: column; }
