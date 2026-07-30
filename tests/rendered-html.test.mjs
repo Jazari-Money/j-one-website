@@ -154,10 +154,12 @@ test("server-renders the internal legal pages", async () => {
     privacyResponse.text(),
   ]);
 
-  assert.match(terms, /<h1>Terms &amp; Conditions<\/h1>/);
-  assert.match(terms, /Effective date: April 2026/);
-  assert.match(terms, /20\. How We Use Your Information/);
-  assert.match(terms, /href="\/j-one-website\/privacy-policy\/?"/);
+  assert.match(terms, /<h1>US Terms and Conditions<\/h1>/);
+  assert.match(terms, /Effective date: 21 April 2026/);
+  assert.match(terms, /1\. INTRODUCTION/);
+  assert.match(terms, /FinCEN MSB registration/);
+  assert.match(terms, /29\. STATE-SPECIFIC DISCLOSURES/);
+  assert.match(terms, /30\. CONTACT INFORMATION/);
 
   assert.match(privacy, /<h1>Privacy Policy<\/h1>/);
   assert.match(privacy, /Last updated: April 2026/);

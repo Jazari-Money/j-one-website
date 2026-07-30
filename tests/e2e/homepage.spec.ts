@@ -461,10 +461,15 @@ test("renders the plan preview and legal links", async ({ page }) => {
 
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
   await page.goto("/terms/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Terms & Conditions" })).toBeVisible();
-  await expect(page.getByText("Effective date: April 2026")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "1. Introduction" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "20. How We Use Your Information" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "US Terms and Conditions" })).toBeVisible();
+  await expect(page.getByText("Effective date: 21 April 2026")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "1. INTRODUCTION" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "29. STATE-SPECIFIC DISCLOSURES" }),
+  ).toBeAttached();
+  await expect(
+    page.getByRole("heading", { name: "30. CONTACT INFORMATION" }),
+  ).toBeAttached();
 
   await page.getByRole("link", { name: "Privacy Policy" }).first().click();
   await expect(page).toHaveURL(/\/privacy-policy\/?$/);
