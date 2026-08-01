@@ -1,6 +1,6 @@
 # Jazari One website context
 
-Last updated: 2026-07-29
+Last updated: 2026-08-01
 
 ## Product
 
@@ -21,6 +21,71 @@ Current hero description:
 
 > Hold them. Send them. Grow them.
 
+## Current public baseline
+
+- Canonical deployment: `https://nikitapoloznikov.github.io/j-one-website/`
+- Canonical branch: `main`
+- Deployment: GitHub Pages through `.github/workflows/pages.yml`
+- The site is statically exported with the `/j-one-website` base path.
+- `context.md` is the canonical handoff document for product, design, content,
+  legal-draft, mobile, and deployment decisions. Update it after material
+  structural or claim changes.
+
+### About us
+
+`/about/` is an editorial company page with one H1 and three H2 chapters:
+
+1. `About us` — page H1
+2. `Manifesto`
+3. `Built in the United States and UAE`
+4. `Our partners`
+
+The Manifesto ends in this order:
+
+1. Normal body paragraph: `So you can focus on your needs, your goals, your
+   people, and your dreams.`
+2. Emphasized signoff: `— Alex and Has, founders of Jazari One`
+3. Founders photo: `public/images/about/jazari-founders.webp`
+
+The founders photo is the supplied 3072×2048 source converted to a 2560×1707
+WebP for near-2× desktop rendering. Keep it after the signoff, not above the
+Manifesto copy.
+
+The registered-business cards contain no `United States entity` or `UAE
+entity` prefix. Their company names use the editorial serif:
+
+- `Jazari One, Inc.` — Registered in Dover, Delaware, United States.
+- `Jazari Fintech Services — FZCO` — Registration #78870 · Dubai Silicon
+  Oasis, UAE.
+
+`Our partners` shows Bridge, Privy, Gauntlet, and Lido. The `See all partners`
+pill sits opposite the H2, including at 390px. It links to `/partners/`.
+
+### US Terms and Conditions
+
+`/terms/` contains `US Terms and Conditions`, Version 1, effective
+21 April 2026. It is a 30-section document with:
+
+- a named, scrollable Contents index;
+- semantic definition and fee tables;
+- federal, state, remittance, RNPL, privacy, arbitration, KYC, and contact
+  sections;
+- FinCEN MSB Registration No. `MRX26-00006547` as supplied by the user.
+
+The document deliberately preserves unconfirmed placeholders, including:
+
+- `[US Issuer / Regulated Partner]`
+- `[US Issuer Address - to be confirmed]`
+- `[US Lending Partner - to be confirmed]`
+- `[US Address - to be confirmed]`
+- `$[X]` fee values
+
+Do not fill, infer, normalize, or silently remove these placeholders. The
+draft also contains partner licence, state disclosure, FDIC, lending, and
+regulatory statements that require legal approval before production launch.
+Treat the supplied wording as legal-draft source text, not independently
+verified fact.
+
 ## Important claim guardrails
 
 These claims require product/legal confirmation before a public launch:
@@ -32,6 +97,9 @@ These claims require product/legal confirmation before a public launch:
 - Visa issuance, card availability, card terms, and eligible countries.
 - RNPL limits, pricing, eligibility, repayment terms, and credit disclosures.
 - The exact licensed entity holding customer funds.
+- FinCEN MSB Registration No. `MRX26-00006547`.
+- Every partner licence, state-specific disclosure, FDIC statement, lending
+  statement, address, fee, and timeline in the Version 1 US Terms.
 
 The homepage currently uses the approved heading “Partners & Networks.”
 Commercial relationship wording still requires confirmation before launch.
@@ -84,7 +152,9 @@ Commercial relationship wording still requires confirmation before launch.
 - Desktop transfer factoids begin 180px below the review description.
 - The Yields walkthrough has one “Learn more about Yields” action below its
   steps, rather than repeating an action inside each step.
-- Roadmap edge fades disappear at the first and last carousel positions.
+- Mobile Coming Soon cards never use edge-dimming overlays. Flag and card art
+  occupy a contained bottom zone and must not overlap text. The standalone
+  `/roadmap/` cards share one mobile height and one title/body/art architecture.
 - The USD account roadmap cards use the supplied transparent USA flag artwork,
   placed away from account copy and notes.
 - Pointer-card highlights fade from their last cursor position on leave; they
@@ -103,11 +173,11 @@ Commercial relationship wording still requires confirmation before launch.
    scenario contains three steps and one upright phone at a time
 5. FX/review experience integrated inside How It Works
 6. Static audience/use-case stories
-7. Compact horizontal roadmap without product imagery:
+7. Compact horizontal Coming Soon roadmap with contained product artwork:
    - USD account
-   - New receive countries
-   - Yields with higher APY
    - Visa card
+   - Expanded payout corridors
+   - Higher-yield APY
    - Remit Now Pay Later
 8. Homepage Blog preview with the four latest guides and dedicated corridor imagery
 9. Partner preview linking to the complete partners and networks page
@@ -138,7 +208,10 @@ content is intentionally consolidated.
 - Adds a translucent blurred background after scrolling; no persistent hairline.
 - Desktop navigation links are deliberately larger than supporting UI copy.
 - Mobile uses Lucide-style burger and close icons. The open menu covers the
-  viewport and includes the Download App action plus X, Instagram, and Facebook.
+  viewport. It is split into Product and Company groups, followed by a
+  Download App action with X, Instagram, and Facebook opposite it. Terms &
+  Conditions and Privacy Policy sit at the very bottom. Cookie Preferences is
+  not shown in the mobile menu.
 - There is no public visual switcher. Every route uses the fixed Jazari Lime
   color system and the fixed Beam hero field.
 
@@ -161,12 +234,18 @@ localStorage preferences, or a header swatch.
 - Three accessible scenario tabs: Receive, Send, and Yields.
 - Each scenario has three concise, task-specific steps.
 - Arrow, Home, and End keys change scenarios and steps.
-- All nine screenshots use one equal-ratio local asset system.
+- All nine source screenshots use one equal-ratio local asset system, but only
+  the active screenshot is mounted. Mobile assets are compressed and decoded
+  asynchronously to stay below iOS Safari bitmap-memory limits.
 - One upright, equal-ratio local screenshot is shown at a time.
 - The scenario tabs form one quiet segmented control. Step tabs remain visually
   aligned with the phone stage at desktop and collapse into a compact mobile flow.
 - The active phone uses a transparent, borderless stage with a localized glow
   and bottom fade—no background card or decorative ghost typography.
+- At the mobile collapse breakpoint the order is scenario tabs, phone, then a
+  three-item vertical step accordion. The active step shows its description;
+  inactive steps remain collapsed. The phone and all three steps fit together
+  at the audited 390×844 layout.
 - FX conversion supports MXN, COP, BRL, and EUR through a custom accessible
   selector showing each country, circular flag, and currency code. Amounts use
   two decimals. The review leads with “Know what arrives before you send,”
@@ -247,6 +326,7 @@ weight inside one fixed logo field; do not restore the former tabbed explorer.
 - Audience photography: `public/images/audience/*.webp`
 - Monochrome technology/network SVGs: `public/images/rails/*`
 - Official white Visa mark: `public/images/brand/visa-white.svg`
+- Founders photo: `public/images/about/jazari-founders.webp`
 
 The current card is generated in code.
 
@@ -282,6 +362,9 @@ Key files:
 - `app/styles/*.css` — section, breakpoint, and token styles
 - `app/layout.tsx`
 - `app/blog/GuideArticle.tsx`
+- `app/about/AboutPage.tsx` — Manifesto, registered entities, and partners
+- `app/terms/page.tsx` — Version 1 US Terms and Conditions draft
+- `context.md` — canonical project handoff and claim guardrails
 - `tests/rendered-html.test.mjs`
 - `tests/e2e/homepage.spec.ts`
 - `playwright.config.ts`
@@ -371,11 +454,12 @@ Default local URL: `http://localhost:3000`
   and values. `1 USD = destination value` is prominent; expected delivery is
   `2–5 minutes`. The two horizontal proof points use Instrument Serif values
   without underlines: `0% Hidden FX rate fee` and `0% Transaction fee`.
-- The roadmap is a compact, text-only horizontal scroll-snap carousel
-  controlled by round previous/next buttons. It has no timeline line, product
-  image, or phase prefix. It follows the provider grid and precedes Blog. The
-  current naming is `Roadmap`, `USD account`, `New receive countries`,
-  `Yields with higher APY`, `Visa card`, and `Remit Now Pay Later`.
+- The homepage Coming Soon section is a compact horizontal scroll-snap
+  carousel controlled by round previous/next buttons. Cards use restrained,
+  contained artwork where available and never allow art to overlap copy. It
+  has no timeline line or phase prefix. The current card naming is
+  `USD account`, `Visa card`, `Expanded payout corridors`,
+  `Higher-yield APY`, and `Remit Now Pay Later`.
   The homepage carousel includes a `View All` entry point to `/roadmap/`,
   which presents every milestone in a compact responsive grid.
 - The virtual card is code-generated with front, back, and four visible edge
@@ -417,9 +501,10 @@ Default local URL: `http://localhost:3000`
   and copyright signoff, with copyright aligned right. Do not add a decorative
   metallic wordmark or 3D closing object below the footer.
   Terms & Conditions and Privacy Policy are internal pages at `/terms/` and
-  `/privacy-policy/`, using the April 2026 wording from jazari.xyz in a shared,
-  responsive legal-reading layout. Cookie Preferences is currently a clearly
-  mocked local modal.
+  `/privacy-policy/`, using a shared responsive legal-reading layout. Terms is
+  now the supplied Version 1 US document effective 21 April 2026; Privacy
+  remains the April 2026 document. Cookie Preferences is currently a clearly
+  mocked local modal in the footer only.
 - Pricing has no tiers. It is one combined surface ordered `Money movement`,
   `Accounts`, then `Cards`; section boundaries are established through spacing,
   not full-width rules, while row separators remain short, inset, and faint.

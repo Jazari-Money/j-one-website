@@ -3,6 +3,10 @@
 The public Jazari One marketing site. It is built with Next.js and exported as
 static files for GitHub Pages.
 
+Project decisions, claim guardrails, current page structure, and handoff notes
+live in [`context.md`](./context.md). Update that file after material product,
+legal, content, or responsive-layout changes.
+
 ## Prerequisites
 
 - Node.js `>=22.13.0`
