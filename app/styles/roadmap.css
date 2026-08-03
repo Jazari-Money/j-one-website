@@ -322,9 +322,9 @@
   .roadmap-card {
     flex-basis: min(328px, calc(100vw - 92px));
     min-width: min(328px, calc(100vw - 92px));
-    height: 440px;
-    min-height: 440px;
-    padding: 28px 26px;
+    height: 352px;
+    min-height: 352px;
+    padding: 20px 22px;
     border-radius: 22px;
     isolation: auto;
     transform: none;
@@ -340,10 +340,10 @@
     padding-bottom: 84px;
   }
   .roadmap-full-card {
-    height: 440px;
-    min-height: 440px;
+    height: 352px;
+    min-height: 352px;
     aspect-ratio: auto;
-    padding: 28px 26px;
+    padding: 20px 22px;
     isolation: auto;
     transform: none;
     transform-style: flat;
@@ -353,27 +353,32 @@
 
   .roadmap-milestone-copy h2,
   .roadmap-milestone-copy h3 {
-    font-size: 44px;
+    font-size: 42px;
   }
 
   .roadmap-milestone-copy p {
-    margin-top: 16px;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  .roadmap-milestone-copy ul {
+    margin-top: 10px;
   }
 
   .roadmap-milestone-visual {
-    margin-top: 20px;
+    margin-top: 8px;
   }
 
   .roadmap-milestone-art,
   .roadmap-full-card .roadmap-milestone-art {
     width: 64%;
-    height: 136px;
+    height: 88px;
   }
 
   .art-card .roadmap-milestone-art,
   .roadmap-full-card.art-card .roadmap-milestone-art {
     width: 68%;
-    height: 142px;
+    height: 94px;
   }
 }
 
@@ -383,13 +388,24 @@
     min-width: calc(100vw - 56px);
   }
 
+  .roadmap-card,
   .roadmap-full-card {
-    height: 420px;
-    min-height: 420px;
+    height: 336px;
+    min-height: 336px;
   }
 
   .roadmap-milestone-copy h2,
   .roadmap-milestone-copy h3 {
-    font-size: 40px;
+    font-size: 38px;
+  }
+
+  .roadmap-milestone-art,
+  .roadmap-full-card .roadmap-milestone-art {
+    height: 80px;
+  }
+
+  .art-card .roadmap-milestone-art,
+  .roadmap-full-card.art-card .roadmap-milestone-art {
+    height: 86px;
   }
 }

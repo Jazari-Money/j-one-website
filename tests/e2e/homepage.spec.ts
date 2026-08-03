@@ -517,7 +517,7 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
     cards.map((card) => Math.round(card.getBoundingClientRect().height)),
   );
   expect(new Set(mobileHeights).size).toBe(1);
-  expect(mobileHeights[0]).toBe(440);
+  expect(mobileHeights[0]).toBe(352);
   const [mobileCard, mobileArt] = await Promise.all([
     usdAccountCard.boundingBox(),
     usdAccountCard.locator(".roadmap-milestone-art").boundingBox(),
@@ -683,6 +683,7 @@ test("keeps mobile Coming soon cards visible and their artwork contained", async
     expect(cardBox).not.toBeNull();
     expect(artBox).not.toBeNull();
     expect(copyBox).not.toBeNull();
+    expect(Math.round(cardBox!.height)).toBe(352);
     expect(artBox!.x).toBeGreaterThanOrEqual(cardBox!.x);
     expect(artBox!.x + artBox!.width).toBeLessThanOrEqual(cardBox!.x + cardBox!.width + 1);
     expect(artBox!.y + artBox!.height).toBeLessThanOrEqual(cardBox!.y + cardBox!.height + 1);
