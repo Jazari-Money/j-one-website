@@ -107,6 +107,10 @@
   object-position: 50% 43%;
 }
 
+.article-hero-image picture {
+  display: block;
+}
+
 .article-copy {
   max-width: 790px;
 }

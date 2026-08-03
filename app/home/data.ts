@@ -111,6 +111,7 @@ export const howScenarios = {
         title: "Open Receive",
         copy: "Choose Receive from your dollar balance.",
         screen: withBasePath("/images/how-to/how-to-receive-01.png"),
+        screenStem: "/images/how-to/how-to-receive-01",
         alt: "Jazari One balance with the receive action",
       },
       {
@@ -118,6 +119,7 @@ export const howScenarios = {
         title: "Choose network",
         copy: "Share your wallet address.",
         screen: withBasePath("/images/how-to/how-to-receive-02.png"),
+        screenStem: "/images/how-to/how-to-receive-02",
         alt: "Stablecoin receive details in Jazari One",
       },
       {
@@ -125,6 +127,7 @@ export const howScenarios = {
         title: "Share USD account",
         copy: "Open your personal USD account details for bank transfers.",
         screen: withBasePath("/images/how-to/how-to-receive-03.png"),
+        screenStem: "/images/how-to/how-to-receive-03",
         alt: "USD account details in Jazari One",
       },
     ],
@@ -137,6 +140,7 @@ export const howScenarios = {
         title: "Pick a destination",
         copy: "Choose a stablecoin wallet or a bank account.",
         screen: withBasePath("/images/how-to/how-to-send-01.png"),
+        screenStem: "/images/how-to/how-to-send-01",
         alt: "Recipient details in Jazari One",
       },
       {
@@ -144,6 +148,7 @@ export const howScenarios = {
         title: "Enter the amount",
         copy: "Preview an estimated amount at the current rate.",
         screen: withBasePath("/images/how-to/how-to-send-02.png"),
+        screenStem: "/images/how-to/how-to-send-02",
         alt: "Transfer amount and local currency preview",
       },
       {
@@ -151,6 +156,7 @@ export const howScenarios = {
         title: "Send it",
         copy: "One tap to send, with a receipt you can open anytime.",
         screen: withBasePath("/images/how-to/how-to-send-03.png"),
+        screenStem: "/images/how-to/how-to-send-03",
         alt: "Transfer confirmation in Jazari One",
       },
     ],
@@ -163,6 +169,7 @@ export const howScenarios = {
         title: "Open yield",
         copy: "Review the vault, its current APY, and how it works.",
         screen: withBasePath("/images/how-to/how-to-yield-01.png"),
+        screenStem: "/images/how-to/how-to-yield-01",
         alt: "Yield strategy in Jazari One",
       },
       {
@@ -170,6 +177,7 @@ export const howScenarios = {
         title: "Add funds",
         copy: "Choose how much of your balance to put to work.",
         screen: withBasePath("/images/how-to/how-to-yield-02.png"),
+        screenStem: "/images/how-to/how-to-yield-02",
         alt: "Adding funds to a yield in Jazari One",
       },
       {
@@ -177,6 +185,7 @@ export const howScenarios = {
         title: "Track your earnings",
         copy: "See what you've earned. Withdraw any time.",
         screen: withBasePath("/images/how-to/how-to-yield-03.png"),
+        screenStem: "/images/how-to/how-to-yield-03",
         alt: "Yield position details in Jazari One",
       },
     ],
@@ -194,6 +203,7 @@ export const audiences = [
       "Want the salary to stay in dollars, not convert on arrival",
     ],
     image: withBasePath("/images/audience/freelancer.webp"),
+    imageStem: "/images/audience/freelancer",
     alt: "Remote worker at a desk",
   },
   {
@@ -203,8 +213,9 @@ export const audiences = [
       "Income arrives in bursts, not on the 1st",
       "Want dollars that hold value between projects",
     ],
-    image: withBasePath("/images/audience/solopreneur.jpg"),
-    alt: "Freelancer working with a client",
+    image: withBasePath("/images/audience/freelancer-photographer.webp"),
+    imageStem: "/images/audience/freelancer-photographer",
+    alt: "Freelance photographer walking through a city",
   },
   {
     title: "You and your family",
@@ -214,6 +225,7 @@ export const audiences = [
       "Pay bills and support family, wherever they are",
     ],
     image: withBasePath("/images/audience/family-support.webp"),
+    imageStem: "/images/audience/family-support",
     alt: "Family members looking at a phone together",
   },
 ] as const;
@@ -225,6 +237,7 @@ export const guides = [
     title: "How to send dollars to Mexico in 3 steps",
     deck: "Use the recipient’s full legal name and 18-digit CLABE for a SPEI payout.",
     image: withBasePath("/images/blog/mexico-transfer.webp"),
+    imageStem: "/images/blog/mexico-transfer",
   },
   {
     slug: "send-money-to-brazil",
@@ -232,6 +245,7 @@ export const guides = [
     title: "How to send dollars to Brazil in 3 steps",
     deck: "For a Pix payout, use the recipient’s full name and exact Pix key.",
     image: withBasePath("/images/blog/brazil.jpg"),
+    imageStem: "/images/blog/brazil",
   },
   {
     slug: "send-money-to-colombia",
@@ -239,6 +253,7 @@ export const guides = [
     title: "How to send dollars to Colombia in 3 steps",
     deck: "For a Bre-B payout, use the recipient’s full name and exact llave.",
     image: withBasePath("/images/blog/colombia.jpg"),
+    imageStem: "/images/blog/colombia",
   },
   {
     slug: "send-money-to-europe",
@@ -246,6 +261,7 @@ export const guides = [
     title: "How to send dollars to Europe in 3 steps",
     deck: "For a SEPA payout, collect the full name, IBAN, and BIC or SWIFT code.",
     image: withBasePath("/images/blog/europe.jpg"),
+    imageStem: "/images/blog/europe",
   },
   {
     slug: "compare-transfer-costs",

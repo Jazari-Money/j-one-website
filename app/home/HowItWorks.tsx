@@ -3,7 +3,14 @@
 /* eslint-disable @next/next/no-img-element -- local flags are art-directed assets */
 
 import Link from "next/link";
-import { type CSSProperties, KeyboardEvent, useEffect, useRef, useState } from "react";
+import {
+  type CSSProperties,
+  KeyboardEvent,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   currencies,
   howScenarios,
@@ -17,22 +24,13 @@ import { Phone } from "./Phone";
 
 const scenarioKeys = Object.keys(howScenarios) as HowScenario[];
 
-export function HowItWorks({
-  amount,
-  currency,
-  converted,
-  onAmount,
-  onCurrency,
-}: {
-  amount: string;
-  currency: CurrencyCode;
-  converted: number;
-  onAmount: (value: string) => void;
-  onCurrency: (value: CurrencyCode) => void;
-}) {
+export function HowItWorks() {
+  const [amount, setAmount] = useState("1,000.00");
+  const [currency, setCurrency] = useState<CurrencyCode>("MXN");
   const [activeScenario, setActiveScenario] = useState<HowScenario>("receive");
   const [activeStep, setActiveStep] = useState(0);
   const [currencyOpen, setCurrencyOpen] = useState(false);
+  const [countriesOpen, setCountriesOpen] = useState(false);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const scenarioRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const currencyPicker = useRef<HTMLDivElement | null>(null);
@@ -40,6 +38,10 @@ export function HowItWorks({
   const scenario = howScenarios[activeScenario];
   const step = scenario.steps[activeStep];
   const selectedCurrency = currencies[currency];
+  const converted = useMemo(() => {
+    const number = Number.parseFloat(amount.replace(/,/g, ""));
+    return Number.isFinite(number) ? number * selectedCurrency.rate : 0;
+  }, [amount, selectedCurrency.rate]);
 
   useEffect(() => {
     const closeCurrencyPicker = (event: MouseEvent) => {
@@ -71,12 +73,16 @@ export function HowItWorks({
 
   useEffect(() => {
     const openCountries = () => {
-      const dialog = countriesDialog.current;
-      if (dialog && !dialog.open) dialog.showModal();
+      setCountriesOpen(true);
     };
     window.addEventListener("jazari:open-countries", openCountries);
     return () => window.removeEventListener("jazari:open-countries", openCountries);
   }, []);
+
+  useEffect(() => {
+    const dialog = countriesDialog.current;
+    if (countriesOpen && dialog && !dialog.open) dialog.showModal();
+  }, [countriesOpen]);
 
   function selectScenario(next: HowScenario) {
     setActiveScenario(next);
@@ -187,6 +193,7 @@ export function HowItWorks({
             <Phone
               key={step.id}
               src={step.screen}
+              stem={step.screenStem}
               alt={step.alt}
               className="active-step-phone is-active"
             />
@@ -222,7 +229,7 @@ export function HowItWorks({
               id="send-amount"
               inputMode="decimal"
               value={`$${amount}`}
-              onChange={(event) => onAmount(event.target.value.replace(/^\$/, ""))}
+              onChange={(event) => setAmount(event.target.value.replace(/^\$/, ""))}
               aria-label="Amount in US dollars"
             />
           </div>
@@ -261,7 +268,14 @@ export function HowItWorks({
                 aria-labelledby="receive-currency-label"
                 onClick={() => setCurrencyOpen((open) => !open)}
               >
-                <img src={selectedCurrency.flag} alt="" />
+                <img
+                  src={selectedCurrency.flag}
+                  alt=""
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <span className="numeric">{currency}</span>
                 <svg viewBox="0 0 12 8" aria-hidden="true"><path d="m1 1 5 5 5-5" /></svg>
               </button>
@@ -275,11 +289,18 @@ export function HowItWorks({
                       aria-selected={currency === code}
                       className="currency-option"
                       onClick={() => {
-                        onCurrency(code);
+                        setCurrency(code);
                         setCurrencyOpen(false);
                       }}
                     >
-                      <img src={item.flag} alt="" />
+                      <img
+                        src={item.flag}
+                        alt=""
+                        width="80"
+                        height="80"
+                        loading="lazy"
+                        decoding="async"
+                      />
                       <span>{item.country}</span>
                       <b className="numeric">{code}</b>
                     </button>
@@ -292,7 +313,7 @@ export function HowItWorks({
           <button
             className="receive-countries-link"
             type="button"
-            onClick={() => countriesDialog.current?.showModal()}
+            onClick={() => setCountriesOpen(true)}
           >
             All receiving countries
           </button>
@@ -307,6 +328,7 @@ export function HowItWorks({
         id="receiving-countries"
         className="receive-countries-dialog"
         ref={countriesDialog}
+        onClose={() => setCountriesOpen(false)}
         onClick={(event) => {
           if (event.target === event.currentTarget) event.currentTarget.close();
         }}
@@ -332,7 +354,14 @@ export function HowItWorks({
             <ul>
               {receivingCountries.map((country) => (
                 <li key={country.name}>
-                  <img src={country.flag} alt="" />
+                  <img
+                    src={countriesOpen ? country.flag : undefined}
+                    alt=""
+                    width="80"
+                    height="80"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span>{country.name}</span>
                 </li>
               ))}
@@ -347,7 +376,14 @@ export function HowItWorks({
             <ul>
               {queuedReceivingCountries.map((country) => (
                 <li key={country.name}>
-                  <img src={country.flag} alt="" />
+                  <img
+                    src={countriesOpen ? country.flag : undefined}
+                    alt=""
+                    width="80"
+                    height="80"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span>{country.name}</span>
                 </li>
               ))}

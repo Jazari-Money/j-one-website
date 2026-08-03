@@ -1,7 +1,5 @@
-/* eslint-disable @next/next/no-img-element -- local, art-directed assets use exact source files */
-
 import { audiences } from "./data";
-import { resetPointer, trackPointer } from "./hooks";
+import { ResponsiveImage } from "./ResponsiveImage";
 
 export function AudienceExplorer() {
   return (
@@ -15,10 +13,20 @@ export function AudienceExplorer() {
           <article
             className="audience-panel pointer-card"
             key={item.title}
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
           >
-            <img src={item.image} alt={item.alt} />
+            <ResponsiveImage
+              className="audience-image"
+              pictureClassName="audience-media"
+              fallback={item.image}
+              stem={item.imageStem}
+              widths={[480, 960]}
+              width={1024}
+              height={1536}
+              sizes="(max-width: 900px) min(520px, 100vw), 33vw"
+              alt={item.alt}
+              loading="lazy"
+              decoding="async"
+            />
             <div className="audience-caption">
               <h3>{item.title}</h3>
               <ul>

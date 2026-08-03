@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- component board uses exact local production artwork */
 
+import "../styles/storyboard-page.css";
 import {
   type CSSProperties,
   type ReactNode,

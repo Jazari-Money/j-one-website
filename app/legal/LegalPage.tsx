@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import "../styles/legal-page.css";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
 

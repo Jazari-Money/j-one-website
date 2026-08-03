@@ -43,10 +43,15 @@
   justify-content: flex-end;
 }
 
-.blog-card-image {
+.blog-card-media {
   position: absolute;
   z-index: 0;
   inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blog-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -54,9 +59,12 @@
   transition: none;
 }
 
-.blog-card.has-image:not(.blog-card-featured) .blog-card-image {
+.blog-card.has-image:not(.blog-card-featured) .blog-card-media {
   inset: 0;
   height: 100%;
+}
+
+.blog-card.has-image:not(.blog-card-featured) .blog-card-image {
   object-position: 50% 42%;
   mask-image: none;
 }

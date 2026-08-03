@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses exact sources */
 
 import type { CSSProperties } from "react";
+import "../styles/partners-page.css";
 import { allPartnerStories, networkStories, partnerStories } from "../home/data";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
@@ -27,7 +28,14 @@ function DirectoryCard({
           className={`provider-logo is-${item.logoFormat}`}
           style={{ "--logo-scale": item.logoScale } as CSSProperties}
         >
-          <img src={item.logo} alt={`${item.name} logo`} />
+          <img
+            src={item.logo}
+            alt={`${item.name} logo`}
+            width="240"
+            height="96"
+            loading="lazy"
+            decoding="async"
+          />
         </span>
       </div>
       <div className="provider-card-copy">

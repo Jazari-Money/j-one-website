@@ -200,6 +200,10 @@
   pointer-events: none;
 }
 
+.roadmap-art-media {
+  display: contents;
+}
+
 .art-card .roadmap-milestone-art {
   width: min(66%, 330px);
 }

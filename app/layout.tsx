@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource/instrument-serif/400.css";
 import "@fontsource-variable/inter";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -46,9 +44,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="jazari" data-shader="beam">
-      <body className={`${GeistSans.variable} ${GeistMono.variable}`}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -1,9 +1,7 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- local, art-directed assets use exact source files */
-
-import { withBasePath } from "../site-paths";
 import { HeroColorEvent } from "./HeroColorEvent";
+import { ResponsiveImage } from "./ResponsiveImage";
 import {
   resetPointer,
   trackPointer,
@@ -48,10 +46,18 @@ export function Hero() {
       <div className="hero-product" aria-label="Jazari One app preview">
         <div className="hero-device-glow" aria-hidden="true" />
         <div className="hero-device">
-          <img
+          <ResponsiveImage
             className="hero-device-image"
-            src={withBasePath("/images/screens/j-one-app-main.png")}
             alt="Jazari One balance and recent transactions"
+            fallback="/images/screens/j-one-app-main.png"
+            stem="/images/screens/j-one-app-main"
+            widths={[360, 720, 1080]}
+            width={1263}
+            height={2580}
+            sizes="(max-width: 620px) 72vw, 322px"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         </div>
       </div>

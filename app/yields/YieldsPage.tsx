@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- local provider artwork */
 
+import "../styles/yields-page.css";
 import Link from "next/link";
 import { AccordionList } from "../home/AccordionList";
 import { ContainedColorEvent } from "../home/ContainedColorEvent";
@@ -73,7 +74,14 @@ export function YieldsPage() {
         onPointerLeave={resetPointer}
       >
         <div className="yield-strategy-copy">
-          <img src={withBasePath("/images/rails/gauntlet.svg")} alt="Gauntlet" />
+          <img
+            src={withBasePath("/images/rails/gauntlet.svg")}
+            alt="Gauntlet"
+            width="240"
+            height="96"
+            loading="lazy"
+            decoding="async"
+          />
           <h2 id="yield-strategy-title">Gauntlet USD Alpha</h2>
           <p>
             You access an independently managed, Base-based strategy that reallocates

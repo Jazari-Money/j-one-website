@@ -65,7 +65,14 @@ export function SiteHeader({
     <header className={`site-header ${scrolled || mobileOpen ? "is-scrolled" : ""}`}>
       <nav className="site-nav" aria-label="Main navigation">
         <a className="brand" href={homeHref} aria-label="Jazari One home" onClick={closeMobile}>
-          <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
+          <img
+            src={withBasePath("/images/brand/jazari-one-logo.svg")}
+            alt="Jazari One"
+            width="1638"
+            height="217"
+            decoding="async"
+            fetchPriority="high"
+          />
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>

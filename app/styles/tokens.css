@@ -1,6 +1,7 @@
 :root {
   --serif: "Instrument Serif", "Times New Roman", serif;
   --font-inter: "Inter Variable", Inter, Arial, sans-serif;
+  --font-body: var(--font-inter);
   --page: min(1320px, calc(100vw - 96px));
 }
 

@@ -14,7 +14,14 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-primary">
         <div className="footer-brand">
-          <img src={withBasePath("/images/brand/jazari-one-logo.svg")} alt="Jazari One" />
+          <img
+            src={withBasePath("/images/brand/jazari-one-logo.svg")}
+            alt="Jazari One"
+            width="1638"
+            height="217"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
 
         <nav className="footer-navigation" aria-label="Footer navigation">
@@ -52,10 +59,24 @@ export function SiteFooter() {
         </p>
         <div className="footer-stores" aria-label="Download the Jazari One app">
           <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
-            <img src={withBasePath("/images/stores/app-store-badge.avif")} alt="Download on the App Store" />
+            <img
+              src={withBasePath("/images/stores/app-store-badge.avif")}
+              alt="Download on the App Store"
+              width="485"
+              height="156"
+              loading="lazy"
+              decoding="async"
+            />
           </a>
           <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
-            <img src={withBasePath("/images/stores/google-play-badge.avif")} alt="Get it on Google Play" />
+            <img
+              src={withBasePath("/images/stores/google-play-badge.avif")}
+              alt="Get it on Google Play"
+              width="512"
+              height="152"
+              loading="lazy"
+              decoding="async"
+            />
           </a>
         </div>
         <div className="footer-addresses">

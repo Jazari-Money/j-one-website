@@ -2,10 +2,11 @@
 
 import type { CSSProperties } from "react";
 import Link from "next/link";
+import "../styles/about-page.css";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
+import { ResponsiveImage } from "../home/ResponsiveImage";
 import { SiteFooter } from "../home/SiteFooter";
 import { partnerStories } from "../home/data";
-import { withBasePath } from "../site-paths";
 
 const trustedPartners = [
   {
@@ -73,9 +74,16 @@ export function AboutPage() {
           </div>
 
           <figure className="about-founders">
-            <img
-              src={withBasePath("/images/about/jazari-founders.webp")}
+            <ResponsiveImage
+              fallback="/images/about/jazari-founders.webp"
+              stem="/images/about/jazari-founders"
+              widths={[800, 1600]}
+              width={2560}
+              height={1707}
+              sizes="(max-width: 900px) calc(100vw - 40px), 640px"
               alt="Alex and Has, founders of Jazari One, seated together"
+              loading="lazy"
+              decoding="async"
             />
           </figure>
         </section>
@@ -122,7 +130,14 @@ export function AboutPage() {
                     className={`provider-logo is-${partner.logoFormat}`}
                     style={{ "--logo-scale": partner.logoScale } as CSSProperties}
                   >
-                    <img src={partner.logo} alt={`${partner.name} logo`} />
+                    <img
+                      src={partner.logo}
+                      alt={`${partner.name} logo`}
+                      width="240"
+                      height="96"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </span>
                 </div>
                 <div className="provider-card-copy">

@@ -574,6 +574,26 @@
 }
 
 @media (max-width: 620px) {
+  .home-page.is-ready .hero-title-line:first-child > span {
+    animation-delay: 160ms;
+  }
+
+  .home-page.is-ready .hero-title-line:last-child > span {
+    animation-delay: 230ms;
+  }
+
+  .home-page.is-ready .hero-copy > p {
+    animation-delay: 340ms;
+  }
+
+  .home-page.is-ready .hero-download-control {
+    animation-delay: 440ms;
+  }
+
+  .home-page.is-ready .hero-product {
+    animation-delay: 620ms;
+  }
+
   .hero {
     min-height: 860px;
     padding-top: 126px;

@@ -33,9 +33,11 @@ async function prepareStablePage(page: Page) {
   await page.evaluate(async () => {
     await document.fonts.ready;
     await Promise.all(
-      Array.from(document.images, (image) =>
-        image.complete ? Promise.resolve() : image.decode().catch(() => undefined),
-      ),
+      Array.from(document.images)
+        .filter((image) => image.loading !== "lazy")
+        .map((image) =>
+          image.complete ? Promise.resolve() : image.decode().catch(() => undefined),
+        ),
     );
   });
 }
@@ -54,6 +56,16 @@ async function revealScrollableContent(page: Page) {
     await page.evaluate((nextOffset) => window.scrollTo(0, nextOffset), offset);
     await page.waitForTimeout(24);
   }
+
+  await page.evaluate(async () => {
+    await Promise.all(
+      Array.from(document.images)
+        .filter((image) => image.currentSrc)
+        .map((image) =>
+          image.complete ? Promise.resolve() : image.decode().catch(() => undefined),
+        ),
+    );
+  });
 
   await page.evaluate(() => {
     document.documentElement.style.scrollBehavior = "auto";
@@ -342,7 +354,7 @@ test("keeps the core interactions working", async ({ page }) => {
     const reviewMetrics = document.querySelector(".review-metrics");
     const firstBlogCard = document.querySelector(".blog-card");
     const audienceImagePositions = Array.from(
-      document.querySelectorAll(".audience-panel > img"),
+      document.querySelectorAll(".audience-panel .audience-image"),
       (node) => getComputedStyle(node).objectPosition,
     );
     return {
@@ -719,7 +731,10 @@ test("keeps the mobile phone preview and step accordion in one viewport", async 
   const activeScreenImage = page.locator(".step-screen .active-step-phone.is-active img");
   await expect
     .poll(() => activeScreenImage.evaluate((image) => (image as HTMLImageElement).naturalWidth))
-    .toBe(520);
+    .toBeGreaterThanOrEqual(300);
+  expect(
+    await activeScreenImage.evaluate((image) => (image as HTMLImageElement).naturalWidth),
+  ).toBeLessThanOrEqual(520);
   await expect
     .poll(() => page.locator(".step-screen-stack").evaluate(
       (node) => getComputedStyle(node).maskImage,

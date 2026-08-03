@@ -1,10 +1,8 @@
-/* eslint-disable @next/next/no-img-element -- local editorial imagery */
-
 import Link from "next/link";
 import { ContainedColorEvent } from "../home/ContainedColorEvent";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
+import { ResponsiveImage } from "../home/ResponsiveImage";
 import { SiteFooter } from "../home/SiteFooter";
-import { withBasePath } from "../site-paths";
 
 type ArticleSection = {
   heading: string;
@@ -270,9 +268,17 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
 
         {guide.image && (
           <figure className="article-hero-image">
-            <img
-              src={withBasePath(guide.image)}
+            <ResponsiveImage
+              fallback={guide.image}
+              stem={guide.image.replace(/\.(?:jpe?g|webp|png)$/i, "")}
+              widths={[480, 960, 1440]}
+              width={guide.image.includes("mexico-transfer") ? 1800 : 1536}
+              height={guide.image.includes("mexico-transfer") ? 1800 : 1024}
+              sizes="(max-width: 900px) calc(100vw - 40px), 1040px"
               alt={guide.imageAlt ?? ""}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
             />
           </figure>
         )}

@@ -1,5 +1,6 @@
 "use client";
 
+import "../styles/roadmap-page.css";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { milestones, RoadmapCardBody } from "../home/ProductRoadmap";
 import { SiteFooter } from "../home/SiteFooter";

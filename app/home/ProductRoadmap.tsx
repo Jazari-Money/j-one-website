@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { withBasePath } from "../site-paths";
 import { resetPointer, trackPointer } from "./hooks";
+import { ResponsiveImage } from "./ResponsiveImage";
 
 function ArrowIcon({ direction }: { direction: "left" | "right" }) {
   return (
@@ -23,7 +24,11 @@ export const milestones = [
     notes: ["No US residency required"],
     art: {
       src: withBasePath("/images/roadmap/usa-flag.png"),
+      stem: "/images/roadmap/usa-flag",
       alt: "United States flag",
+      width: 1024,
+      height: 1024,
+      widths: [160, 320, 640],
     },
   },
   {
@@ -33,7 +38,11 @@ export const milestones = [
     notes: [],
     art: {
       src: withBasePath("/images/roadmap/visa-card.png"),
+      stem: "/images/roadmap/visa-card",
       alt: "Jazari One Visa card",
+      width: 988,
+      height: 673,
+      widths: [320, 640],
       variant: "card",
     },
   },
@@ -87,17 +96,32 @@ export function RoadmapCardBody({
       {("art" in milestone || "flags" in milestone) && (
         <div className="roadmap-milestone-visual">
           {"art" in milestone && (
-            <img
+            <ResponsiveImage
               className="roadmap-milestone-art"
-              src={milestone.art.src}
+              pictureClassName="roadmap-art-media"
+              fallback={milestone.art.src}
+              stem={milestone.art.stem}
+              widths={milestone.art.widths}
+              width={milestone.art.width}
+              height={milestone.art.height}
+              sizes="(max-width: 620px) 220px, 350px"
               alt={milestone.art.alt}
+              loading="lazy"
+              decoding="async"
             />
           )}
           {"flags" in milestone && (
             <div className="roadmap-flags" aria-label="Planned receive countries">
               {milestone.flags.map((flag) => (
                 <span key={flag.name}>
-                  <img src={flag.src} alt="" />
+                  <img
+                    src={flag.src}
+                    alt=""
+                    width="80"
+                    height="80"
+                    loading="lazy"
+                    decoding="async"
+                  />
                   {flag.name}
                 </span>
               ))}

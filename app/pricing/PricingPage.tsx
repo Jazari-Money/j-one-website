@@ -1,5 +1,6 @@
 "use client";
 
+import "../styles/pricing-page.css";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
 import { resetPointer, trackPointer } from "../home/hooks";

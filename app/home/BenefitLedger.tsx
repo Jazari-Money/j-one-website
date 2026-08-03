@@ -19,7 +19,15 @@ function BenefitRow({
       style={{ "--benefit-index": index } as CSSProperties}
     >
       <div className="benefit-row-inner">
-        <img src={feature.image} alt="" aria-hidden="true" />
+        <img
+          src={feature.image}
+          alt=""
+          width="512"
+          height="512"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
         <div className="benefit-copy">
           <p>{feature.copy}</p>
           {feature.id === "local-money" && (
