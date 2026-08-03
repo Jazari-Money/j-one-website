@@ -224,9 +224,9 @@ test("keeps the core interactions working", async ({ page }) => {
   });
   await currencyMenu.getByRole("option", { name: /Colombia.*COP/ }).click();
   await expect(currencyPicker).toContainText("COP");
-  await expect(page.locator(".money-input.result strong")).toContainText("$4,175,000.00");
+  await expect(page.locator(".money-input.result strong")).toContainText("~$4,175,000.00");
   await expect(page.locator("#send-amount")).toHaveValue("$1,000.00");
-  await expect(page.getByText("Recipient gets", { exact: true })).toBeVisible();
+  await expect(page.getByText("Estimated recipient amount", { exact: true })).toBeVisible();
   await expect(currencyPicker).toHaveClass(/neutral-control/);
   const currencyControlStyle = await currencyPicker.evaluate((node) => {
     const style = getComputedStyle(node);
@@ -495,7 +495,7 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   await page.goto("/roadmap/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Coming Soon" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "USD account" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Higher-yield APY" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Higher-yield strategies" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
   const usdAccountCard = page.locator(".roadmap-full-card").first();
   await expect(usdAccountCard.locator(".roadmap-full-card-art")).toHaveAttribute(

@@ -49,23 +49,10 @@ export function Hero() {
         <div className="hero-device-glow" aria-hidden="true" />
         <div className="hero-device">
           <img
-            className="hero-device-frame"
-            src={withBasePath("/images/iphone-12-pro-graphite.webp")}
-            alt=""
-            aria-hidden="true"
+            className="hero-device-image"
+            src={withBasePath("/images/screens/j-one-app-main.png")}
+            alt="Jazari One balance and recent transactions"
           />
-          <video
-            className="hero-device-video"
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster={withBasePath("/images/screens/hero-video-poster.png")}
-            preload="metadata"
-            aria-label="Jazari One app experience"
-          >
-            <source src={withBasePath("/videos/jazari-app.mp4")} type="video/mp4" />
-          </video>
         </div>
       </div>
 

@@ -167,7 +167,7 @@ Commercial relationship wording still requires confirmation before launch.
 ## Current page architecture
 
 1. Bridge-inspired full-width fixed header
-2. Hero with shallow masked mesh shader and Jazari app video
+2. Hero with shallow masked mesh shader and a half-height, bottom-faded Jazari app image
 3. Revealing editorial capability ledger using the supplied Jazari icon assets
 4. Interactive How It Works with Receive, Send, and Yields scenarios; each
    scenario contains three steps and one upright phone at a time
@@ -177,7 +177,7 @@ Commercial relationship wording still requires confirmation before launch.
    - USD account
    - Visa card
    - Expanded payout corridors
-   - Higher-yield APY
+   - Higher-yield strategies
    - Remit Now Pay Later
 8. Homepage Blog preview with the four latest guides and dedicated corridor imagery
 9. Partner preview linking to the complete partners and networks page
@@ -248,7 +248,7 @@ localStorage preferences, or a header swatch.
   at the audited 390×844 layout.
 - FX conversion supports MXN, COP, BRL, and EUR through a custom accessible
   selector showing each country, circular flag, and currency code. Amounts use
-  two decimals. The review leads with “Know what arrives before you send,”
+  two decimals. The review leads with “Estimate what may arrive before you send,”
   keeps the delivery-time and transaction-fee proof points beside the copy,
   and keeps the live-rate partner disclaimer at the bottom of the card.
 
@@ -316,7 +316,8 @@ weight inside one fixed logo field; do not restore the former tabbed explorer.
 
 - Brand: `public/images/brand/jazari-one-logo.svg`
 - Phone frame: `public/images/iphone-12-pro-graphite.webp`
-- Hero video: `public/videos/jazari-app.mp4`
+- Homepage hero app image: `public/images/screens/j-one-app-main.png`
+- Hero-lab video: `public/videos/jazari-app.mp4`
 - Screens:
   - `public/images/screens/home.webp`
   - `public/images/screens/amount-entry.webp`
@@ -459,7 +460,7 @@ Default local URL: `http://localhost:3000`
   contained artwork where available and never allow art to overlap copy. It
   has no timeline line or phase prefix. The current card naming is
   `USD account`, `Visa card`, `Expanded payout corridors`,
-  `Higher-yield APY`, and `Remit Now Pay Later`.
+  `Higher-yield strategies`, and `Remit Now Pay Later`.
   The homepage carousel includes a `View All` entry point to `/roadmap/`,
   which presents every milestone in a compact responsive grid.
 - The virtual card is code-generated with front, back, and four visible edge

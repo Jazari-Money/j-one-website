@@ -115,8 +115,8 @@ export const howScenarios = {
       },
       {
         id: "receive-stablecoins",
-        title: "Share wallet details",
-        copy: "Share a QR code or address for USDC or USDT.",
+        title: "Choose network",
+        copy: "Share your wallet address.",
         screen: withBasePath("/images/how-to/how-to-receive-02.png"),
         alt: "Stablecoin receive details in Jazari One",
       },
@@ -142,7 +142,7 @@ export const howScenarios = {
       {
         id: "send-amount",
         title: "Enter the amount",
-        copy: "See exactly what lands, at the live rate.",
+        copy: "Preview an estimated amount at the current rate.",
         screen: withBasePath("/images/how-to/how-to-send-02.png"),
         alt: "Transfer amount and local currency preview",
       },
@@ -209,9 +209,9 @@ export const audiences = [
   {
     title: "You and your family",
     bullets: [
-      "Supporting parents, siblings, or children back home",
-      "Paying bills in another country",
-      "They receive without installing or learning anything",
+      "Send money to parents, siblings, or children back home",
+      "Send, receive, and manage money across borders — together",
+      "Pay bills and support family, wherever they are",
     ],
     image: withBasePath("/images/audience/family-support.webp"),
     alt: "Family members looking at a phone together",

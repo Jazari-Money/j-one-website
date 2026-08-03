@@ -196,8 +196,8 @@ export function HowItWorks({
 
       <div className="review-block" id="rates">
         <div className="review-copy">
-          <h3>Know what arrives before you send</h3>
-          <p>Everything is on screen before you confirm.</p>
+          <h3>Estimate what may arrive before you send</h3>
+          <p>Preview the amount at the current rate before you confirm.</p>
           <div className="review-metrics">
             <div className="review-fee" aria-label="Transaction fee: zero percent">
               <strong>0%</strong>
@@ -242,10 +242,10 @@ export function HowItWorks({
             </span>
           </output>
 
-          <label id="receive-currency-label">Recipient gets</label>
+          <label id="receive-currency-label">Estimated recipient amount</label>
           <div className="money-input result">
             <strong className="numeric" aria-live="polite">
-              {selectedCurrency.symbol}
+              ~{selectedCurrency.symbol}
               {converted.toLocaleString(undefined, {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
@@ -341,7 +341,7 @@ export function HowItWorks({
           <section className="receiving-country-queue" aria-labelledby="receiving-country-queue-title">
             <header>
               <div>
-                <h4 id="receiving-country-queue-title">In queue</h4>
+                <h4 id="receiving-country-queue-title">Coming soon</h4>
               </div>
             </header>
             <ul>

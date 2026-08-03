@@ -49,7 +49,7 @@ export const milestones = [
     ],
   },
   {
-    title: "Higher-yield APY",
+    title: "Higher-yield strategies",
     copy:
       "Put dollars into independently managed strategies with different assets and potential APYs.",
     notes: [],

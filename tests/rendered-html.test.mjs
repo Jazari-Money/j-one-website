@@ -24,30 +24,30 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Use dollars\./);
   assert.match(html, /Anywhere\./);
   assert.match(html, /Hold them\. Send them\. Grow them\./);
-  assert.match(html, /jazari-app\.mp4/);
+  assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
   assert.match(html, /Hold dollars\. Keep their value\./);
   assert.match(html, /Send to 30\+ countries in local currency\./);
   assert.match(html, /Earn on the dollars you&#x27;re not using\./);
   assert.match(html, /No transfer fees\. No hidden fees\./);
   assert.match(html, /How it works/);
-  assert.match(html, /Know what arrives before you send/);
-  assert.match(html, /Everything is on screen before you confirm\./);
+  assert.match(html, /Estimate what may arrive before you send/);
+  assert.match(html, /Preview the amount at the current rate before you confirm\./);
   assert.match(html, /Receiving countries/);
   assert.match(html, /All receiving countries/);
   assert.match(html, /30(?:<!-- -->)? destinations today\. More countries coming soon\./);
-  assert.match(html, /In queue/);
+  assert.match(html, /Coming soon/);
   assert.match(html, /Andorra/);
   assert.match(html, /United Kingdom/);
   assert.match(html, /class="numeric">\$1<\/b>/);
   assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
-  assert.match(html, /Recipient gets/);
+  assert.match(html, /Estimated recipient amount/);
   assert.match(html, /Transaction fee/);
   assert.match(html, />Yields</);
   assert.match(html, /Coming Soon/);
   assert.match(html, /USD account/);
   assert.match(html, /Expanded payout corridors/);
-  assert.match(html, /Higher-yield APY/);
+  assert.match(html, /Higher-yield strategies/);
   assert.match(html, /Visa card/);
   assert.match(html, /Nigeria/);
   assert.match(html, /usa-flag\.png/);
@@ -105,7 +105,7 @@ test("server-renders plan, yields, coming soon, partners, and about pages", asyn
   assert.match(yields, /Ready to open a yield/);
 
   assert.match(roadmap, /<h1>Coming Soon<\/h1>/);
-  assert.match(roadmap, /Higher-yield APY/);
+  assert.match(roadmap, /Higher-yield strategies/);
   assert.match(roadmap, /Remit Now Pay Later/);
 
   assert.match(partners, /<h1>Partners<\/h1>/);
@@ -219,7 +219,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.doesNotMatch(page, /View screen|Showing screen/);
   assert.match(page, /className="review-fee"/);
   assert.match(page, /className="numeric"/);
-  assert.match(page, /Know what arrives before you send/);
+  assert.match(page, /Estimate what may arrive before you send/);
   assert.match(page, /Live rate from our payment partner/);
   assert.match(page, /\/images\/features\/dollar-01\.png/);
   assert.match(page, /\/images\/features\/planet-02\.png/);
@@ -276,7 +276,8 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.doesNotMatch(css, /\.liquid-metal-layer|\.hero-proof|\.audience-details/);
   assert.match(packageJson, /"glimm"/);
   assert.match(css, /filter:\s*grayscale\(1\)\s*brightness\(0\)\s*invert\(1\)/);
-  assert.match(css, /mask-image:\s*linear-gradient\(to bottom, #000 0 72%, transparent 96%\)/);
+  assert.match(css, /\.hero-device-image/);
+  assert.match(css, /rgba\(0, 0, 0, 0\.8\) 72%/);
 });
 
 test("ships local provider marks and product artwork", async () => {
