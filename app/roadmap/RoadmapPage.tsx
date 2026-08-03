@@ -1,9 +1,7 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- local flag assets */
-
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
-import { milestones } from "../home/ProductRoadmap";
+import { milestones, RoadmapCardBody } from "../home/ProductRoadmap";
 import { SiteFooter } from "../home/SiteFooter";
 import { resetPointer, trackPointer } from "../home/hooks";
 
@@ -13,7 +11,7 @@ export function RoadmapPage() {
       <InternalSiteHeader />
 
       <header className="roadmap-full-hero">
-        <h1>Coming Soon</h1>
+        <h1>Coming soon</h1>
         <p>What you&apos;ll be able to do next.</p>
       </header>
 
@@ -25,28 +23,7 @@ export function RoadmapPage() {
             onPointerMove={trackPointer}
             onPointerLeave={resetPointer}
           >
-            {"art" in milestone && (
-              <img className="roadmap-full-card-art" src={milestone.art.src} alt={milestone.art.alt} />
-            )}
-            <h2>{milestone.title}</h2>
-            <div>
-              {milestone.copy && <p>{milestone.copy}</p>}
-              {"flags" in milestone && (
-                <div className="roadmap-flags" aria-label="Planned receive countries">
-                  {milestone.flags.map((flag) => (
-                    <span key={flag.name}>
-                      <img src={flag.src} alt="" />
-                      {flag.name}
-                    </span>
-                  ))}
-                </div>
-              )}
-              {milestone.notes.length > 0 && (
-                <ul>
-                  {milestone.notes.map((note) => <li key={note}>{note}</li>)}
-                </ul>
-              )}
-            </div>
+            <RoadmapCardBody milestone={milestone} headingLevel="h2" />
           </article>
         ))}
       </section>

@@ -44,7 +44,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Estimated recipient amount/);
   assert.match(html, /Transaction fee/);
   assert.match(html, />Yields</);
-  assert.match(html, /Coming Soon/);
+  assert.match(html, /Coming soon/);
   assert.match(html, /USD account/);
   assert.match(html, /Expanded payout corridors/);
   assert.match(html, /Higher-yield strategies/);
@@ -104,7 +104,7 @@ test("server-renders plan, yields, coming soon, partners, and about pages", asyn
   assert.doesNotMatch(yields, /Return and risk move together/);
   assert.match(yields, /Ready to open a yield/);
 
-  assert.match(roadmap, /<h1>Coming Soon<\/h1>/);
+  assert.match(roadmap, /<h1>Coming soon<\/h1>/);
   assert.match(roadmap, /Higher-yield strategies/);
   assert.match(roadmap, /Remit Now Pay Later/);
 

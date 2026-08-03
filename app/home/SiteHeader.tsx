@@ -98,7 +98,7 @@ export function SiteHeader({
               <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
               <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
               <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
-              <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Coming Soon</a>
+              <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Coming soon</a>
             </section>
             <section className="nav-mobile-group" aria-labelledby="mobile-company-links">
               <strong id="mobile-company-links">Company</strong>

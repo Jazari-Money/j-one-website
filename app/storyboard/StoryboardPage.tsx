@@ -149,7 +149,7 @@ function ButtonSet({ compact = false }: { compact?: boolean }) {
         Read Article
       </button>
       <button className="neutral-control sb-button" type="button" disabled>
-        Coming Soon
+        Coming soon
       </button>
     </div>
   );
@@ -359,7 +359,7 @@ function RoadmapCard({ compact = false }: { compact?: boolean }) {
       onPointerMove={trackPointer}
       onPointerLeave={resetPointer}
     >
-      <span className="sb-status">Coming Soon</span>
+      <span className="sb-status">Coming soon</span>
       <h3>New receive countries</h3>
       <p>New local banking routes open as approvals are ready.</p>
       <ul>
@@ -419,7 +419,7 @@ function BadgeSet({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`sb-badge-set ${compact ? "is-compact" : ""}`}>
       <div className="sb-chip-row">
-        <span className="sb-status">Coming Soon</span>
+        <span className="sb-status">Coming soon</span>
         <span className="sb-apy-chip">4.66% APY</span>
         <span className="sb-flag-chip"><img src={currencies.MXN.flag} alt="" />Mexico</span>
       </div>

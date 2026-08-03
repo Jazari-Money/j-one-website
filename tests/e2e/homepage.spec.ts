@@ -188,7 +188,7 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(yieldsLink).toBeVisible();
   await page.getByRole("tab", { name: "Receive", exact: true }).click();
   const comingSoon = page.locator(".step-status");
-  await expect(comingSoon).toHaveText("Coming Soon");
+  await expect(comingSoon).toHaveText("Coming soon");
   await expect
     .poll(() =>
       comingSoon.evaluate((node) => {
@@ -388,17 +388,17 @@ test("keeps the core interactions working", async ({ page }) => {
   const roadmapTrack = page.locator(".roadmap-track");
   const roadmapWindow = page.locator(".roadmap-window");
   const usdRoadmapCard = page.locator(".roadmap-card").first();
-  await expect(usdRoadmapCard.locator(".roadmap-card-art")).toHaveAttribute(
+  await expect(usdRoadmapCard.locator(".roadmap-milestone-art")).toHaveAttribute(
     "src",
     /usa-flag\.png$/,
   );
   const usdCardRegions = await usdRoadmapCard.evaluate((node) => {
-    const copy = node.querySelector(".roadmap-card-bottom")?.getBoundingClientRect();
-    const art = node.querySelector(".roadmap-card-art")?.getBoundingClientRect();
-    return copy && art ? { copyRight: copy.right, artLeft: art.left } : null;
+    const copy = node.querySelector(".roadmap-milestone-copy")?.getBoundingClientRect();
+    const visual = node.querySelector(".roadmap-milestone-visual")?.getBoundingClientRect();
+    return copy && visual ? { copyBottom: copy.bottom, visualTop: visual.top } : null;
   });
   expect(usdCardRegions).not.toBeNull();
-  expect(usdCardRegions!.copyRight).toBeLessThanOrEqual(usdCardRegions!.artLeft);
+  expect(usdCardRegions!.copyBottom).toBeLessThanOrEqual(usdCardRegions!.visualTop);
   await expect(roadmapWindow).toHaveClass(/is-at-start/);
   await page.getByRole("button", { name: "Next milestone" }).click();
   await expect
@@ -493,12 +493,12 @@ test("explains yields and links into the app flow", async ({ page }) => {
 
 test("shows every product milestone on the roadmap page", async ({ page }) => {
   await page.goto("/roadmap/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Coming Soon" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Coming soon" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "USD account" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Higher-yield strategies" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
   const usdAccountCard = page.locator(".roadmap-full-card").first();
-  await expect(usdAccountCard.locator(".roadmap-full-card-art")).toHaveAttribute(
+  await expect(usdAccountCard.locator(".roadmap-milestone-art")).toHaveAttribute(
     "src",
     /usa-flag\.png$/,
   );
@@ -520,7 +520,7 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   expect(mobileHeights[0]).toBe(440);
   const [mobileCard, mobileArt] = await Promise.all([
     usdAccountCard.boundingBox(),
-    usdAccountCard.locator(".roadmap-full-card-art").boundingBox(),
+    usdAccountCard.locator(".roadmap-milestone-art").boundingBox(),
   ]);
   expect(mobileCard).not.toBeNull();
   expect(mobileArt).not.toBeNull();
@@ -658,7 +658,7 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu).not.toHaveClass(/is-open/);
 });
 
-test("keeps mobile Coming Soon cards visible and their artwork contained", async ({ page }) => {
+test("keeps mobile Coming soon cards visible and their artwork contained", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await prepareStablePage(page);
 
@@ -673,8 +673,8 @@ test("keeps mobile Coming Soon cards visible and their artwork contained", async
 
   for (const index of [0, 1]) {
     const card = page.locator(".roadmap-card").nth(index);
-    const art = card.locator(".roadmap-card-art");
-    const copy = card.locator(".roadmap-card-bottom");
+    const art = card.locator(".roadmap-milestone-art");
+    const copy = card.locator(".roadmap-milestone-copy");
     const [cardBox, artBox, copyBox] = await Promise.all([
       card.boundingBox(),
       art.boundingBox(),

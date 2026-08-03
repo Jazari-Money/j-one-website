@@ -152,7 +152,7 @@ Commercial relationship wording still requires confirmation before launch.
 - Desktop transfer factoids begin 180px below the review description.
 - The Yields walkthrough has one “Learn more about Yields” action below its
   steps, rather than repeating an action inside each step.
-- Mobile Coming Soon cards never use edge-dimming overlays. Flag and card art
+- Mobile Coming soon cards never use edge-dimming overlays. Flag and card art
   occupy a contained bottom zone and must not overlap text. The standalone
   `/roadmap/` cards share one mobile height and one title/body/art architecture.
 - The USD account roadmap cards use the supplied transparent USA flag artwork,
@@ -173,7 +173,7 @@ Commercial relationship wording still requires confirmation before launch.
    scenario contains three steps and one upright phone at a time
 5. FX/review experience integrated inside How It Works
 6. Static audience/use-case stories
-7. Compact horizontal Coming Soon roadmap with contained product artwork:
+7. Compact horizontal Coming soon roadmap with contained product artwork:
    - USD account
    - Visa card
    - Expanded payout corridors
@@ -455,7 +455,7 @@ Default local URL: `http://localhost:3000`
   and values. `1 USD = destination value` is prominent; expected delivery is
   `2–5 minutes`. The two horizontal proof points use Instrument Serif values
   without underlines: `0% Hidden FX rate fee` and `0% Transaction fee`.
-- The homepage Coming Soon section is a compact horizontal scroll-snap
+- The homepage Coming soon section is a compact horizontal scroll-snap
   carousel controlled by round previous/next buttons. Cards use restrained,
   contained artwork where available and never allow art to overlap copy. It
   has no timeline line or phase prefix. The current card naming is

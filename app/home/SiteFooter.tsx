@@ -24,7 +24,7 @@ export function SiteFooter() {
             <Link href="/#rates">Rates</Link>
             <Link href="/plan">Plan</Link>
             <Link href="/yields">Yields</Link>
-            <Link href="/roadmap">Coming Soon</Link>
+            <Link href="/roadmap">Coming soon</Link>
           </div>
           <div>
             <strong>Explore</strong>

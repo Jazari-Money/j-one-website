@@ -62,6 +62,53 @@ export const milestones = [
   },
 ] as const;
 
+type Milestone = (typeof milestones)[number];
+
+export function RoadmapCardBody({
+  milestone,
+  headingLevel,
+}: {
+  milestone: Milestone;
+  headingLevel: "h2" | "h3";
+}) {
+  const Heading = headingLevel;
+
+  return (
+    <>
+      <div className="roadmap-milestone-copy">
+        <Heading>{milestone.title}</Heading>
+        {milestone.copy && <p>{milestone.copy}</p>}
+        {milestone.notes.length > 0 && (
+          <ul>
+            {milestone.notes.map((note) => <li key={note}>{note}</li>)}
+          </ul>
+        )}
+      </div>
+      {("art" in milestone || "flags" in milestone) && (
+        <div className="roadmap-milestone-visual">
+          {"art" in milestone && (
+            <img
+              className="roadmap-milestone-art"
+              src={milestone.art.src}
+              alt={milestone.art.alt}
+            />
+          )}
+          {"flags" in milestone && (
+            <div className="roadmap-flags" aria-label="Planned receive countries">
+              {milestone.flags.map((flag) => (
+                <span key={flag.name}>
+                  <img src={flag.src} alt="" />
+                  {flag.name}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+}
+
 export function ProductRoadmap() {
   const track = useRef<HTMLDivElement>(null);
   const [edgeState, setEdgeState] = useState({ atStart: true, atEnd: false });
@@ -104,10 +151,10 @@ export function ProductRoadmap() {
     <section className="roadmap section" id="roadmap">
       <header className="roadmap-heading">
         <div className="chapter-heading">
-          <h2>Coming Soon</h2>
+          <h2>Coming soon</h2>
           <p>What you&apos;ll be able to do next.</p>
         </div>
-        <div className="roadmap-controls" aria-label="Coming Soon navigation">
+        <div className="roadmap-controls" aria-label="Coming soon navigation">
           <Link className="roadmap-all-link neutral-control" href="/roadmap">View All</Link>
           <button className="realism-icon-button" type="button" onClick={() => move(-1)} aria-label="Previous milestone">
             <ArrowIcon direction="left" />
@@ -129,28 +176,7 @@ export function ProductRoadmap() {
               onPointerMove={trackPointer}
               onPointerLeave={resetPointer}
             >
-              {"art" in milestone && (
-                <img className="roadmap-card-art" src={milestone.art.src} alt={milestone.art.alt} />
-              )}
-              <h3>{milestone.title}</h3>
-              <div className="roadmap-card-bottom">
-                {milestone.copy && <p>{milestone.copy}</p>}
-                {"flags" in milestone && (
-                  <div className="roadmap-flags" aria-label="Planned receive countries">
-                    {milestone.flags.map((flag) => (
-                      <span key={flag.name}>
-                        <img src={flag.src} alt="" />
-                        {flag.name}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {milestone.notes.length > 0 && (
-                  <ul>
-                    {milestone.notes.map((note) => <li key={note}>{note}</li>)}
-                  </ul>
-                )}
-              </div>
+              <RoadmapCardBody milestone={milestone} headingLevel="h3" />
             </article>
           ))}
         </div>

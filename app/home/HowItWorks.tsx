@@ -163,7 +163,7 @@ export function HowItWorks({
                 >
                   <span className="step-title-line">
                     <span>{item.title}</span>
-                    {item.id === "receive-usd" && <em className="step-status">Coming Soon</em>}
+                    {item.id === "receive-usd" && <em className="step-status">Coming soon</em>}
                   </span>
                   <small>{item.copy}</small>
                 </button>
