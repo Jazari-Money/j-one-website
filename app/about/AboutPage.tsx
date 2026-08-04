@@ -77,10 +77,10 @@ export function AboutPage() {
             <ResponsiveImage
               fallback="/images/about/jazari-founders.webp"
               stem="/images/about/jazari-founders"
-              widths={[800, 1600]}
+              widths={[800, 1600, 2560]}
               width={2560}
               height={1707}
-              sizes="(max-width: 900px) calc(100vw - 40px), 640px"
+              sizes="(max-width: 620px) calc(100vw - 40px), (max-width: 900px) calc(100vw - 36px), (max-width: 1120px) calc(100vw - 48px), min(1320px, calc(100vw - 96px))"
               alt="Alex and Has, founders of Jazari One, seated together"
               loading="lazy"
               decoding="async"

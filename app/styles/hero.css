@@ -360,8 +360,8 @@
 .hero-title-line {
   display: block;
   overflow: hidden;
-  margin-bottom: -0.1em;
-  padding-bottom: 0.1em;
+  margin-bottom: -0.24em;
+  padding-bottom: 0.24em;
 }
 
 .hero-title-line > span {

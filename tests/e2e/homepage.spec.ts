@@ -557,6 +557,17 @@ test("explains who the reader trusts with their money", async ({ page }) => {
   await expect(
     foundersPhoto,
   ).toBeVisible();
+  await foundersPhoto.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() => foundersPhoto.evaluate((image) => image.currentSrc))
+    .toContain("jazari-founders-1600.avif");
+  const foundersResolution = await foundersPhoto.evaluate((image) => ({
+    naturalWidth: image.naturalWidth,
+    renderedWidth: image.getBoundingClientRect().width,
+  }));
+  expect(foundersResolution.naturalWidth).toBeGreaterThanOrEqual(
+    foundersResolution.renderedWidth,
+  );
   const [signoffBox, foundersPhotoBox] = await Promise.all([
     page.getByText(/Alex and Has, founders of Jazari One/).boundingBox(),
     foundersPhoto.boundingBox(),

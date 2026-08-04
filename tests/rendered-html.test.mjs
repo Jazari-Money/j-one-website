@@ -72,6 +72,8 @@ test("server-renders the Jazari One landing page", async () => {
     html,
     /Private beta · No commitment · Availability varies by country/,
   );
+  assert.match(html, /building every day<\/h2>/);
+  assert.doesNotMatch(html, /building every day\.<\/h2>/);
   assert.doesNotMatch(html, /audience-index/);
 });
 
@@ -118,6 +120,7 @@ test("server-renders plan, yields, coming soon, partners, and about pages", asyn
   assert.match(about, /Every transfer begins with something real/);
   assert.match(about, /Alex and Has, founders of Jazari One/);
   assert.match(about, /jazari-founders\.webp/);
+  assert.match(about, /jazari-founders-2560\.avif/);
   assert.match(about, /Built in the United States and UAE/);
   assert.match(about, /Registered in Dover, Delaware/);
   assert.match(about, /Registration #78870/);
