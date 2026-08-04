@@ -390,7 +390,7 @@ test("keeps the core interactions working", async ({ page }) => {
   expect(desktopCardMetrics.blogBottomTint).toContain("rgb(0, 0, 0)");
   expect(desktopCardMetrics.audienceImagePositions.slice(0, 2)).toEqual([
     "50% calc(50% + 30px)",
-    "50% calc(50% + 30px)",
+    "50% 50%",
   ]);
   expect(desktopCardMetrics.personaHeights).toEqual([500, 500, 500]);
   expect(desktopCardMetrics.articleHeights).toEqual([500, 500, 500, 500]);

@@ -56,6 +56,10 @@
   object-position: 50% calc(50% + 30px);
 }
 
+.audience-panel:nth-child(2) .audience-image {
+  object-position: 50% 50%;
+}
+
 .audience-caption {
   position: absolute;
   z-index: 2;
