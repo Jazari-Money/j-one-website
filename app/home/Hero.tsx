@@ -36,7 +36,7 @@ export function Hero() {
       </div>
       <div className="hero-copy">
         <h1>
-          <span className="hero-title-line"><span>Use dollars.</span></span>
+          <span className="hero-title-line"><span>Use digital dollars.</span></span>
           <span className="hero-title-line"><span>Anywhere.</span></span>
         </h1>
         <p>Hold them. Send them. Grow them.</p>

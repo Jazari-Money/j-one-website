@@ -7,7 +7,7 @@
  */
 export function HeroCopy({
   layout = "center",
-  lines = ["Use dollars.", "Anywhere."],
+  lines = ["Use digital dollars.", "Anywhere."],
   sub = "Hold them. Send them. Grow them.",
   chips,
   ctaTone = "light",

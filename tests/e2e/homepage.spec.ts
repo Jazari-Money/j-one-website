@@ -135,7 +135,7 @@ test("runs the color event with the reference choreography", async ({ page }) =>
 test("keeps the core interactions working", async ({ page }) => {
   await prepareStablePage(page);
 
-  await expect(page.getByRole("heading", { name: /Use dollars\.\s*Anywhere\./ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Use digital dollars\.\s*Anywhere\./ })).toBeVisible();
   await expect(page.locator("main")).toHaveAttribute("data-theme", "jazari");
   await expect(page.locator("main")).toHaveAttribute("data-shader", "color-event");
   await expect(page.getByRole("button", { name: /Choose color theme/ })).toHaveCount(0);
@@ -175,7 +175,7 @@ test("keeps the core interactions working", async ({ page }) => {
   });
   expect(heroLabelOffset).toBeLessThanOrEqual(1);
   const heroTitleSize = await page
-    .getByRole("heading", { name: /Use dollars\.\s*Anywhere\./ })
+    .getByRole("heading", { name: /Use digital dollars\.\s*Anywhere\./ })
     .evaluate((node) => Number.parseFloat(getComputedStyle(node).fontSize));
   expect(heroTitleSize).toBeGreaterThanOrEqual(107);
 
@@ -496,6 +496,8 @@ test("explains yields and links into the app flow", async ({ page }) => {
     page.getByRole("heading", { name: "Yields" }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
+  await expect(page.getByText("USDC", { exact: true })).toBeVisible();
+  await expect(page.getByText(/USDC · USDT|USDC or USDT/)).toHaveCount(0);
   await expect(page.getByText("4.66%")).toBeVisible();
   await expect(page.getByText("Return and risk move together")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Download App" }).last()).toHaveAttribute(
@@ -510,6 +512,7 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Higher-yield strategies" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
   const usdAccountCard = page.locator(".roadmap-full-card").first();
+  const visaCard = page.locator(".roadmap-full-card").nth(1);
   await expect(usdAccountCard.locator(".roadmap-milestone-art")).toHaveAttribute(
     "src",
     /usa-flag\.png$/,
@@ -530,18 +533,28 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   );
   expect(new Set(mobileHeights).size).toBe(1);
   expect(mobileHeights[0]).toBe(352);
-  const [mobileCard, mobileArt] = await Promise.all([
+  const [mobileCard, mobileArt, mobileVisaCard, mobileVisaArt] = await Promise.all([
     usdAccountCard.boundingBox(),
     usdAccountCard.locator(".roadmap-milestone-art").boundingBox(),
+    visaCard.boundingBox(),
+    visaCard.locator(".roadmap-milestone-art").boundingBox(),
   ]);
   expect(mobileCard).not.toBeNull();
   expect(mobileArt).not.toBeNull();
+  expect(mobileVisaCard).not.toBeNull();
+  expect(mobileVisaArt).not.toBeNull();
   expect(mobileArt!.x).toBeGreaterThanOrEqual(mobileCard!.x);
   expect(mobileArt!.x + mobileArt!.width).toBeLessThanOrEqual(
     mobileCard!.x + mobileCard!.width + 1,
   );
-  expect(mobileArt!.y + mobileArt!.height).toBeLessThanOrEqual(
-    mobileCard!.y + mobileCard!.height + 1,
+  expect(mobileArt!.y + mobileArt!.height).toBeGreaterThan(
+    mobileCard!.y + mobileCard!.height,
+  );
+  expect(mobileVisaArt!.x + mobileVisaArt!.width).toBeGreaterThan(
+    mobileVisaCard!.x + mobileVisaCard!.width,
+  );
+  expect(mobileVisaArt!.y + mobileVisaArt!.height).toBeGreaterThan(
+    mobileVisaCard!.y + mobileVisaCard!.height,
   );
 });
 
@@ -681,7 +694,7 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu).not.toHaveClass(/is-open/);
 });
 
-test("keeps mobile Coming soon cards visible and their artwork contained", async ({ page }) => {
+test("keeps mobile Coming soon cards visible with intentionally cropped artwork", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await prepareStablePage(page);
 
@@ -708,8 +721,12 @@ test("keeps mobile Coming soon cards visible and their artwork contained", async
     expect(copyBox).not.toBeNull();
     expect(Math.round(cardBox!.height)).toBe(352);
     expect(artBox!.x).toBeGreaterThanOrEqual(cardBox!.x);
-    expect(artBox!.x + artBox!.width).toBeLessThanOrEqual(cardBox!.x + cardBox!.width + 1);
-    expect(artBox!.y + artBox!.height).toBeLessThanOrEqual(cardBox!.y + cardBox!.height + 1);
+    if (index === 0) {
+      expect(artBox!.x + artBox!.width).toBeLessThanOrEqual(cardBox!.x + cardBox!.width + 1);
+    } else {
+      expect(artBox!.x + artBox!.width).toBeGreaterThan(cardBox!.x + cardBox!.width);
+    }
+    expect(artBox!.y + artBox!.height).toBeGreaterThan(cardBox!.y + cardBox!.height);
     expect(copyBox!.y + copyBox!.height).toBeLessThanOrEqual(artBox!.y + 1);
   }
 

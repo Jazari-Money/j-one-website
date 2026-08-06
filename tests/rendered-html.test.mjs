@@ -20,15 +20,15 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Jazari One — Use dollars\. Anywhere\.<\/title>/i);
-  assert.match(html, /Use dollars\./);
+  assert.match(html, /<title>Jazari One — Use digital dollars\. Anywhere\.<\/title>/i);
+  assert.match(html, /Use digital dollars\./);
   assert.match(html, /Anywhere\./);
   assert.match(html, /Hold them\. Send them\. Grow them\./);
   assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
-  assert.match(html, /Hold dollars\. Keep their value\./);
+  assert.match(html, /Hold digital dollars\. Keep their value\./);
   assert.match(html, /Send to 30\+ countries in local currency\./);
-  assert.match(html, /Earn on the dollars you&#x27;re not using\./);
+  assert.match(html, /Earn on the digital dollars you&#x27;re not using\./);
   assert.match(html, /No transfer fees\. No hidden fees\./);
   assert.match(html, /How it works/);
   assert.match(html, /Estimate what may arrive before you send/);
@@ -101,6 +101,9 @@ test("server-renders plan, yields, coming soon, partners, and about pages", asyn
   assert.match(plan, /Variable APY/);
 
   assert.match(yields, /Gauntlet USD Alpha/);
+  assert.match(yields, /Put your USDC to work/);
+  assert.match(yields, /<dt>Funding assets<\/dt><dd>USDC<\/dd>/);
+  assert.doesNotMatch(yields, /USDC or USDT|USDC · USDT/);
   assert.match(yields, /4\.66%/);
   assert.match(yields, /<h1>Yields<\/h1>/);
   assert.doesNotMatch(yields, /Return and risk move together/);
@@ -143,7 +146,7 @@ test("server-renders the standalone component board", async () => {
   assert.match(html, /Jazari One/);
   assert.match(html, /component board/);
   assert.match(html, /Atomic UI inventory/);
-  assert.match(html, /Use dollars\. Anywhere\./);
+  assert.match(html, /Use digital dollars\. Anywhere\./);
   assert.match(html, /Typography/);
   assert.match(html, /Fields &amp; values/);
   assert.match(html, /Dropdowns/);

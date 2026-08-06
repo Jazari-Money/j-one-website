@@ -40,7 +40,7 @@ const questions = [
   {
     question: "How do I add funds?",
     answer:
-      "Choose an amount from your balance, then review the strategy, current APY, asset, network costs, and risk notice before you confirm. Your balance may hold USDC or USDT; the app shows the funding routes you can use.",
+      "Choose an amount of USDC from your balance, then review the strategy, current APY, network costs, and risk notice before you confirm. The app shows the funding route you can use.",
   },
   {
     question: "Can I withdraw?",
@@ -62,7 +62,7 @@ export function YieldsPage() {
       <header className="yields-hero">
         <h1>Yields</h1>
         <p>
-          Put your USDC or USDT to work through independently managed
+          Put your USDC to work through independently managed
           onchain strategies. Rates move daily and returns are never guaranteed.
         </p>
       </header>
@@ -100,7 +100,7 @@ export function YieldsPage() {
         <dl className="yield-facts">
           <div>
             <dt>Funding assets</dt>
-            <dd>USDC · USDT</dd>
+            <dd>USDC</dd>
           </div>
           <div>
             <dt>Access</dt>

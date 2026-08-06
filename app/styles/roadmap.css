@@ -193,10 +193,11 @@
 
 .roadmap-milestone-art {
   display: block;
-  width: min(58%, 280px);
-  height: 142px;
+  width: min(72%, 360px);
+  height: 210px;
   object-fit: contain;
   object-position: right bottom;
+  transform: translateY(60px);
   pointer-events: none;
 }
 
@@ -205,7 +206,9 @@
 }
 
 .art-card .roadmap-milestone-art {
-  width: min(66%, 330px);
+  width: min(78%, 410px);
+  height: 220px;
+  transform: translate(70px, 62px);
 }
 
 .roadmap-card .roadmap-milestone-copy p {
@@ -290,12 +293,12 @@
 }
 
 .roadmap-full-card .roadmap-milestone-art {
-  width: min(58%, 310px);
-  height: 158px;
+  width: min(72%, 380px);
+  height: 220px;
 }
 
 .roadmap-full-card.art-card .roadmap-milestone-art {
-  width: min(66%, 350px);
+  width: min(78%, 430px);
 }
 
 @media (min-width: 901px) {
@@ -375,14 +378,16 @@
 
   .roadmap-milestone-art,
   .roadmap-full-card .roadmap-milestone-art {
-    width: 64%;
-    height: 88px;
+    width: 78%;
+    height: 140px;
+    transform: translateY(48px);
   }
 
   .art-card .roadmap-milestone-art,
   .roadmap-full-card.art-card .roadmap-milestone-art {
-    width: 68%;
-    height: 94px;
+    width: 82%;
+    height: 140px;
+    transform: translate(38px, 46px);
   }
 }
 
@@ -405,11 +410,11 @@
 
   .roadmap-milestone-art,
   .roadmap-full-card .roadmap-milestone-art {
-    height: 80px;
+    height: 130px;
   }
 
   .art-card .roadmap-milestone-art,
   .roadmap-full-card.art-card .roadmap-milestone-art {
-    height: 86px;
+    height: 130px;
   }
 }

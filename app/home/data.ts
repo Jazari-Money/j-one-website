@@ -82,7 +82,7 @@ export const jazariVisualProfile = {
 export const features = [
   {
     id: "dollar-balance",
-    copy: "Hold dollars. Keep their value.",
+    copy: "Hold digital dollars. Keep their value.",
     image: withBasePath("/images/features/dollar-01.png"),
   },
   {
@@ -92,7 +92,7 @@ export const features = [
   },
   {
     id: "earn",
-    copy: "Earn on the dollars you're not using.",
+    copy: "Earn on the digital dollars you're not using.",
     image: withBasePath("/images/features/plus-03.png"),
   },
   {

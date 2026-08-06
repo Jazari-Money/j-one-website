@@ -393,7 +393,7 @@ function TypographySpecimen({ compact = false }: { compact?: boolean }) {
     <div className={`sb-type-stack ${compact ? "is-compact" : ""}`}>
       <div>
         <code>Display / Instrument Serif</code>
-        <h1>Use dollars. Anywhere.</h1>
+        <h1>Use digital dollars. Anywhere.</h1>
       </div>
       <div>
         <code>Section / Instrument Serif</code>
