@@ -77,9 +77,9 @@ void main() {
     dustSpace + vec2(u_dust_time * 9.5 / cssHeight, 0.);
   vec2 nearP =
     dustSpace + vec2(u_dust_time * 12.5 / cssHeight, 0.);
-  float dfine = mote(fineP, 26., 1.15, u_time, u_res.y);
+  float dfine = mote(fineP, 26., 1.4, u_time, u_res.y);
   float dbig =
-    mote(nearP + vec2(13.7), 14., 1.8, u_time * .8 + 7., u_res.y);
+    mote(nearP + vec2(13.7), 14., 2.15, u_time * .8 + 7., u_res.y);
   float dustA = wake * smoothstep(.3, .85, u_intro);
   vec3 dust =
     (vec3(.96, .94, .88) * dfine * .5 +
