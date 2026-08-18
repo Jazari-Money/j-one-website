@@ -40,7 +40,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Andorra/);
   assert.match(html, /United Kingdom/);
   assert.match(html, /class="numeric">\$1<\/b>/);
-  assert.match(html, /class="numeric">18\.72<\/b><small class="numeric">MXN/);
+  assert.match(html, /class="numeric">—<\/b><small class="numeric">MXN/);
   assert.match(html, /Estimated recipient amount/);
   assert.match(html, /Transaction fee/);
   assert.match(html, />Yields</);
@@ -229,6 +229,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /className="numeric"/);
   assert.match(page, /Estimate what may arrive before you send/);
   assert.match(page, /Live rate from our payment partner/);
+  assert.match(page, /rate-freshness/);
   assert.match(page, /\/images\/features\/dollar-01\.png/);
   assert.match(page, /\/images\/features\/planet-02\.png/);
   assert.match(page, /\/images\/features\/plus-03\.png/);

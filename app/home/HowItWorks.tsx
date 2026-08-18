@@ -23,10 +23,18 @@ import { resetPointer, trackPointer } from "./hooks";
 import { Phone } from "./Phone";
 
 const scenarioKeys = Object.keys(howScenarios) as HowScenario[];
+const exchangeRatesUrl = "https://api.jazari.xyz/public/exchange_rates";
+const exchangeRateTimeout = 2_000;
+const fallbackRefreshDelay = 30_000;
 
 export function HowItWorks() {
   const [amount, setAmount] = useState("1,000.00");
   const [currency, setCurrency] = useState<CurrencyCode>("MXN");
+  const [exchangeRate, setExchangeRate] = useState<{
+    currency: CurrencyCode;
+    rate: number;
+    live: boolean;
+  }>();
   const [activeScenario, setActiveScenario] = useState<HowScenario>("receive");
   const [activeStep, setActiveStep] = useState(0);
   const [currencyOpen, setCurrencyOpen] = useState(false);
@@ -38,10 +46,69 @@ export function HowItWorks() {
   const scenario = howScenarios[activeScenario];
   const step = scenario.steps[activeStep];
   const selectedCurrency = currencies[currency];
+  const rate = exchangeRate?.currency === currency ? exchangeRate.rate : undefined;
+  const rateStatus = rate === undefined ? "Checking" : exchangeRate?.live ? "Live" : "Estimate";
   const converted = useMemo(() => {
     const number = Number.parseFloat(amount.replace(/,/g, ""));
-    return Number.isFinite(number) ? number * selectedCurrency.rate : 0;
-  }, [amount, selectedCurrency.rate]);
+    return rate === undefined ? undefined : Number.isFinite(number) ? number * rate : 0;
+  }, [amount, rate]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    let timeout: number | undefined;
+
+    async function refreshRate() {
+      let delay = fallbackRefreshDelay;
+      setExchangeRate((current) => current?.currency === currency
+        ? { ...current, live: false }
+        : current);
+
+      try {
+        const response = await fetch(`${exchangeRatesUrl}?from=USD&to=${currency}`, {
+          signal: AbortSignal.any([
+            controller.signal,
+            AbortSignal.timeout(exchangeRateTimeout),
+          ]),
+        });
+        if (!response.ok) throw new Error(`Exchange rate request failed: ${response.status}`);
+
+        const payload = await response.json() as {
+          from?: unknown;
+          to?: unknown;
+          rate?: unknown;
+        };
+        if (
+          payload.from !== "USD"
+          || payload.to !== currency
+          || typeof payload.rate !== "number"
+          || !Number.isFinite(payload.rate)
+          || payload.rate <= 0
+        ) {
+          throw new Error("Invalid exchange rate response");
+        }
+
+        setExchangeRate({ currency, rate: payload.rate, live: true });
+        const maxAge = response.headers
+          .get("cache-control")
+          ?.match(/(?:^|,)\s*max-age="?(\d+)"?/i)?.[1];
+        delay = Math.min(
+          Math.max(Number(maxAge ?? fallbackRefreshDelay / 1_000), 1) * 1_000,
+          fallbackRefreshDelay,
+        );
+      } catch {
+        if (controller.signal.aborted) return;
+        setExchangeRate({ currency, rate: currencies[currency].rate, live: false });
+      }
+
+      timeout = window.setTimeout(refreshRate, delay);
+    }
+
+    void refreshRate();
+    return () => {
+      controller.abort();
+      if (timeout !== undefined) window.clearTimeout(timeout);
+    };
+  }, [currency]);
 
   useEffect(() => {
     const closeCurrencyPicker = (event: MouseEvent) => {
@@ -114,10 +181,10 @@ export function HowItWorks() {
     tabRefs.current[next]?.focus();
   }
 
-  const rateLabel = selectedCurrency.rate.toLocaleString(undefined, {
-    minimumFractionDigits: Number.isInteger(selectedCurrency.rate) ? 0 : 2,
+  const rateLabel = rate?.toLocaleString(undefined, {
+    minimumFractionDigits: Number.isInteger(rate) ? 0 : 2,
     maximumFractionDigits: 2,
-  });
+  }) ?? "—";
 
   return (
     <section className="how section" id="how">
@@ -222,6 +289,13 @@ export function HowItWorks() {
           onPointerMove={trackPointer}
           onPointerLeave={resetPointer}
         >
+          <span
+            className={`rate-freshness ${rateStatus === "Live" ? "is-live" : ""}`}
+            role="status"
+          >
+            <span aria-hidden="true">●</span>
+            {rateStatus}
+          </span>
           <label htmlFor="send-amount">You send</label>
           <div className="money-input">
             <input
@@ -252,11 +326,12 @@ export function HowItWorks() {
           <label id="receive-currency-label">Estimated recipient amount</label>
           <div className="money-input result">
             <strong className="numeric" aria-live="polite">
-              ~{selectedCurrency.symbol}
-              {converted.toLocaleString(undefined, {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
+              {converted === undefined
+                ? "Loading…"
+                : `~${selectedCurrency.symbol}${converted.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}`}
             </strong>
             <div className="currency-picker" ref={currencyPicker}>
               <button

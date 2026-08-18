@@ -368,6 +368,24 @@
   display: none;
 }
 
+.rate-freshness {
+  position: absolute;
+  top: 40px;
+  right: 38px;
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rate-freshness.is-live {
+  color: #ff5c5c;
+}
+
 .rate-card label {
   margin-bottom: 10px;
   color: var(--muted);
@@ -1000,6 +1018,11 @@
   .rate-card {
     padding: 26px 20px;
     border-radius: 22px;
+  }
+
+  .rate-freshness {
+    top: 28px;
+    right: 20px;
   }
 
   .money-input {

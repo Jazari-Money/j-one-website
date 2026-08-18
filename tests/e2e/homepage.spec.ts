@@ -1,6 +1,34 @@
 import { expect, test, type Page } from "@playwright/test";
 
+const exchangeRates = {
+  MXN: 18.72,
+  COP: 4175,
+  BRL: 5.49,
+  EUR: 0.92,
+} as const;
+
 test.beforeEach(async ({ context }) => {
+  await context.route("https://api.jazari.xyz/public/exchange_rates?*", async (route) => {
+    const to = new URL(route.request().url()).searchParams.get("to");
+    if (!to || !(to in exchangeRates)) {
+      await route.fulfill({ status: 400 });
+      return;
+    }
+
+    await route.fulfill({
+      headers: {
+        "access-control-allow-origin": "*",
+        "cache-control": "public, max-age=3600",
+      },
+      json: {
+        from: "USD",
+        to,
+        rate: exchangeRates[to as keyof typeof exchangeRates],
+        updated_at: "2026-08-19T00:00:00.000+00:00",
+      },
+    });
+  });
+
   await context.addCookies([
     {
       name: "jazari_cookie_consent",
@@ -86,6 +114,60 @@ async function revealScrollableContent(page: Page) {
   });
   await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(0);
 }
+
+test("refreshes the displayed exchange rate when its cache expires", async ({ page }) => {
+  let rate = 19.70124651;
+  await page.route("https://api.jazari.xyz/public/exchange_rates?*", async (route) => {
+    const to = new URL(route.request().url()).searchParams.get("to");
+    await route.fulfill({
+      headers: {
+        "access-control-allow-origin": "*",
+        "cache-control": "public, max-age=1",
+      },
+      json: {
+        from: "USD",
+        to,
+        rate,
+        updated_at: "2026-08-19T00:00:00.000+00:00",
+      },
+    });
+  });
+
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const displayedRate = page.locator(".prominent-rate .is-result b");
+  await expect(displayedRate).toHaveText("19.70");
+  const freshness = page.locator(".rate-freshness");
+  await expect(freshness).toContainText("Live");
+  await expect.poll(() => freshness.evaluate((node) => getComputedStyle(node).color))
+    .toBe("rgb(255, 92, 92)");
+
+  rate = 20.123;
+  await expect(displayedRate).toHaveText("20.12", { timeout: 3_000 });
+});
+
+test("shows a marked estimate when live pricing times out", async ({ page }) => {
+  await page.route("https://api.jazari.xyz/public/exchange_rates?*", async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 2_500));
+    await route.fulfill({
+      json: {
+        from: "USD",
+        to: "MXN",
+        rate: 19.70124651,
+        updated_at: "2026-08-19T00:00:00.000+00:00",
+      },
+    }).catch(() => undefined);
+  });
+
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const freshness = page.locator(".rate-freshness");
+  const recipientAmount = page.locator(".money-input.result > strong");
+  await expect(freshness).toContainText("Checking");
+  await expect(recipientAmount).toHaveText("Loading…");
+  await expect(freshness).toContainText("Estimate", { timeout: 3_500 });
+  await expect(recipientAmount).toHaveText("~$18,720.00");
+  await expect.poll(() => freshness.evaluate((node) => getComputedStyle(node).color))
+    .toBe("rgb(141, 146, 143)");
+});
 
 test("runs the color event with the reference choreography", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
