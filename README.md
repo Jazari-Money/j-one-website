@@ -20,6 +20,17 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## Analytics configuration
+
+Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_GA_MEASUREMENT_ID` to
+the public GA4 web data stream ID when testing analytics locally. If the value
+is absent or invalid, consent preferences still work but Google Analytics is
+not loaded.
+
+The GitHub Pages workflow reads the same value from the repository variable
+`GA_MEASUREMENT_ID`. Measurement IDs are public identifiers and should be
+configured as a repository variable, not a secret.
+
 ## Verification
 
 ```bash
@@ -54,6 +65,7 @@ publishes the `out/` directory.
 - `app/blog/` — shared article renderer and regional guide routes
 - `public/` — local images, video, logos, and fonts
 - `tests/` — static-output and browser tests
+- `app/cookie-consent/` — consent persistence, preferences UI, and analytics gating
 
 The site intentionally uses plain modular CSS rather than Tailwind. It has no
 server runtime or database; early-access submission is currently a front-end

@@ -3,12 +3,12 @@
 /* eslint-disable @next/next/no-img-element -- official and local brand artwork */
 
 import Link from "next/link";
-import { useState } from "react";
+import { useCookieConsent } from "../cookie-consent/CookieConsent";
 import { withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
 
 export function SiteFooter() {
-  const [cookieOpen, setCookieOpen] = useState(false);
+  const { openPreferences } = useCookieConsent();
 
   return (
     <footer className="site-footer">
@@ -45,7 +45,7 @@ export function SiteFooter() {
             <strong>Legal</strong>
             <Link href="/terms">Terms &amp; Conditions</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
-            <button type="button" onClick={() => setCookieOpen(true)}>Cookie Preferences</button>
+            <button type="button" onClick={openPreferences}>Cookie Preferences</button>
           </div>
         </nav>
         <SocialLinks className="footer-socials" />
@@ -100,19 +100,6 @@ export function SiteFooter() {
           <span>© 2026 Jazari One. All rights reserved.</span>
         </div>
       </div>
-
-      {cookieOpen && (
-        <div className="cookie-panel" role="dialog" aria-modal="true" aria-labelledby="cookie-title">
-          <div className="cookie-panel-card">
-            <h2 id="cookie-title">Cookie preferences</h2>
-            <p>This preview uses essential storage for core site functionality. Optional analytics are not enabled.</p>
-            <div>
-              <button className="realism-button" type="button" onClick={() => setCookieOpen(false)}>Essential Only</button>
-              <button className="realism-button" type="button" onClick={() => setCookieOpen(false)}>Accept All</button>
-            </div>
-          </div>
-        </div>
-      )}
     </footer>
   );
 }

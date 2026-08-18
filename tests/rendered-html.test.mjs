@@ -75,6 +75,8 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /building every day<\/h2>/);
   assert.doesNotMatch(html, /building every day\.<\/h2>/);
   assert.doesNotMatch(html, /audience-index/);
+  assert.match(html, /analytics_storage:'denied'/);
+  assert.doesNotMatch(html, /https:\/\/www\.googletagmanager\.com\/gtag\/js/);
 });
 
 test("server-renders plan, yields, coming soon, partners, and about pages", async () => {

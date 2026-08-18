@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "@fontsource/instrument-serif/400.css";
 import "@fontsource-variable/inter";
+import { CookieConsentProvider } from "./cookie-consent/CookieConsent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -44,7 +45,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="jazari" data-shader="beam">
-      <body>{children}</body>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(Array.from(arguments))};window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});",
+          }}
+        />
+      </head>
+      <body>
+        <CookieConsentProvider>{children}</CookieConsentProvider>
+      </body>
     </html>
   );
 }

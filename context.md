@@ -504,8 +504,11 @@ Default local URL: `http://localhost:3000`
   Terms & Conditions and Privacy Policy are internal pages at `/terms/` and
   `/privacy-policy/`, using a shared responsive legal-reading layout. Terms is
   now the supplied Version 1 US document effective 21 April 2026; Privacy
-  remains the April 2026 document. Cookie Preferences is currently a clearly
-  mocked local modal in the footer only.
+  remains the April 2026 document. Cookie Preferences opens the shared consent
+  modal. The global consent controller stores only the necessary
+  `jazari_cookie_consent` cookie for one year, denies analytics by default, and
+  loads direct GA4 only after an explicit grant. The GA measurement ID is
+  supplied at build time and the consent logic never sets a cookie domain.
 - Pricing has no tiers. It is one combined surface ordered `Money movement`,
   `Accounts`, then `Cards`; section boundaries are established through spacing,
   not full-width rules, while row separators remain short, inset, and faint.

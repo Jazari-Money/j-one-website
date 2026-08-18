@@ -1,5 +1,18 @@
 import { expect, test, type Page } from "@playwright/test";
 
+test.beforeEach(async ({ context }) => {
+  await context.addCookies([
+    {
+      name: "jazari_cookie_consent",
+      value: encodeURIComponent(
+        JSON.stringify({ analytics: false, updatedAt: "2026-08-19" }),
+      ),
+      url: "http://127.0.0.1:3000",
+      sameSite: "Lax",
+    },
+  ]);
+});
+
 async function prepareStablePage(page: Page) {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/", { waitUntil: "networkidle" });
