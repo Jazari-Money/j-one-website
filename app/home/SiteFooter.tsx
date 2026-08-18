@@ -57,33 +57,37 @@ export function SiteFooter() {
           services are delivered by licensed and regulated third-party providers.
           Jazari does not hold customer funds or provide regulated financial services directly.
         </p>
-        <div className="footer-stores" aria-label="Download the Jazari One app">
-          <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
-            <img
-              src={withBasePath("/images/stores/app-store-badge.avif")}
-              alt="Download on the App Store"
-              width="485"
-              height="156"
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
-          <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
-            <img
-              src={withBasePath("/images/stores/google-play-badge.avif")}
-              alt="Get it on Google Play"
-              width="512"
-              height="152"
-              loading="lazy"
-              decoding="async"
-            />
-          </a>
-        </div>
         <div className="footer-addresses">
           <address>
             <strong>Jazari Fintech Services — FZCO,</strong>{" "}
             <span>#78870, Building A1, IFZA Business Park, Dubai Silicon Oasis, Dubai, UAE</span>
           </address>
+          <p className="footer-registration">
+            Jazari ONE holds a FinCEN MSB registration (Registration No. MRX26-00006547)
+            reflecting its compliance obligations as an entity operating in the payments ecosystem.
+          </p>
+          <div className="footer-stores" aria-label="Download the Jazari One app">
+            <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
+              <img
+                src={withBasePath("/images/stores/app-store-badge.avif")}
+                alt="Download on the App Store"
+                width="485"
+                height="156"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
+              <img
+                src={withBasePath("/images/stores/google-play-badge.avif")}
+                alt="Get it on Google Play"
+                width="512"
+                height="152"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+          </div>
           <address>
             <strong>Jazari One, Inc.,</strong>{" "}
             <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>

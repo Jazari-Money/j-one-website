@@ -23,7 +23,6 @@
 }
 
 .footer-stores {
-  margin-top: 28px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -95,6 +94,13 @@
 .footer-addresses address {
   max-width: none;
   font-style: normal;
+}
+
+.footer-registration {
+  max-width: 850px;
+  color: var(--muted-strong);
+  font-size: 14px;
+  line-height: 1.72;
 }
 
 .footer-addresses strong,
