@@ -86,8 +86,14 @@
 
 .footer-addresses {
   margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.footer-addresses-content {
   display: grid;
-  grid-template-columns: 1fr;
   gap: 26px;
 }
 
@@ -226,7 +232,11 @@
     display: flex;
     align-items: center;
   }
-  .footer-addresses { grid-template-columns: 1fr; gap: 26px; }
+  .footer-addresses {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 26px;
+  }
   .footer-signoff { align-items: flex-start; flex-direction: column; }
   .footer-socials {
     grid-column: 2;

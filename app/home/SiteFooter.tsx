@@ -58,14 +58,20 @@ export function SiteFooter() {
           Jazari does not hold customer funds or provide regulated financial services directly.
         </p>
         <div className="footer-addresses">
-          <address>
-            <strong>Jazari Fintech Services — FZCO,</strong>{" "}
-            <span>#78870, Building A1, IFZA Business Park, Dubai Silicon Oasis, Dubai, UAE</span>
-          </address>
-          <p className="footer-registration">
-            Jazari ONE holds a FinCEN MSB registration (Registration No. MRX26-00006547)
-            reflecting its compliance obligations as an entity operating in the payments ecosystem.
-          </p>
+          <div className="footer-addresses-content">
+            <address>
+              <strong>Jazari Fintech Services — FZCO,</strong>{" "}
+              <span>#78870, Building A1, IFZA Business Park, Dubai Silicon Oasis, Dubai, UAE</span>
+            </address>
+            <p className="footer-registration">
+              Jazari ONE holds a FinCEN MSB registration (Registration No. MRX26-00006547)
+              reflecting its compliance obligations as an entity operating in the payments ecosystem.
+            </p>
+            <address>
+              <strong>Jazari One, Inc.,</strong>{" "}
+              <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>
+            </address>
+          </div>
           <div className="footer-stores" aria-label="Download the Jazari One app">
             <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
               <img
@@ -88,10 +94,6 @@ export function SiteFooter() {
               />
             </a>
           </div>
-          <address>
-            <strong>Jazari One, Inc.,</strong>{" "}
-            <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>
-          </address>
         </div>
         <div className="footer-signoff">
           <span>Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc.</span>
