@@ -340,7 +340,7 @@ test("keeps the core interactions working", async ({ page }) => {
 
   await expect(page.locator(".nav-cta")).toHaveAttribute(
     "href",
-    "https://apps.apple.com/",
+    "https://jazarione.app.link/web-launch",
   );
   const navbarLabelOffset = await page.locator(".nav-cta").evaluate((node) => {
     const button = node.getBoundingClientRect();
@@ -590,7 +590,7 @@ test("explains yields and links into the app flow", async ({ page }) => {
   await expect(page.getByText("4.66%")).toBeVisible();
   await expect(page.getByText("Return and risk move together")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Download App" }).last()).toHaveAttribute(
-    "href", "/#access",
+    "href", "https://jazarione.app.link/web-launch",
   );
 });
 

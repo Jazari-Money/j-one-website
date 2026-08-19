@@ -3,13 +3,12 @@
 /* eslint-disable @next/next/no-img-element -- local provider artwork */
 
 import "../styles/yields-page.css";
-import Link from "next/link";
 import { AccordionList } from "../home/AccordionList";
 import { ContainedColorEvent } from "../home/ContainedColorEvent";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { SiteFooter } from "../home/SiteFooter";
 import { resetPointer, trackPointer } from "../home/hooks";
-import { withBasePath } from "../site-paths";
+import { appDownloadUrl, withBasePath } from "../site-paths";
 
 const questions = [
   {
@@ -126,14 +125,16 @@ export function YieldsPage() {
           <h2 id="yield-cta-title">Ready to open a yield?</h2>
           <p>Review the current strategy and risks, then continue in the Jazari app.</p>
         </div>
-        <Link
+        <a
           className="realism-button"
-          href="/#access"
+          href={appDownloadUrl}
+          target="_blank"
+          rel="noreferrer"
           onPointerMove={trackPointer}
           onPointerLeave={resetPointer}
         >
           Download App
-        </Link>
+        </a>
       </ContainedColorEvent>
 
       <SiteFooter />

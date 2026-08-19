@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { appDownloadUrl } from "../site-paths";
 import { ContainedColorEvent } from "../home/ContainedColorEvent";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { ResponsiveImage } from "../home/ResponsiveImage";
@@ -304,7 +305,14 @@ export function GuideArticle({ article }: { article: keyof typeof articleData })
         <div className="color-event-cta-copy">
           <h2 id="article-cta-title">Ready to join Jazari One?</h2>
         </div>
-        <Link className="article-cta-link neutral-control" href="/#access">Download App</Link>
+        <a
+          className="article-cta-link neutral-control"
+          href={appDownloadUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Download App
+        </a>
       </ContainedColorEvent>
       <SiteFooter />
     </main>

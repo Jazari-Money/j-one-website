@@ -359,7 +359,7 @@ test("renders the Blog index and all seven guides", async () => {
     assert.doesNotMatch(html, /min read/i);
     assert.match(html, /href="\/j-one-website\/#top"/);
     assert.match(html, /href="\/j-one-website\/blog\/?"/);
-    assert.match(html, /href="\/j-one-website\/#access"/);
+    assert.match(html, /href="https:\/\/jazarione\.app\.link\/web-launch"/);
     assert.doesNotMatch(html, /\/j-one-website\/j-one-website\//);
   }
 

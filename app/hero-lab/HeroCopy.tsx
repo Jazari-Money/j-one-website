@@ -1,5 +1,7 @@
 "use client";
 
+import { appDownloadUrl } from "../site-paths";
+
 /**
  * Shared hero copy block. Real production content; each variant restyles the
  * reveal, alignment and hierarchy through its own CSS scope. Headline lines
@@ -38,7 +40,7 @@ export function HeroCopy({
       <div className="hlab-cta-row">
         <a
           className={`hlab-cta is-${ctaTone}`}
-          href="https://apps.apple.com/"
+          href={appDownloadUrl}
           target="_blank"
           rel="noreferrer"
         >

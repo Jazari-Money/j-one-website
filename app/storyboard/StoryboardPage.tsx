@@ -17,7 +17,7 @@ import {
   type CurrencyCode,
 } from "../home/data";
 import { resetPointer, trackPointer } from "../home/hooks";
-import { withBasePath } from "../site-paths";
+import { appDownloadUrl, withBasePath } from "../site-paths";
 
 const catalog = [
   ["typography", "Typography"],
@@ -138,14 +138,16 @@ function ViewportPair({
 function ButtonSet({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`sb-button-set ${compact ? "is-compact" : ""}`}>
-      <button
+      <a
         className="realism-button sb-button"
-        type="button"
+        href={appDownloadUrl}
+        target="_blank"
+        rel="noreferrer"
         onPointerMove={trackPointer}
         onPointerLeave={resetPointer}
       >
         Download App
-      </button>
+      </a>
       <button className="neutral-control sb-button" type="button">
         Read Article
       </button>

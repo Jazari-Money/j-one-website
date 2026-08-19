@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
 import { useEffect, useRef, useState } from "react";
-import { withBasePath } from "../site-paths";
+import { appDownloadUrl, withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
 
 export function SiteHeader({
@@ -119,7 +119,7 @@ export function SiteHeader({
           <div className="nav-mobile-extras">
             <a
               className="neutral-control"
-              href="https://apps.apple.com/"
+              href={appDownloadUrl}
               target="_blank"
               rel="noreferrer"
               onClick={closeMobile}
@@ -137,7 +137,7 @@ export function SiteHeader({
         <div className="nav-actions">
           <a
             className="nav-cta neutral-control"
-            href="https://apps.apple.com/"
+            href={appDownloadUrl}
             target="_blank"
             rel="noreferrer"
           >

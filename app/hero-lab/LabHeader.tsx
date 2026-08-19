@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
 import Link from "next/link";
-import { withBasePath } from "../site-paths";
+import { appDownloadUrl, withBasePath } from "../site-paths";
 
 /**
  * Visual replica of the production navigation, positioned inside the lab
@@ -23,7 +23,7 @@ export function LabHeader() {
       </nav>
       <a
         className="hlab-nav-cta"
-        href="https://apps.apple.com/"
+        href={appDownloadUrl}
         target="_blank"
         rel="noreferrer"
       >

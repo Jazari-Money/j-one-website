@@ -1,5 +1,6 @@
 "use client";
 
+import { appDownloadUrl } from "../site-paths";
 import { HeroColorEvent } from "./HeroColorEvent";
 import { ResponsiveImage } from "./ResponsiveImage";
 import {
@@ -13,7 +14,7 @@ function HeroDownload() {
     <div className="hero-download-control" id="access">
       <a
         className="magic-access-button hero-download-button"
-        href="https://apps.apple.com/"
+        href={appDownloadUrl}
         target="_blank"
         rel="noreferrer"
         onPointerMove={trackPointer}
