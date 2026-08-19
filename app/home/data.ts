@@ -29,6 +29,13 @@ export const currencies = {
     symbol: "€",
     flag: withBasePath("/images/flags/eu.png"),
   },
+  GBP: {
+    country: "United Kingdom",
+    name: "British pound",
+    rate: 0.79,
+    symbol: "£",
+    flag: withBasePath("/images/flags/gb.png"),
+  },
 } as const;
 
 export type CurrencyCode = keyof typeof currencies;

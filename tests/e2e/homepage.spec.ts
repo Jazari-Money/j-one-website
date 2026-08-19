@@ -2,6 +2,7 @@ import { expect, test, type Page } from "@playwright/test";
 
 const exchangeRates = {
   BRL: 5.36582475,
+  COP: 3026.213091,
   EUR: 0.908127,
   GBP: 0.78804,
   MXN: 19.70124651,
@@ -294,11 +295,12 @@ test("keeps the core interactions working", async ({ page }) => {
   const currencyPicker = page.locator("#receive-currency");
   await currencyPicker.click();
   const currencyMenu = page.getByRole("listbox", { name: "Recipient currency" });
-  await expect(currencyMenu.getByRole("option")).toHaveCount(4);
+  await expect(currencyMenu.getByRole("option")).toHaveCount(5);
   await expect(currencyMenu.getByRole("option", { name: /Mexico.*MXN/ })).toBeVisible();
   await expect(currencyMenu.getByRole("option", { name: /Colombia.*COP/ })).toBeVisible();
   await expect(currencyMenu.getByRole("option", { name: /Brazil.*BRL/ })).toBeVisible();
   await expect(currencyMenu.getByRole("option", { name: /Europe.*EUR/ })).toBeVisible();
+  await expect(currencyMenu.getByRole("option", { name: /United Kingdom.*GBP/ })).toBeVisible();
   const currencyMenuStyle = await currencyMenu.evaluate((node) => {
     const style = getComputedStyle(node);
     const option = node.querySelector("[role=option]");
@@ -317,8 +319,13 @@ test("keeps the core interactions working", async ({ page }) => {
   });
   await currencyMenu.getByRole("option", { name: /Colombia.*COP/ }).click();
   await expect(currencyPicker).toContainText("COP");
-  await expect(page.locator(".money-input.result strong")).toContainText("~$4,175,000.00");
-  await expect(page.locator(".rate-freshness")).toContainText("Estimate");
+  await expect(page.locator(".money-input.result strong")).toContainText("~$3,026,213.09");
+  await expect(page.locator(".rate-freshness")).toContainText("Live");
+  await currencyPicker.click();
+  await currencyMenu.getByRole("option", { name: /United Kingdom.*GBP/ }).click();
+  await expect(currencyPicker).toContainText("GBP");
+  await expect(page.locator(".money-input.result strong")).toContainText("~£788.04");
+  await expect(page.locator(".rate-freshness")).toContainText("Live");
   await expect(page.locator("#send-amount")).toHaveValue("$1,000.00");
   await expect(page.getByText("Estimated recipient amount", { exact: true })).toBeVisible();
   await expect(currencyPicker).toHaveClass(/neutral-control/);
