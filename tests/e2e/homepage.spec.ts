@@ -1,31 +1,28 @@
 import { expect, test, type Page } from "@playwright/test";
 
 const exchangeRates = {
-  MXN: 18.72,
-  COP: 4175,
-  BRL: 5.49,
-  EUR: 0.92,
+  BRL: 5.36582475,
+  EUR: 0.908127,
+  GBP: 0.78804,
+  MXN: 19.70124651,
 } as const;
+const exchangeRatesUrl = "https://api.jazari.xyz/public/exchange_rates";
+
+const rateBatch = (rates: Record<string, number>) => Object.entries(rates).map(([to, rate]) => ({
+  from: "USDC",
+  to,
+  rate,
+  updated_at: "2026-08-19T00:00:00.000+00:00",
+}));
 
 test.beforeEach(async ({ context }) => {
-  await context.route("https://api.jazari.xyz/public/exchange_rates?*", async (route) => {
-    const to = new URL(route.request().url()).searchParams.get("to");
-    if (!to || !(to in exchangeRates)) {
-      await route.fulfill({ status: 400 });
-      return;
-    }
-
+  await context.route(exchangeRatesUrl, async (route) => {
     await route.fulfill({
       headers: {
         "access-control-allow-origin": "*",
         "cache-control": "public, max-age=3600",
       },
-      json: {
-        from: "USD",
-        to,
-        rate: exchangeRates[to as keyof typeof exchangeRates],
-        updated_at: "2026-08-19T00:00:00.000+00:00",
-      },
+      json: rateBatch(exchangeRates),
     });
   });
 
@@ -117,19 +114,13 @@ async function revealScrollableContent(page: Page) {
 
 test("refreshes the displayed exchange rate when its cache expires", async ({ page }) => {
   let rate = 19.70124651;
-  await page.route("https://api.jazari.xyz/public/exchange_rates?*", async (route) => {
-    const to = new URL(route.request().url()).searchParams.get("to");
+  await page.route(exchangeRatesUrl, async (route) => {
     await route.fulfill({
       headers: {
         "access-control-allow-origin": "*",
         "cache-control": "public, max-age=1",
       },
-      json: {
-        from: "USD",
-        to,
-        rate,
-        updated_at: "2026-08-19T00:00:00.000+00:00",
-      },
+      json: rateBatch({ ...exchangeRates, MXN: rate }),
     });
   });
 
@@ -146,15 +137,10 @@ test("refreshes the displayed exchange rate when its cache expires", async ({ pa
 });
 
 test("shows a marked estimate when live pricing times out", async ({ page }) => {
-  await page.route("https://api.jazari.xyz/public/exchange_rates?*", async (route) => {
+  await page.route(exchangeRatesUrl, async (route) => {
     await new Promise((resolve) => setTimeout(resolve, 2_500));
     await route.fulfill({
-      json: {
-        from: "USD",
-        to: "MXN",
-        rate: 19.70124651,
-        updated_at: "2026-08-19T00:00:00.000+00:00",
-      },
+      json: rateBatch({ ...exchangeRates, MXN: 19.70124651 }),
     }).catch(() => undefined);
   });
 
@@ -332,6 +318,7 @@ test("keeps the core interactions working", async ({ page }) => {
   await currencyMenu.getByRole("option", { name: /Colombia.*COP/ }).click();
   await expect(currencyPicker).toContainText("COP");
   await expect(page.locator(".money-input.result strong")).toContainText("~$4,175,000.00");
+  await expect(page.locator(".rate-freshness")).toContainText("Estimate");
   await expect(page.locator("#send-amount")).toHaveValue("$1,000.00");
   await expect(page.getByText("Estimated recipient amount", { exact: true })).toBeVisible();
   await expect(currencyPicker).toHaveClass(/neutral-control/);

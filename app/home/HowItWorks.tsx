@@ -30,9 +30,8 @@ const fallbackRefreshDelay = 30_000;
 export function HowItWorks() {
   const [amount, setAmount] = useState("1,000.00");
   const [currency, setCurrency] = useState<CurrencyCode>("MXN");
-  const [exchangeRate, setExchangeRate] = useState<{
-    currency: CurrencyCode;
-    rate: number;
+  const [exchangeRates, setExchangeRates] = useState<{
+    rates: Partial<Record<CurrencyCode, number>>;
     live: boolean;
   }>();
   const [activeScenario, setActiveScenario] = useState<HowScenario>("receive");
@@ -46,8 +45,11 @@ export function HowItWorks() {
   const scenario = howScenarios[activeScenario];
   const step = scenario.steps[activeStep];
   const selectedCurrency = currencies[currency];
-  const rate = exchangeRate?.currency === currency ? exchangeRate.rate : undefined;
-  const rateStatus = rate === undefined ? "Checking" : exchangeRate?.live ? "Live" : "Estimate";
+  const apiRate = exchangeRates?.rates[currency];
+  const rate = apiRate ?? (exchangeRates ? selectedCurrency.rate : undefined);
+  const rateStatus = rate === undefined
+    ? "Checking"
+    : exchangeRates?.live && apiRate !== undefined ? "Live" : "Estimate";
   const converted = useMemo(() => {
     const number = Number.parseFloat(amount.replace(/,/g, ""));
     return rate === undefined ? undefined : Number.isFinite(number) ? number * rate : 0;
@@ -59,12 +61,10 @@ export function HowItWorks() {
 
     async function refreshRate() {
       let delay = fallbackRefreshDelay;
-      setExchangeRate((current) => current?.currency === currency
-        ? { ...current, live: false }
-        : current);
+      setExchangeRates((current) => current ? { ...current, live: false } : current);
 
       try {
-        const response = await fetch(`${exchangeRatesUrl}?from=USD&to=${currency}`, {
+        const response = await fetch(exchangeRatesUrl, {
           signal: AbortSignal.any([
             controller.signal,
             AbortSignal.timeout(exchangeRateTimeout),
@@ -72,22 +72,31 @@ export function HowItWorks() {
         });
         if (!response.ok) throw new Error(`Exchange rate request failed: ${response.status}`);
 
-        const payload = await response.json() as {
-          from?: unknown;
-          to?: unknown;
-          rate?: unknown;
-        };
-        if (
-          payload.from !== "USD"
-          || payload.to !== currency
-          || typeof payload.rate !== "number"
-          || !Number.isFinite(payload.rate)
-          || payload.rate <= 0
-        ) {
-          throw new Error("Invalid exchange rate response");
-        }
+        const payload = await response.json() as unknown;
+        if (!Array.isArray(payload)) throw new Error("Invalid exchange rate response");
 
-        setExchangeRate({ currency, rate: payload.rate, live: true });
+        const rates: Partial<Record<CurrencyCode, number>> = {};
+        for (const item of payload) {
+          if (typeof item !== "object" || item === null) {
+            throw new Error("Invalid exchange rate response");
+          }
+
+          const { from, to, rate } = item as Record<string, unknown>;
+          if (
+            from !== "USDC"
+            || typeof to !== "string"
+            || typeof rate !== "number"
+            || !Number.isFinite(rate)
+            || rate <= 0
+          ) {
+            throw new Error("Invalid exchange rate response");
+          }
+
+          if (Object.hasOwn(currencies, to)) rates[to as CurrencyCode] = rate;
+        }
+        if (Object.keys(rates).length === 0) throw new Error("Invalid exchange rate response");
+
+        setExchangeRates({ rates, live: true });
         const maxAge = response.headers
           .get("cache-control")
           ?.match(/(?:^|,)\s*max-age="?(\d+)"?/i)?.[1];
@@ -97,7 +106,7 @@ export function HowItWorks() {
         );
       } catch {
         if (controller.signal.aborted) return;
-        setExchangeRate({ currency, rate: currencies[currency].rate, live: false });
+        setExchangeRates({ rates: {}, live: false });
       }
 
       timeout = window.setTimeout(refreshRate, delay);
@@ -108,7 +117,7 @@ export function HowItWorks() {
       controller.abort();
       if (timeout !== undefined) window.clearTimeout(timeout);
     };
-  }, [currency]);
+  }, []);
 
   useEffect(() => {
     const closeCurrencyPicker = (event: MouseEvent) => {
