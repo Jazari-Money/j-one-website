@@ -118,7 +118,7 @@ const sections: LegalSection[] = [
     title: "D. Complaints",
     content: (
       <>
-        <p>If something goes wrong, write to us at [COMPLAINTS EMAIL] and we will respond in line with our complaints procedure.</p>
+        <p>If something goes wrong, write to us at <a href="mailto:hello@jazari.xyz">hello@jazari.xyz</a> and we will respond in line with our complaints procedure.</p>
         <p>The Financial Ombudsman Service cannot consider a complaint about Jazari One. Where a complaint concerns a service provided to you by one of our regulated partners, we will tell you which firm it is and how to contact them.</p>
       </>
     ),
@@ -129,7 +129,7 @@ export default function UkRiskInformationPage() {
   return (
     <LegalPage
       title="Risk information for customers in the United Kingdom"
-      date="Reading time: about 2 minutes. Last updated: [DATE]"
+      date="Reading time: about 2 minutes. Last updated: 20 Aug 2026"
       introduction={
         <p>This page explains what Jazari One is, what it is not, and what can go wrong. It applies to anyone accessing Jazari One from the United Kingdom. Read it before you hold a balance with us, before you send a transfer, and before you use Earn.</p>
       }
