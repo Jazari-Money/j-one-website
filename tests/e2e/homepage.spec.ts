@@ -630,6 +630,7 @@ test("places legal document content to the left of Contents on desktop", async (
     expect(document).not.toBeNull();
     expect(contents).not.toBeNull();
     expect(document!.x).toBeLessThan(contents!.x);
+    expect(Math.abs(document!.y - contents!.y)).toBeLessThanOrEqual(1);
   }
 });
 
