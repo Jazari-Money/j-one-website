@@ -13,6 +13,7 @@ type LegalPageProps = {
   title: string;
   date: string;
   introduction: ReactNode;
+  documentIntroduction?: ReactNode;
   sections: LegalSection[];
 };
 
@@ -20,6 +21,7 @@ export function LegalPage({
   title,
   date,
   introduction,
+  documentIntroduction,
   sections,
 }: LegalPageProps) {
   return (
@@ -48,6 +50,11 @@ export function LegalPage({
         </nav>
 
         <article className="legal-document">
+          {documentIntroduction ? (
+            <section>
+              <div className="legal-copy">{documentIntroduction}</div>
+            </section>
+          ) : null}
           {sections.map((section) => (
             <section id={section.id} key={section.id}>
               <h2>{section.title}</h2>

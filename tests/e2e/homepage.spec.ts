@@ -579,6 +579,40 @@ test("renders the legal documents as internal Jazari pages", async ({ page }) =>
   await expect(page.getByRole("heading", { name: "11. Cookies" })).toBeVisible();
 });
 
+test("renders UK risk information statically and without mobile overflow", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.goto("/uk-risk-information/", { waitUntil: "networkidle" });
+
+  await expect(
+    page.getByRole("heading", { name: "Risk information for customers in the United Kingdom" }),
+  ).toBeVisible();
+  await expect(page.getByText("Reading time: about 2 minutes. Last updated: [DATE]", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "D. Complaints" })).toBeAttached();
+  await expect(page.getByRole("link", { name: "UK Risk Information" })).toHaveAttribute(
+    "href",
+    /\/uk-risk-information\/?$/,
+  );
+
+  const tocLink = page.getByRole("navigation", { name: "Risk information for customers in the United Kingdom sections" })
+    .getByRole("link", { name: "You could lose all the money you invest" });
+  await expect(tocLink).toHaveAttribute("href", "#lose-all-money");
+  await tocLink.click();
+  await expect(page).toHaveURL(/#lose-all-money$/);
+
+  const externalLinks = page.locator(".legal-document a[href^='https://']");
+  await expect(externalLinks).toHaveCount(5);
+  for (const link of await externalLinks.all()) {
+    await expect(link).toHaveAttribute("target", "_blank");
+    await expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  }
+
+  const viewport = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(viewport.scrollWidth).toBe(viewport.clientWidth);
+});
+
 test("explains yields and links into the app flow", async ({ page }) => {
   await page.goto("/yields/", { waitUntil: "networkidle" });
   await expect(

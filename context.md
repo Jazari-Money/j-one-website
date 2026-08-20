@@ -501,11 +501,15 @@ Default local URL: `http://localhost:3000`
   as one inline sentence; the store badges precede the subsidiary
   and copyright signoff, with copyright aligned right. Do not add a decorative
   metallic wordmark or 3D closing object below the footer.
-  Terms & Conditions and Privacy Policy are internal pages at `/terms/` and
-  `/privacy-policy/`, using a shared responsive legal-reading layout. Terms is
-  now the supplied Version 1 US document effective 21 April 2026; Privacy
-  remains the April 2026 document. Cookie Preferences opens the shared consent
-  modal. The global consent controller stores only the necessary
+  Terms & Conditions, Privacy Policy, and UK Risk Information are internal
+  pages at `/terms/`, `/privacy-policy/`, and `/uk-risk-information/`, using a
+  shared responsive legal-reading layout. Terms is the supplied Version 1 US
+  document effective 21 April 2026; Privacy remains the April 2026 document;
+  UK Risk Information preserves the FCA-prescribed warning and the unresolved
+  `[DATE]` and `[COMPLAINTS EMAIL]` placeholders. The shared footer links to all
+  three pages and carries the six-item site-wide risk disclosure below the
+  entity addresses. Cookie Preferences opens the shared consent modal. The
+  global consent controller stores only the necessary
   `jazari_cookie_consent` cookie for one year, denies analytics by default, and
   loads direct GA4 only after an explicit grant. The GA measurement ID is
   supplied at build time and the consent logic never sets a cookie domain.

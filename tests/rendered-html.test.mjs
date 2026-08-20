@@ -160,13 +160,15 @@ test("server-renders the standalone component board", async () => {
 });
 
 test("server-renders the internal legal pages", async () => {
-  const [termsResponse, privacyResponse] = await Promise.all([
+  const [termsResponse, privacyResponse, ukRiskResponse] = await Promise.all([
     render("/terms"),
     render("/privacy-policy"),
+    render("/uk-risk-information"),
   ]);
-  const [terms, privacy] = await Promise.all([
+  const [terms, privacy, ukRisk] = await Promise.all([
     termsResponse.text(),
     privacyResponse.text(),
+    ukRiskResponse.text(),
   ]);
 
   assert.match(terms, /<h1>US Terms and Conditions<\/h1>/);
@@ -181,6 +183,28 @@ test("server-renders the internal legal pages", async () => {
   assert.match(privacy, /11\. Cookies/);
   assert.match(privacy, /jazari_cookie_consent/);
   assert.match(privacy, /href="\/j-one-website\/terms\/?"/);
+
+  assert.match(ukRisk, /<title>Risk information for customers in the United Kingdom \| Jazari One<\/title>/);
+  assert.match(ukRisk, /name="robots" content="index, follow"/);
+  assert.match(ukRisk, /<h1>Risk information for customers in the United Kingdom<\/h1>/);
+  assert.match(ukRisk, /Reading time: about 2 minutes\. Last updated: \[DATE\]/);
+  assert.match(ukRisk, /Due to the potential for losses/);
+  assert.match(ukRisk, /Operational failings such as technology outages, cyber-attacks and comingling of funds/);
+  assert.match(ukRisk, /\[COMPLAINTS EMAIL\]/);
+  assert.match(ukRisk, /href="\/j-one-website\/uk-risk-information\/?"/);
+  assert.match(ukRisk, /href="https:\/\/www\.fca\.org\.uk\/investsmart" target="_blank" rel="noopener noreferrer"/);
+});
+
+test("publishes the UK risk page in the sitemap", async () => {
+  const sitemap = await readFile(
+    new URL("../out/sitemap.xml", import.meta.url),
+    "utf8",
+  );
+
+  assert.match(
+    sitemap,
+    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/uk-risk-information<\/loc>/,
+  );
 });
 
 test("keeps the restrained interactions and clear content hierarchy in source", async () => {
