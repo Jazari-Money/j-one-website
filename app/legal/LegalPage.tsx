@@ -11,17 +11,13 @@ export type LegalSection = {
 
 type LegalPageProps = {
   title: string;
-  date: string;
   introduction: ReactNode;
-  documentIntroduction?: ReactNode;
   sections: LegalSection[];
 };
 
 export function LegalPage({
   title,
-  date,
   introduction,
-  documentIntroduction,
   sections,
 }: LegalPageProps) {
   return (
@@ -31,7 +27,6 @@ export function LegalPage({
       <header className="legal-hero">
         <h1>{title}</h1>
         <div className="legal-hero-meta">
-          <p>{date}</p>
           <div>{introduction}</div>
         </div>
       </header>
@@ -50,11 +45,6 @@ export function LegalPage({
         </nav>
 
         <article className="legal-document">
-          {documentIntroduction ? (
-            <section>
-              <div className="legal-copy">{documentIntroduction}</div>
-            </section>
-          ) : null}
           {sections.map((section) => (
             <section id={section.id} key={section.id}>
               <h2>{section.title}</h2>

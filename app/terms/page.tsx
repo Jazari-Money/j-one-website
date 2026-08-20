@@ -16,7 +16,7 @@ type RawSection = {
 const rawSections: RawSection[] = [
   {
     id: "introduction",
-    title: "1. INTRODUCTION",
+    title: "1. Introduction",
     body: `1.1 Jazari and Jazari ONE are trading names used to describe the technology platform operated in the United States. Jazari ONE's services are provided in partnership with [US Issuer / Regulated Partner], an Illinois corporation with its principal office at [US Issuer Address - to be confirmed] ("[US Issuer / Regulated Partner]"). [US Issuer / Regulated Partner] holds applicable federal and state money services business licences and money transmitter licences required to offer payment and remittance services in the United States.
 
 1.2 Jazari ONE operates as a technology platform and acts solely as a technical and commercial interface through which you access services provided by [US Issuer / Regulated Partner] and other regulated partners. Jazari ONE does not itself provide payment accounts, money transmission, remittance services, or any other regulated financial services. All such regulated services are provided by or through [US Issuer / Regulated Partner] and its banking and payment partners under their applicable licences.
@@ -31,7 +31,7 @@ const rawSections: RawSection[] = [
   },
   {
     id: "definitions",
-    title: "2. DEFINITION",
+    title: "2. Definition",
     body: `In these Terms, the following definitions apply:
 
 TABLE:Term|Meaning
@@ -68,7 +68,7 @@ TABLE:Term|Meaning
   },
   {
     id: "account",
-    title: "3. YOUR JAZARI ONE ACCOUNT",
+    title: "3. Your Jazari One account",
     body: `3.1 Your Jazari ONE Account is a prepaid payment account provided by [US Issuer / Regulated Partner]. Jazari ONE provides the technology platform through which you access and manage your account but is not the account provider and does not hold or control your funds.
 
 3.2 These Terms constitute a legal agreement between you and us. By submitting your application to open a Jazari ONE Account, you confirm that:
@@ -95,7 +95,7 @@ TABLE:Term|Meaning
   },
   {
     id: "payments",
-    title: "4. PAYMENTS INTO AND OUT OF YOUR ACCOUNT",
+    title: "4. Payments into and out of your account",
     body: `### Payments In
 
 4.1 You may add funds to your Jazari ONE Account using the following methods: ACH bank transfer from a linked US bank account, debit card load, or such other methods as we make available through the App from time to time.
@@ -128,7 +128,7 @@ TABLE:Term|Meaning
   },
   {
     id: "remittances",
-    title: "5. INTERNATIONAL REMITTANCES",
+    title: "5. International remittances",
     body: `International remittance services are provided by [US Issuer / Regulated Partner] under its applicable money transmitter licences. Jazari ONE facilitates your access to these services through the App but does not itself transmit funds, hold remittance funds, or provide money transmission services.
 
 IMPORTANT: Remittance Transfer Rule Notice: International money transfers sent from the United States are subject to the Consumer Financial Protection Bureau's Remittance Transfer Rule (12 C.F.R. Part 1005, Subpart B). Under this Rule, you have certain rights as a consumer, including the right to receive a pre-payment disclosure, receipt, and cancellation rights. Details are set out in this Section.
@@ -157,7 +157,7 @@ IMPORTANT: Remittance Transfer Rule Notice: International money transfers sent f
   },
   {
     id: "rnpl",
-    title: "6. REMIT NOW, PAY LATER (RNPL)",
+    title: "6. Remit Now, Pay Later (RNPL)",
     body: `Remit Now, Pay Later ("RNPL") allows eligible customers to complete an international remittance immediately while deferring payment to a later date. This service is subject to credit approval and is provided by the US Lending Partner, a third-party lender licensed under applicable US federal and state consumer lending laws.
 
 6.1 Credit Provider: All RNPL loans are made by [US Lending Partner], a licensed consumer lender under applicable federal and state law. Jazari ONE facilitates access to RNPL but is not the lender and does not make credit decisions. Credit decisions are made solely by the US Lending Partner.
@@ -182,7 +182,7 @@ IMPORTANT: Remittance Transfer Rule Notice: International money transfers sent f
   },
   {
     id: "unauthorised-transactions",
-    title: "7. UNAUTHORISED TRANSACTIONS AND ERROR RESOLUTION",
+    title: "7. Unauthorised transactions and error resolution",
     body: `### Your Rights Under the Electronic Fund Transfer Act (EFTA / Regulation E)
 
 Federal law provides important protections for electronic fund transfers. Your liability for unauthorised transactions is limited as described below. Please read this Section carefully and report any suspected unauthorised transactions immediately.
@@ -210,7 +210,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "transactions",
-    title: "8. TRANSACTIONS",
+    title: "8. Transactions",
     body: `8.1 Any use of your Jazari ONE Account will be treated as your consent to the transaction.
 
 8.2 Transactions are considered received at the time we receive the order. Transactions received after 4:00 PM Central Time or on a non-Business Day will be treated as received on the next Business Day.
@@ -225,7 +225,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "foreign-currency",
-    title: "9. FOREIGN CURRENCY TRANSACTIONS",
+    title: "9. Foreign currency transactions",
     body: `9.1 Your Jazari ONE Account is denominated in US Dollars ("USD"). For transactions conducted in a foreign currency (including international remittances), the amount will be converted to USD (or the destination currency, as applicable) at the exchange rate quoted at the time of the transaction.
 
 9.2 Exchange rates fluctuate. The rate applied to your transaction will be disclosed to you before you confirm. Your account statement will show the exchange rate and any applicable fee.
@@ -234,14 +234,14 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "checking-balance",
-    title: "10. CHECKING YOUR BALANCE",
+    title: "10. Checking your balance",
     body: `10.1 You can check your account balance and transaction history at any time through the Jazari ONE App. You may also request a balance inquiry by contacting Customer Service.
 
 10.2 Periodic Statements: We will make periodic account statements available to you electronically through the App at least monthly. These statements satisfy the periodic statement requirements of Regulation E.`,
   },
   {
     id: "managing-balance",
-    title: "11. MANAGING YOUR BALANCE",
+    title: "11. Managing your balance",
     body: `11.1 You must manage your account balance within the limits set out in the Fee Schedule.
 
 11.2 If an incoming payment causes your balance to exceed your Account Limit, it may be returned to the sender. We are not liable for any losses arising from such a return.
@@ -250,7 +250,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "fund-redemption",
-    title: "12. ACCOUNT CLOSURE AND FUND REDEMPTION",
+    title: "12. Account closure and fund redemption",
     body: `12.1 You may redeem your Account Balance at any time by requesting a transfer of funds to your linked US bank account. We may charge a redemption fee as set out in the Fee Schedule.
 
 12.2 Inactive Accounts: If your account has no transaction activity for 12 consecutive months, we may classify it as inactive and apply an inactivity fee (if any) as set out in the Fee Schedule. After the applicable inactivity period, unclaimed funds may be subject to escheatment (transfer to the relevant state's unclaimed property fund) under applicable state unclaimed property laws. We will provide you with required notices before any escheatment.
@@ -263,7 +263,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "third-party-services",
-    title: "13. THIRD-PARTY SERVICES AND OPEN BANKING",
+    title: "13. Third-party services and open banking",
     body: `13.1 You may authorise regulated third-party providers ("TPPs") to access your Jazari ONE Account and initiate payments on your behalf, where such access is made available through the App.
 
 13.2 You are responsible for verifying that any TPP is properly licensed before granting access. We are not responsible for the acts or omissions of TPPs.
@@ -274,7 +274,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "liability",
-    title: "14. LIABILITY",
+    title: "14. Liability",
     body: `14.1 Nothing in these Terms limits either party's liability for: (a) fraud or wilful misconduct; (b) death or personal injury caused by negligence; or (c) any liability that cannot be excluded or limited under applicable federal or state law, including rights under the EFTA, TILA, or applicable consumer protection statutes.
 
 14.2 We are only liable for losses that result directly and foreseeably from our breach of these Terms or applicable law.
@@ -294,7 +294,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "changes",
-    title: "15. CHANGES TO THESE TERMS",
+    title: "15. Changes to these terms",
     body: `15.1 We may amend these Terms at any time. Changes will be communicated to you via email or in-app notification.
 
 15.2 Changes that are required to comply with applicable law, correct an error, or make minor technical adjustments may take effect immediately upon notice.
@@ -305,7 +305,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "cancellation-rights",
-    title: "16. CANCELLATION RIGHTS",
+    title: "16. Cancellation rights",
     body: `16.1 After your account is approved, you may close your account at any time by contacting Customer Service. There is no mandatory cooling-off period under federal law for prepaid accounts, but your cancellation rights for specific remittance transactions are described in Section 5.6.
 
 16.2 Upon account closure, any remaining Account Balance will be returned to you in accordance with Section 12.
@@ -314,7 +314,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "ending-agreement",
-    title: "17. ENDING THE AGREEMENT AND ACCOUNT CLOSURE",
+    title: "17. Ending the agreement and account closure",
     body: `17.1 We may terminate this Agreement and close your account by providing at least 30 days' advance notice, except in the circumstances described in Section 17.2.
 
 17.2 We may immediately suspend or terminate your account and close it without advance notice if:
@@ -334,7 +334,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "rewards",
-    title: "18. REWARDS AND PROMOTIONS",
+    title: "18. Rewards and promotions",
     body: `18.1 Jazari ONE may offer promotional rewards, loyalty points, or cashback ("Promotions"). Promotions are discretionary, have no cash value, are not transferable, and are not redeemable for cash. They do not constitute regulated money services.
 
 18.2 The specific terms for earning and redeeming rewards will be set out in the App or on the Website ("Offer Terms"). Points will not be earned on excluded transactions such as gambling, cash withdrawals, or tax payments.
@@ -345,7 +345,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "general",
-    title: "19. GENERAL PROVISIONS",
+    title: "19. General provisions",
     body: `19.1 By opening a Jazari ONE Account, you consent to us using your information as described in Section 21 (How We Use Your Information).
 
 19.2 We may monitor and record telephone calls and communications between you and our Customer Service team for quality, training, and legal compliance purposes.
@@ -370,7 +370,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "intellectual-property",
-    title: "20. INTELLECTUAL PROPERTY",
+    title: "20. Intellectual property",
     body: `20.1 We own or license all intellectual property rights in the Website, App, Jazari ONE Account, and associated materials. These works are protected by US and international copyright, trademark, and other intellectual property laws.
 
 20.2 "Jazari" and "Jazari ONE" and their logos are trademarks. Unauthorised use of these marks may result in legal action.
@@ -379,7 +379,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "privacy",
-    title: "21. PRIVACY AND HOW WE USE YOUR INFORMATION",
+    title: "21. Privacy and how we use your information",
     body: `21.1 Privacy Notice: Our full Privacy Policy, available at jazari.money/privacy, explains how we collect, use, share, and protect your personal information. By using Jazari ONE services, you acknowledge our Privacy Policy. This Section provides a summary of our key data practices.
 
 21.2 Financial Privacy (GLBA / Regulation P): As a financial services provider, we are required to provide you with a notice about our privacy practices under the GLBA. We will provide you with our GLBA Privacy Notice at account opening and annually thereafter. You may have the right to opt out of certain sharing of your non-public personal information with non-affiliated third parties.
@@ -404,7 +404,7 @@ Federal law provides important protections for electronic fund transfers. Your l
   },
   {
     id: "complaints",
-    title: "22. COMPLAINTS AND HOW TO CONTACT US",
+    title: "22. Complaints and how to contact us",
     body: `22.1 If you are dissatisfied with any aspect of our service, please contact Customer Service via in-app chat, email at support@jazari.com, or by mail to: Jazari ONE, [US Address to be confirmed]. We will acknowledge your complaint promptly and aim to resolve it within 15 Business Days.
 
 22.2 If we are unable to resolve your complaint to your satisfaction, you may escalate it to the CFPB:
@@ -424,7 +424,7 @@ Address: 1700 G Street NW, Washington, DC 20552
   },
   {
     id: "arbitration",
-    title: "23. ARBITRATION AGREEMENT AND CLASS ACTION WAIVER",
+    title: "23. Arbitration agreement and class action waiver",
     body: `IMPORTANT: PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR LEGAL RIGHTS.
 
 This Section contains an Arbitration Agreement and a Class Action Waiver. By accepting these Terms, you agree to resolve most disputes with Jazari ONE through binding individual arbitration rather than in court, and you waive your right to participate in a class action lawsuit or class-wide arbitration.
@@ -449,7 +449,7 @@ IMPORTANT: 23.3 CLASS ACTION WAIVER: TO THE FULLEST EXTENT PERMITTED BY APPLICAB
   },
   {
     id: "electronic-disclosures",
-    title: "24. ELECTRONIC DISCLOSURES AND E-SIGN CONSENT",
+    title: "24. Electronic disclosures and E-sign consent",
     body: `24.1 E-SIGN Consent: In accordance with the Electronic Signatures in Global and National Commerce Act ("E-SIGN Act"), by opening a Jazari ONE Account you consent to receiving all disclosures, notices, agreements, statements, and other communications ("Communications") electronically, via the App or to the email address you have provided.
 
 24.2 This consent includes, without limitation, periodic account statements, TILA disclosures, GLBA privacy notices, error resolution notices, and any amendments to these Terms.
@@ -462,7 +462,7 @@ IMPORTANT: 23.3 CLASS ACTION WAIVER: TO THE FULLEST EXTENT PERMITTED BY APPLICAB
   },
   {
     id: "fees",
-    title: "25. FEE SCHEDULE",
+    title: "25. Fee schedule",
     body: `The following fees apply to your Jazari ONE Account. All fees are in US Dollars (USD). Additional fees may apply for services not listed below — see the full Terms and the App for details.
 
 ### Account Fees
@@ -515,7 +515,7 @@ Fee changes: We will provide at least 21 days' advance notice of any material in
   },
   {
     id: "kyc",
-    title: "26. KNOW YOUR CUSTOMER (KYC) AND IDENTITY VERIFICATION",
+    title: "26. Know your customer (KYC) and identity verification",
     body: `26.1 We are required by US federal law (including the BSA and FinCEN's Customer Identification Program rules) to verify the identity of all customers at account opening and on an ongoing basis.
 
 26.2 At account opening, you must provide: your full legal name; date of birth; US residential address; and Social Security Number or Individual Taxpayer Identification Number.
@@ -528,7 +528,7 @@ Fee changes: We will provide at least 21 days' advance notice of any material in
   },
   {
     id: "referrals",
-    title: "27. REFERRAL PROGRAM AND REWARDS",
+    title: "27. Referral program and rewards",
     body: `27.1 Jazari ONE may operate a referral programme through which you can earn rewards for referring new users. Upon joining, you will receive a unique referral code.
 
 27.2 For each successful referral (defined as a new user who signs up using your code, completes identity verification, and meets any additional eligibility requirements), you will earn a reward as described in the App.
@@ -541,7 +541,7 @@ Fee changes: We will provide at least 21 days' advance notice of any material in
   },
   {
     id: "terms-of-credit",
-    title: "28. TERMS OF CREDIT — REMIT NOW, PAY LATER",
+    title: "28. Terms of credit — Remit Now, Pay Later",
     body: `28.1 The RNPL feature provides access to short-term consumer credit to fund international remittances. All credit under this feature is provided by the US Lending Partner. Jazari ONE acts solely as an introducer and facilitator and is not the lender.
 
 28.2 By using RNPL, you agree to enter into a credit agreement with the US Lending Partner. All TILA-required disclosures (APR, finance charge, amount financed, total of payments, payment schedule) will be presented to you for review and acceptance before the loan is made.
@@ -568,7 +568,7 @@ Complaints|Governed by US Lending Partner agreement and applicable CFPB / state 
   },
   {
     id: "state-disclosures",
-    title: "29. STATE-SPECIFIC DISCLOSURES",
+    title: "29. State-specific disclosures",
     body: `The following additional terms and disclosures apply to residents of the states listed below. Where state law provides rights or protections additional to or different from those in these Terms, those state-law rights will apply.
 
 ### California
@@ -599,7 +599,7 @@ Residents of all other US states are protected under applicable federal law, inc
   },
   {
     id: "contact",
-    title: "30. CONTACT INFORMATION",
+    title: "30. Contact information",
     body: `### Jazari ONE — Customer Service
 
 Email: support@jazari.com
@@ -705,7 +705,6 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="US Terms and Conditions"
-      date="Effective date: 21 April 2026"
       introduction={
         <p>
           Version 1. These Terms apply to the Jazari ONE technology platform

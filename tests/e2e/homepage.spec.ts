@@ -563,19 +563,21 @@ test("renders the plan preview and legal links", async ({ page }) => {
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
   await page.goto("/terms/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "US Terms and Conditions" })).toBeVisible();
-  await expect(page.getByText("Effective date: 21 April 2026")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "1. INTRODUCTION" })).toBeVisible();
+  await expect(page.getByText("Effective date: 21 April 2026")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "1. Introduction" })).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "29. STATE-SPECIFIC DISCLOSURES" }),
+    page.getByRole("heading", { name: "29. State-specific disclosures" }),
   ).toBeAttached();
   await expect(
-    page.getByRole("heading", { name: "30. CONTACT INFORMATION" }),
+    page.getByRole("heading", { name: "30. Contact information" }),
   ).toBeAttached();
+  await expect(page.getByRole("link", { name: "Introduction", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "INTRODUCTION", exact: true })).toHaveCount(0);
 
   await page.getByRole("link", { name: "Privacy Policy" }).first().click();
   await expect(page).toHaveURL(/\/privacy-policy\/?$/);
   await expect(page.getByRole("heading", { name: "Privacy Policy" })).toBeVisible();
-  await expect(page.getByText("Last updated: April 2026")).toBeVisible();
+  await expect(page.getByText("Last updated: April 2026")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "11. Cookies" })).toBeVisible();
 });
 
@@ -586,7 +588,9 @@ test("renders UK risk information statically and without mobile overflow", async
   await expect(
     page.getByRole("heading", { name: "Risk information for customers in the United Kingdom" }),
   ).toBeVisible();
-  await expect(page.getByText("Reading time: about 2 minutes. Last updated: 20 Aug 2026", { exact: true })).toBeVisible();
+  await expect(page.getByText(/Reading time:/)).toHaveCount(0);
+  await expect(page.getByText("Due to the potential for losses", { exact: false })).toHaveCount(0);
+  await expect(page.getByText("What are the key risks?", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "hello@jazari.xyz" })).toHaveAttribute(
     "href",
     "mailto:hello@jazari.xyz",

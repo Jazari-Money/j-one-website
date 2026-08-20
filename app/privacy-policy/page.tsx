@@ -191,7 +191,6 @@ export default function PrivacyPolicyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      date="Last updated: April 2026"
       introduction={
         <p>
           At Jazari, we are committed to protecting and respecting your privacy.
