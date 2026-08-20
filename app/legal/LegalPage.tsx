@@ -11,12 +11,14 @@ export type LegalSection = {
 
 type LegalPageProps = {
   title: string;
+  date: string;
   introduction: ReactNode;
   sections: LegalSection[];
 };
 
 export function LegalPage({
   title,
+  date,
   introduction,
   sections,
 }: LegalPageProps) {
@@ -27,6 +29,7 @@ export function LegalPage({
       <header className="legal-hero">
         <h1>{title}</h1>
         <div className="legal-hero-meta">
+          <p>{date}</p>
           <div>{introduction}</div>
         </div>
       </header>

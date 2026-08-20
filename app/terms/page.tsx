@@ -705,6 +705,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="US Terms and Conditions"
+      date="Effective date: 21 April 2026"
       introduction={
         <p>
           Version 1. These Terms apply to the Jazari ONE technology platform

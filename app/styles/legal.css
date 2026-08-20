@@ -25,10 +25,16 @@
   max-width: 820px;
   margin-top: 42px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 150px 1fr;
+  gap: 44px;
   color: var(--muted-strong);
   font-size: 16px;
   line-height: 1.7;
+}
+
+.legal-hero-meta > p {
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .legal-layout {

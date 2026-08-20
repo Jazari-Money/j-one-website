@@ -77,31 +77,31 @@ export function SiteFooter() {
               <li>4. Geographic, regulatory and eligibility limits apply and may change.</li>
             </ol>
           </div>
-          <div className="footer-stores" aria-label="Download the Jazari One app">
-            <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
-              <img
-                src={withBasePath("/images/stores/app-store-badge.avif")}
-                alt="Download on the App Store"
-                width="485"
-                height="156"
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
-            <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
-              <img
-                src={withBasePath("/images/stores/google-play-badge.avif")}
-                alt="Get it on Google Play"
-                width="512"
-                height="152"
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
+          <div className="footer-downloads">
+            <div className="footer-stores" aria-label="Download the Jazari One app">
+              <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
+                <img
+                  src={withBasePath("/images/stores/app-store-badge.avif")}
+                  alt="Download on the App Store"
+                  width="485"
+                  height="156"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
+                <img
+                  src={withBasePath("/images/stores/google-play-badge.avif")}
+                  alt="Get it on Google Play"
+                  width="512"
+                  height="152"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+            <p className="footer-copyright">© 2026 Jazari One. All rights reserved.</p>
           </div>
-        </div>
-        <div className="footer-signoff">
-          <span className="footer-copyright">© 2026 Jazari One. All rights reserved.</span>
         </div>
       </div>
     </footer>
