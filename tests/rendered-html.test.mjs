@@ -77,6 +77,21 @@ test("server-renders the Jazari One landing page", async () => {
   assert.doesNotMatch(html, /audience-index/);
   assert.match(html, /analytics_storage:'denied'/);
   assert.doesNotMatch(html, /https:\/\/www\.googletagmanager\.com\/gtag\/js/);
+
+  const footer = html.slice(
+    html.indexOf('<footer class="site-footer">'),
+    html.indexOf("</footer>") + "</footer>".length,
+  );
+  const footerMeta = footer.slice(footer.indexOf('<div class="footer-meta">'));
+  assert.match(footerMeta, /<address><span>Jazari Fintech Services FZCO,<\/span>/);
+  assert.doesNotMatch(footerMeta, /<strong>|<\/strong>|—/);
+  assert.equal((footerMeta.match(/<li>/g) ?? []).length, 4);
+  assert.match(footerMeta, /<li>1\. Jazari One is a technology service provider/);
+  assert.match(footerMeta, /<li>2\. Balances held in Jazari One are stablecoins/);
+  assert.match(footerMeta, /<li>3\. Earn is an interface to third-party decentralised finance protocols/);
+  assert.match(footerMeta, /<li>4\. Geographic, regulatory and eligibility limits apply and may change\.<\/li>/);
+  assert.doesNotMatch(footerMeta, /Wallet, custody, conversion and payout services are provided/);
+  assert.doesNotMatch(footerMeta, /Cryptoasset balances and Earn allocations are not covered/);
 });
 
 test("server-renders plan, yields, coming soon, partners, and about pages", async () => {

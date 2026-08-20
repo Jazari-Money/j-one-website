@@ -109,15 +109,13 @@
   line-height: 1.72;
 }
 
-.footer-addresses strong,
 .footer-addresses span {
   display: inline;
 }
 
-.footer-addresses strong {
-  color: var(--text);
-  font-size: 14px;
-  font-weight: 600;
+.footer-disclosures {
+  display: grid;
+  gap: 26px;
 }
 
 .footer-addresses span {

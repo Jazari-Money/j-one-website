@@ -56,7 +56,7 @@ export function SiteFooter() {
         <div className="footer-addresses">
           <div className="footer-addresses-content">
             <address>
-              <strong>Jazari Fintech Services — FZCO,</strong>{" "}
+              <span>Jazari Fintech Services FZCO,</span>{" "}
               <span>#78870, Building A1, IFZA Business Park, Dubai Silicon Oasis, Dubai, UAE</span>
             </address>
             <p className="footer-registration">
@@ -64,16 +64,14 @@ export function SiteFooter() {
               reflecting its compliance obligations as an entity operating in the payments ecosystem.
             </p>
             <address>
-              <strong>Jazari One, Inc.,</strong>{" "}
+              <span>Jazari One, Inc.,</span>{" "}
               <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>
             </address>
-            <ol className="footer-registration">
+            <ol className="footer-registration footer-disclosures">
               <li>1. Jazari One is a technology service provider, not a bank, deposit-taker, e-money institution, or investment adviser.</li>
               <li>2. Balances held in Jazari One are stablecoins, not bank deposits. The value of a cryptoasset, including one that references a fiat currency, may fall to zero.</li>
-              <li>3. Wallet, custody, conversion and payout services are provided by licensed third parties. Availability varies by country.</li>
-              <li>4. Earn is an interface to third-party decentralised finance protocols. Rates are variable, capital is at risk, and returns are not guaranteed.</li>
-              <li>5. Cryptoasset balances and Earn allocations are not covered by the FSCS, the Financial Ombudsman Service, the FDIC, or any equivalent deposit protection or investor compensation scheme in any jurisdiction.</li>
-              <li>6. Geographic, regulatory and eligibility limits apply and may change.</li>
+              <li>3. Earn is an interface to third-party decentralised finance protocols. Rates are variable, capital is at risk, and returns are not guaranteed.</li>
+              <li>4. Geographic, regulatory and eligibility limits apply and may change.</li>
             </ol>
           </div>
           <div className="footer-stores" aria-label="Download the Jazari One app">

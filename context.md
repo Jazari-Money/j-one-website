@@ -509,7 +509,7 @@ Default local URL: `http://localhost:3000`
   2026, and directs complaints to `hello@jazari.xyz`. On desktop, all three
   legal documents place the reading column on the left and the sticky Contents
   index on the right; narrow screens retain a single-column layout. The shared
-  footer links to all three pages and carries the six-item site-wide risk
+  footer links to all three pages and carries the four-item site-wide risk
   disclosure below the entity addresses. Cookie Preferences opens the shared
   consent modal. The global consent controller stores only the necessary
   `jazari_cookie_consent` cookie for one year, denies analytics by default, and
