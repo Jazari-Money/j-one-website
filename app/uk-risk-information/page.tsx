@@ -129,15 +129,8 @@ export default function UkRiskInformationPage() {
   return (
     <LegalPage
       title="Risk information for customers in the United Kingdom"
-      date="Reading time: about 2 minutes. Last updated: 20 Aug 2026"
       introduction={
         <p>This page explains what Jazari One is, what it is not, and what can go wrong. It applies to anyone accessing Jazari One from the United Kingdom. Read it before you hold a balance with us, before you send a transfer, and before you use Earn.</p>
-      }
-      documentIntroduction={
-        <>
-          <p>Due to the potential for losses, the Financial Conduct Authority (FCA) considers this investment to be high risk.</p>
-          <p><strong>What are the key risks?</strong></p>
-        </>
       }
       sections={sections}
     />

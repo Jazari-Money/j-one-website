@@ -187,14 +187,15 @@ test("server-renders the internal legal pages", async () => {
   ]);
 
   assert.match(terms, /<h1>US Terms and Conditions<\/h1>/);
-  assert.match(terms, /Effective date: 21 April 2026/);
-  assert.match(terms, /1\. INTRODUCTION/);
+  assert.doesNotMatch(terms, /Effective date: 21 April 2026/);
+  assert.match(terms, /1\. Introduction/);
   assert.match(terms, /FinCEN MSB registration/);
-  assert.match(terms, /29\. STATE-SPECIFIC DISCLOSURES/);
-  assert.match(terms, /30\. CONTACT INFORMATION/);
+  assert.match(terms, /29\. State-specific disclosures/);
+  assert.match(terms, /30\. Contact information/);
+  assert.doesNotMatch(terms, />INTRODUCTION<|>DEFINITION</);
 
   assert.match(privacy, /<h1>Privacy Policy<\/h1>/);
-  assert.match(privacy, /Last updated: April 2026/);
+  assert.doesNotMatch(privacy, /Last updated: April 2026/);
   assert.match(privacy, /11\. Cookies/);
   assert.match(privacy, /jazari_cookie_consent/);
   assert.match(privacy, /href="\/j-one-website\/terms\/?"/);
@@ -202,8 +203,9 @@ test("server-renders the internal legal pages", async () => {
   assert.match(ukRisk, /<title>Risk information for customers in the United Kingdom \| Jazari One<\/title>/);
   assert.match(ukRisk, /name="robots" content="index, follow"/);
   assert.match(ukRisk, /<h1>Risk information for customers in the United Kingdom<\/h1>/);
-  assert.match(ukRisk, /Reading time: about 2 minutes\. Last updated: 20 Aug 2026/);
-  assert.match(ukRisk, /Due to the potential for losses/);
+  assert.doesNotMatch(ukRisk, /Reading time: about 2 minutes\. Last updated: 20 Aug 2026/);
+  assert.doesNotMatch(ukRisk, /Due to the potential for losses/);
+  assert.doesNotMatch(ukRisk, /What are the key risks\?/);
   assert.match(ukRisk, /Operational failings such as technology outages, cyber-attacks and comingling of funds/);
   assert.match(ukRisk, /href="mailto:hello@jazari\.xyz">hello@jazari\.xyz<\/a>/);
   assert.match(ukRisk, /href="\/j-one-website\/uk-risk-information\/?"/);
