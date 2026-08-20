@@ -187,10 +187,10 @@ test("server-renders the internal legal pages", async () => {
   assert.match(ukRisk, /<title>Risk information for customers in the United Kingdom \| Jazari One<\/title>/);
   assert.match(ukRisk, /name="robots" content="index, follow"/);
   assert.match(ukRisk, /<h1>Risk information for customers in the United Kingdom<\/h1>/);
-  assert.match(ukRisk, /Reading time: about 2 minutes\. Last updated: \[DATE\]/);
+  assert.match(ukRisk, /Reading time: about 2 minutes\. Last updated: 20 Aug 2026/);
   assert.match(ukRisk, /Due to the potential for losses/);
   assert.match(ukRisk, /Operational failings such as technology outages, cyber-attacks and comingling of funds/);
-  assert.match(ukRisk, /\[COMPLAINTS EMAIL\]/);
+  assert.match(ukRisk, /href="mailto:hello@jazari\.xyz">hello@jazari\.xyz<\/a>/);
   assert.match(ukRisk, /href="\/j-one-website\/uk-risk-information\/?"/);
   assert.match(ukRisk, /href="https:\/\/www\.fca\.org\.uk\/investsmart" target="_blank" rel="noopener noreferrer"/);
 });

@@ -586,7 +586,11 @@ test("renders UK risk information statically and without mobile overflow", async
   await expect(
     page.getByRole("heading", { name: "Risk information for customers in the United Kingdom" }),
   ).toBeVisible();
-  await expect(page.getByText("Reading time: about 2 minutes. Last updated: [DATE]", { exact: true })).toBeVisible();
+  await expect(page.getByText("Reading time: about 2 minutes. Last updated: 20 Aug 2026", { exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "hello@jazari.xyz" })).toHaveAttribute(
+    "href",
+    "mailto:hello@jazari.xyz",
+  );
   await expect(page.getByRole("heading", { name: "D. Complaints" })).toBeAttached();
   await expect(page.getByRole("link", { name: "UK Risk Information" })).toHaveAttribute(
     "href",
@@ -611,6 +615,22 @@ test("renders UK risk information statically and without mobile overflow", async
     scrollWidth: document.documentElement.scrollWidth,
   }));
   expect(viewport.scrollWidth).toBe(viewport.clientWidth);
+});
+
+test("places legal document content to the left of Contents on desktop", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+
+  for (const path of ["/privacy-policy/", "/terms/", "/uk-risk-information/"]) {
+    await page.goto(path, { waitUntil: "networkidle" });
+    const [document, contents] = await Promise.all([
+      page.locator(".legal-document").boundingBox(),
+      page.locator(".legal-index").boundingBox(),
+    ]);
+
+    expect(document).not.toBeNull();
+    expect(contents).not.toBeNull();
+    expect(document!.x).toBeLessThan(contents!.x);
+  }
 });
 
 test("explains yields and links into the app flow", async ({ page }) => {
