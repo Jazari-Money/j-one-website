@@ -500,16 +500,17 @@ Default local URL: `http://localhost:3000`
   parent entity address, FinCEN registration, FZCO address, and subsidiary line
   stack in that order, with each entity and address composed as one inline
   sentence. A larger break separates those lines from the compact four-item
-  disclosure; the store badges precede the right-aligned copyright. Do not add
-  a decorative metallic wordmark or 3D closing object below the footer.
+  disclosure. On desktop, the store badges sit directly above copyright and
+  copyright aligns with the final disclosure row. Do not add a decorative
+  metallic wordmark or 3D closing object below the footer.
   Terms & Conditions, Privacy Policy, and UK Risk Information are internal
   pages at `/terms/`, `/privacy-policy/`, and `/uk-risk-information/`, using a
   shared responsive legal-reading layout. Terms is the supplied Version 1 US
   document effective 21 April 2026; Privacy remains the April 2026 document;
   UK Risk Information preserves the five FCA-prescribed risk sections and
-  directs complaints to `hello@jazari.xyz`. The legal heroes do not display
-  reading-time, effective-date, or last-updated metadata. Terms section titles
-  and Contents links use sentence case. On desktop, all three legal documents
+  directs complaints to `hello@jazari.xyz`. The legal heroes display date
+  metadata but no reading-time estimate. Terms section titles and Contents
+  links use sentence case. On desktop, all three legal documents
   place the reading column on the left and the sticky Contents index on the
   right; narrow screens retain a single-column layout. The shared
   footer links to all three pages and carries the four-item site-wide risk
