@@ -497,10 +497,11 @@ Default local URL: `http://localhost:3000`
   glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
 - Footer copy uses Inter and the official CDN-supplied Apple and Google badge
   artwork. It uses a normal multi-column layout without separator rules. The
-  two legal entities stack vertically, with each entity and address composed
-  as one inline sentence; the store badges precede the subsidiary
-  and copyright signoff, with copyright aligned right. Do not add a decorative
-  metallic wordmark or 3D closing object below the footer.
+  parent entity address, FinCEN registration, FZCO address, and subsidiary line
+  stack in that order, with each entity and address composed as one inline
+  sentence. A larger break separates those lines from the compact four-item
+  disclosure; the store badges precede the right-aligned copyright. Do not add
+  a decorative metallic wordmark or 3D closing object below the footer.
   Terms & Conditions, Privacy Policy, and UK Risk Information are internal
   pages at `/terms/`, `/privacy-policy/`, and `/uk-risk-information/`, using a
   shared responsive legal-reading layout. Terms is the supplied Version 1 US

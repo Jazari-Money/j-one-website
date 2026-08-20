@@ -83,7 +83,15 @@ test("server-renders the Jazari One landing page", async () => {
     html.indexOf("</footer>") + "</footer>".length,
   );
   const footerMeta = footer.slice(footer.indexOf('<div class="footer-meta">'));
-  assert.match(footerMeta, /<address><span>Jazari Fintech Services FZCO,<\/span>/);
+  const parentAddress = footerMeta.indexOf("Jazari One, Inc.,");
+  const fincen = footerMeta.indexOf("Jazari One holds a FinCEN MSB registration (No. MRX26-00006547)");
+  const fzcoAddress = footerMeta.indexOf("Jazari Fintech Services FZCO,");
+  const subsidiary = footerMeta.indexOf("Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc.");
+  const disclosures = footerMeta.indexOf('<ol class="footer-registration footer-disclosures">');
+  assert.ok(parentAddress < fincen);
+  assert.ok(fincen < fzcoAddress);
+  assert.ok(fzcoAddress < subsidiary);
+  assert.ok(subsidiary < disclosures);
   assert.doesNotMatch(footerMeta, /<strong>|<\/strong>|—/);
   assert.equal((footerMeta.match(/<li>/g) ?? []).length, 4);
   assert.match(footerMeta, /<li>1\. Jazari One is a technology service provider/);

@@ -56,17 +56,20 @@ export function SiteFooter() {
         <div className="footer-addresses">
           <div className="footer-addresses-content">
             <address>
+              <span>Jazari One, Inc.,</span>{" "}
+              <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>
+            </address>
+            <p className="footer-registration">
+              Jazari One holds a FinCEN MSB registration (No. MRX26-00006547)
+              reflecting its compliance obligations as an entity operating in the payments ecosystem.
+            </p>
+            <address>
               <span>Jazari Fintech Services FZCO,</span>{" "}
               <span>#78870, Building A1, IFZA Business Park, Dubai Silicon Oasis, Dubai, UAE</span>
             </address>
             <p className="footer-registration">
-              Jazari ONE holds a FinCEN MSB registration (Registration No. MRX26-00006547)
-              reflecting its compliance obligations as an entity operating in the payments ecosystem.
+              Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc.
             </p>
-            <address>
-              <span>Jazari One, Inc.,</span>{" "}
-              <span>1111B S Governors Ave #93312, Dover, DE 19904, United States</span>
-            </address>
             <ol className="footer-registration footer-disclosures">
               <li>1. Jazari One is a technology service provider, not a bank, deposit-taker, e-money institution, or investment adviser.</li>
               <li>2. Balances held in Jazari One are stablecoins, not bank deposits. The value of a cryptoasset, including one that references a fiat currency, may fall to zero.</li>
@@ -98,8 +101,7 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="footer-signoff">
-          <span>Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc.</span>
-          <span>© 2026 Jazari One. All rights reserved.</span>
+          <span className="footer-copyright">© 2026 Jazari One. All rights reserved.</span>
         </div>
       </div>
     </footer>
