@@ -52,6 +52,7 @@
   position: sticky;
   top: 124px;
   grid-column: 2;
+  grid-row: 1;
   width: 100%;
   max-height: calc(100vh - 150px);
   padding: 0;
@@ -90,6 +91,7 @@
 
 .legal-document {
   grid-column: 1;
+  grid-row: 1;
   min-width: 0;
 }
 
@@ -211,6 +213,7 @@
   .legal-index {
     position: static;
     grid-column: 1;
+    grid-row: 1;
     max-height: 420px;
     padding-right: 12px;
     display: grid;
@@ -224,6 +227,7 @@
 
   .legal-document {
     grid-column: 1;
+    grid-row: 2;
   }
 }
 
