@@ -74,7 +74,7 @@ export function PartnersPage() {
       </section>
 
       <section className="partner-directory" aria-labelledby="network-directory-title">
-        <h2 id="network-directory-title">Networks and digital dollars</h2>
+        <h2 id="network-directory-title">Supported networks</h2>
         <div
           className={`provider-grid directory-network-grid ${networksVisible ? "is-visible" : ""}`}
           ref={networksRef}

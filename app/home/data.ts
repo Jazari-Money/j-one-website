@@ -325,6 +325,24 @@ export const partnerStories = [
     kind: "Liquid staking",
     short: "Liquid staking and onchain reward infrastructure.",
   },
+  {
+    name: "ComplyAdvantage",
+    logo: withBasePath("/images/rails/complyadvantage.svg"),
+    logoFormat: "wide",
+    logoScale: 0.9,
+    wordmarkOnly: true,
+    kind: "Transaction monitoring",
+    short: "Transaction monitoring and financial crime risk intelligence.",
+  },
+  {
+    name: "Sumsub",
+    logo: withBasePath("/images/rails/sumsub.svg"),
+    logoFormat: "wide",
+    logoScale: 0.9,
+    wordmarkOnly: true,
+    kind: "KYC",
+    short: "KYC and identity verification.",
+  },
 ] as const;
 
 export const networkStories = [
@@ -334,7 +352,7 @@ export const networkStories = [
     logoFormat: "mark",
     logoScale: 1.13,
     kind: "Digital dollar",
-    short: "A dollar-referenced token issued by Tether.",
+    short: "A digital dollar pegged at 1:1 with USD. Issued by Tether",
   },
   {
     name: "USDC",
@@ -342,7 +360,7 @@ export const networkStories = [
     logoFormat: "mark",
     logoScale: 0.96,
     kind: "Digital dollar",
-    short: "A digital dollar issued by Circle for payments and settlement.",
+    short: "A digital dollar pegged at 1:1 with USD. Issued by Circle",
   },
   {
     name: "Ethereum",

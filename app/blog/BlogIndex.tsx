@@ -15,8 +15,9 @@ export function BlogIndex() {
       <header className="blog-index-header">
         <h1>Blog</h1>
         <p>
-          {guides.length} practical articles for sending, receiving, and
-          understanding money across borders.
+          Tips and guides to help you get the most from Jazari One. Something
+          missing?{" "}
+          <a href="mailto:hello@jazari.xyz">Tell us what you&apos;d like to see</a>
         </p>
       </header>
 

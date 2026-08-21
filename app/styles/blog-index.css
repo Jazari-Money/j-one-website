@@ -28,6 +28,19 @@
   line-height: 1.65;
 }
 
+.blog-index-header p a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: color 180ms ease;
+}
+
+.blog-index-header p a:hover,
+.blog-index-header p a:focus-visible {
+  color: var(--accent);
+}
+
 .blog-index-articles {
   width: var(--page);
   margin: 0 auto;
