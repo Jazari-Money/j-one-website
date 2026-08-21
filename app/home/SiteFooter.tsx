@@ -28,6 +28,7 @@ export function SiteFooter() {
           <div>
             <strong>Product</strong>
             <Link href="/#how">How it works</Link>
+            <Link href="/usd-account">USD account</Link>
             <Link href="/#rates">Rates</Link>
             <Link href="/plan">Pricing</Link>
             <Link href="/yields">Yields</Link>

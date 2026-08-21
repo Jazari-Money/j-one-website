@@ -234,6 +234,7 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(personalMenu).toHaveAttribute("open", "");
   await expect(personalMenu.locator(".nav-dropdown-menu a")).toHaveText([
     "Receive",
+    "USD account",
     "Send",
     "Rates",
     "Yields",
@@ -283,16 +284,8 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(yieldsLink).toHaveCount(1);
   await expect(yieldsLink).toBeVisible();
   await page.getByRole("tab", { name: "Receive", exact: true }).click();
-  const comingSoon = page.locator(".step-status");
-  await expect(comingSoon).toHaveText("Coming soon");
-  await expect
-    .poll(() =>
-      comingSoon.evaluate((node) => {
-        const style = getComputedStyle(node);
-        return `${style.backgroundColor}|${style.color}`;
-      }),
-    )
-    .toBe("rgb(244, 244, 239)|rgb(8, 10, 9)");
+  await expect(page.getByRole("tab", { name: /Share USD account/ })).toBeVisible();
+  await expect(page.locator(".step-status")).toHaveCount(0);
 
   const currencyPicker = page.locator("#receive-currency");
   await currencyPicker.click();
@@ -490,18 +483,18 @@ test("keeps the core interactions working", async ({ page }) => {
 
   const roadmapTrack = page.locator(".roadmap-track");
   const roadmapWindow = page.locator(".roadmap-window");
-  const usdRoadmapCard = page.locator(".roadmap-card").first();
-  await expect(usdRoadmapCard.locator(".roadmap-milestone-art")).toHaveAttribute(
+  const firstRoadmapCard = page.locator(".roadmap-card").first();
+  await expect(firstRoadmapCard.locator(".roadmap-milestone-art")).toHaveAttribute(
     "src",
-    /usa-flag\.png$/,
+    /visa-card\.png$/,
   );
-  const usdCardRegions = await usdRoadmapCard.evaluate((node) => {
+  const firstCardRegions = await firstRoadmapCard.evaluate((node) => {
     const copy = node.querySelector(".roadmap-milestone-copy")?.getBoundingClientRect();
     const visual = node.querySelector(".roadmap-milestone-visual")?.getBoundingClientRect();
     return copy && visual ? { copyBottom: copy.bottom, visualTop: visual.top } : null;
   });
-  expect(usdCardRegions).not.toBeNull();
-  expect(usdCardRegions!.copyBottom).toBeLessThanOrEqual(usdCardRegions!.visualTop);
+  expect(firstCardRegions).not.toBeNull();
+  expect(firstCardRegions!.copyBottom).toBeLessThanOrEqual(firstCardRegions!.visualTop);
   await expect(roadmapWindow).toHaveClass(/is-at-start/);
   await page.getByRole("button", { name: "Next milestone" }).click();
   await expect
@@ -770,19 +763,53 @@ test("explains yields and links into the app flow", async ({ page }) => {
   );
 });
 
+test("presents the USD account as a live product", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.getByText("Direct payments to your USD account", { exact: true })).toBeVisible();
+  await expect(page.locator(".benefit-row").nth(2).locator("img")).toHaveAttribute(
+    "src",
+    /yields-icon\.png$/,
+  );
+  await expect(
+    page.locator('.nav-dropdown-menu a[href$="/usd-account/"]'),
+  ).toHaveAttribute("href", /\/usd-account\/?$/);
+
+  await page.goto("/usd-account/", { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { name: "USD account", exact: true })).toBeVisible();
+  await expect(page.getByText("Available now", { exact: true })).toBeVisible();
+  await expect(page.getByText(/Direct payments to your personal USD account/)).toBeVisible();
+  await expect(page.getByText(/US routing and account number/).first()).toBeVisible();
+  await expect(page.getByText(/ACH, FedNow, domestic wire, and SWIFT/)).toBeVisible();
+  await expect(page.getByText("No US residency required", { exact: true })).toBeVisible();
+  await expect(page.locator(".step-status")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Download App" }).first()).toHaveAttribute(
+    "href",
+    "https://jazarione.app.link/web-launch",
+  );
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator(".usd-account-hero-visual")).toBeVisible();
+  const viewport = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(viewport.scrollWidth).toBe(viewport.clientWidth);
+});
+
 test("shows every product milestone on the roadmap page", async ({ page }) => {
   await page.goto("/roadmap/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Coming soon" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "USD account" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "USD account" })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Visa card" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Additional payout countries" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Higher-return Yields" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
   await expect(page.locator(".roadmap-flags").first()).toHaveCSS("flex-direction", "column");
-  const usdAccountCard = page.locator(".roadmap-full-card").first();
-  const visaCard = page.locator(".roadmap-full-card").nth(1);
-  await expect(usdAccountCard.locator(".roadmap-milestone-art")).toHaveAttribute(
+  const visaCard = page.locator(".roadmap-full-card").first();
+  const payoutCard = page.locator(".roadmap-full-card").nth(1);
+  await expect(visaCard.locator(".roadmap-milestone-art")).toHaveAttribute(
     "src",
-    /usa-flag\.png$/,
+    /visa-card\.png$/,
   );
   const roadmapCards = page.locator(".roadmap-full-card");
   const [firstCard, secondCard] = await Promise.all([
@@ -800,28 +827,25 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   );
   expect(new Set(mobileHeights).size).toBe(1);
   expect(mobileHeights[0]).toBe(352);
-  const [mobileCard, mobileArt, mobileVisaCard, mobileVisaArt] = await Promise.all([
-    usdAccountCard.boundingBox(),
-    usdAccountCard.locator(".roadmap-milestone-art").boundingBox(),
+  const [mobileVisaCard, mobileVisaArt, mobilePayoutCard, mobileFlags] = await Promise.all([
     visaCard.boundingBox(),
     visaCard.locator(".roadmap-milestone-art").boundingBox(),
+    payoutCard.boundingBox(),
+    payoutCard.locator(".roadmap-flags").boundingBox(),
   ]);
-  expect(mobileCard).not.toBeNull();
-  expect(mobileArt).not.toBeNull();
   expect(mobileVisaCard).not.toBeNull();
   expect(mobileVisaArt).not.toBeNull();
-  expect(mobileArt!.x).toBeGreaterThanOrEqual(mobileCard!.x);
-  expect(mobileArt!.x + mobileArt!.width).toBeLessThanOrEqual(
-    mobileCard!.x + mobileCard!.width + 1,
-  );
-  expect(mobileArt!.y + mobileArt!.height).toBeGreaterThan(
-    mobileCard!.y + mobileCard!.height,
-  );
+  expect(mobilePayoutCard).not.toBeNull();
+  expect(mobileFlags).not.toBeNull();
   expect(mobileVisaArt!.x + mobileVisaArt!.width).toBeGreaterThan(
     mobileVisaCard!.x + mobileVisaCard!.width,
   );
   expect(mobileVisaArt!.y + mobileVisaArt!.height).toBeGreaterThan(
     mobileVisaCard!.y + mobileVisaCard!.height,
+  );
+  expect(mobileFlags!.x).toBeGreaterThanOrEqual(mobilePayoutCard!.x);
+  expect(mobileFlags!.x + mobileFlags!.width).toBeLessThanOrEqual(
+    mobilePayoutCard!.x + mobilePayoutCard!.width + 1,
   );
 });
 
@@ -974,28 +998,24 @@ test("keeps mobile Coming soon cards visible with intentionally cropped artwork"
     ))
     .toBe("none");
 
-  for (const index of [0, 1]) {
-    const card = page.locator(".roadmap-card").nth(index);
-    const art = card.locator(".roadmap-milestone-art");
-    const copy = card.locator(".roadmap-milestone-copy");
-    const [cardBox, artBox, copyBox] = await Promise.all([
-      card.boundingBox(),
-      art.boundingBox(),
-      copy.boundingBox(),
-    ]);
-    expect(cardBox).not.toBeNull();
-    expect(artBox).not.toBeNull();
-    expect(copyBox).not.toBeNull();
-    expect(Math.round(cardBox!.height)).toBe(352);
-    expect(artBox!.x).toBeGreaterThanOrEqual(cardBox!.x);
-    if (index === 0) {
-      expect(artBox!.x + artBox!.width).toBeLessThanOrEqual(cardBox!.x + cardBox!.width + 1);
-    } else {
-      expect(artBox!.x + artBox!.width).toBeGreaterThan(cardBox!.x + cardBox!.width);
-    }
-    expect(artBox!.y + artBox!.height).toBeGreaterThan(cardBox!.y + cardBox!.height);
-    expect(copyBox!.y + copyBox!.height).toBeLessThanOrEqual(artBox!.y + 1);
-  }
+  const visaCard = page.locator(".roadmap-card").first();
+  const visaArt = visaCard.locator(".roadmap-milestone-art");
+  const visaCopy = visaCard.locator(".roadmap-milestone-copy");
+  const [cardBox, artBox, copyBox] = await Promise.all([
+    visaCard.boundingBox(),
+    visaArt.boundingBox(),
+    visaCopy.boundingBox(),
+  ]);
+  expect(cardBox).not.toBeNull();
+  expect(artBox).not.toBeNull();
+  expect(copyBox).not.toBeNull();
+  expect(Math.round(cardBox!.height)).toBe(352);
+  expect(artBox!.x + artBox!.width).toBeGreaterThan(cardBox!.x + cardBox!.width);
+  expect(artBox!.y + artBox!.height).toBeGreaterThan(cardBox!.y + cardBox!.height);
+  expect(copyBox!.y + copyBox!.height).toBeLessThanOrEqual(artBox!.y + 1);
+
+  const payoutFlags = page.locator(".roadmap-card").nth(1).locator(".roadmap-flags");
+  await expect(payoutFlags).toBeVisible();
 
   await roadmapTrack.evaluate((node) => {
     node.scrollLeft = node.scrollWidth - node.clientWidth;
@@ -1072,21 +1092,14 @@ test("keeps the mobile phone preview and step accordion in one viewport", async 
   await expect(page.locator(".step-tab-item").nth(0).locator("small")).toBeHidden();
 });
 
-test("contains the mobile coming-soon badge at narrow widths", async ({ page }) => {
+test("shows the live USD account step without a coming-soon badge", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 568 });
   await prepareStablePage(page);
 
   const finalStep = page.getByRole("tab", { name: /Share USD account/ });
   const badge = finalStep.locator(".step-status");
-  const bounds = await Promise.all([
-    finalStep.boundingBox(),
-    badge.boundingBox(),
-  ]);
-
-  expect(bounds[0]).not.toBeNull();
-  expect(bounds[1]).not.toBeNull();
-  expect(bounds[1]!.x).toBeGreaterThanOrEqual(bounds[0]!.x);
-  expect(bounds[1]!.x + bounds[1]!.width).toBeLessThanOrEqual(bounds[0]!.x + bounds[0]!.width);
+  await expect(finalStep).toBeVisible();
+  await expect(badge).toHaveCount(0);
 });
 
 test("fits the complete Yields mobile interaction at 430px", async ({ page }) => {

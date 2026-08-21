@@ -25,6 +25,7 @@ const routes = [
   "/roadmap",
   "/terms",
   "/uk-risk-information",
+  "/usd-account",
   "/yields",
 ];
 
