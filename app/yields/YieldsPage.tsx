@@ -32,9 +32,9 @@ const questions = [
       "Borrowing demand, liquidity, market conditions, and strategy allocation all move over time. That is why the APY you see is a variable snapshot rather than a promise.",
   },
   {
-    question: "Who manages the strategy?",
+    question: "Who manages the strategies?",
     answer:
-      "Gauntlet independently curates and manages Gauntlet USD Alpha. Gauntlet is a risk-management firm, not a bank and not Jazari One. You access the strategy through Jazari.",
+      "Each option identifies its independent manager. Gauntlet manages Gauntlet USD Alpha, while Lido EarnUSD relies on third-party infrastructure provided by Mellow. These providers are not banks or Jazari One.",
   },
   {
     question: "How do I add funds?",
@@ -74,6 +74,7 @@ export function YieldsPage() {
       >
         <div className="yield-strategy-copy">
           <img
+            className="yield-provider-logo"
             src={withBasePath("/images/rails/gauntlet.svg")}
             alt="Gauntlet"
             width="240"
@@ -94,7 +95,6 @@ export function YieldsPage() {
         <div className="yield-rate">
           <strong>4.66%</strong>
           <span>Variable APY</span>
-          <small>Illustrative rate supplied by Jazari · updated daily</small>
         </div>
         <dl className="yield-facts">
           <div>
@@ -108,6 +108,55 @@ export function YieldsPage() {
           <div>
             <dt>Protection</dt>
             <dd>Not deposit-insured</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section
+        className="yield-feature yield-feature-lido pointer-card"
+        aria-labelledby="lido-strategy-title"
+        onPointerMove={trackPointer}
+        onPointerLeave={resetPointer}
+      >
+        <div className="yield-strategy-copy">
+          <img
+            className="yield-provider-logo yield-provider-logo-lido"
+            src={withBasePath("/images/rails/lido.svg")}
+            alt="Lido"
+            width="86"
+            height="120"
+            loading="lazy"
+            decoding="async"
+          />
+          <h2 id="lido-strategy-title">Lido EarnUSD</h2>
+          <p>
+            A USD-denominated reward strategy built around transparent asset
+            selection, risk controls, and reporting.
+          </p>
+          <a
+            href="https://stake.lido.fi/earn/usd/deposit"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open Lido EarnUSD
+          </a>
+        </div>
+        <div className="yield-rate yield-rate-live">
+          <strong>Live</strong>
+          <span>Variable APY</span>
+        </div>
+        <dl className="yield-facts">
+          <div>
+            <dt>Funding asset</dt>
+            <dd>USDC</dd>
+          </div>
+          <div>
+            <dt>Withdrawals</dt>
+            <dd>Instant or up to 72 hours</dd>
+          </div>
+          <div>
+            <dt>Availability</dt>
+            <dd>Restrictions apply</dd>
           </div>
         </dl>
       </section>

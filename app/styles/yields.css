@@ -50,6 +50,15 @@
   gap: 52px 88px;
 }
 
+.yield-feature + .yield-feature {
+  margin-top: 24px;
+}
+
+.yield-feature-lido {
+  background:
+    linear-gradient(140deg, color-mix(in srgb, #00a3ff 8%, var(--surface-2)), var(--surface));
+}
+
 .yield-strategy-copy,
 .yield-rate,
 .yield-facts {
@@ -63,6 +72,10 @@
   object-fit: contain;
   object-position: left center;
   filter: grayscale(1) brightness(0) invert(1);
+}
+
+.yield-strategy-copy .yield-provider-logo-lido {
+  width: 46px;
 }
 
 .yield-strategy-copy h2 {
@@ -119,6 +132,10 @@
     0 0 16px color-mix(in srgb, var(--accent) 38%, transparent),
     0 0 48px color-mix(in srgb, var(--accent) 20%, transparent);
   animation: yield-apy-pulse 4.4s ease-in-out infinite;
+}
+
+.yield-rate-live strong {
+  font-size: clamp(82px, 9vw, 126px);
 }
 
 @keyframes yield-apy-pulse {

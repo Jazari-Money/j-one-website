@@ -74,7 +74,7 @@
 }
 
 .footer-meta {
-  margin-top: 76px;
+  margin-top: 48px;
 }
 
 .footer-meta > p {
@@ -85,7 +85,7 @@
 }
 
 .footer-addresses {
-  margin-top: 40px;
+  margin-top: 0;
   display: flex;
   align-items: stretch;
   justify-content: space-between;
@@ -94,7 +94,7 @@
 
 .footer-addresses-content {
   display: grid;
-  gap: 26px;
+  gap: 16px;
 }
 
 .footer-addresses address {
@@ -106,7 +106,7 @@
   max-width: 850px;
   color: var(--muted-strong);
   font-size: 14px;
-  line-height: 1.72;
+  line-height: 1.55;
 }
 
 .footer-addresses span {
@@ -114,16 +114,16 @@
 }
 
 .footer-disclosures {
-  margin-top: 18px;
+  margin-top: 6px;
   display: grid;
-  gap: 12px;
+  gap: 8px;
 }
 
 .footer-addresses span {
   margin-top: 0;
   color: var(--muted-strong);
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 .footer-downloads {
@@ -131,7 +131,7 @@
   align-items: flex-end;
   justify-content: flex-end;
   flex-direction: column;
-  gap: 24px;
+  gap: 18px;
 }
 
 .footer-copyright {

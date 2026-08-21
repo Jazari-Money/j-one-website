@@ -26,7 +26,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Hold them\. Send them\. Grow them\./);
   assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
-  assert.match(html, /Direct payments to your USD account/);
+  assert.match(html, /Direct payments to your USD account\. Available in 190\+ countries\./);
   assert.match(html, /Send to 30\+ countries in local currency\./);
   assert.match(html, /Earn up to 7% APY with Yields/);
   assert.match(html, /yields-icon\.png/);
@@ -38,6 +38,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Calculate your rate/);
   assert.match(html, /Preview the amount at the current rate before you confirm\./);
   assert.match(html, /Receiving countries/);
+  assert.doesNotMatch(html, /View receiving countries/);
   assert.match(html, /All receiving countries/);
   assert.match(html, /30(?:<!-- -->)? destinations today\. More countries coming soon\./);
   assert.match(html, /Coming soon/);
@@ -157,6 +158,10 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(yields, /<dt>Funding assets<\/dt><dd>USDC<\/dd>/);
   assert.doesNotMatch(yields, /USDC or USDT|USDC · USDT/);
   assert.match(yields, /4\.66%/);
+  assert.match(yields, /Lido EarnUSD/);
+  assert.match(yields, /https:\/\/stake\.lido\.fi\/earn\/usd\/deposit/);
+  assert.match(yields, /Instant or up to 72 hours/);
+  assert.doesNotMatch(yields, /Illustrative rate supplied by Jazari/);
   assert.match(yields, /<h1>Yields<\/h1>/);
   assert.doesNotMatch(yields, /Return and risk move together/);
   assert.match(yields, /What are Yields\?/);
@@ -166,11 +171,18 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
 
   assert.match(usdAccount, /<title>USD account — Jazari One<\/title>/);
   assert.match(usdAccount, /<h1>USD account<\/h1>/);
-  assert.match(usdAccount, /Available now/);
+  assert.doesNotMatch(usdAccount, /Available now/);
+  assert.doesNotMatch(usdAccount, /Receive in dollars/);
   assert.match(usdAccount, /Direct payments to your personal USD account/);
+  assert.match(usdAccount, /licensed US bank partner/);
   assert.match(usdAccount, /US routing and account number/);
   assert.match(usdAccount, /ACH, FedNow, domestic wire, and SWIFT/);
   assert.match(usdAccount, /No US residency required/);
+  assert.match(usdAccount, /alt="United States flag"/);
+  assert.ok(
+    usdAccount.indexOf('class="usd-account-table"') <
+      usdAccount.indexOf('class="realism-button"'),
+  );
   assert.doesNotMatch(usdAccount, /class="step-status">Coming soon/);
 
   assert.match(roadmap, /<h1>Coming soon<\/h1>/);

@@ -357,7 +357,7 @@ test("keeps the core interactions working", async ({ page }) => {
   const queuedReceivingCountries = ["India", "Bangladesh", "Pakistan", "Nigeria"];
   const countriesDialog = page.locator(".receive-countries-dialog");
   await expect(countriesDialog).not.toBeVisible();
-  await page.getByRole("link", { name: "View receiving countries" }).click();
+  await page.getByRole("link", { name: "Receiving countries", exact: true }).click();
   await expect(countriesDialog).toBeVisible();
   await page.getByRole("button", { name: "Close receiving countries" }).click();
   await page.getByRole("button", { name: "All receiving countries" }).click();
@@ -752,9 +752,16 @@ test("explains yields and links into the app flow", async ({ page }) => {
     page.getByRole("heading", { name: "Yields", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
-  await expect(page.getByText("USDC", { exact: true })).toBeVisible();
+  await expect(page.getByText("USDC", { exact: true })).toHaveCount(2);
+  await expect(page.getByText("USDC", { exact: true }).first()).toBeVisible();
   await expect(page.getByText(/USDC · USDT|USDC or USDT/)).toHaveCount(0);
   await expect(page.getByText("4.66%")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Lido EarnUSD" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Open Lido EarnUSD" })).toHaveAttribute(
+    "href",
+    "https://stake.lido.fi/earn/usd/deposit",
+  );
+  await expect(page.getByText("Illustrative rate supplied by Jazari")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "How Yields work" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Ready to open Yields?" })).toBeVisible();
   await expect(page.getByText("Return and risk move together")).toHaveCount(0);
@@ -765,7 +772,10 @@ test("explains yields and links into the app flow", async ({ page }) => {
 
 test("presents the USD account as a live product", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
-  await expect(page.getByText("Direct payments to your USD account", { exact: true })).toBeVisible();
+  await expect(page.getByText(
+    "Direct payments to your USD account. Available in 190+ countries.",
+    { exact: true },
+  )).toBeVisible();
   await expect(page.locator(".benefit-row").nth(2).locator("img")).toHaveAttribute(
     "src",
     /yields-icon\.png$/,
@@ -776,10 +786,11 @@ test("presents the USD account as a live product", async ({ page }) => {
 
   await page.goto("/usd-account/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "USD account", exact: true })).toBeVisible();
-  await expect(page.getByText("Available now", { exact: true })).toBeVisible();
+  await expect(page.getByText("Available now", { exact: true })).toHaveCount(0);
+  await expect(page.getByText("Receive in dollars", { exact: true })).toHaveCount(0);
   await expect(page.getByText(/Direct payments to your personal USD account/)).toBeVisible();
   await expect(page.getByText(/US routing and account number/).first()).toBeVisible();
-  await expect(page.getByText(/ACH, FedNow, domestic wire, and SWIFT/)).toBeVisible();
+  await expect(page.getByText(/ACH, FedNow, domestic wire, and SWIFT/).first()).toBeVisible();
   await expect(page.getByText("No US residency required", { exact: true })).toBeVisible();
   await expect(page.locator(".step-status")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Download App" }).first()).toHaveAttribute(

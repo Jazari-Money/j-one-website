@@ -7,33 +7,22 @@
   color: var(--text);
 }
 
-.usd-account-hero,
-.usd-account-details {
+.usd-account-hero {
   width: var(--page);
   margin-inline: auto;
 }
 
 .usd-account-hero {
-  min-height: 760px;
-  padding: 170px 0 110px;
+  min-height: 880px;
+  padding: 170px 0 120px;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(380px, 0.95fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
   align-items: center;
   gap: clamp(56px, 7vw, 110px);
 }
 
-.usd-account-hero-copy > span,
-.usd-account-details-copy > span {
-  color: var(--accent);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .usd-account-hero h1 {
   max-width: 760px;
-  margin-top: 22px;
   font-family: var(--serif);
   font-size: clamp(76px, 8.2vw, 116px);
   font-weight: 400;
@@ -43,7 +32,7 @@
 }
 
 .usd-account-hero-copy > p {
-  max-width: 610px;
+  max-width: 720px;
   margin-top: 34px;
   color: var(--muted-strong);
   font-size: 20px;
@@ -53,26 +42,20 @@
 .usd-account-hero-copy .realism-button {
   width: max-content;
   min-height: 50px;
-  margin-top: 38px;
+  margin-top: 30px;
   padding-inline: 24px;
   text-decoration: none;
 }
 
 .usd-account-hero-visual {
-  position: relative;
-  min-height: 500px;
-  border-radius: 30px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 36% 24%, rgba(255, 255, 255, 0.08), transparent 44%),
-    var(--surface);
+  min-width: 0;
 }
 
 .usd-account-hero-visual picture {
-  position: absolute;
-  right: -8%;
-  bottom: -9%;
-  width: min(470px, 104%);
+  display: block;
+  width: min(560px, 116%);
+  margin-left: auto;
+  transform: translateX(6%);
 }
 
 .usd-account-hero-visual img {
@@ -81,64 +64,61 @@
   height: auto;
 }
 
-.usd-account-details {
-  padding: 48px 0 150px;
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
-  gap: clamp(56px, 8vw, 130px);
-  align-items: start;
-}
-
-.usd-account-details h2 {
-  max-width: 650px;
-  margin-top: 20px;
-  font-family: var(--serif);
-  font-size: clamp(52px, 5.8vw, 82px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.94;
-  text-wrap: balance;
-}
-
-.usd-account-details-copy > p {
-  max-width: 650px;
-  margin-top: 30px;
-  color: var(--muted-strong);
-  font-size: 18px;
-  line-height: 1.68;
-}
-
-.usd-account-details dl {
-  padding: 12px 28px;
-  border-radius: 26px;
+.usd-account-table {
+  max-width: 720px;
+  margin-top: 36px;
+  padding: 22px 24px 24px;
+  border-radius: 24px;
   background: var(--surface);
 }
 
-.usd-account-details dl > div {
-  padding: 25px 0;
+.usd-account-table h2 {
+  font-family: var(--font-inter);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.usd-account-table dl {
+  margin-top: 14px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface-2) 36%, transparent);
+}
+
+.usd-account-table dl > div {
+  position: relative;
+  min-height: 60px;
+  padding: 14px 20px;
   display: grid;
-  grid-template-columns: minmax(130px, 0.7fr) minmax(0, 1.3fr);
-  gap: 28px;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 30px;
 }
 
-.usd-account-details dl > div + div {
-  border-top: 1px solid var(--line);
+.usd-account-table dl > div + div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 20px;
+  left: 20px;
+  height: 1px;
+  background: color-mix(in srgb, var(--line) 54%, transparent);
 }
 
-.usd-account-details dt {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.usd-account-details dd {
+.usd-account-table dt {
   color: var(--text);
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 17px;
+}
+
+.usd-account-table dd {
+  color: var(--muted-strong);
+  font-size: 15px;
+  text-align: right;
 }
 
 @media (max-width: 900px) {
-  .usd-account-hero,
-  .usd-account-details {
+  .usd-account-hero {
     grid-template-columns: 1fr;
   }
 
@@ -146,12 +126,10 @@
     padding-top: 160px;
   }
 
-  .usd-account-hero-visual {
-    min-height: 420px;
-  }
-
-  .usd-account-details {
-    gap: 50px;
+  .usd-account-hero-visual picture {
+    width: min(520px, 90%);
+    margin-inline: auto;
+    transform: none;
   }
 }
 
@@ -166,33 +144,42 @@
     font-size: 66px;
   }
 
-  .usd-account-hero-copy > p,
-  .usd-account-details-copy > p {
+  .usd-account-hero-copy > p {
     font-size: 16px;
   }
 
-  .usd-account-hero-visual {
-    min-height: 330px;
-    border-radius: 24px;
-  }
-
-  .usd-account-details {
-    padding: 20px 0 100px;
-    gap: 40px;
-  }
-
-  .usd-account-details h2 {
-    font-size: 52px;
-  }
-
-  .usd-account-details dl {
-    padding: 8px 22px;
+  .usd-account-table {
+    padding: 22px 18px;
+    border: 1px solid var(--line);
     border-radius: 22px;
   }
 
-  .usd-account-details dl > div {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 22px 0;
+  .usd-account-table dl {
+    border-radius: 0;
+    background: transparent;
+  }
+
+  .usd-account-table dl > div {
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr) minmax(118px, 0.92fr);
+    align-items: baseline;
+    gap: 14px;
+    padding: 14px 0;
+  }
+
+  .usd-account-table dl > div + div::before {
+    right: 0;
+    left: 0;
+  }
+
+  .usd-account-table dd {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.42;
+  }
+
+  .usd-account-hero-visual picture {
+    width: min(360px, 94%);
   }
 }
