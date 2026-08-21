@@ -158,8 +158,14 @@ test("server-renders plan, yields, coming soon, partners, about, and help pages"
 
   assert.match(partners, /<h1>Partners<\/h1>/);
   assert.match(partners, /Lido/);
-  assert.match(partners, /Networks and digital dollars/);
+  assert.match(partners, /ComplyAdvantage/);
+  assert.match(partners, /Transaction monitoring and financial crime risk intelligence/);
+  assert.match(partners, /Sumsub/);
+  assert.match(partners, /KYC and identity verification/);
+  assert.match(partners, /Supported networks/);
   assert.match(partners, /USDC/);
+  assert.match(partners, /A digital dollar pegged at 1:1 with USD\. Issued by Tether/);
+  assert.match(partners, /A digital dollar pegged at 1:1 with USD\. Issued by Circle/);
 
   assert.match(about, /<h1>About us<\/h1>/);
   assert.match(about, /<h2 id="about-manifest-title">Manifesto<\/h2>/);
@@ -408,7 +414,10 @@ test("renders the Blog index and all seven guides", async () => {
   const indexResponse = await render("/blog");
   assert.equal(indexResponse.status, 200);
   const indexHtml = await indexResponse.text();
-  assert.match(indexHtml, /7(?:<!--.*?-->)?\s*practical articles/);
+  assert.match(indexHtml, /Tips and guides to help you get the most from Jazari One/);
+  assert.match(indexHtml, /Something missing\?/);
+  assert.match(indexHtml, /href="mailto:hello@jazari\.xyz"/);
+  assert.match(indexHtml, /Tell us what you(?:<!--.*?-->)?&#x27;d like to see/);
   assert.equal((indexHtml.match(/Read Article/g) ?? []).length, 7);
   assert.match(indexHtml, /mexico-transfer\.webp/);
   assert.doesNotMatch(indexHtml, /min read/i);
