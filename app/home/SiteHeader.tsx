@@ -90,6 +90,7 @@ export function SiteHeader({
             <span className="nav-mobile-section-title">Product</span>
             <div className="nav-dropdown-menu">
               <a href={sectionHref("how-receive")} onClick={closeMobile}>Receive</a>
+              <a href={withBasePath("/usd-account/")} onClick={closeMobile}>USD account</a>
               <a href={sectionHref("how-send")} onClick={closeMobile}>Send</a>
               <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
               <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
@@ -102,6 +103,7 @@ export function SiteHeader({
             <section className="nav-mobile-group" aria-labelledby="mobile-product-links">
               <strong id="mobile-product-links">Product</strong>
               <a href={sectionHref("how")} onClick={closeMobile}>How it works</a>
+              <a href={withBasePath("/usd-account/")} onClick={closeMobile}>USD account</a>
               <a href={withBasePath("/plan/")} onClick={closeMobile}>Pricing</a>
               <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
               <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>

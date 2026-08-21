@@ -89,7 +89,7 @@ export const jazariVisualProfile = {
 export const features = [
   {
     id: "dollar-balance",
-    copy: "Hold digital dollars. Keep their value.",
+    copy: "Direct payments to your USD account",
     image: withBasePath("/images/features/dollar-01.png"),
   },
   {
@@ -100,7 +100,7 @@ export const features = [
   {
     id: "earn",
     copy: "Earn up to 7% APY with Yields",
-    image: withBasePath("/images/features/plus-03.png"),
+    image: withBasePath("/images/features/yields-icon.png"),
   },
   {
     id: "zero-fees",

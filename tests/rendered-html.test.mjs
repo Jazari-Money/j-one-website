@@ -26,9 +26,10 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Hold them\. Send them\. Grow them\./);
   assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
-  assert.match(html, /Hold digital dollars\. Keep their value\./);
+  assert.match(html, /Direct payments to your USD account/);
   assert.match(html, /Send to 30\+ countries in local currency\./);
   assert.match(html, /Earn up to 7% APY with Yields/);
+  assert.match(html, /yields-icon\.png/);
   assert.match(html, /No transfer fees\. No hidden fees\./);
   assert.match(html, />Product<\/summary>/);
   assert.match(html, /How it works/);
@@ -58,7 +59,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Want to keep your salary in dollars\. Not forced to convert on arrival\./);
   assert.match(html, /Multiple clients, multiple countries/);
   assert.match(html, /Income doesn&#x27;t arrive on time/);
-  assert.match(html, /usa-flag\.png/);
+  assert.doesNotMatch(html, /usa-flag\.png/);
   assert.match(html, /mexico-transfer\.webp/);
   assert.match(html, /brazil\.jpg/);
   assert.match(html, /colombia\.jpg/);
@@ -117,18 +118,20 @@ test("server-renders the Jazari One landing page", async () => {
   assert.doesNotMatch(footerMeta, /Cryptoasset balances and Earn allocations are not covered/);
 });
 
-test("server-renders plan, yields, coming soon, partners, about, and help pages", async () => {
-  const [planResponse, yieldsResponse, roadmapResponse, partnersResponse, aboutResponse, helpResponse] = await Promise.all([
+test("server-renders product, coming soon, partners, about, and help pages", async () => {
+  const [planResponse, yieldsResponse, usdAccountResponse, roadmapResponse, partnersResponse, aboutResponse, helpResponse] = await Promise.all([
     render("/plan"),
     render("/yields"),
+    render("/usd-account"),
     render("/roadmap"),
     render("/partners"),
     render("/about"),
     render("/help"),
   ]);
-  const [plan, yields, roadmap, partners, about, help] = await Promise.all([
+  const [plan, yields, usdAccount, roadmap, partners, about, help] = await Promise.all([
     planResponse.text(),
     yieldsResponse.text(),
+    usdAccountResponse.text(),
     roadmapResponse.text(),
     partnersResponse.text(),
     aboutResponse.text(),
@@ -161,7 +164,18 @@ test("server-renders plan, yields, coming soon, partners, about, and help pages"
   assert.match(yields, /How Yields work/);
   assert.match(yields, /Ready to open Yields\?/);
 
+  assert.match(usdAccount, /<title>USD account — Jazari One<\/title>/);
+  assert.match(usdAccount, /<h1>USD account<\/h1>/);
+  assert.match(usdAccount, /Available now/);
+  assert.match(usdAccount, /Direct payments to your personal USD account/);
+  assert.match(usdAccount, /US routing and account number/);
+  assert.match(usdAccount, /ACH, FedNow, domestic wire, and SWIFT/);
+  assert.match(usdAccount, /No US residency required/);
+  assert.doesNotMatch(usdAccount, /class="step-status">Coming soon/);
+
   assert.match(roadmap, /<h1>Coming soon<\/h1>/);
+  assert.doesNotMatch(roadmap, /<h2>USD account<\/h2>/);
+  assert.match(roadmap, /<h2>Visa card<\/h2>/);
   assert.match(roadmap, /Additional payout countries/);
   assert.match(roadmap, /Higher-return Yields/);
   assert.match(roadmap, /Remit Now Pay Later/);
@@ -263,7 +277,7 @@ test("server-renders the internal legal pages", async () => {
   assert.match(ukRisk, /href="https:\/\/www\.fca\.org\.uk\/investsmart" target="_blank" rel="noopener noreferrer"/);
 });
 
-test("publishes the UK risk page in the sitemap", async () => {
+test("publishes internal support and product pages in the sitemap", async () => {
   const sitemap = await readFile(
     new URL("../out/sitemap.xml", import.meta.url),
     "utf8",
@@ -276,6 +290,10 @@ test("publishes the UK risk page in the sitemap", async () => {
   assert.match(
     sitemap,
     /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/help<\/loc>/,
+  );
+  assert.match(
+    sitemap,
+    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/usd-account<\/loc>/,
   );
 });
 
@@ -329,7 +347,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /rate-freshness/);
   assert.match(page, /\/images\/features\/dollar-01\.png/);
   assert.match(page, /\/images\/features\/planet-02\.png/);
-  assert.match(page, /\/images\/features\/plus-03\.png/);
+  assert.match(page, /\/images\/features\/yields-icon\.png/);
   assert.match(page, /\/images\/features\/zero-04\.png/);
   assert.doesNotMatch(page, /\/images\/features\/new\/send\.webp/);
   assert.match(page, /guides\.slice\(0, 4\)/);

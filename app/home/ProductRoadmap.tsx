@@ -18,20 +18,6 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
 
 export const milestones = [
   {
-    title: "USD account",
-    copy:
-      "You get a US routing and account number in your name through a licensed US bank partner. Receive payments by ACH, FedNow, domestic wire, or SWIFT.",
-    notes: ["No US residency required"],
-    art: {
-      src: withBasePath("/images/roadmap/usa-flag.png"),
-      stem: "/images/roadmap/usa-flag",
-      alt: "United States flag",
-      width: 1024,
-      height: 1024,
-      widths: [160, 320, 640],
-    },
-  },
-  {
     title: "Visa card",
     copy:
       "Pay for subscriptions, software, and everyday spending directly from your Jazari One balance.",
