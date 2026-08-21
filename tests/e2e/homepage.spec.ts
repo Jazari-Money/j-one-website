@@ -229,6 +229,7 @@ test("keeps the core interactions working", async ({ page }) => {
     .toBeNull();
 
   const personalMenu = page.locator(".nav-dropdown");
+  await expect(personalMenu.locator("summary")).toHaveText("Product");
   await personalMenu.locator("summary").click();
   await expect(personalMenu).toHaveAttribute("open", "");
   await expect(personalMenu.locator(".nav-dropdown-menu a")).toHaveText([
@@ -277,6 +278,7 @@ test("keeps the core interactions working", async ({ page }) => {
     /how-to-send-01\.png$/,
   );
   await page.getByRole("tab", { name: "Yields", exact: true }).click();
+  await expect(page.getByRole("tab", { name: /Open Yields/ })).toBeVisible();
   const yieldsLink = page.getByRole("link", { name: "Learn more about Yields" });
   await expect(yieldsLink).toHaveCount(1);
   await expect(yieldsLink).toBeVisible();
@@ -719,12 +721,14 @@ test("aligns footer copyright with the final disclosure on desktop", async ({ pa
 test("explains yields and links into the app flow", async ({ page }) => {
   await page.goto("/yields/", { waitUntil: "networkidle" });
   await expect(
-    page.getByRole("heading", { name: "Yields" }),
+    page.getByRole("heading", { name: "Yields", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
   await expect(page.getByText("USDC", { exact: true })).toBeVisible();
   await expect(page.getByText(/USDC · USDT|USDC or USDT/)).toHaveCount(0);
   await expect(page.getByText("4.66%")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "How Yields work" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Ready to open Yields?" })).toBeVisible();
   await expect(page.getByText("Return and risk move together")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Download App" }).last()).toHaveAttribute(
     "href", "https://jazarione.app.link/web-launch",
@@ -735,8 +739,10 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   await page.goto("/roadmap/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Coming soon" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "USD account" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Higher-yield strategies" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Additional payout countries" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Higher-return Yields" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
+  await expect(page.locator(".roadmap-flags").first()).toHaveCSS("flex-direction", "column");
   const usdAccountCard = page.locator(".roadmap-full-card").first();
   const visaCard = page.locator(".roadmap-full-card").nth(1);
   await expect(usdAccountCard.locator(".roadmap-milestone-art")).toHaveAttribute(

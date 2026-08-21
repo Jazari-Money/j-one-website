@@ -219,8 +219,9 @@
   width: 100%;
   margin-top: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px 16px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .roadmap-flags span {

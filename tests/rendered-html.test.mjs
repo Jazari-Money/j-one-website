@@ -28,10 +28,13 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Download App/);
   assert.match(html, /Hold digital dollars\. Keep their value\./);
   assert.match(html, /Send to 30\+ countries in local currency\./);
-  assert.match(html, /Earn on the digital dollars you&#x27;re not using\./);
+  assert.match(html, /Earn up to 6% with Yields/);
   assert.match(html, /No transfer fees\. No hidden fees\./);
+  assert.match(html, />Product<\/summary>/);
   assert.match(html, /How it works/);
-  assert.match(html, /Estimate what may arrive before you send/);
+  assert.match(html, /Select Receive on the home screen/);
+  assert.match(html, /Preview the amount at the current rate/);
+  assert.match(html, /Calculate your rate/);
   assert.match(html, /Preview the amount at the current rate before you confirm\./);
   assert.match(html, /Receiving countries/);
   assert.match(html, /All receiving countries/);
@@ -46,10 +49,15 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, />Yields</);
   assert.match(html, /Coming soon/);
   assert.match(html, /USD account/);
-  assert.match(html, /Expanded payout corridors/);
-  assert.match(html, /Higher-yield strategies/);
+  assert.match(html, /Additional payout countries/);
+  assert.match(html, /Higher-return Yields/);
+  assert.match(html, /More Yields options, with higher APY/);
+  assert.match(html, /Choose a loan amount and repayment plan at confirmation/);
   assert.match(html, /Visa card/);
   assert.match(html, /Nigeria/);
+  assert.match(html, /Want to keep your salary in dollars\. Not forced to convert on arrival\./);
+  assert.match(html, /Multiple clients, multiple countries/);
+  assert.match(html, /Income doesn&#x27;t arrive on time/);
   assert.match(html, /usa-flag\.png/);
   assert.match(html, /mexico-transfer\.webp/);
   assert.match(html, /brazil\.jpg/);
@@ -138,10 +146,14 @@ test("server-renders plan, yields, coming soon, partners, about, and help pages"
   assert.match(yields, /4\.66%/);
   assert.match(yields, /<h1>Yields<\/h1>/);
   assert.doesNotMatch(yields, /Return and risk move together/);
-  assert.match(yields, /Ready to open a yield/);
+  assert.match(yields, /What are Yields\?/);
+  assert.match(yields, /Where do Yields come from\?/);
+  assert.match(yields, /How Yields work/);
+  assert.match(yields, /Ready to open Yields\?/);
 
   assert.match(roadmap, /<h1>Coming soon<\/h1>/);
-  assert.match(roadmap, /Higher-yield strategies/);
+  assert.match(roadmap, /Additional payout countries/);
+  assert.match(roadmap, /Higher-return Yields/);
   assert.match(roadmap, /Remit Now Pay Later/);
 
   assert.match(partners, /<h1>Partners<\/h1>/);
@@ -293,7 +305,8 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.doesNotMatch(page, /View screen|Showing screen/);
   assert.match(page, /className="review-fee"/);
   assert.match(page, /className="numeric"/);
-  assert.match(page, /Estimate what may arrive before you send/);
+  assert.match(page, /title: "Open Yields"/);
+  assert.match(page, /Calculate your rate/);
   assert.match(page, /Live rate from our payment partner/);
   assert.match(page, /rate-freshness/);
   assert.match(page, /\/images\/features\/dollar-01\.png/);

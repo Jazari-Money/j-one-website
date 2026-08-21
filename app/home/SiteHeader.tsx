@@ -13,8 +13,8 @@ export function SiteHeader({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [personalOpen, setPersonalOpen] = useState(false);
-  const personalMenuRef = useRef<HTMLDetailsElement>(null);
+  const [productOpen, setProductOpen] = useState(false);
+  const productMenuRef = useRef<HTMLDetailsElement>(null);
   const homeHref = mode === "home" ? "#top" : withBasePath("/#top");
   const sectionHref = (section: string) =>
     mode === "home" ? `#${section}` : withBasePath(`/#${section}`);
@@ -30,7 +30,7 @@ export function SiteHeader({
     const close = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") {
         setMobileOpen(false);
-        setPersonalOpen(false);
+        setProductOpen(false);
       }
     };
     window.addEventListener("keydown", close);
@@ -47,18 +47,18 @@ export function SiteHeader({
   }, [mobileOpen]);
 
   useEffect(() => {
-    const closePersonalMenu = (event: PointerEvent) => {
-      const menu = personalMenuRef.current;
+    const closeProductMenu = (event: PointerEvent) => {
+      const menu = productMenuRef.current;
       if (window.matchMedia("(max-width: 900px)").matches) return;
-      if (menu && !menu.contains(event.target as Node)) setPersonalOpen(false);
+      if (menu && !menu.contains(event.target as Node)) setProductOpen(false);
     };
-    document.addEventListener("pointerdown", closePersonalMenu);
-    return () => document.removeEventListener("pointerdown", closePersonalMenu);
+    document.addEventListener("pointerdown", closeProductMenu);
+    return () => document.removeEventListener("pointerdown", closeProductMenu);
   }, []);
 
   function closeMobile() {
     setMobileOpen(false);
-    setPersonalOpen(false);
+    setProductOpen(false);
   }
 
   return (
@@ -76,18 +76,18 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <details ref={personalMenuRef} className="nav-dropdown nav-desktop-only" open={mobileOpen || personalOpen}>
+          <details ref={productMenuRef} className="nav-dropdown nav-desktop-only" open={mobileOpen || productOpen}>
             <summary
               onClick={(event) => {
                 event.preventDefault();
                 if (!window.matchMedia("(max-width: 900px)").matches) {
-                  setPersonalOpen((open) => !open);
+                  setProductOpen((open) => !open);
                 }
               }}
             >
-              Personal
+              Product
             </summary>
-            <span className="nav-mobile-section-title">Personal</span>
+            <span className="nav-mobile-section-title">Product</span>
             <div className="nav-dropdown-menu">
               <a href={sectionHref("how-receive")} onClick={closeMobile}>Receive</a>
               <a href={sectionHref("how-send")} onClick={closeMobile}>Send</a>

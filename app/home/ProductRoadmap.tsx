@@ -47,7 +47,7 @@ export const milestones = [
     },
   },
   {
-    title: "Expanded payout corridors",
+    title: "Additional payout countries",
     copy: "",
     notes: [],
     flags: [
@@ -58,15 +58,15 @@ export const milestones = [
     ],
   },
   {
-    title: "Higher-yield strategies",
+    title: "Higher-return Yields",
     copy:
-      "Put dollars into independently managed strategies with different assets and potential APYs.",
+      "More Yields options, with higher APY. Non-custodial Yields for increased privacy and autonomy.",
     notes: [],
   },
   {
     title: "Remit Now Pay Later",
     copy:
-      "Choose a support amount and repayment option before you confirm.",
+      "Choose a loan amount and repayment plan at confirmation",
     notes: [],
   },
 ] as const;

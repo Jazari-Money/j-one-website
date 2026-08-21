@@ -12,14 +12,14 @@ import { appDownloadUrl, withBasePath } from "../site-paths";
 
 const questions = [
   {
-    question: "What is yield?",
+    question: "What are Yields?",
     answer:
-      "Yield is the variable return earned by placing funds into a financial strategy. It is not fixed, can change daily with market demand, and can fall close to zero. A lower rate reduces earnings; the separate investment risks can also affect principal.",
+      "Yields are variable returns earned by placing funds into a financial strategy. They are not fixed, can change daily with market demand, and can fall close to zero. A lower rate reduces earnings; the separate investment risks can also affect principal.",
   },
   {
-    question: "Where does the yield come from?",
+    question: "Where do Yields come from?",
     answer:
-      "It comes from demand for borrowing funds across the markets used by the strategy. More demand can increase returns; less demand can reduce them. The strategy may rebalance as opportunities and risk conditions change.",
+      "They come from demand for borrowing funds across the markets used by the strategy. More demand can increase returns; less demand can reduce them. The strategy may rebalance as opportunities and risk conditions change.",
   },
   {
     question: "What is APY?",
@@ -114,7 +114,7 @@ export function YieldsPage() {
 
       <section className="yield-questions" aria-labelledby="yield-questions-title">
         <header>
-          <h2 id="yield-questions-title">How yield works</h2>
+          <h2 id="yield-questions-title">How Yields work</h2>
           <p>Read this before adding funds.</p>
         </header>
         <AccordionList items={questions} />
@@ -122,8 +122,8 @@ export function YieldsPage() {
 
       <ContainedColorEvent className="yield-roadmap" labelledBy="yield-cta-title">
         <div className="color-event-cta-copy">
-          <h2 id="yield-cta-title">Ready to open a yield?</h2>
-          <p>Review the current strategy and risks, then continue in the Jazari app.</p>
+          <h2 id="yield-cta-title">Ready to open Yields?</h2>
+          <p>Review the current Yields strategy and risks, then continue in the Jazari app.</p>
         </div>
         <a
           className="realism-button"
