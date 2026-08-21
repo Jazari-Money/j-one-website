@@ -57,7 +57,7 @@ export function PartnersPage() {
         <h1>Partners</h1>
         <p>
           The specialist providers and public networks behind Jazari&apos;s
-          account, transfer, and yield experiences.
+          account, transfer, and Yields services.
         </p>
       </header>
 

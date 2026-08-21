@@ -279,7 +279,7 @@ export function HowItWorks() {
 
       <div className="review-block" id="rates">
         <div className="review-copy">
-          <h3>Estimate what may arrive before you send</h3>
+          <h3>Calculate your rate</h3>
           <p>Preview the amount at the current rate before you confirm.</p>
           <div className="review-metrics">
             <div className="review-fee" aria-label="Transaction fee: zero percent">
