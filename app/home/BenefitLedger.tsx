@@ -39,7 +39,7 @@ function BenefitRow({
                 window.dispatchEvent(new Event("jazari:open-countries"));
               }}
             >
-              View receiving countries
+              Receiving countries
             </a>
           )}
         </div>

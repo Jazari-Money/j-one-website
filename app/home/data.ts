@@ -89,7 +89,7 @@ export const jazariVisualProfile = {
 export const features = [
   {
     id: "dollar-balance",
-    copy: "Direct payments to your USD account",
+    copy: "Direct payments to your USD account. Available in 190+ countries.",
     image: withBasePath("/images/features/dollar-01.png"),
   },
   {
