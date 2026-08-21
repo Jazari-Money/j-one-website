@@ -531,15 +531,18 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Email us", exact: true })).toBeVisible();
 });
 
-test("renders the plan preview and legal links", async ({ page }) => {
+test("renders the pricing preview and legal links", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/plan/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Plan" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Pricing" })).toBeVisible();
   await expect(
-    page.getByText(/Preview pricing\. Final fees and availability are confirmed in the app\./),
+    page.getByText(/Preview pricing\. Applicable fees are always shown at confirmation\./),
   ).toBeVisible();
   await expect(page.getByText(/Free over \$10/)).toBeVisible();
-  await expect(page.getByText(/Variable APY/)).toBeVisible();
+  await expect(page.getByText("Free · FX Rate", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Yields", exact: true })).toBeVisible();
+  await expect(page.getByText("Deposit and withdrawal", { exact: true })).toBeVisible();
+  await expect(page.getByText("~$0.01*", { exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Terms & Conditions" })).toHaveAttribute(
     "href",
     /\/terms\/?$/,
@@ -614,6 +617,38 @@ test("keeps audience cards readable in a compact desktop window", async ({ page 
   expect(metrics.columns).toBe(2);
   expect(Math.min(...metrics.cardWidths)).toBeGreaterThanOrEqual(430);
   expect(metrics.scrollWidth).toBe(metrics.clientWidth);
+});
+
+test("uses Safari-safe phone rendering and stacks cards in narrow windows", async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 900 });
+  await page.goto("/", { waitUntil: "networkidle" });
+
+  const phoneImage = page.locator("#step-screen .active-step-phone.is-active img");
+  const phoneLayers = await page.locator("#step-screen").evaluate(() => {
+    const stack = document.querySelector(".step-screen-stack");
+    const phone = document.querySelector(".active-step-phone.is-active");
+    return {
+      mask: stack ? getComputedStyle(stack).maskImage : "missing",
+      filter: phone ? getComputedStyle(phone).filter : "missing",
+    };
+  });
+  expect(phoneLayers).toEqual({ mask: "none", filter: "none" });
+  await expect
+    .poll(() => phoneImage.evaluate((image) => (image as HTMLImageElement).naturalWidth))
+    .toBeGreaterThan(0);
+
+  const audience = page.locator(".audience-explorer");
+  const audienceMetrics = await audience.evaluate((node) => ({
+    columns: getComputedStyle(node).gridTemplateColumns.split(" ").length,
+    widths: Array.from(node.children, (card) =>
+      Math.round(card.getBoundingClientRect().width),
+    ),
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(audienceMetrics.columns).toBe(1);
+  expect(new Set(audienceMetrics.widths).size).toBe(1);
+  expect(audienceMetrics.scrollWidth).toBe(audienceMetrics.clientWidth);
 });
 
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
@@ -813,13 +848,13 @@ test("explains who the reader trusts with their money", async ({ page }) => {
   expect(foundersResolution.naturalWidth).toBeGreaterThanOrEqual(
     foundersResolution.renderedWidth,
   );
-  const [signoffBox, foundersPhotoBox] = await Promise.all([
-    page.getByText(/Alex and Has, founders of Jazari One/).boundingBox(),
+  const [manifestHeadingBox, foundersPhotoBox] = await Promise.all([
+    page.getByRole("heading", { name: "Manifesto" }).boundingBox(),
     foundersPhoto.boundingBox(),
   ]);
-  expect(signoffBox).not.toBeNull();
+  expect(manifestHeadingBox).not.toBeNull();
   expect(foundersPhotoBox).not.toBeNull();
-  expect(foundersPhotoBox!.y).toBeGreaterThan(signoffBox!.y + signoffBox!.height);
+  expect(foundersPhotoBox!.y + foundersPhotoBox!.height).toBeLessThan(manifestHeadingBox!.y);
   await expect(
     page.getByRole("heading", { name: "Built in the United States and UAE" }),
   ).toBeVisible();

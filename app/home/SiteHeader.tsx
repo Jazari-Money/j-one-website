@@ -95,14 +95,14 @@ export function SiteHeader({
               <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
             </div>
           </details>
-          <a className="nav-desktop-only" href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
+          <a className="nav-desktop-only" href={withBasePath("/plan/")} onClick={closeMobile}>Pricing</a>
           <a className="nav-desktop-only" href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <a className="nav-desktop-only" href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
           <div className="nav-mobile-groups">
             <section className="nav-mobile-group" aria-labelledby="mobile-product-links">
               <strong id="mobile-product-links">Product</strong>
               <a href={sectionHref("how")} onClick={closeMobile}>How it works</a>
-              <a href={withBasePath("/plan/")} onClick={closeMobile}>Plan</a>
+              <a href={withBasePath("/plan/")} onClick={closeMobile}>Pricing</a>
               <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
               <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
               <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Coming soon</a>

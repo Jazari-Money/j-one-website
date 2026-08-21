@@ -6,7 +6,14 @@ export function Blog() {
   return (
     <section className="blog section" id="blog">
       <header className="chapter-heading">
-        <h2>Blog</h2>
+        <div className="blog-heading-copy">
+          <h2>Blog</h2>
+          <p>
+            Tips and guides to help you get the most from Jazari One. Something
+            missing?{" "}
+            <a href="mailto:hello@jazari.xyz">Tell us what you&apos;d like to see</a>
+          </p>
+        </div>
         <Link className="blog-all-link neutral-control" href="/blog">All Articles</Link>
       </header>
       <div className="blog-grid">

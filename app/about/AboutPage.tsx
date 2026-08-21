@@ -41,6 +41,21 @@ export function AboutPage() {
           <h1>About us</h1>
         </header>
 
+        <figure className="about-founders about-founders-top">
+          <ResponsiveImage
+            fallback="/images/about/jazari-founders.webp"
+            stem="/images/about/jazari-founders"
+            widths={[800, 1600, 2560]}
+            width={2560}
+            height={1707}
+            sizes="(max-width: 620px) calc(100vw - 40px), (max-width: 900px) calc(100vw - 36px), (max-width: 1120px) calc(100vw - 48px), min(1320px, calc(100vw - 96px))"
+            alt="Alex and Has, founders of Jazari One, seated together"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </figure>
+
         <section className="about-manifest" aria-labelledby="about-manifest-title">
           <h2 id="about-manifest-title">Manifesto</h2>
 
@@ -72,20 +87,6 @@ export function AboutPage() {
               — Alex and Has, founders of Jazari One
             </p>
           </div>
-
-          <figure className="about-founders">
-            <ResponsiveImage
-              fallback="/images/about/jazari-founders.webp"
-              stem="/images/about/jazari-founders"
-              widths={[800, 1600, 2560]}
-              width={2560}
-              height={1707}
-              sizes="(max-width: 620px) calc(100vw - 40px), (max-width: 900px) calc(100vw - 36px), (max-width: 1120px) calc(100vw - 48px), min(1320px, calc(100vw - 96px))"
-              alt="Alex and Has, founders of Jazari One, seated together"
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
         </section>
 
         <section className="about-entities" aria-labelledby="about-entities-title">
@@ -114,8 +115,7 @@ export function AboutPage() {
 
           <p className="about-partners-intro">
             We&apos;re not a bank, and we don&apos;t hold your money ourselves. Your funds sit
-            with licensed, regulated partners whose names are public — so if you want to
-            check us, there&apos;s something to check.
+            with our licensed and regulated partners.
           </p>
 
           <div className="about-partners" aria-label="The partners handling your money">

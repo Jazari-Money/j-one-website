@@ -99,7 +99,7 @@ export const features = [
   },
   {
     id: "earn",
-    copy: "Earn up to 6% with Yields",
+    copy: "Earn up to 7% APY with Yields",
     image: withBasePath("/images/features/plus-03.png"),
   },
   {

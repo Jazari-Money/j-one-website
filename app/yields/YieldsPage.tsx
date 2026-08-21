@@ -61,8 +61,8 @@ export function YieldsPage() {
       <header className="yields-hero">
         <h1>Yields</h1>
         <p>
-          Put your USDC to work through independently managed
-          onchain strategies. Rates move daily and returns are never guaranteed.
+          Put your balance to work through independently managed
+          onchain strategies. Rates adjust daily and returns are never guaranteed.
         </p>
       </header>
 
@@ -83,12 +83,12 @@ export function YieldsPage() {
           />
           <h2 id="yield-strategy-title">Gauntlet USD Alpha</h2>
           <p>
-            You access an independently managed, Base-based strategy that reallocates
+            An independently managed, Base-based strategy that reallocates
             across stablecoin opportunities while monitoring liquidity,
             stablecoin, and smart-contract risk.
           </p>
           <a href="https://www.gauntlet.xyz/gauntlet-strategies/gtusda" target="_blank" rel="noreferrer">
-            Read the strategy details
+            Learn more
           </a>
         </div>
         <div className="yield-rate">

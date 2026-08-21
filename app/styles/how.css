@@ -240,8 +240,15 @@
   height: 495px;
   overflow: hidden;
   transform: translateX(-50%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0 78%, rgba(0, 0, 0, 0.82) 87%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0 78%, rgba(0, 0, 0, 0.82) 87%, transparent 100%);
+}
+
+.step-screen-stack::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 70% 0 0;
+  background: linear-gradient(to bottom, transparent, var(--bg) 94%);
+  pointer-events: none;
 }
 
 .active-step-phone {
@@ -252,18 +259,15 @@
   opacity: 0;
   transform: translateX(-50%) scale(0.992);
   transform-origin: 50% 12%;
-  filter: blur(2px) drop-shadow(0 45px 80px rgba(0, 0, 0, 0.42));
   transition:
     opacity 360ms ease,
-    transform 520ms cubic-bezier(0.16, 1, 0.3, 1),
-    filter 360ms ease;
+    transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
 .active-step-phone.is-active {
   opacity: 1;
   transform: translateX(-50%) scale(1);
-  filter: blur(0) drop-shadow(0 45px 80px rgba(0, 0, 0, 0.62));
 }
 
 .phone img {
@@ -1076,23 +1080,8 @@
     text-decoration-color: currentColor;
   }
 
-  .step-screen-stack {
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
   .step-screen-stack::after {
-    content: "";
-    position: absolute;
-    z-index: 2;
     inset: 64% 0 0;
-    background: linear-gradient(to bottom, transparent, var(--bg) 94%);
-    pointer-events: none;
-  }
-
-  .active-step-phone,
-  .active-step-phone.is-active {
-    filter: none;
   }
 
   .receive-countries-modal {
