@@ -49,6 +49,10 @@
   background: var(--surface);
 }
 
+.about-founders-top {
+  margin-top: 64px;
+}
+
 .about-founders img {
   width: 100%;
   aspect-ratio: 3 / 2;

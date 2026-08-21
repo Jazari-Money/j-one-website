@@ -10,7 +10,7 @@ const groups = [
     title: "Money movement",
     rows: [
       ["Receive stablecoins", "Free"],
-      ["Send to a bank account", "Free · rate includes our margin"],
+      ["Send to a bank account", "Free · FX Rate"],
       ["Send to a wallet", "Free over $10 · $1 below $10"],
     ],
   },
@@ -24,10 +24,10 @@ const groups = [
     ],
   },
   {
-    title: "Earn",
+    title: "Yields",
     rows: [
-      ["Gauntlet USD Alpha", "Variable APY · our share taken before the rate you see"],
-      ["Adding or withdrawing funds", "Network cost only — cents on Base"],
+      ["Gauntlet USD Alpha", "Free"],
+      ["Deposit and withdrawal", "~$0.01*"],
     ],
   },
 ] as const;
@@ -37,12 +37,12 @@ export function PricingPage() {
     <main className="pricing-shell">
       <InternalSiteHeader />
       <header className="pricing-hero">
-        <h1>Plan</h1>
-        <p>Preview pricing. Final fees and availability are confirmed in the app.</p>
+        <h1>Pricing</h1>
+        <p>Preview pricing. Applicable fees are always shown at confirmation.</p>
       </header>
       <section
         className="pricing-groups pointer-card"
-        aria-label="Jazari One plan"
+        aria-label="Jazari One pricing"
         onPointerMove={trackPointer}
         onPointerLeave={resetPointer}
       >
@@ -59,6 +59,10 @@ export function PricingPage() {
             </dl>
           </article>
         ))}
+        <p className="pricing-note">
+          *Estimated network cost. The exact amount may vary with the deposit or
+          withdrawal value and is typically only a few cents.
+        </p>
       </section>
       <SiteFooter />
     </main>

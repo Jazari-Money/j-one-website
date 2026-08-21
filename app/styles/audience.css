@@ -110,7 +110,7 @@
   }
 }
 
-@media (min-width: 701px) and (max-width: 1120px) {
+@media (min-width: 821px) and (max-width: 1120px) {
   .audience-panel:last-child {
     grid-column: 1 / -1;
     width: calc((100% - 14px) / 2);
@@ -118,14 +118,16 @@
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 820px) {
   .audience-explorer {
     grid-template-columns: 1fr;
-    width: min(520px, 100%);
+    width: min(620px, 100%);
+    margin-inline: auto;
   }
 
   .audience-panel {
     min-height: 0;
+    aspect-ratio: 4 / 5;
   }
 }
 
@@ -144,7 +146,7 @@
   }
 }
 
-@media (min-width: 701px) {
+@media (min-width: 821px) {
   .audience-explorer {
     margin-top: 76px;
     gap: 14px;

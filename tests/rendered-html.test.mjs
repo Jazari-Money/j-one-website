@@ -28,7 +28,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Download App/);
   assert.match(html, /Hold digital dollars\. Keep their value\./);
   assert.match(html, /Send to 30\+ countries in local currency\./);
-  assert.match(html, /Earn up to 6% with Yields/);
+  assert.match(html, /Earn up to 7% APY with Yields/);
   assert.match(html, /No transfer fees\. No hidden fees\./);
   assert.match(html, />Product<\/summary>/);
   assert.match(html, /How it works/);
@@ -63,6 +63,9 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /brazil\.jpg/);
   assert.match(html, /colombia\.jpg/);
   assert.match(html, /europe\.jpg/);
+  assert.match(html, /Tips and guides to help you get the most from Jazari One/);
+  assert.match(html, /href="mailto:hello@jazari\.xyz"/);
+  assert.match(html, /Tell us what you(?:<!--.*?-->)?&#x27;d like to see/);
   assert.match(html, />Partners</);
   assert.match(html, />About us</);
   assert.match(html, />FAQ</);
@@ -132,15 +135,22 @@ test("server-renders plan, yields, coming soon, partners, about, and help pages"
     helpResponse.text(),
   ]);
 
-  assert.match(plan, /<h1>Plan<\/h1>/);
-  assert.match(plan, /Preview pricing\. Final fees and availability are confirmed in the app\./);
+  assert.match(plan, /<h1>Pricing<\/h1>/);
+  assert.match(plan, /Preview pricing\. Applicable fees are always shown at confirmation\./);
   assert.ok(plan.indexOf("Money movement") < plan.indexOf("Account"));
-  assert.ok(plan.indexOf("Account") < plan.indexOf("Earn"));
+  assert.ok(plan.indexOf("Account") < plan.indexOf("<h2>Yields</h2>"));
   assert.match(plan, /Free over \$10/);
-  assert.match(plan, /Variable APY/);
+  assert.match(plan, /Free · FX Rate/);
+  assert.match(plan, /<h2>Yields<\/h2>/);
+  assert.match(plan, /Deposit and withdrawal/);
+  assert.match(plan, /~\$0\.01\*/);
+  assert.match(plan, /typically only a few cents/);
 
   assert.match(yields, /Gauntlet USD Alpha/);
-  assert.match(yields, /Put your USDC to work/);
+  assert.match(yields, /Put your balance to work/);
+  assert.match(yields, /Rates adjust daily and returns are never guaranteed/);
+  assert.match(yields, /An independently managed, Base-based strategy/);
+  assert.match(yields, />Learn more<\/a>/);
   assert.match(yields, /<dt>Funding assets<\/dt><dd>USDC<\/dd>/);
   assert.doesNotMatch(yields, /USDC or USDT|USDC · USDT/);
   assert.match(yields, /4\.66%/);
@@ -180,6 +190,8 @@ test("server-renders plan, yields, coming soon, partners, about, and help pages"
   assert.doesNotMatch(about, /UAE entity/);
   assert.match(about, /<h2 id="about-trust-title">Our partners<\/h2>/);
   assert.match(about, /We&#x27;re not a bank/);
+  assert.match(about, /with our licensed and regulated partners/);
+  assert.ok(about.indexOf("jazari-founders.webp") < about.indexOf("about-manifest-title"));
   assert.match(about, /Bridge, a Stripe company/);
   assert.match(about, /Lido logo/);
   assert.match(about, /Your account, your keys\./);
