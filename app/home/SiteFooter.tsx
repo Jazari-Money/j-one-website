@@ -38,8 +38,6 @@ export function SiteFooter() {
             <Link href="/blog">Blog</Link>
             <Link href="/about">About us</Link>
             <Link href="/partners">Partners</Link>
-            <Link href="/#faq">FAQ</Link>
-            <a href="mailto:hello@jazari.xyz">Contact</a>
           </div>
           <div>
             <strong>Legal</strong>
@@ -47,6 +45,12 @@ export function SiteFooter() {
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/uk-risk-information">UK Risk Information</Link>
             <button type="button" onClick={openPreferences}>Cookie Preferences</button>
+          </div>
+          <div>
+            <strong>Support</strong>
+            <Link href="/#faq">FAQ</Link>
+            <Link href="/help">Help</Link>
+            <a href="mailto:hello@jazary.xyz">hello@jazary.xyz</a>
           </div>
         </nav>
         <SocialLinks className="footer-socials" />

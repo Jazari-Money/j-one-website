@@ -17,6 +17,7 @@ const routes = [
   "/blog/send-money-to-europe",
   "/blog/send-money-to-mexico",
   "/blog/verify-recipient-details",
+  "/help",
   "/partners",
   "/plan",
   "/pricing",

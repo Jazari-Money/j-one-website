@@ -1,0 +1,74 @@
+@import "./internal-pages.css";
+
+.help-hero {
+  width: var(--page);
+  min-height: 720px;
+  margin-inline: auto;
+  padding: 190px 0 120px;
+}
+
+.help-hero > h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(76px, 8.2vw, 116px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.88;
+}
+
+.help-card {
+  max-width: 760px;
+  margin-top: 86px;
+  padding: clamp(28px, 5vw, 56px);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background-color: var(--surface);
+  background-image: linear-gradient(
+    145deg,
+    color-mix(in srgb, #ffffff 2.5%, transparent),
+    transparent 48%
+  );
+}
+
+.help-card h2 {
+  font-family: var(--serif);
+  font-size: clamp(38px, 4vw, 56px);
+  line-height: 1;
+}
+
+.help-card p {
+  max-width: 560px;
+  margin-top: 22px;
+  color: var(--muted-strong);
+  font-size: 18px;
+  line-height: 1.62;
+}
+
+.help-email {
+  min-height: 50px;
+  margin-top: 34px;
+  padding-inline: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 620px) {
+  .help-hero {
+    min-height: 620px;
+    padding: 146px 0 86px;
+  }
+
+  .help-hero > h1 {
+    font-size: 66px;
+  }
+
+  .help-card {
+    margin-top: 56px;
+    border-radius: 22px;
+  }
+
+  .help-card p {
+    font-size: 16px;
+  }
+}

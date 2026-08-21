@@ -58,6 +58,9 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, />Partners</);
   assert.match(html, />About us</);
   assert.match(html, />FAQ</);
+  assert.match(html, />Support</);
+  assert.match(html, /href="\/j-one-website\/help\/?">Help<\/a>/);
+  assert.match(html, /href="mailto:hello@jazary\.xyz">hello@jazary\.xyz<\/a>/);
   assert.match(html, />Email us<\/a>/);
   assert.doesNotMatch(html, />Email us\.<\/a>/);
   assert.ok(html.indexOf('id="roadmap"') < html.indexOf('id="blog"'));
@@ -82,6 +85,7 @@ test("server-renders the Jazari One landing page", async () => {
     html.indexOf('<footer class="site-footer">'),
     html.indexOf("</footer>") + "</footer>".length,
   );
+  assert.doesNotMatch(footer, />Contact<\/a>/);
   const footerMeta = footer.slice(footer.indexOf('<div class="footer-meta">'));
   const parentAddress = footerMeta.indexOf("Jazari One, Inc.,");
   const fincen = footerMeta.indexOf("Jazari One holds a FinCEN MSB registration (No. MRX26-00006547)");
@@ -102,20 +106,22 @@ test("server-renders the Jazari One landing page", async () => {
   assert.doesNotMatch(footerMeta, /Cryptoasset balances and Earn allocations are not covered/);
 });
 
-test("server-renders plan, yields, coming soon, partners, and about pages", async () => {
-  const [planResponse, yieldsResponse, roadmapResponse, partnersResponse, aboutResponse] = await Promise.all([
+test("server-renders plan, yields, coming soon, partners, about, and help pages", async () => {
+  const [planResponse, yieldsResponse, roadmapResponse, partnersResponse, aboutResponse, helpResponse] = await Promise.all([
     render("/plan"),
     render("/yields"),
     render("/roadmap"),
     render("/partners"),
     render("/about"),
+    render("/help"),
   ]);
-  const [plan, yields, roadmap, partners, about] = await Promise.all([
+  const [plan, yields, roadmap, partners, about, help] = await Promise.all([
     planResponse.text(),
     yieldsResponse.text(),
     roadmapResponse.text(),
     partnersResponse.text(),
     aboutResponse.text(),
+    helpResponse.text(),
   ]);
 
   assert.match(plan, /<h1>Plan<\/h1>/);
@@ -161,6 +167,12 @@ test("server-renders plan, yields, coming soon, partners, and about pages", asyn
   assert.match(about, /Your account, your keys\./);
   assert.match(about, /not a bank and not us/);
   assert.match(about, /href="\/j-one-website\/partners\/?"/);
+
+  assert.match(help, /<title>Help — Jazari One<\/title>/);
+  assert.match(help, /<h1 id="help-title">Help<\/h1>/);
+  assert.match(help, /Have a question\?/);
+  assert.match(help, /If you have any questions, please reach us/);
+  assert.match(help, /href="mailto:hello@jazari\.xyz">hello@jazari\.xyz<\/a>/);
 });
 
 test("server-renders the standalone component board", async () => {
@@ -230,6 +242,10 @@ test("publishes the UK risk page in the sitemap", async () => {
   assert.match(
     sitemap,
     /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/uk-risk-information<\/loc>/,
+  );
+  assert.match(
+    sitemap,
+    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/help<\/loc>/,
   );
 });
 

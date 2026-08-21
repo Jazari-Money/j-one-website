@@ -560,6 +560,60 @@ test("renders the plan preview and legal links", async ({ page }) => {
   expect(price!.x).toBeGreaterThan(service!.x);
 });
 
+test("offers help from the footer support section", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/", { waitUntil: "networkidle" });
+
+  const footer = page.locator("footer");
+  await expect(footer.getByText("Support", { exact: true })).toBeVisible();
+  await expect(footer.getByRole("link", { name: "FAQ", exact: true })).toHaveAttribute(
+    "href",
+    /\/#faq$/,
+  );
+  await expect(footer.getByRole("link", { name: "hello@jazary.xyz" })).toHaveAttribute(
+    "href",
+    "mailto:hello@jazary.xyz",
+  );
+  await expect(footer.getByRole("link", { name: "Contact", exact: true })).toHaveCount(0);
+  await expect(page.locator(".nav-mobile-group").getByRole("link", { name: "Contact", exact: true })).toHaveCount(0);
+
+  await footer.getByRole("link", { name: "Help", exact: true }).click();
+  await expect(page).toHaveURL(/\/help\/?$/);
+  await expect(page.getByRole("heading", { name: "Help", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Have a question?" })).toBeVisible();
+  await expect(page.getByText(/If you have any questions, please reach us/)).toBeVisible();
+  await expect(page.getByRole("link", { name: "hello@jazari.xyz" })).toHaveAttribute(
+    "href",
+    "mailto:hello@jazari.xyz",
+  );
+
+  const viewport = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(viewport.scrollWidth).toBe(viewport.clientWidth);
+});
+
+test("keeps audience cards readable in a compact desktop window", async ({ page }) => {
+  await page.setViewportSize({ width: 940, height: 800 });
+  await page.goto("/", { waitUntil: "networkidle" });
+
+  const audience = page.locator(".audience-explorer");
+  await audience.scrollIntoViewIfNeeded();
+  const metrics = await audience.evaluate((node) => ({
+    columns: getComputedStyle(node).gridTemplateColumns.split(" ").length,
+    cardWidths: Array.from(node.children, (card) =>
+      Math.round(card.getBoundingClientRect().width),
+    ),
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+
+  expect(metrics.columns).toBe(2);
+  expect(Math.min(...metrics.cardWidths)).toBeGreaterThanOrEqual(430);
+  expect(metrics.scrollWidth).toBe(metrics.clientWidth);
+});
+
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
   await page.goto("/terms/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "US Terms and Conditions" })).toBeVisible();
