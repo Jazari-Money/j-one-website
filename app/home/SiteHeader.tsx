@@ -113,7 +113,6 @@ export function SiteHeader({
               <a href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
               <a href={withBasePath("/partners/")} onClick={closeMobile}>Partners</a>
               <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
-              <a href="mailto:hello@jazari.xyz" onClick={closeMobile}>Contact</a>
             </section>
           </div>
           <div className="nav-mobile-extras">

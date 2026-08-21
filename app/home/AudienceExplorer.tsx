@@ -22,7 +22,7 @@ export function AudienceExplorer() {
               widths={[480, 960]}
               width={1024}
               height={1536}
-              sizes="(max-width: 900px) min(520px, 100vw), 33vw"
+              sizes="(max-width: 700px) min(520px, 100vw), (max-width: 1120px) 50vw, 33vw"
               alt={item.alt}
               loading="lazy"
               decoding="async"
