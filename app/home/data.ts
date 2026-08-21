@@ -99,7 +99,7 @@ export const features = [
   },
   {
     id: "earn",
-    copy: "Earn on the digital dollars you're not using.",
+    copy: "Earn up to 6% with Yields",
     image: withBasePath("/images/features/plus-03.png"),
   },
   {
@@ -116,7 +116,7 @@ export const howScenarios = {
       {
         id: "receive-home",
         title: "Open Receive",
-        copy: "Choose Receive from your dollar balance.",
+        copy: "Select Receive on the home screen",
         screen: withBasePath("/images/how-to/how-to-receive-01.png"),
         screenStem: "/images/how-to/how-to-receive-01",
         alt: "Jazari One balance with the receive action",
@@ -153,7 +153,7 @@ export const howScenarios = {
       {
         id: "send-amount",
         title: "Enter the amount",
-        copy: "Preview an estimated amount at the current rate.",
+        copy: "Preview the amount at the current rate",
         screen: withBasePath("/images/how-to/how-to-send-02.png"),
         screenStem: "/images/how-to/how-to-send-02",
         alt: "Transfer amount and local currency preview",
@@ -173,11 +173,11 @@ export const howScenarios = {
     steps: [
       {
         id: "yield-strategy",
-        title: "Open yield",
+        title: "Open Yields",
         copy: "Review the vault, its current APY, and how it works.",
         screen: withBasePath("/images/how-to/how-to-yield-01.png"),
         screenStem: "/images/how-to/how-to-yield-01",
-        alt: "Yield strategy in Jazari One",
+        alt: "Yields strategy in Jazari One",
       },
       {
         id: "yield-amount",
@@ -185,7 +185,7 @@ export const howScenarios = {
         copy: "Choose how much of your balance to put to work.",
         screen: withBasePath("/images/how-to/how-to-yield-02.png"),
         screenStem: "/images/how-to/how-to-yield-02",
-        alt: "Adding funds to a yield in Jazari One",
+        alt: "Adding funds to Yields in Jazari One",
       },
       {
         id: "yield-position",
@@ -193,7 +193,7 @@ export const howScenarios = {
         copy: "See what you've earned. Withdraw any time.",
         screen: withBasePath("/images/how-to/how-to-yield-03.png"),
         screenStem: "/images/how-to/how-to-yield-03",
-        alt: "Yield position details in Jazari One",
+        alt: "Yields position details in Jazari One",
       },
     ],
   },
@@ -207,7 +207,7 @@ export const audiences = [
     bullets: [
       "Paid by an employer abroad",
       "Losing money on every incoming transfer",
-      "Want the salary to stay in dollars, not convert on arrival",
+      "Want to keep your salary in dollars. Not forced to convert on arrival.",
     ],
     image: withBasePath("/images/audience/freelancer.webp"),
     imageStem: "/images/audience/freelancer",
@@ -216,8 +216,8 @@ export const audiences = [
   {
     title: "Freelancers",
     bullets: [
-      "Several clients, several countries",
-      "Income arrives in bursts, not on the 1st",
+      "Multiple clients, multiple countries",
+      "Income doesn't arrive on time",
       "Want dollars that hold value between projects",
     ],
     image: withBasePath("/images/audience/freelancer-photographer.webp"),

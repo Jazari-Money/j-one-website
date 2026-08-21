@@ -22,7 +22,7 @@ const trustedPartners = [
   {
     ...partnerStories[2],
     heading: "Gauntlet",
-    role: "Manages the yield strategies. A risk-management firm, not a bank and not us.",
+    role: "Manages strategies for Yields. A risk-management firm, not a bank and not us.",
   },
   {
     ...partnerStories[3],

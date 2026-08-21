@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://jazari.xyz"),
   title: "Jazari One — Use digital dollars. Anywhere.",
   description:
-    "Hold digital dollars, send them in local currency to 30+ countries, and access variable yield with Jazari One.",
+    "Hold digital dollars, send them in local currency to 30+ countries, and access Yields with Jazari One.",
   openGraph: {
     title: "Jazari One — Use digital dollars. Anywhere.",
     description:
-      "Hold digital dollars, send them in local currency to 30+ countries, and access variable yield with Jazari One.",
+      "Hold digital dollars, send them in local currency to 30+ countries, and access Yields with Jazari One.",
     images: [{ url: "/og-v2.png", width: 1729, height: 910 }],
     type: "website",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jazari One — Use digital dollars. Anywhere.",
     description:
-      "Hold digital dollars, send them in local currency to 30+ countries, and access variable yield with Jazari One.",
+      "Hold digital dollars, send them in local currency to 30+ countries, and access Yields with Jazari One.",
     images: ["/og-v2.png"],
   },
   icons: {
