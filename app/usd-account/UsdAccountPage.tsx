@@ -10,19 +10,21 @@ export function UsdAccountPage() {
       <InternalSiteHeader />
 
       <header className="usd-account-hero">
-        <div className="usd-account-hero-copy">
-          <h1>USD account</h1>
-          <p>
-            Direct payments to your personal USD account in Jazari One. Get a US
-            routing and account number in your name through a licensed US bank
-            partner. Receive payments by ACH, FedNow, domestic wire, or SWIFT.
-          </p>
+        <h1>USD account</h1>
+        <p>
+          Direct payments to your personal USD account in Jazari One. Get a US
+          routing and account number in your name through a licensed US bank
+          partner. Receive payments by ACH, FedNow, domestic wire, or SWIFT.
+        </p>
+      </header>
 
+      <section className="usd-account-overview">
+        <div className="usd-account-overview-copy">
           <section
             className="usd-account-table"
             aria-labelledby="usd-account-details-title"
           >
-            <h2 id="usd-account-details-title">Your own US account details</h2>
+            <h2 id="usd-account-details-title">What&apos;s included</h2>
             <dl>
               <div>
                 <dt>Account details</dt>
@@ -63,7 +65,7 @@ export function UsdAccountPage() {
             decoding="async"
           />
         </div>
-      </header>
+      </section>
 
       <SiteFooter />
     </main>

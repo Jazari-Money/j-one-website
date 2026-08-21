@@ -94,7 +94,7 @@ export function YieldsPage() {
         </div>
         <div className="yield-rate">
           <strong>4.66%</strong>
-          <span>Variable APY</span>
+          <span>APY</span>
         </div>
         <dl className="yield-facts">
           <div>
@@ -121,10 +121,10 @@ export function YieldsPage() {
         <div className="yield-strategy-copy">
           <img
             className="yield-provider-logo yield-provider-logo-lido"
-            src={withBasePath("/images/rails/lido.svg")}
+            src={withBasePath("/images/rails/lido-white.svg")}
             alt="Lido"
-            width="86"
-            height="120"
+            width="300"
+            height="79"
             loading="lazy"
             decoding="async"
           />
@@ -141,9 +141,9 @@ export function YieldsPage() {
             Open Lido EarnUSD
           </a>
         </div>
-        <div className="yield-rate yield-rate-live">
-          <strong>Live</strong>
-          <span>Variable APY</span>
+        <div className="yield-rate">
+          <strong>7%</strong>
+          <span>APY</span>
         </div>
         <dl className="yield-facts">
           <div>
