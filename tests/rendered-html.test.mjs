@@ -159,6 +159,9 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.doesNotMatch(yields, /USDC or USDT|USDC · USDT/);
   assert.match(yields, /4\.66%/);
   assert.match(yields, /Lido EarnUSD/);
+  assert.match(yields, /\/images\/rails\/lido-white\.svg/);
+  assert.match(yields, /<strong>7%<\/strong><span>APY<\/span>/);
+  assert.doesNotMatch(yields, /Variable APY/);
   assert.match(yields, /https:\/\/stake\.lido\.fi\/earn\/usd\/deposit/);
   assert.match(yields, /Instant or up to 72 hours/);
   assert.doesNotMatch(yields, /Illustrative rate supplied by Jazari/);
@@ -178,6 +181,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(usdAccount, /US routing and account number/);
   assert.match(usdAccount, /ACH, FedNow, domestic wire, and SWIFT/);
   assert.match(usdAccount, /No US residency required/);
+  assert.match(usdAccount, /What(?:&#x27;|')s included/);
   assert.match(usdAccount, /alt="United States flag"/);
   assert.ok(
     usdAccount.indexOf('class="usd-account-table"') <
@@ -392,6 +396,8 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(css, /--page:\s*min\(1320px/);
   assert.match(css, /\.hero-download-control/);
   assert.match(css, /\.hero-shader/);
+  assert.match(css, /\.usd-account-hero-visual picture/);
+  assert.match(css, /mask-image:\s*linear-gradient\(to bottom/);
   assert.match(css, /hero-event-line/);
   assert.match(css, /"Instrument Serif"/);
   assert.match(css, /\[data-theme="jazari"\]/);

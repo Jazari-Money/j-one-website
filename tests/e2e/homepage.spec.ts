@@ -757,6 +757,12 @@ test("explains yields and links into the app flow", async ({ page }) => {
   await expect(page.getByText(/USDC · USDT|USDC or USDT/)).toHaveCount(0);
   await expect(page.getByText("4.66%")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Lido EarnUSD" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "Lido" })).toHaveAttribute(
+    "src",
+    /lido-white\.svg$/,
+  );
+  await expect(page.getByText("7%", { exact: true })).toBeVisible();
+  await expect(page.getByText("Variable APY", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Open Lido EarnUSD" })).toHaveAttribute(
     "href",
     "https://stake.lido.fi/earn/usd/deposit",
@@ -786,6 +792,7 @@ test("presents the USD account as a live product", async ({ page }) => {
 
   await page.goto("/usd-account/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "USD account", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "What's included" })).toBeVisible();
   await expect(page.getByText("Available now", { exact: true })).toHaveCount(0);
   await expect(page.getByText("Receive in dollars", { exact: true })).toHaveCount(0);
   await expect(page.getByText(/Direct payments to your personal USD account/)).toBeVisible();
