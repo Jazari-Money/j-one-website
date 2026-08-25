@@ -1,0 +1,372 @@
+.product-method,
+.product-final-cta {
+  width: var(--page);
+  margin-inline: auto;
+}
+
+.product-method {
+  padding-block: 128px;
+  scroll-margin-top: 90px;
+}
+
+.product-method + .product-method {
+  border-top: 1px solid var(--line);
+}
+
+.product-method-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(360px, 0.7fr);
+  gap: clamp(54px, 8vw, 130px);
+  align-items: end;
+}
+
+.product-method-heading h2,
+.product-final-cta h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(60px, 6.6vw, 94px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.9;
+}
+
+.product-method-heading > p,
+.product-final-cta > p {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.product-facts {
+  margin-top: 70px;
+  display: grid;
+  gap: 1px;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--line);
+}
+
+.product-facts-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.product-facts > div {
+  min-height: 150px;
+  padding: 28px;
+  background: var(--surface);
+}
+
+.product-facts dt {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.product-facts dd {
+  max-width: 330px;
+  margin: 26px 0 0;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.method-flow {
+  margin-top: 76px;
+  min-height: 650px;
+  padding: 58px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 0.72fr);
+  gap: clamp(48px, 8vw, 120px);
+  align-items: center;
+}
+
+.method-flow.is-reversed .method-flow-copy {
+  order: 2;
+}
+
+.method-flow.is-reversed .method-flow-screen {
+  order: 1;
+}
+
+.method-flow-copy h3 {
+  max-width: 620px;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(48px, 5vw, 72px);
+  font-weight: 400;
+  line-height: 0.94;
+}
+
+.method-flow-copy ol {
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: method-step;
+}
+
+.method-flow-copy li {
+  min-height: 76px;
+  padding: 22px 0 22px 54px;
+  border-top: 1px solid var(--line);
+  color: var(--muted-strong);
+  font-size: 16px;
+  line-height: 1.5;
+  counter-increment: method-step;
+}
+
+.method-flow-copy li::before {
+  content: counter(method-step, decimal-leading-zero);
+  float: left;
+  margin-left: -54px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.method-flow-screen {
+  height: 560px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.method-flow-phone-shell {
+  position: relative;
+  width: min(322px, 100%);
+  container-type: inline-size;
+  flex: 0 0 auto;
+}
+
+.method-flow-screen .phone {
+  width: 100%;
+}
+
+.phone-copy-corrections {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.phone-copy-corrections span {
+  position: absolute;
+  z-index: 2;
+  background: #252527;
+  color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.phone-copy-title {
+  top: 27.3%;
+  left: 29%;
+  width: 42%;
+  height: 5.2%;
+  font-size: 6cqw;
+  font-weight: 700;
+}
+
+.phone-copy-asset {
+  top: 34.9%;
+  left: 23%;
+  width: 31%;
+  height: 4.7%;
+  border-radius: 999px;
+  font-size: 3.7cqw;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.phone-copy-bullet {
+  top: 56.3%;
+  left: 16%;
+  width: 73%;
+  height: 3.2%;
+  justify-content: flex-start !important;
+  padding-left: 2%;
+  font-size: 3.15cqw;
+  white-space: nowrap;
+}
+
+.method-flow-screen .phone {
+  width: min(322px, 100%);
+}
+
+.wallet-support {
+  margin-top: 70px;
+}
+
+.wallet-assets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wallet-assets > div {
+  min-height: 112px;
+  padding: 24px 28px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.wallet-assets img,
+.wallet-network-list img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.wallet-assets strong {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.wallet-network-list {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wallet-network-list article {
+  min-height: 130px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.wallet-network-list h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.wallet-network-list p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.wallet-support-note,
+.product-eligibility {
+  max-width: 800px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.product-final-cta {
+  padding-block: 132px 154px;
+  text-align: center;
+}
+
+.product-final-cta > p {
+  max-width: 640px;
+  margin: 26px auto 0;
+}
+
+.product-final-cta .realism-button {
+  width: max-content;
+  min-height: 50px;
+  margin: 32px auto 0;
+  padding-inline: 24px;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .product-method-heading,
+  .method-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .product-method-heading > p {
+    max-width: 680px;
+  }
+
+  .product-facts-three,
+  .wallet-network-list {
+    grid-template-columns: 1fr;
+  }
+
+  .method-flow.is-reversed .method-flow-copy,
+  .method-flow.is-reversed .method-flow-screen {
+    order: initial;
+  }
+}
+
+@media (max-width: 620px) {
+  .product-method {
+    padding-block: 86px;
+  }
+
+  .product-method-heading {
+    gap: 28px;
+  }
+
+  .product-method-heading h2,
+  .product-final-cta h2 {
+    font-size: 54px;
+  }
+
+  .product-method-heading > p,
+  .product-final-cta > p {
+    font-size: 15px;
+  }
+
+  .product-facts {
+    margin-top: 42px;
+  }
+
+  .product-facts > div {
+    min-height: 126px;
+    padding: 22px;
+  }
+
+  .method-flow {
+    min-height: 0;
+    margin-top: 48px;
+    padding: 32px 22px 0;
+    border-radius: 22px;
+    gap: 32px;
+  }
+
+  .method-flow-copy h3 {
+    font-size: 48px;
+  }
+
+  .method-flow-copy ol {
+    margin-top: 32px;
+  }
+
+  .method-flow-screen {
+    height: 510px;
+  }
+
+  .wallet-support {
+    margin-top: 44px;
+  }
+
+  .wallet-assets {
+    grid-template-columns: 1fr;
+  }
+
+  .wallet-network-list article {
+    min-height: 108px;
+  }
+
+  .product-final-cta {
+    padding-block: 92px 108px;
+  }
+}

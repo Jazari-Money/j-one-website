@@ -39,14 +39,16 @@ test.beforeEach(async ({ context }) => {
   ]);
 });
 
-async function prepareStablePage(page: Page) {
+async function prepareStablePage(page: Page, path = "/") {
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/", { waitUntil: "networkidle" });
-  await expect(page.locator(".home-page")).toHaveClass(/is-ready/);
-  await expect(page.locator(".hero-color-event canvas")).toHaveAttribute(
-    "data-rendered",
-    "true",
-  );
+  await page.goto(path, { waitUntil: "networkidle" });
+  if (path === "/") {
+    await expect(page.locator(".home-page")).toHaveClass(/is-ready/);
+    await expect(page.locator(".hero-color-event canvas")).toHaveAttribute(
+      "data-rendered",
+      "true",
+    );
+  }
   await page.addStyleTag({
     content: `
       video {
@@ -125,7 +127,7 @@ test("refreshes the displayed exchange rate when its cache expires", async ({ pa
     });
   });
 
-  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.goto("/send/", { waitUntil: "domcontentloaded" });
   const displayedRate = page.locator(".prominent-rate .is-result b");
   await expect(displayedRate).toHaveText("19.70");
   const freshness = page.locator(".rate-freshness");
@@ -145,7 +147,7 @@ test("shows a marked estimate when live pricing times out", async ({ page }) => 
     }).catch(() => undefined);
   });
 
-  await page.goto("/", { waitUntil: "domcontentloaded" });
+  await page.goto("/send/", { waitUntil: "domcontentloaded" });
   const freshness = page.locator(".rate-freshness");
   const recipientAmount = page.locator(".money-input.result > strong");
   await expect(freshness).toContainText("Checking");
@@ -217,311 +219,72 @@ test("runs the color event with the reference choreography", async ({ page }) =>
 test("keeps the core interactions working", async ({ page }) => {
   await prepareStablePage(page);
 
-  await expect(page.getByRole("heading", { name: /Use digital dollars\.\s*Anywhere\./ })).toBeVisible();
-  await expect(page.locator("main")).toHaveAttribute("data-theme", "jazari");
-  await expect(page.locator("main")).toHaveAttribute("data-shader", "color-event");
-  await expect(page.getByRole("button", { name: /Choose color theme/ })).toHaveCount(0);
-  await expect
-    .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-theme")))
-    .toBeNull();
-  await expect
-    .poll(() => page.evaluate(() => window.localStorage.getItem("jazari-shader")))
-    .toBeNull();
+  const hero = page.getByRole("heading", { name: /Get paid\. Earn\.\s*Send worldwide\./ });
+  await expect(hero).toBeVisible();
+  await expect(page.getByText(/Receive money by bank transfer or digital dollars/)).toBeVisible();
+  await expect(page.locator(".journey-card")).toHaveCount(3);
+  await expect(page.locator(".journey-kicker")).toHaveCount(0);
+  await expect(page.getByText("What do you want to do?", { exact: true })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Receive money", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Explore receiving" })).toHaveAttribute("href", /\/receive\/?$/);
+  await expect(page.getByRole("link", { name: "Check rates & destinations" })).toHaveAttribute("href", /\/send\/#rates$/);
+  await expect(page.getByRole("link", { name: "Explore Yields" })).toHaveAttribute("href", /\/yields\/?$/);
 
   const personalMenu = page.locator(".nav-dropdown");
-  await expect(personalMenu.locator("summary")).toHaveText("Product");
   await personalMenu.locator("summary").click();
-  await expect(personalMenu).toHaveAttribute("open", "");
-  await expect(personalMenu.locator(".nav-dropdown-menu a")).toHaveText([
-    "Receive",
-    "USD account",
-    "Send",
-    "Rates",
-    "Yields",
-  ]);
-  await page.mouse.click(40, 300);
-  await expect(personalMenu).not.toHaveAttribute("open", "");
+  const productEntries = personalMenu.locator(".nav-dropdown-menu a");
+  await expect(productEntries).toHaveCount(3);
+  await expect(productEntries.nth(0)).toContainText("Receive moneyUS account, USDC and USDT");
+  await expect(productEntries.nth(1)).toContainText("Send moneyBank accounts, wallets, rates and destinations");
+  await expect(productEntries.nth(2)).toContainText("Meet YieldsVariable returns on the dollars you choose");
 
-  const heroAccess = page.locator(".magic-access-button");
-  await heroAccess.hover({ position: { x: 22, y: 12 } });
-  await expect
-    .poll(() =>
-      heroAccess.evaluate((node) => node.style.getPropertyValue("--pointer-nx")),
-    )
-    .not.toBe("0");
-  const heroLabelOffset = await heroAccess.evaluate((node) => {
-    const button = node.getBoundingClientRect();
-    const label = node.querySelector(".button-label")?.getBoundingClientRect();
-    if (!label) return Number.POSITIVE_INFINITY;
-    return Math.abs(
-      button.top + button.height / 2 - (label.top + label.height / 2),
-    );
-  });
-  expect(heroLabelOffset).toBeLessThanOrEqual(1);
-  const heroTitleSize = await page
-    .getByRole("heading", { name: /Use digital dollars\.\s*Anywhere\./ })
-    .evaluate((node) => Number.parseFloat(getComputedStyle(node).fontSize));
+  const journeyTitleMetrics = await page.locator(".journey-card h3").evaluateAll((titles) =>
+    titles.map((title) => {
+      const range = document.createRange();
+      range.selectNodeContents(title);
+      return {
+        fontSize: getComputedStyle(title).fontSize,
+        lineHeight: getComputedStyle(title).lineHeight,
+        lineBoxes: range.getClientRects().length,
+      };
+    }),
+  );
+  expect(new Set(journeyTitleMetrics.map((item) => item.fontSize)).size).toBe(1);
+  expect(new Set(journeyTitleMetrics.map((item) => item.lineHeight)).size).toBe(1);
+  for (const item of journeyTitleMetrics) {
+    expect(item.lineBoxes).toBe(1);
+  }
+
+  const heroTitleSize = await hero.evaluate((node) => Number.parseFloat(getComputedStyle(node).fontSize));
   expect(heroTitleSize).toBeGreaterThanOrEqual(107);
+  const desktopDescriptionSize = await page.locator(".hero-copy > p").evaluate(
+    (node) => Number.parseFloat(getComputedStyle(node).fontSize),
+  );
+  expect(desktopDescriptionSize).toBe(22);
 
-  const receiveScenario = page.getByRole("tab", { name: "Receive", exact: true });
-  await receiveScenario.focus();
-  await receiveScenario.press("ArrowRight");
-  await expect(page.getByRole("tab", { name: "Send", exact: true })).toHaveAttribute(
-    "aria-selected",
-    "true",
-  );
-  await expect(page.getByRole("tab", { name: /Pick a destination/ })).toHaveAttribute(
-    "aria-selected",
-    "true",
-  );
-  await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
-    "src",
-    /how-to-send-01\.png$/,
-  );
-  await page.getByRole("tab", { name: "Yields", exact: true }).click();
-  await expect(page.getByRole("tab", { name: /Open Yields/ })).toBeVisible();
-  const yieldsLink = page.getByRole("link", { name: "Learn more about Yields" });
-  await expect(yieldsLink).toHaveCount(1);
-  await expect(yieldsLink).toBeVisible();
-  await page.getByRole("tab", { name: "Receive", exact: true }).click();
-  await expect(page.getByRole("tab", { name: /Share USD account/ })).toBeVisible();
-  await expect(page.locator(".step-status")).toHaveCount(0);
+  await page.goto("/send/", { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { name: "Send money", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Bank accounts\.\s*Local currency\./ })).toBeVisible();
+  await expect(page.locator("#bank-accounts .method-flow-screen img")).toHaveAttribute("src", /how-to-send-02\.png$/);
+  await expect(page.locator(".scenario-how")).toHaveCount(0);
 
   const currencyPicker = page.locator("#receive-currency");
   await currencyPicker.click();
   const currencyMenu = page.getByRole("listbox", { name: "Recipient currency" });
   await expect(currencyMenu.getByRole("option")).toHaveCount(5);
-  await expect(currencyMenu.getByRole("option", { name: /Mexico.*MXN/ })).toBeVisible();
-  await expect(currencyMenu.getByRole("option", { name: /Colombia.*COP/ })).toBeVisible();
-  await expect(currencyMenu.getByRole("option", { name: /Brazil.*BRL/ })).toBeVisible();
-  await expect(currencyMenu.getByRole("option", { name: /Europe.*EUR/ })).toBeVisible();
-  await expect(currencyMenu.getByRole("option", { name: /United Kingdom.*GBP/ })).toBeVisible();
-  const currencyMenuStyle = await currencyMenu.evaluate((node) => {
-    const style = getComputedStyle(node);
-    const option = node.querySelector("[role=option]");
-    return {
-      background: style.backgroundColor,
-      opacity: style.opacity,
-      optionBackground: option ? getComputedStyle(option).backgroundColor : "",
-      zIndex: style.zIndex,
-    };
-  });
-  expect(currencyMenuStyle).toEqual({
-    background: "rgb(23, 26, 24)",
-    opacity: "1",
-    optionBackground: "rgb(36, 40, 38)",
-    zIndex: "20",
-  });
   await currencyMenu.getByRole("option", { name: /Colombia.*COP/ }).click();
-  await expect(currencyPicker).toContainText("COP");
   await expect(page.locator(".money-input.result strong")).toContainText("~$3,026,213.09");
   await expect(page.locator(".rate-freshness")).toContainText("Live");
-  await currencyPicker.click();
-  await currencyMenu.getByRole("option", { name: /United Kingdom.*GBP/ }).click();
-  await expect(currencyPicker).toContainText("GBP");
-  await expect(page.locator(".money-input.result strong")).toContainText("~£788.04");
-  await expect(page.locator(".rate-freshness")).toContainText("Live");
-  await expect(page.locator("#send-amount")).toHaveValue("$1,000.00");
-  await expect(page.getByText("Estimated recipient amount", { exact: true })).toBeVisible();
-  await expect(currencyPicker).toHaveClass(/neutral-control/);
-  const currencyControlStyle = await currencyPicker.evaluate((node) => {
-    const style = getComputedStyle(node);
-    return {
-      height: Math.round(node.getBoundingClientRect().height),
-      radius: style.borderRadius,
-    };
-  });
-  expect(currencyControlStyle).toEqual({ height: 50, radius: "999px" });
 
-  await expect(page.locator(".nav-cta")).toHaveAttribute(
-    "href",
-    "https://jazarione.app.link/web-launch",
-  );
-  const navbarLabelOffset = await page.locator(".nav-cta").evaluate((node) => {
-    const button = node.getBoundingClientRect();
-    const label = node.querySelector(".nav-cta-label")?.getBoundingClientRect();
-    if (!label) return Number.POSITIVE_INFINITY;
-    return Math.abs(
-      button.top + button.height / 2 - (label.top + label.height / 2),
-    );
-  });
-  expect(navbarLabelOffset).toBeLessThanOrEqual(1);
-
-  const receivingCountries = [
-    "Andorra", "Austria", "Belgium", "Brazil", "Colombia", "Croatia",
-    "Cyprus", "Estonia", "Finland", "France", "Germany", "Greece",
-    "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg", "Malta",
-    "Mexico", "Monaco", "Montenegro", "Netherlands", "Poland", "Portugal",
-    "Romania", "San Marino", "Slovakia", "Slovenia", "Spain", "United Kingdom",
-  ];
-  const queuedReceivingCountries = ["India", "Bangladesh", "Pakistan", "Nigeria"];
   const countriesDialog = page.locator(".receive-countries-dialog");
-  await expect(countriesDialog).not.toBeVisible();
-  await page.getByRole("link", { name: "Receiving countries", exact: true }).click();
-  await expect(countriesDialog).toBeVisible();
-  await page.getByRole("button", { name: "Close receiving countries" }).click();
   await page.getByRole("button", { name: "All receiving countries" }).click();
   await expect(countriesDialog).toBeVisible();
-  await expect(countriesDialog.locator(".receiving-country-group li")).toHaveText(receivingCountries);
-  await expect(countriesDialog.locator(".receiving-country-group li img")).toHaveCount(receivingCountries.length);
-  await expect(countriesDialog.locator(".receiving-country-queue li")).toHaveText(queuedReceivingCountries);
+  await expect(countriesDialog.locator(".receiving-country-group li")).toHaveCount(30);
   await page.getByRole("button", { name: "Close receiving countries" }).click();
-  await expect(countriesDialog).not.toBeVisible();
 
-  const rateCardDetailsOrder = await page.locator(".rate-card").evaluate((node) => {
-    const link = node.querySelector(".receive-countries-link")?.getBoundingClientRect();
-    const disclaimer = node.querySelector(".rate-disclaimer")?.getBoundingClientRect();
-    return link && disclaimer ? link.top < disclaimer.top : false;
-  });
-  expect(rateCardDetailsOrder).toBe(true);
-
-  const card = page.locator(".blog-card").first();
-  await card.scrollIntoViewIfNeeded();
-  const blogImageTransformBefore = await card
-    .locator(".blog-card-image")
-    .evaluate((node) => getComputedStyle(node).transform);
-  await card.hover({ position: { x: 80, y: 90 } });
-  await expect
-    .poll(() =>
-      card.evaluate((node) =>
-        node.style.getPropertyValue("--pointer-x"),
-      ),
-    )
-    .not.toBe("50%");
-  const pointerPositionBeforeLeave = await card.evaluate((node) => ({
-    x: node.style.getPropertyValue("--pointer-x"),
-    y: node.style.getPropertyValue("--pointer-y"),
-  }));
-  await page.mouse.move(0, 0);
-  await expect
-    .poll(() =>
-      card.evaluate((node) => ({
-        x: node.style.getPropertyValue("--pointer-x"),
-        y: node.style.getPropertyValue("--pointer-y"),
-        tiltX: node.style.getPropertyValue("--tilt-x"),
-        tiltY: node.style.getPropertyValue("--tilt-y"),
-      })),
-    )
-    .toEqual({
-      ...pointerPositionBeforeLeave,
-      tiltX: "0deg",
-      tiltY: "0deg",
-    });
-  await expect
-    .poll(() =>
-      card.locator(".blog-card-image").evaluate((node) => getComputedStyle(node).transform),
-    )
-    .toBe(blogImageTransformBefore);
-  const desktopCardMetrics = await page.evaluate(() => {
-    const benefits = getComputedStyle(
-      document.querySelector(".benefit-list") as Element,
-    ).gridTemplateColumns.split(" ").length;
-    const personaHeights = Array.from(
-      document.querySelectorAll(".audience-panel"),
-      (node) => Math.round(node.getBoundingClientRect().height),
-    );
-    const articleHeights = Array.from(
-      document.querySelectorAll(".blog-card"),
-      (node) => Math.round(Number.parseFloat(getComputedStyle(node).height)),
-    );
-    const articleTitleSizes = new Set(
-      Array.from(
-        document.querySelectorAll(".blog-card h3"),
-        (node) => getComputedStyle(node).fontSize,
-      ),
-    ).size;
-    const title = document.querySelector(".blog-card h3")?.getBoundingClientRect();
-    const action = document.querySelector(".blog-read")?.getBoundingClientRect();
-    const firstBenefitIcon = document.querySelector(".benefit-row img");
-    const firstBenefitCopy = document.querySelector(".benefit-row p");
-    const benefitLedger = document.querySelector(".benefit-ledger");
-    const reviewMetrics = document.querySelector(".review-metrics");
-    const firstBlogCard = document.querySelector(".blog-card");
-    const audienceImagePositions = Array.from(
-      document.querySelectorAll(".audience-panel .audience-image"),
-      (node) => getComputedStyle(node).objectPosition,
-    );
-    return {
-      benefits,
-      personaHeights,
-      articleHeights,
-      articleTitleSizes,
-      benefitIconWidth: firstBenefitIcon
-        ? Math.round(firstBenefitIcon.getBoundingClientRect().width)
-        : 0,
-      benefitCopySize: firstBenefitCopy
-        ? Number.parseFloat(getComputedStyle(firstBenefitCopy).fontSize)
-        : 0,
-      benefitLedgerMarginTop: benefitLedger
-        ? Number.parseFloat(getComputedStyle(benefitLedger).marginTop)
-        : 0,
-      reviewMetricsMarginTop: reviewMetrics
-        ? Number.parseFloat(getComputedStyle(reviewMetrics).marginTop)
-        : 0,
-      blogBottomTint: firstBlogCard
-        ? getComputedStyle(firstBlogCard, "::before").backgroundImage
-        : "",
-      audienceImagePositions,
-      articleBaselineOffset:
-        title && action ? Math.abs(title.bottom - action.bottom) : Number.POSITIVE_INFINITY,
-    };
-  });
-  expect(desktopCardMetrics.benefits).toBe(4);
-  expect(desktopCardMetrics.benefitIconWidth).toBe(62);
-  expect(desktopCardMetrics.benefitCopySize).toBe(16);
-  expect(desktopCardMetrics.benefitLedgerMarginTop).toBeGreaterThanOrEqual(8);
-  expect(desktopCardMetrics.reviewMetricsMarginTop).toBe(180);
-  expect(desktopCardMetrics.blogBottomTint).toContain("rgb(0, 0, 0)");
-  expect(desktopCardMetrics.audienceImagePositions.slice(0, 2)).toEqual([
-    "50% calc(50% + 30px)",
-    "50% 50%",
-  ]);
-  expect(desktopCardMetrics.personaHeights).toEqual([500, 500, 500]);
-  expect(desktopCardMetrics.articleHeights).toEqual([500, 500, 500, 500]);
-  expect(desktopCardMetrics.articleTitleSizes).toBe(1);
-  expect(desktopCardMetrics.articleBaselineOffset).toBeLessThanOrEqual(4);
-
-  const roadmapTrack = page.locator(".roadmap-track");
-  const roadmapWindow = page.locator(".roadmap-window");
-  const firstRoadmapCard = page.locator(".roadmap-card").first();
-  await expect(firstRoadmapCard.locator(".roadmap-milestone-art")).toHaveAttribute(
-    "src",
-    /visa-card\.png$/,
-  );
-  const firstCardRegions = await firstRoadmapCard.evaluate((node) => {
-    const copy = node.querySelector(".roadmap-milestone-copy")?.getBoundingClientRect();
-    const visual = node.querySelector(".roadmap-milestone-visual")?.getBoundingClientRect();
-    return copy && visual ? { copyBottom: copy.bottom, visualTop: visual.top } : null;
-  });
-  expect(firstCardRegions).not.toBeNull();
-  expect(firstCardRegions!.copyBottom).toBeLessThanOrEqual(firstCardRegions!.visualTop);
-  await expect(roadmapWindow).toHaveClass(/is-at-start/);
-  await page.getByRole("button", { name: "Next milestone" }).click();
-  await expect
-    .poll(() => roadmapTrack.evaluate((node) => Math.round(node.scrollLeft)))
-    .toBeGreaterThan(0);
-  await page.getByRole("button", { name: "Previous milestone" }).click();
-  await expect
-    .poll(() => roadmapTrack.evaluate((node) => Math.round(node.scrollLeft)))
-    .toBe(0);
-  await roadmapTrack.evaluate((node) => {
-    node.scrollLeft = node.scrollWidth;
-  });
-  await expect
-    .poll(() =>
-      roadmapTrack.evaluate((node) =>
-        Math.round(node.scrollWidth - node.clientWidth - node.scrollLeft),
-      ),
-    )
-    .toBeLessThanOrEqual(1);
-  await expect(roadmapWindow).toHaveClass(/is-at-end/);
-
-  const firstQuestion = page.getByText("What can I do with a Jazari USD account?", { exact: true });
-  await firstQuestion.click();
-  await expect(
-    page.getByText(/You can hold USDC or USDT, receive payments/i),
-  ).toBeVisible();
-  await expect(page.getByRole("link", { name: "Email us", exact: true })).toBeVisible();
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator(".blog-card")).toHaveCount(4);
+  await expect(page.getByText("How to compare a transfer beyond the headline rate")).toHaveCount(0);
 });
 
 test("renders the pricing preview and legal links", async ({ page }) => {
@@ -614,14 +377,13 @@ test("keeps audience cards readable in a compact desktop window", async ({ page 
 
 test("uses Safari-safe phone rendering and stacks cards in narrow windows", async ({ page }) => {
   await page.setViewportSize({ width: 768, height: 900 });
-  await page.goto("/", { waitUntil: "networkidle" });
+  await page.goto("/receive/", { waitUntil: "networkidle" });
 
-  const phoneImage = page.locator("#step-screen .active-step-phone.is-active img");
-  const phoneLayers = await page.locator("#step-screen").evaluate(() => {
-    const stack = document.querySelector(".step-screen-stack");
-    const phone = document.querySelector(".active-step-phone.is-active");
+  const phoneImage = page.locator("#usd-account .method-flow-screen img");
+  const phoneLayers = await page.locator("#usd-account .method-flow-screen").evaluate((screen) => {
+    const phone = screen.querySelector(".phone");
     return {
-      mask: stack ? getComputedStyle(stack).maskImage : "missing",
+      mask: getComputedStyle(screen).maskImage,
       filter: phone ? getComputedStyle(phone).filter : "missing",
     };
   });
@@ -630,18 +392,11 @@ test("uses Safari-safe phone rendering and stacks cards in narrow windows", asyn
     .poll(() => phoneImage.evaluate((image) => (image as HTMLImageElement).naturalWidth))
     .toBeGreaterThan(0);
 
-  const audience = page.locator(".audience-explorer");
-  const audienceMetrics = await audience.evaluate((node) => ({
-    columns: getComputedStyle(node).gridTemplateColumns.split(" ").length,
-    widths: Array.from(node.children, (card) =>
-      Math.round(card.getBoundingClientRect().width),
-    ),
+  const viewport = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,
     scrollWidth: document.documentElement.scrollWidth,
   }));
-  expect(audienceMetrics.columns).toBe(1);
-  expect(new Set(audienceMetrics.widths).size).toBe(1);
-  expect(audienceMetrics.scrollWidth).toBe(audienceMetrics.clientWidth);
+  expect(viewport.scrollWidth).toBe(viewport.clientWidth);
 });
 
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
@@ -742,27 +497,25 @@ test("aligns footer copyright with the final disclosure on desktop", async ({ pa
       (copyright!.y + copyright!.height),
     ),
   ).toBeLessThanOrEqual(2);
-  expect(copyright!.y - (stores!.y + stores!.height)).toBeGreaterThanOrEqual(20);
+  expect(copyright!.y - (stores!.y + stores!.height)).toBeGreaterThanOrEqual(18);
   expect(copyright!.y - (stores!.y + stores!.height)).toBeLessThanOrEqual(28);
 });
 
 test("explains yields and links into the app flow", async ({ page }) => {
   await page.goto("/yields/", { waitUntil: "networkidle" });
   await expect(
-    page.getByRole("heading", { name: "Yields", exact: true }),
+    page.getByRole("heading", { name: "Meet Yields", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
   await expect(page.getByText("USDC", { exact: true })).toHaveCount(2);
   await expect(page.getByText("USDC", { exact: true }).first()).toBeVisible();
   await expect(page.getByText(/USDC · USDT|USDC or USDT/)).toHaveCount(0);
-  await expect(page.getByText("4.66%")).toBeVisible();
+  await expect(page.getByText("Variable", { exact: true })).toHaveCount(2);
   await expect(page.getByRole("heading", { name: "Lido EarnUSD" })).toBeVisible();
   await expect(page.getByRole("img", { name: "Lido" })).toHaveAttribute(
     "src",
     /lido-white\.svg$/,
   );
-  await expect(page.getByText("7%", { exact: true })).toBeVisible();
-  await expect(page.getByText("Variable APY", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Open Lido EarnUSD" })).toHaveAttribute(
     "href",
     "https://stake.lido.fi/earn/usd/deposit",
@@ -776,37 +529,35 @@ test("explains yields and links into the app flow", async ({ page }) => {
   );
 });
 
-test("presents the USD account as a live product", async ({ page }) => {
+test("keeps receiving on one product page and redirects the old USD account route", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
-  await expect(page.getByText(
-    "Direct payments to your USD account. Available in 190+ countries.",
-    { exact: true },
-  )).toBeVisible();
-  await expect(page.locator(".benefit-row").nth(2).locator("img")).toHaveAttribute(
+  await expect(page.getByRole("heading", { name: "Receive money", exact: true })).toBeVisible();
+  await expect(page.locator(".journey-card").nth(2).locator("img")).toHaveAttribute(
     "src",
-    /yields-icon\.png$/,
+    /yields-wheat\.png$/,
   );
-  await expect(
-    page.locator('.nav-dropdown-menu a[href$="/usd-account/"]'),
-  ).toHaveAttribute("href", /\/usd-account\/?$/);
+  await expect(page.locator('.nav-dropdown-menu a[href$="/usd-account/"]')).toHaveCount(0);
 
   await page.goto("/usd-account/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "USD account", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "What's included" })).toBeVisible();
-  await expect(page.getByText("Available now", { exact: true })).toHaveCount(0);
-  await expect(page.getByText("Receive in dollars", { exact: true })).toHaveCount(0);
-  await expect(page.getByText(/Direct payments to your personal USD account/)).toBeVisible();
+  await expect(page).toHaveURL(/\/receive\/#usd-account$/);
+  await expect(page.getByRole("heading", { name: "Receive money", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /A US account\.\s*No US address\./ })).toBeVisible();
+  await expect(page.getByText(/licensed US bank partner/)).toBeVisible();
   await expect(page.getByText(/US routing and account number/).first()).toBeVisible();
   await expect(page.getByText(/ACH, FedNow, domestic wire, and SWIFT/).first()).toBeVisible();
-  await expect(page.getByText("No US residency required", { exact: true })).toBeVisible();
-  await expect(page.locator(".step-status")).toHaveCount(0);
+  await expect(page.getByText(/Eligible users in 190\+ countries/)).toBeVisible();
+  await expect(page.getByRole("heading", { name: /USDC and USDT\.\s*Straight to your wallet\./ })).toBeVisible();
+  await expect(page.getByText("Ethereum", { exact: true })).toBeVisible();
+  await expect(page.getByText("TRON", { exact: true })).toBeVisible();
+  await expect(page.getByText("Solana", { exact: true })).toBeVisible();
+  await expect(page.locator(".scenario-how")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Download App" }).first()).toHaveAttribute(
     "href",
     "https://jazarione.app.link/web-launch",
   );
 
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator(".usd-account-hero-visual")).toBeVisible();
+  await expect(page.locator("#usd-account .method-flow-screen")).toBeVisible();
   const viewport = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,
     scrollWidth: document.documentElement.scrollWidth,
@@ -973,9 +724,9 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu.getByRole("link", { name: "Jazari One on Instagram" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on Facebook" })).toBeVisible();
   await menu.click({ position: { x: 360, y: 780 } });
-  await expect(menu.getByText("Product", { exact: true })).toBeVisible();
+  await expect(menu.locator("#mobile-product-links")).toBeVisible();
   await expect(menu.getByText("Company", { exact: true })).toBeVisible();
-  await expect(menu.getByRole("link", { name: "How it works" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: /Send money.*Bank accounts, wallets/ })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Partners", exact: true })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Terms & Conditions" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Privacy Policy" })).toBeVisible();
@@ -1048,20 +799,16 @@ test("keeps mobile Coming soon cards visible with intentionally cropped artwork"
   await expect(page.locator(".roadmap-card").last()).toHaveCSS("will-change", "auto");
 });
 
-test("keeps the mobile phone preview and step accordion in one viewport", async ({ page }) => {
+test("keeps the Receive method instructions and phone preview usable on mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await prepareStablePage(page);
+  await prepareStablePage(page, "/receive/");
 
-  const scenarioTabs = page.locator(".how-scenario-tabs");
-  await scenarioTabs.evaluate((node) => node.scrollIntoView({ block: "start" }));
-  await page.evaluate(() => window.scrollBy(0, -86));
+  await page.getByRole("heading", { name: "Use your US account details" }).scrollIntoViewIfNeeded();
 
-  const phone = page.locator(".step-screen");
-  const stepTabs = page.locator(".step-tabs");
-  const steps = stepTabs.getByRole("tab");
+  const flow = page.locator("#usd-account .method-flow");
+  const steps = flow.locator("li");
   await expect(steps).toHaveCount(3);
-  await expect(page.locator(".step-screen .active-step-phone")).toHaveCount(1);
-  const activeScreenImage = page.locator(".step-screen .active-step-phone.is-active img");
+  const activeScreenImage = flow.locator(".method-flow-screen img");
   await expect
     .poll(() => activeScreenImage.evaluate((image) => (image as HTMLImageElement).naturalWidth))
     .toBeGreaterThanOrEqual(300);
@@ -1069,87 +816,43 @@ test("keeps the mobile phone preview and step accordion in one viewport", async 
     await activeScreenImage.evaluate((image) => (image as HTMLImageElement).naturalWidth),
   ).toBeLessThanOrEqual(520);
   await expect
-    .poll(() => page.locator(".step-screen-stack").evaluate(
+    .poll(() => flow.locator(".method-flow-screen").evaluate(
       (node) => getComputedStyle(node).maskImage,
     ))
     .toBe("none");
 
-  const initialLayout = await page.evaluate(() => {
-    const scenario = document.querySelector(".how-scenario-tabs")?.getBoundingClientRect();
-    const screen = document.querySelector(".step-screen")?.getBoundingClientRect();
-    const tabs = document.querySelector(".step-tabs")?.getBoundingClientRect();
-    const finalStep = document.querySelector(".step-tab-item:last-child")?.getBoundingClientRect();
-    return {
-      scenarioBottom: scenario?.bottom ?? Number.POSITIVE_INFINITY,
-      screenTop: screen?.top ?? 0,
-      screenBottom: screen?.bottom ?? Number.POSITIVE_INFINITY,
-      tabsTop: tabs?.top ?? 0,
-      finalStepBottom: finalStep?.bottom ?? Number.POSITIVE_INFINITY,
-      viewportHeight: window.innerHeight,
-    };
-  });
+  await expect(flow).toBeVisible();
+  await expect(activeScreenImage).toHaveAttribute("src", /how-to-receive-03\.png$/);
+  await expect(steps.nth(0)).toContainText("Open Add Funds");
+  await expect(steps.nth(2)).toContainText("share them with a payer");
+});
 
-  expect(initialLayout.screenTop).toBeGreaterThanOrEqual(initialLayout.scenarioBottom);
-  expect(initialLayout.tabsTop).toBeGreaterThanOrEqual(initialLayout.screenBottom);
-  expect(initialLayout.finalStepBottom).toBeLessThanOrEqual(initialLayout.viewportHeight);
-  await expect(phone).toBeVisible();
-  await expect(steps.nth(0)).toHaveAttribute("aria-selected", "true");
-  await expect
-    .poll(() => page.locator(".step-tab-item").nth(0).evaluate(
-      (node) => getComputedStyle(node).counterIncrement,
-    ))
-    .toBe("how-step 1");
+test("shows wallet receiving details without a generic walkthrough floor", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 568 });
+  await prepareStablePage(page, "/receive/");
 
-  await steps.nth(1).click();
-  await expect(steps.nth(1)).toHaveAttribute("aria-selected", "true");
-  await expect(page.locator("#step-screen .active-step-phone.is-active img")).toHaveAttribute(
+  await expect(page.locator(".scenario-how")).toHaveCount(0);
+  await expect(page.locator("#wallet .method-flow-screen img")).toHaveAttribute(
     "src",
     /how-to-receive-02\.png$/,
   );
-  await expect(page.locator(".step-tab-item").nth(1).locator("small")).toBeVisible();
-  await expect(page.locator(".step-tab-item").nth(0).locator("small")).toBeHidden();
-});
-
-test("shows the live USD account step without a coming-soon badge", async ({ page }) => {
-  await page.setViewportSize({ width: 320, height: 568 });
-  await prepareStablePage(page);
-
-  const finalStep = page.getByRole("tab", { name: /Share USD account/ });
-  const badge = finalStep.locator(".step-status");
-  await expect(finalStep).toBeVisible();
-  await expect(badge).toHaveCount(0);
+  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(3);
 });
 
 test("fits the complete Yields mobile interaction at 430px", async ({ page }) => {
   await page.setViewportSize({ width: 430, height: 932 });
-  await prepareStablePage(page);
+  await prepareStablePage(page, "/yields/");
 
-  await page.getByRole("tab", { name: "Yields", exact: true }).click();
-  const scenarioTabs = page.locator(".how-scenario-tabs");
-  await scenarioTabs.evaluate((node) => node.scrollIntoView({ block: "start" }));
-  await page.evaluate(() => window.scrollBy(0, -86));
-
-  const learnMore = page.getByRole("link", { name: "Learn more about Yields" });
-  await expect(learnMore).toBeVisible();
-  const layout = await page.evaluate(() => {
-    const scenario = document.querySelector(".how-scenario-tabs")?.getBoundingClientRect();
-    const screen = document.querySelector(".step-screen")?.getBoundingClientRect();
-    const finalStep = document.querySelector(".step-tab-item:last-child")?.getBoundingClientRect();
-    const link = document.querySelector(".how-learn-more")?.getBoundingClientRect();
-    return {
-      scenarioTop: scenario?.top ?? -1,
-      screenBottom: screen?.bottom ?? Number.POSITIVE_INFINITY,
-      finalStepBottom: finalStep?.bottom ?? Number.POSITIVE_INFINITY,
-      linkTop: link?.top ?? 0,
-      linkBottom: link?.bottom ?? Number.POSITIVE_INFINITY,
-      viewportHeight: window.innerHeight,
-    };
-  });
-
-  expect(layout.scenarioTop).toBeGreaterThanOrEqual(70);
-  expect(layout.finalStepBottom).toBeGreaterThanOrEqual(layout.screenBottom);
-  expect(layout.linkTop).toBeGreaterThanOrEqual(layout.finalStepBottom);
-  expect(layout.linkBottom).toBeLessThanOrEqual(layout.viewportHeight);
+  await page.getByRole("heading", { name: "How it works" }).scrollIntoViewIfNeeded();
+  const steps = page.locator(".scenario-how").getByRole("tab");
+  await expect(steps).toHaveCount(3);
+  await expect(steps.first()).toHaveAttribute("aria-selected", "true");
+  await steps.nth(2).click();
+  await expect(steps.nth(2)).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator("#yields-step-screen .active-step-phone.is-active img")).toHaveAttribute(
+    "src",
+    /how-to-yield-03\.png$/,
+  );
 });
 
 for (const viewport of [

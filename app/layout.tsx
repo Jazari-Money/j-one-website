@@ -6,21 +6,21 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jazari.xyz"),
-  title: "Jazari One — Use digital dollars. Anywhere.",
+  title: "Jazari One — Get paid. Earn. Send worldwide.",
   description:
-    "Hold digital dollars, send them in local currency to 30+ countries, and access Yields with Jazari One.",
+    "Receive money by bank transfer or digital dollars, earn with Yields, and send across borders in minutes.",
   openGraph: {
-    title: "Jazari One — Use digital dollars. Anywhere.",
+    title: "Jazari One — Get paid. Earn. Send worldwide.",
     description:
-      "Hold digital dollars, send them in local currency to 30+ countries, and access Yields with Jazari One.",
+      "Receive money by bank transfer or digital dollars, earn with Yields, and send across borders in minutes.",
     images: [{ url: "/og-v2.png", width: 1729, height: 910 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jazari One — Use digital dollars. Anywhere.",
+    title: "Jazari One — Get paid. Earn. Send worldwide.",
     description:
-      "Hold digital dollars, send them in local currency to 30+ countries, and access Yields with Jazari One.",
+      "Receive money by bank transfer or digital dollars, earn with Yields, and send across borders in minutes.",
     images: ["/og-v2.png"],
   },
   icons: {

@@ -12,7 +12,6 @@ import {
 import { AccordionList } from "../home/AccordionList";
 import {
   currencies,
-  features,
   guides,
   type CurrencyCode,
 } from "../home/data";
@@ -31,6 +30,12 @@ const catalog = [
   ["accordions", "Accordions"],
   ["cards", "Cards"],
   ["badges", "Badges & media"],
+] as const;
+
+const storyboardFeatures = [
+  { id: "dollar-balance", copy: "Direct payments to your USD account.", image: withBasePath("/images/features/dollar-01.png") },
+  { id: "local-money", copy: "Send in local currency.", image: withBasePath("/images/features/planet-02.png") },
+  { id: "earn", copy: "Access Yields.", image: withBasePath("/images/features/yields-icon.png") },
 ] as const;
 
 const accordionItems = [
@@ -297,7 +302,7 @@ function SegmentControl({ compact = false }: { compact?: boolean }) {
 function FeatureList({ compact = false }: { compact?: boolean }) {
   return (
     <ul className={`sb-feature-list ${compact ? "is-compact" : ""}`}>
-      {features.map((feature) => (
+      {storyboardFeatures.map((feature) => (
         <li key={feature.id}>
           <img src={feature.image} alt="" />
           <span>{feature.copy}</span>

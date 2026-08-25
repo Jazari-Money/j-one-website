@@ -697,13 +697,13 @@
   .hero h1 {
     max-width: 1000px;
     font-size: clamp(78px, 8.4vw, 126px);
-    line-height: 0.84;
+    line-height: 0.92;
   }
 
   .hero-copy > p {
     width: min(760px, 100%);
     margin-top: 37px;
-    font-size: clamp(16px, 1.35vw, 18px);
+    font-size: 22px;
   }
 
   .hero-download-control {

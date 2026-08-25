@@ -37,10 +37,13 @@ export function Hero() {
       </div>
       <div className="hero-copy">
         <h1>
-          <span className="hero-title-line"><span>Use digital dollars.</span></span>
-          <span className="hero-title-line"><span>Anywhere.</span></span>
+          <span className="hero-title-line"><span>Get paid. Earn.</span></span>
+          <span className="hero-title-line"><span>Send worldwide.</span></span>
         </h1>
-        <p>Hold them. Send them. Grow them.</p>
+        <p>
+          Receive money by bank transfer or digital dollars, earn with Yields,
+          and send across borders in minutes.
+        </p>
         <HeroDownload />
       </div>
 

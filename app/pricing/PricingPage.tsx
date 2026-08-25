@@ -9,7 +9,7 @@ const groups = [
   {
     title: "Money movement",
     rows: [
-      ["Receive stablecoins", "Free"],
+      ["Receive digital dollars", "Free"],
       ["Send to a bank account", "Free · FX Rate"],
       ["Send to a wallet", "Free over $10 · $1 below $10"],
     ],

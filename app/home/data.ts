@@ -86,26 +86,31 @@ export const jazariVisualProfile = {
   mesh: ["#000000", "#07150b", "#1ad959", "#4eff9e"],
 } as const;
 
-export const features = [
+export const walletAssets = [
   {
-    id: "dollar-balance",
-    copy: "Direct payments to your USD account. Available in 190+ countries.",
-    image: withBasePath("/images/features/dollar-01.png"),
+    name: "USDC",
+    logo: withBasePath("/images/rails/usdc.svg"),
   },
   {
-    id: "local-money",
-    copy: "Send to 30+ countries in local currency.",
-    image: withBasePath("/images/features/planet-02.png"),
+    name: "USDT",
+    logo: withBasePath("/images/rails/usdt.svg"),
+  },
+] as const;
+
+// This list follows the product coverage stated in the site's approved
+// customer and privacy copy. Route availability is still confirmed in-app.
+export const walletNetworkSupport = [
+  {
+    name: "Ethereum",
+    logo: withBasePath("/images/rails/ethereum.svg"),
   },
   {
-    id: "earn",
-    copy: "Earn up to 7% APY with Yields",
-    image: withBasePath("/images/features/yields-icon.png"),
+    name: "TRON",
+    logo: withBasePath("/images/rails/tron.svg"),
   },
   {
-    id: "zero-fees",
-    copy: "No transfer fees. No hidden fees.",
-    image: withBasePath("/images/features/zero-04.png"),
+    name: "Solana",
+    logo: withBasePath("/images/rails/solana.svg"),
   },
 ] as const;
 
@@ -115,27 +120,27 @@ export const howScenarios = {
     steps: [
       {
         id: "receive-home",
-        title: "Open Receive",
-        copy: "Select Receive on the home screen",
+        title: "Open Add Funds",
+        copy: "Select Add Funds on the home screen.",
         screen: withBasePath("/images/how-to/how-to-receive-01.png"),
         screenStem: "/images/how-to/how-to-receive-01",
-        alt: "Jazari One balance with the receive action",
-      },
-      {
-        id: "receive-stablecoins",
-        title: "Choose network",
-        copy: "Share your wallet address.",
-        screen: withBasePath("/images/how-to/how-to-receive-02.png"),
-        screenStem: "/images/how-to/how-to-receive-02",
-        alt: "Stablecoin receive details in Jazari One",
+        alt: "Jazari One balance with the Add Funds action",
       },
       {
         id: "receive-usd",
-        title: "Share USD account",
-        copy: "Open your personal USD account details for bank transfers.",
+        title: "Open USD account",
+        copy: "View or share your account details for a bank transfer.",
         screen: withBasePath("/images/how-to/how-to-receive-03.png"),
         screenStem: "/images/how-to/how-to-receive-03",
         alt: "USD account details in Jazari One",
+      },
+      {
+        id: "receive-digital-dollars",
+        title: "Choose network",
+        copy: "Select a supported network and share your wallet address.",
+        screen: withBasePath("/images/how-to/how-to-receive-02.png"),
+        screenStem: "/images/how-to/how-to-receive-02",
+        alt: "Digital-dollar receiving details in Jazari One",
       },
     ],
   },
@@ -145,7 +150,7 @@ export const howScenarios = {
       {
         id: "send-recipient",
         title: "Pick a destination",
-        copy: "Choose a stablecoin wallet or a bank account.",
+        copy: "Choose a digital-dollar wallet or a bank account.",
         screen: withBasePath("/images/how-to/how-to-send-01.png"),
         screenStem: "/images/how-to/how-to-send-01",
         alt: "Recipient details in Jazari One",
@@ -269,24 +274,6 @@ export const guides = [
     deck: "For a SEPA payout, collect the full name, IBAN, and BIC or SWIFT code.",
     image: withBasePath("/images/blog/europe.jpg"),
     imageStem: "/images/blog/europe",
-  },
-  {
-    slug: "compare-transfer-costs",
-    route: "Planning",
-    title: "How to compare a transfer beyond the headline rate",
-    deck: "The amount received, total cost, and delivery estimate belong in one comparison.",
-  },
-  {
-    slug: "verify-recipient-details",
-    route: "Safety",
-    title: "What to verify before sending money to a new recipient",
-    deck: "A short recipient check prevents most avoidable transfer problems.",
-  },
-  {
-    slug: "digital-dollars-bank-payouts",
-    route: "Basics",
-    title: "Digital dollars and bank payouts: what each part does",
-    deck: "Understand what stays in dollars, what converts, and what reaches the bank.",
   },
 ] as const;
 

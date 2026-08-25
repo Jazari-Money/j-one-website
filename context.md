@@ -1,6 +1,6 @@
 # Jazari One website context
 
-Last updated: 2026-08-01
+Last updated: 2026-08-22
 
 ## Product
 
@@ -23,7 +23,7 @@ Current hero description:
 
 ## Current public baseline
 
-- Canonical deployment: `https://nikitapoloznikov.github.io/j-one-website/`
+- Canonical deployment: `https://jazari-money.github.io/j-one-website/`
 - Canonical branch: `main`
 - Deployment: GitHub Pages through `.github/workflows/pages.yml`
 - The site is statically exported with the `/j-one-website` base path.
@@ -40,16 +40,16 @@ Current hero description:
 3. `Built in the United States and UAE`
 4. `Our partners`
 
-The Manifesto ends in this order:
+The page begins with the title and founders photo, followed by the Manifesto.
+The Manifesto itself ends in this order:
 
 1. Normal body paragraph: `So you can focus on your needs, your goals, your
    people, and your dreams.`
 2. Emphasized signoff: `— Alex and Has, founders of Jazari One`
-3. Founders photo: `public/images/about/jazari-founders.webp`
 
 The founders photo is the supplied 3072×2048 source converted to a 2560×1707
-WebP for near-2× desktop rendering. Keep it after the signoff, not above the
-Manifesto copy.
+WebP for near-2× desktop rendering. Keep it directly below the page title and
+above the Manifesto copy.
 
 The registered-business cards contain no `United States entity` or `UAE
 entity` prefix. Their company names use the editorial serif:
@@ -90,10 +90,12 @@ verified fact.
 
 These claims require product/legal confirmation before a public launch:
 
-- The homepage’s “30+ countries” coverage claim.
+- The homepage’s “30+ receiving countries” and “Available in 190+ countries”
+  coverage claims.
 - The displayed 0% / $0 Jazari transaction fee.
 - Which assets and networks are live in the Jazari product.
-- Formal “partner” status for Bridge, Privy, Gauntlet, Tether, or Circle.
+- Formal “partner” status for Bridge, Privy, Gauntlet, Lido,
+  ComplyAdvantage, Sumsub, Tether, or Circle.
 - Visa issuance, card availability, card terms, and eligible countries.
 - RNPL limits, pricing, eligibility, repayment terms, and credit disclosures.
 - The exact licensed entity holding customer funds.
@@ -137,8 +139,8 @@ Commercial relationship wording still requires confirmation before launch.
 - Supporting descriptions use a readable 15px size, with the primary transfer
   review description enlarged to 18px. Footer navigation, legal
   copy, and company information use 12px.
-- The homepage feature line uses the supplied numbered dollar, planet, plus,
-  and zero icon set in that order.
+- The homepage feature line uses the supplied dollar, planet, sprout, and zero
+  icon set in that order. The sprout is the dedicated Yields icon.
 - Blog cards do not show country or read-time prefixes above their headlines.
 - Homepage persona and article-preview cards are capped at 500px on desktop.
 - The first two homepage persona photos use a 30px lower crop within their
@@ -155,8 +157,9 @@ Commercial relationship wording still requires confirmation before launch.
 - Mobile Coming soon cards never use edge-dimming overlays. Flag and card art
   occupy a contained bottom zone and must not overlap text. The standalone
   `/roadmap/` cards share one mobile height and one title/body/art architecture.
-- The USD account roadmap cards use the supplied transparent USA flag artwork,
-  placed away from account copy and notes.
+- The live USD account page uses the supplied transparent USA flag artwork in
+  its own visual column with a bottom mask gradient; keep it clear of the copy
+  and account-details table.
 - Pointer-card highlights fade from their last cursor position on leave; they
   must not jump back to the card center before disappearing.
 - Third-party/network marks are monochrome and optically normalized by visual
@@ -167,23 +170,25 @@ Commercial relationship wording still requires confirmation before launch.
 ## Current page architecture
 
 1. Bridge-inspired full-width fixed header
-2. Hero with shallow masked mesh shader and a half-height, bottom-faded Jazari app image
-3. Revealing editorial capability ledger using the supplied Jazari icon assets
+2. Hero with shallow masked mesh shader and the supplied, bottom-faded Jazari
+   main-app screen using responsive AVIF/WebP sources
+3. Revealing editorial capability ledger using the supplied Jazari icon assets,
+   including the live USD-account claim and dedicated Yields icon
 4. Interactive How It Works with Receive, Send, and Yields scenarios; each
    scenario contains three steps and one upright phone at a time
 5. FX/review experience integrated inside How It Works
 6. Static audience/use-case stories
 7. Compact horizontal Coming soon roadmap with contained product artwork:
-   - USD account
    - Visa card
-   - Expanded payout corridors
-   - Higher-yield strategies
+   - Additional payout countries
+   - Higher-return Yields
    - Remit Now Pay Later
 8. Homepage Blog preview with the four latest guides and dedicated corridor imagery
 9. Partner preview linking to the complete partners and networks page
 10. FAQ
-11. Legal/product footer with official iOS and Android store badges, social
-    links, and both UAE and US entities
+11. Compact legal/product footer with Product, Explore, Legal, and Support
+    groups; official iOS and Android store badges; social links; and both UAE
+    and US entities
 
 ## Component board
 
@@ -208,10 +213,11 @@ content is intentionally consolidated.
 - Adds a translucent blurred background after scrolling; no persistent hairline.
 - Desktop navigation links are deliberately larger than supporting UI copy.
 - Mobile uses Lucide-style burger and close icons. The open menu covers the
-  viewport. It is split into Product and Company groups, followed by a
-  Download App action with X, Instagram, and Facebook opposite it. Terms &
-  Conditions and Privacy Policy sit at the very bottom. Cookie Preferences is
-  not shown in the mobile menu.
+  viewport. It is split into two-column Product and Company groups. The
+  Download App action and X, Instagram, and Facebook icons are anchored near
+  the bottom without a separator above them. Terms & Conditions and Privacy
+  Policy sit in the final bottom row. Cookie Preferences is not shown in the
+  mobile menu.
 - There is no public visual switcher. Every route uses the fixed Jazari Lime
   color system and the fixed Beam hero field.
 
@@ -236,7 +242,10 @@ localStorage preferences, or a header swatch.
 - Arrow, Home, and End keys change scenarios and steps.
 - All nine source screenshots use one equal-ratio local asset system, but only
   the active screenshot is mounted. Mobile assets are compressed and decoded
-  asynchronously to stay below iOS Safari bitmap-memory limits.
+  asynchronously to stay below iOS Safari bitmap-memory limits. The first
+  Receive screen uses the current main-app artwork with dedicated 320px and
+  520px responsive variants, and its live USD-account step has no Coming soon
+  badge.
 - One upright, equal-ratio local screenshot is shown at a time.
 - The scenario tabs form one quiet segmented control. Step tabs remain visually
   aligned with the phone stage at desktop and collapse into a compact mobile flow.
@@ -255,8 +264,9 @@ localStorage preferences, or a header swatch.
 ### Capability ledger
 
 - Rows are static: no entrance reveal and no hover surface effect.
-- The USD-account claim is omitted here because that product remains on the
-  roadmap.
+- The first row presents direct payments to a personal USD account as live and
+  states `Available in 190+ countries.` The local-payout row exposes the
+  `Receiving countries` modal entry point.
 - No liquid-metal canvas, cursor distortion, or decorative edge sweep is used.
 
 ### 3D card
@@ -288,7 +298,6 @@ localStorage preferences, or a header swatch.
 - `/blog/compare-transfer-costs`
 - `/blog/verify-recipient-details`
 - `/blog/digital-dollars-bank-payouts`
-- `/plan`
 
 The homepage shows the four latest guides. The Blog index shows all seven.
 Mexico, Brazil, Colombia, and Europe use dedicated route imagery on the
@@ -296,14 +305,30 @@ homepage, Blog index, and article pages. Their content follows the supplied
 briefs: SPEI/CLABE, Pix, Bre-B llave, and SEPA/IBAN respectively. Shared article
 rendering lives in `app/blog/GuideArticle.tsx`.
 
+The homepage Blog section and `/blog/` index share this description:
+`Tips and guides to help you get the most from Jazari One. Something missing?
+Tell us what you'd like to see`, with the final sentence linked to
+`hello@jazari.xyz`.
+
+Primary standalone product and support routes are `/plan/` (Pricing),
+`/yields/`, `/usd-account/`, `/roadmap/`, `/partners/`, `/about/`, and
+`/help/`. The USD account is a live product and must not be restored to the
+Coming soon roadmap.
+
 ## Provider and network grid
 
-The homepage previews four partners:
+The homepage and About page preview four partners:
 
 - Bridge
 - Privy
 - Gauntlet
 - Lido
+
+The dedicated partners page additionally includes ComplyAdvantage for
+transaction monitoring and Sumsub for KYC and identity verification. Its
+second directory is titled `Supported networks`; USDT and USDC are described
+as digital dollars pegged 1:1 with USD and issued by Tether and Circle,
+respectively.
 
 The dedicated partners page also includes the supported asset and network
 reference grid.
@@ -316,7 +341,14 @@ weight inside one fixed logo field; do not restore the former tabbed explorer.
 
 - Brand: `public/images/brand/jazari-one-logo.svg`
 - Phone frame: `public/images/iphone-12-pro-graphite.webp`
-- Homepage hero app image: `public/images/screens/j-one-app-main.png`
+- Homepage hero app image: `public/images/screens/j-one-app-main.png`, with
+  360px, 720px, and 1080px AVIF/WebP derivatives
+- First How It Works Receive screen: `public/images/how-to/how-to-receive-01.png`,
+  with 320px and 520px AVIF/WebP derivatives of the current main-app artwork
+- Yields capability icon: `public/images/features/yields-icon.png`
+- Lido Yields wordmark: `public/images/rails/lido-white.svg`
+- USD account flag: `public/images/roadmap/usa-flag.png`, with responsive
+  AVIF/WebP derivatives
 - Hero-lab video: `public/videos/jazari-app.mp4`
 - Screens:
   - `public/images/screens/home.webp`
@@ -357,6 +389,10 @@ Key files:
 - `app/home/SiteHeader.tsx` — shared homepage, Blog, and article navigation
 - `app/home/SiteFooter.tsx` — shared legal, store, and brand footer
 - `app/pricing/PricingPage.tsx` — no-tier public pricing page
+- `app/yields/YieldsPage.tsx` — Gauntlet and Lido Yields options and risk FAQ
+- `app/usd-account/UsdAccountPage.tsx` — live USD account product page
+- `app/partners/PartnersPage.tsx` — service-partner and supported-network grids
+- `app/help/page.tsx` — support contact page
 - `app/home/data.ts` — fixed visual profile, currencies, and section content
 - `app/home/*.tsx` — one focused component per homepage section
 - `app/globals.css` — ordered stylesheet import chain
@@ -459,8 +495,8 @@ Default local URL: `http://localhost:3000`
   carousel controlled by round previous/next buttons. Cards use restrained,
   contained artwork where available and never allow art to overlap copy. It
   has no timeline line or phase prefix. The current card naming is
-  `USD account`, `Visa card`, `Expanded payout corridors`,
-  `Higher-yield strategies`, and `Remit Now Pay Later`.
+  `Visa card`, `Additional payout countries`, `Higher-return Yields`, and
+  `Remit Now Pay Later`. USD account is live and is not a roadmap card.
   The homepage carousel includes a `View All` entry point to `/roadmap/`,
   which presents every milestone in a compact responsive grid.
 - The virtual card is code-generated with front, back, and four visible edge
@@ -474,9 +510,11 @@ Default local URL: `http://localhost:3000`
   compact, and icon-free.
 - The homepage headline is `Use dollars. Anywhere.` and the supporting line is
   `Hold them. Send them. Grow them.`
-- The benefit list contains four concise claims: hold in dollars, send to 30+
-  countries in local currency, earn on unused dollars, and no transfer or
-  hidden fees. The four desktop items share one centered four-column row.
+- The benefit list contains four concise claims: direct payments to a USD
+  account available in 190+ countries, send to 30+ countries in local
+  currency, earn up to 7% APY with Yields, and no transfer or hidden fees. The
+  four desktop items share one centered four-column row. The Yields item uses
+  the supplied sprout icon rather than the former plus icon.
 - The FAQ belongs immediately after the “Your dollars should move with you”
   conversion section.
 - The provider/network presentation is a balanced five-column desktop grid,
@@ -487,6 +525,8 @@ Default local URL: `http://localhost:3000`
   subsidiary line, while Gauntlet and Base use mark-only artwork.
 - Blog index and every article use the same header and footer components as the
   homepage. The homepage Blog chapter shows “All Articles” beside its heading.
+  The homepage and Blog index repeat the approved tips-and-guides description
+  with a mailto link for suggested topics.
   The Mexico preview and article use the local `mexico-transfer.webp` editorial
   image with no tint overlay.
 - The Blog index headline follows the same display scale as Pricing. Homepage
@@ -496,7 +536,9 @@ Default local URL: `http://localhost:3000`
   pages use visible breadcrumbs, one left-aligned reading column, no “At a
   glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
 - Footer copy uses Inter and the official CDN-supplied Apple and Google badge
-  artwork. It uses a normal multi-column layout without separator rules. The
+  artwork. It uses a tight multi-column layout without separator rules. The
+  Support group contains FAQ, Help, and the intentionally supplied footer
+  address `hello@jazary.xyz`; the Help page uses `hello@jazari.xyz`. The
   parent entity address, FinCEN registration, FZCO address, and subsidiary line
   stack in that order, with each entity and address composed as one inline
   sentence. A larger break separates those lines from the compact four-item
@@ -520,24 +562,33 @@ Default local URL: `http://localhost:3000`
   loads direct GA4 only after an explicit grant. The GA measurement ID is
   supplied at build time and the consent logic never sets a cookie domain.
 - Pricing has no tiers. It is one combined surface ordered `Money movement`,
-  `Accounts`, then `Cards`; section boundaries are established through spacing,
+  `Account`, then `Yields`; section boundaries are established through spacing,
   not full-width rules, while row separators remain short, inset, and faint.
-  Group headings are compact Inter labels with no explanatory subtitles. It lists no foreign exchange,
-  stablecoins at a $1 network fee, local payout with no hidden FX margin and no
-  transfer fee, and USD/GBP/EUR accounts plus the Visa virtual card as coming
-  soon.
-- `/yields/` explains variable onchain yield and the current Gauntlet USD Alpha
-  strategy. The displayed `4.66%` is an illustrative, variable APY supplied by
-  Jazari, not a guaranteed quote. Risk information lives in the expandable
-  `How yield works` answers rather than a duplicated standalone risk section.
-  The page ends with `Ready to open a yield?` and a `Download App` action.
+  The description is `Preview pricing. Applicable fees are always shown at
+  confirmation.` Bank payouts show `Free · FX Rate`; Gauntlet USD Alpha is
+  `Free`; and `Deposit and withdrawal` shows `~$0.01*` with a footnote that the
+  exact network cost varies by value and is typically only a few cents.
+- `/yields/` explains variable onchain yield and presents two independently
+  managed options: Gauntlet USD Alpha at `4.66% APY` and Lido EarnUSD at `7%
+  APY`. Both cards use the simple `APY` label, with no `Variable APY` label or
+  Jazari illustrative-rate note. Lido uses the supplied white logotype and
+  links to `https://stake.lido.fi/earn/usd/deposit`. Risk information lives in
+  the expandable `How Yields work` answers rather than a duplicated standalone
+  risk section. The page ends with `Ready to open Yields?` and a `Download App`
+  action.
+- `/usd-account/` uses the shared internal-page hero scale and rhythm. Its
+  description combines the personal-account, licensed US bank partner, and
+  ACH/FedNow/domestic-wire/SWIFT copy. A Pricing-style `What's included` table
+  sits before the Download App action, while the transparent flag occupies a
+  separate column and fades at the bottom. Do not reintroduce `Available now`
+  or `Receive in dollars` labels.
 - Visual styling is deterministic: `data-theme="jazari"` and
   `data-shader="beam"` are fixed at the root and on the homepage composition.
 - The legal documents use a named vertical `Contents` sidebar on desktop with
   the document body on its right. On narrow layouts the same named links wrap
   above the document. Never replace the names with an unexplained numbered
   horizontal rail.
-- Pricing, Yields, Roadmap, and Blog share one internal-page hero system:
+- Pricing, Yields, USD account, Roadmap, and Blog share one internal-page hero system:
   identical container width, top rhythm, display scale, and description style.
   Their functional cards use neutral charcoal surfaces rather than
   theme-tinted green panels.
@@ -584,6 +635,8 @@ Default local URL: `http://localhost:3000`
   https://www.unicorn.studio/
 - Gauntlet USD Alpha strategy and risk reference:
   https://www.gauntlet.xyz/gauntlet-strategies/gtusda
+- Lido EarnUSD entry point:
+  https://stake.lido.fi/earn/usd/deposit
 
 ## Hero Lab (internal)
 
