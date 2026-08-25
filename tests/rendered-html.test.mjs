@@ -30,8 +30,8 @@ test("server-renders the Jazari One landing page", async () => {
   assert.doesNotMatch(html, /What do you want to do\?/);
   assert.doesNotMatch(html, /One balance\. Three ways to move\./);
   assert.match(html, /<h3>Receive<\/h3>/);
+  assert.match(html, /<h3>Earn<\/h3>/);
   assert.match(html, /<h3>Send<\/h3>/);
-  assert.match(html, /<h3>Meet Yields<\/h3>/);
   assert.match(html, /Explore receiving/);
   assert.match(html, /Check rates &amp; destinations/);
   assert.match(html, /Explore Yields/);
@@ -43,8 +43,8 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /yields-wheat\.png/);
   assert.match(html, />Product<\/summary>/);
   assert.match(html, /<strong>Receive<\/strong><small>Receive money into your own USD account and stablecoin wallet<\/small>/);
+  assert.match(html, /<strong>Earn<\/strong><small>Earn up to 7% APY on your balance<\/small>/);
   assert.match(html, /<strong>Send<\/strong><small>Send money to stablecoin wallets and to local bank accounts in 30\+ countries<\/small>/);
-  assert.match(html, /<strong>Yields<\/strong><small>Earn up to 7% APY on your balance<\/small>/);
   const productMenu = html.slice(html.indexOf('<div class="nav-dropdown-menu">'), html.indexOf('</div></details>'));
   assert.equal((productMenu.match(/class="nav-product-entry"/g) ?? []).length, 3);
   assert.doesNotMatch(productMenu, /USD account<\/a>|Digital dollars<\/a>|Rates &amp; destinations<\/a>/);

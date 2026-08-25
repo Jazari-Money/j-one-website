@@ -236,12 +236,14 @@ test("keeps the core interactions working", async ({ page }) => {
   const productEntries = personalMenu.locator(".nav-dropdown-menu a");
   await expect(productEntries).toHaveCount(3);
   await expect(productEntries.nth(0)).toContainText("ReceiveReceive money into your own USD account and stablecoin wallet");
-  await expect(productEntries.nth(1)).toContainText("SendSend money to stablecoin wallets and to local bank accounts in 30+ countries");
-  await expect(productEntries.nth(2)).toContainText("YieldsEarn up to 7% APY on your balance");
-  await productEntries.nth(1).hover();
+  await expect(productEntries.nth(1)).toContainText("EarnEarn up to 7% APY on your balance");
+  await expect(productEntries.nth(2)).toContainText("SendSend money to stablecoin wallets and to local bank accounts in 30+ countries");
+  await productEntries.nth(2).hover();
   await page.waitForTimeout(220);
   await expect(personalMenu).toHaveAttribute("open", "");
-  await expect(productEntries.nth(1)).toBeVisible();
+  await expect(productEntries.nth(2)).toBeVisible();
+
+  await expect(page.locator(".journey-card h3")).toHaveText(["Receive", "Earn", "Send"]);
 
   const journeyTitleMetrics = await page.locator(".journey-card h3").evaluateAll((titles) =>
     titles.map((title) => {
@@ -274,8 +276,11 @@ test("keeps the core interactions working", async ({ page }) => {
     width: node.getBoundingClientRect().width,
     height: node.getBoundingClientRect().height,
   }));
-  expect(journeyArtSize.width).toBeLessThanOrEqual(94);
-  expect(journeyArtSize.height).toBeLessThanOrEqual(94);
+  expect(journeyArtSize.width).toBeGreaterThanOrEqual(109);
+  expect(journeyArtSize.width).toBeLessThanOrEqual(111);
+  expect(journeyArtSize.height).toBeGreaterThanOrEqual(109);
+  expect(journeyArtSize.height).toBeLessThanOrEqual(111);
+  await expect(page.locator(".journey-card").first()).toHaveCSS("height", "500px");
   const journeyArtOffset = await page.locator(".journey-card").first().evaluate((card) => {
     const art = card.querySelector(".journey-art");
     if (!(art instanceof HTMLElement)) return null;
@@ -558,7 +563,7 @@ test("explains yields and links into the app flow", async ({ page }) => {
 test("keeps receiving on one product page and redirects the old USD account route", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Receive", exact: true })).toBeVisible();
-  await expect(page.locator(".journey-card").nth(2).locator("img")).toHaveAttribute(
+  await expect(page.locator(".journey-card").nth(1).locator("img")).toHaveAttribute(
     "src",
     /yields-wheat\.png$/,
   );

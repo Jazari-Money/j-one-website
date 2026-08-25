@@ -18,6 +18,16 @@ const journeys = [
     alt: "Dollar symbol",
   },
   {
+    id: "earn",
+    title: "Earn",
+    copy: "Choose how much to put into Yields, earn a variable rate, and return funds to your balance whenever you need them.",
+    action: "Explore Yields",
+    href: "/yields/",
+    actionHref: "/yields/",
+    image: "/images/journeys/yields-wheat.png",
+    alt: "Wheat containing coins",
+  },
+  {
     id: "send-money",
     title: "Send",
     copy: "Send to bank accounts in 30+ countries or digital wallets worldwide, with the rate shown before you confirm.",
@@ -27,21 +37,11 @@ const journeys = [
     image: "/images/journeys/send-globe.png",
     alt: "Earth",
   },
-  {
-    id: "earn",
-    title: "Meet Yields",
-    copy: "Choose how much to put into Yields, earn a variable rate, and return funds to your balance whenever you need them.",
-    action: "Explore Yields",
-    href: "/yields/",
-    actionHref: "/yields/",
-    image: "/images/journeys/yields-wheat.png",
-    alt: "Wheat containing coins",
-  },
 ] as const;
 
 export function JourneyCards() {
   return (
-    <section className="journeys section" id="product" aria-label="Receive, send, and Yields">
+    <section className="journeys section" id="product" aria-label="Receive, Earn, and Send">
       <div className="journey-grid">
         {journeys.map((journey) => (
           <article
