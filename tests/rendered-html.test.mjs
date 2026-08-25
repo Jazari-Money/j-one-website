@@ -23,13 +23,13 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /<title>Jazari One — Get paid\. Earn\. Send worldwide\.<\/title>/i);
   assert.match(html, /Get paid\. Earn\./);
   assert.match(html, /Send worldwide\./);
-  assert.match(html, /Receive money by bank transfer or digital dollars, earn with Yields, and send across borders in minutes\./);
+  assert.match(html, /Your own USD account\. Up to 7% APY with Yields\. Bank transfers to 30\+ countries\./);
   assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
   assert.doesNotMatch(html, /What do you want to do\?/);
   assert.doesNotMatch(html, /One balance\. Three ways to move\./);
-  assert.match(html, /<h3>Receive money<\/h3>/);
-  assert.match(html, /<h3>Send money<\/h3>/);
+  assert.match(html, /<h3>Receive<\/h3>/);
+  assert.match(html, /<h3>Send<\/h3>/);
   assert.match(html, /<h3>Meet Yields<\/h3>/);
   assert.match(html, /Explore receiving/);
   assert.match(html, /Check rates &amp; destinations/);
@@ -41,9 +41,9 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /send-globe\.png/);
   assert.match(html, /yields-wheat\.png/);
   assert.match(html, />Product<\/summary>/);
-  assert.match(html, /<strong>Receive money<\/strong><small>US account, USDC and USDT<\/small>/);
-  assert.match(html, /<strong>Send money<\/strong><small>Bank accounts, wallets, rates and destinations<\/small>/);
-  assert.match(html, /<strong>Meet Yields<\/strong><small>Variable returns on the dollars you choose<\/small>/);
+  assert.match(html, /<strong>Receive<\/strong><small>Receive money into your own USD account and stablecoin wallet<\/small>/);
+  assert.match(html, /<strong>Send<\/strong><small>Send money to stablecoin wallets and to local bank accounts in 30\+ countries<\/small>/);
+  assert.match(html, /<strong>Yields<\/strong><small>Earn up to 7% APY on your balance<\/small>/);
   const productMenu = html.slice(html.indexOf('<div class="nav-dropdown-menu">'), html.indexOf('</div></details>'));
   assert.equal((productMenu.match(/class="nav-product-entry"/g) ?? []).length, 3);
   assert.doesNotMatch(productMenu, /USD account<\/a>|Digital dollars<\/a>|Rates &amp; destinations<\/a>/);
@@ -91,8 +91,8 @@ test("server-renders the Jazari One landing page", async () => {
     html,
     /Private beta · No commitment · Availability varies by country/,
   );
-  assert.match(html, /building every day<\/h2>/);
-  assert.doesNotMatch(html, /building every day\.<\/h2>/);
+  assert.match(html, /For your work and the life you(?:<!--.*?-->)?&#x27;re building<\/h2>/);
+  assert.doesNotMatch(html, /building every day/);
   assert.doesNotMatch(html, /audience-index/);
   assert.match(html, /analytics_storage:'denied'/);
   assert.doesNotMatch(html, /https:\/\/www\.googletagmanager\.com\/gtag\/js/);
@@ -447,7 +447,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(packageJson, /"glimm"/);
   assert.match(css, /filter:\s*grayscale\(1\)\s*brightness\(0\)\s*invert\(1\)/);
   assert.match(css, /\.hero-device-image/);
-  assert.match(css, /rgba\(0, 0, 0, 0\.8\) 72%/);
+  assert.match(css, /rgba\(0, 0, 0, 0\.8\) 82%/);
 });
 
 test("ships local provider marks and product artwork", async () => {

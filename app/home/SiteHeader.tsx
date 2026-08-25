@@ -76,7 +76,23 @@ export function SiteHeader({
         </a>
 
         <div className={`nav-menu ${mobileOpen ? "is-open" : ""}`}>
-          <details ref={productMenuRef} className="nav-dropdown nav-desktop-only" open={mobileOpen || productOpen}>
+          <details
+            ref={productMenuRef}
+            className="nav-dropdown nav-desktop-only"
+            open={mobileOpen || productOpen}
+            onPointerEnter={() => {
+              if (!window.matchMedia("(max-width: 900px)").matches) setProductOpen(true);
+            }}
+            onPointerLeave={() => {
+              if (!window.matchMedia("(max-width: 900px)").matches) setProductOpen(false);
+            }}
+            onFocus={() => {
+              if (!window.matchMedia("(max-width: 900px)").matches) setProductOpen(true);
+            }}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node)) setProductOpen(false);
+            }}
+          >
             <summary
               onClick={(event) => {
                 event.preventDefault();
@@ -90,16 +106,16 @@ export function SiteHeader({
             <span className="nav-mobile-section-title">Product</span>
             <div className="nav-dropdown-menu">
               <a className="nav-product-entry" href={withBasePath("/receive/")} onClick={closeMobile}>
-                <strong>Receive money</strong>
-                <small>US account, USDC and USDT</small>
+                <strong>Receive</strong>
+                <small>Receive money into your own USD account and stablecoin wallet</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
-                <strong>Send money</strong>
-                <small>Bank accounts, wallets, rates and destinations</small>
+                <strong>Send</strong>
+                <small>Send money to stablecoin wallets and to local bank accounts in 30+ countries</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
-                <strong>Meet Yields</strong>
-                <small>Variable returns on the dollars you choose</small>
+                <strong>Yields</strong>
+                <small>Earn up to 7% APY on your balance</small>
               </a>
             </div>
           </details>
@@ -110,13 +126,13 @@ export function SiteHeader({
             <section className="nav-mobile-group" aria-labelledby="mobile-product-links">
               <strong id="mobile-product-links">Product</strong>
               <a className="nav-product-entry" href={withBasePath("/receive/")} onClick={closeMobile}>
-                <span>Receive money</span><small>US account, USDC and USDT</small>
+                <span>Receive</span><small>Receive money into your own USD account and stablecoin wallet</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
-                <span>Send money</span><small>Bank accounts, wallets, rates and destinations</small>
+                <span>Send</span><small>Send money to stablecoin wallets and to local bank accounts in 30+ countries</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
-                <span>Meet Yields</span><small>Variable returns on the dollars you choose</small>
+                <span>Yields</span><small>Earn up to 7% APY on your balance</small>
               </a>
             </section>
             <section className="nav-mobile-group" aria-labelledby="mobile-company-links">

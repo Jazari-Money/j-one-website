@@ -221,22 +221,23 @@ test("keeps the core interactions working", async ({ page }) => {
 
   const hero = page.getByRole("heading", { name: /Get paid\. Earn\.\s*Send worldwide\./ });
   await expect(hero).toBeVisible();
-  await expect(page.getByText(/Receive money by bank transfer or digital dollars/)).toBeVisible();
+  await expect(page.getByText(/Your own USD account\. Up to 7% APY with Yields/)).toBeVisible();
   await expect(page.locator(".journey-card")).toHaveCount(3);
   await expect(page.locator(".journey-kicker")).toHaveCount(0);
   await expect(page.getByText("What do you want to do?", { exact: true })).toHaveCount(0);
-  await expect(page.getByRole("heading", { name: "Receive money", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Receive", exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Explore receiving" })).toHaveAttribute("href", /\/receive\/?$/);
   await expect(page.getByRole("link", { name: "Check rates & destinations" })).toHaveAttribute("href", /\/send\/#rates$/);
   await expect(page.getByRole("link", { name: "Explore Yields" })).toHaveAttribute("href", /\/yields\/?$/);
 
   const personalMenu = page.locator(".nav-dropdown");
-  await personalMenu.locator("summary").click();
+  await personalMenu.locator("summary").hover();
+  await expect(personalMenu).toHaveAttribute("open", "");
   const productEntries = personalMenu.locator(".nav-dropdown-menu a");
   await expect(productEntries).toHaveCount(3);
-  await expect(productEntries.nth(0)).toContainText("Receive moneyUS account, USDC and USDT");
-  await expect(productEntries.nth(1)).toContainText("Send moneyBank accounts, wallets, rates and destinations");
-  await expect(productEntries.nth(2)).toContainText("Meet YieldsVariable returns on the dollars you choose");
+  await expect(productEntries.nth(0)).toContainText("ReceiveReceive money into your own USD account and stablecoin wallet");
+  await expect(productEntries.nth(1)).toContainText("SendSend money to stablecoin wallets and to local bank accounts in 30+ countries");
+  await expect(productEntries.nth(2)).toContainText("YieldsEarn up to 7% APY on your balance");
 
   const journeyTitleMetrics = await page.locator(".journey-card h3").evaluateAll((titles) =>
     titles.map((title) => {
@@ -261,6 +262,17 @@ test("keeps the core interactions working", async ({ page }) => {
     (node) => Number.parseFloat(getComputedStyle(node).fontSize),
   );
   expect(desktopDescriptionSize).toBe(22);
+  const heroProductHeight = await page.locator(".hero-product").evaluate(
+    (node) => node.getBoundingClientRect().height,
+  );
+  expect(heroProductHeight).toBeGreaterThanOrEqual(450);
+  const journeyArtSize = await page.locator(".journey-art").first().evaluate((node) => ({
+    width: node.getBoundingClientRect().width,
+    height: node.getBoundingClientRect().height,
+  }));
+  expect(journeyArtSize.width).toBeLessThanOrEqual(94);
+  expect(journeyArtSize.height).toBeLessThanOrEqual(94);
+  await expect(page.locator(".journey-card").first()).toHaveCSS("transform", "none");
 
   await page.goto("/send/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Send money", exact: true })).toBeVisible();
@@ -531,7 +543,7 @@ test("explains yields and links into the app flow", async ({ page }) => {
 
 test("keeps receiving on one product page and redirects the old USD account route", async ({ page }) => {
   await page.goto("/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Receive money", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Receive", exact: true })).toBeVisible();
   await expect(page.locator(".journey-card").nth(2).locator("img")).toHaveAttribute(
     "src",
     /yields-wheat\.png$/,
@@ -726,7 +738,7 @@ test("opens a full-height mobile navigation with download and social actions", a
   await menu.click({ position: { x: 360, y: 780 } });
   await expect(menu.locator("#mobile-product-links")).toBeVisible();
   await expect(menu.getByText("Company", { exact: true })).toBeVisible();
-  await expect(menu.getByRole("link", { name: /Send money.*Bank accounts, wallets/ })).toBeVisible();
+  await expect(menu.getByRole("link", { name: /Send.*Send money to stablecoin wallets/ })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Partners", exact: true })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Terms & Conditions" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Privacy Policy" })).toBeVisible();
