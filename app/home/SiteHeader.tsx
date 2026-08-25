@@ -125,13 +125,13 @@ export function SiteHeader({
                 <strong>Receive</strong>
                 <small>Receive money into your own USD account and stablecoin wallet</small>
               </a>
+              <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
+                <strong>Earn</strong>
+                <small>Earn up to 7% APY on your balance</small>
+              </a>
               <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
                 <strong>Send</strong>
                 <small>Send money to stablecoin wallets and to local bank accounts in 30+ countries</small>
-              </a>
-              <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
-                <strong>Yields</strong>
-                <small>Earn up to 7% APY on your balance</small>
               </a>
             </div>
           </details>
@@ -144,11 +144,11 @@ export function SiteHeader({
               <a className="nav-product-entry" href={withBasePath("/receive/")} onClick={closeMobile}>
                 <span>Receive</span><small>Receive money into your own USD account and stablecoin wallet</small>
               </a>
+              <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
+                <span>Earn</span><small>Earn up to 7% APY on your balance</small>
+              </a>
               <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
                 <span>Send</span><small>Send money to stablecoin wallets and to local bank accounts in 30+ countries</small>
-              </a>
-              <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
-                <span>Yields</span><small>Earn up to 7% APY on your balance</small>
               </a>
             </section>
             <section className="nav-mobile-group" aria-labelledby="mobile-company-links">
