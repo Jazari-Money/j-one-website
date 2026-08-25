@@ -3,9 +3,11 @@
 /* eslint-disable @next/next/no-img-element -- local provider artwork */
 
 import "../styles/yields-page.css";
+import "../styles/scenario-how.css";
 import { AccordionList } from "../home/AccordionList";
 import { ContainedColorEvent } from "../home/ContainedColorEvent";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
+import { ScenarioWalkthrough } from "../home/ScenarioWalkthrough";
 import { SiteFooter } from "../home/SiteFooter";
 import { resetPointer, trackPointer } from "../home/hooks";
 import { appDownloadUrl, withBasePath } from "../site-paths";
@@ -59,7 +61,7 @@ export function YieldsPage() {
       <InternalSiteHeader />
 
       <header className="yields-hero">
-        <h1>Yields</h1>
+        <h1>Meet Yields</h1>
         <p>
           Put your balance to work through independently managed
           onchain strategies. Rates adjust daily and returns are never guaranteed.
@@ -93,7 +95,7 @@ export function YieldsPage() {
           </a>
         </div>
         <div className="yield-rate">
-          <strong>4.66%</strong>
+          <strong>Variable</strong>
           <span>APY</span>
         </div>
         <dl className="yield-facts">
@@ -142,7 +144,7 @@ export function YieldsPage() {
           </a>
         </div>
         <div className="yield-rate">
-          <strong>7%</strong>
+          <strong>Variable</strong>
           <span>APY</span>
         </div>
         <dl className="yield-facts">
@@ -160,6 +162,11 @@ export function YieldsPage() {
           </div>
         </dl>
       </section>
+
+      <ScenarioWalkthrough
+        scenarioKey="yields"
+        description="Review a strategy, choose how much to add, and track earnings from the same app where you hold your balance."
+      />
 
       <section className="yield-questions" aria-labelledby="yield-questions-title">
         <header>

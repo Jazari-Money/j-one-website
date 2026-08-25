@@ -124,7 +124,7 @@
 .yield-rate strong {
   color: var(--accent);
   font-family: var(--serif);
-  font-size: clamp(96px, 11vw, 156px);
+  font-size: clamp(70px, 7.2vw, 104px);
   font-weight: 400;
   letter-spacing: -0.2px;
   line-height: 0.78;

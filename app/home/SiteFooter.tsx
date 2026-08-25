@@ -27,11 +27,10 @@ export function SiteFooter() {
         <nav className="footer-navigation" aria-label="Footer navigation">
           <div>
             <strong>Product</strong>
-            <Link href="/#how">How it works</Link>
-            <Link href="/usd-account">USD account</Link>
-            <Link href="/#rates">Rates</Link>
+            <Link href="/receive">Receive money</Link>
+            <Link href="/send">Send money</Link>
+            <Link href="/yields">Meet Yields</Link>
             <Link href="/plan">Pricing</Link>
-            <Link href="/yields">Yields</Link>
             <Link href="/roadmap">Coming soon</Link>
           </div>
           <div>

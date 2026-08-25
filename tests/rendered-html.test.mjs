@@ -20,35 +20,37 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Jazari One — Use digital dollars\. Anywhere\.<\/title>/i);
-  assert.match(html, /Use digital dollars\./);
-  assert.match(html, /Anywhere\./);
-  assert.match(html, /Hold them\. Send them\. Grow them\./);
+  assert.match(html, /<title>Jazari One — Get paid\. Earn\. Send worldwide\.<\/title>/i);
+  assert.match(html, /Get paid\. Earn\./);
+  assert.match(html, /Send worldwide\./);
+  assert.match(html, /Receive money by bank transfer or digital dollars, earn with Yields, and send across borders in minutes\./);
   assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
-  assert.match(html, /Direct payments to your USD account\. Available in 190\+ countries\./);
-  assert.match(html, /Send to 30\+ countries in local currency\./);
-  assert.match(html, /Earn up to 7% APY with Yields/);
-  assert.match(html, /yields-icon\.png/);
-  assert.match(html, /No transfer fees\. No hidden fees\./);
+  assert.doesNotMatch(html, /What do you want to do\?/);
+  assert.doesNotMatch(html, /One balance\. Three ways to move\./);
+  assert.match(html, /<h3>Receive money<\/h3>/);
+  assert.match(html, /<h3>Send money<\/h3>/);
+  assert.match(html, /<h3>Meet Yields<\/h3>/);
+  assert.match(html, /Explore receiving/);
+  assert.match(html, /Check rates &amp; destinations/);
+  assert.match(html, /Explore Yields/);
+  assert.match(html, /href="\/j-one-website\/receive\/?"/);
+  assert.match(html, /href="\/j-one-website\/send\/?"/);
+  assert.match(html, /href="\/j-one-website\/send\/#rates"/);
+  assert.match(html, /href="\/j-one-website\/yields\/?"/);
+  assert.match(html, /send-globe\.png/);
+  assert.match(html, /yields-wheat\.png/);
   assert.match(html, />Product<\/summary>/);
-  assert.match(html, /How it works/);
-  assert.match(html, /Select Receive on the home screen/);
-  assert.match(html, /Preview the amount at the current rate/);
-  assert.match(html, /Calculate your rate/);
-  assert.match(html, /Preview the amount at the current rate before you confirm\./);
-  assert.match(html, /Receiving countries/);
-  assert.doesNotMatch(html, /View receiving countries/);
-  assert.match(html, /All receiving countries/);
-  assert.match(html, /30(?:<!-- -->)? destinations today\. More countries coming soon\./);
+  assert.match(html, /<strong>Receive money<\/strong><small>US account, USDC and USDT<\/small>/);
+  assert.match(html, /<strong>Send money<\/strong><small>Bank accounts, wallets, rates and destinations<\/small>/);
+  assert.match(html, /<strong>Meet Yields<\/strong><small>Variable returns on the dollars you choose<\/small>/);
+  const productMenu = html.slice(html.indexOf('<div class="nav-dropdown-menu">'), html.indexOf('</div></details>'));
+  assert.equal((productMenu.match(/class="nav-product-entry"/g) ?? []).length, 3);
+  assert.doesNotMatch(productMenu, /USD account<\/a>|Digital dollars<\/a>|Rates &amp; destinations<\/a>/);
+  assert.doesNotMatch(html, /Select Receive on the home screen/);
+  assert.doesNotMatch(html, /Calculate your rate/);
   assert.match(html, /Coming soon/);
-  assert.match(html, /Andorra/);
-  assert.match(html, /United Kingdom/);
-  assert.match(html, /class="numeric">\$1<\/b>/);
-  assert.match(html, /class="numeric">—<\/b><small class="numeric">MXN/);
-  assert.match(html, /Estimated recipient amount/);
-  assert.match(html, /Transaction fee/);
-  assert.match(html, />Yields</);
+  assert.match(html, />Meet Yields</);
   assert.match(html, /Coming soon/);
   assert.match(html, /USD account/);
   assert.match(html, /Additional payout countries/);
@@ -56,15 +58,17 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /More Yields options, with higher APY/);
   assert.match(html, /Choose a loan amount and repayment plan at confirmation/);
   assert.match(html, /Visa card/);
-  assert.match(html, /Nigeria/);
   assert.match(html, /Want to keep your salary in dollars\. Not forced to convert on arrival\./);
   assert.match(html, /Multiple clients, multiple countries/);
   assert.match(html, /Income doesn&#x27;t arrive on time/);
-  assert.doesNotMatch(html, /usa-flag\.png/);
+  assert.match(html, /dollar-balance\.webp/);
   assert.match(html, /mexico-transfer\.webp/);
   assert.match(html, /brazil\.jpg/);
   assert.match(html, /colombia\.jpg/);
   assert.match(html, /europe\.jpg/);
+  assert.doesNotMatch(html, /How to compare a transfer beyond the headline rate/);
+  assert.doesNotMatch(html, /What to verify before sending money to a new recipient/);
+  assert.doesNotMatch(html, /Digital dollars and bank payouts: what each part does/);
   assert.match(html, /Tips and guides to help you get the most from Jazari One/);
   assert.match(html, /href="mailto:hello@jazari\.xyz"/);
   assert.match(html, /Tell us what you(?:<!--.*?-->)?&#x27;d like to see/);
@@ -82,7 +86,6 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, />Blog</);
   assert.match(html, /Bridge/);
   assert.match(html, /Lido/);
-  assert.match(html, /2–5 min\./);
   assert.doesNotMatch(html, /Hidden FX rate fee/);
   assert.doesNotMatch(
     html,
@@ -120,19 +123,23 @@ test("server-renders the Jazari One landing page", async () => {
 });
 
 test("server-renders product, coming soon, partners, about, and help pages", async () => {
-  const [planResponse, yieldsResponse, usdAccountResponse, roadmapResponse, partnersResponse, aboutResponse, helpResponse] = await Promise.all([
+  const [planResponse, yieldsResponse, receiveResponse, usdAccountResponse, sendResponse, roadmapResponse, partnersResponse, aboutResponse, helpResponse] = await Promise.all([
     render("/plan"),
     render("/yields"),
+    render("/receive"),
     render("/usd-account"),
+    render("/send"),
     render("/roadmap"),
     render("/partners"),
     render("/about"),
     render("/help"),
   ]);
-  const [plan, yields, usdAccount, roadmap, partners, about, help] = await Promise.all([
+  const [plan, yields, receive, usdAccount, send, roadmap, partners, about, help] = await Promise.all([
     planResponse.text(),
     yieldsResponse.text(),
+    receiveResponse.text(),
     usdAccountResponse.text(),
+    sendResponse.text(),
     roadmapResponse.text(),
     partnersResponse.text(),
     aboutResponse.text(),
@@ -157,37 +164,53 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(yields, />Learn more<\/a>/);
   assert.match(yields, /<dt>Funding assets<\/dt><dd>USDC<\/dd>/);
   assert.doesNotMatch(yields, /USDC or USDT|USDC · USDT/);
-  assert.match(yields, /4\.66%/);
+  assert.match(yields, /<strong>Variable<\/strong><span>APY<\/span>/);
   assert.match(yields, /Lido EarnUSD/);
   assert.match(yields, /\/images\/rails\/lido-white\.svg/);
-  assert.match(yields, /<strong>7%<\/strong><span>APY<\/span>/);
-  assert.doesNotMatch(yields, /Variable APY/);
+  assert.equal((yields.match(/<strong>Variable<\/strong><span>APY<\/span>/g) ?? []).length, 2);
   assert.match(yields, /https:\/\/stake\.lido\.fi\/earn\/usd\/deposit/);
   assert.match(yields, /Instant or up to 72 hours/);
   assert.doesNotMatch(yields, /Illustrative rate supplied by Jazari/);
-  assert.match(yields, /<h1>Yields<\/h1>/);
+  assert.match(yields, /<h1>Meet Yields<\/h1>/);
   assert.doesNotMatch(yields, /Return and risk move together/);
   assert.match(yields, /What are Yields\?/);
   assert.match(yields, /Where do Yields come from\?/);
   assert.match(yields, /How Yields work/);
+  assert.match(yields, /Review a strategy, choose how much to add/);
+  assert.match(yields, /Open Yields/);
   assert.match(yields, /Ready to open Yields\?/);
 
-  assert.match(usdAccount, /<title>USD account — Jazari One<\/title>/);
-  assert.match(usdAccount, /<h1>USD account<\/h1>/);
-  assert.doesNotMatch(usdAccount, /Available now/);
-  assert.doesNotMatch(usdAccount, /Receive in dollars/);
-  assert.match(usdAccount, /Direct payments to your personal USD account/);
-  assert.match(usdAccount, /licensed US bank partner/);
-  assert.match(usdAccount, /US routing and account number/);
-  assert.match(usdAccount, /ACH, FedNow, domestic wire, and SWIFT/);
-  assert.match(usdAccount, /No US residency required/);
-  assert.match(usdAccount, /What(?:&#x27;|')s included/);
-  assert.match(usdAccount, /alt="United States flag"/);
-  assert.ok(
-    usdAccount.indexOf('class="usd-account-table"') <
-      usdAccount.indexOf('class="realism-button"'),
-  );
-  assert.doesNotMatch(usdAccount, /class="step-status">Coming soon/);
+  assert.match(receive, /<title>Receive money — Jazari One<\/title>/);
+  assert.match(receive, /<h1>Receive money<\/h1>/);
+  assert.match(receive, /A US account\.<br\/>No US address\./);
+  assert.match(receive, /licensed US bank partner/);
+  assert.match(receive, /Eligible users in 190\+ countries/);
+  assert.match(receive, /id="wallet"/);
+  assert.match(receive, /USDC and USDT\.<br\/>Straight to your wallet\./);
+  assert.match(receive, /\/images\/rails\/usdc\.svg/);
+  assert.match(receive, /\/images\/rails\/usdt\.svg/);
+  assert.match(receive, /Ethereum/);
+  assert.match(receive, /TRON/);
+  assert.match(receive, /Solana/);
+  assert.match(receive, /Open Add Funds/);
+  assert.match(receive, /how-to-receive-03\.png/);
+  assert.match(receive, /how-to-receive-02\.png/);
+  assert.doesNotMatch(receive, /Two reasons to receive|Receiving methods|Two ways in\. One balance\.|<h2[^>]*>How it works<\/h2>/);
+
+  assert.match(usdAccount, /NEXT_REDIRECT;replace;\/j-one-website\/receive\/#usd-account;307/);
+  assert.doesNotMatch(usdAccount, /<main class="usd-account-shell">/);
+
+  assert.match(send, /<title>Send money — Jazari One<\/title>/);
+  assert.match(send, /<h1>Send money<\/h1>/);
+  assert.match(send, /30\+ countries/);
+  assert.match(send, /Bank accounts\.<br\/>Local currency\./);
+  assert.match(send, /USDC and USDT\.<br\/>Wallet to wallet\./);
+  assert.match(send, /how-to-send-02\.png/);
+  assert.match(send, /how-to-send-01\.png/);
+  assert.match(send, /Know what arrives before you send/);
+  assert.match(send, /Estimated recipient amount/);
+  assert.match(send, /All receiving countries/);
+  assert.doesNotMatch(send, /<h2[^>]*>How it works<\/h2>|International transfers/);
 
   assert.match(roadmap, /<h1>Coming soon<\/h1>/);
   assert.doesNotMatch(roadmap, /<h2>USD account<\/h2>/);
@@ -307,10 +330,16 @@ test("publishes internal support and product pages in the sitemap", async () => 
     sitemap,
     /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/help<\/loc>/,
   );
+  assert.doesNotMatch(sitemap, /<loc>[^<]*\/usd-account<\/loc>/);
   assert.match(
     sitemap,
-    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/usd-account<\/loc>/,
+    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/receive<\/loc>/,
   );
+  assert.match(
+    sitemap,
+    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/send<\/loc>/,
+  );
+  assert.doesNotMatch(sitemap, /compare-transfer-costs|verify-recipient-details|digital-dollars-bank-payouts/);
 });
 
 test("keeps the restrained interactions and clear content hierarchy in source", async () => {
@@ -358,13 +387,12 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /className="review-fee"/);
   assert.match(page, /className="numeric"/);
   assert.match(page, /title: "Open Yields"/);
-  assert.match(page, /Calculate your rate/);
+  assert.match(page, /Know what arrives before you send/);
   assert.match(page, /Live rate from our payment partner/);
   assert.match(page, /rate-freshness/);
-  assert.match(page, /\/images\/features\/dollar-01\.png/);
-  assert.match(page, /\/images\/features\/planet-02\.png/);
-  assert.match(page, /\/images\/features\/yields-icon\.png/);
-  assert.match(page, /\/images\/features\/zero-04\.png/);
+  assert.match(page, /\/images\/features\/new\/dollar-balance\.webp/);
+  assert.match(page, /\/images\/journeys\/send-globe\.png/);
+  assert.match(page, /\/images\/journeys\/yields-wheat\.png/);
   assert.doesNotMatch(page, /\/images\/features\/new\/send\.webp/);
   assert.match(page, /guides\.slice\(0, 4\)/);
   assert.match(page, /\/images\/stores\/app-store-badge\.avif/);
@@ -387,7 +415,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(page, /playSweep/);
   assert.match(page, /bandTight:\s*40/);
 
-  assert.match(css, /\.benefit-row-inner/);
+  assert.match(css, /\.journey-card/);
   assert.match(css, /\.card-object/);
   assert.match(css, /\.pointer-card::after/);
   assert.match(css, /\.provider-logo img/);
@@ -458,7 +486,7 @@ test("ships local provider marks and product artwork", async () => {
   assert.doesNotMatch(bridge, /data:image|<image\b/i);
 });
 
-test("renders the Blog index and all seven guides", async () => {
+test("renders the Blog index and the four corridor guides", async () => {
   const indexResponse = await render("/blog");
   assert.equal(indexResponse.status, 200);
   const indexHtml = await indexResponse.text();
@@ -466,7 +494,7 @@ test("renders the Blog index and all seven guides", async () => {
   assert.match(indexHtml, /Something missing\?/);
   assert.match(indexHtml, /href="mailto:hello@jazari\.xyz"/);
   assert.match(indexHtml, /Tell us what you(?:<!--.*?-->)?&#x27;d like to see/);
-  assert.equal((indexHtml.match(/Read Article/g) ?? []).length, 7);
+  assert.equal((indexHtml.match(/Read Article/g) ?? []).length, 4);
   assert.match(indexHtml, /mexico-transfer\.webp/);
   assert.doesNotMatch(indexHtml, /min read/i);
   assert.doesNotMatch(indexHtml, /<span>Mexico<\/span>/);
@@ -477,9 +505,6 @@ test("renders the Blog index and all seven guides", async () => {
     ["/blog/send-money-to-brazil", /How to send dollars to Brazil in 3 steps/],
     ["/blog/send-money-to-colombia", /How to send dollars to Colombia in 3 steps/],
     ["/blog/send-money-to-europe", /How to send dollars to Europe in 3 steps/],
-    ["/blog/compare-transfer-costs", /beyond the headline rate/],
-    ["/blog/verify-recipient-details", /before sending money to a new recipient/],
-    ["/blog/digital-dollars-bank-payouts", /what each part does/],
   ];
 
   for (const [path, title] of routes) {

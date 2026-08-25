@@ -89,11 +89,18 @@ export function SiteHeader({
             </summary>
             <span className="nav-mobile-section-title">Product</span>
             <div className="nav-dropdown-menu">
-              <a href={sectionHref("how-receive")} onClick={closeMobile}>Receive</a>
-              <a href={withBasePath("/usd-account/")} onClick={closeMobile}>USD account</a>
-              <a href={sectionHref("how-send")} onClick={closeMobile}>Send</a>
-              <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
-              <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
+              <a className="nav-product-entry" href={withBasePath("/receive/")} onClick={closeMobile}>
+                <strong>Receive money</strong>
+                <small>US account, USDC and USDT</small>
+              </a>
+              <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
+                <strong>Send money</strong>
+                <small>Bank accounts, wallets, rates and destinations</small>
+              </a>
+              <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
+                <strong>Meet Yields</strong>
+                <small>Variable returns on the dollars you choose</small>
+              </a>
             </div>
           </details>
           <a className="nav-desktop-only" href={withBasePath("/plan/")} onClick={closeMobile}>Pricing</a>
@@ -102,18 +109,23 @@ export function SiteHeader({
           <div className="nav-mobile-groups">
             <section className="nav-mobile-group" aria-labelledby="mobile-product-links">
               <strong id="mobile-product-links">Product</strong>
-              <a href={sectionHref("how")} onClick={closeMobile}>How it works</a>
-              <a href={withBasePath("/usd-account/")} onClick={closeMobile}>USD account</a>
-              <a href={withBasePath("/plan/")} onClick={closeMobile}>Pricing</a>
-              <a href={sectionHref("rates")} onClick={closeMobile}>Rates</a>
-              <a href={withBasePath("/yields/")} onClick={closeMobile}>Yields</a>
-              <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Coming soon</a>
+              <a className="nav-product-entry" href={withBasePath("/receive/")} onClick={closeMobile}>
+                <span>Receive money</span><small>US account, USDC and USDT</small>
+              </a>
+              <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
+                <span>Send money</span><small>Bank accounts, wallets, rates and destinations</small>
+              </a>
+              <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
+                <span>Meet Yields</span><small>Variable returns on the dollars you choose</small>
+              </a>
             </section>
             <section className="nav-mobile-group" aria-labelledby="mobile-company-links">
               <strong id="mobile-company-links">Company</strong>
               <a href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
               <a href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
               <a href={withBasePath("/partners/")} onClick={closeMobile}>Partners</a>
+              <a href={withBasePath("/plan/")} onClick={closeMobile}>Pricing</a>
+              <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Coming soon</a>
               <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
             </section>
           </div>

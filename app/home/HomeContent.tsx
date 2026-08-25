@@ -1,11 +1,10 @@
 import { preload } from "react-dom";
 import { withBasePath } from "../site-paths";
 import { AudienceExplorer } from "./AudienceExplorer";
-import { BenefitLedger } from "./BenefitLedger";
 import { Blog } from "./Blog";
 import { Hero } from "./Hero";
 import { HomeShell } from "./HomeShell";
-import { HowItWorks } from "./HowItWorks";
+import { JourneyCards } from "./JourneyCards";
 import { FAQ } from "./FAQ";
 import { NetworkExplorer } from "./NetworkExplorer";
 import { ProductRoadmap } from "./ProductRoadmap";
@@ -30,8 +29,7 @@ export function HomeContent() {
     <HomeShell>
       <SiteHeader />
       <Hero />
-      <BenefitLedger />
-      <HowItWorks />
+      <JourneyCards />
       <AudienceExplorer />
       <ProductRoadmap />
       <Blog />

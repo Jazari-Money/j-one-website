@@ -273,7 +273,8 @@
   padding-top: 18px;
 }
 
-.review-copy h3 {
+.review-copy h3,
+.review-copy h2 {
   width: 100%;
   max-width: 560px;
   margin: 0;

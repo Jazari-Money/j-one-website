@@ -35,7 +35,13 @@
   text-wrap: balance;
 }
 
-.usd-account-hero > p {
+.usd-account-eyebrow {
+  margin: 0 0 18px;
+  color: var(--muted-strong);
+  font-size: 14px;
+}
+
+.usd-account-hero > p:not(.usd-account-eyebrow) {
   max-width: 720px;
   margin-top: 30px;
   color: var(--muted-strong);
@@ -143,7 +149,7 @@
     font-size: 68px;
   }
 
-  .usd-account-hero > p {
+  .usd-account-hero > p:not(.usd-account-eyebrow) {
     font-size: 16px;
   }
 

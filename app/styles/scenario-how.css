@@ -1,0 +1,111 @@
+@import "./how.css";
+
+.scenario-how,
+.rates-section {
+  width: var(--page);
+  margin-inline: auto;
+}
+
+.scenario-how {
+  padding-block: 142px;
+}
+
+.scenario-how-heading {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.scenario-how-heading > p {
+  margin: 0 0 16px;
+  color: var(--muted-strong);
+  font-size: 14px;
+}
+
+.scenario-how-heading h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(64px, 7vw, 96px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.9;
+}
+
+.scenario-how-heading > span {
+  display: block;
+  max-width: 630px;
+  margin: 26px auto 0;
+  color: var(--muted-strong);
+  font-size: 17px;
+  line-height: 1.62;
+}
+
+.scenario-how .how-experience {
+  margin-top: 64px;
+}
+
+.scenario-how .step-tabs {
+  margin-top: 58px;
+}
+
+.rates-section {
+  padding-block: 130px 150px;
+  scroll-margin-top: 90px;
+}
+
+.rates-section .review-block {
+  margin-top: 0;
+}
+
+.rates-section .review-copy h2 {
+  width: 100%;
+  max-width: 620px;
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(54px, 4.8vw, 74px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.94;
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .scenario-how {
+    padding-block: 112px;
+  }
+
+  .scenario-how .how-experience {
+    margin-top: 48px;
+  }
+
+  .scenario-how .step-tabs {
+    margin-top: 0;
+  }
+
+  .rates-section {
+    padding-block: 100px 120px;
+  }
+}
+
+@media (max-width: 620px) {
+  .scenario-how {
+    padding-block: 88px;
+  }
+
+  .scenario-how-heading h2 {
+    font-size: 58px;
+  }
+
+  .scenario-how-heading > span {
+    margin-top: 22px;
+    font-size: 15px;
+  }
+
+  .scenario-how .how-experience {
+    margin-top: 28px;
+  }
+
+  .rates-section {
+    padding-block: 84px 96px;
+  }
+}

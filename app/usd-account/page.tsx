@@ -1,14 +1,15 @@
-import { UsdAccountPage } from "./UsdAccountPage";
+import { redirect } from "next/navigation";
+import { withBasePath } from "../site-paths";
 
 export const metadata = {
-  title: "USD account — Jazari One",
+  title: "Receive money — Jazari One",
   description:
-    "Receive payments through US routing and account details in your name with Jazari One.",
+    "Get US routing and account details in your name to add your own money or receive ACH, FedNow, wire, and SWIFT transfers.",
   alternates: {
-    canonical: "/usd-account/",
+    canonical: "/receive/",
   },
 };
 
 export default function Page() {
-  return <UsdAccountPage />;
+  redirect(withBasePath("/receive/#usd-account"));
 }
