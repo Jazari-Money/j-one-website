@@ -368,6 +368,11 @@
   display: block;
 }
 
+.hero-paid-line,
+.hero-earned-line {
+  display: inline;
+}
+
 .hero-copy > p {
   width: min(660px, 100%);
   margin: 42px auto 0;
@@ -607,6 +612,10 @@
   .hero h1 {
     font-size: clamp(58px, 16.8vw, 82px);
     line-height: 0.87;
+  }
+
+  .hero-earned-line {
+    display: block;
   }
 
   .hero-copy > p {

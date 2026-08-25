@@ -762,6 +762,31 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu.getByRole("link", { name: "Terms & Conditions" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Privacy Policy" })).toBeVisible();
   await expect(menu.getByText("Cookies", { exact: true })).toHaveCount(0);
+  const [paidLine, earnedLine] = await Promise.all([
+    page.locator(".hero-paid-line").boundingBox(),
+    page.locator(".hero-earned-line").boundingBox(),
+  ]);
+  expect(paidLine).not.toBeNull();
+  expect(earnedLine).not.toBeNull();
+  expect(earnedLine!.y).toBeGreaterThan(paidLine!.y + paidLine!.height * 0.7);
+  const [receiveTitle, receiveDescription, companyLink] = await Promise.all([
+    menu.locator(".nav-mobile-product-group .nav-product-entry span").first().boundingBox(),
+    menu.locator(".nav-mobile-product-group .nav-product-entry small").first().boundingBox(),
+    menu.getByRole("link", { name: "Blog", exact: true }).boundingBox(),
+  ]);
+  expect(receiveTitle).not.toBeNull();
+  expect(receiveDescription).not.toBeNull();
+  expect(companyLink).not.toBeNull();
+  expect(receiveDescription!.y).toBeGreaterThanOrEqual(receiveTitle!.y + receiveTitle!.height + 3);
+  const [productTitleSize, companyLinkSize] = await Promise.all([
+    menu.locator(".nav-mobile-product-group .nav-product-entry span").first().evaluate(
+      (node) => getComputedStyle(node).fontSize,
+    ),
+    menu.getByRole("link", { name: "Blog", exact: true }).evaluate(
+      (node) => getComputedStyle(node).fontSize,
+    ),
+  ]);
+  expect(productTitleSize).toBe(companyLinkSize);
   const [download, socials, legal] = await Promise.all([
     menu.getByRole("link", { name: "Download App" }).boundingBox(),
     menu.locator(".nav-mobile-socials").boundingBox(),

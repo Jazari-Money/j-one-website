@@ -139,7 +139,7 @@ export function SiteHeader({
           <a className="nav-desktop-only" href={withBasePath("/blog/")} onClick={closeMobile}>Blog</a>
           <a className="nav-desktop-only" href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
           <div className="nav-mobile-groups">
-            <section className="nav-mobile-group" aria-labelledby="mobile-product-links">
+            <section className="nav-mobile-group nav-mobile-product-group" aria-labelledby="mobile-product-links">
               <strong id="mobile-product-links">Product</strong>
               <a className="nav-product-entry" href={withBasePath("/receive/")} onClick={closeMobile}>
                 <span>Receive</span><small>Receive money into your own USD account and stablecoin wallet</small>
