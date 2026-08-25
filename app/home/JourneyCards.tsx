@@ -9,7 +9,7 @@ import { resetPointer, trackPointer } from "./hooks";
 const journeys = [
   {
     id: "receive-money",
-    title: "Receive money",
+    title: "Receive",
     copy: "Add your own dollars or receive payments through a US account or in digital dollars—all in one balance.",
     action: "Explore receiving",
     href: "/receive/",
@@ -19,7 +19,7 @@ const journeys = [
   },
   {
     id: "send-money",
-    title: "Send money",
+    title: "Send",
     copy: "Send to bank accounts in 30+ countries or digital wallets worldwide, with the rate shown before you confirm.",
     action: "Check rates & destinations",
     href: "/send/",

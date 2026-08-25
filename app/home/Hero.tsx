@@ -41,8 +41,8 @@ export function Hero() {
           <span className="hero-title-line"><span>Send worldwide.</span></span>
         </h1>
         <p>
-          Receive money by bank transfer or digital dollars, earn with Yields,
-          and send across borders in minutes.
+          Your own USD account. Up to 7% APY with Yields. Bank transfers to 30+
+          countries.
         </p>
         <HeroDownload />
       </div>
