@@ -15,6 +15,7 @@ export function SiteHeader({
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
   const productMenuRef = useRef<HTMLDetailsElement>(null);
+  const productCloseTimerRef = useRef<number | null>(null);
   const homeHref = mode === "home" ? "#top" : withBasePath("/#top");
   const sectionHref = (section: string) =>
     mode === "home" ? `#${section}` : withBasePath(`/#${section}`);
@@ -24,6 +25,12 @@ export function SiteHeader({
     update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  useEffect(() => () => {
+    if (productCloseTimerRef.current !== null) {
+      window.clearTimeout(productCloseTimerRef.current);
+    }
   }, []);
 
   useEffect(() => {
@@ -81,10 +88,19 @@ export function SiteHeader({
             className="nav-dropdown nav-desktop-only"
             open={mobileOpen || productOpen}
             onPointerEnter={() => {
-              if (!window.matchMedia("(max-width: 900px)").matches) setProductOpen(true);
+              if (window.matchMedia("(max-width: 900px)").matches) return;
+              if (productCloseTimerRef.current !== null) {
+                window.clearTimeout(productCloseTimerRef.current);
+                productCloseTimerRef.current = null;
+              }
+              setProductOpen(true);
             }}
             onPointerLeave={() => {
-              if (!window.matchMedia("(max-width: 900px)").matches) setProductOpen(false);
+              if (window.matchMedia("(max-width: 900px)").matches) return;
+              productCloseTimerRef.current = window.setTimeout(() => {
+                setProductOpen(false);
+                productCloseTimerRef.current = null;
+              }, 180);
             }}
             onFocus={() => {
               if (!window.matchMedia("(max-width: 900px)").matches) setProductOpen(true);
@@ -97,7 +113,7 @@ export function SiteHeader({
               onClick={(event) => {
                 event.preventDefault();
                 if (!window.matchMedia("(max-width: 900px)").matches) {
-                  setProductOpen((open) => !open);
+                  setProductOpen(true);
                 }
               }}
             >

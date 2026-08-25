@@ -238,6 +238,10 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(productEntries.nth(0)).toContainText("ReceiveReceive money into your own USD account and stablecoin wallet");
   await expect(productEntries.nth(1)).toContainText("SendSend money to stablecoin wallets and to local bank accounts in 30+ countries");
   await expect(productEntries.nth(2)).toContainText("YieldsEarn up to 7% APY on your balance");
+  await productEntries.nth(1).hover();
+  await page.waitForTimeout(220);
+  await expect(personalMenu).toHaveAttribute("open", "");
+  await expect(productEntries.nth(1)).toBeVisible();
 
   const journeyTitleMetrics = await page.locator(".journey-card h3").evaluateAll((titles) =>
     titles.map((title) => {
@@ -272,6 +276,16 @@ test("keeps the core interactions working", async ({ page }) => {
   }));
   expect(journeyArtSize.width).toBeLessThanOrEqual(94);
   expect(journeyArtSize.height).toBeLessThanOrEqual(94);
+  const journeyArtOffset = await page.locator(".journey-card").first().evaluate((card) => {
+    const art = card.querySelector(".journey-art");
+    if (!(art instanceof HTMLElement)) return null;
+    const cardBox = card.getBoundingClientRect();
+    const artBox = art.getBoundingClientRect();
+    return { left: artBox.left - cardBox.left, top: artBox.top - cardBox.top };
+  });
+  expect(journeyArtOffset).not.toBeNull();
+  expect(journeyArtOffset!.left).toBeLessThanOrEqual(30);
+  expect(journeyArtOffset!.top).toBeLessThanOrEqual(36);
   await expect(page.locator(".journey-card").first()).toHaveCSS("transform", "none");
 
   await page.goto("/send/", { waitUntil: "networkidle" });

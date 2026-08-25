@@ -34,16 +34,16 @@
 }
 
 .journey-art-plate {
-  width: 184px;
-  height: 184px;
+  width: 92px;
+  height: 92px;
   display: grid;
   place-items: center;
 }
 
 .journey-art {
   display: block;
-  width: 50%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   filter: saturate(0.94);
 }
@@ -138,8 +138,8 @@
   }
 
   .journey-art-plate {
-    width: 138px;
-    height: 138px;
+    width: 69px;
+    height: 69px;
   }
 
   .journey-card h3 {

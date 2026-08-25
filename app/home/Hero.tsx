@@ -41,8 +41,9 @@ export function Hero() {
           <span className="hero-title-line"><span>Send worldwide.</span></span>
         </h1>
         <p>
-          Your own USD account. Up to 7% APY with Yields. Bank transfers to 30+
-          countries.
+          Your own USD account. Up to 7% APY with Yields.
+          <br />
+          Bank transfers to 30+ countries.
         </p>
         <HeroDownload />
       </div>
