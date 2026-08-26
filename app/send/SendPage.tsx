@@ -18,9 +18,6 @@ export function SendPage() {
           Send money to local bank accounts in 30+ countries or to supported
           stablecoin wallets, with the details shown before you confirm.
         </p>
-        <a className="realism-button" href={appDownloadUrl} target="_blank" rel="noreferrer">
-          Download App
-        </a>
       </header>
 
       <section className="product-method send-bank-method" id="bank-accounts" aria-labelledby="bank-accounts-title">
@@ -53,7 +50,7 @@ export function SendPage() {
           titleId="send-wallet-title"
           screen={withBasePath("/images/how-to/how-to-send-01.png")}
           stem="/images/how-to/how-to-send-01"
-          alt="Wallet destination selection in Jazari One"
+          alt="Adding a stablecoin wallet payment destination in Jazari One"
         >
           <p className="method-flow-description">
             Send USDC or USDT to a supported wallet worldwide. Choose the

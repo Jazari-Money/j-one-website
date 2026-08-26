@@ -13,7 +13,7 @@
 .send-hero {
   width: var(--page);
   margin-inline: auto;
-  padding: 190px 0 72px;
+  padding: 190px 0 36px;
 }
 
 .send-hero h1 {
@@ -34,20 +34,12 @@
   line-height: 1.62;
 }
 
-.send-hero .realism-button {
-  width: max-content;
-  min-height: 50px;
-  margin-top: 32px;
-  padding-inline: 24px;
-  text-decoration: none;
-}
-
 .send-hero + .product-method {
-  padding-top: 72px;
+  padding-top: 36px;
 }
 
 .send-shell .product-method {
-  padding-block: 72px;
+  padding-block: 52px;
 }
 
 .send-shell .product-method + .product-method {
@@ -78,7 +70,7 @@
 
 @media (max-width: 620px) {
   .send-hero {
-    padding: 146px 0 54px;
+    padding: 146px 0 28px;
   }
 
   .send-hero h1 {
@@ -90,11 +82,11 @@
   }
 
   .send-hero + .product-method {
-    padding-top: 54px;
+    padding-top: 28px;
   }
 
   .send-shell .product-method {
-    padding-block: 54px;
+    padding-block: 40px;
   }
 
   .send-shell .method-flow {
