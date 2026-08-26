@@ -23,7 +23,7 @@ export function ReceivePage() {
 
       <section className="product-method" id="usd-account" aria-labelledby="usd-account-title">
         <header className="product-method-heading">
-          <h2 id="usd-account-title">A US account.<br />No US address.</h2>
+          <h2 id="usd-account-title">USD Account</h2>
           <p>
             Get US routing and account numbers in your name through a licensed
             US bank partner. Use them to add your own money or receive ACH,
@@ -59,7 +59,7 @@ export function ReceivePage() {
 
       <section className="product-method product-method-wallet" id="wallet" aria-labelledby="wallet-title">
         <header className="product-method-heading">
-          <h2 id="wallet-title">USDC and USDT.<br />Straight to your wallet.</h2>
+          <h2 id="wallet-title">Stablecoin wallet</h2>
           <p>
             Receive USDC or USDT on a supported network and see it in the same
             Jazari One balance as your bank transfers.

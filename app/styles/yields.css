@@ -6,7 +6,7 @@
 }
 
 .yields-hero,
-.yield-feature,
+.yield-feature-grid,
 .yield-risk,
 .yield-questions,
 .yield-roadmap {
@@ -37,6 +37,12 @@
   line-height: 1.62;
 }
 
+.yield-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
 .yield-feature {
   min-height: 560px;
   padding: 54px;
@@ -52,6 +58,41 @@
 
 .yield-feature + .yield-feature {
   margin-top: 24px;
+}
+
+.yield-feature-grid .yield-feature {
+  width: 100%;
+  min-width: 0;
+  min-height: 620px;
+  margin: 0;
+  padding: 44px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 44px 28px;
+}
+
+.yield-feature-grid .yield-feature + .yield-feature {
+  margin-top: 0;
+}
+
+.yield-feature-grid .yield-strategy-copy h2 {
+  margin-top: 34px;
+  font-size: clamp(48px, 4.1vw, 62px);
+}
+
+.yield-feature-grid .yield-strategy-copy h2 + p {
+  margin-top: 22px;
+}
+
+.yield-feature-grid .yield-rate strong {
+  font-size: clamp(58px, 5.1vw, 76px);
+}
+
+.yield-feature-grid .yield-rate span {
+  margin-top: 20px;
+}
+
+.yield-feature-grid .yield-facts > div {
+  padding-right: 14px;
 }
 
 .yield-feature-lido {
@@ -379,10 +420,37 @@
   100% { transform: translate3d(-1%, -13%, 0) scale(1.04) rotate(-0.4deg); }
 }
 
+@media (max-width: 1100px) {
+  .yield-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .yield-feature-grid .yield-feature {
+    min-height: 560px;
+    padding: 54px;
+    grid-template-columns: minmax(330px, 0.9fr) minmax(260px, 0.55fr);
+    gap: 52px 88px;
+  }
+
+  .yield-feature-grid .yield-strategy-copy h2 {
+    font-size: clamp(54px, 5.8vw, 78px);
+  }
+
+  .yield-feature-grid .yield-rate strong {
+    font-size: clamp(70px, 7.2vw, 104px);
+  }
+}
+
 @media (max-width: 900px) {
   .yield-feature {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+  }
+
+  .yield-feature-grid .yield-feature {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 48px;
   }
 
   .yield-facts {
@@ -418,11 +486,16 @@
     gap: 48px;
   }
 
-  .yield-strategy-copy h2 {
+  .yield-feature-grid .yield-feature {
+    min-height: 0;
+    padding: 30px 24px;
+  }
+
+  .yield-feature-grid .yield-strategy-copy h2 {
     font-size: 50px;
   }
 
-  .yield-rate strong {
+  .yield-feature-grid .yield-rate strong {
     font-size: 92px;
   }
 

@@ -5,31 +5,34 @@ import { walletAssets, walletNetworkSupport } from "./data";
 export function WalletSupport() {
   return (
     <div className="wallet-support">
-      <div className="wallet-assets" aria-label="Supported digital dollars">
-        {walletAssets.map((asset) => (
-          <div key={asset.name}>
-            <img src={asset.logo} alt="" width="96" height="96" loading="lazy" decoding="async" />
-            <strong>{asset.name}</strong>
-          </div>
-        ))}
-      </div>
+      <section className="wallet-support-group" aria-labelledby="supported-networks-title">
+        <h3 id="supported-networks-title">Supported networks</h3>
+        <div className="wallet-network-list">
+          {walletNetworkSupport.map((network) => (
+            <article key={network.name}>
+              <img src={network.logo} alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <h4>{network.name}</h4>
+            </article>
+          ))}
+        </div>
+      </section>
 
-      <div className="wallet-network-list" aria-label="Supported wallet networks">
-        {walletNetworkSupport.map((network) => (
-          <article key={network.name}>
-            <img src={network.logo} alt="" width="96" height="96" loading="lazy" decoding="async" />
-            <div>
-              <h3>{network.name}</h3>
-              <p>Available asset combinations shown in app</p>
+      <section className="wallet-support-group" aria-labelledby="supported-stablecoins-title">
+        <h3 id="supported-stablecoins-title">Supported stablecoins</h3>
+        <div className="wallet-assets">
+          {walletAssets.map((asset) => (
+            <div key={asset.name}>
+              <img src={asset.logo} alt="" width="96" height="96" loading="lazy" decoding="async" />
+              <strong>{asset.name}</strong>
             </div>
-          </article>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
 
       <p className="wallet-support-note">
-        Select the same asset and network on both sides of a transfer. The app
-        confirms the combinations available to you before showing an address;
-        eligibility, compliance, sanctions, and network controls apply.
+        The app confirms the stablecoin and network combinations available to
+        you before showing an address. Eligibility, compliance, sanctions, and
+        network controls apply.
       </p>
     </div>
   );
