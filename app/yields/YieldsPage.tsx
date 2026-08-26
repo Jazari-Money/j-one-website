@@ -61,7 +61,7 @@ export function YieldsPage() {
       <InternalSiteHeader />
 
       <header className="yields-hero">
-        <h1>Yields</h1>
+        <h1>Earn with Yields</h1>
         <p>
           Put your balance to work through independently managed
           onchain strategies. Rates adjust daily and returns are never guaranteed.
