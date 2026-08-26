@@ -554,7 +554,7 @@ test("aligns footer copyright with the final disclosure on desktop", async ({ pa
 test("explains yields and links into the app flow", async ({ page }) => {
   await page.goto("/yields/", { waitUntil: "networkidle" });
   await expect(
-    page.getByRole("heading", { name: "Yields", exact: true }),
+    page.getByRole("heading", { name: "Earn with Yields", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
   await expect(page.getByText("USDC", { exact: true })).toHaveCount(2);
@@ -576,6 +576,10 @@ test("explains yields and links into the app flow", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "How Yields work" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Ready to open Yields?" })).toBeVisible();
   await expect(page.getByText("Return and risk move together")).toHaveCount(0);
+  const strategyFacts = page.locator(".yield-facts");
+  await expect(strategyFacts).toHaveCount(2);
+  await expect(strategyFacts.first()).toHaveCSS("border-radius", "18px");
+  await expect(strategyFacts.first().locator("> div")).toHaveCount(3);
   const yieldCards = await page.locator(".yield-feature").evaluateAll((cards) =>
     cards.map((card) => {
       const box = card.getBoundingClientRect();

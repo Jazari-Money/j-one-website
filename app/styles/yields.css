@@ -91,10 +91,6 @@
   margin-top: 20px;
 }
 
-.yield-feature-grid .yield-facts > div {
-  padding-right: 14px;
-}
-
 .yield-feature-lido {
   background:
     linear-gradient(140deg, color-mix(in srgb, #00a3ff 8%, var(--surface-2)), var(--surface));
@@ -207,24 +203,44 @@
 
 .yield-facts {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface-2) 36%, transparent);
 }
 
 .yield-facts > div {
-  padding: 25px 22px 0 0;
+  position: relative;
+  min-height: 60px;
+  padding: 14px 20px;
+  display: grid;
+  grid-template-columns: minmax(150px, 0.72fr) minmax(220px, 1.28fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.yield-facts > div + div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 20px;
+  left: 20px;
+  height: 1px;
+  background: color-mix(in srgb, var(--line) 54%, transparent);
 }
 
 .yield-facts dt {
-  color: var(--muted);
-  font-size: 12px;
+  color: var(--text);
+  font-size: 16px;
 }
 
 .yield-facts dd {
-  margin-top: 9px;
-  color: var(--text);
+  margin: 0;
+  color: var(--muted-strong);
   font-size: 15px;
+  line-height: 1.42;
+  text-align: right;
 }
 
 .yield-risk {
@@ -500,15 +516,23 @@
   }
 
   .yield-facts {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-radius: 16px;
   }
 
   .yield-facts > div {
-    min-width: 0;
-    padding-right: 10px;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    padding: 14px 16px;
+    gap: 14px;
   }
 
+  .yield-facts > div + div::before {
+    right: 16px;
+    left: 16px;
+  }
+
+  .yield-facts dt,
   .yield-facts dd {
+    font-size: 14px;
     overflow-wrap: anywhere;
   }
 

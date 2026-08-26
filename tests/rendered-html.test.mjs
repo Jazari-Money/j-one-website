@@ -175,8 +175,8 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(yields, /https:\/\/stake\.lido\.fi\/earn\/usd\/deposit/);
   assert.match(yields, /Instant or up to 72 hours/);
   assert.doesNotMatch(yields, /Illustrative rate supplied by Jazari/);
-  assert.match(yields, /<title>Yields — Jazari One<\/title>/);
-  assert.match(yields, /<h1>Yields<\/h1>/);
+  assert.match(yields, /<title>Earn with Yields — Jazari One<\/title>/);
+  assert.match(yields, /<h1>Earn with Yields<\/h1>/);
   assert.doesNotMatch(yields, /Return and risk move together/);
   assert.match(yields, /What are Yields\?/);
   assert.match(yields, /Where do Yields come from\?/);
