@@ -20,8 +20,8 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Jazari One — Get paid\. Earn\. Send worldwide\.<\/title>/i);
-  assert.match(html, /Get paid\. Earn\./);
+  assert.match(html, /<title>Jazari One — Get paid in USD\. Earn\. Send worldwide\.<\/title>/i);
+  assert.match(html, /Get paid in USD\. Earn\./);
   assert.match(html, /Send worldwide\./);
   assert.match(html, /Your own USD account\. Up to 7% APY with Yields\./);
   assert.match(html, /class="hero-copy-mobile-keep"/);
@@ -188,6 +188,8 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(receive, /<title>Receive — Jazari One<\/title>/);
   assert.match(receive, /<h1>Receive<\/h1>/);
   assert.match(receive, /<h3 id="usd-account-title">USD Account<\/h3>/);
+  assert.match(receive, /ACH\/Wire, ACH Same day, FedNow, Swift/);
+  assert.doesNotMatch(receive, /ACH, FedNow, domestic wire, and SWIFT/);
   assert.match(receive, /licensed US bank partner/);
   assert.match(receive, /Eligible users in 190\+ countries/);
   assert.match(receive, /id="wallet"/);
@@ -199,7 +201,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(receive, /Ethereum/);
   assert.match(receive, /TRON/);
   assert.match(receive, /Solana/);
-  assert.match(receive, /Polygon/);
+  assert.doesNotMatch(receive, /Polygon/);
   assert.match(receive, /Base/);
   assert.match(receive, /Incoming fee<\/dt><dd>\$0/);
   assert.doesNotMatch(receive, /Use your USD account details/);

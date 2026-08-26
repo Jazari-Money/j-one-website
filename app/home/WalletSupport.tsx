@@ -3,6 +3,9 @@
 import { walletAssets, walletNetworkSupport } from "./data";
 
 export function WalletSupport({ context = "receive" }: { context?: "receive" | "send" }) {
+  const supportedNetworks = context === "receive"
+    ? walletNetworkSupport.filter((network) => network.name !== "Polygon")
+    : walletNetworkSupport;
   const supportNote = context === "send"
     ? "The app confirms the stablecoin and network combinations available to you before you confirm a transfer."
     : "The app confirms the stablecoin and network combinations available to you before showing an address.";
@@ -12,8 +15,8 @@ export function WalletSupport({ context = "receive" }: { context?: "receive" | "
       <section className="wallet-support-group" aria-labelledby="supported-networks-title">
         <h3 id="supported-networks-title">Supported networks</h3>
         <div className="wallet-network-list">
-          {walletNetworkSupport.map((network) => (
-            <article key={network.name}>
+          {supportedNetworks.map((network) => (
+            <article className={network.name === "Solana" ? "is-solana" : undefined} key={network.name}>
               <img src={network.logo} alt="" width="96" height="96" loading="lazy" decoding="async" />
               <h4>{network.name}</h4>
             </article>

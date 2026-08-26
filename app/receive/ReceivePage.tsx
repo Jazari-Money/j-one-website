@@ -17,9 +17,6 @@ export function ReceivePage() {
           Add your own dollars or receive payments through a USD account or
           supported wallets—all in one balance.
         </p>
-        <a className="realism-button" href={appDownloadUrl} target="_blank" rel="noreferrer">
-          Download App
-        </a>
       </header>
 
       <section className="product-method" id="usd-account" aria-labelledby="usd-account-title">
@@ -32,13 +29,13 @@ export function ReceivePage() {
         >
           <p className="method-flow-description">
             Get US routing and account numbers in your name through a licensed
-            US bank partner. Use them to add your own money or receive ACH,
-            FedNow, domestic wire, and SWIFT transfers from clients, employers,
-            or other people.
+            US bank partner. Use them to add your own money or receive ACH/Wire,
+            ACH Same day, FedNow, and Swift transfers from clients, employers, or
+            other people.
           </p>
           <dl className="method-flow-features">
             <div><dt>Account details</dt><dd>US routing and account number in your name</dd></div>
-            <div><dt>Transfer methods</dt><dd>ACH, FedNow, domestic wire, and SWIFT</dd></div>
+            <div><dt>Transfer methods</dt><dd>ACH/Wire, ACH Same day, FedNow, Swift</dd></div>
             <div><dt>Availability</dt><dd>Eligible users in 190+ countries; no US residency required</dd></div>
             <div><dt>Incoming fee</dt><dd>$0</dd></div>
           </dl>

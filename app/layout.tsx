@@ -6,11 +6,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jazari.xyz"),
-  title: "Jazari One — Get paid. Earn. Send worldwide.",
+  title: "Jazari One — Get paid in USD. Earn. Send worldwide.",
   description:
     "Your own USD account. Up to 7% APY with Yields. Bank transfers to 30+ countries.",
   openGraph: {
-    title: "Jazari One — Get paid. Earn. Send worldwide.",
+    title: "Jazari One — Get paid in USD. Earn. Send worldwide.",
     description:
       "Your own USD account. Up to 7% APY with Yields. Bank transfers to 30+ countries.",
     images: [{ url: "/og-v2.png", width: 1729, height: 910 }],
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jazari One — Get paid. Earn. Send worldwide.",
+    title: "Jazari One — Get paid in USD. Earn. Send worldwide.",
     description:
       "Your own USD account. Up to 7% APY with Yields. Bank transfers to 30+ countries.",
     images: ["/og-v2.png"],

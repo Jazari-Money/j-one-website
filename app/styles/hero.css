@@ -348,7 +348,7 @@
 }
 
 .hero h1 {
-  max-width: 1120px;
+  max-width: 1260px;
   margin: 0;
   color: #fff;
   font-size: clamp(76px, 8.8vw, 132px);
@@ -613,7 +613,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(58px, 16.8vw, 82px);
+    font-size: clamp(50px, 13.2vw, 64px);
     line-height: 0.87;
   }
 

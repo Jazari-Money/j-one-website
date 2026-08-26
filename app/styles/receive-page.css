@@ -12,7 +12,7 @@
 .receive-hero {
   width: var(--page);
   margin-inline: auto;
-  padding: 190px 0 72px;
+  padding: 190px 0 36px;
 }
 
 .receive-hero h1 {
@@ -42,11 +42,11 @@
 }
 
 .receive-hero + .product-method {
-  padding-top: 72px;
+  padding-top: 36px;
 }
 
 .receive-shell .product-method {
-  padding-block: 72px;
+  padding-block: 52px;
 }
 
 .receive-shell .product-method + .product-method {
@@ -72,7 +72,7 @@
 
 @media (max-width: 620px) {
   .receive-hero {
-    padding: 146px 0 54px;
+    padding: 146px 0 28px;
   }
 
   .receive-hero h1 {
@@ -84,11 +84,11 @@
   }
 
   .receive-hero + .product-method {
-    padding-top: 54px;
+    padding-top: 28px;
   }
 
   .receive-shell .product-method {
-    padding-block: 54px;
+    padding-block: 40px;
   }
 
   .receive-shell .method-flow {

@@ -219,13 +219,14 @@ test("runs the color event with the reference choreography", async ({ page }) =>
 test("keeps the core interactions working", async ({ page }) => {
   await prepareStablePage(page);
 
-  const hero = page.getByRole("heading", { name: /Get paid\. Earn\.\s*Send worldwide\./ });
+  const hero = page.getByRole("heading", { name: /Get paid in USD\. Earn\.\s*Send worldwide\./ });
   await expect(hero).toBeVisible();
   await expect(page.getByText(/Your own USD account\. Up to 7% APY with Yields/)).toBeVisible();
   await expect(page.locator(".journey-card")).toHaveCount(3);
   await expect(page.locator(".journey-kicker")).toHaveCount(0);
   await expect(page.getByText("What do you want to do?", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Receive", exact: true })).toBeVisible();
+  await expect(page.locator(".receive-hero .realism-button")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Explore receiving" })).toHaveAttribute("href", /\/receive\/?$/);
   await expect(page.getByRole("link", { name: "Check rates & destinations" })).toHaveAttribute("href", /\/send\/#rates$/);
   await expect(page.getByRole("link", { name: "Explore Yields" })).toHaveAttribute("href", /\/yields\/?$/);
@@ -328,7 +329,7 @@ test("uses the intended mobile hero line breaks", async ({ page }) => {
 
   await expect(page.locator(".hero-title-desktop")).toBeHidden();
   const mobileLines = page.locator(".hero-title-mobile .hero-title-line");
-  await expect(mobileLines).toHaveText(["Get paid.", "Earn. Send", "worldwide."]);
+  await expect(mobileLines).toHaveText(["Get paid in USD.", "Earn. Send", "worldwide."]);
 
   const mobileDescriptionEnding = page.locator(".hero-copy-mobile-keep");
   await expect(mobileDescriptionEnding).toHaveText(
@@ -610,7 +611,7 @@ test("keeps receiving on one product page and redirects the old USD account rout
   await expect(usdAccountHeading).toBeVisible();
   await expect(page.getByText(/licensed US bank partner/)).toBeVisible();
   await expect(page.getByText(/US routing and account number/).first()).toBeVisible();
-  await expect(page.getByText(/ACH, FedNow, domestic wire, and SWIFT/).first()).toBeVisible();
+  await expect(page.getByText(/ACH\/Wire, ACH Same day, FedNow, Swift/).first()).toBeVisible();
   await expect(page.getByText(/Eligible users in 190\+ countries/)).toBeVisible();
   const walletHeading = page.getByRole("heading", { name: "Stablecoin wallet", exact: true });
   await expect(walletHeading).toBeVisible();
@@ -619,7 +620,7 @@ test("keeps receiving on one product page and redirects the old USD account rout
   await expect(page.getByText("Ethereum", { exact: true })).toBeVisible();
   await expect(page.getByText("TRON", { exact: true })).toBeVisible();
   await expect(page.getByText("Solana", { exact: true })).toBeVisible();
-  await expect(page.getByText("Polygon", { exact: true })).toBeVisible();
+  await expect(page.getByText("Polygon", { exact: true })).toHaveCount(0);
   await expect(page.getByText("Base", { exact: true })).toBeVisible();
   const [usdHeadingBox, usdDescriptionBox, walletHeadingBox, walletDescriptionBox] = await Promise.all([
     usdAccountHeading.boundingBox(),
@@ -629,7 +630,8 @@ test("keeps receiving on one product page and redirects the old USD account rout
   ]);
   expect(usdDescriptionBox!.y).toBeGreaterThan(usdHeadingBox!.y + usdHeadingBox!.height);
   expect(walletDescriptionBox!.y).toBeGreaterThan(walletHeadingBox!.y + walletHeadingBox!.height);
-  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
+  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(4);
+  await expect(page.locator("#wallet .wallet-network-list")).not.toContainText("Polygon");
   await expect(page.locator("#wallet .wallet-assets > div")).toHaveCount(2);
   await expect(page.locator("#wallet .method-flow-screen img")).toBeVisible();
   const [networkCardBox, stablecoinCardBox] = await Promise.all([
@@ -967,7 +969,7 @@ test("shows wallet receiving details without a generic walkthrough floor", async
     "src",
     /receive-stablecoins-account\.png$/,
   );
-  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
+  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(4);
   await expect(page.locator("#wallet > .wallet-support")).toHaveCount(0);
   await expect(page.locator("#wallet .method-flow-copy .wallet-support")).toHaveCount(1);
   await expect(page.locator("#wallet .phone-copy-corrections")).toHaveCount(0);
