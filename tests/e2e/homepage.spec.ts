@@ -298,11 +298,17 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Send", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Bank transfer", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Stablecoin wallet", exact: true })).toBeVisible();
+  await expect(page.locator(".send-hero").getByRole("link", { name: "Download App" })).toHaveCount(0);
   await expect(page.locator("#bank-accounts .method-flow-screen img")).toHaveAttribute("src", /how-to-send-02\.png$/);
   await expect(page.locator("#wallet .method-flow-screen img")).toHaveAttribute("src", /how-to-send-01\.png$/);
   await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
   await expect(page.locator("#wallet .wallet-assets > div")).toHaveCount(2);
   await expect(page.locator(".scenario-how")).toHaveCount(0);
+  const [sendHeroBox, firstSendMethodBox] = await Promise.all([
+    page.locator(".send-hero").boundingBox(),
+    page.locator("#bank-accounts").boundingBox(),
+  ]);
+  expect(firstSendMethodBox!.y - (sendHeroBox!.y + sendHeroBox!.height)).toBeLessThanOrEqual(40);
 
   const currencyPicker = page.locator("#receive-currency");
   await currencyPicker.click();

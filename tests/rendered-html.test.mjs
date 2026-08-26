@@ -225,6 +225,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
 
   assert.match(send, /<title>Send money — Jazari One<\/title>/);
   assert.match(send, /<h1>Send<\/h1>/);
+  assert.doesNotMatch(send, /<header class="send-hero">[\s\S]*?<a class="realism-button"/);
   assert.match(send, /30\+ countries/);
   assert.match(send, /<h3 id="bank-accounts-title">Bank transfer<\/h3>/);
   assert.match(send, /<h3 id="send-wallet-title">Stablecoin wallet<\/h3>/);

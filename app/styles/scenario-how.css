@@ -47,10 +47,9 @@
 }
 
 .scenario-step-note {
-  min-height: 150px;
-  padding: 22px;
-  border-radius: 20px;
-  background: var(--surface);
+  min-height: 126px;
+  padding: 20px 2px 0;
+  border-top: 1px solid var(--line);
 }
 
 .scenario-step-note > span {
@@ -59,7 +58,7 @@
 }
 
 .scenario-step-note h3 {
-  margin: 14px 0 0;
+  margin: 16px 0 0;
   font-size: 17px;
   font-weight: 600;
 }
@@ -73,7 +72,7 @@
 
 .scenario-step .phone {
   width: min(300px, 100%);
-  margin: 22px auto 0;
+  margin: 18px auto 0;
 }
 
 .rates-section {
@@ -147,9 +146,8 @@
   }
 
   .scenario-step-note {
-    min-height: 142px;
-    padding: 20px;
-    border-radius: 18px;
+    min-height: 126px;
+    padding: 18px 2px 0;
   }
 
   .scenario-step .phone {
