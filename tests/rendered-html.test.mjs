@@ -24,7 +24,9 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Get paid\. Earn\./);
   assert.match(html, /Send worldwide\./);
   assert.match(html, /Your own USD account\. Up to 7% APY with Yields\./);
-  assert.match(html, /<br\/>Bank transfers to 30\+ countries\./);
+  assert.match(html, /class="hero-copy-mobile-keep"/);
+  assert.match(html, /class="hero-copy-desktop-break"/);
+  assert.match(html, /<span>Earn\. Send<\/span>/);
   assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
   assert.doesNotMatch(html, /What do you want to do\?/);
