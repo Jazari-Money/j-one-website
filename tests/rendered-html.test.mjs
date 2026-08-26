@@ -215,15 +215,21 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.doesNotMatch(usdAccount, /<main class="usd-account-shell">/);
 
   assert.match(send, /<title>Send money — Jazari One<\/title>/);
-  assert.match(send, /<h1>Send money<\/h1>/);
+  assert.match(send, /<h1>Send<\/h1>/);
   assert.match(send, /30\+ countries/);
-  assert.match(send, /Bank accounts\.<br\/>Local currency\./);
-  assert.match(send, /USDC and USDT\.<br\/>Wallet to wallet\./);
+  assert.match(send, /<h3 id="bank-accounts-title">Bank transfer<\/h3>/);
+  assert.match(send, /<h3 id="send-wallet-title">Stablecoin wallet<\/h3>/);
   assert.match(send, /how-to-send-02\.png/);
   assert.match(send, /how-to-send-01\.png/);
+  assert.match(send, /Supported networks/);
+  assert.match(send, /Supported stablecoins/);
+  assert.match(send, /before you confirm a transfer/);
+  assert.doesNotMatch(send, /before showing an address/);
   assert.match(send, /Know what arrives before you send/);
   assert.match(send, /Estimated recipient amount/);
   assert.match(send, /All receiving countries/);
+  assert.match(send, /product-final-cta color-event-cta/);
+  assert.match(send, /neutral-control receive-final-action/);
   assert.doesNotMatch(send, /<h2[^>]*>How it works<\/h2>|International transfers/);
 
   assert.match(roadmap, /<h1>Coming soon<\/h1>/);

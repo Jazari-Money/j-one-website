@@ -1,6 +1,7 @@
 @import "./internal-pages.css";
 @import "./scenario-how.css";
 @import "./product-methods.css";
+@import "./color-event-cta.css";
 
 .send-shell {
   min-height: 100vh;
@@ -12,7 +13,7 @@
 .send-hero {
   width: var(--page);
   margin-inline: auto;
-  padding: 190px 0 118px;
+  padding: 190px 0 72px;
 }
 
 .send-hero h1 {
@@ -41,9 +42,34 @@
   text-decoration: none;
 }
 
+.send-hero + .product-method {
+  padding-top: 72px;
+}
+
+.send-shell .product-method {
+  padding-block: 72px;
+}
+
+.send-shell .product-method + .product-method {
+  border-top: 0;
+}
+
+.send-shell .method-flow {
+  margin-top: 0;
+  padding-inline: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.send-shell .method-flow-screen {
+  height: auto;
+  overflow: visible;
+}
+
 .send-bank-method .rates-section {
   width: 100%;
-  padding: 128px 0 16px;
+  padding: 112px 0 16px;
 }
 
 .send-bank-method .rates-section .review-block {
@@ -52,7 +78,7 @@
 
 @media (max-width: 620px) {
   .send-hero {
-    padding: 146px 0 82px;
+    padding: 146px 0 54px;
   }
 
   .send-hero h1 {
@@ -61,6 +87,18 @@
 
   .send-hero > p {
     font-size: 16px;
+  }
+
+  .send-hero + .product-method {
+    padding-top: 54px;
+  }
+
+  .send-shell .product-method {
+    padding-block: 54px;
+  }
+
+  .send-shell .method-flow {
+    padding: 0;
   }
 
   .send-bank-method .rates-section {
