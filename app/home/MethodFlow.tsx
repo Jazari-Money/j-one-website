@@ -1,29 +1,37 @@
+import type { ReactNode } from "react";
 import { Phone } from "./Phone";
 
 export function MethodFlow({
   title,
+  titleId,
   steps,
   screen,
   stem,
   alt,
   reverse = false,
   screenOverlay,
+  children,
 }: {
-  title: string;
-  steps: readonly string[];
+  title?: string;
+  titleId?: string;
+  steps?: readonly string[];
   screen: string;
   stem: string;
   alt: string;
   reverse?: boolean;
   screenOverlay?: "add-funds-wallet" | "add-funds-usd";
+  children?: ReactNode;
 }) {
   return (
     <div className={`method-flow ${reverse ? "is-reversed" : ""}`}>
       <div className="method-flow-copy">
-        <h3>{title}</h3>
-        <ol>
-          {steps.map((step) => <li key={step}>{step}</li>)}
-        </ol>
+        {title && <h3 id={titleId}>{title}</h3>}
+        {children}
+        {steps && (
+          <ol>
+            {steps.map((step) => <li key={step}>{step}</li>)}
+          </ol>
+        )}
       </div>
       <div className="method-flow-screen">
         <div className={`method-flow-phone-shell ${screenOverlay ? `has-${screenOverlay}` : ""}`}>

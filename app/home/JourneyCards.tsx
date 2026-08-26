@@ -10,7 +10,7 @@ const journeys = [
   {
     id: "receive-money",
     title: "Receive",
-    copy: "Add your own dollars or receive payments through a US account or in digital dollars—all in one balance.",
+    copy: "Add your own dollars or receive payments through a USD account or in digital dollars—all in one balance.",
     action: "Explore receiving",
     href: "/receive/",
     actionHref: "/receive/",

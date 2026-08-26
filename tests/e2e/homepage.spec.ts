@@ -582,7 +582,7 @@ test("keeps receiving on one product page and redirects the old USD account rout
 
   await page.goto("/usd-account/", { waitUntil: "networkidle" });
   await expect(page).toHaveURL(/\/receive\/#usd-account$/);
-  await expect(page.getByRole("heading", { name: "Receive money", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Receive", exact: true })).toBeVisible();
   const usdAccountHeading = page.getByRole("heading", { name: "USD Account", exact: true });
   await expect(usdAccountHeading).toBeVisible();
   await expect(page.getByText(/licensed US bank partner/)).toBeVisible();
@@ -600,14 +600,27 @@ test("keeps receiving on one product page and redirects the old USD account rout
   await expect(page.getByText("Base", { exact: true })).toBeVisible();
   const [usdHeadingBox, usdDescriptionBox, walletHeadingBox, walletDescriptionBox] = await Promise.all([
     usdAccountHeading.boundingBox(),
-    page.locator("#usd-account .product-method-heading > p").boundingBox(),
+    page.locator("#usd-account .method-flow-description").boundingBox(),
     walletHeading.boundingBox(),
-    page.locator("#wallet .product-method-heading > p").boundingBox(),
+    page.locator("#wallet .method-flow-description").boundingBox(),
   ]);
   expect(usdDescriptionBox!.y).toBeGreaterThan(usdHeadingBox!.y + usdHeadingBox!.height);
   expect(walletDescriptionBox!.y).toBeGreaterThan(walletHeadingBox!.y + walletHeadingBox!.height);
   await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
   await expect(page.locator("#wallet .wallet-assets > div")).toHaveCount(2);
+  await expect(page.locator("#wallet .method-flow-screen img")).toBeVisible();
+  const [networkCardBox, stablecoinCardBox] = await Promise.all([
+    page.locator("#wallet .wallet-network-list article").first().boundingBox(),
+    page.locator("#wallet .wallet-assets > div").first().boundingBox(),
+  ]);
+  expect(Math.abs(networkCardBox!.width - stablecoinCardBox!.width)).toBeLessThanOrEqual(1);
+  const [walletSupportBox, walletPhoneBox] = await Promise.all([
+    page.locator("#wallet .method-flow-copy").boundingBox(),
+    page.locator("#wallet .method-flow-screen").boundingBox(),
+  ]);
+  expect(walletSupportBox!.x).toBeLessThan(walletPhoneBox!.x);
+  await expect(page.locator("#wallet")).toHaveCSS("border-top-width", "0px");
+  await expect(page.getByText(/Availability is subject to identity verification/)).toHaveCount(0);
   await expect(page.locator("#wallet .wallet-network-list img").first()).toHaveCSS(
     "filter",
     "grayscale(1) brightness(0) invert(1)",
@@ -886,15 +899,15 @@ test("keeps mobile Coming soon cards visible with intentionally cropped artwork"
   await expect(page.locator(".roadmap-card").last()).toHaveCSS("will-change", "auto");
 });
 
-test("keeps the Receive method instructions and phone preview usable on mobile", async ({ page }) => {
+test("keeps the Receive account features and phone preview usable on mobile", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await prepareStablePage(page, "/receive/");
 
-  await page.getByRole("heading", { name: "Use your US account details" }).scrollIntoViewIfNeeded();
+  await page.getByRole("heading", { name: "USD Account" }).scrollIntoViewIfNeeded();
 
   const flow = page.locator("#usd-account .method-flow");
-  const steps = flow.locator("li");
-  await expect(steps).toHaveCount(3);
+  const features = flow.locator(".method-flow-features > div");
+  await expect(features).toHaveCount(4);
   const activeScreenImage = flow.locator(".method-flow-screen img");
   await expect
     .poll(() => activeScreenImage.evaluate((image) => (image as HTMLImageElement).naturalWidth))
@@ -909,9 +922,17 @@ test("keeps the Receive method instructions and phone preview usable on mobile",
     .toBe("none");
 
   await expect(flow).toBeVisible();
-  await expect(activeScreenImage).toHaveAttribute("src", /how-to-receive-03\.png$/);
-  await expect(steps.nth(0)).toContainText("Open Add Funds");
-  await expect(steps.nth(2)).toContainText("share them with a payer");
+  await expect(activeScreenImage).toHaveAttribute("src", /receive-usd-account\.png$/);
+  await expect(features.nth(0)).toContainText("US routing and account number");
+  await expect(features.nth(2)).toContainText("190+ countries");
+  await expect(features.nth(3)).toContainText("Incoming fee$0");
+  await expect(flow.locator(".phone-copy-corrections")).toHaveCount(0);
+  await expect(flow).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  const [screenBox, phoneBox] = await Promise.all([
+    flow.locator(".method-flow-screen").boundingBox(),
+    flow.locator(".method-flow-phone-shell").boundingBox(),
+  ]);
+  expect(screenBox!.height).toBeGreaterThanOrEqual(phoneBox!.height - 1);
 });
 
 test("shows wallet receiving details without a generic walkthrough floor", async ({ page }) => {
@@ -921,9 +942,13 @@ test("shows wallet receiving details without a generic walkthrough floor", async
   await expect(page.locator(".scenario-how")).toHaveCount(0);
   await expect(page.locator("#wallet .method-flow-screen img")).toHaveAttribute(
     "src",
-    /how-to-receive-02\.png$/,
+    /receive-stablecoins-account\.png$/,
   );
   await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
+  await expect(page.locator("#wallet > .wallet-support")).toHaveCount(0);
+  await expect(page.locator("#wallet .method-flow-copy .wallet-support")).toHaveCount(1);
+  await expect(page.locator("#wallet .phone-copy-corrections")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Receive through a wallet" })).toHaveCount(0);
 });
 
 test("fits the complete Yields mobile interaction at 430px", async ({ page }) => {

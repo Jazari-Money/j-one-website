@@ -1,5 +1,6 @@
 @import "./internal-pages.css";
 @import "./product-methods.css";
+@import "./color-event-cta.css";
 
 .receive-shell {
   min-height: 100vh;
@@ -11,7 +12,7 @@
 .receive-hero {
   width: var(--page);
   margin-inline: auto;
-  padding: 190px 0 126px;
+  padding: 190px 0 72px;
 }
 
 .receive-hero h1 {
@@ -40,9 +41,38 @@
   text-decoration: none;
 }
 
+.receive-hero + .product-method {
+  padding-top: 72px;
+}
+
+.receive-shell .product-method {
+  padding-block: 72px;
+}
+
+.receive-shell .product-method + .product-method {
+  border-top: 0;
+}
+
+.receive-shell .method-flow {
+  padding-inline: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.receive-shell .method-flow-screen {
+  height: auto;
+  overflow: visible;
+}
+
+.receive-shell #usd-account .method-flow,
+.receive-shell #wallet .method-flow {
+  margin-top: 0;
+}
+
 @media (max-width: 620px) {
   .receive-hero {
-    padding: 146px 0 84px;
+    padding: 146px 0 54px;
   }
 
   .receive-hero h1 {
@@ -51,5 +81,17 @@
 
   .receive-hero > p {
     font-size: 16px;
+  }
+
+  .receive-hero + .product-method {
+    padding-top: 54px;
+  }
+
+  .receive-shell .product-method {
+    padding-block: 54px;
+  }
+
+  .receive-shell .method-flow {
+    padding: 0;
   }
 }

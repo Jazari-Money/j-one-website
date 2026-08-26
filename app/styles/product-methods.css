@@ -126,8 +126,57 @@
   font-size: 12px;
 }
 
+.method-flow-features {
+  margin: 32px 0 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface-2) 36%, transparent);
+}
+
+.method-flow-features > div {
+  position: relative;
+  min-height: 60px;
+  padding: 14px 20px;
+  display: grid;
+  grid-template-columns: minmax(150px, 0.72fr) minmax(220px, 1.28fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.method-flow-features > div + div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 20px;
+  left: 20px;
+  height: 1px;
+  background: color-mix(in srgb, var(--line) 54%, transparent);
+}
+
+.method-flow-features dt {
+  color: var(--text);
+  font-size: 16px;
+}
+
+.method-flow-features dd {
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 15px;
+  line-height: 1.42;
+  text-align: right;
+}
+
+.method-flow-description {
+  max-width: 700px;
+  margin: 28px 0 0;
+  color: var(--muted-strong);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
 .method-flow-screen {
-  height: 560px;
+  height: 650px;
   overflow: hidden;
   display: flex;
   align-items: flex-start;
@@ -278,6 +327,57 @@
   line-height: 1.55;
 }
 
+.method-flow-copy .wallet-support {
+  margin-top: 28px;
+}
+
+.method-flow-copy .wallet-support-group + .wallet-support-group {
+  margin-top: 18px;
+}
+
+.method-flow-copy .wallet-support-group > h3 {
+  font-size: 26px;
+}
+
+.method-flow-copy .wallet-network-list {
+  margin-top: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.method-flow-copy .wallet-assets {
+  margin-top: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.method-flow-copy .wallet-network-list article,
+.method-flow-copy .wallet-assets > div {
+  min-height: 62px;
+  padding: 12px;
+  border-radius: 14px;
+  gap: 8px;
+}
+
+.method-flow-copy .wallet-network-list img,
+.method-flow-copy .wallet-assets img {
+  width: 30px;
+  height: 30px;
+}
+
+.method-flow-copy .wallet-network-list h4 {
+  font-size: 14px;
+}
+
+.method-flow-copy .wallet-assets strong {
+  font-size: 16px;
+}
+
+.method-flow-copy .wallet-support-note {
+  margin-top: 12px;
+  font-size: 11px;
+}
+
 .product-final-cta {
   padding-block: 132px 154px;
   text-align: center;
@@ -293,6 +393,37 @@
   min-height: 50px;
   margin: 32px auto 0;
   padding-inline: 24px;
+  text-decoration: none;
+}
+
+.product-final-cta.color-event-cta {
+  min-height: 0;
+  margin: 0 auto 54px;
+  padding: clamp(42px, 6vw, 74px);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
+  text-align: left;
+}
+
+.product-final-cta.color-event-cta h2 {
+  max-width: 760px;
+  font-size: clamp(48px, 6.4vw, 86px);
+  line-height: 0.92;
+}
+
+.product-final-cta .receive-final-action {
+  width: max-content;
+  min-height: 50px;
+  margin: 0;
+  padding-inline: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -316,6 +447,11 @@
   .method-flow.is-reversed .method-flow-copy,
   .method-flow.is-reversed .method-flow-screen {
     order: initial;
+  }
+
+
+  .method-flow-copy .wallet-network-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -363,8 +499,22 @@
     margin-top: 32px;
   }
 
+  .method-flow-features {
+    margin-top: 32px;
+  }
+
+  .method-flow-features > div {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: 14px;
+  }
+
+  .method-flow-features dt,
+  .method-flow-features dd {
+    font-size: 14px;
+  }
+
   .method-flow-screen {
-    height: 510px;
+    height: min(630px, 164vw);
   }
 
   .wallet-support {
@@ -383,7 +533,29 @@
     min-height: 108px;
   }
 
+  .method-flow-copy .wallet-network-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .method-flow-copy .wallet-assets {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .method-flow-copy .wallet-network-list article,
+  .method-flow-copy .wallet-assets > div {
+    min-height: 68px;
+    padding: 12px;
+  }
+
   .product-final-cta {
     padding-block: 92px 108px;
+  }
+
+  .product-final-cta.color-event-cta {
+    margin-bottom: 28px;
+    padding: 34px 26px;
+    border-radius: 24px;
+    align-items: flex-start;
+    flex-direction: column;
   }
 }

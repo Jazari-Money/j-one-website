@@ -183,13 +183,13 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(yields, /Open Yields/);
   assert.match(yields, /Ready to open Yields\?/);
 
-  assert.match(receive, /<title>Receive money — Jazari One<\/title>/);
-  assert.match(receive, /<h1>Receive money<\/h1>/);
-  assert.match(receive, /<h2 id="usd-account-title">USD Account<\/h2>/);
+  assert.match(receive, /<title>Receive — Jazari One<\/title>/);
+  assert.match(receive, /<h1>Receive<\/h1>/);
+  assert.match(receive, /<h3 id="usd-account-title">USD Account<\/h3>/);
   assert.match(receive, /licensed US bank partner/);
   assert.match(receive, /Eligible users in 190\+ countries/);
   assert.match(receive, /id="wallet"/);
-  assert.match(receive, /<h2 id="wallet-title">Stablecoin wallet<\/h2>/);
+  assert.match(receive, /<h3 id="wallet-title">Stablecoin wallet<\/h3>/);
   assert.match(receive, /Supported networks/);
   assert.match(receive, /Supported stablecoins/);
   assert.match(receive, /\/images\/rails\/usdc\.svg/);
@@ -199,9 +199,14 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(receive, /Solana/);
   assert.match(receive, /Polygon/);
   assert.match(receive, /Base/);
-  assert.match(receive, /Open Add Funds/);
-  assert.match(receive, /how-to-receive-03\.png/);
-  assert.match(receive, /how-to-receive-02\.png/);
+  assert.match(receive, /Incoming fee<\/dt><dd>\$0/);
+  assert.doesNotMatch(receive, /Use your USD account details/);
+  assert.match(receive, /receive-usd-account\.png/);
+  assert.match(receive, /receive-stablecoins-account\.png/);
+  assert.match(receive, /product-final-cta color-event-cta/);
+  assert.match(receive, /neutral-control receive-final-action/);
+  assert.doesNotMatch(receive, /Receive through a wallet|Open Jazari One and choose Add Funds/);
+  assert.doesNotMatch(receive, /Availability is subject to identity verification/);
   assert.doesNotMatch(receive, /Two reasons to receive|Receiving methods|Two ways in\. One balance\.|<h2[^>]*>How it works<\/h2>/);
 
   assert.match(usdAccount, /NEXT_REDIRECT;replace;\/j-one-website\/receive\/#usd-account;307/);

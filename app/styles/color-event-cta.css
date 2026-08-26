@@ -46,7 +46,8 @@
 .color-event-cta .color-event-cta-copy h2,
 .color-event-cta .color-event-cta-copy p,
 .color-event-cta .article-cta-link,
-.color-event-cta .realism-button {
+.color-event-cta .realism-button,
+.color-event-cta .receive-final-action {
   opacity: 0;
   transform: translate3d(0, 12px, 0);
 }
@@ -68,7 +69,8 @@
 }
 
 .color-event-cta.is-started .article-cta-link,
-.color-event-cta.is-started .realism-button {
+.color-event-cta.is-started .realism-button,
+.color-event-cta.is-started .receive-final-action {
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition:
@@ -114,7 +116,8 @@
   }
 
   .color-event-cta.is-started .article-cta-link,
-  .color-event-cta.is-started .realism-button {
+  .color-event-cta.is-started .realism-button,
+  .color-event-cta.is-started .receive-final-action {
     transition-delay: 850ms;
   }
 }
@@ -123,7 +126,8 @@
   .color-event-cta .color-event-cta-copy h2,
   .color-event-cta .color-event-cta-copy p,
   .color-event-cta .article-cta-link,
-  .color-event-cta .realism-button {
+  .color-event-cta .realism-button,
+  .color-event-cta .receive-final-action {
     opacity: 1;
     transform: none;
     transition: none;
