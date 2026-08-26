@@ -318,6 +318,21 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(page.getByText("How to compare a transfer beyond the headline rate")).toHaveCount(0);
 });
 
+test("uses the intended mobile hero line breaks", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await prepareStablePage(page);
+
+  await expect(page.locator(".hero-title-desktop")).toBeHidden();
+  const mobileLines = page.locator(".hero-title-mobile .hero-title-line");
+  await expect(mobileLines).toHaveText(["Get paid.", "Earn. Send", "worldwide."]);
+
+  const mobileDescriptionEnding = page.locator(".hero-copy-mobile-keep");
+  await expect(mobileDescriptionEnding).toHaveText(
+    "Yields. Bank transfers to 30+ countries.",
+  );
+  await expect(mobileDescriptionEnding).toHaveCSS("white-space", "nowrap");
+});
+
 test("renders the pricing preview and legal links", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/plan/", { waitUntil: "networkidle" });
@@ -807,8 +822,8 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu.getByRole("link", { name: "Privacy Policy" })).toBeVisible();
   await expect(menu.getByText("Cookies", { exact: true })).toHaveCount(0);
   const [paidLine, earnedLine] = await Promise.all([
-    page.locator(".hero-paid-line").boundingBox(),
-    page.locator(".hero-earned-line").boundingBox(),
+    page.locator(".hero-title-mobile .hero-title-line").nth(0).boundingBox(),
+    page.locator(".hero-title-mobile .hero-title-line").nth(1).boundingBox(),
   ]);
   expect(paidLine).not.toBeNull();
   expect(earnedLine).not.toBeNull();

@@ -36,19 +36,25 @@ export function Hero() {
         <HeroColorEvent reduced={reduced} />
       </div>
       <div className="hero-copy">
-        <h1>
-          <span className="hero-title-line">
-            <span>
-              <span className="hero-paid-line">Get paid.</span>{" "}
-              <span className="hero-earned-line">Earn.</span>
+        <h1 aria-label="Get paid. Earn. Send worldwide.">
+          <span className="hero-title-desktop" aria-hidden="true">
+            <span className="hero-title-line">
+              <span>Get paid. Earn.</span>
             </span>
+            <span className="hero-title-line"><span>Send worldwide.</span></span>
           </span>
-          <span className="hero-title-line"><span>Send worldwide.</span></span>
+          <span className="hero-title-mobile" aria-hidden="true">
+            <span className="hero-title-line"><span>Get paid.</span></span>
+            <span className="hero-title-line"><span>Earn. Send</span></span>
+            <span className="hero-title-line"><span>worldwide.</span></span>
+          </span>
         </h1>
         <p>
-          Your own USD account. Up to 7% APY with Yields.
-          <br />
-          Bank transfers to 30+ countries.
+          Your own USD account. Up to 7% APY with{" "}
+          <span className="hero-copy-mobile-keep">
+            Yields.<br className="hero-copy-desktop-break" />{" "}
+            Bank transfers to 30+ countries.
+          </span>
         </p>
         <HeroDownload />
       </div>
