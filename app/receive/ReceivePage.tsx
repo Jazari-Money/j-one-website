@@ -23,26 +23,24 @@ export function ReceivePage() {
       </header>
 
       <section className="product-method" id="usd-account" aria-labelledby="usd-account-title">
-        <header className="product-method-heading">
-          <h2 id="usd-account-title">USD Account</h2>
-          <p>
+        <MethodFlow
+          title="USD Account"
+          titleId="usd-account-title"
+          screen={withBasePath("/images/how-to/receive-usd-account.png")}
+          stem="/images/how-to/receive-usd-account"
+          alt="USD account routing and account details in Jazari One"
+        >
+          <p className="method-flow-description">
             Get US routing and account numbers in your name through a licensed
             US bank partner. Use them to add your own money or receive ACH,
             FedNow, domestic wire, and SWIFT transfers from clients, employers,
             or other people.
           </p>
-        </header>
-
-        <MethodFlow
-          title="Use your USD account details"
-          screen={withBasePath("/images/how-to/receive-usd-account.png")}
-          stem="/images/how-to/receive-usd-account"
-          alt="USD account routing and account details in Jazari One"
-        >
           <dl className="method-flow-features">
             <div><dt>Account details</dt><dd>US routing and account number in your name</dd></div>
             <div><dt>Transfer methods</dt><dd>ACH, FedNow, domestic wire, and SWIFT</dd></div>
             <div><dt>Availability</dt><dd>Eligible users in 190+ countries; no US residency required</dd></div>
+            <div><dt>Incoming fee</dt><dd>$0</dd></div>
           </dl>
         </MethodFlow>
 
@@ -62,7 +60,6 @@ export function ReceivePage() {
         </header>
 
         <MethodFlow
-          reverse
           screen={withBasePath("/images/how-to/receive-stablecoins-account.png")}
           stem="/images/how-to/receive-stablecoins-account"
           alt="Wallet address and network selection in Jazari One"

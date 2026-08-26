@@ -600,7 +600,7 @@ test("keeps receiving on one product page and redirects the old USD account rout
   await expect(page.getByText("Base", { exact: true })).toBeVisible();
   const [usdHeadingBox, usdDescriptionBox, walletHeadingBox, walletDescriptionBox] = await Promise.all([
     usdAccountHeading.boundingBox(),
-    page.locator("#usd-account .product-method-heading > p").boundingBox(),
+    page.locator("#usd-account .method-flow-description").boundingBox(),
     walletHeading.boundingBox(),
     page.locator("#wallet .product-method-heading > p").boundingBox(),
   ]);
@@ -608,6 +608,11 @@ test("keeps receiving on one product page and redirects the old USD account rout
   expect(walletDescriptionBox!.y).toBeGreaterThan(walletHeadingBox!.y + walletHeadingBox!.height);
   await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
   await expect(page.locator("#wallet .wallet-assets > div")).toHaveCount(2);
+  const [walletSupportBox, walletPhoneBox] = await Promise.all([
+    page.locator("#wallet .method-flow-copy").boundingBox(),
+    page.locator("#wallet .method-flow-screen").boundingBox(),
+  ]);
+  expect(walletSupportBox!.x).toBeLessThan(walletPhoneBox!.x);
   await expect(page.locator("#wallet .wallet-network-list img").first()).toHaveCSS(
     "filter",
     "grayscale(1) brightness(0) invert(1)",
@@ -890,11 +895,11 @@ test("keeps the Receive account features and phone preview usable on mobile", as
   await page.setViewportSize({ width: 390, height: 844 });
   await prepareStablePage(page, "/receive/");
 
-  await page.getByRole("heading", { name: "Use your USD account details" }).scrollIntoViewIfNeeded();
+  await page.getByRole("heading", { name: "USD Account" }).scrollIntoViewIfNeeded();
 
   const flow = page.locator("#usd-account .method-flow");
   const features = flow.locator(".method-flow-features > div");
-  await expect(features).toHaveCount(3);
+  await expect(features).toHaveCount(4);
   const activeScreenImage = flow.locator(".method-flow-screen img");
   await expect
     .poll(() => activeScreenImage.evaluate((image) => (image as HTMLImageElement).naturalWidth))
@@ -912,6 +917,7 @@ test("keeps the Receive account features and phone preview usable on mobile", as
   await expect(activeScreenImage).toHaveAttribute("src", /receive-usd-account\.png$/);
   await expect(features.nth(0)).toContainText("US routing and account number");
   await expect(features.nth(2)).toContainText("190+ countries");
+  await expect(features.nth(3)).toContainText("Incoming fee$0");
   await expect(flow.locator(".phone-copy-corrections")).toHaveCount(0);
   await expect(flow).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   const [screenBox, phoneBox] = await Promise.all([

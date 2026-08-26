@@ -3,6 +3,7 @@ import { Phone } from "./Phone";
 
 export function MethodFlow({
   title,
+  titleId,
   steps,
   screen,
   stem,
@@ -12,6 +13,7 @@ export function MethodFlow({
   children,
 }: {
   title?: string;
+  titleId?: string;
   steps?: readonly string[];
   screen: string;
   stem: string;
@@ -23,7 +25,7 @@ export function MethodFlow({
   return (
     <div className={`method-flow ${reverse ? "is-reversed" : ""}`}>
       <div className="method-flow-copy">
-        {title && <h3>{title}</h3>}
+        {title && <h3 id={titleId}>{title}</h3>}
         {children}
         {steps && (
           <ol>

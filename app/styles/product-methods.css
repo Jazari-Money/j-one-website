@@ -127,26 +127,52 @@
 }
 
 .method-flow-features {
-  margin: 48px 0 0;
+  margin: 32px 0 0;
   padding: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--surface-2) 36%, transparent);
 }
 
 .method-flow-features > div {
-  padding: 20px 0;
-  border-top: 1px solid var(--line);
+  position: relative;
+  min-height: 60px;
+  padding: 14px 20px;
+  display: grid;
+  grid-template-columns: minmax(150px, 0.72fr) minmax(220px, 1.28fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.method-flow-features > div + div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 20px;
+  left: 20px;
+  height: 1px;
+  background: color-mix(in srgb, var(--line) 54%, transparent);
 }
 
 .method-flow-features dt {
-  color: var(--muted);
-  font-size: 12px;
+  color: var(--text);
+  font-size: 16px;
 }
 
 .method-flow-features dd {
-  max-width: 520px;
-  margin: 8px 0 0;
+  margin: 0;
+  color: var(--muted-strong);
+  font-size: 15px;
+  line-height: 1.42;
+  text-align: right;
+}
+
+.method-flow-description {
+  max-width: 700px;
+  margin: 28px 0 0;
   color: var(--muted-strong);
   font-size: 16px;
-  line-height: 1.45;
+  line-height: 1.6;
 }
 
 .method-flow-screen {
@@ -474,6 +500,16 @@
 
   .method-flow-features {
     margin-top: 32px;
+  }
+
+  .method-flow-features > div {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: 14px;
+  }
+
+  .method-flow-features dt,
+  .method-flow-features dd {
+    font-size: 14px;
   }
 
   .method-flow-screen {

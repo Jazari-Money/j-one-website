@@ -185,7 +185,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
 
   assert.match(receive, /<title>Receive — Jazari One<\/title>/);
   assert.match(receive, /<h1>Receive<\/h1>/);
-  assert.match(receive, /<h2 id="usd-account-title">USD Account<\/h2>/);
+  assert.match(receive, /<h3 id="usd-account-title">USD Account<\/h3>/);
   assert.match(receive, /licensed US bank partner/);
   assert.match(receive, /Eligible users in 190\+ countries/);
   assert.match(receive, /id="wallet"/);
@@ -199,7 +199,8 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(receive, /Solana/);
   assert.match(receive, /Polygon/);
   assert.match(receive, /Base/);
-  assert.match(receive, /Use your USD account details/);
+  assert.match(receive, /Incoming fee<\/dt><dd>\$0/);
+  assert.doesNotMatch(receive, /Use your USD account details/);
   assert.match(receive, /receive-usd-account\.png/);
   assert.match(receive, /receive-stablecoins-account\.png/);
   assert.match(receive, /product-final-cta color-event-cta/);

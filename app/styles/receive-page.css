@@ -61,6 +61,10 @@
   margin-top: 0;
 }
 
+.receive-shell #usd-account .method-flow {
+  margin-top: 0;
+}
+
 @media (max-width: 620px) {
   .receive-hero {
     padding: 146px 0 54px;
