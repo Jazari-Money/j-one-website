@@ -167,13 +167,14 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(yields, />Learn more<\/a>/);
   assert.match(yields, /<dt>Funding assets<\/dt><dd>USDC<\/dd>/);
   assert.doesNotMatch(yields, /USDC or USDT|USDC · USDT/);
-  assert.match(yields, /<strong>4\.66%<\/strong><span>APY<\/span>/);
+  assert.match(yields, /Gauntlet USD Alpha <span class="yield-inline-rate">· 4\.66% APY<\/span>/);
   assert.match(yields, /Lido EarnUSD/);
   assert.match(yields, /\/images\/rails\/lido-white\.svg/);
-  assert.match(yields, /<strong>7%<\/strong><span>APY<\/span>/);
+  assert.match(yields, /Lido EarnUSD <span class="yield-inline-rate">· 7% APY<\/span>/);
   assert.doesNotMatch(yields, /<strong>Variable<\/strong><span>APY<\/span>/);
   assert.match(yields, /https:\/\/stake\.lido\.fi\/earn\/usd\/deposit/);
   assert.match(yields, /Instant or up to 72 hours/);
+  assert.match(yields, /<dt>Protection<\/dt><dd>Not deposit-insured<\/dd>/);
   assert.doesNotMatch(yields, /Illustrative rate supplied by Jazari/);
   assert.match(yields, /<title>Earn with Yields — Jazari One<\/title>/);
   assert.match(yields, /<h1>Earn with Yields<\/h1>/);
@@ -191,7 +192,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(receive, /ACH\/Wire, ACH Same day, FedNow, Swift/);
   assert.doesNotMatch(receive, /ACH, FedNow, domestic wire, and SWIFT/);
   assert.match(receive, /licensed US bank partner/);
-  assert.match(receive, /Eligible users in 190\+ countries/);
+  assert.match(receive, /Open to US and non-US residents, in 190\+ countries/);
   assert.match(receive, /id="wallet"/);
   assert.match(receive, /<h3 id="wallet-title">Stablecoin wallet<\/h3>/);
   assert.match(receive, /Supported networks/);
@@ -203,7 +204,8 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(receive, /Solana/);
   assert.doesNotMatch(receive, /Polygon/);
   assert.match(receive, /Base/);
-  assert.match(receive, /Incoming fee<\/dt><dd>\$0/);
+  assert.match(receive, /Incoming fee<\/dt><dd>\$0\*/);
+  assert.match(receive, /\* \$0 at launch\. Pricing may change later\./);
   assert.doesNotMatch(receive, /Use your USD account details/);
   assert.match(receive, /receive-usd-account\.png/);
   assert.match(receive, /receive-stablecoins-account\.png/);

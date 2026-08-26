@@ -561,18 +561,26 @@ test("explains yields and links into the app flow", async ({ page }) => {
   await expect(page.getByText("USDC", { exact: true })).toHaveCount(2);
   await expect(page.getByText("USDC", { exact: true }).first()).toBeVisible();
   await expect(page.getByText(/USDC · USDT|USDC or USDT/)).toHaveCount(0);
-  await expect(page.getByText("4.66%", { exact: true })).toBeVisible();
-  await expect(page.getByText("7%", { exact: true })).toBeVisible();
+  await expect(page.getByText("· 4.66% APY", { exact: true })).toBeVisible();
+  await expect(page.getByText("· 7% APY", { exact: true })).toBeVisible();
   await expect(page.getByText("Variable", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Lido EarnUSD" })).toBeVisible();
+  await expect(page.getByText("Not deposit-insured", { exact: true })).toHaveCount(2);
   await expect(page.getByRole("img", { name: "Lido" })).toHaveAttribute(
     "src",
     /lido-white\.svg$/,
   );
-  await expect(page.getByRole("link", { name: "Open Lido EarnUSD" })).toHaveAttribute(
+  await expect(page.locator(".yield-feature-lido").getByRole("link", { name: "Learn more" })).toHaveAttribute(
     "href",
     "https://stake.lido.fi/earn/usd/deposit",
   );
+  for (const link of await page.locator(".yield-strategy-copy > a").all()) {
+    await expect(link).toHaveCSS("text-decoration-line", "underline");
+  }
+  const strategyTitlesFit = await page.locator(".yield-strategy-copy h2").evaluateAll((titles) =>
+    titles.every((title) => title.scrollWidth <= title.clientWidth),
+  );
+  expect(strategyTitlesFit).toBe(true);
   await expect(page.getByText("Illustrative rate supplied by Jazari")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "How Yields work" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Ready to open Yields?" })).toBeVisible();
@@ -612,7 +620,7 @@ test("keeps receiving on one product page and redirects the old USD account rout
   await expect(page.getByText(/licensed US bank partner/)).toBeVisible();
   await expect(page.getByText(/US routing and account number/).first()).toBeVisible();
   await expect(page.getByText(/ACH\/Wire, ACH Same day, FedNow, Swift/).first()).toBeVisible();
-  await expect(page.getByText(/Eligible users in 190\+ countries/)).toBeVisible();
+  await expect(page.getByText(/Open to US and non-US residents, in 190\+ countries/)).toBeVisible();
   const walletHeading = page.getByRole("heading", { name: "Stablecoin wallet", exact: true });
   await expect(walletHeading).toBeVisible();
   await expect(page.getByRole("heading", { name: "Supported networks", exact: true })).toBeVisible();
@@ -949,8 +957,9 @@ test("keeps the Receive account features and phone preview usable on mobile", as
   await expect(flow).toBeVisible();
   await expect(activeScreenImage).toHaveAttribute("src", /receive-usd-account\.png$/);
   await expect(features.nth(0)).toContainText("US routing and account number");
-  await expect(features.nth(2)).toContainText("190+ countries");
-  await expect(features.nth(3)).toContainText("Incoming fee$0");
+  await expect(features.nth(2)).toContainText("Open to US and non-US residents, in 190+ countries");
+  await expect(features.nth(3)).toContainText("Incoming fee$0*");
+  await expect(flow.getByText("* $0 at launch. Pricing may change later.", { exact: true })).toBeVisible();
   await expect(flow.locator(".phone-copy-corrections")).toHaveCount(0);
   await expect(flow).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
   const [screenBox, phoneBox] = await Promise.all([

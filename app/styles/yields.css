@@ -66,8 +66,8 @@
   min-height: 620px;
   margin: 0;
   padding: 44px;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 44px 28px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 44px;
 }
 
 .yield-feature-grid .yield-feature + .yield-feature {
@@ -76,7 +76,16 @@
 
 .yield-feature-grid .yield-strategy-copy h2 {
   margin-top: 34px;
-  font-size: clamp(48px, 4.1vw, 62px);
+  font-size: clamp(36px, 3.15vw, 44px);
+  letter-spacing: -0.45px;
+  white-space: nowrap;
+}
+
+.yield-inline-rate {
+  color: var(--accent);
+  text-shadow:
+    0 0 12px color-mix(in srgb, var(--accent) 28%, transparent),
+    0 0 34px color-mix(in srgb, var(--accent) 14%, transparent);
 }
 
 .yield-feature-grid .yield-strategy-copy h2 + p {
@@ -104,15 +113,15 @@
 }
 
 .yield-strategy-copy img {
-  width: 210px;
-  height: 46px;
+  width: 178px;
+  height: 39px;
   object-fit: contain;
   object-position: left center;
   filter: grayscale(1) brightness(0) invert(1);
 }
 
 .yield-strategy-copy .yield-provider-logo-lido {
-  width: 210px;
+  width: 178px;
 }
 
 .yield-strategy-copy h2 {
@@ -139,7 +148,7 @@
   color: var(--text);
   font-size: 14px;
   text-decoration: underline;
-  text-decoration-color: transparent;
+  text-decoration-color: currentColor;
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
   transition: color 180ms ease, text-decoration-color 220ms ease;
@@ -444,12 +453,12 @@
   .yield-feature-grid .yield-feature {
     min-height: 560px;
     padding: 54px;
-    grid-template-columns: minmax(330px, 0.9fr) minmax(260px, 0.55fr);
-    gap: 52px 88px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 52px;
   }
 
   .yield-feature-grid .yield-strategy-copy h2 {
-    font-size: clamp(54px, 5.8vw, 78px);
+    font-size: clamp(36px, 4vw, 44px);
   }
 
   .yield-feature-grid .yield-rate strong {
@@ -508,7 +517,8 @@
   }
 
   .yield-feature-grid .yield-strategy-copy h2 {
-    font-size: 50px;
+    font-size: 26px;
+    letter-spacing: -0.25px;
   }
 
   .yield-feature-grid .yield-rate strong {
