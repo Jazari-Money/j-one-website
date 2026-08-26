@@ -85,7 +85,9 @@ export function YieldsPage() {
             loading="lazy"
             decoding="async"
           />
-          <h2 id="yield-strategy-title">Gauntlet USD Alpha</h2>
+          <h2 id="yield-strategy-title">
+            Gauntlet USD Alpha <span className="yield-inline-rate">· 4.66% APY</span>
+          </h2>
           <p>
             An independently managed, Base-based strategy that reallocates
             across stablecoin opportunities while monitoring liquidity,
@@ -94,10 +96,6 @@ export function YieldsPage() {
           <a href="https://www.gauntlet.xyz/gauntlet-strategies/gtusda" target="_blank" rel="noreferrer">
             Learn more
           </a>
-        </div>
-        <div className="yield-rate">
-          <strong>4.66%</strong>
-          <span>APY</span>
         </div>
         <dl className="yield-facts">
           <div>
@@ -131,7 +129,9 @@ export function YieldsPage() {
             loading="lazy"
             decoding="async"
           />
-          <h2 id="lido-strategy-title">Lido EarnUSD</h2>
+          <h2 id="lido-strategy-title">
+            Lido EarnUSD <span className="yield-inline-rate">· 7% APY</span>
+          </h2>
           <p>
             A USD-denominated reward strategy built around transparent asset
             selection, risk controls, and reporting.
@@ -141,12 +141,8 @@ export function YieldsPage() {
             target="_blank"
             rel="noreferrer"
           >
-            Open Lido EarnUSD
+            Learn more
           </a>
-        </div>
-        <div className="yield-rate">
-          <strong>7%</strong>
-          <span>APY</span>
         </div>
         <dl className="yield-facts">
           <div>
@@ -158,8 +154,8 @@ export function YieldsPage() {
             <dd>Instant or up to 72 hours</dd>
           </div>
           <div>
-            <dt>Availability</dt>
-            <dd>Restrictions apply</dd>
+            <dt>Protection</dt>
+            <dd>Not deposit-insured</dd>
           </div>
         </dl>
         </section>

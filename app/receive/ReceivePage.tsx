@@ -29,16 +29,16 @@ export function ReceivePage() {
         >
           <p className="method-flow-description">
             Get US routing and account numbers in your name through a licensed
-            US bank partner. Use them to add your own money or receive ACH/Wire,
-            ACH Same day, FedNow, and Swift transfers from clients, employers, or
-            other people.
+            US bank partner. Use them to add your own money or receive transfers
+            from clients, or other people.
           </p>
           <dl className="method-flow-features">
             <div><dt>Account details</dt><dd>US routing and account number in your name</dd></div>
             <div><dt>Transfer methods</dt><dd>ACH/Wire, ACH Same day, FedNow, Swift</dd></div>
-            <div><dt>Availability</dt><dd>Eligible users in 190+ countries; no US residency required</dd></div>
-            <div><dt>Incoming fee</dt><dd>$0</dd></div>
+            <div><dt>Availability</dt><dd>Open to US and non-US residents, in 190+ countries</dd></div>
+            <div><dt>Incoming fee</dt><dd>$0*</dd></div>
           </dl>
+          <p className="method-flow-footnote">* $0 at launch. Pricing may change later.</p>
         </MethodFlow>
       </section>
 

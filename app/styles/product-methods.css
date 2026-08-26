@@ -175,6 +175,13 @@
   line-height: 1.6;
 }
 
+.method-flow-footnote {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .method-flow-screen {
   height: 650px;
   overflow: hidden;
