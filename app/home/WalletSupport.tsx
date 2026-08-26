@@ -2,7 +2,11 @@
 
 import { walletAssets, walletNetworkSupport } from "./data";
 
-export function WalletSupport() {
+export function WalletSupport({ context = "receive" }: { context?: "receive" | "send" }) {
+  const supportNote = context === "send"
+    ? "The app confirms the stablecoin and network combinations available to you before you confirm a transfer."
+    : "The app confirms the stablecoin and network combinations available to you before showing an address.";
+
   return (
     <div className="wallet-support">
       <section className="wallet-support-group" aria-labelledby="supported-networks-title">
@@ -30,9 +34,7 @@ export function WalletSupport() {
       </section>
 
       <p className="wallet-support-note">
-        The app confirms the stablecoin and network combinations available to
-        you before showing an address. Eligibility, compliance, sanctions, and
-        network controls apply.
+        {supportNote} Eligibility, compliance, sanctions, and network controls apply.
       </p>
     </div>
   );

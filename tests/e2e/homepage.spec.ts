@@ -294,9 +294,13 @@ test("keeps the core interactions working", async ({ page }) => {
   await expect(page.locator(".journey-card").first()).toHaveCSS("transform", "none");
 
   await page.goto("/send/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Send money", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /Bank accounts\.\s*Local currency\./ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Send", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Bank transfer", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Stablecoin wallet", exact: true })).toBeVisible();
   await expect(page.locator("#bank-accounts .method-flow-screen img")).toHaveAttribute("src", /how-to-send-02\.png$/);
+  await expect(page.locator("#wallet .method-flow-screen img")).toHaveAttribute("src", /how-to-send-01\.png$/);
+  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
+  await expect(page.locator("#wallet .wallet-assets > div")).toHaveCount(2);
   await expect(page.locator(".scenario-how")).toHaveCount(0);
 
   const currencyPicker = page.locator("#receive-currency");
