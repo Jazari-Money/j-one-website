@@ -165,7 +165,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(yields, /Rates adjust daily and returns are never guaranteed/);
   assert.match(yields, /An independently managed, Base-based strategy/);
   assert.match(yields, />Learn more<\/a>/);
-  assert.match(yields, /<dt>Funding assets<\/dt><dd>USDC<\/dd>/);
+  assert.doesNotMatch(yields, /<dt>Funding assets?<\/dt>/);
   assert.doesNotMatch(yields, /USDC or USDT|USDC · USDT/);
   assert.match(yields, /Gauntlet USD Alpha <span class="yield-inline-rate">· 4\.66% APY<\/span>/);
   assert.match(yields, /Lido EarnUSD/);
@@ -173,7 +173,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(yields, /Lido EarnUSD <span class="yield-inline-rate">· 7% APY<\/span>/);
   assert.doesNotMatch(yields, /<strong>Variable<\/strong><span>APY<\/span>/);
   assert.match(yields, /https:\/\/stake\.lido\.fi\/earn\/usd\/deposit/);
-  assert.match(yields, /Instant or up to 72 hours/);
+  assert.equal((yields.match(/Instant or up to 72 hours/g) ?? []).length, 2);
   assert.match(yields, /<dt>Protection<\/dt><dd>Not deposit-insured<\/dd>/);
   assert.doesNotMatch(yields, /Illustrative rate supplied by Jazari/);
   assert.match(yields, /<title>Earn with Yields — Jazari One<\/title>/);
@@ -182,8 +182,13 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(yields, /What are Yields\?/);
   assert.match(yields, /Where do Yields come from\?/);
   assert.match(yields, /How Yields work/);
+  assert.match(yields, /How to open your Yields/);
+  assert.doesNotMatch(yields, /<header class="scenario-how-heading"><p>Yields<\/p>/);
   assert.match(yields, /Review a strategy, choose how much to add/);
   assert.match(yields, /Open Yields/);
+  assert.match(yields, /how-to-yield-01\.png/);
+  assert.match(yields, /how-to-yield-02\.png/);
+  assert.match(yields, /how-to-yield-03\.png/);
   assert.match(yields, /Ready to open Yields\?/);
 
   assert.match(receive, /<title>Receive — Jazari One<\/title>/);
@@ -405,8 +410,9 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.doesNotMatch(heroColorEventSource, /u_ptr|pointerTarget|pointerSmooth/);
   assert.doesNotMatch(heroColorEventSource, /addEventListener\("pointermove"/);
   assert.doesNotMatch(page, /accessOpen|Join Waitlist|Email address/);
-  assert.match(page, /activeStep/);
-  assert.match(page, /role="tablist"/);
+  assert.match(page, /className="scenario-step-grid"/);
+  assert.match(page, /className="scenario-step-note"/);
+  assert.doesNotMatch(page, /role="tablist"/);
   assert.doesNotMatch(page, /View screen|Showing screen/);
   assert.match(page, /className="review-fee"/);
   assert.match(page, /className="numeric"/);

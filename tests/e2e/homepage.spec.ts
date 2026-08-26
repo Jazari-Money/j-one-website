@@ -558,11 +558,14 @@ test("explains yields and links into the app flow", async ({ page }) => {
     page.getByRole("heading", { name: "Earn with Yields", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
-  await expect(page.getByText("USDC", { exact: true })).toHaveCount(2);
-  await expect(page.getByText("USDC", { exact: true }).first()).toBeVisible();
+  await expect(page.getByText("USDC", { exact: true })).toHaveCount(0);
   await expect(page.getByText(/USDC · USDT|USDC or USDT/)).toHaveCount(0);
   await expect(page.getByText("· 4.66% APY", { exact: true })).toBeVisible();
   await expect(page.getByText("· 7% APY", { exact: true })).toBeVisible();
+  const inlineRatesMatchHeadings = await page.locator(".yield-inline-rate").evaluateAll((rates) =>
+    rates.every((rate) => getComputedStyle(rate).color === getComputedStyle(rate.parentElement!).color),
+  );
+  expect(inlineRatesMatchHeadings).toBe(true);
   await expect(page.getByText("Variable", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Lido EarnUSD" })).toBeVisible();
   await expect(page.getByText("Not deposit-insured", { exact: true })).toHaveCount(2);
@@ -583,12 +586,15 @@ test("explains yields and links into the app flow", async ({ page }) => {
   expect(strategyTitlesFit).toBe(true);
   await expect(page.getByText("Illustrative rate supplied by Jazari")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "How Yields work" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "How to open your Yields" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Ready to open Yields?" })).toBeVisible();
   await expect(page.getByText("Return and risk move together")).toHaveCount(0);
   const strategyFacts = page.locator(".yield-facts");
   await expect(strategyFacts).toHaveCount(2);
   await expect(strategyFacts.first()).toHaveCSS("border-radius", "18px");
-  await expect(strategyFacts.first().locator("> div")).toHaveCount(3);
+  await expect(strategyFacts.first().locator("> div")).toHaveCount(2);
+  await expect(page.getByText("Withdrawals", { exact: true })).toHaveCount(2);
+  await expect(page.getByText("Instant or up to 72 hours", { exact: true })).toHaveCount(2);
   const yieldCards = await page.locator(".yield-feature").evaluateAll((cards) =>
     cards.map((card) => {
       const box = card.getBoundingClientRect();
@@ -985,20 +991,31 @@ test("shows wallet receiving details without a generic walkthrough floor", async
   await expect(page.getByRole("heading", { name: "Receive through a wallet" })).toHaveCount(0);
 });
 
-test("fits the complete Yields mobile interaction at 430px", async ({ page }) => {
+test("shows the complete Yields opening flow at 430px", async ({ page }) => {
   await page.setViewportSize({ width: 430, height: 932 });
   await prepareStablePage(page, "/yields/");
 
-  await page.getByRole("heading", { name: "How it works" }).scrollIntoViewIfNeeded();
-  const steps = page.locator(".scenario-how").getByRole("tab");
+  await page.getByRole("heading", { name: "How to open your Yields" }).scrollIntoViewIfNeeded();
+  await expect(page.locator(".scenario-how-heading > p")).toHaveCount(0);
+  const steps = page.locator(".scenario-step");
   await expect(steps).toHaveCount(3);
-  await expect(steps.first()).toHaveAttribute("aria-selected", "true");
-  await steps.nth(2).click();
-  await expect(steps.nth(2)).toHaveAttribute("aria-selected", "true");
-  await expect(page.locator("#yields-step-screen .active-step-phone.is-active img")).toHaveAttribute(
-    "src",
-    /how-to-yield-03\.png$/,
+  await expect(steps.locator(".scenario-step-note h3")).toHaveText([
+    "Open Yields",
+    "Add funds",
+    "Track your earnings",
+  ]);
+  for (let index = 0; index < 3; index += 1) {
+    const image = steps.nth(index).locator(".phone img");
+    await expect(image).toHaveAttribute("src", new RegExp(`how-to-yield-0${index + 1}\\.png$`));
+    await expect(image).toHaveJSProperty("complete", true);
+    expect(await image.evaluate((element: HTMLImageElement) => element.naturalWidth)).toBeGreaterThanOrEqual(300);
+  }
+  const stripOverflows = await page.locator(".scenario-step-grid").evaluate(
+    (strip) => strip.scrollWidth > strip.clientWidth,
   );
+  expect(stripOverflows).toBe(true);
+  await steps.last().scrollIntoViewIfNeeded();
+  await expect(steps.last()).toBeVisible();
 });
 
 for (const viewport of [

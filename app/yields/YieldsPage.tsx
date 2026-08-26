@@ -99,12 +99,8 @@ export function YieldsPage() {
         </div>
         <dl className="yield-facts">
           <div>
-            <dt>Funding assets</dt>
-            <dd>USDC</dd>
-          </div>
-          <div>
-            <dt>Access</dt>
-            <dd>Add or withdraw funds at any time</dd>
+            <dt>Withdrawals</dt>
+            <dd>Instant or up to 72 hours</dd>
           </div>
           <div>
             <dt>Protection</dt>
@@ -146,10 +142,6 @@ export function YieldsPage() {
         </div>
         <dl className="yield-facts">
           <div>
-            <dt>Funding asset</dt>
-            <dd>USDC</dd>
-          </div>
-          <div>
             <dt>Withdrawals</dt>
             <dd>Instant or up to 72 hours</dd>
           </div>
@@ -163,6 +155,7 @@ export function YieldsPage() {
 
       <ScenarioWalkthrough
         scenarioKey="yields"
+        title="How to open your Yields"
         description="Review a strategy, choose how much to add, and track earnings from the same app where you hold your balance."
       />
 
