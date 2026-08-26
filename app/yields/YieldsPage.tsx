@@ -61,19 +61,20 @@ export function YieldsPage() {
       <InternalSiteHeader />
 
       <header className="yields-hero">
-        <h1>Meet Yields</h1>
+        <h1>Yields</h1>
         <p>
           Put your balance to work through independently managed
           onchain strategies. Rates adjust daily and returns are never guaranteed.
         </p>
       </header>
 
-      <section
-        className="yield-feature pointer-card"
-        aria-labelledby="yield-strategy-title"
-        onPointerMove={trackPointer}
-        onPointerLeave={resetPointer}
-      >
+      <div className="yield-feature-grid">
+        <section
+          className="yield-feature pointer-card"
+          aria-labelledby="yield-strategy-title"
+          onPointerMove={trackPointer}
+          onPointerLeave={resetPointer}
+        >
         <div className="yield-strategy-copy">
           <img
             className="yield-provider-logo"
@@ -95,7 +96,7 @@ export function YieldsPage() {
           </a>
         </div>
         <div className="yield-rate">
-          <strong>Variable</strong>
+          <strong>4.66%</strong>
           <span>APY</span>
         </div>
         <dl className="yield-facts">
@@ -112,14 +113,14 @@ export function YieldsPage() {
             <dd>Not deposit-insured</dd>
           </div>
         </dl>
-      </section>
+        </section>
 
-      <section
-        className="yield-feature yield-feature-lido pointer-card"
-        aria-labelledby="lido-strategy-title"
-        onPointerMove={trackPointer}
-        onPointerLeave={resetPointer}
-      >
+        <section
+          className="yield-feature yield-feature-lido pointer-card"
+          aria-labelledby="lido-strategy-title"
+          onPointerMove={trackPointer}
+          onPointerLeave={resetPointer}
+        >
         <div className="yield-strategy-copy">
           <img
             className="yield-provider-logo yield-provider-logo-lido"
@@ -144,7 +145,7 @@ export function YieldsPage() {
           </a>
         </div>
         <div className="yield-rate">
-          <strong>Variable</strong>
+          <strong>7%</strong>
           <span>APY</span>
         </div>
         <dl className="yield-facts">
@@ -161,7 +162,8 @@ export function YieldsPage() {
             <dd>Restrictions apply</dd>
           </div>
         </dl>
-      </section>
+        </section>
+      </div>
 
       <ScenarioWalkthrough
         scenarioKey="yields"

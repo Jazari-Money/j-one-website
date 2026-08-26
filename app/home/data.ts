@@ -112,6 +112,14 @@ export const walletNetworkSupport = [
     name: "Solana",
     logo: withBasePath("/images/rails/solana.svg"),
   },
+  {
+    name: "Polygon",
+    logo: withBasePath("/images/rails/polygon-symbol.svg"),
+  },
+  {
+    name: "Base",
+    logo: withBasePath("/images/rails/base-mark.svg"),
+  },
 ] as const;
 
 export const howScenarios = {

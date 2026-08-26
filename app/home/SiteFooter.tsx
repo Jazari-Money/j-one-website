@@ -29,7 +29,7 @@ export function SiteFooter() {
             <strong>Product</strong>
             <Link href="/receive">Receive money</Link>
             <Link href="/send">Send money</Link>
-            <Link href="/yields">Meet Yields</Link>
+            <Link href="/yields">Yields</Link>
             <Link href="/plan">Pricing</Link>
             <Link href="/roadmap">Coming soon</Link>
           </div>

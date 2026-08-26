@@ -535,13 +535,15 @@ test("aligns footer copyright with the final disclosure on desktop", async ({ pa
 test("explains yields and links into the app flow", async ({ page }) => {
   await page.goto("/yields/", { waitUntil: "networkidle" });
   await expect(
-    page.getByRole("heading", { name: "Meet Yields", exact: true }),
+    page.getByRole("heading", { name: "Yields", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gauntlet USD Alpha" })).toBeVisible();
   await expect(page.getByText("USDC", { exact: true })).toHaveCount(2);
   await expect(page.getByText("USDC", { exact: true }).first()).toBeVisible();
   await expect(page.getByText(/USDC · USDT|USDC or USDT/)).toHaveCount(0);
-  await expect(page.getByText("Variable", { exact: true })).toHaveCount(2);
+  await expect(page.getByText("4.66%", { exact: true })).toBeVisible();
+  await expect(page.getByText("7%", { exact: true })).toBeVisible();
+  await expect(page.getByText("Variable", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Lido EarnUSD" })).toBeVisible();
   await expect(page.getByRole("img", { name: "Lido" })).toHaveAttribute(
     "src",
@@ -555,6 +557,15 @@ test("explains yields and links into the app flow", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "How Yields work" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Ready to open Yields?" })).toBeVisible();
   await expect(page.getByText("Return and risk move together")).toHaveCount(0);
+  const yieldCards = await page.locator(".yield-feature").evaluateAll((cards) =>
+    cards.map((card) => {
+      const box = card.getBoundingClientRect();
+      return { x: box.x, y: box.y, width: box.width };
+    }),
+  );
+  expect(yieldCards).toHaveLength(2);
+  expect(Math.abs(yieldCards[0].y - yieldCards[1].y)).toBeLessThanOrEqual(1);
+  expect(yieldCards[1].x).toBeGreaterThan(yieldCards[0].x + yieldCards[0].width);
   await expect(page.getByRole("link", { name: "Download App" }).last()).toHaveAttribute(
     "href", "https://jazarione.app.link/web-launch",
   );
@@ -572,15 +583,35 @@ test("keeps receiving on one product page and redirects the old USD account rout
   await page.goto("/usd-account/", { waitUntil: "networkidle" });
   await expect(page).toHaveURL(/\/receive\/#usd-account$/);
   await expect(page.getByRole("heading", { name: "Receive money", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: /A US account\.\s*No US address\./ })).toBeVisible();
+  const usdAccountHeading = page.getByRole("heading", { name: "USD Account", exact: true });
+  await expect(usdAccountHeading).toBeVisible();
   await expect(page.getByText(/licensed US bank partner/)).toBeVisible();
   await expect(page.getByText(/US routing and account number/).first()).toBeVisible();
   await expect(page.getByText(/ACH, FedNow, domestic wire, and SWIFT/).first()).toBeVisible();
   await expect(page.getByText(/Eligible users in 190\+ countries/)).toBeVisible();
-  await expect(page.getByRole("heading", { name: /USDC and USDT\.\s*Straight to your wallet\./ })).toBeVisible();
+  const walletHeading = page.getByRole("heading", { name: "Stablecoin wallet", exact: true });
+  await expect(walletHeading).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Supported networks", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Supported stablecoins", exact: true })).toBeVisible();
   await expect(page.getByText("Ethereum", { exact: true })).toBeVisible();
   await expect(page.getByText("TRON", { exact: true })).toBeVisible();
   await expect(page.getByText("Solana", { exact: true })).toBeVisible();
+  await expect(page.getByText("Polygon", { exact: true })).toBeVisible();
+  await expect(page.getByText("Base", { exact: true })).toBeVisible();
+  const [usdHeadingBox, usdDescriptionBox, walletHeadingBox, walletDescriptionBox] = await Promise.all([
+    usdAccountHeading.boundingBox(),
+    page.locator("#usd-account .product-method-heading > p").boundingBox(),
+    walletHeading.boundingBox(),
+    page.locator("#wallet .product-method-heading > p").boundingBox(),
+  ]);
+  expect(usdDescriptionBox!.y).toBeGreaterThan(usdHeadingBox!.y + usdHeadingBox!.height);
+  expect(walletDescriptionBox!.y).toBeGreaterThan(walletHeadingBox!.y + walletHeadingBox!.height);
+  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
+  await expect(page.locator("#wallet .wallet-assets > div")).toHaveCount(2);
+  await expect(page.locator("#wallet .wallet-network-list img").first()).toHaveCSS(
+    "filter",
+    "grayscale(1) brightness(0) invert(1)",
+  );
   await expect(page.locator(".scenario-how")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Download App" }).first()).toHaveAttribute(
     "href",
@@ -892,7 +923,7 @@ test("shows wallet receiving details without a generic walkthrough floor", async
     "src",
     /how-to-receive-02\.png$/,
   );
-  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(3);
+  await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
 });
 
 test("fits the complete Yields mobile interaction at 430px", async ({ page }) => {
