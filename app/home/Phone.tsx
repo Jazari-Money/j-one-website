@@ -5,11 +5,13 @@ export function Phone({
   stem,
   alt,
   className = "",
+  loading = "lazy",
 }: {
   src: string;
   stem: string;
   alt: string;
   className?: string;
+  loading?: "eager" | "lazy";
 }) {
   return (
     <div className={`phone ${className}`}>
@@ -21,7 +23,7 @@ export function Phone({
         height={1063}
         sizes="(max-width: 620px) 82vw, 322px"
         alt={alt}
-        loading="lazy"
+        loading={loading}
         decoding="async"
       />
     </div>

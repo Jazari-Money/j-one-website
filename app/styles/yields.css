@@ -82,10 +82,8 @@
 }
 
 .yield-inline-rate {
-  color: var(--accent);
-  text-shadow:
-    0 0 12px color-mix(in srgb, var(--accent) 28%, transparent),
-    0 0 34px color-mix(in srgb, var(--accent) 14%, transparent);
+  color: inherit;
+  text-shadow: none;
 }
 
 .yield-feature-grid .yield-strategy-copy h2 + p {
