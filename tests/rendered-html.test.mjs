@@ -189,7 +189,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(receive, /licensed US bank partner/);
   assert.match(receive, /Eligible users in 190\+ countries/);
   assert.match(receive, /id="wallet"/);
-  assert.match(receive, /<h2 id="wallet-title">Stablecoin wallet<\/h2>/);
+  assert.match(receive, /<h3 id="wallet-title">Stablecoin wallet<\/h3>/);
   assert.match(receive, /Supported networks/);
   assert.match(receive, /Supported stablecoins/);
   assert.match(receive, /\/images\/rails\/usdc\.svg/);
@@ -206,6 +206,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(receive, /product-final-cta color-event-cta/);
   assert.match(receive, /neutral-control receive-final-action/);
   assert.doesNotMatch(receive, /Receive through a wallet|Open Jazari One and choose Add Funds/);
+  assert.doesNotMatch(receive, /Availability is subject to identity verification/);
   assert.doesNotMatch(receive, /Two reasons to receive|Receiving methods|Two ways in\. One balance\.|<h2[^>]*>How it works<\/h2>/);
 
   assert.match(usdAccount, /NEXT_REDIRECT;replace;\/j-one-website\/receive\/#usd-account;307/);

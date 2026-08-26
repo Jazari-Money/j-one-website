@@ -43,27 +43,20 @@ export function ReceivePage() {
             <div><dt>Incoming fee</dt><dd>$0</dd></div>
           </dl>
         </MethodFlow>
-
-        <p className="product-eligibility">
-          Availability is subject to identity verification, eligibility, and
-          supported-country requirements.
-        </p>
       </section>
 
       <section className="product-method product-method-wallet" id="wallet" aria-labelledby="wallet-title">
-        <header className="product-method-heading">
-          <h2 id="wallet-title">Stablecoin wallet</h2>
-          <p>
-            Receive USDC or USDT on a supported network and see it in the same
-            Jazari One balance as your bank transfers.
-          </p>
-        </header>
-
         <MethodFlow
+          title="Stablecoin wallet"
+          titleId="wallet-title"
           screen={withBasePath("/images/how-to/receive-stablecoins-account.png")}
           stem="/images/how-to/receive-stablecoins-account"
           alt="Wallet address and network selection in Jazari One"
         >
+          <p className="method-flow-description">
+            Receive USDC or USDT on a supported network and see it in the same
+            Jazari One balance as your bank transfers.
+          </p>
           <WalletSupport />
         </MethodFlow>
       </section>

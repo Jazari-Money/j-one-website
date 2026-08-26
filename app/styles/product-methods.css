@@ -328,34 +328,35 @@
 }
 
 .method-flow-copy .wallet-support {
-  margin-top: 38px;
+  margin-top: 28px;
 }
 
 .method-flow-copy .wallet-support-group + .wallet-support-group {
-  margin-top: 30px;
+  margin-top: 18px;
 }
 
 .method-flow-copy .wallet-support-group > h3 {
-  font-size: 30px;
+  font-size: 26px;
 }
 
 .method-flow-copy .wallet-network-list {
-  margin-top: 14px;
+  margin-top: 10px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .method-flow-copy .wallet-assets {
-  margin-top: 14px;
-  gap: 10px;
+  margin-top: 10px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .method-flow-copy .wallet-network-list article,
 .method-flow-copy .wallet-assets > div {
-  min-height: 72px;
-  padding: 14px;
-  border-radius: 16px;
-  gap: 10px;
+  min-height: 62px;
+  padding: 12px;
+  border-radius: 14px;
+  gap: 8px;
 }
 
 .method-flow-copy .wallet-network-list img,
@@ -373,7 +374,7 @@
 }
 
 .method-flow-copy .wallet-support-note {
-  margin-top: 16px;
+  margin-top: 12px;
   font-size: 11px;
 }
 
@@ -533,6 +534,10 @@
   }
 
   .method-flow-copy .wallet-network-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .method-flow-copy .wallet-assets {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 

@@ -45,6 +45,14 @@
   padding-top: 72px;
 }
 
+.receive-shell .product-method {
+  padding-block: 72px;
+}
+
+.receive-shell .product-method + .product-method {
+  border-top: 0;
+}
+
 .receive-shell .method-flow {
   padding-inline: 0;
   border: 0;
@@ -57,11 +65,8 @@
   overflow: visible;
 }
 
-.receive-shell #wallet .method-flow-copy .wallet-support {
-  margin-top: 0;
-}
-
-.receive-shell #usd-account .method-flow {
+.receive-shell #usd-account .method-flow,
+.receive-shell #wallet .method-flow {
   margin-top: 0;
 }
 
@@ -80,6 +85,10 @@
 
   .receive-hero + .product-method {
     padding-top: 54px;
+  }
+
+  .receive-shell .product-method {
+    padding-block: 54px;
   }
 
   .receive-shell .method-flow {

@@ -602,17 +602,25 @@ test("keeps receiving on one product page and redirects the old USD account rout
     usdAccountHeading.boundingBox(),
     page.locator("#usd-account .method-flow-description").boundingBox(),
     walletHeading.boundingBox(),
-    page.locator("#wallet .product-method-heading > p").boundingBox(),
+    page.locator("#wallet .method-flow-description").boundingBox(),
   ]);
   expect(usdDescriptionBox!.y).toBeGreaterThan(usdHeadingBox!.y + usdHeadingBox!.height);
   expect(walletDescriptionBox!.y).toBeGreaterThan(walletHeadingBox!.y + walletHeadingBox!.height);
   await expect(page.locator("#wallet .wallet-network-list article")).toHaveCount(5);
   await expect(page.locator("#wallet .wallet-assets > div")).toHaveCount(2);
+  await expect(page.locator("#wallet .method-flow-screen img")).toBeVisible();
+  const [networkCardBox, stablecoinCardBox] = await Promise.all([
+    page.locator("#wallet .wallet-network-list article").first().boundingBox(),
+    page.locator("#wallet .wallet-assets > div").first().boundingBox(),
+  ]);
+  expect(Math.abs(networkCardBox!.width - stablecoinCardBox!.width)).toBeLessThanOrEqual(1);
   const [walletSupportBox, walletPhoneBox] = await Promise.all([
     page.locator("#wallet .method-flow-copy").boundingBox(),
     page.locator("#wallet .method-flow-screen").boundingBox(),
   ]);
   expect(walletSupportBox!.x).toBeLessThan(walletPhoneBox!.x);
+  await expect(page.locator("#wallet")).toHaveCSS("border-top-width", "0px");
+  await expect(page.getByText(/Availability is subject to identity verification/)).toHaveCount(0);
   await expect(page.locator("#wallet .wallet-network-list img").first()).toHaveCSS(
     "filter",
     "grayscale(1) brightness(0) invert(1)",
