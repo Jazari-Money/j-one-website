@@ -11,7 +11,7 @@ export function MethodFlow({
   screenOverlay,
   children,
 }: {
-  title: string;
+  title?: string;
   steps?: readonly string[];
   screen: string;
   stem: string;
@@ -23,7 +23,7 @@ export function MethodFlow({
   return (
     <div className={`method-flow ${reverse ? "is-reversed" : ""}`}>
       <div className="method-flow-copy">
-        <h3>{title}</h3>
+        {title && <h3>{title}</h3>}
         {children}
         {steps && (
           <ol>

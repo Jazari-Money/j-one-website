@@ -27,7 +27,7 @@ export function SiteFooter() {
         <nav className="footer-navigation" aria-label="Footer navigation">
           <div>
             <strong>Product</strong>
-            <Link href="/receive">Receive money</Link>
+            <Link href="/receive">Receive</Link>
             <Link href="/send">Send money</Link>
             <Link href="/yields">Yields</Link>
             <Link href="/plan">Pricing</Link>

@@ -582,7 +582,7 @@ test("keeps receiving on one product page and redirects the old USD account rout
 
   await page.goto("/usd-account/", { waitUntil: "networkidle" });
   await expect(page).toHaveURL(/\/receive\/#usd-account$/);
-  await expect(page.getByRole("heading", { name: "Receive money", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Receive", exact: true })).toBeVisible();
   const usdAccountHeading = page.getByRole("heading", { name: "USD Account", exact: true });
   await expect(usdAccountHeading).toBeVisible();
   await expect(page.getByText(/licensed US bank partner/)).toBeVisible();
@@ -913,6 +913,12 @@ test("keeps the Receive account features and phone preview usable on mobile", as
   await expect(features.nth(0)).toContainText("US routing and account number");
   await expect(features.nth(2)).toContainText("190+ countries");
   await expect(flow.locator(".phone-copy-corrections")).toHaveCount(0);
+  await expect(flow).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+  const [screenBox, phoneBox] = await Promise.all([
+    flow.locator(".method-flow-screen").boundingBox(),
+    flow.locator(".method-flow-phone-shell").boundingBox(),
+  ]);
+  expect(screenBox!.height).toBeGreaterThanOrEqual(phoneBox!.height - 1);
 });
 
 test("shows wallet receiving details without a generic walkthrough floor", async ({ page }) => {
@@ -928,6 +934,7 @@ test("shows wallet receiving details without a generic walkthrough floor", async
   await expect(page.locator("#wallet > .wallet-support")).toHaveCount(0);
   await expect(page.locator("#wallet .method-flow-copy .wallet-support")).toHaveCount(1);
   await expect(page.locator("#wallet .phone-copy-corrections")).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "Receive through a wallet" })).toHaveCount(0);
 });
 
 test("fits the complete Yields mobile interaction at 430px", async ({ page }) => {

@@ -12,7 +12,7 @@ export function ReceivePage() {
       <InternalSiteHeader />
 
       <header className="receive-hero">
-        <h1>Receive money</h1>
+        <h1>Receive</h1>
         <p>
           Add your own dollars or receive payments through a USD account or
           supported wallets—all in one balance.
@@ -63,7 +63,6 @@ export function ReceivePage() {
 
         <MethodFlow
           reverse
-          title="Receive through a wallet"
           screen={withBasePath("/images/how-to/receive-stablecoins-account.png")}
           stem="/images/how-to/receive-stablecoins-account"
           alt="Wallet address and network selection in Jazari One"
@@ -75,7 +74,6 @@ export function ReceivePage() {
       <ContainedColorEvent className="product-final-cta" labelledBy="receive-final-title">
         <div className="color-event-cta-copy">
           <h2 id="receive-final-title">Ready to receive money?</h2>
-          <p>Open Jazari One and choose Add Funds to see the receiving methods available to you.</p>
         </div>
         <a className="neutral-control receive-final-action" href={appDownloadUrl} target="_blank" rel="noreferrer">
           Download App
