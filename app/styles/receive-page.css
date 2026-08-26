@@ -1,5 +1,6 @@
 @import "./internal-pages.css";
 @import "./product-methods.css";
+@import "./color-event-cta.css";
 
 .receive-shell {
   min-height: 100vh;

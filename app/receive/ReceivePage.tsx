@@ -1,4 +1,5 @@
 import "../styles/receive-page.css";
+import { ContainedColorEvent } from "../home/ContainedColorEvent";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { MethodFlow } from "../home/MethodFlow";
 import { SiteFooter } from "../home/SiteFooter";
@@ -13,7 +14,7 @@ export function ReceivePage() {
       <header className="receive-hero">
         <h1>Receive money</h1>
         <p>
-          Add your own dollars or receive payments through a US account or
+          Add your own dollars or receive payments through a USD account or
           supported wallets—all in one balance.
         </p>
         <a className="realism-button" href={appDownloadUrl} target="_blank" rel="noreferrer">
@@ -32,24 +33,18 @@ export function ReceivePage() {
           </p>
         </header>
 
-        <dl className="product-facts product-facts-three">
-          <div><dt>Account details</dt><dd>US routing and account number in your name</dd></div>
-          <div><dt>Transfer methods</dt><dd>ACH, FedNow, domestic wire, and SWIFT</dd></div>
-          <div><dt>Availability</dt><dd>Eligible users in 190+ countries; no US residency required</dd></div>
-        </dl>
-
         <MethodFlow
-          title="Use your US account details"
-          steps={[
-            "Open Add Funds.",
-            "Open your USD account details.",
-            "Use the details yourself or share them with a payer.",
-          ]}
-          screen={withBasePath("/images/how-to/how-to-receive-03.png")}
-          stem="/images/how-to/how-to-receive-03"
-          alt="US account routing and account details in Jazari One"
-          screenOverlay="add-funds-usd"
-        />
+          title="Use your USD account details"
+          screen={withBasePath("/images/how-to/receive-usd-account.png")}
+          stem="/images/how-to/receive-usd-account"
+          alt="USD account routing and account details in Jazari One"
+        >
+          <dl className="method-flow-features">
+            <div><dt>Account details</dt><dd>US routing and account number in your name</dd></div>
+            <div><dt>Transfer methods</dt><dd>ACH, FedNow, domestic wire, and SWIFT</dd></div>
+            <div><dt>Availability</dt><dd>Eligible users in 190+ countries; no US residency required</dd></div>
+          </dl>
+        </MethodFlow>
 
         <p className="product-eligibility">
           Availability is subject to identity verification, eligibility, and
@@ -66,30 +61,26 @@ export function ReceivePage() {
           </p>
         </header>
 
-        <WalletSupport />
-
         <MethodFlow
           reverse
           title="Receive through a wallet"
-          steps={[
-            "Open Add Funds.",
-            "Choose USDC or USDT and a supported network.",
-            "Copy the address or share the QR code.",
-          ]}
-          screen={withBasePath("/images/how-to/how-to-receive-02.png")}
-          stem="/images/how-to/how-to-receive-02"
+          screen={withBasePath("/images/how-to/receive-stablecoins-account.png")}
+          stem="/images/how-to/receive-stablecoins-account"
           alt="Wallet address and network selection in Jazari One"
-          screenOverlay="add-funds-wallet"
-        />
+        >
+          <WalletSupport />
+        </MethodFlow>
       </section>
 
-      <section className="product-final-cta" aria-labelledby="receive-final-title">
-        <h2 id="receive-final-title">Ready to receive money?</h2>
-        <p>Open Jazari One and choose Add Funds to see the receiving methods available to you.</p>
-        <a className="realism-button" href={appDownloadUrl} target="_blank" rel="noreferrer">
+      <ContainedColorEvent className="product-final-cta" labelledBy="receive-final-title">
+        <div className="color-event-cta-copy">
+          <h2 id="receive-final-title">Ready to receive money?</h2>
+          <p>Open Jazari One and choose Add Funds to see the receiving methods available to you.</p>
+        </div>
+        <a className="neutral-control receive-final-action" href={appDownloadUrl} target="_blank" rel="noreferrer">
           Download App
         </a>
-      </section>
+      </ContainedColorEvent>
 
       <SiteFooter />
     </main>
