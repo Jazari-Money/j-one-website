@@ -332,7 +332,7 @@
 }
 
 .method-flow-copy .wallet-support-group + .wallet-support-group {
-  margin-top: 18px;
+  margin-top: 30px;
 }
 
 .method-flow-copy .wallet-support-group > h3 {
@@ -340,21 +340,22 @@
 }
 
 .method-flow-copy .wallet-network-list {
-  margin-top: 10px;
+  margin-top: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: 12px;
 }
 
 .method-flow-copy .wallet-assets {
-  margin-top: 10px;
+  margin-top: 16px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: 12px;
 }
 
 .method-flow-copy .wallet-network-list article,
 .method-flow-copy .wallet-assets > div {
   min-height: 62px;
   padding: 12px;
+  border: 0;
   border-radius: 14px;
   gap: 8px;
 }
@@ -371,6 +372,16 @@
 
 .method-flow-copy .wallet-assets strong {
   font-size: 16px;
+}
+
+.wallet-network-list article.is-solana img {
+  width: 36px;
+  height: 36px;
+}
+
+.method-flow-copy .wallet-network-list article.is-solana img {
+  width: 24px;
+  height: 24px;
 }
 
 .method-flow-copy .wallet-support-note {

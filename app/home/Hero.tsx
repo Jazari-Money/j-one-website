@@ -36,15 +36,15 @@ export function Hero() {
         <HeroColorEvent reduced={reduced} />
       </div>
       <div className="hero-copy">
-        <h1 aria-label="Get paid. Earn. Send worldwide.">
+        <h1 aria-label="Get paid in USD. Earn. Send worldwide.">
           <span className="hero-title-desktop" aria-hidden="true">
             <span className="hero-title-line">
-              <span>Get paid. Earn.</span>
+              <span>Get paid in USD. Earn.</span>
             </span>
             <span className="hero-title-line"><span>Send worldwide.</span></span>
           </span>
           <span className="hero-title-mobile" aria-hidden="true">
-            <span className="hero-title-line"><span>Get paid.</span></span>
+            <span className="hero-title-line"><span>Get paid in USD.</span></span>
             <span className="hero-title-line"><span>Earn. Send</span></span>
             <span className="hero-title-line"><span>worldwide.</span></span>
           </span>
