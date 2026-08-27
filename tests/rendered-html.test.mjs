@@ -365,6 +365,27 @@ test("server-renders the internal legal pages", async () => {
   assert.match(ukRisk, /href="https:\/\/www\.fca\.org\.uk\/investsmart" target="_blank" rel="noopener noreferrer"/);
 });
 
+test("server-renders the account deletion page without indexing it", async () => {
+  const response = await render("/how-to-delete-account");
+  const html = await response.text();
+
+  assert.match(html, /<title>Delete Account — Jazari One<\/title>/);
+  assert.match(html, /name="robots" content="noindex, nofollow"/);
+  assert.match(html, /<h1>Delete Your Account<\/h1>/);
+  assert.match(html, /1\. Requesting account deletion/);
+  assert.match(html, /2\. Processing time/);
+  assert.match(html, /3\. What happens after deletion/);
+  assert.match(html, /4\. Need help/);
+  assert.match(html, /href="mailto:hello@jazari\.xyz">hello@jazari\.xyz<\/a>/);
+  assert.match(html, /href="\/privacy-policy\/?"/);
+
+  const sitemap = await readFile(
+    new URL("../out/sitemap.xml", import.meta.url),
+    "utf8",
+  );
+  assert.doesNotMatch(sitemap, /how-to-delete-account/);
+});
+
 test("publishes internal support and product pages in the sitemap", async () => {
   const sitemap = await readFile(
     new URL("../out/sitemap.xml", import.meta.url),
