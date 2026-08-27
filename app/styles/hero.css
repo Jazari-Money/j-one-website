@@ -629,12 +629,8 @@
     animation: hero-event-line 620ms cubic-bezier(0.16, 1, 0.3, 1) 195ms both;
   }
 
-  .hero-copy-desktop-break {
-    display: none;
-  }
-
-  .hero-copy-mobile-keep {
-    white-space: nowrap;
+  .hero-description-line {
+    display: block;
   }
 
   .hero-copy > p {

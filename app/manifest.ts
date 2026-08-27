@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "Jazari One",
     short_name: "Jazari One",
     description:
-      "Hold digital dollars, send them in local currency, and access Yields with Jazari One.",
+      "Hold stablecoins, send them in local currency, and access Yields with Jazari One.",
     start_url: "./",
     display: "standalone",
     background_color: "#000000",

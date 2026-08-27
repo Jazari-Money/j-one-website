@@ -99,6 +99,7 @@
 }
 
 .yield-feature-lido {
+  order: -1;
   background:
     linear-gradient(140deg, color-mix(in srgb, #00a3ff 8%, var(--surface-2)), var(--surface));
 }

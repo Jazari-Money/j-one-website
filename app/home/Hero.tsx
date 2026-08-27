@@ -50,11 +50,9 @@ export function Hero() {
           </span>
         </h1>
         <p>
-          Your own USD account. Up to 7% APY with{" "}
-          <span className="hero-copy-mobile-keep">
-            Yields.<br className="hero-copy-desktop-break" />{" "}
-            Bank transfers to 30+ countries.
-          </span>
+          <span className="hero-description-line">Your own USD account and stablecoin wallet.</span>{" "}
+          <span className="hero-description-line">Up to 7% APY with Yields.</span>{" "}
+          <span className="hero-description-line">Bank transfers to 30+ countries.</span>
         </p>
         <HeroDownload />
       </div>

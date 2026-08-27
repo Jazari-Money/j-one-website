@@ -52,9 +52,9 @@ const accordionItems = [
 ] as const;
 
 const pricingRows = [
-  ["Receive stablecoins", "Free"],
-  ["Send to a bank account", "Free · rate includes our margin"],
-  ["Send to a wallet", "Free over $10 · $1 below $10"],
+  ["Receive supported stablecoins", "Free"],
+  ["Send to a bank account", "No transfer fee¹"],
+  ["Send USDC to a wallet", "Free over $10 · $1 below $10"],
 ] as const;
 
 function ArrowIcon({ direction = "right" }: { direction?: "left" | "right" }) {

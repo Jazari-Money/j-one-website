@@ -10,7 +10,7 @@ const journeys = [
   {
     id: "receive-money",
     title: "Receive",
-    copy: "Add your own dollars or receive payments through a USD account or in digital dollars—all in one balance.",
+    copy: "Add your own dollars or receive payments through a USD account or in stablecoins—all in one balance.",
     action: "Explore receiving",
     href: "/receive/",
     actionHref: "/receive/",
@@ -30,8 +30,8 @@ const journeys = [
   {
     id: "send-money",
     title: "Send",
-    copy: "Send to bank accounts in 30+ countries or digital wallets worldwide, with the rate shown before you confirm.",
-    action: "Check rates & destinations",
+    copy: "Send to bank accounts in 30+ countries with the rate shown before you confirm. Or send stablecoins to supported wallets worldwide.",
+    action: "Explore sending",
     href: "/send/",
     actionHref: "/send/#rates",
     image: "/images/journeys/send-globe.png",

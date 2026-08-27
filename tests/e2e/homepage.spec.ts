@@ -221,14 +221,14 @@ test("keeps the core interactions working", async ({ page }) => {
 
   const hero = page.getByRole("heading", { name: /Get paid in USD\. Earn\.\s*Send worldwide\./ });
   await expect(hero).toBeVisible();
-  await expect(page.getByText(/Your own USD account\. Up to 7% APY with Yields/)).toBeVisible();
+  await expect(page.getByText(/Your own USD account and stablecoin wallet\. Up to 7% APY with Yields/)).toBeVisible();
   await expect(page.locator(".journey-card")).toHaveCount(3);
   await expect(page.locator(".journey-kicker")).toHaveCount(0);
   await expect(page.getByText("What do you want to do?", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Receive", exact: true })).toBeVisible();
   await expect(page.locator(".receive-hero .realism-button")).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Explore receiving" })).toHaveAttribute("href", /\/receive\/?$/);
-  await expect(page.getByRole("link", { name: "Check rates & destinations" })).toHaveAttribute("href", /\/send\/#rates$/);
+  await expect(page.getByRole("link", { name: "Explore sending" })).toHaveAttribute("href", /\/send\/#rates$/);
   await expect(page.getByRole("link", { name: "Explore Yields" })).toHaveAttribute("href", /\/yields\/?$/);
 
   const personalMenu = page.locator(".nav-dropdown");
@@ -337,11 +337,15 @@ test("uses the intended mobile hero line breaks", async ({ page }) => {
   const mobileLines = page.locator(".hero-title-mobile .hero-title-line");
   await expect(mobileLines).toHaveText(["Get paid in USD.", "Earn. Send", "worldwide."]);
 
-  const mobileDescriptionEnding = page.locator(".hero-copy-mobile-keep");
-  await expect(mobileDescriptionEnding).toHaveText(
-    "Yields. Bank transfers to 30+ countries.",
-  );
-  await expect(mobileDescriptionEnding).toHaveCSS("white-space", "nowrap");
+  const mobileDescriptionLines = page.locator(".hero-description-line");
+  await expect(mobileDescriptionLines).toHaveText([
+    "Your own USD account and stablecoin wallet.",
+    "Up to 7% APY with Yields.",
+    "Bank transfers to 30+ countries.",
+  ]);
+  for (const line of await mobileDescriptionLines.all()) {
+    await expect(line).toHaveCSS("display", "block");
+  }
 });
 
 test("renders the pricing preview and legal links", async ({ page }) => {
@@ -349,13 +353,17 @@ test("renders the pricing preview and legal links", async ({ page }) => {
   await page.goto("/plan/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Pricing" })).toBeVisible();
   await expect(
-    page.getByText(/Preview pricing\. Applicable fees are always shown at confirmation\./),
+    page.getByText(/Pricing valid as of August 27, 2026 and subject to change\./),
   ).toBeVisible();
   await expect(page.getByText(/Free over \$10/)).toBeVisible();
-  await expect(page.getByText("Free · FX Rate", { exact: true })).toBeVisible();
+  await expect(page.getByText("No transfer fee¹", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Payment rails" })).toBeVisible();
+  await expect(page.getByText("USDT support charge", { exact: true })).toBeVisible();
+  await expect(page.getByText("0.10%", { exact: true })).toBeVisible();
+  await expect(page.getByText("COP Bre-B", { exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Yields", exact: true })).toBeVisible();
+  await expect(page.getByText("Performance fee", { exact: true })).toBeVisible();
   await expect(page.getByText("Deposit and withdrawal", { exact: true })).toBeVisible();
-  await expect(page.getByText("~$0.01*", { exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "Terms & Conditions" })).toHaveAttribute(
     "href",
     /\/terms\/?$/,
@@ -608,8 +616,9 @@ test("explains yields and links into the app flow", async ({ page }) => {
     }),
   );
   expect(yieldCards).toHaveLength(2);
+  expect(yieldCards[1].x).toBeLessThan(yieldCards[0].x);
   expect(Math.abs(yieldCards[0].y - yieldCards[1].y)).toBeLessThanOrEqual(1);
-  expect(yieldCards[1].x).toBeGreaterThan(yieldCards[0].x + yieldCards[0].width);
+  expect(yieldCards[0].x).toBeGreaterThan(yieldCards[1].x + yieldCards[1].width);
   await expect(page.getByRole("link", { name: "Download App" }).last()).toHaveAttribute(
     "href", "https://jazarione.app.link/web-launch",
   );
@@ -693,9 +702,13 @@ test("shows every product milestone on the roadmap page", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Additional payout countries" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Higher-return Yields" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Remit Now Pay Later" })).toBeVisible();
+  await expect(page.getByText("Philippines", { exact: true })).toBeVisible();
+  await expect(page.locator(".roadmap-full-card").first().getByRole("heading")).toHaveText(
+    "Remit Now Pay Later",
+  );
   await expect(page.locator(".roadmap-flags").first()).toHaveCSS("flex-direction", "column");
-  const visaCard = page.locator(".roadmap-full-card").first();
-  const payoutCard = page.locator(".roadmap-full-card").nth(1);
+  const visaCard = page.locator(".roadmap-full-card").nth(1);
+  const payoutCard = page.locator(".roadmap-full-card").nth(2);
   await expect(visaCard.locator(".roadmap-milestone-art")).toHaveAttribute(
     "src",
     /visa-card\.png$/,
@@ -912,7 +925,7 @@ test("keeps mobile Coming soon cards visible with intentionally cropped artwork"
     ))
     .toBe("none");
 
-  const visaCard = page.locator(".roadmap-card").first();
+  const visaCard = page.locator(".roadmap-card").nth(1);
   const visaArt = visaCard.locator(".roadmap-milestone-art");
   const visaCopy = visaCard.locator(".roadmap-milestone-copy");
   const [cardBox, artBox, copyBox] = await Promise.all([
@@ -928,7 +941,7 @@ test("keeps mobile Coming soon cards visible with intentionally cropped artwork"
   expect(artBox!.y + artBox!.height).toBeGreaterThan(cardBox!.y + cardBox!.height);
   expect(copyBox!.y + copyBox!.height).toBeLessThanOrEqual(artBox!.y + 1);
 
-  const payoutFlags = page.locator(".roadmap-card").nth(1).locator(".roadmap-flags");
+  const payoutFlags = page.locator(".roadmap-card").nth(2).locator(".roadmap-flags");
   await expect(payoutFlags).toBeVisible();
 
   await roadmapTrack.evaluate((node) => {

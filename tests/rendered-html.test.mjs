@@ -23,9 +23,8 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /<title>Jazari One — Get paid in USD\. Earn\. Send worldwide\.<\/title>/i);
   assert.match(html, /Get paid in USD\. Earn\./);
   assert.match(html, /Send worldwide\./);
-  assert.match(html, /Your own USD account\. Up to 7% APY with Yields\./);
-  assert.match(html, /class="hero-copy-mobile-keep"/);
-  assert.match(html, /class="hero-copy-desktop-break"/);
+  assert.match(html, /Your own USD account and stablecoin wallet\. Up to 7% APY with Yields\./);
+  assert.equal((html.match(/class="hero-description-line"/g) ?? []).length, 3);
   assert.match(html, /<span>Earn\. Send<\/span>/);
   assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
@@ -35,7 +34,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /<h3>Earn<\/h3>/);
   assert.match(html, /<h3>Send<\/h3>/);
   assert.match(html, /Explore receiving/);
-  assert.match(html, /Check rates &amp; destinations/);
+  assert.match(html, /Explore sending/);
   assert.match(html, /Explore Yields/);
   assert.match(html, /href="\/j-one-website\/receive\/?"/);
   assert.match(html, /href="\/j-one-website\/send\/?"/);
@@ -57,10 +56,12 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Coming soon/);
   assert.match(html, /USD account/);
   assert.match(html, /Additional payout countries/);
+  assert.match(html, /Philippines/);
   assert.match(html, /Higher-return Yields/);
   assert.match(html, /More Yields options, with higher APY/);
   assert.match(html, /Choose a loan amount and repayment plan at confirmation/);
   assert.match(html, /Visa card/);
+  assert.ok(html.indexOf("Remit Now Pay Later") < html.indexOf("Visa card"));
   assert.match(html, /Want to keep your salary in dollars\. Not forced to convert on arrival\./);
   assert.match(html, /Multiple clients, multiple countries/);
   assert.match(html, /Income doesn&#x27;t arrive on time/);
@@ -150,15 +151,22 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   ]);
 
   assert.match(plan, /<h1>Pricing<\/h1>/);
-  assert.match(plan, /Preview pricing\. Applicable fees are always shown at confirmation\./);
-  assert.ok(plan.indexOf("Money movement") < plan.indexOf("Account"));
-  assert.ok(plan.indexOf("Account") < plan.indexOf("<h2>Yields</h2>"));
+  assert.match(plan, /Pricing valid as of August 27, 2026 and subject to change\./);
+  assert.match(plan, /Jazari One reserves the right to change pricing at any time\./);
+  assert.ok(plan.indexOf("<h2>Money movement</h2>") < plan.indexOf("<h2>Payment rails</h2>"));
+  assert.ok(plan.indexOf("<h2>Payment rails</h2>") < plan.indexOf("<h2>USD account</h2>"));
+  assert.ok(plan.indexOf("<h2>USD account</h2>") < plan.indexOf("<h2>Yields</h2>"));
+  assert.match(plan, /Receive supported stablecoins/);
+  assert.match(plan, /No transfer fee¹/);
   assert.match(plan, /Free over \$10/);
-  assert.match(plan, /Free · FX Rate/);
+  assert.match(plan, /USDT support charge/);
+  assert.match(plan, /0\.10%/);
+  assert.match(plan, /US bank account — ACH, FedWire and FedNow/);
+  assert.match(plan, /UK Faster Payments — GBP FPS/);
+  assert.match(plan, /COP Bre-B/);
   assert.match(plan, /<h2>Yields<\/h2>/);
+  assert.match(plan, /Performance fee/);
   assert.match(plan, /Deposit and withdrawal/);
-  assert.match(plan, /~\$0\.01\*/);
-  assert.match(plan, /typically only a few cents/);
 
   assert.match(yields, /Gauntlet USD Alpha/);
   assert.match(yields, /Put your balance to work/);
@@ -246,8 +254,10 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.doesNotMatch(roadmap, /<h2>USD account<\/h2>/);
   assert.match(roadmap, /<h2>Visa card<\/h2>/);
   assert.match(roadmap, /Additional payout countries/);
+  assert.match(roadmap, /Philippines/);
   assert.match(roadmap, /Higher-return Yields/);
   assert.match(roadmap, /Remit Now Pay Later/);
+  assert.ok(roadmap.indexOf("Remit Now Pay Later") < roadmap.indexOf("Visa card"));
 
   assert.match(partners, /<h1>Partners<\/h1>/);
   assert.match(partners, /Lido/);
