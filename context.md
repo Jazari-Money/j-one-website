@@ -23,10 +23,10 @@ Current hero description:
 
 ## Current public baseline
 
-- Canonical deployment: `https://jazari-money.github.io/j-one-website/`
+- Canonical deployment: `https://jazari.xyz/`
 - Canonical branch: `main`
 - Deployment: GitHub Pages through `.github/workflows/pages.yml`
-- The site is statically exported with the `/j-one-website` base path.
+- The site is statically exported at the custom domain root with no base path.
 - `context.md` is the canonical handoff document for product, design, content,
   legal-draft, mobile, and deployment decisions. Update it after material
   structural or claim changes.
@@ -436,9 +436,9 @@ Default local URL: `http://localhost:3000`
 - Keep content and repeated records in `app/home/data.ts`, not duplicated
   through components.
 - Pass normal internal paths such as `/#blog` directly to Next.js `Link`.
-  Next applies the GitHub Pages base path automatically. Use `withBasePath`
-  only for raw public asset URLs such as `<img>`, `<video>`, and `<source>`;
-  combining it with `Link` duplicates `/j-one-website`.
+  Use `withBasePath` only for raw public asset URLs such as `<img>`, `<video>`,
+  and `<source>` if a non-root preview path is ever configured; production is
+  served from the custom-domain root.
 - Keep interaction state inside the component that uses it unless multiple
   sections genuinely share it.
 - Create a shared abstraction only after the same pattern appears at least

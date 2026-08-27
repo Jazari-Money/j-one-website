@@ -2,9 +2,7 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-const siteUrl = process.env.GITHUB_PAGES === "true"
-  ? "https://jazari-money.github.io/j-one-website"
-  : "https://jazari.xyz";
+const siteUrl = "https://jazari.xyz";
 
 const routes = [
   "",

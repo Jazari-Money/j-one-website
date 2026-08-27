@@ -44,10 +44,10 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /Explore receiving/);
   assert.match(html, /Explore sending/);
   assert.match(html, /Explore Yields/);
-  assert.match(html, /href="\/j-one-website\/receive\/?"/);
-  assert.match(html, /href="\/j-one-website\/send\/?"/);
-  assert.match(html, /href="\/j-one-website\/send\/#rates"/);
-  assert.match(html, /href="\/j-one-website\/yields\/?"/);
+  assert.match(html, /href="\/receive\/?"/);
+  assert.match(html, /href="\/send\/?"/);
+  assert.match(html, /href="\/send\/#rates"/);
+  assert.match(html, /href="\/yields\/?"/);
   assert.match(html, /send-globe\.png/);
   assert.match(html, /yields-wheat\.png/);
   assert.match(html, />Product<\/summary>/);
@@ -88,7 +88,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, />About us</);
   assert.match(html, />FAQ</);
   assert.match(html, />Support</);
-  assert.match(html, /href="\/j-one-website\/help\/?">Help<\/a>/);
+  assert.match(html, /href="\/help\/?">Help<\/a>/);
   assert.match(html, /href="mailto:hello@jazary\.xyz">hello@jazary\.xyz<\/a>/);
   assert.match(html, />Email us<\/a>/);
   assert.doesNotMatch(html, />Email us\.<\/a>/);
@@ -237,7 +237,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.doesNotMatch(receive, /Availability is subject to identity verification/);
   assert.doesNotMatch(receive, /Two reasons to receive|Receiving methods|Two ways in\. One balance\.|<h2[^>]*>How it works<\/h2>/);
 
-  assert.match(usdAccount, /NEXT_REDIRECT;replace;\/j-one-website\/receive\/#usd-account;307/);
+  assert.match(usdAccount, /NEXT_REDIRECT;replace;\/receive\/#usd-account;307/);
   assert.doesNotMatch(usdAccount, /<main class="usd-account-shell">/);
 
   assert.match(send, /<title>Send money — Jazari One<\/title>/);
@@ -298,7 +298,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(about, /Lido logo/);
   assert.match(about, /Your account, your keys\./);
   assert.match(about, /not a bank and not us/);
-  assert.match(about, /href="\/j-one-website\/partners\/?"/);
+  assert.match(about, /href="\/partners\/?"/);
 
   assert.match(help, /<title>Help — Jazari One<\/title>/);
   assert.match(help, /<h1 id="help-title">Help<\/h1>/);
@@ -350,7 +350,7 @@ test("server-renders the internal legal pages", async () => {
   assert.match(privacy, /Last updated: April 2026/);
   assert.match(privacy, /11\. Cookies/);
   assert.match(privacy, /jazari_cookie_consent/);
-  assert.match(privacy, /href="\/j-one-website\/terms\/?"/);
+  assert.match(privacy, /href="\/terms\/?"/);
 
   assert.match(ukRisk, /<title>Risk information for customers in the United Kingdom \| Jazari One<\/title>/);
   assert.match(ukRisk, /name="robots" content="index, follow"/);
@@ -361,7 +361,7 @@ test("server-renders the internal legal pages", async () => {
   assert.doesNotMatch(ukRisk, /What are the key risks\?/);
   assert.match(ukRisk, /Operational failings such as technology outages, cyber-attacks and comingling of funds/);
   assert.match(ukRisk, /href="mailto:hello@jazari\.xyz">hello@jazari\.xyz<\/a>/);
-  assert.match(ukRisk, /href="\/j-one-website\/uk-risk-information\/?"/);
+  assert.match(ukRisk, /href="\/uk-risk-information\/?"/);
   assert.match(ukRisk, /href="https:\/\/www\.fca\.org\.uk\/investsmart" target="_blank" rel="noopener noreferrer"/);
 });
 
@@ -373,20 +373,20 @@ test("publishes internal support and product pages in the sitemap", async () => 
 
   assert.match(
     sitemap,
-    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/uk-risk-information<\/loc>/,
+    /<loc>https:\/\/jazari\.xyz\/uk-risk-information<\/loc>/,
   );
   assert.match(
     sitemap,
-    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/help<\/loc>/,
+    /<loc>https:\/\/jazari\.xyz\/help<\/loc>/,
   );
   assert.doesNotMatch(sitemap, /<loc>[^<]*\/usd-account<\/loc>/);
   assert.match(
     sitemap,
-    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/receive<\/loc>/,
+    /<loc>https:\/\/jazari\.xyz\/receive<\/loc>/,
   );
   assert.match(
     sitemap,
-    /<loc>https:\/\/jazari-money\.github\.io\/j-one-website\/send<\/loc>/,
+    /<loc>https:\/\/jazari\.xyz\/send<\/loc>/,
   );
   assert.doesNotMatch(sitemap, /compare-transfer-costs|verify-recipient-details|digital-dollars-bank-payouts/);
 });
@@ -568,10 +568,10 @@ test("renders the Blog index and the four corridor guides", async () => {
     assert.doesNotMatch(html, /At a glance/);
     assert.doesNotMatch(html, /class="article-note"/);
     assert.doesNotMatch(html, /min read/i);
-    assert.match(html, /href="\/j-one-website\/#top"/);
-    assert.match(html, /href="\/j-one-website\/blog\/?"/);
+    assert.match(html, /href="\/#top"/);
+    assert.match(html, /href="\/blog\/?"/);
     assert.match(html, /href="https:\/\/jazarione\.app\.link\/web-launch"/);
-    assert.doesNotMatch(html, /\/j-one-website\/j-one-website\//);
+    assert.doesNotMatch(html, /\/j-one-website\//);
   }
 
   const mexico = await (await render("/blog/send-money-to-mexico")).text();
