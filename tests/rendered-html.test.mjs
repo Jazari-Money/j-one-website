@@ -28,6 +28,14 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /<span>Earn\. Send<\/span>/);
   assert.match(html, /j-one-app-main\.png/);
   assert.match(html, /Download App/);
+  const instagramSocial = html.indexOf("Jazari One on Instagram");
+  const linkedinSocial = html.indexOf("Jazari One on LinkedIn");
+  const facebookSocial = html.indexOf("Jazari One on Facebook");
+  const xSocial = html.indexOf("Jazari One on X");
+  assert.ok(instagramSocial < linkedinSocial);
+  assert.ok(linkedinSocial < facebookSocial);
+  assert.ok(facebookSocial < xSocial);
+  assert.match(html, /https:\/\/uk\.linkedin\.com\/company\/jazarimoney/);
   assert.doesNotMatch(html, /What do you want to do\?/);
   assert.doesNotMatch(html, /One balance\. Three ways to move\./);
   assert.match(html, /<h3>Receive<\/h3>/);
@@ -106,6 +114,7 @@ test("server-renders the Jazari One landing page", async () => {
     html.indexOf("</footer>") + "</footer>".length,
   );
   assert.doesNotMatch(footer, />Contact<\/a>/);
+  assert.equal((footer.match(/href="https:\/\/jazarione\.app\.link\/web-launch"/g) ?? []).length, 2);
   const footerMeta = footer.slice(footer.indexOf('<div class="footer-meta">'));
   const parentAddress = footerMeta.indexOf("Jazari One, Inc.,");
   const fincen = footerMeta.indexOf("Jazari One holds a FinCEN MSB registration (No. MRX26-00006547)");

@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import { useCookieConsent } from "../cookie-consent/CookieConsent";
-import { withBasePath } from "../site-paths";
+import { appDownloadUrl, withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
 
 export function SiteFooter() {
@@ -83,7 +83,7 @@ export function SiteFooter() {
           </div>
           <div className="footer-downloads">
             <div className="footer-stores" aria-label="Download the Jazari One app">
-              <a href="https://apps.apple.com/" target="_blank" rel="noreferrer">
+              <a href={appDownloadUrl} target="_blank" rel="noreferrer">
                 <img
                   src={withBasePath("/images/stores/app-store-badge.avif")}
                   alt="Download on the App Store"
@@ -93,7 +93,7 @@ export function SiteFooter() {
                   decoding="async"
                 />
               </a>
-              <a href="https://play.google.com/store" target="_blank" rel="noreferrer">
+              <a href={appDownloadUrl} target="_blank" rel="noreferrer">
                 <img
                   src={withBasePath("/images/stores/google-play-badge.avif")}
                   alt="Get it on Google Play"

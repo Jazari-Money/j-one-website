@@ -547,6 +547,12 @@ test("aligns footer copyright with the final disclosure on desktop", async ({ pa
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/", { waitUntil: "networkidle" });
 
+  const storeLinks = page.locator(".footer-stores a");
+  await expect(storeLinks).toHaveCount(2);
+  for (const link of await storeLinks.all()) {
+    await expect(link).toHaveAttribute("href", "https://jazarione.app.link/web-launch");
+  }
+
   const [lastDisclosure, stores, copyright] = await Promise.all([
     page.locator(".footer-disclosures li").last().boundingBox(),
     page.locator(".footer-stores").boundingBox(),
@@ -853,9 +859,21 @@ test("opens a full-height mobile navigation with download and social actions", a
   const menu = page.locator(".nav-menu");
   await expect(menu).toHaveClass(/is-open/);
   await expect(menu.getByRole("link", { name: "Download App" })).toBeVisible();
-  await expect(menu.getByRole("link", { name: "Jazari One on X" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on Instagram" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Jazari One on LinkedIn" })).toHaveAttribute(
+    "href",
+    "https://uk.linkedin.com/company/jazarimoney",
+  );
   await expect(menu.getByRole("link", { name: "Jazari One on Facebook" })).toBeVisible();
+  await expect(menu.getByRole("link", { name: "Jazari One on X" })).toBeVisible();
+  const mobileSocials = menu.locator(".nav-mobile-socials a");
+  await expect(mobileSocials).toHaveCount(4);
+  expect(await mobileSocials.evaluateAll((links) => links.map((link) => link.getAttribute("aria-label")))).toEqual([
+    "Jazari One on Instagram",
+    "Jazari One on LinkedIn",
+    "Jazari One on Facebook",
+    "Jazari One on X",
+  ]);
   await menu.click({ position: { x: 360, y: 780 } });
   await expect(menu.locator("#mobile-product-links")).toBeVisible();
   await expect(menu.getByText("Company", { exact: true })).toBeVisible();

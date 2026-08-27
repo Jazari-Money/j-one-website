@@ -436,9 +436,10 @@ function BadgeSet({ compact = false }: { compact?: boolean }) {
         <img src={withBasePath("/images/stores/google-play-badge.png")} alt="Get it on Google Play" />
       </div>
       <div className="sb-social-row">
-        <button className="realism-icon-button" type="button" aria-label="X">X</button>
         <button className="realism-icon-button" type="button" aria-label="Instagram">◎</button>
+        <button className="realism-icon-button" type="button" aria-label="LinkedIn">in</button>
         <button className="realism-icon-button" type="button" aria-label="Facebook">f</button>
+        <button className="realism-icon-button" type="button" aria-label="X">X</button>
       </div>
     </div>
   );
