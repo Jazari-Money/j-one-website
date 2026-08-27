@@ -15,7 +15,7 @@ export function ReceivePage() {
         <h1>Receive</h1>
         <p>
           Add your own dollars or receive payments through a USD account or
-          supported wallets—all in one balance.
+          supported stablecoin wallets—all in one balance.
         </p>
       </header>
 

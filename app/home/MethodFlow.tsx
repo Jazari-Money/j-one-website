@@ -41,7 +41,7 @@ export function MethodFlow({
               <span className="phone-copy-title">Add Funds</span>
               <span className="phone-copy-asset">Digital dollars</span>
               {screenOverlay === "add-funds-usd" && (
-                <span className="phone-copy-bullet">• Adds digital dollars to your balance</span>
+                <span className="phone-copy-bullet">• Adds stablecoins to your balance</span>
               )}
             </div>
           )}

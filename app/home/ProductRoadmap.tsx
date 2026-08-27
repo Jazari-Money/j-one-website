@@ -18,6 +18,12 @@ function ArrowIcon({ direction }: { direction: "left" | "right" }) {
 
 export const milestones = [
   {
+    title: "Remit Now Pay Later",
+    copy:
+      "Choose a loan amount and repayment plan at confirmation",
+    notes: [],
+  },
+  {
     title: "Visa card",
     copy:
       "Pay for subscriptions, software, and everyday spending directly from your Jazari One balance.",
@@ -41,18 +47,13 @@ export const milestones = [
       { name: "Bangladesh", src: withBasePath("/images/flags/bd.png") },
       { name: "Pakistan", src: withBasePath("/images/flags/pk.png") },
       { name: "Nigeria", src: withBasePath("/images/flags/ng.png") },
+      { name: "Philippines", src: withBasePath("/images/flags/ph.png") },
     ],
   },
   {
     title: "Higher-return Yields",
     copy:
       "More Yields options, with higher APY. Non-custodial Yields for increased privacy and autonomy.",
-    notes: [],
-  },
-  {
-    title: "Remit Now Pay Later",
-    copy:
-      "Choose a loan amount and repayment plan at confirmation",
     notes: [],
   },
 ] as const;

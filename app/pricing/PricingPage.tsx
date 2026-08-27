@@ -9,25 +9,37 @@ const groups = [
   {
     title: "Money movement",
     rows: [
-      ["Receive digital dollars", "Free"],
-      ["Send to a bank account", "Free · FX Rate"],
-      ["Send to a wallet", "Free over $10 · $1 below $10"],
+      ["Receive supported stablecoins", "Free"],
+      ["Send to a bank account", "No transfer fee¹"],
+      ["Send USDC to a wallet", "Free over $10 · $1 below $10"],
+      ["USDT support charge", "0.10%"],
     ],
   },
   {
-    title: "Account",
+    title: "Payment rails",
     rows: [
-      ["Opening an account", "Free"],
+      ["US bank account — ACH, FedWire and FedNow", "Free"],
+      ["SEPA", "Free"],
+      ["CLABE", "Free"],
+      ["Pix", "Free"],
+      ["UK Faster Payments — GBP FPS", "Free"],
+      ["COP Bre-B", "Free"],
+    ],
+  },
+  {
+    title: "USD account",
+    rows: [
+      ["Open an account", "Free"],
       ["Monthly fee", "None"],
       ["Annual fee", "None"],
-      ["Holding dollars", "Free"],
+      ["Hold USD", "Free"],
     ],
   },
   {
     title: "Yields",
     rows: [
-      ["Gauntlet USD Alpha", "Free"],
-      ["Deposit and withdrawal", "~$0.01*"],
+      ["Performance fee", "Free"],
+      ["Deposit and withdrawal", "Free"],
     ],
   },
 ] as const;
@@ -38,7 +50,10 @@ export function PricingPage() {
       <InternalSiteHeader />
       <header className="pricing-hero">
         <h1>Pricing</h1>
-        <p>Preview pricing. Applicable fees are always shown at confirmation.</p>
+        <p>
+          Pricing valid as of August 27, 2026 and subject to change. Jazari One
+          reserves the right to change pricing at any time.
+        </p>
       </header>
       <section
         className="pricing-groups pointer-card"
@@ -59,10 +74,6 @@ export function PricingPage() {
             </dl>
           </article>
         ))}
-        <p className="pricing-note">
-          *Estimated network cost. The exact amount may vary with the deposit or
-          withdrawal value and is typically only a few cents.
-        </p>
       </section>
       <SiteFooter />
     </main>
