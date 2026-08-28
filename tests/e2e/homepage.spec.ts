@@ -466,7 +466,7 @@ test("uses Safari-safe phone rendering and stacks cards in narrow windows", asyn
 
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
   await page.goto("/terms/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "US Terms and Conditions" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Terms and Conditions" })).toBeVisible();
   await expect(page.getByText("Effective date: 21 April 2026")).toBeVisible();
   await expect(page.getByRole("heading", { name: "1. Introduction" })).toBeVisible();
   await expect(

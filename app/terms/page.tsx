@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { LegalPage, type LegalSection } from "../legal/LegalPage";
 
 export const metadata = {
-  title: "US Terms and Conditions — Jazari One",
+  title: "Terms and Conditions — Jazari One",
   description:
     "Version 1 of the US terms governing Jazari One technology services and access to regulated partner services.",
 };
@@ -704,14 +704,9 @@ const sections: LegalSection[] = rawSections.map((section) => ({
 export default function TermsPage() {
   return (
     <LegalPage
-      title="US Terms and Conditions"
+      title="Terms and Conditions"
       date="Effective date: 21 April 2026"
-      introduction={
-        <p>
-          Version 1. These Terms apply to the Jazari ONE technology platform
-          operated in the United States.
-        </p>
-      }
+      introduction={null}
       sections={sections}
     />
   );

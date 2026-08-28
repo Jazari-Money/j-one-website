@@ -338,7 +338,8 @@ test("server-renders the internal legal pages", async () => {
     ukRiskResponse.text(),
   ]);
 
-  assert.match(terms, /<h1>US Terms and Conditions<\/h1>/);
+  assert.match(terms, /<h1>Terms and Conditions<\/h1>/);
+  assert.doesNotMatch(terms, /Version 1\. These Terms apply/);
   assert.match(terms, /Effective date: 21 April 2026/);
   assert.match(terms, /1\. Introduction/);
   assert.match(terms, /FinCEN MSB registration/);
