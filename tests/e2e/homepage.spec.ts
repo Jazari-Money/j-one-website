@@ -504,6 +504,12 @@ test("renders the legal documents as internal Jazari pages", async ({ page }) =>
   await expect(page).toHaveURL(/\/terms\/?$/);
   await expect(page.getByText("Effective date: 21 April 2026")).toBeVisible();
   await expect(page.getByRole("heading", { name: "1. Introduction" })).toBeVisible();
+  await expect(page.getByText("Bridge Building Inc", { exact: false }).first()).toBeVisible();
+  await expect(
+    page.getByText("2120 University Ave., Suite 213, Berkeley, CA 94704", {
+      exact: false,
+    }).first(),
+  ).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "29. State-specific disclosures" }),
   ).toBeAttached();

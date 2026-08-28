@@ -17,59 +17,29 @@ const rawSections: RawSection[] = [
   {
     id: "introduction",
     title: "1. Introduction",
-    body: `1.1 Jazari and Jazari ONE are trading names used to describe the technology platform operated in the United States. Jazari ONE's services are provided in partnership with [US Issuer / Regulated Partner], an Illinois corporation with its principal office at [US Issuer Address - to be confirmed] ("[US Issuer / Regulated Partner]"). [US Issuer / Regulated Partner] holds applicable federal and state money services business licences and money transmitter licences required to offer payment and remittance services in the United States.
+    body: `1.1 Jazari and Jazari ONE are trading names used to describe the technology platform operated in the United States. Jazari ONE's services are provided in partnership with Bridge Building Inc, a Delaware corporation with its principal office at 2120 University Ave., Suite 213, Berkeley, CA 94704 ("[Bridge Building Inc."). Bridge Building Inc holds applicable federal and state money services business licences and money transmitter licences required to offer payment and remittance services in the United States.
 
-1.2 Jazari ONE operates as a technology platform and acts solely as a technical and commercial interface through which you access services provided by [US Issuer / Regulated Partner] and other regulated partners. Jazari ONE does not itself provide payment accounts, money transmission, remittance services, or any other regulated financial services. All such regulated services are provided by or through [US Issuer / Regulated Partner] and its banking and payment partners under their applicable licences.
+1.2 Jazari ONE operates as a technology platform and acts solely as a technical and commercial interface through which you access services provided by Bridge Building Inc and other regulated partners. Jazari ONE does not itself provide payment accounts, money transmission, remittance services, or any other regulated financial services. All such regulated services are provided by or through Bridge Building Inc and its banking and payment partners under their applicable licences
 
-1.3 [US Issuer / Regulated Partner] holds Money Transmitter Licences in the states in which it operates. A complete list of state licences and applicable regulatory disclosures is available at jazari.money/licenses (or upon request). Where required by state law, specific disclosures applicable to residents of particular states are set out in Section 29 of these Terms.
+1.3 Bridge Building Inc holds Money Transmitter Licences in the states in which it operates. A complete list of state licences and applicable regulatory disclosures is available at jazari.money/licenses (or upon request). Where required by state law, specific disclosures applicable to residents of particular states are set out in Section 29 of these Terms.
 
-1.4 Your funds held in your Jazari ONE account are not FDIC-insured. [US Issuer / Regulated Partner] safeguards customer funds by holding them in one or more pooled trust accounts at FDIC-insured depository institutions, separate from [US Issuer / Regulated Partner]'s operating funds. While these measures are designed to protect your funds, there is a risk that, in the event of the insolvency of the institution holding your safeguarded funds, your money may be at risk.
+1.4 Your funds held in your Jazari ONE account are not FDIC-insured. Bridge Building Inc safeguards customer funds by holding them in one or more pooled trust accounts at FDIC-insured depository institutions, separate from Bridge Building Inc’s operating funds. While these measures are designed to protect your funds, there is a risk that, in the event of the insolvency of the institution holding your safeguarded funds, your money may be at risk.
 
-1.5 By accepting these Terms, you also agree to the terms of service of [US Issuer / Regulated Partner] applicable to your use of their services, available at [US Issuer / Regulated Partner]'s website. In the event of a conflict between these Terms and [US Issuer / Regulated Partner]'s terms, [US Issuer / Regulated Partner]'s terms will prevail with respect to the services they directly provide.
+1.5 By accepting these Terms, you also agree to the terms of service of [Bridge Building Inc. applicable to your use of their services, available at [Bridge Building Inc]'s website. In the event of a conflict between these Terms and Bridge Building Inc's terms, Bridge Building Inc's terms will prevail with respect to the services they directly provide.
 
-1.6 Jazari ONE's Role. Jazari ONE is a financial technology company, not a bank, money transmitter, or licensed financial services provider. Jazari ONE does not hold, transmit, or control customer funds at any point. Jazari ONE provides technology infrastructure — including the App, user interface, transaction initiation, and account management tools — that enables you to access regulated financial services provided by [US Issuer / Regulated Partner] and other regulated partners. The regulated financial activity underlying your account, including fund custody, payment processing, money transmission, and remittance execution, is carried out solely by [US Issuer / Regulated Partner] and its regulated partners under their applicable federal and state licences.`,
+1.6 Jazari ONE's Role. Jazari ONE is a financial technology company, not a bank, money transmitter, or licensed financial services provider. Jazari ONE does not hold, transmit, or control customer funds at any point. Jazari ONE provides technology infrastructure — including the App, user interface, transaction initiation, and account management tools — that enables you to access regulated financial services provided by Bridge Building Inc and other regulated partners. The regulated financial activity underlying your account, including fund custody, payment processing, money transmission, and remittance execution, is carried out solely by Bridge Building Inc and its regulated partners under their applicable federal and state licences`,
   },
   {
     id: "definitions",
     title: "2. Definition",
     body: `In these Terms, the following definitions apply:
 
-TABLE:Term|Meaning
-"Account Balance"|The total amount of funds currently held in your Jazari ONE Account and available for use.
-"Account Limit"|The maximum amount your Jazari ONE Account may hold at any one time, as set out in the Fee Schedule.
-"ACH"|Automated Clearing House — a US electronic funds transfer network used for bank-to-bank transactions.
-"AML"|Anti-Money Laundering — laws and regulations designed to detect and prevent financial crimes, including the Bank Secrecy Act and FinCEN regulations.
-"App"|The official Jazari ONE mobile application available on iOS and Android.
-"BSA"|The Bank Secrecy Act, 31 U.S.C. §§ 5311 et seq., and its implementing regulations.
-"Business Day"|Any day other than a Saturday, Sunday, or a US federal public holiday.
-"CFPB"|The Consumer Financial Protection Bureau, the federal agency responsible for consumer financial protection in the United States.
-"Credit Builder"|A feature of your Jazari ONE Account that helps you build a credit profile by making timely repayments on RNPL transactions, which may be reported to Credit Reporting Agencies.
-"Credit Reporting Agencies" or "CRAs"|Equifax, Experian, and TransUnion, and any other consumer reporting agency as defined under the Fair Credit Reporting Act ("FCRA").
-"Customer Service"|The Jazari ONE support centre, reachable via email at support@jazarione.com or through in-app chat.
-"EFTA"|The Electronic Fund Transfer Act, 15 U.S.C. §§ 1693 et seq., and its implementing regulation, Regulation E (12 C.F.R. Part 1005).
-"FinCEN"|The Financial Crimes Enforcement Network, a bureau of the US Department of the Treasury.
-"GLBA"|The Gramm-Leach-Bliley Act, 15 U.S.C. §§ 6801 et seq., governing the privacy of consumer financial information.
-"Jazari ONE Account"|The prepaid payment account provided by or through [US Issuer / Regulated Partner] under these Terms, accessible via the App or Website.
-"MSB"|Money Services Business — a category of financial institution regulated by FinCEN under the BSA.
-"OFAC"|The Office of Foreign Assets Control of the US Department of the Treasury, which administers US sanctions programmes.
-"[US Issuer / Regulated Partner]"|[US Issuer / Regulated Partner], an Illinois corporation, [US Issuer Address - to be confirmed], which holds applicable money transmitter licences and provides the underlying payment infrastructure for Jazari ONE.
-"Recipient"|The individual or entity to whom you send money from your Jazari ONE Account.
-"Regulation E"|The federal regulation implementing the EFTA, governing electronic fund transfers (12 C.F.R. Part 1005).
-"Remit Now, Pay Later" or "RNPL"|A lending product that enables you to send an international remittance before paying the full remittance amount, with repayments made in installments, subject to credit approval and applicable lending laws.
-"Remittance" or "Remit"|The process of sending money from your Jazari ONE Account to another individual or account, typically outside the United States, as part of a cross-border transaction.
-"State Regulator"|The applicable state financial regulatory authority in your state of residence.
-"Technology Services"|The software platform, App, user interface, and associated technical services provided by Jazari ONE to enable you to access regulated financial services offered by [US Issuer / Regulated Partner] and other regulated partners. Technology Services do not include any regulated financial services, which are provided solely by [US Issuer / Regulated Partner] and its regulated partners.
-"TILA"|The Truth in Lending Act, 15 U.S.C. §§ 1601 et seq., and its implementing regulation, Regulation Z (12 C.F.R. Part 1026).
-"UDAP"|Unfair, deceptive, or abusive acts or practices, prohibited under the Consumer Financial Protection Act and applicable state consumer protection laws.
-"US Lending Partner"|[US Lending Partner to be confirmed] — the entity licensed under applicable federal and state laws to provide RNPL credit to eligible Jazari ONE customers.
-"We / Us / Our"|Jazari ONE and/or [US Issuer / Regulated Partner], depending on the context.
-"Website"|The official Jazari ONE website at jazari.money.
-"You / Your"|The individual who opened the Jazari ONE Account and is authorised to use the associated services.`,
+TABLE_JSON:[["Term","Meaning"],["\\"Account Balance\\"","The total amount of funds currently held in your Jazari ONE Account and available for use."],["\\"Account Limit\\"","The maximum amount your Jazari ONE Account may hold at any one time, as set out in the Fee Schedule."],["\\"ACH\\"","Automated Clearing House - a US electronic funds transfer network used for bank-to-bank transactions."],["\\"AML\\"","Anti-Money Laundering - laws and regulations designed to detect and prevent financial crimes, including the Bank Secrecy Act and FinCEN regulations."],["\\"App\\"","The official Jazari ONE mobile application available on iOS and Android."],["\\"BSA\\"","The Bank Secrecy Act, 31 U.S.C. §§ 5311 et seq., and its implementing regulations."],["\\"Business Day\\"","Any day other than a Saturday, Sunday, or a US federal public holiday."],["\\"CFPB\\"","The Consumer Financial Protection Bureau, the federal agency responsible for consumer financial protection in the United States."],["\\"Credit Builder\\"","A feature of your Jazari ONE Account that helps you build a credit profile by making timely repayments on RNPL transactions, which may be reported to Credit Reporting Agencies."],["\\"Credit Reporting Agencies\\" or \\"CRAs\\"","Equifax, Experian, and TransUnion, and any other consumer reporting agency as defined under the Fair Credit Reporting Act (\\"FCRA\\")."],["\\"Customer Service\\"","The Jazari ONE support centre, reachable via email at support@jazarione.com or through in-app chat."],["\\"EFTA\\"","The Electronic Fund Transfer Act, 15 U.S.C. §§ 1693 et seq., and its implementing regulation, Regulation E (12 C.F.R. Part 1005)."],["\\"FinCEN\\"","The Financial Crimes Enforcement Network, a bureau of the US Department of the Treasury."],["\\"GLBA\\"","The Gramm-Leach-Bliley Act, 15 U.S.C. §§ 6801 et seq., governing the privacy of consumer financial information."],["\\"Jazari ONE Account\\"","The prepaid payment account provided by or through Bridge Building Inc. under these Terms, accessible via the App or Website."],["\\"MSB\\"","Money Services Business - a category of financial institution regulated by FinCEN under the BSA."],["\\"OFAC\\"","The Office of Foreign Assets Control of the US Department of the Treasury, which administers US sanctions programmes."],["\\"[Bridge Building Inc. / Regulated Partner]\\"","Bridge Building Inc, a Delaware corporation, 2120 University Ave., Suite 213, Berkeley, CA 94704, which holds applicable money transmitter licences and provides the underlying payment infrastructure for Jazari ONE."],["\\"Recipient\\"","The individual or entity to whom you send money from your Jazari ONE Account."],["\\"Regulation E\\"","The federal regulation implementing the EFTA, governing electronic fund transfers (12 C.F.R. Part 1005)."],["\\"Remit Now, Pay Later\\" or \\"RNPL\\"","A lending product that enables you to send an international remittance before paying the full remittance amount, with repayments made in installments, subject to credit approval and applicable lending laws."],["\\"Remittance\\" or \\"Remit\\"","The process of sending money from your Jazari ONE Account to another individual or account, typically outside the United States, as part of a cross-border transaction."],["\\"State Regulator\\"","The applicable state financial regulatory authority in your state of residence."],["“Technology Services”","\\"Technology Services\\" | The software platform, App, user interface, and associated technical services provided by Jazari ONE to enable you to access regulated financial services offered by Bridge Building Inc. / Regulated Partner and other regulated partners. Technology Services do not include any regulated financial services, which are provided solely by Bridge Building Inc. / Regulated Partner and its regulated partners."],["\\"TILA\\"","The Truth in Lending Act, 15 U.S.C. §§ 1601 et seq., and its implementing regulation, Regulation Z (12 C.F.R. Part 1026)."],["\\"UDAP\\"","Unfair, deceptive, or abusive acts or practices, prohibited under the Consumer Financial Protection Act and applicable state consumer protection laws."],["\\"US Lending Partner\\"","Bridge Building Inc 2120 University Ave., Suite 213, Berkeley, CA 94704 - the entity licensed under applicable federal and state laws to provide RNPL credit to eligible Jazari ONE customers."],["\\"We / Us / Our\\"","Jazari ONE and/or Bridge Building Inc, depending on the context."],["\\"Website\\"","The official Jazari ONE website at jazari.money."],["\\"You / Your\\"","The individual who opened the Jazari ONE Account and is authorised to use the associated services."]]`,
   },
   {
     id: "account",
     title: "3. Your Jazari One account",
-    body: `3.1 Your Jazari ONE Account is a prepaid payment account provided by [US Issuer / Regulated Partner]. Jazari ONE provides the technology platform through which you access and manage your account but is not the account provider and does not hold or control your funds.
+    body: `3.1 Your Jazari ONE Account is a prepaid payment account provided by Bridge Building Inc. Jazari ONE provides the technology platform through which you access and manage your account but is not the account provider and does not hold or control your funds..
 
 3.2 These Terms constitute a legal agreement between you and us. By submitting your application to open a Jazari ONE Account, you confirm that:
 
@@ -78,7 +48,7 @@ TABLE:Term|Meaning
 - you will only use your Jazari ONE Account for lawful personal purposes as outlined in these Terms;
 - you are a resident of the United States, are at least 18 years of age (or the age of majority in your state), and are able to manage your own financial affairs;
 - you are acting on your own behalf and not as an agent for any third party;
-- you consent to us verifying your identity through third-party identity verification providers — see Section 21 for details;
+- you consent to us verifying your identity through third-party identity verification providers - see Section 21 for details;
 - you consent to us or our partners conducting a soft credit inquiry for eligibility purposes.
 
 3.3 To open an account, you must provide all required information and pass our identity verification and AML checks as required by applicable law, including the Customer Identification Program ("CIP") requirements under the BSA.
@@ -102,11 +72,11 @@ TABLE:Term|Meaning
 
 4.2 Limits and fees applicable to loading your account are set out in the Fee Schedule.
 
-4.3 The timing of your account being credited depends on the funding method used. ACH transfers typically take one to three Business Days. We will update your account balance upon receipt of cleared funds by [US Issuer / Regulated Partner] or its banking partner.
+4.3 The timing of your account being credited depends on the funding method used. ACH transfers typically take one to three Business Days. We will update your account balance upon receipt of cleared funds by Bridge Building Inc. or its banking partner.
 
 ### Payments Out
 
-4.4 Only verified account holders who meet applicable regulatory requirements are authorised to make payments from their Jazari ONE Account. We and [US Issuer / Regulated Partner] reserve the right to verify all payment recipients and may decline transactions based on regulatory concerns.
+4.4 Only verified account holders who meet applicable regulatory requirements are authorised to make payments from their Jazari ONE Account. We and Bridge Building Inc. reserve the right to verify all payment recipients and may decline transactions based on regulatory concerns.
 
 4.5 You are solely responsible for ensuring that recipient payment details (including routing number, account number, and recipient name) are correct before confirming any transaction.
 
@@ -116,7 +86,7 @@ TABLE:Term|Meaning
 
 4.8 Once a payment is authorised, it generally cannot be cancelled or reversed. See Section 5 (International Remittances) for specific cancellation rights applicable to remittance transactions under the Remittance Transfer Rule.
 
-4.9 We or [US Issuer / Regulated Partner] may refuse or suspend a transaction if:
+4.9 We or Bridge Building Inc. may refuse or suspend a transaction if:
 
 - it would exceed your account balance or account limits;
 - it would violate applicable law, including BSA/AML laws, OFAC sanctions, or applicable state money transmitter laws;
@@ -129,9 +99,9 @@ TABLE:Term|Meaning
   {
     id: "remittances",
     title: "5. International remittances",
-    body: `International remittance services are provided by [US Issuer / Regulated Partner] under its applicable money transmitter licences. Jazari ONE facilitates your access to these services through the App but does not itself transmit funds, hold remittance funds, or provide money transmission services.
+    body: `International remittance services are provided by Bridge Building Inc. under its applicable money transmitter licences. Jazari ONE facilitates your access to these services through the App but does not itself transmit funds, hold remittance funds, or provide money transmission services.
 
-IMPORTANT: Remittance Transfer Rule Notice: International money transfers sent from the United States are subject to the Consumer Financial Protection Bureau's Remittance Transfer Rule (12 C.F.R. Part 1005, Subpart B). Under this Rule, you have certain rights as a consumer, including the right to receive a pre-payment disclosure, receipt, and cancellation rights. Details are set out in this Section.
+Remittance Transfer Rule Notice: International money transfers sent from the United States are subject to the Consumer Financial Protection Bureau's Remittance Transfer Rule (12 C.F.R. Part 1005, Subpart B). Under this Rule, you have certain rights as a consumer, including the right to receive a pre-payment disclosure, receipt, and cancellation rights. Details are set out in this Section.
 
 5.1 Pre-Payment Disclosure: Before you authorise an international remittance, we will provide you with a disclosure showing: (a) the exchange rate applicable to the transaction; (b) any fees and taxes we impose; (c) any third-party fees we are aware of (to the extent disclosed to us); (d) the amount to be transferred; (e) the amount to be received by the recipient in the destination currency; and (f) the estimated date on which the funds will be available to the recipient.
 
@@ -160,7 +130,7 @@ IMPORTANT: Remittance Transfer Rule Notice: International money transfers sent f
     title: "6. Remit Now, Pay Later (RNPL)",
     body: `Remit Now, Pay Later ("RNPL") allows eligible customers to complete an international remittance immediately while deferring payment to a later date. This service is subject to credit approval and is provided by the US Lending Partner, a third-party lender licensed under applicable US federal and state consumer lending laws.
 
-6.1 Credit Provider: All RNPL loans are made by [US Lending Partner], a licensed consumer lender under applicable federal and state law. Jazari ONE facilitates access to RNPL but is not the lender and does not make credit decisions. Credit decisions are made solely by the US Lending Partner.
+6.1 Credit Provider: All RNPL loans are made by our Lending Partner, a licensed consumer lender under applicable federal and state law. Jazari ONE facilitates access to RNPL but is not the lender and does not make credit decisions. Credit decisions are made solely by the US Lending Partner.
 
 6.2 By selecting RNPL, you agree to enter into a separate credit agreement with the US Lending Partner. The terms of that agreement, including the Annual Percentage Rate ("APR"), finance charges, total repayment amount, and repayment schedule, will be presented to you before you confirm the transaction, in accordance with the Truth in Lending Act ("TILA") and Regulation Z.
 
@@ -279,7 +249,7 @@ Federal law provides important protections for electronic fund transfers. Your l
 
 14.2 We are only liable for losses that result directly and foreseeably from our breach of these Terms or applicable law.
 
-14.2a Jazari ONE's liability under these Terms is limited to its role as a technology platform provider. Jazari ONE is not responsible for the acts, omissions, or regulatory compliance of [US Issuer / Regulated Partner] or any other regulated partner in the performance of their respective regulated financial services, except to the extent that a loss arises directly from Jazari ONE's own breach of these Terms.
+14.2a Jazari ONE's liability under these Terms is limited to its role as a technology platform provider. Jazari ONE is not responsible for the acts, omissions, or regulatory compliance of Bridge Building Inc. or any other regulated partner in the performance of their respective regulated financial services, except to the extent that a loss arises directly from Jazari ONE's own breach of these Terms.
 
 14.3 We are not liable for:
 
@@ -290,7 +260,7 @@ Federal law provides important protections for electronic fund transfers. Your l
 
 14.4 If we deduct an incorrect amount from your account in error, we will correct the error. For unauthorised transactions properly reported under Section 7, we will refund the amount up to the limits permitted under Regulation E.
 
-14.5 These limitations apply equally to [US Issuer / Regulated Partner] and any of our service providers, contractors, and partners.`,
+14.5 These limitations apply equally to Bridge Building Inc. and any of our service providers, contractors, and partners.`,
   },
   {
     id: "changes",
@@ -366,7 +336,7 @@ Federal law provides important protections for electronic fund transfers. Your l
 
 19.10 Communications Consent: By creating a Jazari ONE Account, you agree that we may contact you via email, SMS, push notification, and other electronic means for account-related communications. For marketing communications, we will obtain your separate consent where required by applicable law.
 
-19.11 Regulatory Status. Jazari ONE is not a bank, credit institution, money transmitter, or licensed financial services provider under applicable federal or state law. Jazari ONE holds a FinCEN MSB registration (Registration No. MRX26-00006547) reflecting its compliance obligations as an entity operating in the payments ecosystem. All regulated financial services accessible through the Jazari ONE platform are provided by [US Issuer / Regulated Partner] and other regulated partners under their own licences, authorisations, and regulatory obligations.`,
+19.11 Regulatory Status. Jazari ONE is not a bank, credit institution, money transmitter, or licensed financial services provider under applicable federal or state law. Jazari ONE holds a FinCEN MSB registration (Registration No. MRX26-00006547) reflecting its compliance obligations as an entity operating in the payments ecosystem. All regulated financial services accessible through the Jazari ONE platform are provided by Bridge Building Inc. and other regulated partners under their own licences, authorisations, and regulatory obligations`,
   },
   {
     id: "intellectual-property",
@@ -392,7 +362,7 @@ Federal law provides important protections for electronic fund transfers. Your l
 
 21.6 How We Use Your Data: We use your data to: provide and manage your Jazari ONE Account; comply with AML, BSA, OFAC, and other regulatory obligations; prevent and detect fraud and financial crime; conduct credit assessments for RNPL; communicate with you about your account; improve our services; and, with your consent, for marketing purposes.
 
-21.7 Data Sharing: We may share your data with: [US Issuer / Regulated Partner] and its banking partners; identity verification and fraud prevention services; Credit Reporting Agencies (in connection with RNPL); FinCEN, OFAC, and other government or regulatory authorities; law enforcement, when required by law; and service providers acting on our behalf under appropriate data processing agreements.
+21.7 Data Sharing: We may share your data with: Bridge Building Inc. and its banking partners; identity verification and fraud prevention services; Credit Reporting Agencies (in connection with RNPL); FinCEN, OFAC, and other government or regulatory authorities; law enforcement, when required by law; and service providers acting on our behalf under appropriate data processing agreements.
 
 21.8 International Transfers: Processing your data may involve transferring it outside of the United States. We will ensure that appropriate safeguards are in place for any such transfers.
 
@@ -405,18 +375,21 @@ Federal law provides important protections for electronic fund transfers. Your l
   {
     id: "complaints",
     title: "22. Complaints and how to contact us",
-    body: `22.1 If you are dissatisfied with any aspect of our service, please contact Customer Service via in-app chat, email at support@jazari.com, or by mail to: Jazari ONE, [US Address to be confirmed]. We will acknowledge your complaint promptly and aim to resolve it within 15 Business Days.
+    body: `22.1 If you are dissatisfied with any aspect of our service, please contact Customer Service via in-app chat, email at support@jazari.com. We will acknowledge your complaint promptly and aim to resolve it within 15 Business Days.
 
 22.2 If we are unable to resolve your complaint to your satisfaction, you may escalate it to the CFPB:
 
 Consumer Financial Protection Bureau (CFPB)
+
 Website: consumerfinance.gov/complaint
+
 Phone: 1-855-411-2372 (Mon–Fri, 8am–8pm ET)
+
 Address: 1700 G Street NW, Washington, DC 20552
 
 22.3 You may also contact your State Regulator. A list of state financial regulatory contacts is available at jazari.money/regulators.
 
-22.4 For complaints relating to [US Issuer / Regulated Partner]'s money transmitter licence activities, you may also have the right to contact the applicable State Regulator directly.
+22.4 For complaints relating to Bridge Building Inc's money transmitter licence activities, you may also have the right to contact the applicable State Regulator directly.
 
 22.5 Nothing in this Section limits your right to pursue individual legal action in the appropriate court, subject to the Arbitration Agreement in Section 23.
 
@@ -424,8 +397,8 @@ Address: 1700 G Street NW, Washington, DC 20552
   },
   {
     id: "arbitration",
-    title: "23. Arbitration agreement and class action waiver",
-    body: `IMPORTANT: PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR LEGAL RIGHTS.
+    title: "23. Arbitration agreement and class action waive",
+    body: `NOTICE:IMPORTANT - PLEASE READ THIS SECTION CAREFULLY. IT AFFECTS YOUR LEGAL RIGHTS.
 
 This Section contains an Arbitration Agreement and a Class Action Waiver. By accepting these Terms, you agree to resolve most disputes with Jazari ONE through binding individual arbitration rather than in court, and you waive your right to participate in a class action lawsuit or class-wide arbitration.
 
@@ -435,7 +408,7 @@ You have the right to opt out of this Arbitration Agreement within 30 days of op
 
 23.2 Exceptions: The following are not subject to arbitration: (a) claims that qualify for small claims court (provided they remain in that court and are not brought as class actions); (b) requests for injunctive or other equitable relief to prevent unauthorised use of intellectual property; (c) claims that cannot be subjected to arbitration under applicable federal law.
 
-IMPORTANT: 23.3 CLASS ACTION WAIVER: TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, YOU AND JAZARI ONE WAIVE ANY RIGHT TO BRING OR PARTICIPATE IN A CLASS ACTION, COLLECTIVE ACTION, OR REPRESENTATIVE ACTION. DISPUTES MUST BE BROUGHT ON AN INDIVIDUAL BASIS ONLY.
+23.3 CLASS ACTION WAIVER: TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, YOU AND JAZARI ONE WAIVE ANY RIGHT TO BRING OR PARTICIPATE IN A CLASS ACTION, COLLECTIVE ACTION, OR REPRESENTATIVE ACTION. DISPUTES MUST BE BROUGHT ON AN INDIVIDUAL BASIS ONLY.
 
 23.4 Arbitration Process: Arbitration will be conducted by the American Arbitration Association ("AAA") under its Consumer Arbitration Rules (available at adr.org) or, for claims involving amounts of $25,000 or less, its Expedited Procedures. The arbitration will be conducted in English, and the arbitrator will apply applicable federal and state law. The arbitrator's decision will be final and binding.
 
@@ -463,53 +436,31 @@ IMPORTANT: 23.3 CLASS ACTION WAIVER: TO THE FULLEST EXTENT PERMITTED BY APPLICAB
   {
     id: "fees",
     title: "25. Fee schedule",
-    body: `The following fees apply to your Jazari ONE Account. All fees are in US Dollars (USD). Additional fees may apply for services not listed below — see the full Terms and the App for details.
+    body: `The following fees apply to your Jazari ONE Account. All fees are in US Dollars (USD). Additional fees may apply for services not listed below - see the full Terms and the App for details.
 
 ### Account Fees
 
-TABLE:Service / Feature|Fee / Detail
-Monthly Subscription / Maintenance Fee|$[X] per month
-Account Opening / Issuance Fee|Free
-Inactivity Fee (after 12 months of no activity)|$[X] per month
-Account Closure Fee|Free
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["Monthly Subscription / Maintenance Fee","$[X] per month"],["Account Opening / Issuance Fee","Free"],["Inactivity Fee (after 12 months of no activity)","$[X] per month"],["Account Closure Fee","Free"]]
 
 ### Funding (Add Money)
 
-TABLE:Service / Feature|Fee / Detail
-ACH Bank Transfer (US bank account)|First transfer per month: Free; Additional: $0.49
-Debit Card Load|$0.20 per load
-PayPoint or Cash Deposit|Not available
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["ACH Bank Transfer (US bank account)","First transfer per month: Free; Additional: $0.49"],["Debit Card Load","$0.20 per load"],["PayPoint or Cash Deposit","Not available"]]
 
 ### Payments Out
 
-TABLE:Service / Feature|Fee / Detail
-ACH Transfer to US Bank Account (1st party)|$0.20
-ACH Transfer to Another US Account|First per month: Free; Additional: $0.49
-Internal Transfer (Jazari ONE to Jazari ONE)|Free
-Wire Transfer|$[X]
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["ACH Transfer to US Bank Account (1st party)","$0.20"],["ACH Transfer to Another US Account","First per month: Free; Additional: $0.49"],["Internal Transfer (Jazari ONE to Jazari ONE)","Free"],["Wire Transfer","$[X]"]]
 
 ### International Remittances
 
-TABLE:Service / Feature|Fee / Detail
-Remittance (standard international transfer)|Free
-Exchange Rate Margin (FX spread)|Disclosed at time of transaction
-Third-party correspondent bank fees|Variable; disclosed at time of transaction
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["Remittance (standard international transfer)","Free"],["Exchange Rate Margin (FX spread)","Disclosed at time of transaction"],["Third-party correspondent bank fees","Variable; disclosed at time of transaction"]]
 
 ### Remit Now, Pay Later (RNPL)
 
-TABLE:Service / Feature|Fee / Detail
-RNPL Fee|10% of remittance amount (all-inclusive)
-Repayment Period|30 days
-APR (indicative)|Disclosed in TILA disclosure box at checkout
-Late Payment Fee|As set out in the US Lending Partner credit agreement
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["RNPL Fee","10% of remittance amount (all-inclusive)"],["Repayment Period","30 days"],["APR (indicative)","Disclosed in TILA disclosure box at checkout"],["Late Payment Fee","As set out in the US Lending Partner credit agreement"]]
 
 ### Other
 
-TABLE:Service / Feature|Fee / Detail
-Balance Inquiry (in-app or online)|Free
-Paper Statement Request|$[X] per statement
-Returned ACH / Insufficient Funds|$[X] per occurrence
-Account Balance Redemption (transfer to bank)|Free (first per month); $[X] thereafter
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["Balance Inquiry (in-app or online)","Free"],["Paper Statement Request","$[X] per statement"],["Returned ACH / Insufficient Funds","$[X] per occurrence"],["Account Balance Redemption (transfer to bank)","Free (first per month); $[X] thereafter"]]
 
 Fee changes: We will provide at least 21 days' advance notice of any material increase in fees, in accordance with Section 15.`,
   },
@@ -518,7 +469,7 @@ Fee changes: We will provide at least 21 days' advance notice of any material in
     title: "26. Know your customer (KYC) and identity verification",
     body: `26.1 We are required by US federal law (including the BSA and FinCEN's Customer Identification Program rules) to verify the identity of all customers at account opening and on an ongoing basis.
 
-26.2 At account opening, you must provide: your full legal name; date of birth; US residential address; and Social Security Number or Individual Taxpayer Identification Number.
+26.2 At account opening, you must provide: your full legal name; date of birth; US residential address; and Social Security Number or Individual Taxpayer Identification Number
 
 26.3 We may use third-party identity verification services to verify the information you provide. If we are unable to verify your identity electronically, we may request physical identity documents.
 
@@ -541,21 +492,21 @@ Fee changes: We will provide at least 21 days' advance notice of any material in
   },
   {
     id: "terms-of-credit",
-    title: "28. Terms of credit — Remit Now, Pay Later",
+    title: "28. Terms of credit - Remit Now, Pay Later",
     body: `28.1 The RNPL feature provides access to short-term consumer credit to fund international remittances. All credit under this feature is provided by the US Lending Partner. Jazari ONE acts solely as an introducer and facilitator and is not the lender.
 
 28.2 By using RNPL, you agree to enter into a credit agreement with the US Lending Partner. All TILA-required disclosures (APR, finance charge, amount financed, total of payments, payment schedule) will be presented to you for review and acceptance before the loan is made.
 
 28.3 US Lending Partner Details:
 
-TABLE:Item|Detail
-Credit Provider|[US Lending Partner - to be confirmed]
-Registered in|[State of incorporation - to be confirmed]
-Applicable Licences|[Licensed under applicable state consumer lending laws]
-Introducer|Jazari ONE
-Consumer Credit Agreement|Required (governed by TILA / Regulation Z and applicable state law)
-Credit Reporting|Conducted by US Lending Partner in accordance with FCRA
-Complaints|Governed by US Lending Partner agreement and applicable CFPB / state rules
+SINGLE_CELL_TABLE:
+Credit Provider: [US Lending Partner - to be confirmed]
+Registered in: [State of incorporation - to be confirmed]
+Applicable Licences: [Licensed under applicable state consumer lending laws]
+Introducer: Jazari ONE
+Consumer Credit Agreement: Required (governed by TILA / Regulation Z and applicable state law)
+Credit Reporting: Conducted by US Lending Partner in accordance with FCRA
+Complaints: Governed by US Lending Partner agreement and applicable CFPB / state rules
 
 28.4 Credit Scoring and Reporting:
 
@@ -573,56 +524,55 @@ Complaints|Governed by US Lending Partner agreement and applicable CFPB / state 
 
 ### California
 
-California Residents: Jazari ONE's services are provided under [US Issuer / Regulated Partner]'s Money Transmission Licence issued by the California Department of Financial Protection and Innovation ("DFPI"). California consumers may contact the DFPI at dfpi.ca.gov. Under the California Consumer Privacy Act ("CCPA") and the California Privacy Rights Act ("CPRA"), California residents have the right to know about, access, correct, delete, and opt out of the sale or sharing of their personal information. Please see our Privacy Policy at jazari.money/privacy for details.
+California Residents: Jazari ONE's services are provided under Bridge Building Inc's Money Transmission Licence issued by the California Department of Financial Protection and Innovation ("DFPI"). California consumers may contact the DFPI at dfpi.ca.gov. Under the California Consumer Privacy Act ("CCPA") and the California Privacy Rights Act ("CPRA"), California residents have the right to know about, access, correct, delete, and opt out of the sale or sharing of their personal information. Please see our Privacy Policy at jazari.money/privacy for details.
 
 California Finance Lender Disclosure (RNPL): Loans under the RNPL feature made to California residents are subject to the California Financing Law. The US Lending Partner holds a California Finance Lenders licence. Complaints may be directed to the DFPI.
 
 ### New York
 
-New York Residents: [US Issuer / Regulated Partner] is licensed by the New York Department of Financial Services ("DFS") as a Money Transmitter. The DFS may be contacted at dfs.ny.gov. New York consumers have certain rights under New York banking and consumer protection laws. In New York, the maximum late charge for RNPL loans is limited by applicable state law.
+New York Residents: Bridge Building Inc is licensed by the New York Department of Financial Services ("DFS") as a Money Transmitter. The DFS may be contacted at dfs.ny.gov. New York consumers have certain rights under New York banking and consumer protection laws. In New York, the maximum late charge for RNPL loans is limited by applicable state law.
 
 ### Texas
 
-Texas Residents: Jazari ONE is not a bank and your account is not insured by the FDIC. [US Issuer / Regulated Partner] holds a Money Services Business licence issued by the Texas Department of Banking. Complaints about money transmission services may be filed with the Texas Department of Banking at dob.texas.gov.
+Texas Residents: Jazari ONE is not a bank and your account is not insured by the FDIC. Bridge Building Inc. holds a Money Services Business licence issued by the Texas Department of Banking. Complaints about money transmission services may be filed with the Texas Department of Banking at dob.texas.gov.
 
 ### Florida
 
-Florida Residents: [US Issuer / Regulated Partner] holds a Money Transmitter Licence issued by the Florida Office of Financial Regulation ("OFR"). Complaints may be directed to the OFR at flofr.gov. Florida residents are protected under the Florida Deceptive and Unfair Trade Practices Act ("FDUTPA").
+Florida Residents: Bridge Building Inc. holds a Money Transmitter Licence issued by the Florida Office of Financial Regulation ("OFR"). Complaints may be directed to the OFR at flofr.gov. Florida residents are protected under the Florida Deceptive and Unfair Trade Practices Act ("FDUTPA").
 
 ### Illinois
 
-Illinois Residents: [US Issuer / Regulated Partner] is headquartered in Chicago, Illinois and holds a Transmitter of Money licence issued by the Illinois Department of Financial and Professional Regulation ("IDFPR"). Residents of Illinois may contact the IDFPR at idfpr.illinois.gov. Illinois residents have additional rights under the Illinois Biometric Information Privacy Act ("BIPA") if we collect biometric data for identity verification purposes — we will obtain your written consent before collecting any biometric identifiers.
+Illinois Residents: Bridge Building Inc. is headquartered in Chicago, Illinois and holds a Transmitter of Money licence issued by the Illinois Department of Financial and Professional Regulation ("IDFPR"). Residents of Illinois may contact the IDFPR at idfpr.illinois.gov. Illinois residents have additional rights under the Illinois Biometric Information Privacy Act ("BIPA") if we collect biometric data for identity verification purposes - we will obtain your written consent before collecting any biometric identifiers.
 
 ### All Other States
 
-Residents of all other US states are protected under applicable federal law, including the EFTA, TILA, and GLBA, and applicable state money transmission, consumer lending, and consumer protection laws. Where [US Issuer / Regulated Partner] holds a money transmitter licence in your state, information about that licence is available at jazari.money/licenses. Where state law requires specific disclosures or provides additional consumer protections, those requirements will be incorporated into these Terms by reference.`,
+Residents of all other US states are protected under applicable federal law, including the EFTA, TILA, and GLBA, and applicable state money transmission, consumer lending, and consumer protection laws. Where Bridge Building Inc.holds a money transmitter licence in your state, information about that licence is available at jazari.money/licenses. Where state law requires specific disclosures or provides additional consumer protections, those requirements will be incorporated into these Terms by reference.`,
   },
   {
     id: "contact",
     title: "30. Contact information",
-    body: `### Jazari ONE — Customer Service
+    body: `Jazari ONE - Customer Service
 
 Email: support@jazari.com
+
 In-app Chat: Available 7 days a week
+
 Website: jazari.money
+
 Mailing Address: [US Address - to be confirmed]
 
-### [US Issuer / Regulated Partner]
+Bridge Building Inc.
 
-[US Issuer Address to be confirmed]
+2120 University Ave., Suite 213, Berkeley, CA 94704
 
 CFPB: consumerfinance.gov/complaint | 1-855-411-2372
+
 FinCEN: fincen.gov`,
   },
 ];
 
-function renderTable(block: string, key: string) {
-  const [headerLine, ...rowLines] = block
-    .replace(/^TABLE:/, "")
-    .split("\n")
-    .filter(Boolean);
-  const headers = headerLine.split("|");
-  const rows = rowLines.map((line) => line.split("|"));
+function renderTableRows(rows: string[][], key: string) {
+  const [headers, ...bodyRows] = rows;
 
   return (
     <div className="legal-table-wrap" key={key}>
@@ -635,13 +585,48 @@ function renderTable(block: string, key: string) {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, rowIndex) => (
+          {bodyRows.map((row, rowIndex) => (
             <tr key={`${key}-${rowIndex}`}>
               {row.map((cell, cellIndex) => (
                 <td key={`${key}-${rowIndex}-${cellIndex}`}>{cell}</td>
               ))}
             </tr>
           ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function renderTable(block: string, key: string) {
+  const [headerLine, ...rowLines] = block
+    .replace(/^TABLE:/, "")
+    .split("\n")
+    .filter(Boolean);
+
+  return renderTableRows(
+    [headerLine.split("|"), ...rowLines.map((line) => line.split("|"))],
+    key,
+  );
+}
+
+function renderSingleCellTable(block: string, key: string) {
+  const lines = block.replace(/^SINGLE_CELL_TABLE:\s*/, "").split("\n");
+
+  return (
+    <div className="legal-table-wrap" key={key}>
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              {lines.map((line, lineIndex) => (
+                <span key={`${key}-${lineIndex}`}>
+                  {line}
+                  {lineIndex < lines.length - 1 ? <br /> : null}
+                </span>
+              ))}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -657,6 +642,17 @@ function renderBody(body: string): ReactNode {
 
       if (block.startsWith("TABLE:")) {
         return renderTable(block, key);
+      }
+
+      if (block.startsWith("TABLE_JSON:")) {
+        return renderTableRows(
+          JSON.parse(block.replace(/^TABLE_JSON:/, "")) as string[][],
+          key,
+        );
+      }
+
+      if (block.startsWith("SINGLE_CELL_TABLE:")) {
+        return renderSingleCellTable(block, key);
       }
 
       if (block.startsWith("### ")) {
@@ -678,6 +674,14 @@ function renderBody(body: string): ReactNode {
         return (
           <p className="legal-notice" key={key}>
             {block.replace(/^IMPORTANT:\s*/, "")}
+          </p>
+        );
+      }
+
+      if (block.startsWith("NOTICE:")) {
+        return (
+          <p className="legal-notice" key={key}>
+            {block.replace(/^NOTICE:/, "")}
           </p>
         );
       }

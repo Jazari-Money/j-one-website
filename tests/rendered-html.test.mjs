@@ -349,6 +349,12 @@ test("server-renders the internal legal pages", async () => {
   assert.match(terms, /FinCEN MSB registration/);
   assert.match(terms, /29\. State-specific disclosures/);
   assert.match(terms, /30\. Contact information/);
+  assert.match(terms, /Bridge Building Inc/);
+  assert.match(terms, /2120 University Ave\., Suite 213, Berkeley, CA 94704/);
+  assert.match(terms, /23\. Arbitration agreement and class action waive/);
+  assert.match(terms, /IMPORTANT - PLEASE READ THIS SECTION CAREFULLY\. IT AFFECTS YOUR LEGAL RIGHTS\./);
+  assert.equal((terms.match(/<table>/g) ?? []).length, 8);
+  assert.doesNotMatch(terms, /\[US Issuer \/ Regulated Partner\]/);
   assert.doesNotMatch(terms, />INTRODUCTION<|>DEFINITION</);
   assert.doesNotMatch(terms, /JAZARI FINTECH SERVICES - FZCO/);
 
