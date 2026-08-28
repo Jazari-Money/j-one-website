@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://jazari.xyz"),
   title: "Jazari One — Get paid in USD. Earn. Send worldwide.",
   description:
-    "Your own USD account and stablecoin wallet. Up to 7% APY with Yields. Bank transfers to 30+ countries.",
+    "Your own USD account and stablecoin wallet. Up to 7% APY with Yields. Available in 190+ countries.",
   openGraph: {
     title: "Jazari One — Get paid in USD. Earn. Send worldwide.",
     description:
-      "Your own USD account and stablecoin wallet. Up to 7% APY with Yields. Bank transfers to 30+ countries.",
+      "Your own USD account and stablecoin wallet. Up to 7% APY with Yields. Available in 190+ countries.",
     images: [{ url: "/og-v2.png", width: 1729, height: 910 }],
     type: "website",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jazari One — Get paid in USD. Earn. Send worldwide.",
     description:
-      "Your own USD account and stablecoin wallet. Up to 7% APY with Yields. Bank transfers to 30+ countries.",
+      "Your own USD account and stablecoin wallet. Up to 7% APY with Yields. Available in 190+ countries.",
     images: ["/og-v2.png"],
   },
   icons: {

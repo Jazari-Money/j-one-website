@@ -341,7 +341,7 @@ test("uses the intended mobile hero line breaks", async ({ page }) => {
   await expect(mobileDescriptionLines).toHaveText([
     "Your own USD account and stablecoin wallet.",
     "Up to 7% APY with Yields.",
-    "Bank transfers to 30+ countries.",
+    "Available in 190+ countries.",
   ]);
   for (const line of await mobileDescriptionLines.all()) {
     await expect(line).toHaveCSS("display", "block");
