@@ -704,7 +704,7 @@ const sections: LegalSection[] = rawSections.map((section) => ({
 export default function TermsPage() {
   return (
     <LegalPage
-      title="Terms and Conditions"
+      title="Terms & Conditions"
       date="Effective date: 21 April 2026"
       introduction={null}
       termsVersion="us"

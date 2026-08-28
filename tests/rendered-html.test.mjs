@@ -340,7 +340,7 @@ test("server-renders the internal legal pages", async () => {
     ukRiskResponse.text(),
   ]);
 
-  assert.match(terms, /<h1>Terms and Conditions<\/h1>/);
+  assert.match(terms, /<h1>Terms &amp; Conditions<\/h1>/);
   assert.match(terms, /aria-current="page" class="is-active" href="\/terms\/">US Terms<\/a>/);
   assert.match(terms, /href="\/terms\/non-us\/">Non-US Terms<\/a>/);
   assert.doesNotMatch(terms, /Version 1\. These Terms apply/);
@@ -356,7 +356,7 @@ test("server-renders the internal legal pages", async () => {
   assert.match(nonUsTerms, /<h1>Terms &amp; Conditions<\/h1>/);
   assert.match(nonUsTerms, /href="\/terms\/">US Terms<\/a>/);
   assert.match(nonUsTerms, /aria-current="page" class="is-active" href="\/terms\/non-us\/">Non-US Terms<\/a>/);
-  assert.match(nonUsTerms, /Effective Date: April 2026/);
+  assert.match(nonUsTerms, /Effective date: April 2026/);
   assert.match(nonUsTerms, /JAZARI FINTECH SERVICES - FZCO/);
   assert.match(nonUsTerms, /1\. Introduction/);
   assert.match(nonUsTerms, /20\. How We Use Your Information/);

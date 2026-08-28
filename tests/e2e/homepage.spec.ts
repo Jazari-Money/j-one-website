@@ -466,7 +466,7 @@ test("uses Safari-safe phone rendering and stacks cards in narrow windows", asyn
 
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
   await page.goto("/terms/", { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { name: "Terms and Conditions" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Terms & Conditions" })).toBeVisible();
   const termsSwitcher = page.getByRole("navigation", { name: "Terms version" });
   await expect(termsSwitcher.getByRole("link", { name: "US Terms", exact: true })).toHaveAttribute(
     "aria-current",
@@ -481,7 +481,7 @@ test("renders the legal documents as internal Jazari pages", async ({ page }) =>
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/terms\/non-us\/?$/);
   await expect(page.getByRole("heading", { name: "Terms & Conditions" })).toBeVisible();
-  await expect(page.getByText("Effective Date: April 2026")).toBeVisible();
+  await expect(page.getByText("Effective date: April 2026")).toBeVisible();
   await expect(page.getByText("JAZARI FINTECH SERVICES - FZCO", { exact: false }).first()).toBeVisible();
   await expect(page.getByRole("heading", { name: "20. How We Use Your Information" })).toBeAttached();
   await expect(page.getByRole("heading", { name: "29. State-specific disclosures" })).toHaveCount(0);
@@ -537,7 +537,13 @@ test("keeps the terms switcher tappable without mobile overflow", async ({ page 
 
   await switcher.getByRole("link", { name: "Non-US Terms", exact: true }).click();
   await expect(page).toHaveURL(/\/terms\/non-us\/?$/);
-  await expect(page.getByText("Effective Date: April 2026")).toBeVisible();
+  const effectiveDate = page.getByText("Effective date: April 2026");
+  await expect(effectiveDate).toBeVisible();
+  const dateLines = await effectiveDate.evaluate((node) => {
+    const styles = getComputedStyle(node);
+    return node.getBoundingClientRect().height / Number.parseFloat(styles.lineHeight);
+  });
+  expect(dateLines).toBeLessThan(1.1);
 
   const viewport = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,

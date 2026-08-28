@@ -76,6 +76,7 @@
 .legal-hero-meta > p {
   color: var(--muted);
   font-size: 13px;
+  white-space: nowrap;
 }
 
 .legal-layout {

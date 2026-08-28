@@ -13,7 +13,7 @@ export default function NonUsTermsPage() {
   return (
     <LegalPage
       title="Terms & Conditions"
-      date="Effective Date: April 2026"
+      date="Effective date: April 2026"
       introduction={null}
       indexSections={nonUsTermsIndex}
       termsVersion="non-us"
