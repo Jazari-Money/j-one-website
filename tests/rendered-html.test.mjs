@@ -327,18 +327,22 @@ test("server-renders the standalone component board", async () => {
 });
 
 test("server-renders the internal legal pages", async () => {
-  const [termsResponse, privacyResponse, ukRiskResponse] = await Promise.all([
+  const [termsResponse, nonUsTermsResponse, privacyResponse, ukRiskResponse] = await Promise.all([
     render("/terms"),
+    render("/terms/non-us"),
     render("/privacy-policy"),
     render("/uk-risk-information"),
   ]);
-  const [terms, privacy, ukRisk] = await Promise.all([
+  const [terms, nonUsTerms, privacy, ukRisk] = await Promise.all([
     termsResponse.text(),
+    nonUsTermsResponse.text(),
     privacyResponse.text(),
     ukRiskResponse.text(),
   ]);
 
   assert.match(terms, /<h1>Terms and Conditions<\/h1>/);
+  assert.match(terms, /aria-current="page" class="is-active" href="\/terms\/">US Terms<\/a>/);
+  assert.match(terms, /href="\/terms\/non-us\/">Non-US Terms<\/a>/);
   assert.doesNotMatch(terms, /Version 1\. These Terms apply/);
   assert.match(terms, /Effective date: 21 April 2026/);
   assert.match(terms, /1\. Introduction/);
@@ -346,6 +350,19 @@ test("server-renders the internal legal pages", async () => {
   assert.match(terms, /29\. State-specific disclosures/);
   assert.match(terms, /30\. Contact information/);
   assert.doesNotMatch(terms, />INTRODUCTION<|>DEFINITION</);
+  assert.doesNotMatch(terms, /JAZARI FINTECH SERVICES - FZCO/);
+
+  assert.match(nonUsTerms, /<title>Terms and Conditions — Jazari One<\/title>/);
+  assert.match(nonUsTerms, /<h1>Terms &amp; Conditions<\/h1>/);
+  assert.match(nonUsTerms, /href="\/terms\/">US Terms<\/a>/);
+  assert.match(nonUsTerms, /aria-current="page" class="is-active" href="\/terms\/non-us\/">Non-US Terms<\/a>/);
+  assert.match(nonUsTerms, /Effective Date: April 2026/);
+  assert.match(nonUsTerms, /JAZARI FINTECH SERVICES - FZCO/);
+  assert.match(nonUsTerms, /1\. Introduction/);
+  assert.match(nonUsTerms, /20\. How We Use Your Information/);
+  assert.match(nonUsTerms, /href="#how-we-use-your-information"/);
+  assert.match(nonUsTerms, /governed by the laws of the United Arab/);
+  assert.doesNotMatch(nonUsTerms, /29\. State-specific disclosures/);
 
   assert.match(privacy, /<h1>Privacy Policy<\/h1>/);
   assert.match(privacy, /Last updated: April 2026/);
@@ -433,6 +450,10 @@ test("publishes internal support and product pages in the sitemap", async () => 
   assert.match(
     sitemap,
     /<loc>https:\/\/jazari\.xyz\/send<\/loc>/,
+  );
+  assert.match(
+    sitemap,
+    /<loc>https:\/\/jazari\.xyz\/terms\/non-us<\/loc>/,
   );
   assert.doesNotMatch(sitemap, /compare-transfer-costs|verify-recipient-details|digital-dollars-bank-payouts/);
 });

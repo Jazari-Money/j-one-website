@@ -467,6 +467,41 @@ test("uses Safari-safe phone rendering and stacks cards in narrow windows", asyn
 test("renders the legal documents as internal Jazari pages", async ({ page }) => {
   await page.goto("/terms/", { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { name: "Terms and Conditions" })).toBeVisible();
+  const termsSwitcher = page.getByRole("navigation", { name: "Terms version" });
+  await expect(termsSwitcher.getByRole("link", { name: "US Terms", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  const nonUsTermsLink = termsSwitcher.getByRole("link", { name: "Non-US Terms", exact: true });
+  await nonUsTermsLink.focus();
+  await expect(nonUsTermsLink).toBeFocused();
+  const navigationEntries = await page.evaluate(
+    () => performance.getEntriesByType("navigation").length,
+  );
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/\/terms\/non-us\/?$/);
+  await expect(page.getByRole("heading", { name: "Terms & Conditions" })).toBeVisible();
+  await expect(page.getByText("Effective Date: April 2026")).toBeVisible();
+  await expect(page.getByText("JAZARI FINTECH SERVICES - FZCO", { exact: false }).first()).toBeVisible();
+  await expect(page.getByRole("heading", { name: "20. How We Use Your Information" })).toBeAttached();
+  await expect(page.getByRole("heading", { name: "29. State-specific disclosures" })).toHaveCount(0);
+  await expect(page.getByRole("navigation", { name: "Terms version" })
+    .getByRole("link", { name: "Non-US Terms", exact: true })).toHaveAttribute("aria-current", "page");
+  await expect.poll(
+    () => page.evaluate(() => performance.getEntriesByType("navigation").length),
+  ).toBe(navigationEntries);
+
+  const finalSectionLink = page.getByRole(
+    "navigation",
+    { name: "Terms & Conditions sections" },
+  ).getByRole("link", { name: "How We Use Your Information" });
+  await expect(finalSectionLink).toHaveAttribute("href", "#how-we-use-your-information");
+  await finalSectionLink.click();
+  await expect(page).toHaveURL(/#how-we-use-your-information$/);
+
+  await page.getByRole("navigation", { name: "Terms version" })
+    .getByRole("link", { name: "US Terms", exact: true }).click();
+  await expect(page).toHaveURL(/\/terms\/?$/);
   await expect(page.getByText("Effective date: 21 April 2026")).toBeVisible();
   await expect(page.getByRole("heading", { name: "1. Introduction" })).toBeVisible();
   await expect(
@@ -483,6 +518,32 @@ test("renders the legal documents as internal Jazari pages", async ({ page }) =>
   await expect(page.getByRole("heading", { name: "Privacy Policy" })).toBeVisible();
   await expect(page.getByText("Last updated: April 2026")).toBeVisible();
   await expect(page.getByRole("heading", { name: "11. Cookies" })).toBeVisible();
+});
+
+test("keeps the terms switcher tappable without mobile overflow", async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 844 });
+  await page.goto("/terms/", { waitUntil: "networkidle" });
+
+  const switcher = page.getByRole("navigation", { name: "Terms version" });
+  await expect(switcher.getByRole("link", { name: "US Terms", exact: true })).toBeVisible();
+  await expect(switcher.getByRole("link", { name: "Non-US Terms", exact: true })).toBeVisible();
+
+  const sizes = await switcher.evaluate((node) => ({
+    height: Math.round(node.getBoundingClientRect().height),
+    width: Math.round(node.getBoundingClientRect().width),
+  }));
+  expect(sizes.height).toBeGreaterThanOrEqual(48);
+  expect(sizes.width).toBeLessThanOrEqual(288);
+
+  await switcher.getByRole("link", { name: "Non-US Terms", exact: true }).click();
+  await expect(page).toHaveURL(/\/terms\/non-us\/?$/);
+  await expect(page.getByText("Effective Date: April 2026")).toBeVisible();
+
+  const viewport = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(viewport.scrollWidth).toBe(viewport.clientWidth);
 });
 
 test("renders UK risk information statically and without mobile overflow", async ({ page }) => {

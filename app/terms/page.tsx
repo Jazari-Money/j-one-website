@@ -707,6 +707,7 @@ export default function TermsPage() {
       title="Terms and Conditions"
       date="Effective date: 21 April 2026"
       introduction={null}
+      termsVersion="us"
       sections={sections}
     />
   );
