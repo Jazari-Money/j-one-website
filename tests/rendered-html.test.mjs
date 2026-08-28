@@ -387,6 +387,30 @@ test("server-renders the account deletion page without indexing it", async () =>
   assert.doesNotMatch(sitemap, /how-to-delete-account/);
 });
 
+test("publishes the email confirmation handoff page and iOS universal link", async () => {
+  const response = await render("/email-confirm");
+  const html = await response.text();
+
+  assert.match(html, /<title>Finish creating your Jazari One account<\/title>/);
+  assert.match(html, /<h1 class="h1">Email confirmed<\/h1>/);
+  assert.match(html, /src="qr\.svg"/);
+  assert.match(html, /https:\/\/jazarione\.app\.link\/WkuNVbyKr4b/);
+  assert.match(html, /window\.setTimeout/);
+  assert.match(html, /name="robots" content="noindex,nofollow"/);
+
+  const association = JSON.parse(
+    await readFile(
+      new URL("../out/.well-known/apple-app-site-association", import.meta.url),
+      "utf8",
+    ),
+  );
+  assert.deepEqual(association.applinks.details[0].appIDs, [
+    "Q2Y9X7ZNXN.money.jazari.global",
+    "Q2Y9X7ZNXN.money.jazari.global.dev",
+  ]);
+  assert.equal(association.applinks.details[0].components[1]["/"], "/email-confirm");
+});
+
 test("publishes internal support and product pages in the sitemap", async () => {
   const sitemap = await readFile(
     new URL("../out/sitemap.xml", import.meta.url),

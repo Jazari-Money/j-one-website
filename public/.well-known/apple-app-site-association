@@ -1,0 +1,19 @@
+{
+  "applinks": {
+      "details": [
+           {
+             "appIDs": [ "Q2Y9X7ZNXN.money.jazari.global", "Q2Y9X7ZNXN.money.jazari.global.dev" ],
+             "components": [
+               {
+                  "/": "/email-confirm/*",
+                  "comment": "Matches email confirmation links whose path starts with /email-confirm/."
+               },
+               {
+                  "/": "/email-confirm",
+                  "comment": "Matches the bare /email-confirm path."
+               }
+             ]
+           }
+       ]
+   }
+}
