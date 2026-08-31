@@ -396,9 +396,9 @@ test("offers help from the footer support section", async ({ page }) => {
     "href",
     /\/#faq$/,
   );
-  await expect(footer.getByRole("link", { name: "hello@jazary.xyz" })).toHaveAttribute(
+  await expect(footer.getByRole("link", { name: "hello@jazari.xyz" })).toHaveAttribute(
     "href",
-    "mailto:hello@jazary.xyz",
+    "mailto:hello@jazari.xyz",
   );
   await expect(footer.getByRole("link", { name: "Contact", exact: true })).toHaveCount(0);
   await expect(page.locator(".nav-mobile-group").getByRole("link", { name: "Contact", exact: true })).toHaveCount(0);

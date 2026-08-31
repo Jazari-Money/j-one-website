@@ -40,7 +40,7 @@ export function FAQ() {
         <h2>FAQ</h2>
         <p className="faq-contact">
           Something we missed?{" "}
-          <a href="mailto:hello@jazary.xyz">Email us</a>
+          <a href="mailto:hello@jazari.xyz">Email us</a>
         </p>
       </header>
       <div className="faq-content">

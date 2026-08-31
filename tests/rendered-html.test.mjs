@@ -89,7 +89,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, />FAQ</);
   assert.match(html, />Support</);
   assert.match(html, /href="\/help\/?">Help<\/a>/);
-  assert.match(html, /href="mailto:hello@jazary\.xyz">hello@jazary\.xyz<\/a>/);
+  assert.match(html, /href="mailto:hello@jazari\.xyz">hello@jazari\.xyz<\/a>/);
   assert.match(html, />Email us<\/a>/);
   assert.doesNotMatch(html, />Email us\.<\/a>/);
   assert.ok(html.indexOf('id="roadmap"') < html.indexOf('id="blog"'));

@@ -50,7 +50,7 @@ export function SiteFooter() {
             <strong>Support</strong>
             <Link href="/#faq">FAQ</Link>
             <Link href="/help">Help</Link>
-            <a href="mailto:hello@jazary.xyz">hello@jazary.xyz</a>
+            <a href="mailto:hello@jazari.xyz">hello@jazari.xyz</a>
           </div>
         </nav>
         <SocialLinks className="footer-socials" />
