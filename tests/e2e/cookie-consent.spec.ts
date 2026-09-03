@@ -35,6 +35,14 @@ async function readConsentCookie(page: Page) {
   };
 }
 
+async function readDataLayer(page: Page) {
+  return page.evaluate(() =>
+    (window.dataLayer ?? []).map((command) =>
+      Array.from(command as ArrayLike<unknown>),
+    ),
+  );
+}
+
 test("denies analytics by default and shows the first-visit banner", async ({ page }) => {
   const analyticsRequests = await captureGoogleAnalytics(page);
 
@@ -47,7 +55,7 @@ test("denies analytics by default and shows the first-visit banner", async ({ pa
   expect(analyticsRequests).toHaveLength(0);
   expect((await page.context().cookies()).some((cookie) => cookie.name.startsWith("_ga"))).toBe(false);
 
-  const consentCommands = await page.evaluate(() => window.dataLayer ?? []);
+  const consentCommands = await readDataLayer(page);
   expect(consentCommands).toContainEqual([
     "consent",
     "default",
@@ -68,6 +76,12 @@ test("accepting persists consent and activates GA without a reload", async ({ pa
   );
   await expect(page.getByRole("complementary", { name: "Your privacy choices" })).toHaveCount(0);
 
+  const queuedCommandTypes = await page.evaluate(() =>
+    (window.dataLayer ?? []).map((command) => Object.prototype.toString.call(command)),
+  );
+  expect(queuedCommandTypes).toContain("[object Arguments]");
+  expect(queuedCommandTypes).not.toContain("[object Array]");
+
   const consentCookie = await readConsentCookie(page);
   expect(consentCookie?.storedValue.analytics).toBe(true);
   expect(consentCookie?.storedValue.updatedAt).toMatch(/^\d{4}-\d{2}-\d{2}$/);
@@ -76,7 +90,7 @@ test("accepting persists consent and activates GA without a reload", async ({ pa
     Date.now() + 360 * 24 * 60 * 60 * 1000,
   );
 
-  const consentCommands = await page.evaluate(() => window.dataLayer ?? []);
+  const consentCommands = await readDataLayer(page);
   expect(consentCommands).toContainEqual([
     "consent",
     "update",
@@ -126,7 +140,7 @@ test("preferences can grant and later withdraw analytics consent", async ({ page
 
   expect((await readConsentCookie(page))?.storedValue.analytics).toBe(false);
   expect(await page.evaluate((id) => window[`ga-disable-${id}`], measurementId)).toBe(true);
-  const consentCommands = await page.evaluate(() => window.dataLayer ?? []);
+  const consentCommands = await readDataLayer(page);
   expect(consentCommands.at(-1)).toEqual([
     "consent",
     "update",
