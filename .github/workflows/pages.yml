@@ -31,6 +31,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Verify Google Analytics configuration
+        env:
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: ${{ vars.GA_MEASUREMENT_ID }}
+        run: |
+          if [[ ! "$NEXT_PUBLIC_GA_MEASUREMENT_ID" =~ ^G-[A-Z0-9]+$ ]]; then
+            echo "::error::Set the GA_MEASUREMENT_ID repository variable to a valid GA4 measurement ID."
+            exit 1
+          fi
+
       - name: Build static site
         run: npm run build:pages
         env:

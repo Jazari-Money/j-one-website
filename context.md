@@ -560,7 +560,9 @@ Default local URL: `http://localhost:3000`
   consent modal. The global consent controller stores only the necessary
   `jazari_cookie_consent` cookie for one year, denies analytics by default, and
   loads direct GA4 only after an explicit grant. The GA measurement ID is
-  supplied at build time and the consent logic never sets a cookie domain.
+  supplied at build time, the deployment workflow rejects missing or malformed
+  IDs, and the consent logic never sets a cookie domain. Google Tag Manager and
+  advertising pixels are not loaded by the site.
 - Pricing has no tiers. It is one combined surface ordered `Money movement`,
   `Account`, then `Yields`; section boundaries are established through spacing,
   not full-width rules, while row separators remain short, inset, and faint.

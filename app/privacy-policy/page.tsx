@@ -155,19 +155,17 @@ const sections: LegalSection[] = [
     title: "11. Cookies",
     content: (
       <>
-        <p>We use cookies and similar technologies on <a href="https://jazari.xyz">jazari.xyz</a> to keep the site working, measure usage, and—where you allow it—support our marketing. On your first visit we ask for your consent; until you accept, only essential cookies are set.</p>
+        <p>We use cookies and similar technologies on <a href="https://jazari.xyz">jazari.xyz</a> to keep the site working and, where you allow it, measure usage with Google Analytics. On your first visit we ask for your consent; until you accept, only essential cookies are set.</p>
         <LegalTable
           headers={["Category", "Used for", "Stored for"]}
           rows={[
             ["Essential", "Core site functionality and your saved cookie choice", "Up to 1 year"],
-            ["Analytics", "Google Analytics (directly and via Google Tag Manager)", "Up to 2 years"],
-            ["Marketing", "Meta (Facebook) Pixel and advertising, via Google Tag Manager", "Up to 1 year"],
+            ["Analytics", "Google Analytics", "Up to 2 years"],
           ]}
         />
         <p>Cookies set by third-party services on our site include:</p>
         <ul>
-          <li><code>_ga</code>, <code>_gid</code>, <code>_gat</code> — Google Analytics</li>
-          <li><code>_fbp</code>, <code>_fbc</code> — Meta (Facebook) Pixel</li>
+          <li><code>_ga</code>, <code>_ga_*</code> — Google Analytics</li>
           <li><code>jazari_cookie_consent</code> — your saved cookie preferences (set by us)</li>
         </ul>
         <p>You can change or withdraw your consent at any time using the <strong>Cookie Preferences</strong> link in the footer, or through your browser settings.</p>
