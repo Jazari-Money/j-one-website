@@ -374,6 +374,9 @@ test("server-renders the internal legal pages", async () => {
   assert.match(privacy, /Last updated: April 2026/);
   assert.match(privacy, /11\. Cookies/);
   assert.match(privacy, /jazari_cookie_consent/);
+  assert.match(privacy, /Google Analytics/);
+  assert.match(privacy, /_ga_\*/);
+  assert.doesNotMatch(privacy, /Google Tag Manager|Meta \(Facebook\) Pixel|_fbp|_fbc/);
   assert.match(privacy, /href="\/terms\/?"/);
 
   assert.match(ukRisk, /<title>Risk information for customers in the United Kingdom \| Jazari One<\/title>/);
