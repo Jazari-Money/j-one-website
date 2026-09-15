@@ -196,7 +196,7 @@ export function ReferralPage() {
             You&apos;re invited to <em>Jazari One</em>
           </h1>
           <p>
-            Get paid in USD. Earn. Send worldwide.
+            Get paid in USD. Earn. Send&nbsp;worldwide.
           </p>
 
           <form className="referral-form" onSubmit={handleSubmit} aria-label="Accept your invite">

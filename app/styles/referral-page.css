@@ -338,7 +338,11 @@
 
 @media (max-width: 620px) {
   .referral-hero {
-    padding: 132px 0 72px;
+    padding: 112px 0 72px;
+  }
+
+  .referral-copy h1 {
+    font-size: 61px;
   }
 
   .referral-card-stage {
