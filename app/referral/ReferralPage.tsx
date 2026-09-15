@@ -196,7 +196,7 @@ export function ReferralPage() {
             You&apos;re invited to <em>Jazari One</em>
           </h1>
           <p>
-            Get paid in USD. Earn. Send worldwide.
+            Get paid in USD. Earn. Send&nbsp;worldwide.
           </p>
 
           <form className="referral-form" onSubmit={handleSubmit} aria-label="Accept your invite">
@@ -212,6 +212,13 @@ export function ReferralPage() {
                   <span className="referral-country-dial" aria-hidden="true">
                     +{country.dial}
                   </span>
+                  <svg
+                    className="referral-country-chevron"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
                   <select
                     aria-label="Phone number country code"
                     value={countryIso2}
@@ -248,9 +255,11 @@ export function ReferralPage() {
               </button>
             </div>
 
-            <p className="referral-error" role="alert">
-              {status === "error" ? errorMessage : ""}
-            </p>
+            {status === "error" && (
+              <p className="referral-error" role="alert">
+                {errorMessage}
+              </p>
+            )}
           </form>
 
           <p className="referral-footnote">
