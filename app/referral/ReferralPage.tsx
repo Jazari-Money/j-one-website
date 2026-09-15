@@ -248,9 +248,11 @@ export function ReferralPage() {
               </button>
             </div>
 
-            <p className="referral-error" role="alert">
-              {status === "error" ? errorMessage : ""}
-            </p>
+            {status === "error" && (
+              <p className="referral-error" role="alert">
+                {errorMessage}
+              </p>
+            )}
           </form>
 
           <p className="referral-footnote">
