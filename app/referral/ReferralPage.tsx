@@ -5,10 +5,10 @@
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import "../styles/referral-page.css";
-import { InternalSiteHeader } from "../home/InternalSiteHeader";
 import { resetPointer, trackPointer } from "../home/hooks";
 import { ResponsiveImage } from "../home/ResponsiveImage";
 import { SiteFooter } from "../home/SiteFooter";
+import { SiteHeader } from "../home/SiteHeader";
 import {
   appDownloadUrl,
   referralApiUrl,
@@ -113,11 +113,16 @@ export function ReferralPage() {
 
   const country = useMemo(() => findDialCountry(countryIso2), [countryIso2]);
   const digits = phoneInput.replace(/\D/g, "");
-  const canSubmit = digits.length >= 6 && status !== "submitting";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!canSubmit) return;
+    if (status === "submitting") return;
+
+    if (digits.length < 6) {
+      setStatus("error");
+      setErrorMessage("Enter a valid phone number.");
+      return;
+    }
 
     setStatus("submitting");
     setErrorMessage("");
@@ -147,7 +152,7 @@ export function ReferralPage() {
   if (status === "success") {
     return (
       <main>
-        <InternalSiteHeader />
+        <SiteHeader mode="minimal" />
         <section className="referral-success" aria-labelledby="referral-success-title">
           <h1 id="referral-success-title">You&apos;re in.</h1>
           <p>Download Jazari One to finish setting up your account.</p>
@@ -167,7 +172,7 @@ export function ReferralPage() {
 
   return (
     <main>
-      <InternalSiteHeader />
+      <SiteHeader mode="minimal" />
 
       <section className="referral-hero" aria-labelledby="referral-title">
         <div className="referral-card-stage">
@@ -191,60 +196,54 @@ export function ReferralPage() {
             You&apos;re invited to <em>Jazari One</em>
           </h1>
           <p>
-            Enter your phone number to accept the invite. Once you&apos;re set up, invite
-            friends of your own and you&apos;ll both be rewarded.
+            Accept your invite, then invite friends and earn rewards together.
           </p>
 
           <form className="referral-form" onSubmit={handleSubmit} aria-label="Accept your invite">
             <label htmlFor="referral-phone" className="referral-label">
               Enter your phone number
             </label>
-            <div className="referral-phone-group">
-              <div className="referral-country-select">
-                <span className="referral-country-flag" aria-hidden="true">
-                  {flagEmoji(country.iso2)}
-                </span>
-                <span className="referral-country-dial" aria-hidden="true">
-                  +{country.dial}
-                </span>
-                <select
-                  aria-label="Phone number country code"
-                  value={countryIso2}
-                  onChange={(event) => setCountryIso2(event.target.value)}
-                >
-                  {dialCountries.map((option) => (
-                    <option key={option.iso2} value={option.iso2}>
-                      {option.name} (+{option.dial})
-                    </option>
-                  ))}
-                </select>
+            <div className="referral-input-row">
+              <div className="referral-phone-group">
+                <div className="referral-country-select">
+                  <span className="referral-country-flag" aria-hidden="true">
+                    {flagEmoji(country.iso2)}
+                  </span>
+                  <span className="referral-country-dial" aria-hidden="true">
+                    +{country.dial}
+                  </span>
+                  <select
+                    aria-label="Phone number country code"
+                    value={countryIso2}
+                    onChange={(event) => setCountryIso2(event.target.value)}
+                  >
+                    {dialCountries.map((option) => (
+                      <option key={option.iso2} value={option.iso2}>
+                        {option.name} (+{option.dial})
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <input
+                  id="referral-phone"
+                  name="phone"
+                  type="tel"
+                  inputMode="numeric"
+                  autoComplete="tel-national"
+                  placeholder="555 123 4567"
+                  value={phoneInput}
+                  onChange={(event) => setPhoneInput(event.target.value)}
+                />
               </div>
-              <input
-                id="referral-phone"
-                name="phone"
-                type="tel"
-                inputMode="numeric"
-                autoComplete="tel-national"
-                required
-                placeholder="555 123 4567"
-                value={phoneInput}
-                onChange={(event) => setPhoneInput(event.target.value)}
-              />
+
+              <button type="submit" className="realism-button referral-submit">
+                {status === "submitting" ? "Checking…" : "Accept Invite"}
+              </button>
             </div>
 
-            {status === "error" && (
-              <p className="referral-error" role="alert">
-                {errorMessage}
-              </p>
-            )}
-
-            <button
-              type="submit"
-              className="realism-button referral-submit"
-              disabled={!canSubmit}
-            >
-              {status === "submitting" ? "Checking…" : "Accept Invite"}
-            </button>
+            <p className="referral-error" role="alert">
+              {status === "error" ? errorMessage : ""}
+            </p>
           </form>
 
           <p className="referral-footnote">

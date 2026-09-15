@@ -9,7 +9,7 @@ import { SocialLinks } from "./SocialLinks";
 export function SiteHeader({
   mode = "home",
 }: {
-  mode?: "home" | "internal";
+  mode?: "home" | "internal" | "minimal";
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -66,6 +66,25 @@ export function SiteHeader({
   function closeMobile() {
     setMobileOpen(false);
     setProductOpen(false);
+  }
+
+  if (mode === "minimal") {
+    return (
+      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+        <nav className="site-nav" aria-label="Main navigation">
+          <a className="brand" href={homeHref} aria-label="Jazari One home">
+            <img
+              src={withBasePath("/images/brand/jazari-one-logo.svg")}
+              alt="Jazari One"
+              width="1638"
+              height="217"
+              decoding="async"
+              fetchPriority="high"
+            />
+          </a>
+        </nav>
+      </header>
+    );
   }
 
   return (
