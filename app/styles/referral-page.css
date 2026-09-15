@@ -74,9 +74,9 @@
 }
 
 .referral-label {
-  font-size: 13px;
+  font-size: 17px;
   font-weight: 600;
-  color: var(--muted-strong);
+  color: var(--text);
 }
 
 .referral-phone-group {
@@ -170,8 +170,8 @@
   margin-top: 26px;
   max-width: 480px;
   color: var(--muted);
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11px;
+  line-height: 1.55;
 }
 
 .referral-footnote a {
