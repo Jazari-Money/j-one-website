@@ -1,0 +1,347 @@
+@import "./internal-pages.css";
+
+.referral-hero {
+  width: var(--page);
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin-inline: auto;
+  padding: 170px 0 110px;
+  display: grid;
+  grid-template-columns: minmax(240px, 320px) 1fr;
+  align-items: center;
+  gap: 72px;
+}
+
+/* Same bottom-fade crop as the homepage hero device (app/styles/hero.css
+   .hero-product): a fixed-ratio, overflow-hidden stage with a bottom mask so
+   only the top of the phone shows, fading out rather than hard-cropping. */
+.referral-card-stage {
+  width: 100%;
+  max-width: 320px;
+  margin-inline: auto;
+  aspect-ratio: 7 / 10;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0 72%,
+    rgba(0, 0, 0, 0.82) 86%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0 72%,
+    rgba(0, 0, 0, 0.82) 86%,
+    transparent 100%
+  );
+}
+
+.referral-card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  /* The phone's metallic bezel reads too bright against the pure-black
+     page; the screen content is already dark, so a brightness cut mutes
+     the frame without noticeably dimming the UI inside it. */
+  filter: brightness(0.78);
+}
+
+.referral-copy h1 {
+  margin: 0;
+  max-width: 760px;
+  font-family: var(--serif);
+  font-size: clamp(53px, 6.5vw, 81px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.referral-copy h1 em {
+  font-style: normal;
+  color: var(--accent-3);
+}
+
+.referral-copy > p {
+  max-width: 480px;
+  margin: 22px 0 0;
+  color: var(--muted-strong);
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+.referral-form {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 480px;
+}
+
+.referral-label {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.referral-input-row {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.referral-phone-group {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: stretch;
+  border: 1px solid rgba(250, 250, 247, 0.16);
+  border-radius: 16px;
+  background: var(--surface-2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.referral-phone-group:focus-within {
+  border-color: var(--line-strong);
+}
+
+.referral-country-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  border-right: 1px solid rgba(250, 250, 247, 0.16);
+  white-space: nowrap;
+}
+
+.referral-country-select select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.referral-country-flag {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.referral-country-dial {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.referral-phone-group input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 16px;
+  padding: 0 16px;
+  height: 54px;
+}
+
+.referral-phone-group input::placeholder {
+  color: var(--muted);
+}
+
+.referral-phone-group input:focus {
+  outline: none;
+}
+
+.referral-error {
+  margin: 0;
+  min-height: 20px;
+  color: #ff8a8a;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.referral-submit {
+  flex-shrink: 0;
+  height: 54px;
+  padding-inline: 26px;
+}
+
+.referral-copy > p.referral-footnote {
+  margin-top: 44px;
+  max-width: 480px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.referral-footnote a {
+  color: var(--muted-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.referral-success {
+  width: var(--page);
+  margin-inline: auto;
+  padding: 200px 0 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.referral-success h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(48px, 6vw, 72px);
+  font-weight: 400;
+  letter-spacing: -0.2px;
+}
+
+.referral-success p {
+  max-width: 480px;
+  margin: 0 0 10px;
+  color: var(--muted-strong);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.referral-download-button {
+  min-height: 52px;
+  padding-inline: 28px;
+  text-decoration: none;
+}
+
+.referral-benefits-section {
+  width: var(--page);
+  margin-inline: auto;
+  padding: 56px 0 140px;
+}
+
+.referral-benefits-title {
+  margin: 0 0 40px;
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.6vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.1px;
+}
+
+.referral-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.referral-benefit {
+  padding: 32px 30px;
+  border-radius: 22px;
+}
+
+.referral-benefit-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.referral-benefit h3 {
+  margin: 20px 0 0;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.1px;
+}
+
+.referral-benefit p {
+  max-width: 340px;
+  margin: 10px 0 0;
+  color: var(--muted-strong);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 900px) {
+  .referral-hero {
+    grid-template-columns: 1fr;
+    padding: 150px 0 88px;
+    gap: 40px;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .referral-card-stage {
+    order: 2;
+  }
+
+  .referral-copy {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .referral-copy > p {
+    text-align: center;
+  }
+
+  .referral-form {
+    align-items: center;
+  }
+
+  .referral-footnote {
+    text-align: center;
+  }
+
+  .referral-benefits-section {
+    padding-bottom: 110px;
+    text-align: center;
+  }
+
+  .referral-benefits {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .referral-benefit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .referral-benefit p {
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 620px) {
+  .referral-hero {
+    padding: 132px 0 72px;
+  }
+
+  .referral-card-stage {
+    max-width: 220px;
+  }
+
+  .referral-input-row {
+    flex-direction: column;
+  }
+
+  .referral-submit {
+    width: 100%;
+  }
+
+  .referral-success {
+    padding: 156px 0 96px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .referral-benefits-section {
+    padding-bottom: 88px;
+  }
+}
