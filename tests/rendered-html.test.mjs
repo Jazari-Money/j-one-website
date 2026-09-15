@@ -274,8 +274,7 @@ test("server-renders product, coming soon, partners, about, and help pages", asy
   assert.match(partners, /Lido/);
   assert.match(partners, /ComplyAdvantage/);
   assert.match(partners, /Transaction monitoring and financial crime risk intelligence/);
-  assert.match(partners, /Sumsub/);
-  assert.match(partners, /KYC and identity verification/);
+  assert.doesNotMatch(partners, /Sumsub|KYC and identity verification/i);
   assert.match(partners, /Supported networks/);
   assert.match(partners, /USDC/);
   assert.match(partners, /A digital dollar pegged at 1:1 with USD\. Issued by Tether/);

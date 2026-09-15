@@ -329,15 +329,6 @@ export const partnerStories = [
     kind: "Transaction monitoring",
     short: "Transaction monitoring and financial crime risk intelligence.",
   },
-  {
-    name: "Sumsub",
-    logo: withBasePath("/images/rails/sumsub.svg"),
-    logoFormat: "wide",
-    logoScale: 0.9,
-    wordmarkOnly: true,
-    kind: "KYC",
-    short: "KYC and identity verification.",
-  },
 ] as const;
 
 export const networkStories = [
