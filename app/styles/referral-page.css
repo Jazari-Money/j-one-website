@@ -2,6 +2,8 @@
 
 .referral-hero {
   width: var(--page);
+  min-height: 100vh;
+  box-sizing: border-box;
   margin-inline: auto;
   padding: 170px 0 110px;
   display: grid;
@@ -211,10 +213,21 @@
   text-decoration: none;
 }
 
-.referral-benefits {
+.referral-benefits-section {
   width: var(--page);
   margin-inline: auto;
-  padding: 0 0 140px;
+  padding: 56px 0 140px;
+}
+
+.referral-benefits-title {
+  margin: 0 0 40px;
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.6vw, 44px);
+  font-weight: 400;
+  letter-spacing: -0.1px;
+}
+
+.referral-benefits {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -231,7 +244,7 @@
   object-fit: contain;
 }
 
-.referral-benefit h2 {
+.referral-benefit h3 {
   margin: 20px 0 0;
   font-family: var(--serif);
   font-size: 24px;
@@ -280,11 +293,14 @@
     text-align: center;
   }
 
+  .referral-benefits-section {
+    padding-bottom: 110px;
+    text-align: center;
+  }
+
   .referral-benefits {
     grid-template-columns: 1fr;
     gap: 36px;
-    padding-bottom: 110px;
-    text-align: center;
   }
 
   .referral-benefit {
@@ -321,7 +337,7 @@
     text-align: center;
   }
 
-  .referral-benefits {
+  .referral-benefits-section {
     padding-bottom: 88px;
   }
 }

@@ -232,7 +232,14 @@ export function ReferralPage() {
                   autoComplete="tel-national"
                   placeholder="555 123 4567"
                   value={phoneInput}
-                  onChange={(event) => setPhoneInput(event.target.value)}
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setPhoneInput(value);
+                    if (status === "error" && value.replace(/\D/g, "").length >= 6) {
+                      setStatus("idle");
+                      setErrorMessage("");
+                    }
+                  }}
                 />
               </div>
 
@@ -255,27 +262,30 @@ export function ReferralPage() {
         </div>
       </section>
 
-      <section className="referral-benefits" aria-label="What you get with Jazari One">
-        {benefits.map((benefit) => (
-          <div
-            className="referral-benefit pointer-card"
-            key={benefit.id}
-            onPointerMove={trackPointer}
-            onPointerLeave={resetPointer}
-          >
-            <img
-              className="referral-benefit-icon"
-              src={withBasePath(benefit.image)}
-              alt={benefit.alt}
-              width="64"
-              height="64"
-              loading="lazy"
-              decoding="async"
-            />
-            <h2>{benefit.title}</h2>
-            <p>{benefit.copy}</p>
-          </div>
-        ))}
+      <section className="referral-benefits-section" aria-label="What you get with Jazari One">
+        <h2 className="referral-benefits-title">Why Jazari?</h2>
+        <div className="referral-benefits">
+          {benefits.map((benefit) => (
+            <div
+              className="referral-benefit pointer-card"
+              key={benefit.id}
+              onPointerMove={trackPointer}
+              onPointerLeave={resetPointer}
+            >
+              <img
+                className="referral-benefit-icon"
+                src={withBasePath(benefit.image)}
+                alt={benefit.alt}
+                width="64"
+                height="64"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>{benefit.title}</h3>
+              <p>{benefit.copy}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <SiteFooter />
