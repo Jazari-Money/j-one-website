@@ -191,13 +191,13 @@ export function ReferralPage() {
             You&apos;re invited to <em>Jazari One</em>
           </h1>
           <p>
-            Add your phone number to accept the invite. Once you&apos;re set up, invite
+            Enter your phone number to accept the invite. Once you&apos;re set up, invite
             friends of your own and you&apos;ll both be rewarded.
           </p>
 
           <form className="referral-form" onSubmit={handleSubmit} aria-label="Accept your invite">
             <label htmlFor="referral-phone" className="referral-label">
-              Add your phone number
+              Enter your phone number
             </label>
             <div className="referral-phone-group">
               <div className="referral-country-select">
