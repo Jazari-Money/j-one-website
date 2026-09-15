@@ -200,7 +200,7 @@ export function ReferralPage() {
           </p>
 
           <form className="referral-form" onSubmit={handleSubmit} aria-label="Accept your invite">
-            <label htmlFor="referral-phone" className="referral-label">
+            <label htmlFor="referral-phone" className="referral-label sr-only">
               Enter your phone number
             </label>
             <div className="referral-input-row">
