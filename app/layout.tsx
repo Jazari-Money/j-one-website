@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Jazari One — Get paid in USD. Earn. Send worldwide.",
     description:
       "Your own USD account and stablecoin wallet. Up to 7% APY with Yields. Available in 190+ countries.",
-    images: [{ url: "/og-v2.png", width: 1729, height: 910 }],
+    images: [{ url: "/og-v3.jpg", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: "Jazari One — Get paid in USD. Earn. Send worldwide.",
     description:
       "Your own USD account and stablecoin wallet. Up to 7% APY with Yields. Available in 190+ countries.",
-    images: ["/og-v2.png"],
+    images: ["/og-v3.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
