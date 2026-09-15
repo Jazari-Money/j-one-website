@@ -212,6 +212,13 @@ export function ReferralPage() {
                   <span className="referral-country-dial" aria-hidden="true">
                     +{country.dial}
                   </span>
+                  <svg
+                    className="referral-country-chevron"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
                   <select
                     aria-label="Phone number country code"
                     value={countryIso2}
