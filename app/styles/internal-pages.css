@@ -38,13 +38,22 @@
 .yield-questions details,
 .yield-roadmap,
 .roadmap-full-card,
-.blog-index-grid > a {
+.blog-index-grid > a,
+.referral-benefit {
   background-color: var(--surface);
   background-image: linear-gradient(
     145deg,
     color-mix(in srgb, #ffffff 2.5%, transparent),
     transparent 48%
   );
+}
+
+.not-found-action {
+  display: inline-flex;
+  margin-top: 28px;
+  min-height: 50px;
+  padding-inline: 24px;
+  text-decoration: none;
 }
 
 @media (max-width: 620px) {
