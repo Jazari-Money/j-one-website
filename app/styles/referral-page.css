@@ -39,6 +39,10 @@
   width: 100%;
   height: auto;
   display: block;
+  /* The phone's metallic bezel reads too bright against the pure-black
+     page; the screen content is already dark, so a brightness cut mutes
+     the frame without noticeably dimming the UI inside it. */
+  filter: brightness(0.78);
 }
 
 .referral-copy h1 {
