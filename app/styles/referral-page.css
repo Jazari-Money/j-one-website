@@ -83,11 +83,12 @@
   width: 100%;
   display: flex;
   align-items: stretch;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(250, 250, 247, 0.16);
   border-radius: 16px;
-  background: var(--surface);
+  background: var(--surface-2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
   overflow: hidden;
-  transition: border-color 200ms ease;
+  transition: border-color 200ms ease, background-color 200ms ease;
 }
 
 .referral-phone-group:focus-within {
@@ -100,7 +101,7 @@
   align-items: center;
   gap: 8px;
   padding: 0 14px;
-  border-right: 1px solid var(--line);
+  border-right: 1px solid rgba(250, 250, 247, 0.16);
   white-space: nowrap;
 }
 
