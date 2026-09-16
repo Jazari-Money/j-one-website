@@ -1,7 +1,8 @@
 # Jazari One website
 
 The public Jazari One marketing site at `https://jazari.xyz`. It is built with
-Next.js and exported as static files for GitHub Pages.
+Next.js and exported as static files for GitHub Pages (production) and Google
+Cloud Storage (dev).
 
 Project decisions, claim guardrails, current page structure, and handoff notes
 live in [`context.md`](./context.md). Update that file after material product,
@@ -9,16 +10,20 @@ legal, content, or responsive-layout changes.
 
 ## Prerequisites
 
-- Node.js `>=22.13.0`
+- [Bun 1.4.2](https://bun.sh/blog/bun-v1.4.2), pinned in `package.json`
 
 ## Local development
 
 ```bash
-npm install
-npm run dev
+bun install --frozen-lockfile
+bun run dev
 ```
 
 Open `http://localhost:3000`.
+
+Commit `bun.lock` when dependencies change. Both GitHub Actions workflows read
+the Bun version from `package.json` and use frozen installs. Next.js, ESLint,
+content tests, and Playwright run with Bun.
 
 ## Analytics configuration
 
@@ -34,27 +39,37 @@ configured as a repository variable, not a secret.
 ## Verification
 
 ```bash
-npm run build
-npm run lint
-npm test
-npm run test:e2e
+bun run build
+bun run lint
+bun run test
+bun run test:e2e
 ```
 
-- `npm run build` checks the standard Next.js application.
-- Every build is a static export; only the GitHub Pages base path differs in
-  deployment.
-- `npm test` creates the GitHub Pages export and verifies its content and routes.
-- `npm run test:e2e` checks interactions and the existing visual baselines.
-- `npm run test:all` runs the complete local verification sequence.
+- `bun run build` checks the standard Next.js application.
+- Every build is a static export served at the domain root.
+- `bun run test` creates the static export and verifies its content and routes.
+- `bun run test:e2e` checks interactions and the existing visual baselines.
+- `bun run test:all` runs the complete local verification sequence.
 
-Only use `npm run test:e2e:update` after intentionally reviewing a visual
+Use `bun run test` for the build-and-test script; bare `bun test` invokes Bun's
+test discovery, which also picks up the separate Playwright specs.
+
+Only use `bun run test:e2e:update` after intentionally reviewing a visual
 change.
 
 ## Deployment
 
-GitHub Pages is the canonical deployment target. A push to `main` runs
+GitHub Pages is the production deployment target. A push to `main` runs
 `.github/workflows/pages.yml`, verifies the code, exports the static site, and
 publishes the `out/` directory.
+
+Allow the `dev` GitHub environment to deploy from PR merge refs
+(`refs/pull/*/merge`); a rule allowing only `main` blocks these deployments.
+Repository collaborators who can push PR branches can publish to dev.
+
+Validate workflow syntax locally with
+`actionlint .github/workflows/deploy-dev.yml`. Actual token exchange, bucket
+permissions, and website serving must be verified by the first PR deployment.
 
 ## Project structure
 

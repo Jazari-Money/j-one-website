@@ -26,6 +26,11 @@ Current hero description:
 - Canonical deployment: `https://jazari.xyz/`
 - Canonical branch: `main`
 - Deployment: GitHub Pages through `.github/workflows/pages.yml`
+- Dev deployment: PRs against `main` build through
+  `.github/workflows/deploy-dev.yml`; same-repository PRs upload to a shared
+  GCS bucket using direct OIDC federation and the GitHub `dev` environment.
+  Bucket, federation, hosting, and environment variables require provisioning;
+  see `README.md` for the setup. Production remains on GitHub Pages.
 - The site is statically exported at the custom domain root with no base path.
 - `context.md` is the canonical handoff document for product, design, content,
   legal-draft, mobile, and deployment decisions. Update it after material
@@ -365,6 +370,8 @@ The current card is generated in code.
 
 ## Technical stack
 
+- Bun 1.4.2 for dependency installation, scripts, and JavaScript execution;
+  `package.json` pins the version and `bun.lock` pins dependency resolutions.
 - Next.js 16 with static export for GitHub Pages
 - React 19
 - TypeScript
@@ -376,8 +383,9 @@ The current card is generated in code.
 - Plain modular CSS for layout, shared pointer-card borders, and transitions
 - Playwright for interaction and visual regression checks
 
-GitHub Pages is the canonical and only deployment target. Local development
-uses `next dev`, so the development and deployment paths use the same framework.
+GitHub Pages is the canonical production deployment target; GCS hosts shared
+dev PR deployments. Local development uses `next dev`, so the development and
+deployment paths use the same framework.
 There is no Cloudflare Worker, Vinext/Vite runtime, Tailwind layer, D1 database,
 or Drizzle ORM. Every production build uses Next.js static export; there is no
 server-start path. The download/waitlist form remains front-end demo state.
@@ -410,16 +418,16 @@ Key files:
 ## Local commands
 
 ```sh
-npm run dev
-npm run build
-npm run lint
-npm test
-npm run test:e2e
-npm run test:e2e:update
-npm run test:all
+bun run dev
+bun run build
+bun run lint
+bun run test
+bun run test:e2e
+bun run test:e2e:update
+bun run test:all
 ```
 
-`npm run test:e2e:update` should be used only after an intentional visual
+`bun run test:e2e:update` should be used only after an intentional visual
 change has been reviewed; it replaces the desktop, tablet, and mobile
 Playwright baselines.
 

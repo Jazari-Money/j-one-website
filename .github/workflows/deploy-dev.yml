@@ -1,0 +1,100 @@
+name: Deploy dev website
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# One shared dev site: finish active uploads before starting another deployment.
+concurrency:
+  group: website-dev
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build static site
+        run: bun run build
+
+      - name: Check content and routes
+        run: bun run test:content
+
+      - name: Check code quality
+        run: bun run lint
+
+      - name: Upload static site
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-website
+          path: out/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    needs: build
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: dev
+      url: ${{ vars.DEV_WEBSITE_URL }}
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      GCP_WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+      GCS_BUCKET: ${{ vars.GCS_BUCKET }}
+    steps:
+      - name: Verify dev configuration
+        shell: bash
+        run: |
+          : "${GCP_PROJECT_ID:?Set GCP_PROJECT_ID in the dev environment}"
+          : "${GCP_WORKLOAD_IDENTITY_PROVIDER:?Set GCP_WORKLOAD_IDENTITY_PROVIDER in the dev environment}"
+          : "${GCS_BUCKET:?Set GCS_BUCKET in the dev environment}"
+          if [[ ! "$GCS_BUCKET" =~ ^[a-z0-9][a-z0-9._-]+[a-z0-9]$ ]]; then
+            echo "::error::GCS_BUCKET must be a bucket name, without gs:// or a path."
+            exit 1
+          fi
+
+      - name: Download static site
+        uses: actions/download-artifact@v4
+        with:
+          name: dev-website
+          path: out/
+
+      - name: Authenticate to Google Cloud with OIDC
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ env.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v3
+
+      - name: Deploy static site
+        shell: bash
+        run: |
+          test -s out/index.html
+          gcloud storage rsync out/ "gs://${GCS_BUCKET}" \
+            --recursive \
+            --delete-unmatched-destination-objects \
+            --cache-control="no-store"
