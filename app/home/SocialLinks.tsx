@@ -3,9 +3,18 @@ const socialLinks = [
   { name: "LinkedIn", href: "https://uk.linkedin.com/company/jazarimoney", icon: "linkedin" },
   { name: "Facebook", href: "https://www.facebook.com/people/Jazari-One/61590046611736/", icon: "facebook" },
   { name: "X", href: "https://x.com/OneJazari", icon: "x" },
+  { name: "Telegram", href: "https://t.me/jazarione", icon: "telegram" },
 ] as const;
 
 function SocialIcon({ icon }: { icon: (typeof socialLinks)[number]["icon"] }) {
+  if (icon === "telegram") {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M22.05 2.44 1.38 10.41c-1.41.57-1.4 1.36-.26 1.71l5.3 1.65 2.03 6.22c.25.69.13.96.86.96.56 0 .81-.26 1.12-.56l2.57-2.5 5.34 3.95c.98.55 1.68.27 1.93-.91l3.5-16.49c.36-1.44-.55-2.1-1.72-1.57ZM7.25 13.39l11.94-7.53c.6-.36 1.15-.17.7.23L9.66 15.32l-.4 4.25-2.01-6.18Z" />
+      </svg>
+    );
+  }
+
   if (icon === "x") {
     return (
       <svg viewBox="0 0 24 24" aria-hidden="true">
