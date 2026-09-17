@@ -11,7 +11,7 @@ import {
 } from "./data";
 import { resetPointer, trackPointer } from "./hooks";
 
-const exchangeRatesUrl = "https://api.jazari.xyz/public/exchange_rates";
+const exchangeRatesUrl = "https://api.jazari.xyz/public/api/v1/exchange_rates";
 const exchangeRateTimeout = 2_000;
 const fallbackRefreshDelay = 30_000;
 
