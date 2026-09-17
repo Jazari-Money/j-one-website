@@ -7,7 +7,7 @@ const exchangeRates = {
   GBP: 0.78804,
   MXN: 19.70124651,
 } as const;
-const exchangeRatesUrl = "https://api.jazari.xyz/public/exchange_rates";
+const exchangeRatesUrl = "https://api.jazari.xyz/public/api/v1/exchange_rates";
 
 const rateBatch = (rates: Record<string, number>) => Object.entries(rates).map(([to, rate]) => ({
   from: "USDC",
