@@ -6,6 +6,11 @@
    swaps from the fallback font. Scoped to this page only. */
 .referral-page {
   --serif: var(--referral-serif-font), "Times New Roman", serif;
+  /* Safety net: this page renders ~190 country names into a native
+     <select>, and some mobile browsers size that control off its widest
+     option text rather than the CSS width. Reported wider-than-viewport
+     on Samsung Internet / Galaxy hardware we can't reproduce headlessly. */
+  overflow-x: hidden;
 }
 
 .referral-hero {
@@ -124,6 +129,14 @@
   padding: 0 14px;
   border-right: 1px solid rgba(250, 250, 247, 0.16);
   white-space: nowrap;
+  /* The invisible <select> below is absolutely positioned to inset:0, but
+     some mobile browsers still size a native <select>'s hit area off its
+     widest <option> text (e.g. "Saint Helena, Ascension and Tristan da
+     Cunha") instead of respecting width:100%. overflow:hidden here clips
+     that to the visible flag+dial+chevron content no matter what the
+     select tries to do, so it can never push the page wider than the
+     screen. */
+  overflow: hidden;
 }
 
 .referral-country-select select {
@@ -131,6 +144,8 @@
   inset: 0;
   width: 100%;
   height: 100%;
+  min-width: 0;
+  max-width: 100%;
   opacity: 0;
   cursor: pointer;
 }
