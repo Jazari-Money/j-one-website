@@ -233,38 +233,6 @@
   text-underline-offset: 2px;
 }
 
-.referral-success {
-  width: var(--page);
-  margin-inline: auto;
-  padding: 200px 0 140px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-}
-
-.referral-success h1 {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(48px, 6vw, 72px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-}
-
-.referral-success p {
-  max-width: 480px;
-  margin: 0 0 10px;
-  color: var(--muted-strong);
-  font-size: 17px;
-  line-height: 1.6;
-}
-
-.referral-download-button {
-  min-height: 52px;
-  padding-inline: 28px;
-  text-decoration: none;
-}
-
 .referral-benefits-section {
   width: var(--page);
   margin-inline: auto;
@@ -387,12 +355,6 @@
 
   .referral-submit {
     width: 100%;
-  }
-
-  .referral-success {
-    padding: 156px 0 96px;
-    align-items: center;
-    text-align: center;
   }
 
   .referral-benefits-section {

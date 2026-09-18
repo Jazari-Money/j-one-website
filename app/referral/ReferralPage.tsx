@@ -12,10 +12,10 @@ import { ResponsiveImage } from "../home/ResponsiveImage";
 import { SiteFooter } from "../home/SiteFooter";
 import { SiteHeader } from "../home/SiteHeader";
 import {
-  appDownloadUrl,
   referralApiUrl,
   referralRecaptchaAction,
   referralRecaptchaSiteKey,
+  referralSuccessRedirectUrl,
   withBasePath,
 } from "../site-paths";
 import { dialCountries, findDialCountry, flagEmoji } from "./countries";
@@ -100,7 +100,7 @@ async function getRecaptchaToken(): Promise<string> {
   });
 }
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "error";
 
 export function ReferralPage() {
   const [referralCode] = useState(() =>
@@ -144,32 +144,11 @@ export function ReferralPage() {
 
       if (!response.ok) throw new Error(`Request failed: ${response.status}`);
 
-      setStatus("success");
+      window.location.href = referralSuccessRedirectUrl;
     } catch {
       setStatus("error");
       setErrorMessage("Something went wrong. Check your number and try again.");
     }
-  }
-
-  if (status === "success") {
-    return (
-      <main className={`referral-page ${referralSerif.variable}`}>
-        <SiteHeader mode="minimal" />
-        <section className="referral-success" aria-labelledby="referral-success-title">
-          <h1 id="referral-success-title">You&apos;re in.</h1>
-          <p>Download Jazari One to finish setting up your account.</p>
-          <a
-            className="realism-button referral-download-button"
-            href={appDownloadUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Download App
-          </a>
-        </section>
-        <SiteFooter />
-      </main>
-    );
   }
 
   return (
