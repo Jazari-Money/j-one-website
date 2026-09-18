@@ -1,5 +1,13 @@
 @import "./internal-pages.css";
 
+/* This page is often a cold first visit, so it preloads its own copy of
+   Instrument Serif via next/font/local (see ./font.ts) instead of relying
+   on the sitewide @fontsource import, which has no preload and visibly
+   swaps from the fallback font. Scoped to this page only. */
+.referral-page {
+  --serif: var(--referral-serif-font), "Times New Roman", serif;
+}
+
 .referral-hero {
   width: var(--page);
   min-height: 100vh;

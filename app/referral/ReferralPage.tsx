@@ -5,6 +5,7 @@
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import "../styles/referral-page.css";
+import { referralSerif } from "./font";
 import { resetPointer, trackPointer } from "../home/hooks";
 import { ResponsiveImage } from "../home/ResponsiveImage";
 import { SiteFooter } from "../home/SiteFooter";
@@ -151,7 +152,7 @@ export function ReferralPage() {
 
   if (status === "success") {
     return (
-      <main>
+      <main className={`referral-page ${referralSerif.variable}`}>
         <SiteHeader mode="minimal" />
         <section className="referral-success" aria-labelledby="referral-success-title">
           <h1 id="referral-success-title">You&apos;re in.</h1>
@@ -171,7 +172,7 @@ export function ReferralPage() {
   }
 
   return (
-    <main>
+    <main className={`referral-page ${referralSerif.variable}`}>
       <SiteHeader mode="minimal" />
 
       <section className="referral-hero" aria-labelledby="referral-title">
