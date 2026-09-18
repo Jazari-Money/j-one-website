@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- small art-directed benefit icons, shared with JourneyCards */
 
+import { parsePhoneNumberFromString, type CountryCode } from "libphonenumber-js";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import "../styles/referral-page.css";
@@ -113,13 +114,13 @@ export function ReferralPage() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const country = useMemo(() => findDialCountry(countryIso2), [countryIso2]);
-  const digits = phoneInput.replace(/\D/g, "");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (status === "submitting") return;
 
-    if (digits.length < 6) {
+    const parsedPhone = parsePhoneNumberFromString(phoneInput, countryIso2 as CountryCode);
+    if (!parsedPhone?.isValid()) {
       setStatus("error");
       setErrorMessage("Enter a valid phone number.");
       return;
@@ -135,7 +136,7 @@ export function ReferralPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          phone_number: `+${country.dial}${digits}`,
+          phone_number: parsedPhone.number,
           referral_code: referralCode,
           recaptcha_token: token,
         }),
@@ -243,7 +244,10 @@ export function ReferralPage() {
                   onChange={(event) => {
                     const value = event.target.value;
                     setPhoneInput(value);
-                    if (status === "error" && value.replace(/\D/g, "").length >= 6) {
+                    if (
+                      status === "error" &&
+                      parsePhoneNumberFromString(value, countryIso2 as CountryCode)?.isValid()
+                    ) {
                       setStatus("idle");
                       setErrorMessage("");
                     }
