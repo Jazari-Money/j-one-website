@@ -436,33 +436,23 @@ You have the right to opt out of this Arbitration Agreement within 30 days of op
   {
     id: "fees",
     title: "25. Fee schedule",
-    body: `The following fees apply to your Jazari ONE Account. All fees are in US Dollars (USD). Additional fees may apply for services not listed below - see the full Terms and the App for details.
+    body: `The following fees apply to your Jazari ONE Account. All fees are in US Dollars (USD).
 
-### Account Fees
+### Money movement
 
-TABLE_JSON:[["Service / Feature","Fee / Detail"],["Monthly Subscription / Maintenance Fee","$[X] per month"],["Account Opening / Issuance Fee","Free"],["Inactivity Fee (after 12 months of no activity)","$[X] per month"],["Account Closure Fee","Free"]]
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["Receive supported stablecoins","Free"],["Send to a bank account","No transfer fee"],["Send USDC to a wallet","Free for $10 or more; $1 below $10"],["USDT support charge","0.10%"]]
 
-### Funding (Add Money)
+### Payment rails
 
-TABLE_JSON:[["Service / Feature","Fee / Detail"],["ACH Bank Transfer (US bank account)","First transfer per month: Free; Additional: $0.49"],["Debit Card Load","$0.20 per load"],["PayPoint or Cash Deposit","Not available"]]
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["US bank account — ACH, FedWire and FedNow","Free"],["SEPA","Free"],["CLABE","Free"],["Pix","Free"],["UK Faster Payments — GBP FPS","Free"],["COP Bre-B","Free"]]
 
-### Payments Out
+### USD account
 
-TABLE_JSON:[["Service / Feature","Fee / Detail"],["ACH Transfer to US Bank Account (1st party)","$0.20"],["ACH Transfer to Another US Account","First per month: Free; Additional: $0.49"],["Internal Transfer (Jazari ONE to Jazari ONE)","Free"],["Wire Transfer","$[X]"]]
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["Open an account","Free"],["Monthly fee","None"],["Annual fee","None"],["Hold USD","Free"]]
 
-### International Remittances
+### Yields
 
-TABLE_JSON:[["Service / Feature","Fee / Detail"],["Remittance (standard international transfer)","Free"],["Exchange Rate Margin (FX spread)","Disclosed at time of transaction"],["Third-party correspondent bank fees","Variable; disclosed at time of transaction"]]
-
-### Remit Now, Pay Later (RNPL)
-
-TABLE_JSON:[["Service / Feature","Fee / Detail"],["RNPL Fee","10% of remittance amount (all-inclusive)"],["Repayment Period","30 days"],["APR (indicative)","Disclosed in TILA disclosure box at checkout"],["Late Payment Fee","As set out in the US Lending Partner credit agreement"]]
-
-### Other
-
-TABLE_JSON:[["Service / Feature","Fee / Detail"],["Balance Inquiry (in-app or online)","Free"],["Paper Statement Request","$[X] per statement"],["Returned ACH / Insufficient Funds","$[X] per occurrence"],["Account Balance Redemption (transfer to bank)","Free (first per month); $[X] thereafter"]]
-
-Fee changes: We will provide at least 21 days' advance notice of any material increase in fees, in accordance with Section 15.`,
+TABLE_JSON:[["Service / Feature","Fee / Detail"],["Performance fee","Free"],["Deposit and withdrawal","Free"]]`,
   },
   {
     id: "kyc",
