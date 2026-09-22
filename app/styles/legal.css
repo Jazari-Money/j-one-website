@@ -246,6 +246,20 @@
   color: var(--text);
 }
 
+#fees .legal-copy table {
+  table-layout: fixed;
+}
+
+#fees .legal-copy th:first-child {
+  width: 50%;
+}
+
+#fees .legal-copy th,
+#fees .legal-copy td {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .legal-copy-flow > h2 {
   scroll-margin-top: 120px;
   margin-top: 74px;
