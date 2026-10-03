@@ -372,8 +372,11 @@ test("server-renders the internal legal pages", async () => {
   assert.doesNotMatch(nonUsTerms, /29\. State-specific disclosures/);
 
   assert.match(privacy, /<h1>Privacy Policy<\/h1>/);
-  assert.match(privacy, /Last updated: April 2026/);
-  assert.match(privacy, /11\. Cookies/);
+  assert.match(privacy, /Last updated: October 2026/);
+  assert.match(privacy, /12\. Cookies/);
+  assert.match(privacy, /Sign in with Google/);
+  assert.match(privacy, /Sign in with Apple/);
+  assert.match(privacy, /Hide My Email/);
   assert.match(privacy, /jazari_cookie_consent/);
   assert.match(privacy, /Google Analytics/);
   assert.match(privacy, /_ga_\*/);
