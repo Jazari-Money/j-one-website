@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { EmailLink, LegalTable } from "../legal/LegalElements";
 import { LegalPage, type LegalSection } from "../legal/LegalPage";
 
@@ -44,6 +45,12 @@ const sections: LegalSection[] = [
         <ul>
           <li>Identity verification data (via our licensed KYC provider)</li>
           <li>Stablecoin transaction and settlement data (via our licensed infrastructure partner)</li>
+          <li>
+            Google account information when you use Sign in with Google: typically your name,
+            email address, profile picture, and a unique Google account identifier. We receive
+            only the data you authorize Google to share with us. We do not receive your Google
+            password.
+          </li>
         </ul>
         <p>We do not collect biometric data.</p>
       </>
@@ -59,7 +66,7 @@ const sections: LegalSection[] = [
           <li><strong>Contractual necessity:</strong> To deliver services and fulfill our agreement with you</li>
           <li><strong>Legal obligation:</strong> To comply with financial regulations and anti-money laundering laws</li>
           <li><strong>Legitimate interest:</strong> To improve our services, prevent fraud, and understand our users</li>
-          <li><strong>Consent:</strong> Where required (e.g., certain marketing or data sharing preferences)</li>
+          <li><strong>Consent:</strong> Where required (e.g., certain marketing or data sharing preferences, or when you choose Sign in with Google)</li>
         </ul>
       </>
     ),
@@ -68,19 +75,36 @@ const sections: LegalSection[] = [
     id: "data-use",
     title: "4. How We Use Your Data",
     content: (
-      <LegalTable
-        headers={["Purpose", "Legal Basis"]}
-        rows={[
-          ["Account creation and identity verification", "Contract, Legal Obligation"],
-          ["Transaction processing and stablecoin transfers", "Contract"],
-          ["Freelancer platform integration (e.g., Fiverr)", "Contract, Consent"],
-          ["Customer support", "Contract, Legitimate Interest"],
-          ["Fraud prevention and AML screening", "Legal Obligation, Legitimate Interest"],
-          ["Service improvements", "Legitimate Interest"],
-          ["Marketing communications", "Consent, Legitimate Interest"],
-          ["Legal compliance and enforcement", "Legal Obligation"],
-        ]}
-      />
+      <>
+        <LegalTable
+          headers={["Purpose", "Legal Basis"]}
+          rows={[
+            ["Account creation and identity verification", "Contract, Legal Obligation"],
+            ["Sign in with Google authentication and account access", "Contract, Consent"],
+            ["Transaction processing and stablecoin transfers", "Contract"],
+            ["Freelancer platform integration (e.g., Fiverr)", "Contract, Consent"],
+            ["Customer support", "Contract, Legitimate Interest"],
+            ["Fraud prevention and AML screening", "Legal Obligation, Legitimate Interest"],
+            ["Service improvements", "Legitimate Interest"],
+            ["Marketing communications", "Consent, Legitimate Interest"],
+            ["Legal compliance and enforcement", "Legal Obligation"],
+          ]}
+        />
+        <h3>Google user data (Sign in with Google)</h3>
+        <p>
+          When you sign in with Google, we use the Google account information you authorize
+          solely to create and authenticate your Jazari One account, pre-fill account details
+          (such as name and email), communicate with you about your account, and help secure
+          access and prevent fraud.
+        </p>
+        <p>
+          We use Google user data only to provide or improve user-facing features of Jazari One.
+          We do not sell Google user data; use it for advertising, personalized ads, or
+          retargeting; transfer it to data brokers or information resellers; use it to determine
+          credit-worthiness or for lending decisions; or use it to develop, improve, or train
+          generalized or non-personalized AI and/or ML models.
+        </p>
+      </>
     ),
   },
   {
@@ -94,6 +118,8 @@ const sections: LegalSection[] = [
           rows={[
             ["Licensed Infrastructure Partner", "Stablecoin transaction processing and settlement across Ethereum, Tron, and Solana networks"],
             ["Licensed KYC Provider", "Identity verification and AML/KYC screening"],
+            ["Google", "Sign in with Google authentication and related identity services"],
+            ["Privy", "Embedded authentication and wallet infrastructure, including processing Sign in with Google where you choose that method"],
             ["Google Cloud", "Platform hosting and infrastructure"],
             ["Google Workspace & Auth0", "Identity and access management for back-office operations"],
             ["Intercom", "Customer support chat and automation"],
@@ -103,7 +129,12 @@ const sections: LegalSection[] = [
             ["OneSignal", "Push notification platform"],
           ]}
         />
-        <p>All partners are required to meet strict data security and privacy obligations in line with applicable data protection standards.</p>
+        <p>
+          We do not transfer or disclose Google user data to third parties for purposes other
+          than providing or improving Jazari One, as described in this policy. All partners are
+          required to meet strict data security and privacy obligations in line with applicable
+          data protection standards.
+        </p>
       </>
     ),
   },
@@ -118,13 +149,50 @@ const sections: LegalSection[] = [
     content: <p>We may transfer your data outside the UAE when required for international payments or outsourced services. These transfers are protected using secure systems and standard contractual safeguards to ensure an equivalent level of protection.</p>,
   },
   {
+    id: "security",
+    title: "8. How We Protect Your Data",
+    content: (
+      <>
+        <p>
+          We maintain technical and organizational security measures designed to protect the
+          confidentiality, integrity, and availability of personal data, including Google user
+          data. These measures include encryption in transit, access controls and
+          authentication for systems that process personal data, monitoring for unauthorized
+          access, and limiting access to personnel who need it to operate our services.
+        </p>
+        <p>
+          No method of transmission or storage is completely secure. If you believe your account
+          has been compromised, contact us immediately at <EmailLink />.
+        </p>
+      </>
+    ),
+  },
+  {
     id: "retention",
-    title: "8. Data Retention",
-    content: <p>We retain personal data for up to 7 years after your relationship with us ends, in line with applicable financial and legal requirements.</p>,
+    title: "9. Data Retention",
+    content: (
+      <>
+        <p>
+          We retain personal data for up to 7 years after your relationship with us ends, in
+          line with applicable financial and legal requirements.
+        </p>
+        <p>
+          Google account information obtained through Sign in with Google is retained while
+          your account remains active and for as long as needed to provide authentication and
+          account services. After account closure, we delete or anonymize that data when it is
+          no longer required, except where a longer retention period is required or permitted
+          by law (for example, fraud prevention or regulatory record-keeping).
+        </p>
+        <p>
+          When a retention period expires for a given type of data, we delete or destroy it, or
+          anonymize it so it can no longer be associated with you.
+        </p>
+      </>
+    ),
   },
   {
     id: "rights",
-    title: "9. Your Rights",
+    title: "10. Your Rights",
     content: (
       <>
         <p>You have the right to:</p>
@@ -133,15 +201,19 @@ const sections: LegalSection[] = [
           <li>Request correction or deletion of your data</li>
           <li>Object to or restrict certain types of processing</li>
           <li>Request data portability</li>
-          <li>Withdraw consent at any time (where applicable)</li>
+          <li>Withdraw consent at any time (where applicable), including by disconnecting Sign in with Google where available</li>
         </ul>
-        <p>To exercise these rights, contact us at: <EmailLink /></p>
+        <p>
+          To exercise these rights, contact us at: <EmailLink />. To delete your account and
+          associated data, follow the steps at{" "}
+          <Link href="/how-to-delete-account">Delete Your Account</Link>.
+        </p>
       </>
     ),
   },
   {
     id: "fraud-prevention",
-    title: "10. Fraud Prevention",
+    title: "11. Fraud Prevention",
     content: (
       <>
         <p>We are required by law and regulation to protect our customers and the financial system against fraud and financial crime. To do this, we may share personal data with fraud prevention agencies where required.</p>
@@ -152,7 +224,7 @@ const sections: LegalSection[] = [
   },
   {
     id: "cookies",
-    title: "11. Cookies",
+    title: "12. Cookies",
     content: (
       <>
         <p>We use cookies and similar technologies on <a href="https://jazari.xyz">jazari.xyz</a> to keep the site working and, where you allow it, measure usage with Google Analytics. On your first visit we ask for your consent; until you accept, only essential cookies are set.</p>
@@ -174,10 +246,15 @@ const sections: LegalSection[] = [
   },
   {
     id: "updates",
-    title: "12. Updates",
+    title: "13. Updates",
     content: (
       <>
-        <p>We may occasionally update this policy. If we do, we will notify you via the app, email, or our website at <a href="https://jazari.xyz">jazari.xyz</a>.</p>
+        <p>
+          We may occasionally update this policy. If we change how we access, use, store, or
+          share Google user data, we will update this policy and notify you via the app, email,
+          or our website at <a href="https://jazari.xyz">jazari.xyz</a>, and where required we
+          will ask for your consent before using Google user data in a new way.
+        </p>
         <p>If you have any concerns about how your data is used, please contact: <EmailLink /></p>
         <p>Jazari One is a trading name of JAZARI FINTECH SERVICES - FZCO. Its registered address is: #78870, Building A1, IFZA Business Park, Dubai Silicon Oasis, Dubai, UAE.</p>
       </>
@@ -189,12 +266,12 @@ export default function PrivacyPolicyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      date="Last updated: April 2026"
+      date="Last updated: October 2026"
       introduction={
         <p>
           At Jazari, we are committed to protecting and respecting your privacy.
           This policy explains how we collect, use, share, and protect your personal
-          data when you use our products and services.
+          data when you use our products and services, including when you sign in with Google.
         </p>
       }
       sections={sections}

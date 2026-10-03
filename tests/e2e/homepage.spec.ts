@@ -522,8 +522,8 @@ test("renders the legal documents as internal Jazari pages", async ({ page }) =>
   await page.getByRole("link", { name: "Privacy Policy" }).first().click();
   await expect(page).toHaveURL(/\/privacy-policy\/?$/);
   await expect(page.getByRole("heading", { name: "Privacy Policy" })).toBeVisible();
-  await expect(page.getByText("Last updated: April 2026")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "11. Cookies" })).toBeVisible();
+  await expect(page.getByText("Last updated: October 2026")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "12. Cookies" })).toBeVisible();
 });
 
 test("keeps the terms switcher tappable without mobile overflow", async ({ page }) => {
