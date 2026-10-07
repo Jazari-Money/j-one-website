@@ -131,7 +131,7 @@ const sections: LegalSection[] = [
             ["Privy", "Embedded authentication and wallet infrastructure, including processing Sign in with Google or Sign in with Apple where you choose those methods"],
             ["Google Cloud", "Platform hosting and infrastructure"],
             ["Google Workspace & Auth0", "Identity and access management for back-office operations"],
-            ["Intercom", "Customer support chat and automation"],
+            ["Helpcrunch", "Customer support chat and automation"],
             ["SendGrid", "Email notifications and verification"],
             ["TeleSign", "OTP and authentication services for login and fraud protection"],
             ["Framer", "Website hosting for jazari.xyz"],
