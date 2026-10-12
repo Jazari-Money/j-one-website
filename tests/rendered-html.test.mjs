@@ -445,6 +445,29 @@ test("publishes the email confirmation handoff page, iOS universal link and pass
   ]);
 });
 
+test("publishes Android asset links for app links and passkeys", async () => {
+  const assetLinks = JSON.parse(
+    await readFile(
+      new URL("../out/.well-known/assetlinks.json", import.meta.url),
+      "utf8",
+    ),
+  );
+
+  assert.deepEqual(
+    assetLinks.map((statement) => statement.target.package_name),
+    ["money.jazari.global", "money.jazari.global.test", "money.jazari.global.debug"],
+  );
+  for (const statement of assetLinks) {
+    assert.deepEqual(statement.relation, [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds",
+    ]);
+    assert.equal(statement.target.namespace, "android_app");
+    assert.equal(statement.target.sha256_cert_fingerprints.length, 1);
+    assert.match(statement.target.sha256_cert_fingerprints[0], /^([0-9A-F]{2}:){31}[0-9A-F]{2}$/);
+  }
+});
+
 test("publishes internal support and product pages in the sitemap", async () => {
   const sitemap = await readFile(
     new URL("../out/sitemap.xml", import.meta.url),

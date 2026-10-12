@@ -61,6 +61,8 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: ./out
+          # Publish .well-known/ (app links and passkey associations); dotfiles are skipped by default.
+          include-hidden-files: true
 
   deploy:
     needs: build

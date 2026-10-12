@@ -1,0 +1,35 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "money.jazari.global",
+      "sha256_cert_fingerprints": ["9A:7B:68:C5:D8:75:4E:8E:56:7B:07:5D:B0:E0:47:C7:04:76:66:E0:19:EC:D1:01:BF:06:C2:2A:E2:24:8B:72"]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "money.jazari.global.test",
+      "sha256_cert_fingerprints": ["87:A7:92:89:3F:92:65:B6:D4:9B:05:37:BF:3F:DF:7C:81:BB:67:48:96:7F:17:4D:5D:4B:E0:FC:0A:F6:10:2F"]
+    }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "money.jazari.global.debug",
+      "sha256_cert_fingerprints": ["9A:E3:89:36:35:C5:E3:5F:23:7D:78:7F:AD:36:DA:5E:42:F2:A1:B4:7E:06:D1:17:D6:A4:BE:C7:71:F7:74:DD"]
+    }
+  }
+]
