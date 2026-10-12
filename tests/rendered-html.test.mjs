@@ -417,7 +417,7 @@ test("server-renders the account deletion page without indexing it", async () =>
   assert.doesNotMatch(sitemap, /how-to-delete-account/);
 });
 
-test("publishes the email confirmation handoff page and iOS universal link", async () => {
+test("publishes the email confirmation handoff page, iOS universal link and passkey association", async () => {
   const response = await render("/email-confirm");
   const html = await response.text();
 
@@ -439,6 +439,10 @@ test("publishes the email confirmation handoff page and iOS universal link", asy
     "Q2Y9X7ZNXN.money.jazari.global.dev",
   ]);
   assert.equal(association.applinks.details[0].components[1]["/"], "/email-confirm");
+  assert.deepEqual(association.webcredentials.apps, [
+    "Q2Y9X7ZNXN.money.jazari.global",
+    "Q2Y9X7ZNXN.money.jazari.global.dev",
+  ]);
 });
 
 test("publishes internal support and product pages in the sitemap", async () => {

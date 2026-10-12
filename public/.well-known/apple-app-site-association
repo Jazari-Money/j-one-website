@@ -15,5 +15,8 @@
              ]
            }
        ]
+   },
+  "webcredentials": {
+      "apps": [ "Q2Y9X7ZNXN.money.jazari.global", "Q2Y9X7ZNXN.money.jazari.global.dev" ]
    }
 }
