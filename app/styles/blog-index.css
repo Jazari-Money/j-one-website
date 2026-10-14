@@ -206,3 +206,7 @@
     margin-top: 22px;
   }
 }
+.blog-country-filters { display: flex; gap: 10px; margin-bottom: 32px; }
+.blog-country-filters button { padding: 10px 20px; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; font-size: 14px; }
+.blog-country-filters button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+.blog-country-filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }

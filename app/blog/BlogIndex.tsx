@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { guides } from "../home/data";
 import { SiteFooter } from "../home/SiteFooter";
 import { InternalSiteHeader } from "../home/InternalSiteHeader";
@@ -8,6 +9,8 @@ import { ResponsiveImage } from "../home/ResponsiveImage";
 import { resetPointer, trackPointer } from "../home/hooks";
 
 export function BlogIndex() {
+  const [country, setCountry] = useState("All");
+  const visibleGuides = country === "All" ? guides : guides.filter(guide => guide.route === country);
   return (
     <main className="blog-index-shell">
       <InternalSiteHeader />
@@ -22,8 +25,11 @@ export function BlogIndex() {
       </header>
 
       <section className="blog-index-articles" aria-label="All articles">
+        <div className="blog-country-filters" role="group" aria-label="Filter articles by country">
+          {["All", "Kenya", "Nigeria"].map(filter => <button key={filter} type="button" aria-pressed={country === filter} onClick={() => setCountry(filter)}>{filter}</button>)}
+        </div>
         <div className="blog-index-grid">
-          {guides.map((guide) => (
+          {visibleGuides.map((guide) => (
             <Link
               className={`pointer-card${"image" in guide ? " has-image" : ""}`}
               href={`/blog/${guide.slug}`}

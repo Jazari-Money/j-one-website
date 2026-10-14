@@ -3,13 +3,16 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
 import { useEffect, useRef, useState } from "react";
-import { appDownloadUrl, withBasePath } from "../site-paths";
+import { withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
+import { CountryDownloadLink } from "../countries/CountryDownloadLink";
 
 export function SiteHeader({
   mode = "home",
+  country,
 }: {
   mode?: "home" | "internal" | "minimal";
+  country?: "Kenya" | "Nigeria";
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -145,8 +148,8 @@ export function SiteHeader({
                 <small>Receive money into your own USD account and stablecoin wallet</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
-                <strong>Earn</strong>
-                <small>Earn up to 7% APY on your balance</small>
+                <strong>{country === "Nigeria" ? "Savings" : "Earn"}</strong>
+                <small>{country === "Nigeria" ? "Explore optional USDC Yields. Capital at risk." : "Earn up to 7% APY on your balance"}</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
                 <strong>Send</strong>
@@ -164,7 +167,7 @@ export function SiteHeader({
                 <span>Receive</span><small>Receive money into your own USD account and stablecoin wallet</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
-                <span>Earn</span><small>Earn up to 7% APY on your balance</small>
+                <span>{country === "Nigeria" ? "Savings" : "Earn"}</span><small>{country === "Nigeria" ? "Explore optional USDC Yields. Capital at risk." : "Earn up to 7% APY on your balance"}</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
                 <span>Send</span><small>Send money to stablecoin wallets and to local bank accounts in 30+ countries</small>
@@ -176,20 +179,14 @@ export function SiteHeader({
               <a href={withBasePath("/about/")} onClick={closeMobile}>About us</a>
               <a href={withBasePath("/partners/")} onClick={closeMobile}>Partners</a>
               <a href={withBasePath("/plan/")} onClick={closeMobile}>Pricing</a>
-              <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Coming soon</a>
-              <a href={sectionHref("faq")} onClick={closeMobile}>FAQ</a>
+              {!country && <a href={withBasePath("/roadmap/")} onClick={closeMobile}>Coming soon</a>}
+              <a href={country ? withBasePath(`/${country}/#faq`) : sectionHref("faq")} onClick={closeMobile}>FAQ</a>
             </section>
           </div>
           <div className="nav-mobile-extras">
-            <a
-              className="neutral-control"
-              href={appDownloadUrl}
-              target="_blank"
-              rel="noreferrer"
-              onClick={closeMobile}
-            >
+            <CountryDownloadLink country={country} placement="mobile-menu" className="neutral-control" onClick={closeMobile}>
               Download App
-            </a>
+            </CountryDownloadLink>
             <SocialLinks className="nav-mobile-socials" />
           </div>
           <div className="nav-mobile-legal">
@@ -199,14 +196,9 @@ export function SiteHeader({
         </div>
 
         <div className="nav-actions">
-          <a
-            className="nav-cta neutral-control"
-            href={appDownloadUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
+          <CountryDownloadLink country={country} placement="header" className="nav-cta neutral-control">
             <span className="nav-cta-label">Download App</span>
-          </a>
+          </CountryDownloadLink>
           <button
             className="mobile-toggle realism-icon-button"
             type="button"

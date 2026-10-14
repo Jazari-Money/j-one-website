@@ -20,6 +20,7 @@ type ConsentState = "loading" | "unknown" | "granted" | "denied";
 
 type CookieConsentContextValue = {
   openPreferences: () => void;
+  consent: ConsentState;
 };
 
 declare global {
@@ -215,8 +216,8 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const contextValue = useMemo(
-    () => ({ openPreferences: () => setPreferencesOpen(true) }),
-    [],
+    () => ({ openPreferences: () => setPreferencesOpen(true), consent }),
+    [consent],
   );
 
   return (

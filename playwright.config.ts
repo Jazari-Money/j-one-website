@@ -1,4 +1,6 @@
 import { defineConfig } from "@playwright/test";
+const previewPort = process.env.PLAYWRIGHT_PORT ?? "3000";
+const previewUrl = `http://127.0.0.1:${previewPort}`;
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -9,14 +11,14 @@ export default defineConfig({
   reporter: [["list"], ["html", { open: "never" }]],
   outputDir: "test-results",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: previewUrl,
     browserName: "chromium",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
   },
   webServer: {
-    command: "bun run dev --hostname 127.0.0.1",
-    url: "http://127.0.0.1:3000",
+    command: `bun run dev --hostname 127.0.0.1 --port ${previewPort}`,
+    url: previewUrl,
     env: {
       NEXT_PUBLIC_GA_MEASUREMENT_ID: "G-TEST123456",
     },
