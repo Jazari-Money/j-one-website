@@ -2,6 +2,34 @@ import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import test from "node:test";
 
+test("exports country ad landings and all search-intent guides with working local links", async () => {
+  const sitemap = await readFile(new URL("../out/sitemap.xml", import.meta.url), "utf8");
+  const blog = await (await render("/blog")).text();
+  for (const country of ["Kenya", "Nigeria"]) {
+    const html = await (await render(`/${country}`)).text();
+    assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+    assert.match(html, new RegExp(`<link rel="canonical" href="https://jazari.xyz/${country}/"`));
+    assert.match(html, /USDT/);
+    assert.match(html, /not insured savings accounts/);
+    assert.doesNotMatch(html, /Coming soon|href="\/roadmap/);
+    assert.match(sitemap, new RegExp(`<loc>https://jazari.xyz/${country}/</loc>`));
+    const slugs = [...html.matchAll(/href="\/blog\/([^"/]+)\/"/g)].map(match => match[1]);
+    assert.equal(slugs.length, country === "Nigeria" ? 5 : 4);
+    for (const slug of slugs) {
+      assert.match(blog, new RegExp(`/blog/${slug}`));
+      assert.match(sitemap, new RegExp(`/blog/${slug}/</loc>`));
+      const article = await (await render(`/blog/${slug}`)).text();
+      assert.match(article, /Short answer/);
+      assert.match(article.replace(/<!--.*?-->/g, ""), new RegExp(`Explore Jazari One in ${country}`));
+      assert.match(article, /application\/ld\+json/);
+      assert.match(article, new RegExp(`<link rel="canonical" href="https://jazari.xyz/blog/${slug}/"`));
+    }
+    for (const path of [...html.matchAll(/(?:src|srcSet)="([^" ]+)/g)].map(match => match[1])) {
+      if (path.startsWith("/images/countries/")) assert.ok((await readFile(new URL(`../public${path}`, import.meta.url))).length > 0);
+    }
+  }
+});
+
 async function render(path = "/") {
   const route = path === "/" ? "" : `${path.replace(/\/$/, "")}/`;
   const html = await readFile(
@@ -651,7 +679,7 @@ test("renders the Blog index and the four corridor guides", async () => {
   assert.match(indexHtml, /Something missing\?/);
   assert.match(indexHtml, /href="mailto:hello@jazari\.xyz"/);
   assert.match(indexHtml, /Tell us what you(?:<!--.*?-->)?&#x27;d like to see/);
-  assert.equal((indexHtml.match(/Read Article/g) ?? []).length, 4);
+  assert.equal((indexHtml.match(/Read Article/g) ?? []).length, 13);
   assert.match(indexHtml, /mexico-transfer\.webp/);
   assert.doesNotMatch(indexHtml, /min read/i);
   assert.doesNotMatch(indexHtml, /<span>Mexico<\/span>/);

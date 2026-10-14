@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { countryGuides } from "./countries/guides";
 
 export const dynamic = "force-static";
 
@@ -24,6 +25,9 @@ const routes = [
   "/terms/non-us",
   "/uk-risk-information",
   "/yields",
+  "/Kenya/",
+  "/Nigeria/",
+  ...countryGuides.map(({ slug }) => `/blog/${slug}/`),
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

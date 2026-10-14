@@ -1,6 +1,46 @@
 # Jazari One website context
 
-Last updated: 2026-08-22
+Last updated: 2026-10-14
+
+## Kenya and Nigeria acquisition pages
+
+- `/Kenya/` and `/Nigeria/` are separate country landing pages, linked from
+  the site footer. Preserve this case for ad destination URLs on GitHub Pages.
+- Their primary story is receiving international USD payments, then sending,
+  receiving, and holding supported USDT. Kenya uses `Earn`; Nigeria tests
+  `Savings` as the section and navigation label. Savings describes goals,
+  not an insured bank product. Yields remain optional USDC investments with
+  variable returns and capital risk; USDT must not be sent directly to a USDC
+  vault.
+- Neither landing renders a Coming soon section or roadmap navigation.
+  Country FAQs do not promise NGN, KES, or M-PESA payouts. They direct users
+  to routes actually available in their app. Nigeria does not advertise NGN
+  cash-out.
+- Generated Kenyan and Nigerian professional lifestyle photos are fictional
+  illustrative personas, not testimonials. Optimized AVIF/WebP sources and
+  generation prompts live in `public/images/countries/`.
+- Nine guides cover opening accounts, receiving dollars, USDT, and savings
+  versus Yields, plus a separate Nigerian account-requirements guide. These
+  appear in the Blog index, its Kenya/Nigeria filters, each country's landing,
+  related-article links, and the sitemap. Existing four homepage corridor
+  previews are preserved.
+- `app/countries/guides.ts` is the content source; `app/blog/[slug]/page.tsx`
+  statically exports new articles with canonical metadata and Article schema.
+  Provider requirements use explicit bank examples and linked official
+  sources; do not turn those examples into Jazari KYC requirements.
+- Country download actions preserve incoming `utm_source`, `utm_medium`,
+  `utm_campaign`, `utm_term`, and `utm_content` query parameters on the
+  existing app link. A country/placement content tag is used when no incoming
+  content tag exists. Other query parameters are not forwarded or stored.
+- `app_download_click` is sent to the existing GA layer only after analytics
+  consent, with `country` and `placement`. This measures outbound clicks,
+  not installs, verified users, or funded accounts. Ad-platform conversion
+  configuration and app-side attribution are separate work.
+- Sample ad URL: `/Nigeria/?utm_source=google&utm_medium=cpc&utm_campaign=nigeria-dollar-account`.
+  Keep Kenya and Nigeria campaigns separate for evaluation; the country and
+  Savings/Earn wording change together, so this is not a controlled wording
+  A/B test.
+- Test alternate local preview ports with `PLAYWRIGHT_PORT=3015`.
 
 ## Product
 

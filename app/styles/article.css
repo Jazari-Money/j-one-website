@@ -5,6 +5,12 @@
   color: var(--text);
 }
 
+.country-article-cta { width: var(--page); margin: 0 auto; padding: 0 0 120px; }
+.country-article-cta ~ .site-footer { margin-top: 0; }
+.country-article-cta h2 { font-family: var(--serif); font-size: clamp(46px, 5vw, 70px); line-height: 1.05; }
+.country-article-cta p { margin-top: 24px; color: var(--muted-strong); font-size: 18px; }
+.country-article-cta > a { display: inline-flex; padding: 14px 22px; margin-top: 28px; }
+
 .guide-article {
   width: var(--page);
   margin: 0 auto;

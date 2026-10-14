@@ -408,7 +408,7 @@ test("offers help from the footer support section", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Help", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Have a question?" })).toBeVisible();
   await expect(page.getByText(/If you have any questions, please reach us/)).toBeVisible();
-  await expect(page.getByRole("link", { name: "hello@jazari.xyz" })).toHaveAttribute(
+  await expect(page.getByRole("region", { name: "Help", exact: true }).getByRole("link", { name: "hello@jazari.xyz" })).toHaveAttribute(
     "href",
     "mailto:hello@jazari.xyz",
   );
@@ -940,12 +940,13 @@ test("opens a full-height mobile navigation with download and social actions", a
   await expect(menu.getByRole("link", { name: "Jazari One on Facebook" })).toBeVisible();
   await expect(menu.getByRole("link", { name: "Jazari One on X" })).toBeVisible();
   const mobileSocials = menu.locator(".nav-mobile-socials a");
-  await expect(mobileSocials).toHaveCount(4);
+  await expect(mobileSocials).toHaveCount(5);
   expect(await mobileSocials.evaluateAll((links) => links.map((link) => link.getAttribute("aria-label")))).toEqual([
     "Jazari One on Instagram",
     "Jazari One on LinkedIn",
     "Jazari One on Facebook",
     "Jazari One on X",
+    "Jazari One on Telegram",
   ]);
   await menu.click({ position: { x: 360, y: 780 } });
   await expect(menu.locator("#mobile-product-links")).toBeVisible();

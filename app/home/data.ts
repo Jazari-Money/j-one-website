@@ -1,4 +1,5 @@
 import { withBasePath } from "../site-paths";
+import { countryGuides } from "../countries/guides";
 
 export const currencies = {
   MXN: {
@@ -283,6 +284,7 @@ export const guides = [
     image: withBasePath("/images/blog/europe.jpg"),
     imageStem: "/images/blog/europe",
   },
+  ...countryGuides,
 ] as const;
 
 export const partnerStories = [
