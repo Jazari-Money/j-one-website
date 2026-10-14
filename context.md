@@ -7,8 +7,10 @@ Last updated: 2026-10-14
 - `/Kenya/` and `/Nigeria/` are separate country landing pages, linked from
   the site footer. Preserve this case for ad destination URLs on GitHub Pages.
 - Their primary story is receiving international USD payments, then sending,
-  receiving, and holding supported USDT. Kenya uses `Earn`; Nigeria tests
-  `Savings` as the section and navigation label. Savings describes goals,
+  receiving, and holding supported USDT. Both headlines explicitly say
+  `Your dollar account in Kenya/Nigeria` to continue the ad search intent.
+  Both countries use `Savings` as the section and navigation label, with no
+  eyebrow/kicker labels. Savings describes goals,
   not an insured bank product. Yields remain optional USDC investments with
   variable returns and capital risk; USDT must not be sent directly to a USDC
   vault.
@@ -19,6 +21,19 @@ Last updated: 2026-10-14
 - Generated Kenyan and Nigerian professional lifestyle photos are fictional
   illustrative personas, not testimonials. Optimized AVIF/WebP sources and
   generation prompts live in `public/images/countries/`.
+- Country hero photos have no text overlays. Keep the landing structure
+  restrained: hero, USD receiving, USDT sending/receiving, Savings, Blog, and
+  the shared two-column FAQ. Do not restore the persona pitch, numbered setup
+  ledger, hero eligibility line, or Explore your USD account action.
+- The country receiving screenshot uses the user-supplied Chidi Okafor asset:
+  `public/images/countries/receive-usd-chidi.webp`, with 320/520/800px AVIF/WebP
+  sources. Preserve the supplied screenshot content and alpha; do not change
+  the receiving screen on the main product page.
+- At 900px and below, a bottom-fixed Download App action uses the existing
+  country attribution and consent-aware measurement. It respects the safe
+  area, leaves footer content reachable, and hides while the mobile menu is
+  open. The country cookie banner sits above it. The inline hero action is
+  hidden on mobile to avoid duplicate CTAs; desktop uses the inline CTA.
 - Nine guides cover opening accounts, receiving dollars, USDT, and savings
   versus Yields, plus a separate Nigerian account-requirements guide. These
   appear in the Blog index, its Kenya/Nigeria filters, each country's landing,
@@ -37,9 +52,7 @@ Last updated: 2026-10-14
   not installs, verified users, or funded accounts. Ad-platform conversion
   configuration and app-side attribution are separate work.
 - Sample ad URL: `/Nigeria/?utm_source=google&utm_medium=cpc&utm_campaign=nigeria-dollar-account`.
-  Keep Kenya and Nigeria campaigns separate for evaluation; the country and
-  Savings/Earn wording change together, so this is not a controlled wording
-  A/B test.
+  Keep Kenya and Nigeria campaigns separate for evaluation.
 - Test alternate local preview ports with `PLAYWRIGHT_PORT=3015`.
 
 ## Product

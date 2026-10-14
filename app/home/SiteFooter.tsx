@@ -30,7 +30,7 @@ export function SiteFooter({ country }: { country?: "Kenya" | "Nigeria" }) {
             <strong>Product</strong>
             <Link href="/receive">Receive</Link>
             <Link href="/send">Send money</Link>
-            <Link href="/yields">{country === "Nigeria" ? "Savings & Yields" : "Yields"}</Link>
+            <Link href="/yields">{country ? "Savings & Yields" : "Yields"}</Link>
             <Link href="/plan">Pricing</Link>
             {!country && <Link href="/roadmap">Coming soon</Link>}
           </div>
@@ -80,7 +80,7 @@ export function SiteFooter({ country }: { country?: "Kenya" | "Nigeria" }) {
             <ol className="footer-registration footer-disclosures">
               <li>1. Jazari One is a technology service provider, not a bank, deposit-taker, e-money institution, or investment adviser.</li>
               <li>2. Balances held in Jazari One are stablecoins, not bank deposits. The value of a cryptoasset, including one that references a fiat currency, may fall to zero.</li>
-              <li>3. Earn is an interface to third-party decentralised finance protocols. Rates are variable, capital is at risk, and returns are not guaranteed.</li>
+              <li>{`3. ${country ? "Yields" : "Earn"} is an interface to third-party decentralised finance protocols. Rates are variable, capital is at risk, and returns are not guaranteed.`}</li>
               <li>4. Geographic, regulatory and eligibility limits apply and may change.</li>
             </ol>
           </div>

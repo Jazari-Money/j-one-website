@@ -2,12 +2,25 @@ import { expect, test } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
 
 for (const country of ["Kenya", "Nigeria"] as const) {
-  for (const width of [390, 1440]) {
+  for (const width of [320, 390, 768, 1440]) {
     test(`${country} at ${width}px: local content, images, navigation and FAQ`, async ({ page }) => {
       await page.setViewportSize({ width, height: 960 });
       await page.goto(`/${country}/`);
+      const sticky = page.locator(".country-mobile-download");
+      if (width <= 900) {
+        await expect(sticky.getByRole("link", { name: "Download App", exact: true })).toBeVisible();
+        const [banner, action] = await Promise.all([page.locator(".cookie-banner").boundingBox(), sticky.boundingBox()]);
+        expect(banner).not.toBeNull();
+        expect(action).not.toBeNull();
+        expect(banner!.y + banner!.height).toBeLessThanOrEqual(action!.y);
+      } else {
+        await expect(sticky).toBeHidden();
+      }
       await page.getByRole("button", { name: "Reject", exact: true }).click();
       await expect(page.locator("h1")).toHaveCount(1);
+      await expect(page.locator("h1")).toHaveText(`Your dollar account in ${country}.`);
+      await expect(page.locator("#savings h2")).toHaveText("Savings");
+      await expect(page.getByText("Explore your USD account", { exact: true })).toHaveCount(0);
       await expect(page.getByText("Coming soon", { exact: true })).toHaveCount(0);
       const photo = page.locator(".country-hero-media img");
       await expect(photo).toBeVisible();
@@ -18,10 +31,21 @@ for (const country of ["Kenya", "Nigeria"] as const) {
       await question.focus();
       await page.keyboard.press("Enter");
       await expect(page.locator(".country-faq details").first()).toHaveAttribute("open", "");
-      if (width === 390) {
+      const screen = page.locator(".country-phone img");
+      await screen.scrollIntoViewIfNeeded();
+      await expect(screen).toHaveAttribute("src", "/images/countries/receive-usd-chidi.webp");
+      await expect.poll(() => screen.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+      if (width <= 900) {
+        const beforeScroll = await sticky.boundingBox();
+        await page.locator(".country-faq").scrollIntoViewIfNeeded();
+        const afterScroll = await sticky.boundingBox();
+        expect(afterScroll!.y).toBe(beforeScroll!.y);
+        expect(afterScroll!.y + afterScroll!.height).toBe(960);
         await page.getByRole("button", { name: "Open navigation" }).click();
-        await expect(page.locator(".nav-mobile-product-group").getByText(country === "Nigeria" ? "Savings" : "Earn", { exact: true })).toBeVisible();
+        await expect(sticky).toBeHidden();
+        await expect(page.locator(".nav-mobile-product-group").getByText("Savings", { exact: true })).toBeVisible();
         await page.keyboard.press("Escape");
+        await expect(sticky).toBeVisible();
         await expect(page.getByRole("button", { name: "Open navigation" })).toBeVisible();
       }
       await page.evaluate(() => window.scrollTo(0, 0));
@@ -33,10 +57,11 @@ for (const country of ["Kenya", "Nigeria"] as const) {
 }
 
 test("country download links retain campaign tags and measure clicks only with consent", async ({ page, context }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await context.route("https://jazarione.app.link/**", route => route.fulfill({ body: "Test app destination" }));
   await page.route("https://www.googletagmanager.com/gtag/js**", route => route.fulfill({ body: "" }));
   await page.goto("/Nigeria/?utm_source=google&utm_medium=cpc&utm_campaign=nigeria-dollar&utm_term=dollar+account&utm_content=ad-one&untrusted=drop-me");
-  const download = page.locator(".country-hero .country-primary-action");
+  const download = page.locator(".country-mobile-download .country-primary-action");
   await expect(download).toHaveAttribute("href", /utm_campaign=nigeria-dollar/);
   for (const link of await page.locator('a[href*="jazarione.app.link"]').all()) {
     const href = new URL((await link.getAttribute("href"))!);
@@ -60,7 +85,7 @@ test("country download links retain campaign tags and measure clicks only with c
   popup = page.waitForEvent("popup");
   await download.click();
   await (await popup).close();
-  expect(await clicks()).toEqual([["event", "app_download_click", { country: "Nigeria", placement: "hero" }]]);
+  expect(await clicks()).toEqual([["event", "app_download_click", { country: "Nigeria", placement: "mobile-sticky" }]]);
 });
 
 test("blog country filters connect all new guides to their country pages", async ({ page }) => {

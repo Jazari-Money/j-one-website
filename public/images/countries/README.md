@@ -1,5 +1,11 @@
 # Country lifestyle imagery
 
+## Supplied app screenshot
+
+`receive-usd-chidi.webp` and its 320/520/800px AVIF/WebP derivatives use the
+user-supplied `Group 2131328440.png` (1263 × 2580). Screenshot content and
+transparency are preserved. This is app demo artwork, not a customer testimonial.
+
 Created with the built-in imagegen tool on 14 October 2026. Fictional illustrative personas; these images do not depict verified Jazari customers or endorsements.
 
 Project assets: `kenya-professional.webp`, `nigeria-professional.webp`, plus 480px, 960px, and 1440px AVIF/WebP derivatives. The originals were generated at 1536 × 1024. Sharp produced the responsive formats.
