@@ -148,8 +148,8 @@ export function SiteHeader({
                 <small>Receive money into your own USD account and stablecoin wallet</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
-                <strong>{country === "Nigeria" ? "Savings" : "Earn"}</strong>
-                <small>{country === "Nigeria" ? "Explore optional USDC Yields. Capital at risk." : "Earn up to 7% APY on your balance"}</small>
+                <strong>{country ? "Savings" : "Earn"}</strong>
+                <small>{country ? "Explore optional USDC Yields. Capital at risk." : "Earn up to 7% APY on your balance"}</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
                 <strong>Send</strong>
@@ -167,7 +167,7 @@ export function SiteHeader({
                 <span>Receive</span><small>Receive money into your own USD account and stablecoin wallet</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/yields/")} onClick={closeMobile}>
-                <span>{country === "Nigeria" ? "Savings" : "Earn"}</span><small>{country === "Nigeria" ? "Explore optional USDC Yields. Capital at risk." : "Earn up to 7% APY on your balance"}</small>
+                <span>{country ? "Savings" : "Earn"}</span><small>{country ? "Explore optional USDC Yields. Capital at risk." : "Earn up to 7% APY on your balance"}</small>
               </a>
               <a className="nav-product-entry" href={withBasePath("/send/")} onClick={closeMobile}>
                 <span>Send</span><small>Send money to stablecoin wallets and to local bank accounts in 30+ countries</small>

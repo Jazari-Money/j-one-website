@@ -10,6 +10,11 @@ test("exports country ad landings and all search-intent guides with working loca
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://jazari.xyz/${country}/"`));
     assert.match(html, /USDT/);
+    assert.match(html, new RegExp(`<h1>Your dollar account in ${country}\\.</h1>`));
+    assert.match(html, /receive-usd-chidi\.webp/);
+    assert.doesNotMatch(html, /receive-usd-account\.png|Explore your USD account|country-section-label|country-hero-note|country-photo-caption|country-steps/);
+    assert.doesNotMatch(html, />Earn</);
+    assert.match(html, /country-mobile-download/);
     assert.match(html, /not insured savings accounts/);
     assert.doesNotMatch(html, /Coming soon|href="\/roadmap/);
     assert.match(sitemap, new RegExp(`<loc>https://jazari.xyz/${country}/</loc>`));
