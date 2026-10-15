@@ -11,7 +11,7 @@ export function SiteHeader({
   mode = "home",
   country,
 }: {
-  mode?: "home" | "internal" | "minimal";
+  mode?: "home" | "internal" | "minimal" | "country";
   country?: "Kenya" | "Nigeria";
 }) {
   const [scrolled, setScrolled] = useState(false);
@@ -71,9 +71,9 @@ export function SiteHeader({
     setProductOpen(false);
   }
 
-  if (mode === "minimal") {
+  if (mode === "minimal" || mode === "country") {
     return (
-      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <header className={`site-header ${mode === "country" ? "country-header" : ""} ${scrolled ? "is-scrolled" : ""}`}>
         <nav className="site-nav" aria-label="Main navigation">
           <a className="brand" href={homeHref} aria-label="Jazari One home">
             <img
@@ -85,6 +85,13 @@ export function SiteHeader({
               fetchPriority="high"
             />
           </a>
+          {mode === "country" && (
+            <div className="nav-actions">
+              <CountryDownloadLink country={country} placement="header" className="nav-cta neutral-control">
+                <span className="nav-cta-label">Download App</span>
+              </CountryDownloadLink>
+            </div>
+          )}
         </nav>
       </header>
     );

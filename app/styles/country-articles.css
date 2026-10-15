@@ -1,0 +1,4 @@
+.country-article-shell .article-header h1,
+.country-article-shell .article-copy h2 {
+  font-family: var(--serif);
+}

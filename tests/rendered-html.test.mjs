@@ -15,6 +15,9 @@ test("exports country ad landings and all search-intent guides with working loca
     assert.doesNotMatch(html, /receive-usd-account\.png|Explore your USD account|country-section-label|country-hero-note|country-photo-caption|country-steps/);
     assert.doesNotMatch(html, />Earn</);
     assert.match(html, /country-mobile-download/);
+    assert.match(html, /country-header/);
+    assert.match(html, /country-footer/);
+    assert.doesNotMatch(html, /class="nav-menu|class="footer-navigation|class="footer-meta|Explore sending|Explore Yields|Open navigation/);
     assert.match(html, /not insured savings accounts/);
     assert.doesNotMatch(html, /Coming soon|href="\/roadmap/);
     assert.match(sitemap, new RegExp(`<loc>https://jazari.xyz/${country}/</loc>`));
@@ -25,6 +28,7 @@ test("exports country ad landings and all search-intent guides with working loca
       assert.match(sitemap, new RegExp(`/blog/${slug}/</loc>`));
       const article = await (await render(`/blog/${slug}`)).text();
       assert.match(article, /Short answer/);
+      assert.match(article, /article-shell country-article-shell/);
       assert.match(article.replace(/<!--.*?-->/g, ""), new RegExp(`Explore Jazari One in ${country}`));
       assert.match(article, /application\/ld\+json/);
       assert.match(article, new RegExp(`<link rel="canonical" href="https://jazari.xyz/blog/${slug}/"`));

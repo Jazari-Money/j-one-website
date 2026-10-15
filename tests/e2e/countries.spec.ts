@@ -22,6 +22,12 @@ for (const country of ["Kenya", "Nigeria"] as const) {
       await expect(page.locator("#savings h2")).toHaveText("Savings");
       await expect(page.getByText("Explore your USD account", { exact: true })).toHaveCount(0);
       await expect(page.getByText("Coming soon", { exact: true })).toHaveCount(0);
+      await expect(page.locator(".site-header .nav-menu")).toHaveCount(0);
+      await expect(page.getByRole("button", { name: "Open navigation" })).toHaveCount(0);
+      await expect(page.locator(".country-wallet a, .country-savings a")).toHaveCount(0);
+      await expect(page.locator("footer nav, footer button, footer .footer-meta")).toHaveCount(0);
+      await expect(page.locator("footer a")).toHaveCount(6);
+      await expect(page.locator("footer .social-links a")).toHaveCount(5);
       const photo = page.locator(".country-hero-media img");
       await expect(photo).toBeVisible();
       await expect.poll(() => photo.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
@@ -41,12 +47,6 @@ for (const country of ["Kenya", "Nigeria"] as const) {
         const afterScroll = await sticky.boundingBox();
         expect(afterScroll!.y).toBe(beforeScroll!.y);
         expect(afterScroll!.y + afterScroll!.height).toBe(960);
-        await page.getByRole("button", { name: "Open navigation" }).click();
-        await expect(sticky).toBeHidden();
-        await expect(page.locator(".nav-mobile-product-group").getByText("Savings", { exact: true })).toBeVisible();
-        await page.keyboard.press("Escape");
-        await expect(sticky).toBeVisible();
-        await expect(page.getByRole("button", { name: "Open navigation" })).toBeVisible();
       }
       await page.evaluate(() => window.scrollTo(0, 0));
       await page.evaluate(() => document.fonts.ready);
@@ -60,7 +60,8 @@ test("country download links retain campaign tags and measure clicks only with c
   await page.setViewportSize({ width: 390, height: 844 });
   await context.route("https://jazarione.app.link/**", route => route.fulfill({ body: "Test app destination" }));
   await page.route("https://www.googletagmanager.com/gtag/js**", route => route.fulfill({ body: "" }));
-  await page.goto("/Nigeria/?utm_source=google&utm_medium=cpc&utm_campaign=nigeria-dollar&utm_term=dollar+account&utm_content=ad-one&untrusted=drop-me");
+  const campaignPath = "/Nigeria/?utm_source=google&utm_medium=cpc&utm_campaign=nigeria-dollar&utm_term=dollar+account&utm_content=ad-one&untrusted=drop-me";
+  await page.goto(campaignPath);
   const download = page.locator(".country-mobile-download .country-primary-action");
   await expect(download).toHaveAttribute("href", /utm_campaign=nigeria-dollar/);
   for (const link of await page.locator('a[href*="jazarione.app.link"]').all()) {
@@ -79,9 +80,12 @@ test("country download links retain campaign tags and measure clicks only with c
   await download.click();
   await (await popup).close();
   expect(await clicks()).toHaveLength(0);
+  await page.goto("/");
   await page.getByRole("button", { name: "Cookie Preferences", exact: true }).click();
   await page.getByRole("checkbox", { name: "Allow analytics cookies" }).check();
   await page.getByRole("button", { name: "Save preferences", exact: true }).click();
+  await page.goto(campaignPath);
+  await expect(download).toHaveAttribute("href", /utm_campaign=nigeria-dollar/);
   popup = page.waitForEvent("popup");
   await download.click();
   await (await popup).close();
@@ -98,6 +102,22 @@ test("blog country filters connect all new guides to their country pages", async
   await expect(page.locator(".blog-index-grid > a")).toHaveCount(5);
   await page.getByRole("link", { name: /Requirements for opening a dollar account in Nigeria/ }).click();
   await expect(page.locator("h1")).toHaveText("Requirements for opening a dollar account in Nigeria");
+  await expect(page.locator("h1")).toHaveCSS("font-family", /Instrument Serif/);
+  await expect(page.locator(".article-copy h2").first()).toHaveCSS("font-family", /Instrument Serif/);
+  await expect(page.locator(".article-copy p").first()).toHaveCSS("font-family", /Inter/);
+  await expect(page.locator(".site-header .nav-menu")).toHaveCount(1);
+  await expect(page.getByRole("navigation", { name: "Footer navigation", exact: true })).toHaveCount(1);
+  await mkdir("test-results/country-previews", { recursive: true });
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 960 });
+    await page.evaluate(() => document.fonts.ready);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    await page.screenshot({ path: `test-results/country-previews/country-article-${width}.png` });
+  }
   await page.getByRole("link", { name: "Explore Jazari One in Nigeria" }).click();
   await expect(page).toHaveURL(/\/Nigeria\//);
+  await page.goto("/");
+  await expect(page.locator(".site-header .nav-menu")).toHaveCount(1);
+  await expect(page.getByRole("navigation", { name: "Footer navigation", exact: true })).toHaveCount(1);
+  await expect(page.locator(".country-header, .country-footer")).toHaveCount(0);
 });
