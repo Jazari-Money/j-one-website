@@ -19,7 +19,10 @@ test("exports country ad landings and all search-intent guides with working loca
     assert.doesNotMatch(html, /href="https:\/\/jazarione\.app\.link\/web-launch"/);
     assert.match(html, /country-header/);
     assert.match(html, /country-footer/);
-    assert.doesNotMatch(html, /class="nav-menu|class="footer-navigation|class="footer-meta|Explore sending|Explore Yields|Open navigation/);
+    assert.doesNotMatch(html, /class="nav-menu|class="footer-navigation|Explore sending|Explore Yields|Open navigation/);
+    assert.match(html, /Jazari One holds a FinCEN MSB registration \(No\. MRX26-00006547\)/);
+    assert.match(html, /Jazari Fintech Services FZCO is a subsidiary of Jazari One, Inc\./);
+    assert.equal((html.match(/<li>[1-4]\. /g) ?? []).length, 4);
     assert.match(html, /not insured savings accounts/);
     assert.doesNotMatch(html, /Coming soon|href="\/roadmap/);
     assert.match(sitemap, new RegExp(`<loc>https://jazari.xyz/${country}/</loc>`));

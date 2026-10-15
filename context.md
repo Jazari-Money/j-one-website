@@ -34,7 +34,12 @@ Last updated: 2026-10-15
   ledger, hero eligibility line, or Explore your USD account action.
 - Only `/Kenya/` and `/Nigeria/` use the country header mode (logo and desktop
   Download App; no navigation links or mobile menu) and the separate
-  `CountryFooter` (logo and social links only). Do not apply these header or
+  `CountryFooter` (logo and social links above the original legal/company
+  information and copyright). Legal links and Cookie Preferences also remain.
+  Keep the US/UAE addresses, registration,
+  subsidiary statement, and all four disclosures through the shared
+  `FooterLegalInformation` component. Only the footer navigation columns
+  remain removed. Do not apply these header or
   footer removals to other routes, including country blog articles. Product
   sections on these two landings have no Explore sending / Explore Yields
   actions.

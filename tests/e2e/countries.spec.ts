@@ -25,8 +25,13 @@ for (const country of ["Kenya", "Nigeria"] as const) {
       await expect(page.locator(".site-header .nav-menu")).toHaveCount(0);
       await expect(page.getByRole("button", { name: "Open navigation" })).toHaveCount(0);
       await expect(page.locator(".country-wallet a, .country-savings a")).toHaveCount(0);
-      await expect(page.locator("footer nav, footer button, footer .footer-meta")).toHaveCount(0);
-      await expect(page.locator("footer a")).toHaveCount(6);
+      await expect(page.locator("footer .footer-navigation")).toHaveCount(0);
+      await expect(page.getByRole("navigation", { name: "Legal information", exact: true }).getByRole("link")).toHaveCount(3);
+      await expect(page.locator("footer").getByRole("button", { name: "Cookie Preferences", exact: true })).toHaveCount(1);
+      await expect(page.locator("footer .footer-addresses-content address")).toHaveCount(2);
+      await expect(page.locator("footer .footer-disclosures li")).toHaveCount(4);
+      await expect(page.locator("footer .footer-copyright")).toHaveText("© 2026 Jazari One. All rights reserved.");
+      await expect(page.locator("footer a")).toHaveCount(9);
       await expect(page.locator("footer .social-links a")).toHaveCount(5);
       const photo = page.locator(".country-hero-media img");
       await expect(photo).toBeVisible();

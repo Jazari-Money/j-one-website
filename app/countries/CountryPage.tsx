@@ -61,7 +61,7 @@ export function CountryPage({ country }: { country: Country }) {
     </section>
 
     <section className="country-faq faq section" id="faq" aria-labelledby="country-faq-title"><header className="chapter-heading"><h2 id="country-faq-title">FAQ</h2><p className="faq-contact">Something we missed? <a href="mailto:hello@jazari.xyz">Email us</a></p></header><div className="faq-content"><AccordionList items={questions} /></div></section>
-    <CountryFooter />
+    <CountryFooter country={country} />
     <div className="country-mobile-download"><CountryDownloadLink country={country} placement="mobile-sticky" className="country-primary-action" downloadUrl={countryAppDownloadUrl}>Download App</CountryDownloadLink></div>
   </main>;
 }
