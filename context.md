@@ -32,14 +32,23 @@ Last updated: 2026-10-15
   restrained: hero, USD receiving, USDT sending/receiving, Savings, Blog, and
   the shared two-column FAQ. Do not restore the persona pitch, numbered setup
   ledger, hero eligibility line, or Explore your USD account action.
+- Only `/Kenya/` and `/Nigeria/` use the country header mode (logo and desktop
+  Download App; no navigation links or mobile menu) and the separate
+  `CountryFooter` (logo and social links only). Do not apply these header or
+  footer removals to other routes, including country blog articles. Product
+  sections on these two landings have no Explore sending / Explore Yields
+  actions.
+- Country blog articles carry `country-article-shell`; their article H1 and
+  content H2 use Instrument Serif. Body text and quick-answer UI stay Inter.
+  The typography rule is scoped to the country articles, not legacy guides.
 - The country receiving screenshot uses the user-supplied Chidi Okafor asset:
   `public/images/countries/receive-usd-chidi.webp`, with 320/520/800px AVIF/WebP
   sources. Preserve the supplied screenshot content and alpha; do not change
   the receiving screen on the main product page.
 - At 900px and below, a bottom-fixed Download App action uses the existing
   country attribution and consent-aware measurement. It respects the safe
-  area, leaves footer content reachable, and hides while the mobile menu is
-  open. The country cookie banner sits above it. The inline hero action is
+  area and leaves footer content reachable. There is no country mobile menu.
+  The country cookie banner sits above it. The inline hero action is
   hidden on mobile to avoid duplicate CTAs; desktop uses the inline CTA.
 - Nine guides cover opening accounts, receiving dollars, USDT, and savings
   versus Yields, plus a separate Nigerian account-requirements guide. These

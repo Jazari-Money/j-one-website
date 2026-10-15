@@ -6,6 +6,7 @@ import { CountryDownloadLink } from "../../countries/CountryDownloadLink";
 import { SiteHeader } from "../../home/SiteHeader";
 import { SiteFooter } from "../../home/SiteFooter";
 import { ResponsiveImage } from "../../home/ResponsiveImage";
+import "../../styles/country-articles.css";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return countryGuides.map(({ slug }) => ({ slug })); }
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function CountryGuidePage({ params }: { params: Promise<{ slug: string }> }) {
   const guide = getGuide((await params).slug);
   const schema = { "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.deck, image: `https://jazari.xyz${guide.image}`, mainEntityOfPage: `https://jazari.xyz/blog/${guide.slug}/`, publisher: { "@type": "Organization", name: "Jazari One" } };
-  return <main className="article-shell">
+  return <main className="article-shell country-article-shell">
     <SiteHeader mode="internal" country={guide.country} />
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
     <article className="guide-article">

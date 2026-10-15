@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SiteHeader } from "../home/SiteHeader";
-import { SiteFooter } from "../home/SiteFooter";
+import { CountryFooter } from "./CountryFooter";
 import { AccordionList } from "../home/AccordionList";
 import { ResponsiveImage } from "../home/ResponsiveImage";
 import { countries, type Country } from "./data";
@@ -24,7 +24,7 @@ export function CountryPage({ country }: { country: Country }) {
   ];
 
   return <main className={`country-shell country-${country.toLowerCase()}`}>
-    <SiteHeader mode="internal" country={country} />
+    <SiteHeader mode="country" country={country} />
     <header className="country-hero" id="top">
       <div className="country-hero-copy">
         <h1>{copy.headline}</h1>
@@ -46,11 +46,11 @@ export function CountryPage({ country }: { country: Country }) {
 
     <section className="country-wallet country-section" aria-labelledby="country-wallet-title">
       <Image className="country-product-art" src="/images/journeys/send-globe.png" width={1024} height={1024} alt="" />
-      <div><h2 id="country-wallet-title">Send and receive.</h2><p className="country-description">Send USD by bank transfer, or USDT, USDC, and OUSD to supported wallets. Receive money into your USD account or wallet. Check the recipient, network, and fees before you confirm.</p><Link href="/send/#wallet" className="country-product-action neutral-control">Explore sending</Link></div>
+      <div><h2 id="country-wallet-title">Send and receive.</h2><p className="country-description">Send USD by bank transfer, or USDT, USDC, and OUSD to supported wallets. Receive money into your USD account or wallet. Check the recipient, network, and fees before you confirm.</p></div>
     </section>
 
     <section className="country-savings country-section" id="savings" aria-labelledby="country-savings-title">
-      <div><h2 id="country-savings-title">Savings</h2><p className="country-description">{copy.savingsCopy}</p><Link href="/yields/" className="country-product-action neutral-control">Explore Yields</Link><p className="country-risk">Yields are not insured savings accounts. Rates are variable, withdrawals may be delayed, and capital is at risk.</p></div>
+      <div><h2 id="country-savings-title">Savings</h2><p className="country-description">{copy.savingsCopy}</p><p className="country-risk">Yields are not insured savings accounts. Rates are variable, withdrawals may be delayed, and capital is at risk.</p></div>
       <Image className="country-product-art" src="/images/journeys/yields-wheat.png" width={1024} height={1024} alt="" />
     </section>
 
@@ -60,7 +60,7 @@ export function CountryPage({ country }: { country: Country }) {
     </section>
 
     <section className="country-faq faq section" id="faq" aria-labelledby="country-faq-title"><header className="chapter-heading"><h2 id="country-faq-title">FAQ</h2><p className="faq-contact">Something we missed? <a href="mailto:hello@jazari.xyz">Email us</a></p></header><div className="faq-content"><AccordionList items={questions} /></div></section>
-    <SiteFooter country={country} />
+    <CountryFooter />
     <div className="country-mobile-download"><CountryDownloadLink country={country} placement="mobile-sticky" className="country-primary-action">Download App</CountryDownloadLink></div>
   </main>;
 }
