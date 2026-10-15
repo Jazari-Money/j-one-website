@@ -15,6 +15,8 @@ test("exports country ad landings and all search-intent guides with working loca
     assert.doesNotMatch(html, /receive-usd-account\.png|Explore your USD account|country-section-label|country-hero-note|country-photo-caption|country-steps/);
     assert.doesNotMatch(html, />Earn</);
     assert.match(html, /country-mobile-download/);
+    assert.equal((html.match(/href="https:\/\/jazarione\.app\.link\/zidMo5PYf7b"/g) ?? []).length, 3);
+    assert.doesNotMatch(html, /href="https:\/\/jazarione\.app\.link\/web-launch"/);
     assert.match(html, /country-header/);
     assert.match(html, /country-footer/);
     assert.doesNotMatch(html, /class="nav-menu|class="footer-navigation|class="footer-meta|Explore sending|Explore Yields|Open navigation/);

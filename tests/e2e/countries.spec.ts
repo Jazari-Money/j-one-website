@@ -66,6 +66,7 @@ test("country download links retain campaign tags and measure clicks only with c
   await expect(download).toHaveAttribute("href", /utm_campaign=nigeria-dollar/);
   for (const link of await page.locator('a[href*="jazarione.app.link"]').all()) {
     const href = new URL((await link.getAttribute("href"))!);
+    expect(href.origin + href.pathname).toBe("https://jazarione.app.link/zidMo5PYf7b");
     expect(href.searchParams.get("utm_source")).toBe("google");
     expect(href.searchParams.get("utm_content")).toBe("ad-one");
     expect(href.searchParams.has("untrusted")).toBe(false);

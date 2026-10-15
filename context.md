@@ -63,6 +63,9 @@ Last updated: 2026-10-15
   `utm_campaign`, `utm_term`, and `utm_content` query parameters on the
   existing app link. A country/placement content tag is used when no incoming
   content tag exists. Other query parameters are not forwarded or stored.
+- The header, hero, and sticky mobile Download App links exclusively on
+  `/Kenya/` and `/Nigeria/` use `https://jazarione.app.link/zidMo5PYf7b`.
+  Other site routes and article CTAs retain the existing `web-launch` link.
 - `app_download_click` is sent to the existing GA layer only after analytics
   consent, with `country` and `placement`. This measures outbound clicks,
   not installs, verified users, or funded accounts. Ad-platform conversion
