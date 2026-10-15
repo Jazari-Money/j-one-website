@@ -3,7 +3,7 @@
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
 import { useEffect, useRef, useState } from "react";
-import { withBasePath } from "../site-paths";
+import { countryAppDownloadUrl, withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
 import { CountryDownloadLink } from "../countries/CountryDownloadLink";
 
@@ -87,7 +87,7 @@ export function SiteHeader({
           </a>
           {mode === "country" && (
             <div className="nav-actions">
-              <CountryDownloadLink country={country} placement="header" className="nav-cta neutral-control">
+              <CountryDownloadLink country={country} placement="header" className="nav-cta neutral-control" downloadUrl={countryAppDownloadUrl}>
                 <span className="nav-cta-label">Download App</span>
               </CountryDownloadLink>
             </div>

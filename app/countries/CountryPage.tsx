@@ -7,6 +7,7 @@ import { ResponsiveImage } from "../home/ResponsiveImage";
 import { countries, type Country } from "./data";
 import { countryGuides } from "./guides";
 import { CountryDownloadLink } from "./CountryDownloadLink";
+import { countryAppDownloadUrl } from "../site-paths";
 import "../styles/section.css";
 import "../styles/faq.css";
 import "../styles/country-pages.css";
@@ -29,7 +30,7 @@ export function CountryPage({ country }: { country: Country }) {
       <div className="country-hero-copy">
         <h1>{copy.headline}</h1>
         <p>{copy.description}</p>
-        <CountryDownloadLink country={country} placement="hero" className="country-primary-action">Download App</CountryDownloadLink>
+        <CountryDownloadLink country={country} placement="hero" className="country-primary-action" downloadUrl={countryAppDownloadUrl}>Download App</CountryDownloadLink>
       </div>
       <div className="country-hero-media">
         <ResponsiveImage fallback={`${stem}.webp`} stem={stem} widths={[480, 960, 1440]} width={1536} height={1024} alt={copy.photoAlt} sizes="(max-width: 900px) calc(100vw - 40px), 52vw" loading="eager" fetchPriority="high" />
@@ -61,6 +62,6 @@ export function CountryPage({ country }: { country: Country }) {
 
     <section className="country-faq faq section" id="faq" aria-labelledby="country-faq-title"><header className="chapter-heading"><h2 id="country-faq-title">FAQ</h2><p className="faq-contact">Something we missed? <a href="mailto:hello@jazari.xyz">Email us</a></p></header><div className="faq-content"><AccordionList items={questions} /></div></section>
     <CountryFooter />
-    <div className="country-mobile-download"><CountryDownloadLink country={country} placement="mobile-sticky" className="country-primary-action">Download App</CountryDownloadLink></div>
+    <div className="country-mobile-download"><CountryDownloadLink country={country} placement="mobile-sticky" className="country-primary-action" downloadUrl={countryAppDownloadUrl}>Download App</CountryDownloadLink></div>
   </main>;
 }

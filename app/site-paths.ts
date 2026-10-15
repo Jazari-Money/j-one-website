@@ -1,5 +1,6 @@
 export const siteBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export const appDownloadUrl = "https://jazarione.app.link/web-launch";
+export const countryAppDownloadUrl = "https://jazarione.app.link/zidMo5PYf7b";
 
 // corebanking's InviteFriendController — see mvp/repos/backend
 // (corebanking/corebanking/website/InviteFriendController.cs), routed
