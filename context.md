@@ -1,19 +1,26 @@
 # Jazari One website context
 
-Last updated: 2026-10-14
+Last updated: 2026-10-15
 
 ## Kenya and Nigeria acquisition pages
 
 - `/Kenya/` and `/Nigeria/` are separate country landing pages, linked from
   the site footer. Preserve this case for ad destination URLs on GitHub Pages.
 - Their primary story is receiving international USD payments, then sending,
-  receiving, and holding supported USDT. Both headlines explicitly say
+  receiving, and holding digital dollars. The country-page asset list is USD,
+  USDT, USDC, and OUSD, as specified by the user. Receiving includes family,
+  friends, and anyone else using an eligible route; do not restrict this copy
+  to client payments. The hero includes `Open an account in minutes.` as
+  requested. Both headlines explicitly say
   `Your dollar account in Kenya/Nigeria` to continue the ad search intent.
   Both countries use `Savings` as the section and navigation label, with no
   eyebrow/kicker labels. Savings describes goals,
   not an insured bank product. Yields remain optional USDC investments with
   variable returns and capital risk; USDT must not be sent directly to a USDC
   vault.
+- Savings shows the same published rates as `/yields/`: Gauntlet USD Alpha
+  at 4.66% APY and Lido EarnUSD at 7% APY (checked 15 October 2026). Keep the
+  rates variable and direct visitors to current app rates and strategy details.
 - Neither landing renders a Coming soon section or roadmap navigation.
   Country FAQs do not promise NGN, KES, or M-PESA payouts. They direct users
   to routes actually available in their app. Nigeria does not advertise NGN

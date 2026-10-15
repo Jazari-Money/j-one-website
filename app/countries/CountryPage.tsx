@@ -16,9 +16,9 @@ export function CountryPage({ country }: { country: Country }) {
   const stem = `/images/countries/${country.toLowerCase()}-professional`;
   const questions = [
     { question: `How do I open a dollar account in ${country}?`, answer: "Download Jazari One, create your profile, and complete the identity checks requested in the app. If eligible, open Receive to view the USD account details provided through a licensed US bank partner. Requirements and access depend on your profile." },
-    { question: `How do I receive dollars in ${country}?`, answer: "For an eligible USD bank transfer, share the account details and payment instructions shown in Receive. For USDT, share the address for the exact asset and network displayed in your wallet. A bank transfer and a stablecoin transfer use different details." },
-    { question: "Can I send, receive, and hold USDT?", answer: "Yes, on the routes and networks supported in your app. The sender and recipient must use the same asset and network. Check fees and the recipient address before confirming. USDT is a stablecoin, not a bank deposit, and it can lose value." },
-    { question: country === "Nigeria" ? "Are Savings and Yields the same thing?" : "Can my USDT balance earn a yield?", answer: "Holding digital dollars does not automatically earn returns. Jazari’s Yields use supported USDC strategies; do not send USDT directly into a USDC vault. Yields are investments, not insured savings accounts. Rates vary, withdrawals may be delayed, and capital is at risk." },
+    { question: `How do I receive dollars in ${country}?`, answer: "Receive money from family, friends, or anyone else through an eligible route. For a USD bank transfer, share the account details and payment instructions shown in Receive. For USDT, USDC, or OUSD, share the address for the exact asset and network displayed in your wallet. Bank transfers and stablecoin transfers use different details." },
+    { question: "Can I send and receive USD, USDT, USDC, and OUSD?", answer: "Yes, through the routes supported in your app. USD bank transfers use bank details; USDT, USDC, and OUSD transfers use a supported wallet address and matching network. Check fees and recipient details before confirming. Stablecoins are not bank deposits and can lose value." },
+    { question: "What rates are available with Savings?", answer: "The published Yields options are Gauntlet USD Alpha at 4.66% APY and Lido EarnUSD at 7% APY. Rates are variable; check the current rate and funding instructions in the app. Holding digital dollars does not automatically earn returns. Yields are investments, not insured savings accounts; withdrawals may be delayed and capital is at risk." },
     { question: country === "Nigeria" ? "Can I withdraw to a Nigerian bank account?" : "Can I send to a Kenyan bank account or M-PESA?", answer: copy.localAnswer },
     { question: "What will it cost?", answer: "Review the app’s current quote and the Pricing page. Bank-transfer, conversion, USDT support, and network costs can differ. Check the total cost and expected timing before sending." },
   ];
@@ -46,7 +46,7 @@ export function CountryPage({ country }: { country: Country }) {
 
     <section className="country-wallet country-section" aria-labelledby="country-wallet-title">
       <Image className="country-product-art" src="/images/journeys/send-globe.png" width={1024} height={1024} alt="" />
-      <div><h2 id="country-wallet-title">Send and receive USDT.</h2><p className="country-description">Client payments or money for family. Send, receive, and hold USDT on supported networks, all in one balance. Check the address, network, and fees before sending.</p><Link href="/send/#wallet" className="country-product-action neutral-control">Explore sending</Link></div>
+      <div><h2 id="country-wallet-title">Send and receive.</h2><p className="country-description">Send USD by bank transfer, or USDT, USDC, and OUSD to supported wallets. Receive money into your USD account or wallet. Check the recipient, network, and fees before you confirm.</p><Link href="/send/#wallet" className="country-product-action neutral-control">Explore sending</Link></div>
     </section>
 
     <section className="country-savings country-section" id="savings" aria-labelledby="country-savings-title">
