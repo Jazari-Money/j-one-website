@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export type TermsVersion = "us" | "non-us";
+export type TermsVersion = "us" | "non-us" | "business";
 
 const versions: Array<{
   id: TermsVersion;
@@ -9,6 +9,7 @@ const versions: Array<{
 }> = [
   { id: "us", href: "/terms/", label: "US Terms" },
   { id: "non-us", href: "/terms/non-us/", label: "Non-US Terms" },
+  { id: "business", href: "/terms/business/", label: "Business" },
 ];
 
 export function TermsVersionSwitcher({

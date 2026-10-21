@@ -57,7 +57,7 @@ export function LegalPage({
               href={`#${section.id}`}
               key={section.id}
             >
-              {section.title.replace(/^\d+\.\s*/, "")}
+              {section.title.replace(/^\d+\.?\s+/, "")}
             </a>
           ))}
         </nav>

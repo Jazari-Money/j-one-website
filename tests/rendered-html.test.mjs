@@ -370,15 +370,17 @@ test("server-renders the standalone component board", async () => {
 });
 
 test("server-renders the internal legal pages", async () => {
-  const [termsResponse, nonUsTermsResponse, privacyResponse, ukRiskResponse] = await Promise.all([
+  const [termsResponse, nonUsTermsResponse, businessTermsResponse, privacyResponse, ukRiskResponse] = await Promise.all([
     render("/terms"),
     render("/terms/non-us"),
+    render("/terms/business"),
     render("/privacy-policy"),
     render("/uk-risk-information"),
   ]);
-  const [terms, nonUsTerms, privacy, ukRisk] = await Promise.all([
+  const [terms, nonUsTerms, businessTerms, privacy, ukRisk] = await Promise.all([
     termsResponse.text(),
     nonUsTermsResponse.text(),
+    businessTermsResponse.text(),
     privacyResponse.text(),
     ukRiskResponse.text(),
   ]);
@@ -412,6 +414,24 @@ test("server-renders the internal legal pages", async () => {
   assert.match(nonUsTerms, /href="#how-we-use-your-information"/);
   assert.match(nonUsTerms, /governed by the laws of the United Arab/);
   assert.doesNotMatch(nonUsTerms, /29\. State-specific disclosures/);
+
+  for (const html of [terms, nonUsTerms, businessTerms]) {
+    assert.match(html, /href="\/terms\/business\/">Business<\/a>/);
+  }
+  assert.match(businessTerms, /<title>Business Terms and Conditions — Jazari One<\/title>/);
+  assert.match(businessTerms, /aria-current="page" class="is-active" href="\/terms\/business\/">Business<\/a>/);
+  assert.match(businessTerms, /Effective date: 21 October 2026/);
+  assert.doesNotMatch(businessTerms, /<p>Version 1\.0<\/p>/);
+  assert.match(businessTerms, /<h2 id="definitions">Definitions<\/h2>/);
+  assert.match(businessTerms, /<h2 id="complaints-and-how-to-contact-us">17 Complaints and How to Contact Us<\/h2>/);
+  assert.match(businessTerms, /<h2 id="contact-information">Contact Information<\/h2>/);
+  assert.match(businessTerms, /1111B S Governors Avenue # 93312, Dover, DE 19904, United States/);
+  assert.match(businessTerms, /href="mailto:hello@jazari.xyz"/);
+  const businessDocument = businessTerms.match(/<article class="legal-document">([\s\S]*?)<\/article>/)[1];
+  assert.equal((businessDocument.match(/<h2\b/g) ?? []).length, 19);
+  for (const [, id] of businessDocument.matchAll(/<h2 id="([^"]+)"/g)) {
+    assert.match(businessTerms, new RegExp(`href="#${id}"`));
+  }
 
   assert.match(privacy, /<h1>Privacy Policy<\/h1>/);
   assert.match(privacy, /Last updated: October 2026/);
@@ -537,6 +557,7 @@ test("publishes internal support and product pages in the sitemap", async () => 
     sitemap,
     /<loc>https:\/\/jazari\.xyz\/terms\/non-us<\/loc>/,
   );
+  assert.match(sitemap, /<loc>https:\/\/jazari\.xyz\/terms\/business<\/loc>/);
   assert.doesNotMatch(sitemap, /compare-transfer-costs|verify-recipient-details|digital-dollars-bank-payouts/);
 });
 
