@@ -23,6 +23,7 @@ const routes = [
   "/send",
   "/terms",
   "/terms/non-us",
+  "/terms/business",
   "/uk-risk-information",
   "/yields",
   "/Kenya/",

@@ -491,6 +491,21 @@ test("renders the legal documents as internal Jazari pages", async ({ page }) =>
     () => page.evaluate(() => performance.getEntriesByType("navigation").length),
   ).toBe(navigationEntries);
 
+  await page.getByRole("navigation", { name: "Terms version" })
+    .getByRole("link", { name: "Business", exact: true }).click();
+  await expect(page).toHaveURL(/\/terms\/business\/?$/);
+  await expect(page.getByText("Effective date: 21 October 2026")).toBeVisible();
+  await expect(page.getByText("Version 1.0", { exact: true })).toHaveCount(0);
+  await expect(page.getByRole("navigation", { name: "Terms version" })
+    .getByRole("link", { name: "Business", exact: true })).toHaveAttribute("aria-current", "page");
+  const businessContents = page.getByRole("navigation", { name: "Terms & Conditions sections" });
+  await expect(businessContents.getByRole("link")).toHaveCount(19);
+  await businessContents.getByRole("link", { name: "Contact Information", exact: true }).click();
+  await expect(page).toHaveURL(/#contact-information$/);
+  await expect(page.getByRole("heading", { name: "Contact Information", exact: true })).toBeInViewport();
+  await page.getByRole("navigation", { name: "Terms version" })
+    .getByRole("link", { name: "Non-US Terms", exact: true }).click();
+
   const finalSectionLink = page.getByRole(
     "navigation",
     { name: "Terms & Conditions sections" },
@@ -533,6 +548,7 @@ test("keeps the terms switcher tappable without mobile overflow", async ({ page 
   const switcher = page.getByRole("navigation", { name: "Terms version" });
   await expect(switcher.getByRole("link", { name: "US Terms", exact: true })).toBeVisible();
   await expect(switcher.getByRole("link", { name: "Non-US Terms", exact: true })).toBeVisible();
+  await expect(switcher.getByRole("link", { name: "Business", exact: true })).toBeVisible();
 
   const sizes = await switcher.evaluate((node) => ({
     height: Math.round(node.getBoundingClientRect().height),
@@ -540,6 +556,22 @@ test("keeps the terms switcher tappable without mobile overflow", async ({ page 
   }));
   expect(sizes.height).toBeGreaterThanOrEqual(48);
   expect(sizes.width).toBeLessThanOrEqual(288);
+
+  await switcher.getByRole("link", { name: "Business", exact: true }).click();
+  await expect(page).toHaveURL(/\/terms\/business\/?$/);
+  await expect(page.getByText("Effective date: 21 October 2026")).toBeVisible();
+  for (const link of await switcher.getByRole("link").all()) {
+    const box = await link.boundingBox();
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(320);
+    expect(await link.evaluate((node) => {
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      return range.getClientRects().length;
+    })).toBe(1);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(320);
 
   await switcher.getByRole("link", { name: "Non-US Terms", exact: true }).click();
   await expect(page).toHaveURL(/\/terms\/non-us\/?$/);
@@ -602,7 +634,7 @@ test("renders UK risk information statically and without mobile overflow", async
 test("places legal document content to the left of Contents on desktop", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
 
-  for (const path of ["/privacy-policy/", "/terms/", "/uk-risk-information/"]) {
+  for (const path of ["/privacy-policy/", "/terms/", "/terms/business/", "/uk-risk-information/"]) {
     await page.goto(path, { waitUntil: "networkidle" });
     const [document, contents] = await Promise.all([
       page.locator(".legal-document").boundingBox(),

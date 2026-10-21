@@ -1,6 +1,6 @@
 # Jazari One website context
 
-Last updated: 2026-10-15
+Last updated: 2026-10-21
 
 ## Kenya and Nigeria acquisition pages
 
@@ -142,6 +142,17 @@ entity` prefix. Their company names use the editorial serif:
 
 `Our partners` shows Bridge, Privy, Gauntlet, and Lido. The `See all partners`
 pill sits opposite the H2, including at 390px. It links to `/partners/`.
+
+### Business Terms and Conditions
+
+- `/terms/business/` contains the user-supplied final Business Terms v1.0,
+  effective 21 October 2026, with the complete legal wording and numbering.
+- The shared terms switcher has US Terms, Non-US Terms, and Business tabs.
+- Business uses the same legal layout, with Definitions, 17 numbered sections,
+  Contact Information, and a linked Contents index. Document cover furniture is
+  omitted; only the effective date appears in the shared hero metadata.
+- Source: `Final Version - Jazari One Business Terms and Conditions - v1.0
+  (Published Date_ 21 October 2026) vHAS.docx`, supplied on 21 October 2026.
 
 ### US Terms and Conditions
 
