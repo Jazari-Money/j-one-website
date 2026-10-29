@@ -16,6 +16,7 @@ type LatamCopy = {
   rows: { ours: Text; others: Text }[];
   bankTitle: Text;
   bankCopy: Text;
+  clabe?: boolean;
   clearTitle: Text;
   clearCopy: Text;
   familyTitle: Text;
@@ -29,7 +30,7 @@ const rows = (currency: string) => [
   { ours: { es: `Ves cuántos ${currency} llegan antes de enviar`, en: `See how many ${currency} arrive before you send` }, others: { es: "Sorpresas al final", en: "Surprises at the end" } },
 ];
 
-const faq = (country: { es: string; en: string }, bank: Text) => [
+const faq = (country: { es: string; en: string }, bank: Text, extra?: { question: Text; answer: Text }) => [
   {
     question: { es: `¿Cuánto cuesta enviar dinero a ${country.es}?`, en: `How much does it cost to send money to ${country.en}?` },
     answer: {
@@ -66,6 +67,7 @@ const faq = (country: { es: string; en: string }, bank: Text) => [
       en: "We verify your identity before opening your account, and dollar accounts are provided through a licensed US bank partner, subject to verification. Before every transfer you see who you are sending to and what it costs.",
     },
   },
+  ...(extra ? [extra] : []),
 ];
 
 export const latamCountries: Record<LatamCountry, LatamCopy> = {
@@ -88,11 +90,12 @@ export const latamCountries: Record<LatamCountry, LatamCopy> = {
       en: "Every cent counts when you send it to Mexico. With a great exchange rate, your family gets more pesos for every dollar.",
     },
     rows: rows("pesos"),
-    bankTitle: { es: "A cualquier banco en México.", en: "To any bank in Mexico." },
+    bankTitle: { es: "Directo a su CLABE.", en: "Straight to their CLABE." },
     bankCopy: {
-      es: "Envía directo a la CLABE de tu familiar, en cualquier banco de México. Desde la app, cuando lo necesiten.",
-      en: "Send straight to your relative’s CLABE at any bank in Mexico. From the app, whenever they need it.",
+      es: "Solo necesitas la CLABE de tu familiar: los 18 dígitos que ya usa para recibir transferencias. Escríbela una vez en la app y envía a cualquier banco de México por SPEI.",
+      en: "All you need is your relative’s CLABE: the 18 digits they already use to receive transfers. Add it once in the app and send to any bank in Mexico through SPEI.",
     },
+    clabe: true,
     clearTitle: { es: "Sabes cuánto llega antes de enviar.", en: "Know what arrives before you send." },
     clearCopy: {
       es: "Antes de confirmar ves el tipo de cambio, el costo del envío y cuántos pesos recibe tu familia. Sin sorpresas al final.",
@@ -106,6 +109,12 @@ export const latamCountries: Record<LatamCountry, LatamCopy> = {
     faq: faq({ es: "México", en: "Mexico" }, {
       es: "A cualquier banco en México que reciba transferencias SPEI, con la CLABE de 18 dígitos de tu familiar.",
       en: "Any bank in Mexico that receives SPEI transfers, using your relative’s 18-digit CLABE.",
+    }, {
+      question: { es: "¿Qué es la CLABE y dónde la encuentro?", en: "What is a CLABE and where do I find it?" },
+      answer: {
+        es: "La CLABE es el número de 18 dígitos de la cuenta bancaria de tu familiar en México. Lo encuentra en la app de su banco, en su estado de cuenta o en su sucursal. Revisa los 18 dígitos antes de enviar.",
+        en: "A CLABE is the 18-digit number of your relative’s bank account in Mexico. They can find it in their bank’s app, on their statement or at their branch. Check all 18 digits before you send.",
+      },
     }),
   },
   Colombia: {

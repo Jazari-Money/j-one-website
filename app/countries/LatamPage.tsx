@@ -50,7 +50,13 @@ export function LatamPage({ country }: { country: LatamCountry }) {
     </section>
 
     <section className="country-wallet country-section" aria-labelledby="latam-bank-title">
-      <Image className="country-product-art" src="/images/journeys/send-globe.png" width={1024} height={1024} alt="" />
+      {c.clabe ? <div className="latam-clabe" aria-label="CLABE: 18 dígitos">
+        <span className="latam-clabe-label">CLABE</span>
+        <div className="latam-clabe-digits">
+          {[["3", "Banco", "Bank"], ["3", "Plaza", "City"], ["11", "Cuenta", "Account"], ["1", "Control", "Check"]].map(([n, es, en]) => <div key={es} style={{ flexGrow: Number(n) }}><b>{"0".repeat(Number(n))}</b><small><LatamText es={es} en={en} /></small></div>)}
+        </div>
+        <span className="latam-clabe-total"><LatamText es="18 dígitos" en="18 digits" /></span>
+      </div> : <Image className="country-product-art" src="/images/journeys/send-globe.png" width={1024} height={1024} alt="" />}
       <div><h2 id="latam-bank-title"><T t={c.bankTitle} /></h2><p className="country-description"><T t={c.bankCopy} /></p></div>
     </section>
 
