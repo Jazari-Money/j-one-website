@@ -26,3 +26,9 @@ Generated with ChatGPT image generation through the Codex CLI (`codex-chatgpt` s
 - `mexico-family`: a Mexican mother in her late 50s at home in Guadalajara (talavera tiles, plants), smiling at her phone as money from her son arrives.
 - `colombia-sender`: a Colombian woman about 30 in a light Miami apartment (palm trees outside), smiling at her phone after sending money to her family in Medellín.
 - `colombia-family`: a Colombian father in his early 60s in a Medellín courtyard (green hills behind), smiling at his phone as money from his daughter arrives.
+
+## Hero personas (29 October 2026, evening)
+
+The Mexico and Colombia heroes rotate three personas per visit (`{mexico,colombia}-persona-{1,2,3}`), generated with Nano Banana Pro (Gemini, `google-ai` skill) at 2528 × 1696 and cut to 1536 × 1024. They replace the earlier, too glossy `*-sender` hero shots, which stay unused in the folder. Fictional people, not customers. Shared prompt prefix: "Candid documentary photograph, shot on a 35mm camera with natural available light, real unretouched skin texture with pores and small imperfections, slight film grain, natural colour, believable everyday home, nothing staged or glossy, no beauty filter. People on the right half, waist-up. The phone screen faces away from the camera. No text, no logos."
+- Mexico: 1 daughter and mother at a Texas kitchen table; 2 bakery worker on her lunch break in Los Angeles; 3 grandmother and granddaughter on a Phoenix sofa.
+- Colombia: 1 two sisters in a Miami kitchen; 2 nurse after her shift at a Houston cafe; 3 mother and teenage son in New Jersey with a Colombia scarf on the wall.

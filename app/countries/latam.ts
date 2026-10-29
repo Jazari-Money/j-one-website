@@ -11,6 +11,7 @@ type LatamCopy = {
   headline: Text;
   intro: Text;
   heroAlt: string;
+  personaAlts: string[];
   familyAlt: string;
   pesosTitle: Text;
   pesosCopy: Text;
@@ -75,15 +76,20 @@ export const latamCountries: Record<LatamCountry, LatamCopy> = {
   Mexico: {
     title: { es: "Envía dinero a México | Jazari One", en: "Send money to Mexico | Jazari One" },
     description: {
-      es: "Excelente tipo de cambio y llega en minutos, directo a su CLABE en cualquier banco de México. Ves cuántos pesos recibe tu familia antes de enviar.",
-      en: "A great exchange rate, and it arrives in minutes, straight to their CLABE at any bank in Mexico. See how many pesos your family gets before you send.",
+      es: "Excelente tipo de cambio y llega en minutos, directo a su CLABE en cualquier banco de México.",
+      en: "A great exchange rate, and it arrives in minutes, straight to their CLABE at any bank in Mexico.",
     },
     headline: { es: "Envía dinero a México con Jazari One", en: "Send money to Mexico with Jazari One" },
     intro: {
-      es: "Excelente tipo de cambio y llega en minutos, directo a su CLABE en cualquier banco de México. Ves cuántos pesos recibe tu familia antes de enviar.",
-      en: "A great exchange rate, and it arrives in minutes, straight to their CLABE at any bank in Mexico. See how many pesos your family gets before you send.",
+      es: "Excelente tipo de cambio y llega en minutos, directo a su CLABE en cualquier banco de México.",
+      en: "A great exchange rate, and it arrives in minutes, straight to their CLABE at any bank in Mexico.",
     },
     heroAlt: "Ilustración: hombre mexicano en su cocina en Texas mira su teléfono después de enviar dinero a casa",
+    personaAlts: [
+      "Ilustración: una mujer y su mamá en la cocina en Texas miran el teléfono",
+      "Ilustración: mujer en su descanso frente a la panadería donde trabaja en Los Ángeles mira su teléfono",
+      "Ilustración: una abuela y su nieta en el sofá miran el teléfono y se ríen",
+    ],
     familyAlt: "Ilustración: madre en Guadalajara sonríe al ver su teléfono",
     pesosTitle: { es: "Más pesos para tu familia", en: "More pesos for your family" },
     pesosCopy: {
@@ -121,15 +127,20 @@ export const latamCountries: Record<LatamCountry, LatamCopy> = {
   Colombia: {
     title: { es: "Envía dinero a Colombia | Jazari One", en: "Send money to Colombia | Jazari One" },
     description: {
-      es: "Excelente tipo de cambio y tu giro llega en minutos a cualquier banco en Colombia. Ves cuántos pesos recibe tu familia antes de enviar.",
-      en: "A great exchange rate, and your transfer reaches any bank in Colombia in minutes. See how many pesos your family gets before you send.",
+      es: "Excelente tipo de cambio y tu giro llega en minutos a cualquier banco en Colombia.",
+      en: "A great exchange rate, and your transfer reaches any bank in Colombia in minutes.",
     },
     headline: { es: "Envía dinero a Colombia con Jazari One", en: "Send money to Colombia with Jazari One" },
     intro: {
-      es: "Excelente tipo de cambio y tu giro llega en minutos a cualquier banco en Colombia. Ves cuántos pesos recibe tu familia antes de enviar.",
-      en: "A great exchange rate, and your transfer reaches any bank in Colombia in minutes. See how many pesos your family gets before you send.",
+      es: "Excelente tipo de cambio y tu giro llega en minutos a cualquier banco en Colombia.",
+      en: "A great exchange rate, and your transfer reaches any bank in Colombia in minutes.",
     },
     heroAlt: "Ilustración: mujer colombiana en su sala en Miami mira su teléfono después de enviar dinero a su familia",
+    personaAlts: [
+      "Ilustración: dos hermanas colombianas en la cocina en Miami miran el teléfono y se ríen",
+      "Ilustración: enfermera colombiana después de su turno en un café en Houston mira su teléfono",
+      "Ilustración: una mamá colombiana y su hijo en el sofá miran el teléfono",
+    ],
     familyAlt: "Ilustración: padre en Medellín sonríe al ver su teléfono",
     pesosTitle: { es: "Más pesos para tu familia", en: "More pesos for your family" },
     pesosCopy: {

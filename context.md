@@ -107,6 +107,10 @@ Last updated: 2026-10-21
   presses on touch. The CLABE (`LatamInteractive.tsx`) is one 18-digit line
   in four labelled groups that decodes into a new random example every few
   seconds while in view (static for reduced motion); no "18 digits" caption.
+- Hero: three personas per country (women and their relatives), one picked
+  at random per visit before paint (`html[data-persona]`, never the same twice
+  in a row via sessionStorage; persona 1 without JS); Nano Banana Pro, see the
+  images README. Hero copy is short: rate, speed, any bank (Mexico: CLABE).
 - Photos (`public/images/countries/{mexico,colombia}-{sender,family}`) are
   ChatGPT-generated fictional personas, not testimonials; prompts in the
   images README.

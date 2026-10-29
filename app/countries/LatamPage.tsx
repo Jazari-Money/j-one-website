@@ -31,8 +31,10 @@ export function LatamPage({ country }: { country: LatamCountry }) {
         <p><T t={c.intro} /></p>
         <CountryDownloadLink country={country} placement="hero" className="country-primary-action" downloadUrl={countryAppDownloadUrl}><Download /></CountryDownloadLink>
       </div>
-      <div className="country-hero-media">
-        <ResponsiveImage fallback={`/images/countries/${slug}-sender.webp`} stem={`/images/countries/${slug}-sender`} widths={[480, 960, 1440]} width={1536} height={1024} alt={c.heroAlt} sizes="(max-width: 900px) calc(100vw - 40px), 52vw" loading="eager" fetchPriority="high" />
+      <div className="country-hero-media latam-personas">
+        {c.personaAlts.map((alt, n) => <div className="latam-persona" data-p={n + 1} key={alt}>
+          <ResponsiveImage fallback={`/images/countries/${slug}-persona-${n + 1}.webp`} stem={`/images/countries/${slug}-persona-${n + 1}`} widths={[480, 960, 1440]} width={1536} height={1024} alt={alt} sizes="(max-width: 900px) calc(100vw - 40px), 52vw" loading="lazy" />
+        </div>)}
       </div>
     </header>
 
