@@ -5,7 +5,7 @@ import { appDownloadUrl } from "../site-paths";
 import { useCookieConsent } from "../cookie-consent/CookieConsent";
 
 export function CountryDownloadLink({ country, placement, className, children, onClick, downloadUrl = appDownloadUrl }: {
-  country?: "Kenya" | "Nigeria";
+  country?: "Kenya" | "Nigeria" | "Mexico" | "Colombia";
   placement: string;
   className?: string;
   children: ReactNode;

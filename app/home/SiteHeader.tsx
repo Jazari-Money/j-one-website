@@ -2,7 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- local brand artwork uses its exact source */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { countryAppDownloadUrl, withBasePath } from "../site-paths";
 import { SocialLinks } from "./SocialLinks";
 import { CountryDownloadLink } from "../countries/CountryDownloadLink";
@@ -10,9 +10,13 @@ import { CountryDownloadLink } from "../countries/CountryDownloadLink";
 export function SiteHeader({
   mode = "home",
   country,
+  actions,
+  downloadLabel,
 }: {
   mode?: "home" | "internal" | "minimal" | "country";
-  country?: "Kenya" | "Nigeria";
+  country?: "Kenya" | "Nigeria" | "Mexico" | "Colombia";
+  actions?: ReactNode;
+  downloadLabel?: ReactNode;
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -87,8 +91,9 @@ export function SiteHeader({
           </a>
           {mode === "country" && (
             <div className="nav-actions">
+              {actions}
               <CountryDownloadLink country={country} placement="header" className="nav-cta neutral-control" downloadUrl={countryAppDownloadUrl}>
-                <span className="nav-cta-label">Download App</span>
+                <span className="nav-cta-label">{downloadLabel ?? "Download App"}</span>
               </CountryDownloadLink>
             </div>
           )}

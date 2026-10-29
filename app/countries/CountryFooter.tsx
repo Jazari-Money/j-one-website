@@ -6,7 +6,7 @@ import { SocialLinks } from "../home/SocialLinks";
 import { FooterLegalInformation } from "../home/FooterLegalInformation";
 import { useCookieConsent } from "../cookie-consent/CookieConsent";
 
-export function CountryFooter({ country }: { country: "Kenya" | "Nigeria" }) {
+export function CountryFooter({ country }: { country: "Kenya" | "Nigeria" | "Mexico" | "Colombia" }) {
   const { openPreferences } = useCookieConsent();
   return (
     <footer className="country-footer">

@@ -1,0 +1,37 @@
+/* Mexico and Colombia landings: language visibility, the Jazari One vs. others ledger, the family photo. */
+html:not([data-site-lang="en"]) .latam-shell [data-l="en"],
+html[data-site-lang="en"] .latam-shell [data-l="es"] { display: none !important; }
+
+.latam-lang { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; }
+.latam-lang button { min-width: 40px; padding: 7px 10px; border-radius: 999px; color: var(--muted-strong); font-size: 12px; font-weight: 600; letter-spacing: .06em; cursor: pointer; }
+.latam-lang button[aria-pressed="true"] { background: var(--text); color: #000; }
+.latam-lang button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.latam-shell .country-header .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+.latam-pesos { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(48px, 8vw, 120px); align-items: center; }
+.latam-compare { display: grid; font-size: 17px; }
+.latam-compare-head,
+.latam-compare-row { display: grid; grid-template-columns: 1.2fr 1fr; }
+.latam-compare-head span { padding: 0 20px 16px; color: var(--muted-strong); font-size: 14px; font-weight: 600; }
+.latam-compare-head img { width: 132px; height: auto; display: block; }
+.latam-compare-row span { padding: 20px; border-top: 1px solid var(--line); line-height: 1.35; }
+.latam-compare-row .ours { display: flex; gap: 12px; font-weight: 600; color: var(--text); }
+.latam-compare-row .ours::before { content: "✓"; flex: none; color: var(--accent); font-weight: 700; }
+.latam-compare-row .others { color: var(--muted-strong); }
+
+.latam-clear h2 { max-width: 900px; }
+.latam-family-media { height: 460px; border-radius: 26px; overflow: hidden; }
+.latam-family-media picture,
+.latam-family-media img { display: block; width: 100%; height: 100%; }
+.latam-family-media img { object-fit: cover; object-position: 65% center; }
+
+@media (max-width: 900px) {
+  .latam-pesos { grid-template-columns: 1fr; gap: 40px; }
+  .latam-family-media { height: 360px; }
+  .latam-shell .country-header .nav-cta { display: none; }
+}
+@media (max-width: 620px) {
+  .latam-compare { font-size: 15px; }
+  .latam-compare-row span, .latam-compare-head span { padding-left: 12px; padding-right: 12px; }
+  .latam-family-media { height: 280px; border-radius: 22px; }
+}

@@ -1,4 +1,4 @@
-export function FooterLegalInformation({ country }: { country?: "Kenya" | "Nigeria" }) {
+export function FooterLegalInformation({ country }: { country?: "Kenya" | "Nigeria" | "Mexico" | "Colombia" }) {
   return (
     <div className="footer-addresses-content">
       <address>
