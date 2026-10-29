@@ -13,7 +13,7 @@ const exchangeRatesUrl = "https://api.jazari.xyz/public/api/v1/exchange_rates";
 const refreshDelay = 30_000;
 
 export function LatamRates({ currency, flag }: { currency: "MXN" | "COP"; flag: string }) {
-  const [amount, setAmount] = useState("500.00");
+  const [amount, setAmount] = useState("100.00");
   const [rate, setRate] = useState<number | null | undefined>(undefined);
 
   useEffect(() => {
