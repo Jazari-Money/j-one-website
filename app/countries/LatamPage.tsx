@@ -13,6 +13,8 @@ import "../styles/country-pages.css";
 import "../styles/how.css";
 import "../styles/latam-pages.css";
 import { LatamRates } from "./LatamRates";
+import { ClabeShowcase, LatamCard } from "./LatamInteractive";
+import "../styles/interactions.css";
 
 function Download() { return <LatamText es="Descarga la app" en="Download App" />; }
 function T({ t }: { t: { es: string; en: string } }) { return <LatamText es={t.es} en={t.en} />; }
@@ -50,7 +52,7 @@ export function LatamPage({ country }: { country: LatamCountry }) {
         <h2 id="latam-pesos-title"><T t={c.pesosTitle} /></h2>
         <p className="country-description"><T t={c.pesosCopy} /></p>
       </div>
-      <div className="latam-compare" role="table" aria-label="Jazari One vs. otros">
+      <LatamCard className="latam-compare"><div role="table" aria-label="Jazari One vs. otros">
         <div className="latam-compare-head" role="row">
           <span role="columnheader"><Image src="/images/brand/jazari-one-logo.svg" alt="Jazari One" width={1638} height={217} /></span>
           <span role="columnheader"><LatamText es="Otros" en="Others" /></span>
@@ -59,17 +61,11 @@ export function LatamPage({ country }: { country: LatamCountry }) {
           <span role="cell" className="ours"><i aria-hidden="true" /><span><T t={row.ours} /></span></span>
           <span role="cell" className="others"><T t={row.others} /></span>
         </div>)}
-      </div>
+      </div></LatamCard>
     </section>
 
     <section className="country-wallet country-section" aria-labelledby="latam-bank-title">
-      {c.clabe ? <div className="latam-clabe" aria-label="CLABE: 18 dígitos">
-        <span className="latam-clabe-label">CLABE</span>
-        <div className="latam-clabe-digits">
-          {[["3", "Banco", "Bank"], ["3", "Plaza", "City"], ["11", "Cuenta", "Account"], ["1", "Control", "Check"]].map(([n, es, en]) => <div key={es} style={{ flexGrow: Number(n) }}><b>{"0".repeat(Number(n))}</b><small><LatamText es={es} en={en} /></small></div>)}
-        </div>
-        <span className="latam-clabe-total"><LatamText es="18 dígitos" en="18 digits" /></span>
-      </div> : <Image className="country-product-art" src="/images/journeys/send-globe.png" width={1024} height={1024} alt="" />}
+      {c.clabe ? <LatamCard className="latam-clabe-card"><ClabeShowcase /></LatamCard> : <Image className="country-product-art" src="/images/journeys/send-globe.png" width={1024} height={1024} alt="" />}
       <div><h2 id="latam-bank-title"><T t={c.bankTitle} /></h2><p className="country-description"><T t={c.bankCopy} /></p></div>
     </section>
 

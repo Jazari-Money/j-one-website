@@ -101,6 +101,12 @@ Last updated: 2026-10-21
   "0% fee" tile), more pesos (Jazari One vs. others list), any bank (Mexico: a
   CLABE block, 3 bank + 3 city + 11 account + 1 check digit), family section
   with photo, FAQ (Mexico adds "What is a CLABE").
+- Interactions copy the homepage: comparison list, CLABE and rate cards use
+  `pointer-card` (tilt, lift, cursor-localised border; off on touch, press
+  scale instead); the Download button lifts with a light pass on hover and
+  presses on touch. The CLABE (`LatamInteractive.tsx`) is one 18-digit line
+  in four labelled groups that decodes into a new random example every few
+  seconds while in view (static for reduced motion); no "18 digits" caption.
 - Photos (`public/images/countries/{mexico,colombia}-{sender,family}`) are
   ChatGPT-generated fictional personas, not testimonials; prompts in the
   images README.
