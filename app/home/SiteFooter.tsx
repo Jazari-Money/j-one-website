@@ -9,7 +9,7 @@ import { SocialLinks } from "./SocialLinks";
 import { FooterLegalInformation } from "./FooterLegalInformation";
 import { CountryDownloadLink } from "../countries/CountryDownloadLink";
 
-export function SiteFooter({ country }: { country?: "Kenya" | "Nigeria" }) {
+export function SiteFooter({ country }: { country?: "Kenya" | "Nigeria" | "Mexico" | "Colombia" }) {
   const { openPreferences } = useCookieConsent();
 
   return (
@@ -42,6 +42,8 @@ export function SiteFooter({ country }: { country?: "Kenya" | "Nigeria" }) {
             <Link href="/partners">Partners</Link>
             <Link href="/Kenya">Kenya</Link>
             <Link href="/Nigeria">Nigeria</Link>
+            <Link href="/Mexico">México</Link>
+            <Link href="/Colombia">Colombia</Link>
           </div>
           <div>
             <strong>Legal</strong>

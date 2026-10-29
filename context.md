@@ -79,6 +79,30 @@ Last updated: 2026-10-21
   Keep Kenya and Nigeria campaigns separate for evaluation.
 - Test alternate local preview ports with `PLAYWRIGHT_PORT=3015`.
 
+## Mexico and Colombia sender landings
+
+- `/Mexico/` and `/Colombia/` (added 29 October 2026) are destinations for Meta
+  lead-gen forms. The audience is US senders to Mexico and Colombia; the
+  family section speaks to the receiving side. Same country header/footer
+  mode and sticky mobile Download App as Kenya/Nigeria, built by
+  `app/countries/LatamPage.tsx` from `app/countries/latam.ts`.
+- Spanish first with an ES/EN switch in the header (`LatamLang.tsx`): both
+  languages are in the static markup and `html[data-site-lang]` shows one.
+  `?lang=en` or a saved choice (`localStorage` `jz-latam-lang`) selects English.
+- Copy follows the October 2026 ad rules: great exchange rate, more pesos per
+  dollar, arrives in minutes, any bank (Mexico: CLABE/SPEI), the cost and the
+  amount shown before sending. Never "no extra fee", "free", "best", Yields,
+  stablecoin words, incentives or referral offers on these pages.
+  "In minutes" still needs Alex's confirmation of real delivery times.
+- Structure: hero, more pesos (Jazari One vs. others ledger), any bank, know
+  what arrives before you send, family section with photo, FAQ.
+- Photos (`public/images/countries/{mexico,colombia}-{sender,family}`) are
+  ChatGPT-generated fictional personas, not testimonials; prompts in the
+  images README.
+- Download links reuse the Kenya/Nigeria campaign link with
+  `utm_content=<country>-<placement>`; a dedicated Branch link per country is
+  still to be created.
+
 ## Product
 
 Jazari One is presented as a global digital-dollar account for people whose
