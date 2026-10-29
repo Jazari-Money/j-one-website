@@ -64,7 +64,7 @@ export function LatamRates({ currency, flag }: { currency: "MXN" | "COP"; flag: 
       <span className="latam-ccy-chip"><img src={withBasePath(flag)} alt="" width="80" height="80" /><span className="numeric">{currency}</span></span>
     </div>
     <p className="rate-disclaimer"><LatamText
-      es="Tipo de cambio en vivo de nuestro socio de pagos. El tipo de cambio final, el costo y el tiempo de entrega se confirman en la app antes de enviar."
-      en="Live rate from our payment partner. The final rate, cost and delivery time are confirmed in the app before you send." /></p>
+      es="Tipo de cambio en vivo de nuestro socio de pagos, con todas las comisiones incluidas. El tipo de cambio final y el tiempo de entrega se confirman en la app antes de enviar."
+      en="Live rate from our payment partner, with every fee included. The final rate and delivery time are confirmed in the app before you send." /></p>
   </div>;
 }

@@ -90,8 +90,10 @@ Last updated: 2026-10-21
   languages are in the static markup and `html[data-site-lang]` shows one.
   `?lang=en` or a saved choice (`localStorage` `jz-latam-lang`) selects English.
 - Copy follows the October 2026 ad rules: great exchange rate, more pesos per
-  dollar, arrives in minutes, any bank (Mexico: CLABE/SPEI), the cost and the
-  amount shown before sending. Never "no extra fee", "free", "best", Yields,
+  dollar, arrives in minutes, any bank (Mexico: CLABE/SPEI), the amount shown
+  before sending. Fee line approved by Nikita on 29 October 2026: "our exchange
+  rate already includes every fee and is among the best on the market" (rates
+  block, FAQ, calculator note). Never "no extra fee", "free", "the best", Yields,
   stablecoin words, incentives or referral offers on these pages.
   "In minutes" still needs Alex's confirmation of real delivery times.
 - Structure: hero, live rate calculator (`LatamRates.tsx`: the homepage

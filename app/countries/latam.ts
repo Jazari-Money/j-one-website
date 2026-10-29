@@ -1,6 +1,7 @@
 // Mexico and Colombia sender landings (Meta lead-gen destination). Spanish first, English via the page language switch.
 // Copy follows the October 2026 ad rules: great exchange rate, in minutes, any bank, cost shown before sending.
-// Never "no extra fee", "free" or "best"; no incentives or referral offers on these pages.
+// Fee line (Nikita, 29.10): "our exchange rate already includes every fee and is among the best on the market".
+// Never "no extra fee", "free" or "the best"; no incentives or referral offers on these pages.
 export type LatamCountry = "Mexico" | "Colombia";
 export type Text = { es: string; en: string };
 
@@ -34,8 +35,8 @@ const faq = (country: { es: string; en: string }, bank: Text, extra?: { question
   {
     question: { es: `¿Cuánto cuesta enviar dinero a ${country.es}?`, en: `How much does it cost to send money to ${country.en}?` },
     answer: {
-      es: "Antes de confirmar, la app te muestra el tipo de cambio, el costo del envío y el monto estimado que recibe tu familia. Revisa el total antes de enviar.",
-      en: "Before you confirm, the app shows the exchange rate, the transfer cost and the estimated amount your family receives. Check the total before you send.",
+      es: "Nuestro tipo de cambio ya incluye todas las comisiones. Antes de confirmar, la app te muestra el tipo de cambio y el monto estimado que recibe tu familia.",
+      en: "Our exchange rate already includes every fee. Before you confirm, the app shows the exchange rate and the estimated amount your family receives.",
     },
   },
   {
@@ -74,13 +75,13 @@ export const latamCountries: Record<LatamCountry, LatamCopy> = {
   Mexico: {
     title: { es: "Envía dinero a México | Jazari One", en: "Send money to Mexico | Jazari One" },
     description: {
-      es: "Excelente tipo de cambio y llega en minutos a cualquier banco en México. Ves cuántos pesos recibe tu familia antes de enviar.",
-      en: "A great exchange rate, and it reaches any bank in Mexico in minutes. See how many pesos your family gets before you send.",
+      es: "Excelente tipo de cambio y llega en minutos, directo a su CLABE en cualquier banco de México. Ves cuántos pesos recibe tu familia antes de enviar.",
+      en: "A great exchange rate, and it arrives in minutes, straight to their CLABE at any bank in Mexico. See how many pesos your family gets before you send.",
     },
     headline: { es: "Envía dinero a México con Jazari One.", en: "Send money to Mexico with Jazari One." },
     intro: {
-      es: "Excelente tipo de cambio y llega en minutos a cualquier banco en México. Ves cuántos pesos recibe tu familia antes de enviar.",
-      en: "A great exchange rate, and it reaches any bank in Mexico in minutes. See how many pesos your family gets before you send.",
+      es: "Excelente tipo de cambio y llega en minutos, directo a su CLABE en cualquier banco de México. Ves cuántos pesos recibe tu familia antes de enviar.",
+      en: "A great exchange rate, and it arrives in minutes, straight to their CLABE at any bank in Mexico. See how many pesos your family gets before you send.",
     },
     heroAlt: "Ilustración: hombre mexicano en su cocina en Texas mira su teléfono después de enviar dinero a casa",
     familyAlt: "Ilustración: madre en Guadalajara sonríe al ver su teléfono",
@@ -98,8 +99,8 @@ export const latamCountries: Record<LatamCountry, LatamCopy> = {
     clabe: true,
     clearTitle: { es: "Sabes cuánto llega antes de enviar.", en: "Know what arrives before you send." },
     clearCopy: {
-      es: "Antes de confirmar ves el tipo de cambio, el costo del envío y cuántos pesos recibe tu familia. Sin sorpresas al final.",
-      en: "Before you confirm you see the exchange rate, the transfer cost and how many pesos your family gets. No surprises at the end.",
+      es: "Nuestro tipo de cambio ya incluye todas las comisiones y está entre los mejores del mercado. Lo que ves es lo que recibe tu familia.",
+      en: "Our exchange rate already includes every fee, and it’s among the best on the market. What you see is what your family gets.",
     },
     familyTitle: { es: "Para tu familia en México.", en: "For your family in Mexico." },
     familyCopy: {
@@ -143,8 +144,8 @@ export const latamCountries: Record<LatamCountry, LatamCopy> = {
     },
     clearTitle: { es: "Sabes cuánto llega antes de enviar.", en: "Know what arrives before you send." },
     clearCopy: {
-      es: "Antes de confirmar ves el tipo de cambio, el costo del giro y cuántos pesos recibe tu familia. Sin sorpresas al final.",
-      en: "Before you confirm you see the exchange rate, the transfer cost and how many pesos your family gets. No surprises at the end.",
+      es: "Nuestro tipo de cambio ya incluye todas las comisiones y está entre los mejores del mercado. Lo que ves es lo que recibe tu familia.",
+      en: "Our exchange rate already includes every fee, and it’s among the best on the market. What you see is what your family gets.",
     },
     familyTitle: { es: "Para tu familia en Colombia.", en: "For your family in Colombia." },
     familyCopy: {
