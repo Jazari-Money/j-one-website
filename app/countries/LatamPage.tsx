@@ -12,12 +12,12 @@ import "../styles/faq.css";
 import "../styles/country-pages.css";
 import "../styles/latam-pages.css";
 
-const Download = () => <LatamText es="Descarga la app" en="Download App" />;
+function Download() { return <LatamText es="Descarga la app" en="Download App" />; }
+function T({ t }: { t: { es: string; en: string } }) { return <LatamText es={t.es} en={t.en} />; }
 
 export function LatamPage({ country }: { country: LatamCountry }) {
   const c = latamCountries[country];
   const slug = country.toLowerCase();
-  const T = ({ t }: { t: { es: string; en: string } }) => <LatamText es={t.es} en={t.en} />;
   return <main className={`country-shell latam-shell country-${slug}`}>
     <script dangerouslySetInnerHTML={{ __html: latamLangScript }} />
     <SiteHeader mode="country" country={country} actions={<LatamLangSwitch />} downloadLabel={<Download />} />
