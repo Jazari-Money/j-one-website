@@ -10,7 +10,9 @@ import { LatamLangSwitch, LatamText, latamLangScript } from "./LatamLang";
 import "../styles/section.css";
 import "../styles/faq.css";
 import "../styles/country-pages.css";
+import "../styles/how.css";
 import "../styles/latam-pages.css";
+import { LatamRates } from "./LatamRates";
 
 function Download() { return <LatamText es="Descarga la app" en="Download App" />; }
 function T({ t }: { t: { es: string; en: string } }) { return <LatamText es={t.es} en={t.en} />; }
@@ -32,6 +34,17 @@ export function LatamPage({ country }: { country: LatamCountry }) {
       </div>
     </header>
 
+    <section className="country-section latam-rates" id="rates" aria-labelledby="latam-rates-title">
+      <div className="review-block">
+        <div className="review-copy">
+          <h2 id="latam-rates-title"><T t={c.clearTitle} /></h2>
+          <p><T t={c.clearCopy} /></p>
+          <CountryDownloadLink country={country} placement="rates" className="country-primary-action" downloadUrl={countryAppDownloadUrl}><Download /></CountryDownloadLink>
+        </div>
+        <LatamRates currency={country === "Mexico" ? "MXN" : "COP"} flag={country === "Mexico" ? "/images/flags/mx.png" : "/images/flags/co.png"} />
+      </div>
+    </section>
+
     <section className="country-section latam-pesos" aria-labelledby="latam-pesos-title">
       <div>
         <h2 id="latam-pesos-title"><T t={c.pesosTitle} /></h2>
@@ -43,7 +56,7 @@ export function LatamPage({ country }: { country: LatamCountry }) {
           <span role="columnheader"><LatamText es="Otros" en="Others" /></span>
         </div>
         {c.rows.map(row => <div className="latam-compare-row" role="row" key={row.ours.en}>
-          <span role="cell" className="ours"><T t={row.ours} /></span>
+          <span role="cell" className="ours"><i aria-hidden="true" /><span><T t={row.ours} /></span></span>
           <span role="cell" className="others"><T t={row.others} /></span>
         </div>)}
       </div>
@@ -60,10 +73,6 @@ export function LatamPage({ country }: { country: LatamCountry }) {
       <div><h2 id="latam-bank-title"><T t={c.bankTitle} /></h2><p className="country-description"><T t={c.bankCopy} /></p></div>
     </section>
 
-    <section className="country-section latam-clear" aria-labelledby="latam-clear-title">
-      <h2 id="latam-clear-title"><T t={c.clearTitle} /></h2>
-      <p className="country-description"><T t={c.clearCopy} /></p>
-    </section>
 
     <section className="country-receive country-section" aria-labelledby="latam-family-title">
       <div>

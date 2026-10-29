@@ -94,8 +94,11 @@ Last updated: 2026-10-21
   amount shown before sending. Never "no extra fee", "free", "best", Yields,
   stablecoin words, incentives or referral offers on these pages.
   "In minutes" still needs Alex's confirmation of real delivery times.
-- Structure: hero, more pesos (Jazari One vs. others ledger), any bank, know
-  what arrives before you send, family section with photo, FAQ.
+- Structure: hero, live rate calculator (`LatamRates.tsx`: the homepage
+  RatesCalculator fixed to MXN or COP, same API; no stale fallback rate and no
+  "0% fee" tile), more pesos (Jazari One vs. others list), any bank (Mexico: a
+  CLABE block, 3 bank + 3 city + 11 account + 1 check digit), family section
+  with photo, FAQ (Mexico adds "What is a CLABE").
 - Photos (`public/images/countries/{mexico,colombia}-{sender,family}`) are
   ChatGPT-generated fictional personas, not testimonials; prompts in the
   images README.
