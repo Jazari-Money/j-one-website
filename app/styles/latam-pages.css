@@ -90,3 +90,9 @@ html[data-persona="2"] .latam-persona[data-p="2"],
 html[data-persona="3"] .latam-persona[data-p="3"] { display: block; animation: latam-persona-in 700ms cubic-bezier(.22, 1, .36, 1) both; }
 @keyframes latam-persona-in { from { opacity: 0; transform: scale(1.015); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .latam-persona { animation: none !important; } }
+
+/* exact API rate: long decimals shrink instead of breaking the line */
+.latam-rate-card .prominent-rate { grid-template-columns: auto auto minmax(0, 1fr); }
+.latam-rate-card .rate-side.is-result { min-width: 0; flex-wrap: nowrap; }
+.latam-rate-card .latam-rate-exact { font-size: clamp(18px, 2.1vw, 28px) !important; white-space: nowrap; overflow-wrap: normal; }
+@media (max-width: 620px) { .latam-rate-card .latam-rate-exact, .latam-rate-card .rate-side small, .latam-rate-card .rate-side b { font-size: 18px !important; } }

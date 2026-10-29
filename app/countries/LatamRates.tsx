@@ -42,6 +42,8 @@ export function LatamRates({ currency, flag }: { currency: "MXN" | "COP"; flag: 
     return rate ? (Number.isFinite(number) ? number * rate : 0) : undefined;
   }, [amount, rate]);
   const fmt = (n: number, digits: number) => n.toLocaleString("en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits });
+  // the rate exactly as the API sends it (no rounding), with a thousands separator only
+  const exact = (n: number) => { const [whole, frac] = String(n).split("."); return Number(whole).toLocaleString("en-US") + (frac ? `.${frac}` : ""); };
 
   return <div className="rate-card pointer-card latam-rate-card" onPointerMove={trackPointer} onPointerLeave={resetPointer}>
     <span className={`rate-freshness ${rate ? "is-live" : ""}`} role="status">
@@ -56,7 +58,7 @@ export function LatamRates({ currency, flag }: { currency: "MXN" | "COP"; flag: 
     <output className="prominent-rate" htmlFor="latam-send-amount" aria-live="polite">
       <span className="rate-side"><b className="numeric">$1</b></span>
       <span className="rate-equals" aria-hidden="true">=</span>
-      <span className="rate-side is-result"><b className="numeric">{rate ? fmt(rate, 2) : "—"}</b><small className="numeric">{currency}</small></span>
+      <span className="rate-side is-result"><b className="numeric latam-rate-exact">{rate ? exact(rate) : "—"}</b><small className="numeric">{currency}</small></span>
     </output>
     <label id="latam-receive-label"><LatamText es="Tu familia recibe (estimado)" en="Your family gets (estimate)" /></label>
     <div className="money-input result">
