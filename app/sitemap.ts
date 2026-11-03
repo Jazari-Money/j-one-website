@@ -29,6 +29,8 @@ const routes = [
   "/Kenya/",
   "/Nigeria/",
   "/Mexico/",
+  "/India/",
+  "/Pakistan/",
   "/Colombia/",
   ...countryGuides.map(({ slug }) => `/blog/${slug}/`),
 ];

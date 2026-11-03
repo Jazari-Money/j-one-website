@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { LatamPage } from "../countries/LatamPage";
-import { latamCountries } from "../countries/latam";
+import { LatamPage } from "../../countries/LatamPage";
+import { latamCountries } from "../../countries/latam";
 
 const c = latamCountries.Mexico;
 const image = "/images/countries/mexico-sender.webp";
