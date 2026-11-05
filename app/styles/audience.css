@@ -28,6 +28,9 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  /* The photo stops above the bottom corners. Under the dark gradient it is invisible there anyway, but its bright pixels leak through the rounded edge as a thin white outline. */
+  -webkit-mask-image: linear-gradient(to top, transparent 30px, #000 60px);
+  mask-image: linear-gradient(to top, transparent 30px, #000 60px);
 }
 
 .audience-image {
@@ -39,8 +42,8 @@
 
 /* A blurred copy of the photo, faded in towards the bottom of the card. It replaces backdrop-filter, which shows a hard edge when the card tilts on hover. The slight scale keeps the blur's soft edges outside the card. */
 .audience-media-blur {
-  -webkit-mask-image: linear-gradient(to top, #000 89px, transparent 177px);
-  mask-image: linear-gradient(to top, #000 89px, transparent 177px);
+  -webkit-mask-image: linear-gradient(to top, transparent 30px, #000 89px, transparent 177px);
+  mask-image: linear-gradient(to top, transparent 30px, #000 89px, transparent 177px);
 }
 
 .audience-media-blur .audience-image {
