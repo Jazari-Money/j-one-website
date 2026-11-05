@@ -489,6 +489,61 @@ html.rvjs body{background:#000}
 .ref-calc .prominent-rate+.ref-bonus-row{margin-top:0}
 @media (max-width:760px){.ref-shell .ref-calc .prominent-rate{padding:22px 0 28px!important}}
 
+/* Nikita 5 Nov (India first): amount + gift in one line, sum under them, competitors in their own card */
+.ref-calc-col{display:grid;gap:16px;min-width:0;align-content:start}
+.ref-shell .ref-calc.ref-split{--fh:76px;--fpx:20px}
+@media (min-width:901px) and (max-width:1000px){.ref-shell .ref-calc.ref-split{--cfs:24px}}
+@media (max-width:350px){.ref-shell .ref-calc.ref-split{--cfs:18px}}
+@media (max-width:760px){.ref-shell .ref-calc.ref-split{--fh:68px;--fpx:14px}}
+@media (max-width:360px){.ref-shell .ref-calc.ref-split{--fpx:12px}}
+.ref-shell .ref-calc.ref-split .money-input:has(.ref-range){height:var(--fh);min-height:var(--fh);box-sizing:border-box;padding-left:var(--fpx)!important;padding-right:var(--fpx)!important}
+.ref-shell .ref-calc .money-input.ref-sum-row{margin:0!important;min-width:0;height:var(--fh);min-height:var(--fh);padding:0 var(--fpx);display:flex;align-items:center;justify-content:flex-start;gap:calc(var(--cfs)*.28);box-sizing:border-box}
+.ref-shell .ref-calc .money-input.ref-sum-row[hidden]{display:none}
+.ref-shell .ref-calc .ref-sum-row #gets,.ref-shell .ref-calc .ref-sum-row .ref-gift-t{flex:none;width:auto;min-width:0;margin:0}
+.ref-shell .ref-calc .ref-sum-row .coin3d{margin-left:auto;flex:none}
+.ref-shell .ref-calc .ref-sum-row.no-gift .ref-gift-t,.ref-shell .ref-calc .ref-sum-row.no-gift .coin3d{display:none}
+.ref-shell .ref-calc.ref-split label{font-size:clamp(24px,2.3vw,32px)!important;font-weight:700!important;letter-spacing:-.045em!important;line-height:1.08}
+.ref-shell .ref-calc.ref-split .money-input:has(.ref-range){display:flex;align-items:center}
+.ref-shell .ref-calc.ref-split #amt{flex:1 1 3.4ch;min-width:3.4ch;width:auto}
+.ref-shell .ref-calc .money-input .ref-err-in{flex:0 1 auto;min-width:0;margin:0 0 0 10px;text-align:right;font-size:15px;line-height:1.2;text-wrap:balance}
+.ref-shell .ref-calc .money-input .ref-err-in[hidden]{display:none}
+@media (max-width:760px){.ref-shell .ref-calc .money-input .ref-err-in{font-size:14px}}
+@media (max-width:360px){.ref-shell .ref-calc .money-input .ref-err-in{font-size:13px}}
+.ref-shell .ref-cmp-card .ref-cmp{font-size:17px;letter-spacing:-.022em}.ref-shell .ref-cmp-card .ref-cmp td{color:var(--text)}
+.ref-shell .ref-cmp-card.ref-calc .ref-cmp tr.me td:last-child{color:var(--text)!important}
+.ref-shell.page-india .journey-card.ref-step p{font-size:17px;line-height:1.55;letter-spacing:-.022em}
+.ref-shell.page-india :is(p,li,td,summary,summary span,a,button,button *,.site-header span,.country-footer span,#famtotal.is-na,.ref-n){font-family:var(--serif)!important}
+.ref-shell.page-india .ref-disclosure{font-size:17px;letter-spacing:-.022em}.ref-shell.page-india .ref-terms ol{font-size:17px;line-height:1.55;letter-spacing:-.022em;color:var(--text)}.ref-shell.page-india .orn-alive.lotus{width:min(688px,76.8%)!important}@media (max-width:760px){.ref-shell.page-india .orn-alive.lotus{width:80%!important}}
+@media (max-width:579px){.ref-shell.page-india .country-hero .ref-disclosure{white-space:normal;max-width:480px}}
+@media (min-width:901px) and (max-width:1250px){.ref-shell.page-india .country-hero .ref-disclosure{font-size:17px;white-space:normal}}
+.ref-shell .ref-calc .ref-gift-t{font-family:"Inter Variable",Inter,sans-serif;font-size:var(--cfs);font-weight:600;letter-spacing:-.02em;line-height:1.1;color:#21F668;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ref-shell .ref-calc #gets,.ref-shell .ref-calc #bonus,.ref-shell .ref-calc #bfx{white-space:nowrap}
+.ref-shell .ref-calc label.ref-total-lbl{display:block;margin-top:24px;margin-bottom:12px!important}
+.ref-shell .ref-calc .ref-total{margin:0!important;height:auto;min-height:0;padding:0;background:none;display:flex;align-items:center;box-sizing:border-box;box-shadow:none;border:0}
+.ref-shell .ref-calc #famtotal{font-family:"Inter Variable",Inter,sans-serif!important;font-size:clamp(34px,3.2vw,46px)!important;font-weight:700!important;letter-spacing:-.03em;line-height:1.05;color:var(--text)}
+@media (max-width:760px){.ref-shell .ref-calc #famtotal:not(.is-na){font-size:clamp(30px,8.5vw,36px)!important}}
+.ref-shell .ref-calc #famtotal.is-na{font-size:18px!important;font-weight:500!important;letter-spacing:-.01em;color:var(--text)}
+.ref-shell .ref-cmp-card .ref-cmp-box{margin:0;padding:0;background:none;border-radius:0}
+.ref-shell .ref-cmp-card .ref-cmp-note{margin:20px 0 0;padding:0;font-size:17px;line-height:1.45;letter-spacing:-.022em;color:var(--muted);text-wrap:pretty}
+.ref-shell .ref-calc .ref-cmp-title{display:block;margin:0 0 24px;padding:0;font-family:var(--serif)!important;font-size:clamp(24px,2.3vw,32px)!important;font-weight:700!important;letter-spacing:-.045em!important;line-height:1.08;color:var(--text)!important}
+
+@media (max-width:760px){
+
+ .ref-shell .ref-calc .ref-sum-row .coin3d{--s:30px!important}
+}
+@media (max-width:360px){
+ .ref-shell .ref-calc{--cfs:20px}
+ .ref-shell .ref-calc .ref-sum-row .coin3d{--s:26px!important}
+}
+@media (max-width:350px){ .ref-shell .ref-calc .ref-sum-row .coin3d{--s:24px!important} }
+@media (max-width:330px){ .ref-shell .ref-calc.ref-split{--cfs:17px} }
+/* Nikita 5 Nov: hero NRO note on one line where it fits */
+@media (min-width:520px){.ref-shell .country-hero .ref-disclosure{max-width:none;white-space:nowrap}}
+@media (min-width:901px) and (max-width:1100px){.ref-shell .country-hero .ref-disclosure{font-size:1.46vw}}
+
+/* live rate unavailable: text instead of an old number */
+.ref-shell .money-input.result>strong.is-na{font-size:18px!important;font-weight:500;letter-spacing:-.01em}
+
 /* Nikita 5 Nov: step numbers in plain circles, even card rhythm */
 .ref-shell.ref-shell .ref-step .ref-n{position:static!important;display:grid!important;place-items:center;width:44px!important;height:44px!important;padding:0!important;margin:0 0 28px!important;border-radius:50%;clip-path:none!important;background:var(--accent)!important;background-image:none!important;filter:none!important;color:#0b0b0b!important;text-shadow:none!important;font-family:var(--font-inter)!important;font-size:20px!important;font-weight:700!important;line-height:1!important;font-variant-numeric:tabular-nums}
 body .ref-shell.ref-shell .ref-step{padding:28px!important}
@@ -518,8 +573,8 @@ body .ref-shell.ref-shell .ref-step{padding:28px!important}
 .ref-calc .bonus-val small{color:#04331a;font-size:14px;font-weight:600;line-height:1.1;white-space:nowrap}
 
 /* 5 Nov: account disclosure under the hero button, readable, not small print */
-.ref-shell .ref-disclosure{color:var(--text);font-size:16px;line-height:1.45;font-weight:500;letter-spacing:-.01em;max-width:480px;margin-top:18px;text-wrap:balance}
-@media (max-width:760px){.ref-shell .ref-disclosure{font-size:15px;margin-top:12px!important}}
+.ref-shell .ref-disclosure{color:var(--text);font-size:16px;line-height:1.45;font-weight:500;letter-spacing:-.01em;max-width:480px;margin-top:28px;text-wrap:balance}
+@media (max-width:760px){.ref-shell .ref-disclosure{font-size:15px;margin-top:20px!important}}
 
 /* Nikita 5 Nov: gift row sits under the family field, joined by the plus; sum left, gift + logo right */
 .ref-shell .ref-calc .money-input.result{margin-bottom:0!important}
@@ -562,12 +617,12 @@ body .ref-shell.ref-shell .ref-step{padding:28px!important}
 
 <section class="country-section latam-rates" id="calc" aria-labelledby="calc-t"><div class="review-block"><div class="review-copy">
 <h2 id="calc-t">Always amazing rates to India <span class="coin3d h2tok" style="--s:68px" aria-hidden="true"></span></h2><p>Our fees are already included in the final rate, so what you see in the app is exactly what your family gets. Fully transparent.</p></div>
-<div class="rate-card pointer-card latam-rate-card ref-calc">
-<label for="amt">You send</label><div class="money-input"><span class="numeric ref-dollar">$</span><input class="numeric" id="amt" type="number" inputmode="numeric" min="100" max="1000" step="10" value="200" aria-label="USD"><span class="numeric latam-ccy">USD</span><input class="ref-range" id="rng" type="range" min="100" max="1000" step="10" value="200" aria-label="USD"></div>
-<output class="prominent-rate" for="amt"><span class="rate-side"><b class="numeric">$1</b></span><span class="rate-equals plain" aria-hidden="true">=</span><span class="rate-side is-result"><b class="numeric">94.96</b><small class="numeric">INR</small></span></output><label>Your family gets</label><div class="money-input result"><strong class="numeric" id="gets">…</strong></div>
-<div class="ref-bonus-row"><div class="bonus-sum"><strong class="numeric" id="bonus">$10</strong><small class="numeric" id="bfx"></small></div><div class="bonus-who"><span class="coin3d app" style="--s:38px" aria-hidden="true"></span></div></div>
-<p class="ref-err" id="short" hidden></p>
-<div class="ref-cmp-box"><table class="ref-cmp live"><caption>Your family gets from $<span class=cap-a>200</span>, fees included · regular rates, 3 Nov 2026</caption><tbody><tr class=me data-r="94.956" data-f="0" data-p="0" data-w="0"><td><img class="cmp-logo" src="/lp/2d6ce054c6d75111.svg" alt="Jazari One"></td><td class="numeric v"></td></tr><tr data-r="95.0" data-f="1.99" data-p="0" data-w="0"><td>Taptap Send</td><td class="numeric v"></td></tr><tr data-r="94.7492" data-f="0.34" data-p="0.0091" data-w="0"><td>Wise</td><td class="numeric v"></td></tr><tr data-r="94.3967" data-f="0.99" data-p="0" data-w="0"><td>WorldRemit</td><td class="numeric v"></td></tr><tr data-r="94.4" data-f="1.99" data-p="0" data-w="0"><td>MoneyGram</td><td class="numeric v"></td></tr><tr data-r="94.3" data-f="3.99" data-p="0" data-w="1000"><td>Remitly</td><td class="numeric v"></td></tr></tbody></table></div><p class="ref-cmp-note">Jazari One at the Jazari rate, without the $10. Rates collected on 3 November 2026, Remitly standard rate on 5 November.</p>
+<div class="ref-calc-col"><div class="rate-card pointer-card latam-rate-card ref-calc ref-split">
+<label for="amt">You send</label><div class="money-input"><span class="numeric ref-dollar">$</span><input class="numeric" id="amt" type="number" inputmode="numeric" min="100" max="1000" step="10" value="200" aria-label="USD"><p class="ref-err ref-err-in" id="short" hidden></p><input class="ref-range" id="rng" type="range" min="100" max="1000" step="10" value="200" aria-label="USD"></div>
+<output class="prominent-rate" for="amt"><span class="rate-side"><b class="numeric">$1</b></span><span class="rate-equals plain" aria-hidden="true">=</span><span class="rate-side is-result"><b class="numeric">₹<span id="fxv">…</span></b></span></output>
+<div class="money-input result ref-sum-row"><strong class="numeric" id="gets">…</strong><span class="ref-gift-t numeric">+ <span id="bonus">$10</span> <span id="bfx"></span></span><span class="coin3d app" style="--s:38px" aria-hidden="true"></span></div><label class="ref-total-lbl">Your family gets</label><div class="money-input result ref-total"><strong class="numeric" id="famtotal">…</strong></div>
+
+</div><div class="rate-card pointer-card latam-rate-card ref-calc ref-cmp-card"><h3 class="ref-cmp-title">Compare transfers</h3><div class="ref-cmp-box"><table class="ref-cmp live"><caption>Your family gets from $<span class=cap-a>200</span>, fees included</caption><tbody><tr class=me data-r="0" data-f="0" data-p="0" data-w="0"><td><img class="cmp-logo" src="/lp/2d6ce054c6d75111.svg" alt="Jazari One"></td><td class="numeric v"></td></tr><tr data-r="95.0" data-f="1.99" data-p="0" data-w="0"><td>Taptap Send</td><td class="numeric v"></td></tr><tr data-r="94.7492" data-f="0.34" data-p="0.0091" data-w="0"><td>Wise</td><td class="numeric v"></td></tr><tr data-r="94.3967" data-f="0.99" data-p="0" data-w="0"><td>WorldRemit</td><td class="numeric v"></td></tr><tr data-r="94.4" data-f="1.99" data-p="0" data-w="0"><td>MoneyGram</td><td class="numeric v"></td></tr><tr data-r="94.3" data-f="3.99" data-p="0" data-w="1000"><td>Remitly</td><td class="numeric v"></td></tr></tbody></table></div><p class="ref-cmp-note">Jazari One at the live Jazari rate, without the $10. Other rates collected on 3 November 2026, Remitly standard rate on 5 November.</p></div>
 </div></div></section>
 <div class="ref-divider" aria-hidden="true"><span class="orn-alive lotus" style="aspect-ratio:2039/473"><i class="halo" style="left:25.5%;top:38.0%"></i><i class="halo" style="left:74.5%;top:38.0%"></i><img class="oa-base" src="/lp/b0adf02c52fc92df.webp" alt=""><img class="oa-centre" style="left:36.50%;width:27.00%" src="/lp/f42ece8996728c6c.webp" alt=""><span class="oa-shine" style="-webkit-mask-image:url(/lp/b0adf02c52fc92df.webp);mask-image:url(/lp/b0adf02c52fc92df.webp)"></span></span></div>
 <section class="country-faq faq section" id="faq" aria-labelledby="faq-t"><header class="chapter-heading"><h2 id="faq-t">FAQ</h2></header><div class="faq-content"><div class="yield-question-list faq-list"><details class="pointer-card"><summary><span>How do I get the extra $10?</span><span class="yield-question-icon neutral-control" aria-hidden="true"><svg class="yield-question-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg><svg class="yield-question-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg></span></summary><p>Download Jazari One, verify your identity, add money from your US bank and send $200 or more to India in one transfer. We add $10 on top, so your family gets it together with your money.</p></details><details class="pointer-card"><summary><span>Who can get it?</span><span class="yield-question-icon neutral-control" aria-hidden="true"><svg class="yield-question-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg><svg class="yield-question-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg></span></summary><p>People who live in the US (outside New York), have an SSN or ITIN and make their first international transfer with Jazari One. It counts whether you found us through an ad or on your own.</p></details><details class="pointer-card"><summary><span>When is the $10 added?</span><span class="yield-question-icon neutral-control" aria-hidden="true"><svg class="yield-question-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg><svg class="yield-question-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg></span></summary><p>Right in your first transfer of $200 or more. Your family receives it together with the money you send.</p></details><details class="pointer-card"><summary><span>What does a transfer cost?</span><span class="yield-question-icon neutral-control" aria-hidden="true"><svg class="yield-question-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg><svg class="yield-question-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg></span></summary><p>There is no separate transfer fee: our exchange rate already includes every fee. The app shows exactly how much arrives before you confirm.</p></details><details class="pointer-card"><summary><span>How do I add money?</span><span class="yield-question-icon neutral-control" aria-hidden="true"><svg class="yield-question-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg><svg class="yield-question-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg></span></summary><p>From your US bank by ACH (usually 1 to 3 business days), FedNow or wire.</p></details><details class="pointer-card"><summary><span>Which Indian accounts can receive?</span><span class="yield-question-icon neutral-control" aria-hidden="true"><svg class="yield-question-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg><svg class="yield-question-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg></span></summary><p>Savings and NRO accounts only.</p></details><details class="pointer-card"><summary><span>Why did my family get ₹1 first?</span><span class="yield-question-icon neutral-control" aria-hidden="true"><svg class="yield-question-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></svg><svg class="yield-question-minus" viewBox="0 0 24 24"><path d="M5 12h14"></path></svg></span></summary><p>The first time you send to someone new, their bank gets ₹1 to confirm the account, then the full amount right after.</p></details></div></div></section>
@@ -578,7 +633,8 @@ body .ref-shell.ref-shell .ref-step{padding:28px!important}
 </main>
 <script>
 (function(){
- const root=document.documentElement,BI=false,RATE=94.956,CCY="INR",SHORT={es:"",en:"Send ${n} more to get the extra $10"},BD={es:'{a} al tipo de Jazari + {b} de nuestros $10',en:'{a} at the Jazari rate + {b} from our $10'},ADD=true;
+ let RATE=0,RFAIL=false;const LIVE=true;
+ const root=document.documentElement,BI=false,CCY="INR",SHORT={es:"",en:"Send ${n} more to get the extra $10"},BD={es:'{a} al tipo de Jazari + {b} de nuestros $10',en:'{a} at the Jazari rate + {b} from our $10'},ADD=true;
  const lb=[...document.querySelectorAll('.site-header .latam-lang button')];
  const lang=()=>BI&&root.dataset.siteLang!=='en'?'es':'en';
  function setLang(l){root.dataset.siteLang=l;root.lang=l;lb.forEach(b=>b.setAttribute('aria-pressed',b.lang===l));calc()}
@@ -587,13 +643,16 @@ body .ref-shell.ref-shell .ref-step{padding:28px!important}
  const fmt=(n,d)=>n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
  const amt=document.getElementById('amt'),rng=document.getElementById('rng');
  function calc(){const a=parseFloat(amt.value)||0,ok=a>=200;
+  const na=LIVE&&RFAIL&&!RATE,g=document.getElementById('gets'),ft=document.getElementById('famtotal'),NA='See the rate in the app',MM=v=>({INR:'₹',PKR:'Rs ',MXN:'$'}[CCY]||'')+fmt(v,0)+(CCY==='MXN'?' MXN':'');
+  if(LIVE){document.getElementById('fxv').textContent=RATE?fmt(RATE,2):na?'—':'…';if(!RATE)g.textContent=!ft&&na?NA:'…';g.classList.toggle('is-na',!ft&&na);document.querySelectorAll('.ref-cmp-card,.ref-cmp-box,.ref-cmp-note').forEach(e=>e.style.display=na?'none':'')}
+  if(ft){ft.textContent=RATE?MM(Math.round(a*RATE)+(ok?Math.round(10*RATE):0)):na?NA:'…';ft.classList.toggle('is-na',na);const sr=document.querySelector('.ref-sum-row');sr.hidden=na;sr.classList.toggle('no-gift',!ok)}
   if(RATE)document.getElementById('gets').textContent=({INR:'₹',PKR:'Rs ',MXN:'$'}[CCY]||'')+fmt(a*RATE,0)+(CCY==='MXN'?' MXN':'');
   document.getElementById('bonus').textContent=!ok?'—':RATE?({INR:'₹',PKR:'Rs ',MXN:'$'}[CCY]||'')+fmt(10*RATE,0)+(CCY==='MXN'?' MXN':''):'$10';
   const bfx=document.getElementById('bfx');if(bfx&&RATE)bfx.textContent=ok?(CCY==='MXN'?'($10 USD)':'($10)'):'';
-  document.querySelector('.ref-bonus-row').hidden=!ok;
+  const brw=document.querySelector('.ref-bonus-row');if(brw)brw.hidden=!ok;
   const bd=document.getElementById('bd');if(bd&&RATE){const M=v=>({INR:'₹',PKR:'Rs ',MXN:'$'}[CCY]||'')+fmt(v,0)+(CCY==='MXN'?' MXN':'');bd.hidden=!ok;if(ok)bd.textContent=BD[lang()].replace('{a}',M(a*RATE)).replace('{b}',M(10*RATE))}
   document.querySelectorAll('.ref-cmp.live tbody').forEach(tb=>{const sym={INR:'₹',PKR:'Rs '}[CCY]||'';const ca=document.querySelector('.cap-a');if(ca)ca.textContent=fmt(a,0);
-   const rows=[...tb.rows];rows.forEach(tr=>{const d=tr.dataset,w=+d.w,fee=(w&&a>=w)?0:(+d.f)+(+d.p)*a,v=Math.max(0,a-fee)*(+d.r);tr._v=v;tr.cells[1].textContent=sym+fmt(v,0)});
+   const rows=[...tb.rows];rows.forEach(tr=>{const d=tr.dataset,me=LIVE&&tr.classList.contains('me'),w=+d.w,fee=(w&&a>=w)?0:(+d.f)+(+d.p)*a,v=Math.max(0,a-fee)*(me?RATE:+d.r);tr._v=v;tr.cells[1].textContent=me&&!RATE?'…':sym+fmt(v,0)});
    rows.slice(1).sort((x,y)=>y._v-x._v).forEach(tr=>tb.appendChild(tr))})
   const tot=document.getElementById('total');if(tot)tot.textContent='$'+fmt(ok?a+10:a,0);
   rng.style.setProperty('--p',((Math.min(1000,Math.max(100,a))-100)/9)+'%');
@@ -601,6 +660,8 @@ body .ref-shell.ref-shell .ref-step{padding:28px!important}
  amt.addEventListener('input',()=>{rng.value=Math.min(1000,Math.max(100,parseFloat(amt.value)||100));calc()});
  rng.addEventListener('input',()=>{amt.value=rng.value;calc()});
  setLang(BI?'es':'en');
+ if(LIVE){const pull=()=>{const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),4000);
+  fetch('https://api.jazari.xyz/public/api/v1/exchange_rates',{signal:ctl.signal}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(p=>{const it=Array.isArray(p)?p.find(x=>x&&x.from==='USDC'&&x.to===CCY):null;if(!it||typeof it.rate!=='number'||!isFinite(it.rate)||it.rate<=0)throw 0;RATE=it.rate;RFAIL=false;calc()}).catch(()=>{if(!RATE){RFAIL=true;calc()}}).finally(()=>{clearTimeout(tm);setTimeout(pull,RATE?30000:5000)})};pull()}
  const vids=[...document.querySelectorAll('.ref-reel>img,.ref-reel>video')],still=matchMedia('(prefers-reduced-motion: reduce)').matches;let cur=0;
  if(!still)setInterval(()=>{const nx=(cur+1)%vids.length,n=vids[nx],old=vids[cur];
   if(n.tagName==='VIDEO'){n.preload='auto';n.currentTime=0;n.play().catch(()=>{})}
