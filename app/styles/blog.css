@@ -98,6 +98,16 @@
   padding-bottom: 0;
 }
 
+/* Under the photo the card is black, and the photo stops above the bottom corners where the gradient is black anyway. Otherwise the lighter surface and the photo's bright pixels leak through the rounded edge as a thin light outline. */
+.blog-card.has-image {
+  background: #000;
+}
+
+.blog-card.has-image .blog-card-media {
+  -webkit-mask-image: linear-gradient(to top, transparent 30px, #000 60px);
+  mask-image: linear-gradient(to top, transparent 30px, #000 60px);
+}
+
 .blog-card::before {
   display: none;
 }
