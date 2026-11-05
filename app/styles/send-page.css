@@ -19,11 +19,6 @@
 .send-hero h1 {
   max-width: 980px;
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(76px, 8.5vw, 124px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.9;
 }
 
 .send-hero > p {
@@ -71,10 +66,6 @@
 @media (max-width: 620px) {
   .send-hero {
     padding: 146px 0 28px;
-  }
-
-  .send-hero h1 {
-    font-size: 66px;
   }
 
   .send-hero > p {

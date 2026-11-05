@@ -264,7 +264,7 @@ test("keeps the core interactions working", async ({ page }) => {
   }
 
   const heroTitleSize = await hero.evaluate((node) => Number.parseFloat(getComputedStyle(node).fontSize));
-  expect(heroTitleSize).toBeGreaterThanOrEqual(107);
+  expect(heroTitleSize).toBeGreaterThanOrEqual(80);
   const desktopDescriptionSize = await page.locator(".hero-copy > p").evaluate(
     (node) => Number.parseFloat(getComputedStyle(node).fontSize),
   );
@@ -281,7 +281,13 @@ test("keeps the core interactions working", async ({ page }) => {
   expect(journeyArtSize.width).toBeLessThanOrEqual(111);
   expect(journeyArtSize.height).toBeGreaterThanOrEqual(109);
   expect(journeyArtSize.height).toBeLessThanOrEqual(111);
-  await expect(page.locator(".journey-card").first()).toHaveCSS("height", "500px");
+  const journeyArtToTitle = await page.locator(".journey-card").first().evaluate((card) => {
+    const plate = card.querySelector(".journey-art-plate");
+    const title = card.querySelector("h3");
+    if (!plate || !title) return null;
+    return title.getBoundingClientRect().top - plate.getBoundingClientRect().bottom;
+  });
+  expect(journeyArtToTitle).toBe(28);
   const journeyArtOffset = await page.locator(".journey-card").first().evaluate((card) => {
     const art = card.querySelector(".journey-art");
     if (!(art instanceof HTMLElement)) return null;

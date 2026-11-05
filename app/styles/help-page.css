@@ -9,11 +9,6 @@
 
 .help-hero > h1 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(76px, 8.2vw, 116px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.88;
 }
 
 .help-card {
@@ -28,12 +23,6 @@
     color-mix(in srgb, #ffffff 2.5%, transparent),
     transparent 48%
   );
-}
-
-.help-card h2 {
-  font-family: var(--serif);
-  font-size: clamp(38px, 4vw, 56px);
-  line-height: 1;
 }
 
 .help-card p {
@@ -57,10 +46,6 @@
   .help-hero {
     min-height: 620px;
     padding: 146px 0 86px;
-  }
-
-  .help-hero > h1 {
-    font-size: 66px;
   }
 
   .help-card {

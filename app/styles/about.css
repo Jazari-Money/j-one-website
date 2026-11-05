@@ -19,11 +19,6 @@
 
 .about-title h1 {
   max-width: 1040px;
-  font-family: var(--serif);
-  font-size: clamp(72px, 8vw, 112px);
-  font-weight: 400;
-  letter-spacing: -0.3px;
-  line-height: 0.9;
   text-wrap: balance;
 }
 
@@ -34,11 +29,6 @@
 .about-manifest h2,
 .about-entities h2,
 .about-partners-heading h2 {
-  font-family: var(--serif);
-  font-size: clamp(64px, 7vw, 96px);
-  font-weight: 400;
-  letter-spacing: -0.3px;
-  line-height: 0.92;
   text-wrap: balance;
 }
 
@@ -121,11 +111,6 @@
 
 .about-entity-grid h3 {
   max-width: 520px;
-  font-family: var(--serif);
-  font-size: clamp(30px, 3vw, 44px);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 0.98;
   text-wrap: balance;
 }
 
@@ -210,18 +195,8 @@
     padding: 140px 0 48px;
   }
 
-  .about-title h1 {
-    font-size: clamp(58px, 16vw, 72px);
-  }
-
   .about-manifest {
     margin-top: 96px;
-  }
-
-  .about-manifest h2,
-  .about-entities h2,
-  .about-partners-heading h2 {
-    font-size: clamp(50px, 14vw, 64px);
   }
 
   .about-founders {
@@ -263,10 +238,6 @@
     border-radius: 22px;
   }
 
-  .about-entity-grid h3 {
-    font-size: 30px;
-  }
-
   .about-entity-grid p {
     margin-top: 16px;
     font-size: 15px;
@@ -300,9 +271,6 @@
 }
 
 @media (max-width: 390px) {
-  .about-partners-heading h2 {
-    font-size: 48px;
-  }
 
   .about-partners-heading {
     gap: 10px;
@@ -315,9 +283,6 @@
 }
 
 @media (max-width: 350px) {
-  .about-partners-heading h2 {
-    font-size: 44px;
-  }
 
   .about-partners-heading {
     gap: 8px;

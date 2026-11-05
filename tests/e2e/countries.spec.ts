@@ -18,7 +18,7 @@ for (const country of ["Kenya", "Nigeria"] as const) {
       }
       await page.getByRole("button", { name: "Reject", exact: true }).click();
       await expect(page.locator("h1")).toHaveCount(1);
-      await expect(page.locator("h1")).toHaveText(`Your dollar account in ${country}.`);
+      await expect(page.locator("h1")).toHaveText(`Your dollar account in ${country}`);
       await expect(page.locator("#savings h2")).toHaveText("Savings");
       await expect(page.getByText("Explore your USD account", { exact: true })).toHaveCount(0);
       await expect(page.getByText("Coming soon", { exact: true })).toHaveCount(0);
@@ -108,9 +108,9 @@ test("blog country filters connect all new guides to their country pages", async
   await expect(page.locator(".blog-index-grid > a")).toHaveCount(5);
   await page.getByRole("link", { name: /Requirements for opening a dollar account in Nigeria/ }).click();
   await expect(page.locator("h1")).toHaveText("Requirements for opening a dollar account in Nigeria");
-  await expect(page.locator("h1")).toHaveCSS("font-family", /Instrument Serif/);
-  await expect(page.locator(".article-copy h2").first()).toHaveCSS("font-family", /Instrument Serif/);
-  await expect(page.locator(".article-copy p").first()).toHaveCSS("font-family", /Inter/);
+  await expect(page.locator("h1")).toHaveCSS("font-weight", "400");
+  await expect(page.locator(".article-copy h2").first()).toHaveCSS("font-weight", "700");
+  await expect(page.locator(".article-copy p").first()).toHaveCSS("font-family", /momoSans/i);
   await expect(page.locator(".site-header .nav-menu")).toHaveCount(1);
   await expect(page.getByRole("navigation", { name: "Footer navigation", exact: true })).toHaveCount(1);
   await mkdir("test-results/country-previews", { recursive: true });

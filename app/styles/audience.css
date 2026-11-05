@@ -37,6 +37,17 @@
   object-fit: cover;
 }
 
+/* A blurred copy of the photo, faded in towards the bottom of the card. It replaces backdrop-filter, which shows a hard edge when the card tilts on hover. The slight scale keeps the blur's soft edges outside the card. */
+.audience-media-blur {
+  -webkit-mask-image: linear-gradient(to top, #000 89px, transparent 177px);
+  mask-image: linear-gradient(to top, #000 89px, transparent 177px);
+}
+
+.audience-media-blur .audience-image {
+  filter: blur(14px);
+  transform: scale(1.05);
+}
+
 .audience-panel::before {
   content: "";
   position: absolute;
@@ -73,19 +84,14 @@
 
 .audience-caption h3 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(32px, 3.2vw, 50px);
-  font-weight: 400;
-  line-height: 0.96;
-  letter-spacing: -0.2px;
 }
 
 .audience-caption ul {
   max-width: 440px;
   margin-top: 14px;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 14px;
-  line-height: 1.42;
+  color: var(--description-color);
+  font-size: var(--description-size);
+  line-height: var(--description-line-height);
 }
 
 .audience-caption li {
@@ -155,5 +161,50 @@
   .audience-panel {
     height: 500px;
     aspect-ratio: auto;
+  }
+}
+
+/* Card titles and lists share rows across the cards, so titles sit on one line whatever the list length. Browsers without subgrid keep the bottom-aligned caption above. */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 821px) {
+    .audience-explorer {
+      row-gap: 0;
+    }
+
+    .audience-panel {
+      /* Paint containment makes the card an independent formatting context, which turns subgrid off. overflow: clip still clips to the radius. */
+      contain: none;
+      display: grid;
+      grid-row: span 3;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: subgrid;
+      height: auto;
+    }
+
+    .audience-caption {
+      position: relative;
+      inset: auto;
+      display: grid;
+      grid-row: 2 / span 2;
+      grid-template-rows: subgrid;
+      min-height: 0;
+    }
+  }
+
+  @media (min-width: 1121px) {
+    .audience-explorer {
+      min-height: 500px;
+      grid-template-rows: minmax(260px, 1fr) auto auto;
+    }
+  }
+
+  @media (min-width: 821px) and (max-width: 1120px) {
+    .audience-explorer {
+      grid-template-rows: 260px auto auto 14px 260px auto auto;
+    }
+
+    .audience-panel:last-child {
+      grid-row: 5 / span 3;
+    }
   }
 }

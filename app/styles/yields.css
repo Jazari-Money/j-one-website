@@ -21,11 +21,6 @@
 
 .yields-hero h1 {
   max-width: 1020px;
-  font-family: var(--serif);
-  font-size: clamp(76px, 8.5vw, 124px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.88;
   text-wrap: balance;
 }
 
@@ -76,14 +71,12 @@
 
 .yield-feature-grid .yield-strategy-copy h2 {
   margin-top: 34px;
-  font-size: clamp(36px, 3.15vw, 44px);
-  letter-spacing: -0.45px;
-  white-space: nowrap;
 }
 
 .yield-inline-rate {
   color: inherit;
   text-shadow: none;
+  white-space: nowrap;
 }
 
 .yield-feature-grid .yield-strategy-copy h2 + p {
@@ -126,11 +119,6 @@
 .yield-strategy-copy h2 {
   max-width: 620px;
   margin-top: 42px;
-  font-family: var(--serif);
-  font-size: clamp(54px, 5.8vw, 78px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.92;
 }
 
 .yield-strategy-copy h2 + p {
@@ -168,10 +156,10 @@
 
 .yield-rate strong {
   color: var(--accent);
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: clamp(70px, 7.2vw, 104px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
+  font-weight: 600;
+  letter-spacing: var(--heading-tracking);
   line-height: 0.78;
   text-shadow:
     0 0 16px color-mix(in srgb, var(--accent) 38%, transparent),
@@ -257,16 +245,6 @@
   grid-template-columns: 1fr auto;
   align-items: end;
   gap: 80px;
-}
-
-.yield-risk h2,
-.yield-questions h2,
-.yield-roadmap h2 {
-  font-family: var(--serif);
-  font-size: clamp(54px, 5.6vw, 78px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.94;
 }
 
 .yield-risk p,
@@ -456,10 +434,6 @@
     gap: 52px;
   }
 
-  .yield-feature-grid .yield-strategy-copy h2 {
-    font-size: clamp(36px, 4vw, 44px);
-  }
-
   .yield-feature-grid .yield-rate strong {
     font-size: clamp(70px, 7.2vw, 104px);
   }
@@ -495,10 +469,6 @@
     padding: 146px 0 68px;
   }
 
-  .yields-hero h1 {
-    font-size: 63px;
-  }
-
   .yields-hero p {
     font-size: 16px;
   }
@@ -513,11 +483,6 @@
   .yield-feature-grid .yield-feature {
     min-height: 0;
     padding: 30px 24px;
-  }
-
-  .yield-feature-grid .yield-strategy-copy h2 {
-    font-size: 26px;
-    letter-spacing: -0.25px;
   }
 
   .yield-feature-grid .yield-rate strong {

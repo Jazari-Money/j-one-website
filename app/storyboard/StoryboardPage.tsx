@@ -399,15 +399,15 @@ function TypographySpecimen({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`sb-type-stack ${compact ? "is-compact" : ""}`}>
       <div>
-        <code>Display / Instrument Serif</code>
+        <code>Display / Momo Trust Display</code>
         <h1>Use digital dollars. Anywhere.</h1>
       </div>
       <div>
-        <code>Section / Instrument Serif</code>
+        <code>Section / Momo Trust Sans</code>
         <h2>Know what arrives</h2>
       </div>
       <div>
-        <code>Interface / Inter</code>
+        <code>Interface / Momo Trust Sans</code>
         <h3>Transaction fee</h3>
       </div>
       <div className="sb-body-samples">

@@ -27,6 +27,20 @@ export function AudienceExplorer() {
               loading="lazy"
               decoding="async"
             />
+            <ResponsiveImage
+              className="audience-image"
+              pictureClassName="audience-media audience-media-blur"
+              fallback={item.image}
+              stem={item.imageStem}
+              widths={[480, 960]}
+              width={1024}
+              height={1536}
+              sizes="(max-width: 700px) min(520px, 100vw), (max-width: 1120px) 50vw, 33vw"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            />
             <div className="audience-caption">
               <h3>{item.title}</h3>
               <ul>

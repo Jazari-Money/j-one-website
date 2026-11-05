@@ -10,7 +10,7 @@ test("exports country ad landings and all search-intent guides with working loca
     assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
     assert.match(html, new RegExp(`<link rel="canonical" href="https://jazari.xyz/${country}/"`));
     assert.match(html, /USDT/);
-    assert.match(html, new RegExp(`<h1>Your dollar account in ${country}\\.</h1>`));
+    assert.match(html, new RegExp(`<h1>Your dollar account in ${country}</h1>`));
     assert.match(html, /receive-usd-chidi\.webp/);
     assert.doesNotMatch(html, /receive-usd-account\.png|Explore your USD account|country-section-label|country-hero-note|country-photo-caption|country-steps/);
     assert.doesNotMatch(html, />Earn</);
@@ -647,7 +647,7 @@ test("keeps the restrained interactions and clear content hierarchy in source", 
   assert.match(css, /\.usd-account-hero-visual picture/);
   assert.match(css, /mask-image:\s*linear-gradient\(to bottom/);
   assert.match(css, /hero-event-line/);
-  assert.match(css, /"Instrument Serif"/);
+  assert.match(css, /--font-momo-display/);
   assert.match(css, /\[data-theme="jazari"\]/);
   assert.doesNotMatch(css, /\[data-theme="(?:black|dark|blue|sea|toxic|solar|magenta|violet|infrared|aurora)"\]/);
   assert.doesNotMatch(css, /\[data-shader="(?:horizon|orbital|ribbon)"\]/);

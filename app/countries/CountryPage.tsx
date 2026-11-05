@@ -47,7 +47,7 @@ export function CountryPage({ country }: { country: Country }) {
 
     <section className="country-wallet country-section" aria-labelledby="country-wallet-title">
       <Image className="country-product-art" src="/images/journeys/send-globe.png" width={1024} height={1024} alt="" />
-      <div><h2 id="country-wallet-title">Send and receive.</h2><p className="country-description">Send USD by bank transfer, or USDT, USDC, and OUSD to supported wallets. Receive money into your USD account or wallet. Check the recipient, network, and fees before you confirm.</p></div>
+      <div><h2 id="country-wallet-title">Send and receive</h2><p className="country-description">Send USD by bank transfer, or USDT, USDC, and OUSD to supported wallets. Receive money into your USD account or wallet. Check the recipient, network, and fees before you confirm.</p></div>
     </section>
 
     <section className="country-savings country-section" id="savings" aria-labelledby="country-savings-title">

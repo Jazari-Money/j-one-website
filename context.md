@@ -43,9 +43,9 @@ Last updated: 2026-10-21
   footer removals to other routes, including country blog articles. Product
   sections on these two landings have no Explore sending / Explore Yields
   actions.
-- Country blog articles carry `country-article-shell`; their article H1 and
-  content H2 use Instrument Serif. Body text and quick-answer UI stay Inter.
-  The typography rule is scoped to the country articles, not legacy guides.
+- Country blog articles carry `country-article-shell`; their article H1 uses
+  Momo Trust Display and content H2 Momo Trust Sans, like every article. Body
+  text and quick-answer UI use Momo Trust Sans.
 - The country receiving screenshot uses the user-supplied Chidi Okafor asset:
   `public/images/countries/receive-usd-chidi.webp`, with 320/520/800px AVIF/WebP
   sources. Preserve the supplied screenshot content and alpha; do not change
@@ -173,7 +173,7 @@ WebP for near-2× desktop rendering. Keep it directly below the page title and
 above the Manifesto copy.
 
 The registered-business cards contain no `United States entity` or `UAE
-entity` prefix. Their company names use the editorial serif:
+entity` prefix. Their company names use the card headline style (Momo Trust Sans 700):
 
 - `Jazari One, Inc.` — Registered in Dover, Delaware, United States.
 - `Jazari Fintech Services — FZCO` — Registration #78870 · Dubai Silicon
@@ -242,7 +242,11 @@ Commercial relationship wording still requires confirmation before launch.
 
 - Premium, restrained, editorial, and direct; Stripe, Bridge, OpenAI, and
   Airbnb are the quality bar.
-- Dark, spacious layouts with large white serif display type.
+- Dark, spacious layouts with large white Momo display type. See
+  `app/styles/typography.css`: it is the single source for headline family,
+  size, weight, line height and tracking, following the US sender landings
+  (`/Pakistan/`, `/India/`, `/Mexico/`), with a larger H1 on the main site. Headlines use sentence case and no
+  closing period. Other stylesheets must not set these properties on headlines.
 - Supporting copy immediately below the headline.
 - No kicker/eyebrow labels above homepage section headlines.
 - No noisy background grid, busy rays, or cheap multi-color gradients.
@@ -502,8 +506,11 @@ The current card is generated in code.
 - Next.js 16 with static export for GitHub Pages
 - React 19
 - TypeScript
-- Locally bundled Instrument Serif for editorial display type
-- Locally bundled Inter Variable for interface copy and Geist Mono only where
+- Locally bundled Momo Trust Display for the main H1 and Momo Trust Sans for
+  every other headline, body copy and interface text (`app/fonts.ts`, Latin
+  subset)
+- Locally bundled Inter Variable only as a fallback for glyphs missing from the
+  Momo subset (for example `¹`, `→`, `●`, `₮`), and Geist Mono only where
   code-like article metadata benefits from it
 - `@paper-design/shaders-react`
 - `glimm` for the closing gradient sweep
@@ -624,7 +631,7 @@ Default local URL: `http://localhost:3000`
 - The FX preview is deliberately sparse: no “FX preview” heading label, no outer border, no
   internal separators, and one consistent Geist tabular style for currencies
   and values. `1 USD = destination value` is prominent; expected delivery is
-  `2–5 minutes`. The two horizontal proof points use Instrument Serif values
+  `2–5 minutes`. The two horizontal proof points use Momo Trust Sans values
   without underlines: `0% Hidden FX rate fee` and `0% Transaction fee`.
 - The homepage Coming soon section is a compact horizontal scroll-snap
   carousel controlled by round previous/next buttons. Cards use restrained,
@@ -670,7 +677,7 @@ Default local URL: `http://localhost:3000`
 - The Blog index presents seven articles without read-time labels. Article
   pages use visible breadcrumbs, one left-aligned reading column, no “At a
   glance”/“Before confirming” cards, and a “Ready to join Jazari One?” CTA.
-- Footer copy uses Inter and the official CDN-supplied Apple and Google badge
+- Footer copy uses Momo Trust Sans and the official CDN-supplied Apple and Google badge
   artwork. It uses a tight multi-column layout without separator rules. The
   Support group contains FAQ, Help, and the intentionally supplied footer
   address `hello@jazary.xyz`; the Help page uses `hello@jazari.xyz`. The

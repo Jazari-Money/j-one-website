@@ -13,11 +13,6 @@
 
 .legal-hero h1 {
   max-width: 980px;
-  font-family: var(--serif);
-  font-size: clamp(72px, 8.2vw, 116px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.88;
   text-wrap: balance;
 }
 
@@ -144,11 +139,6 @@
 
 .legal-document h2 {
   margin-bottom: 24px;
-  font-family: var(--serif);
-  font-size: clamp(38px, 4vw, 54px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.98;
   text-wrap: balance;
 }
 
@@ -209,7 +199,7 @@
 }
 
 .legal-copy code {
-  font-family: var(--font-inter);
+  font-family: var(--font-body);
   font-size: 0.92em;
 }
 
@@ -303,10 +293,6 @@
 @media (max-width: 620px) {
   .legal-hero {
     padding: 146px 0 72px;
-  }
-
-  .legal-hero h1 {
-    font-size: 66px;
   }
 
   .terms-version-switcher {

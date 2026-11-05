@@ -118,9 +118,9 @@
 
 .provider-card p {
   margin-top: 12px;
-  color: var(--muted-strong);
-  font-size: 15px;
-  line-height: 1.55;
+  color: var(--description-color);
+  font-size: var(--description-size);
+  line-height: var(--description-line-height);
 }
 
 .provider-card-copy p:first-child {
@@ -146,11 +146,6 @@
 
 .partners-hero h1 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(76px, 8.2vw, 116px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.88;
 }
 
 .partners-hero p {
@@ -170,11 +165,6 @@
 }
 
 .partner-directory > h2 {
-  font-family: var(--serif);
-  font-size: clamp(48px, 5vw, 72px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.94;
   text-wrap: balance;
 }
 
@@ -222,10 +212,6 @@
 
   .partners-hero {
     padding: 146px 0 64px;
-  }
-
-  .partners-hero h1 {
-    font-size: 66px;
   }
 
   .partners-hero p {

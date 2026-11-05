@@ -34,7 +34,7 @@ export default async function CountryGuidePage({ params }: { params: Promise<{ s
         <section><h2>More for {guide.country}</h2><p><Link href={`/${guide.country}/`}>Explore Jazari One in {guide.country}</Link></p><ul>{countryGuides.filter(other => other.country === guide.country && other.slug !== guide.slug).map(other => <li key={other.slug}><Link href={`/blog/${other.slug}/`}>{other.title}</Link></li>)}</ul><p><Link href="/plan/">Check Pricing</Link> · <Link href="/yields/">Understand Yields</Link> · <Link href="/help/">Get help</Link></p></section>
       </div></div>
     </article>
-    <section className="country-article-cta"><h2>Your next step starts here.</h2><p>Explore your USD account and wallet routes in {guide.country}.</p><CountryDownloadLink country={guide.country} placement="article" className="neutral-control">Download App</CountryDownloadLink></section>
+    <section className="country-article-cta"><h2>Your next step starts here</h2><p>Explore your USD account and wallet routes in {guide.country}.</p><CountryDownloadLink country={guide.country} placement="article" className="neutral-control">Download App</CountryDownloadLink></section>
     <SiteFooter country={guide.country} />
   </main>;
 }

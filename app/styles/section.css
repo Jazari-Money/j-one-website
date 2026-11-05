@@ -12,9 +12,6 @@
 .chapter-heading h2,
 .ledger-heading h2 {
   margin: 0;
-  font-size: clamp(58px, 6.7vw, 100px);
-  line-height: 0.94;
-  letter-spacing: -0.2px;
   text-wrap: balance;
 }
 
@@ -32,19 +29,11 @@
   .section {
     padding: 104px 0;
   }
-
-  .chapter-heading h2 {
-    font-size: clamp(54px, 10vw, 82px);
-  }
 }
 
 @media (max-width: 620px) {
   .section {
     padding: 82px 0;
-  }
-
-  .chapter-heading h2 {
-    font-size: clamp(48px, 14vw, 66px);
   }
 
   .chapter-heading p,
@@ -62,10 +51,6 @@
   .chapter-heading,
   .ledger-heading {
     max-width: 748px;
-  }
-
-  .chapter-heading h2 {
-    font-size: clamp(51px, 5.9vw, 88px);
   }
 
   .chapter-heading p,

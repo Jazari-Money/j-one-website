@@ -43,9 +43,7 @@ export const milestones = [
     copy: "",
     notes: [],
     flags: [
-      { name: "India", src: withBasePath("/images/flags/in.png") },
       { name: "Bangladesh", src: withBasePath("/images/flags/bd.png") },
-      { name: "Pakistan", src: withBasePath("/images/flags/pk.png") },
       { name: "Nigeria", src: withBasePath("/images/flags/ng.png") },
       { name: "Philippines", src: withBasePath("/images/flags/ph.png") },
     ],

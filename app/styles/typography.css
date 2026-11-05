@@ -1,0 +1,122 @@
+/*
+ * Headline system, taken from the /Pakistan/ landing, with a larger H1 than
+ * that page. This file is the only place that sets family, size, weight, line
+ * height or tracking for headlines.
+ * Add new headlines to one of the three tiers instead of giving them a size.
+ *
+ *   H1   page title        Momo Trust Display 400
+ *   H2   section title     Momo Trust Sans 600
+ *   H3   card and subhead  Momo Trust Sans 700
+ *
+ * Body copy, labels and all small sizes use Momo Trust Sans too (--font-body in
+ * tokens.css); Inter only fills glyphs missing from the Latin subset. Copy is
+ * sentence case with no closing period.
+ */
+:root {
+  --font-display: var(--font-momo-display), var(--font-momo-sans), var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-momo-sans), var(--font-inter), system-ui, sans-serif;
+
+  --h1-size: clamp(56px, 6.4vw, 96px);
+  --h2-size: clamp(42px, 4.6vw, 68px);
+  --h3-size: clamp(24px, 2.3vw, 32px);
+  --heading-tracking: -0.045em;
+  /* Card descriptions: home journey cards, audience lists, roadmap, providers. */
+  --description-size: 16px;
+  --description-line-height: 1.55;
+  --description-color: var(--muted-strong);
+}
+
+@media (max-width: 760px) {
+  :root {
+    --h1-size: clamp(38px, 12vw, 64px);
+    --h2-size: clamp(34px, 10vw, 48px);
+  }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --description-size: 15px;
+  }
+}
+
+.hero h1,
+.about-title h1,
+.article-header h1,
+.blog-index-header h1,
+.country-hero h1,
+.help-hero > h1,
+.legal-hero h1,
+.partners-hero h1,
+.pricing-hero h1,
+.receive-hero h1,
+.referral-copy h1,
+.roadmap-full-hero h1,
+.send-hero h1,
+.usd-account-hero h1,
+.yields-hero h1 {
+  font-family: var(--font-display);
+  font-size: var(--h1-size);
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.03;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.chapter-heading h2,
+.ledger-heading h2,
+.about-manifest h2,
+.about-entities h2,
+.about-partners-heading h2,
+.article-cta h2,
+.country-article-cta h2,
+.country-section h2,
+.country-faq h2,
+.product-method-heading h2,
+.product-final-cta h2,
+.product-final-cta.color-event-cta h2,
+.method-flow-copy h3,
+.review-copy h2,
+.review-copy h3,
+.rates-section .review-copy h2,
+.scenario-how-heading h2,
+.partner-directory > h2,
+.yield-risk h2,
+.yield-questions h2,
+.yield-roadmap h2,
+.referral-benefits-title {
+  font-family: var(--font-heading);
+  font-size: var(--h2-size);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: var(--heading-tracking);
+  text-wrap: balance;
+}
+
+.about-entity-grid h3,
+.article-copy h2,
+.audience-caption h3,
+.blog h3,
+.blog-card h3,
+.blog-index-grid h3,
+.cookie-dialog-header h2,
+.country-guide-list h3,
+.help-card h2,
+.journey-card h3,
+.legal-document h2,
+.method-flow-copy .wallet-support-group > h3,
+.receive-countries-modal h3,
+.referral-benefit h3,
+.roadmap h3,
+.roadmap-milestone-copy h2,
+.roadmap-milestone-copy h3,
+.wallet-support-group > h3,
+.yield-feature-grid .yield-strategy-copy h2,
+.yield-strategy-copy h2 {
+  font-family: var(--font-heading);
+  font-size: var(--h3-size);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: var(--heading-tracking);
+  text-wrap: balance;
+}

@@ -341,7 +341,7 @@
     width: 100%;
     min-height: 44px;
     padding: 8px 0;
-    font-family: var(--font-inter);
+    font-family: var(--font-body);
     font-size: 21px;
     font-weight: 500;
     letter-spacing: -0.025em;

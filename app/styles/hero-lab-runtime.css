@@ -30,7 +30,7 @@
 
 .hlab-overview-head h1 {
   margin-top: 20px;
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: clamp(76px, 10vw, 142px);
   font-weight: 400;
   line-height: 0.82;
@@ -167,7 +167,7 @@
 }
 
 .hlab-card-body strong {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: 31px;
   font-weight: 400;
   line-height: 1;
@@ -363,7 +363,7 @@
 
 .hlab-info-idea {
   color: #b2b8b3;
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: 25px;
   line-height: 1.2;
 }
@@ -579,7 +579,7 @@
 }
 
 .hlab-copy h1 {
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: clamp(64px, 7.5vw, 110px);
   font-weight: 400;
   line-height: 0.83;

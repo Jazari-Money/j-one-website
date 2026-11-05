@@ -1,11 +1,6 @@
 @import "./internal-pages.css";
 
-/* This page is often a cold first visit, so it preloads its own copy of
-   Instrument Serif via next/font/local (see ./font.ts) instead of relying
-   on the sitewide @fontsource import, which has no preload and visibly
-   swaps from the fallback font. Scoped to this page only. */
 .referral-page {
-  --serif: var(--referral-serif-font), "Times New Roman", serif;
   /* Safety net: this page renders ~190 country names into a native
      <select>, and some mobile browsers size that control off its widest
      option text rather than the CSS width. Reported wider-than-viewport
@@ -61,11 +56,6 @@
 .referral-copy h1 {
   margin: 0;
   max-width: 760px;
-  font-family: var(--serif);
-  font-size: clamp(53px, 6.5vw, 81px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.98;
   text-wrap: balance;
 }
 
@@ -241,10 +231,6 @@
 
 .referral-benefits-title {
   margin: 0 0 40px;
-  font-family: var(--serif);
-  font-size: clamp(32px, 3.6vw, 44px);
-  font-weight: 400;
-  letter-spacing: -0.1px;
 }
 
 .referral-benefits {
@@ -266,10 +252,6 @@
 
 .referral-benefit h3 {
   margin: 20px 0 0;
-  font-family: var(--serif);
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: -0.1px;
 }
 
 .referral-benefit p {
@@ -339,10 +321,6 @@
 @media (max-width: 620px) {
   .referral-hero {
     padding: 112px 0 72px;
-  }
-
-  .referral-copy h1 {
-    font-size: 61px;
   }
 
   .referral-card-stage {

@@ -273,12 +273,6 @@
   text-transform: uppercase;
 }
 
-.cookie-dialog-header h2 {
-  font-family: var(--serif);
-  font-size: clamp(36px, 7vw, 48px);
-  line-height: 0.98;
-}
-
 .cookie-dialog-close {
   width: 44px;
   height: 44px;

@@ -24,7 +24,7 @@
 
 .storyboard-intro h1 {
   margin-top: 24px;
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: clamp(64px, 7vw, 104px);
   font-weight: 400;
   line-height: 0.86;
@@ -149,7 +149,7 @@
 
 .sb-specimen-label code {
   color: var(--muted);
-  font-family: var(--font-inter);
+  font-family: var(--font-body);
   font-size: 10px;
 }
 
@@ -174,7 +174,7 @@
 
 .sb-type-stack code {
   color: var(--muted);
-  font-family: var(--font-inter);
+  font-family: var(--font-body);
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -183,9 +183,15 @@
 .sb-type-stack h1,
 .sb-type-stack h2 {
   margin-top: 12px;
-  font-family: var(--serif);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: var(--heading-tracking);
+}
+
+.sb-type-stack h1 {
+  font-family: var(--font-display);
   font-weight: 400;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.04em;
 }
 
 .sb-type-stack h1 {
@@ -236,7 +242,7 @@
 
 .sb-number-sample strong {
   color: var(--accent);
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: 72px;
   font-weight: 400;
   line-height: 0.9;
@@ -857,7 +863,7 @@
 
 .sb-article-card h3 {
   max-width: 380px;
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: 31px;
   font-weight: 400;
   line-height: 0.95;
@@ -928,7 +934,7 @@
 
 .sb-roadmap-card h3 {
   margin-top: 32px;
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: 34px;
   font-weight: 400;
   line-height: 0.95;
@@ -982,7 +988,7 @@
 .sb-yield-card strong {
   margin-top: 4px;
   color: var(--accent);
-  font-family: var(--serif);
+  font-family: var(--font-heading);
   font-size: 50px;
   font-weight: 400;
   line-height: 1;

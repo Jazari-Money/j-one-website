@@ -20,11 +20,6 @@
 .product-method-heading h2,
 .product-final-cta h2 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(60px, 6.6vw, 94px);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-  line-height: 0.9;
 }
 
 .product-method-heading > p,
@@ -95,10 +90,6 @@
 .method-flow-copy h3 {
   max-width: 620px;
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(48px, 5vw, 72px);
-  font-weight: 400;
-  line-height: 0.94;
 }
 
 .method-flow-copy ol {
@@ -263,10 +254,6 @@
 
 .wallet-support-group > h3 {
   margin: 0;
-  font-family: var(--serif);
-  font-size: clamp(34px, 3.3vw, 48px);
-  font-weight: 400;
-  line-height: 0.95;
 }
 
 .wallet-assets {
@@ -340,10 +327,6 @@
 
 .method-flow-copy .wallet-support-group + .wallet-support-group {
   margin-top: 30px;
-}
-
-.method-flow-copy .wallet-support-group > h3 {
-  font-size: 26px;
 }
 
 .method-flow-copy .wallet-network-list {
@@ -428,8 +411,6 @@
 
 .product-final-cta.color-event-cta h2 {
   max-width: 760px;
-  font-size: clamp(48px, 6.4vw, 86px);
-  line-height: 0.92;
 }
 
 .product-final-cta .receive-final-action {
@@ -482,11 +463,6 @@
     gap: 28px;
   }
 
-  .product-method-heading h2,
-  .product-final-cta h2 {
-    font-size: 54px;
-  }
-
   .product-method-heading > p,
   .product-final-cta > p {
     font-size: 15px;
@@ -507,10 +483,6 @@
     padding: 32px 22px 0;
     border-radius: 22px;
     gap: 32px;
-  }
-
-  .method-flow-copy h3 {
-    font-size: 48px;
   }
 
   .method-flow-copy ol {

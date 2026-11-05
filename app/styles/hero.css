@@ -334,25 +334,10 @@
   text-align: center;
 }
 
-.hero h1,
-.chapter-heading h2,
-.ledger-heading h2,
-.roadmap h3,
-.review-copy h3,
-.blog h3,
-.article-header h1,
-.article-copy h2 {
-  font-family: var(--serif);
-  font-weight: 400;
-  letter-spacing: -0.2px;
-}
-
 .hero h1 {
   max-width: 1260px;
   margin: 0;
   color: #fff;
-  font-size: clamp(76px, 8.8vw, 132px);
-  line-height: 0.83;
   text-wrap: balance;
   text-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
 }
@@ -571,10 +556,6 @@
     padding: 146px 20px 48px;
   }
 
-  .hero h1 {
-    font-size: clamp(62px, 12.4vw, 96px);
-  }
-
   .hero-product {
     height: 340px;
     margin-top: 44px;
@@ -610,11 +591,6 @@
   .hero-shader {
     height: 100%;
     opacity: 1;
-  }
-
-  .hero h1 {
-    font-size: clamp(50px, 13.2vw, 64px);
-    line-height: 0.87;
   }
 
   .hero-title-desktop {
@@ -720,8 +696,6 @@
 
   .hero h1 {
     max-width: 1000px;
-    font-size: clamp(78px, 8.4vw, 126px);
-    line-height: 0.92;
   }
 
   .hero-copy > p {

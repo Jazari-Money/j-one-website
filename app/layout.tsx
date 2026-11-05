@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/instrument-serif/400.css";
 import "@fontsource-variable/inter";
 import { CookieConsentProvider } from "./cookie-consent/CookieConsent";
+import { momoDisplay, momoSans } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -44,7 +44,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="jazari" data-shader="beam">
+    <html
+      lang="en"
+      data-theme="jazari"
+      data-shader="beam"
+      className={`${momoDisplay.variable} ${momoSans.variable}`}
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{

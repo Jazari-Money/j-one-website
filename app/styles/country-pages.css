@@ -15,9 +15,6 @@
 }
 
 .country-hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(64px, 7vw, 104px);
-  line-height: .94;
   text-wrap: balance;
 }
 
@@ -58,8 +55,7 @@
 .country-hero-media img { object-fit: cover; object-position: 70% center; }
 
 .country-section { padding: 100px 0; scroll-margin-top: 100px; }
-.country-shell h2 { font-family: var(--serif); }
-.country-section h2 { font-size: clamp(51px, 5.9vw, 88px); line-height: .94; text-wrap: balance; }
+.country-section h2 { text-wrap: balance; }
 
 .country-receive,
 .country-wallet,
@@ -79,7 +75,6 @@
 .country-section-heading > a { flex-shrink: 0; padding: 12px 18px; font-size: 15px; }
 .country-guide-list { margin-top: 40px; }
 .country-guide-list > a { display: flex; align-items: center; gap: 28px; justify-content: space-between; border-top: 1px solid var(--line); padding: 28px 0; }
-.country-guide-list h3 { font-family: var(--serif); font-size: clamp(26px, 3vw, 38px); line-height: 1.2; }
 .country-guide-list span { flex-shrink: 0; font-size: 13px; color: var(--muted-strong); }
 .country-guide-list > a:hover h3 { color: var(--accent); }
 .country-shell a:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
@@ -99,7 +94,7 @@
 @media (max-width: 900px) {
   .country-shell { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
   .country-hero { grid-template-columns: 1fr; padding-top: 128px; gap: 40px; }
-  .country-hero h1 { max-width: 760px; font-size: clamp(58px, 10vw, 84px); }
+  .country-hero h1 { max-width: 760px; }
   .country-hero .country-primary-action { display: none; }
   .country-hero-media { height: 440px; }
   .country-receive,
@@ -128,11 +123,9 @@
   .country-footer { padding-top: 48px; }
   .country-footer-primary { align-items: flex-start; flex-direction: column; gap: 28px; }
   .country-hero { padding: 118px 0 34px; gap: 32px; }
-  .country-hero h1 { font-size: clamp(50px, 13vw, 66px); }
   .country-hero-copy > p,
   .country-description { font-size: 16px; }
   .country-hero-media { height: 340px; border-radius: 22px; }
-  .country-section h2 { font-size: clamp(48px, 14vw, 66px); }
   .country-section-heading { gap: 18px; }
   .country-section-heading > a { padding: 10px 14px; font-size: 13px; }
   .country-guide-list > a { display: block; padding: 24px 0; }
