@@ -532,7 +532,7 @@ html.rvjs body{background:#000}
  .ref-shell .ref-calc .ref-sum-row .coin3d{--s:30px!important}
 }
 @media (max-width:360px){
- .ref-shell .ref-calc{--cfs:20px}
+ .ref-calc.ref-split{--cfs:20px}
  .ref-shell .ref-calc .ref-sum-row .coin3d{--s:26px!important}
 }
 @media (max-width:350px){ .ref-shell .ref-calc .ref-sum-row .coin3d{--s:24px!important} }
@@ -642,9 +642,10 @@ body .ref-shell.ref-shell .ref-step{padding:28px!important}
  const hd=document.querySelector('.site-header');const sc=()=>hd.classList.toggle('is-scrolled',scrollY>8);addEventListener('scroll',sc,{passive:true});sc();
  const fmt=(n,d)=>n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
  const amt=document.getElementById('amt'),rng=document.getElementById('rng');
+ let DP=2,MISS=0;
  function calc(){const a=parseFloat(amt.value)||0,ok=a>=200;
-  const na=LIVE&&RFAIL&&!RATE,g=document.getElementById('gets'),ft=document.getElementById('famtotal'),NA='See the rate in the app',MM=v=>({INR:'₹',PKR:'Rs ',MXN:'$'}[CCY]||'')+fmt(v,0)+(CCY==='MXN'?' MXN':'');
-  if(LIVE){document.getElementById('fxv').textContent=RATE?fmt(RATE,2):na?'—':'…';if(!RATE)g.textContent=!ft&&na?NA:'…';g.classList.toggle('is-na',!ft&&na);document.querySelectorAll('.ref-cmp-card,.ref-cmp-box,.ref-cmp-note').forEach(e=>e.style.display=na?'none':'')}
+  const na=LIVE&&RFAIL&&!RATE,g=document.getElementById('gets'),ft=document.getElementById('famtotal'),NA=lang()==='es'?'Consulta el tipo de cambio en la app':'See the rate in the app',MM=v=>({INR:'₹',PKR:'Rs ',MXN:'$'}[CCY]||'')+fmt(v,0)+(CCY==='MXN'?' MXN':'');
+  if(LIVE){document.getElementById('fxv').textContent=RATE?fmt(RATE,DP):na?'—':'…';if(!RATE)g.textContent=!ft&&na?NA:'…';g.classList.toggle('is-na',!ft&&na);document.querySelectorAll('.ref-cmp-card,.ref-cmp-box,.ref-cmp-note').forEach(e=>e.style.display=na?'none':'')}
   if(ft){ft.textContent=RATE?MM(Math.round(a*RATE)+(ok?Math.round(10*RATE):0)):na?NA:'…';ft.classList.toggle('is-na',na);const sr=document.querySelector('.ref-sum-row');sr.hidden=na;sr.classList.toggle('no-gift',!ok)}
   if(RATE)document.getElementById('gets').textContent=({INR:'₹',PKR:'Rs ',MXN:'$'}[CCY]||'')+fmt(a*RATE,0)+(CCY==='MXN'?' MXN':'');
   document.getElementById('bonus').textContent=!ok?'—':RATE?({INR:'₹',PKR:'Rs ',MXN:'$'}[CCY]||'')+fmt(10*RATE,0)+(CCY==='MXN'?' MXN':''):'$10';
@@ -660,8 +661,10 @@ body .ref-shell.ref-shell .ref-step{padding:28px!important}
  amt.addEventListener('input',()=>{rng.value=Math.min(1000,Math.max(100,parseFloat(amt.value)||100));calc()});
  rng.addEventListener('input',()=>{amt.value=rng.value;calc()});
  setLang(BI?'es':'en');
- if(LIVE){const pull=()=>{const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),4000);
-  fetch('https://api.jazari.xyz/public/api/v1/exchange_rates',{signal:ctl.signal}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(p=>{const it=Array.isArray(p)?p.find(x=>x&&x.from==='USDC'&&x.to===CCY):null;if(!it||typeof it.rate!=='number'||!isFinite(it.rate)||it.rate<=0)throw 0;RATE=it.rate;RFAIL=false;calc()}).catch(()=>{if(!RATE){RFAIL=true;calc()}}).finally(()=>{clearTimeout(tm);setTimeout(pull,RATE?30000:5000)})};pull()}
+ if(LIVE){let tw=0,goal=0;const setRate=v=>{RFAIL=false;if(v===goal)return;goal=v;cancelAnimationFrame(tw);const a0=RATE,dv=(String(v).split('.')[1]||'').length;if(!a0||matchMedia('(prefers-reduced-motion: reduce)').matches){RATE=v;DP=dv;calc();return}DP=Math.max(DP,dv);const t0=performance.now(),step=t=>{const k=Math.max(0,Math.min(1,(t-t0)/900));RATE=k<1?a0+(v-a0)*(1-Math.pow(1-k,3)):v;if(k>=1)DP=dv;calc();if(k<1)tw=requestAnimationFrame(step)};tw=requestAnimationFrame(step)};
+  const KEY='jz_rate_'+CCY;try{const c=JSON.parse(localStorage.getItem(KEY)||'null');if(c&&c.r>0&&Date.now()-c.t<3600000)setRate(c.r)}catch(e){}
+  const pull=()=>{if(document.hidden&&RATE){setTimeout(pull,15000);return}const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),4000);
+  fetch('https://api.jazari.xyz/public/api/v1/exchange_rates',{signal:ctl.signal}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(p=>{const it=Array.isArray(p)?p.find(x=>x&&x.from==='USDC'&&x.to===CCY):null;if(!it||typeof it.rate!=='number'||!isFinite(it.rate)||it.rate<=0)throw 0;MISS=0;setRate(it.rate);try{localStorage.setItem(KEY,JSON.stringify({r:it.rate,t:Date.now()}))}catch(e){}}).catch(()=>{MISS++;if(!RATE&&MISS>=4){RFAIL=true;calc()}}).finally(()=>{clearTimeout(tm);setTimeout(pull,RATE?60000:Math.min(60000,1500*Math.pow(2,MISS-1)))})};pull()}
  const vids=[...document.querySelectorAll('.ref-reel>img,.ref-reel>video')],still=matchMedia('(prefers-reduced-motion: reduce)').matches;let cur=0;
  if(!still)setInterval(()=>{const nx=(cur+1)%vids.length,n=vids[nx],old=vids[cur];
   if(n.tagName==='VIDEO'){n.preload='auto';n.currentTime=0;n.play().catch(()=>{})}
