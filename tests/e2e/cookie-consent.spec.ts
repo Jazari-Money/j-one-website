@@ -2,6 +2,7 @@ import { expect, test, type Page, type Request } from "@playwright/test";
 
 const measurementId = "G-TEST123456";
 const gaScriptPattern = /googletagmanager\.com\/gtag\/js/;
+const gtmScriptPattern = /googletagmanager\.com\/gtm\.js/;
 
 async function captureGoogleAnalytics(page: Page) {
   const requests: Request[] = [];
@@ -20,6 +21,24 @@ async function captureGoogleAnalytics(page: Page) {
   return requests;
 }
 
+async function captureTagManager(page: Page) {
+  const requests: Request[] = [];
+
+  page.on("request", (request) => {
+    if (gtmScriptPattern.test(request.url())) requests.push(request);
+  });
+
+  // Never reach the real container: it holds live advertising pixels.
+  await page.route("https://www.googletagmanager.com/gtm.js**", async (route) => {
+    await route.fulfill({
+      contentType: "application/javascript",
+      body: "window.__jazariGtmTestLoaded = true;",
+    });
+  });
+
+  return requests;
+}
+
 async function readConsentCookie(page: Page) {
   const cookie = (await page.context().cookies()).find(
     (candidate) => candidate.name === "jazari_cookie_consent",
@@ -30,6 +49,7 @@ async function readConsentCookie(page: Page) {
     ...cookie,
     storedValue: JSON.parse(decodeURIComponent(cookie.value)) as {
       analytics: boolean;
+      marketing?: boolean;
       updatedAt: string;
     },
   };
@@ -43,8 +63,15 @@ async function readDataLayer(page: Page) {
   );
 }
 
+test.beforeEach(async ({ page }) => {
+  await page.route("https://www.googletagmanager.com/gtm.js**", (route) =>
+    route.fulfill({ contentType: "application/javascript", body: "" }),
+  );
+});
+
 test("denies analytics by default and shows the first-visit banner", async ({ page }) => {
   const analyticsRequests = await captureGoogleAnalytics(page);
+  const marketingRequests = await captureTagManager(page);
 
   await page.goto("/");
 
@@ -53,6 +80,7 @@ test("denies analytics by default and shows the first-visit banner", async ({ pa
   await expect(banner.getByRole("button", { name: "Accept all" })).toBeVisible();
   await expect(banner.getByRole("button", { name: "Reject" })).toBeVisible();
   expect(analyticsRequests).toHaveLength(0);
+  expect(marketingRequests).toHaveLength(0);
   expect((await page.context().cookies()).some((cookie) => cookie.name.startsWith("_ga"))).toBe(false);
 
   const consentCommands = await readDataLayer(page);
@@ -98,8 +126,34 @@ test("accepting persists consent and activates GA without a reload", async ({ pa
   ]);
 });
 
+test("accepting all loads the marketing tag container once and keeps it across visits", async ({ page }) => {
+  await captureGoogleAnalytics(page);
+  const marketingRequests = await captureTagManager(page);
+  await page.goto("/");
+  expect(marketingRequests).toHaveLength(0);
+
+  await page.getByRole("button", { name: "Accept all" }).click();
+
+  await expect.poll(() => marketingRequests.length).toBe(1);
+  expect(marketingRequests[0].url()).toContain("id=GTM-M563XFL2");
+  await expect(page.locator("script[data-jazari-gtm]")).toHaveCount(1);
+  expect(
+    await page.evaluate(() =>
+      (window.dataLayer ?? []).some(
+        (item) => (item as { event?: string }).event === "gtm.js",
+      ),
+    ),
+  ).toBe(true);
+  expect((await readConsentCookie(page))?.storedValue.marketing).toBe(true);
+
+  await page.reload();
+  await expect.poll(() => marketingRequests.length).toBe(2);
+  await expect(page.locator("script[data-jazari-gtm]")).toHaveCount(1);
+});
+
 test("rejecting persists denial and keeps GA inactive across visits", async ({ page }) => {
   const analyticsRequests = await captureGoogleAnalytics(page);
+  const marketingRequests = await captureTagManager(page);
   await page.goto("/");
 
   await page.getByRole("button", { name: "Reject" }).click();
@@ -107,11 +161,13 @@ test("rejecting persists denial and keeps GA inactive across visits", async ({ p
 
   const consentCookie = await readConsentCookie(page);
   expect(consentCookie?.storedValue.analytics).toBe(false);
+  expect(consentCookie?.storedValue.marketing).toBe(false);
   expect(analyticsRequests).toHaveLength(0);
 
   await page.reload();
   await expect(page.getByRole("complementary", { name: "Your privacy choices" })).toHaveCount(0);
   expect(analyticsRequests).toHaveLength(0);
+  expect(marketingRequests).toHaveLength(0);
   expect((await page.context().cookies()).some((cookie) => cookie.name.startsWith("_ga"))).toBe(false);
 });
 
@@ -146,6 +202,62 @@ test("preferences can grant and later withdraw analytics consent", async ({ page
     "update",
     expect.objectContaining({ analytics_storage: "denied" }),
   ]);
+});
+
+test("marketing is a separate choice and withdrawing it reloads the page without the container", async ({ page }) => {
+  const analyticsRequests = await captureGoogleAnalytics(page);
+  const marketingRequests = await captureTagManager(page);
+  await page.goto("/");
+  await page.getByRole("button", { name: "Reject" }).click();
+
+  const footerPreferences = page.locator("footer").getByRole("button", {
+    name: "Cookie Preferences",
+  });
+  const dialog = page.getByRole("dialog", { name: "Cookie Preferences" });
+
+  await footerPreferences.click();
+  await dialog.getByRole("checkbox", { name: "Allow analytics cookies" }).check();
+  await dialog.getByRole("button", { name: "Save preferences" }).click();
+  await expect.poll(() => analyticsRequests.length).toBe(1);
+  expect(marketingRequests).toHaveLength(0);
+  expect((await readConsentCookie(page))?.storedValue.marketing).toBe(false);
+
+  await footerPreferences.click();
+  await dialog.getByRole("checkbox", { name: "Allow marketing cookies" }).check();
+  await dialog.getByRole("button", { name: "Save preferences" }).click();
+  await expect.poll(() => marketingRequests.length).toBe(1);
+
+  await footerPreferences.click();
+  await expect(dialog.getByRole("checkbox", { name: "Allow marketing cookies" })).toBeChecked();
+  await dialog.getByRole("checkbox", { name: "Allow marketing cookies" }).uncheck();
+  await Promise.all([
+    page.waitForEvent("load"),
+    dialog.getByRole("button", { name: "Save preferences" }).click(),
+  ]);
+
+  await expect(page.locator("script[data-jazari-ga]")).toHaveCount(1);
+  await expect(page.locator("script[data-jazari-gtm]")).toHaveCount(0);
+  expect(marketingRequests).toHaveLength(1);
+  const stored = (await readConsentCookie(page))?.storedValue;
+  expect(stored?.analytics).toBe(true);
+  expect(stored?.marketing).toBe(false);
+});
+
+test("an older consent cookie without a marketing field keeps marketing off", async ({ page, context, baseURL }) => {
+  await captureGoogleAnalytics(page);
+  const marketingRequests = await captureTagManager(page);
+  await context.addCookies([
+    {
+      name: "jazari_cookie_consent",
+      value: encodeURIComponent(JSON.stringify({ analytics: true, updatedAt: "2026-10-01" })),
+      url: baseURL ?? "http://localhost:3000",
+    },
+  ]);
+
+  await page.goto("/");
+  await expect(page.locator("script[data-jazari-ga]")).toHaveCount(1);
+  await expect(page.getByRole("complementary", { name: "Your privacy choices" })).toHaveCount(0);
+  expect(marketingRequests).toHaveLength(0);
 });
 
 test("preferences dialog supports Escape and returns focus", async ({ page }) => {

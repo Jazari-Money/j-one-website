@@ -15,13 +15,18 @@ import { siteBasePath } from "../site-paths";
 const CONSENT_COOKIE = "jazari_cookie_consent";
 const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() ?? "";
+// Google Tag Manager container with the advertising pixels (Meta, Reddit). Loads only with marketing consent.
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID?.trim() || "GTM-M563XFL2";
 
 type ConsentState = "loading" | "unknown" | "granted" | "denied";
 
 type CookieConsentContextValue = {
   openPreferences: () => void;
   consent: ConsentState;
+  marketing: boolean;
 };
+
+type StoredConsent = { analytics: Exclude<ConsentState, "loading">; marketing: boolean };
 
 declare global {
   interface Window {
@@ -33,27 +38,29 @@ declare global {
 
 const CookieConsentContext = createContext<CookieConsentContextValue | null>(null);
 
-function getStoredConsent(): Exclude<ConsentState, "loading"> {
+function getStoredConsent(): StoredConsent {
   const rawCookie = document.cookie
     .split(";")
     .map((part) => part.trim())
     .find((part) => part.startsWith(`${CONSENT_COOKIE}=`));
 
-  if (!rawCookie) return "unknown";
+  const unknown: StoredConsent = { analytics: "unknown", marketing: false };
+  if (!rawCookie) return unknown;
 
   try {
     const value = JSON.parse(decodeURIComponent(rawCookie.slice(CONSENT_COOKIE.length + 1)));
-    if (typeof value?.analytics !== "boolean") return "unknown";
-    return value.analytics ? "granted" : "denied";
+    if (typeof value?.analytics !== "boolean") return unknown;
+    return { analytics: value.analytics ? "granted" : "denied", marketing: value.marketing === true };
   } catch {
-    return "unknown";
+    return unknown;
   }
 }
 
-function storeConsent(analytics: boolean) {
+function storeConsent(analytics: boolean, marketing: boolean) {
   const value = encodeURIComponent(
     JSON.stringify({
       analytics,
+      marketing,
       updatedAt: new Date().toISOString().slice(0, 10),
     }),
   );
@@ -102,17 +109,37 @@ function enableAnalytics() {
   document.head.append(script);
 }
 
+function isMarketingLoaded() {
+  return Boolean(document.querySelector("script[data-jazari-gtm]"));
+}
+
+function enableMarketing() {
+  if (!/^GTM-[A-Z0-9]+$/i.test(gtmId) || isMarketingLoaded()) return;
+
+  window.dataLayer = window.dataLayer ?? [];
+  window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(gtmId)}`;
+  script.dataset.jazariGtm = gtmId;
+  document.head.append(script);
+}
+
 function PreferencesDialog({
   analyticsEnabled,
+  marketingEnabled,
   onClose,
   onSave,
 }: {
   analyticsEnabled: boolean;
+  marketingEnabled: boolean;
   onClose: () => void;
-  onSave: (analytics: boolean) => void;
+  onSave: (analytics: boolean, marketing: boolean) => void;
 }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [draftAnalytics, setDraftAnalytics] = useState(analyticsEnabled);
+  const [draftMarketing, setDraftMarketing] = useState(marketingEnabled);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -147,7 +174,7 @@ function PreferencesDialog({
         </header>
 
         <p className="cookie-dialog-intro">
-          Choose whether Jazari may use analytics cookies. Necessary storage keeps
+          Choose whether Jazari may use analytics and marketing cookies. Necessary storage keeps
           your preference and is always active.
         </p>
 
@@ -175,6 +202,22 @@ function PreferencesDialog({
               <span aria-hidden="true" />
             </label>
           </section>
+
+          <section className="cookie-preference-row" aria-labelledby="marketing-cookie-title">
+            <div>
+              <h3 id="marketing-cookie-title">Marketing</h3>
+              <p>Lets advertising partners such as Meta and Reddit measure our ads.</p>
+            </div>
+            <label className="cookie-switch">
+              <span className="sr-only">Allow marketing cookies</span>
+              <input
+                type="checkbox"
+                checked={draftMarketing}
+                onChange={(event) => setDraftMarketing(event.target.checked)}
+              />
+              <span aria-hidden="true" />
+            </label>
+          </section>
         </div>
 
         <div className="cookie-dialog-actions">
@@ -182,7 +225,7 @@ function PreferencesDialog({
             className="cookie-action cookie-action-primary"
             type="button"
             onClick={() => {
-              onSave(draftAnalytics);
+              onSave(draftAnalytics, draftMarketing);
               dialogRef.current?.close();
             }}
           >
@@ -196,11 +239,14 @@ function PreferencesDialog({
 
 export function CookieConsentProvider({ children }: { children: ReactNode }) {
   const [consent, setConsent] = useState<ConsentState>("loading");
+  const [marketing, setMarketing] = useState(false);
   const [preferencesOpen, setPreferencesOpen] = useState(false);
 
   useEffect(() => {
     const loadStoredConsent = window.setTimeout(() => {
-      setConsent(getStoredConsent());
+      const stored = getStoredConsent();
+      setConsent(stored.analytics);
+      setMarketing(stored.marketing);
     }, 0);
     return () => window.clearTimeout(loadStoredConsent);
   }, []);
@@ -210,14 +256,24 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
     if (consent === "denied" || consent === "unknown") disableAnalytics();
   }, [consent]);
 
-  const saveConsent = useCallback((analytics: boolean) => {
-    storeConsent(analytics);
+  useEffect(() => {
+    if (marketing) enableMarketing();
+  }, [marketing]);
+
+  const saveConsent = useCallback((analytics: boolean, nextMarketing: boolean) => {
+    storeConsent(analytics, nextMarketing);
+    // Advertising pixels cannot be unloaded from a running page, so a withdrawal reloads it.
+    if (!nextMarketing && isMarketingLoaded()) {
+      window.location.reload();
+      return;
+    }
     setConsent(analytics ? "granted" : "denied");
+    setMarketing(nextMarketing);
   }, []);
 
   const contextValue = useMemo(
-    () => ({ openPreferences: () => setPreferencesOpen(true), consent }),
-    [consent],
+    () => ({ openPreferences: () => setPreferencesOpen(true), consent, marketing }),
+    [consent, marketing],
   );
 
   return (
@@ -228,7 +284,10 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
         <aside className="cookie-banner" aria-labelledby="cookie-banner-title">
           <div className="cookie-banner-copy">
             <h2 id="cookie-banner-title">Your privacy choices</h2>
-            <p>We use cookies to understand how people use Jazari and improve the website.</p>
+            <p>
+              We use cookies to understand how people use Jazari, improve the website and measure
+              our ads.
+            </p>
           </div>
           <div className="cookie-banner-actions">
             <button
@@ -241,14 +300,14 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
             <button
               className="cookie-action cookie-action-secondary"
               type="button"
-              onClick={() => saveConsent(false)}
+              onClick={() => saveConsent(false, false)}
             >
               Reject
             </button>
             <button
               className="cookie-action cookie-action-primary"
               type="button"
-              onClick={() => saveConsent(true)}
+              onClick={() => saveConsent(true, true)}
             >
               Accept all
             </button>
@@ -259,6 +318,7 @@ export function CookieConsentProvider({ children }: { children: ReactNode }) {
       {preferencesOpen && (
         <PreferencesDialog
           analyticsEnabled={consent === "granted"}
+          marketingEnabled={marketing}
           onClose={() => setPreferencesOpen(false)}
           onSave={saveConsent}
         />

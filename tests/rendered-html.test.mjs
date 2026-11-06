@@ -152,6 +152,7 @@ test("server-renders the Jazari One landing page", async () => {
   assert.match(html, /dataLayer\.push\(arguments\)/);
   assert.doesNotMatch(html, /dataLayer\.push\(Array\.from\(arguments\)\)/);
   assert.doesNotMatch(html, /https:\/\/www\.googletagmanager\.com\/gtag\/js/);
+  assert.doesNotMatch(html, /https:\/\/www\.googletagmanager\.com\/gtm\.js/);
 
   const footer = html.slice(
     html.indexOf('<footer class="site-footer">'),

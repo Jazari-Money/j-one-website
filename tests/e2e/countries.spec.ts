@@ -65,6 +65,7 @@ test("country download links retain campaign tags and measure clicks only with c
   await page.setViewportSize({ width: 390, height: 844 });
   await context.route("https://jazarione.app.link/**", route => route.fulfill({ body: "Test app destination" }));
   await page.route("https://www.googletagmanager.com/gtag/js**", route => route.fulfill({ body: "" }));
+  await page.route("https://www.googletagmanager.com/gtm.js**", route => route.fulfill({ body: "" }));
   const campaignPath = "/Nigeria/?utm_source=google&utm_medium=cpc&utm_campaign=nigeria-dollar&utm_term=dollar+account&utm_content=ad-one&untrusted=drop-me";
   await page.goto(campaignPath);
   const download = page.locator(".country-mobile-download .country-primary-action");
